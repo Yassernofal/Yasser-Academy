@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المكتبة الصوتية – Mr. Yasser Nofal Academy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0a2f6c;
+      --secondary: #1a73e8;
+      --accent: #f9a825;
+      --light-bg: #f0f4fa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--light-bg);
+    }
+    .navbar-custom {
+      background: var(--primary) !important;
+      padding: 12px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #fff !important;
+    }
+    .navbar-brand span { color: var(--accent); }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-link:hover {
+      color: var(--accent) !important;
+      transform: translateY(-2px);
+    }
+    .audio-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: 0.3s;
+      cursor: pointer;
+      height: 100%;
+    }
+    .audio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+    }
+    .audio-card .play-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto;
+      transition: 0.3s;
+    }
+    .audio-card .play-btn:hover {
+      transform: scale(1.1);
+      background: var(--primary);
+    }
+    .encryption-badge {
+      background: rgba(10,47,108,0.1);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 11px;
+      color: var(--primary);
+    }
+    .category-filter .btn-filter {
+      border-radius: 50px;
+      padding: 8px 25px;
+      background: #fff;
+      border: 2px solid #dee2e6;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+    .category-filter .btn-filter.active {
+      background: var(--secondary);
+      color: #fff;
+      border-color: var(--secondary);
+    }
+    .category-filter .btn-filter:hover {
+      background: var(--secondary);
+      color: #fff;
+    }
+    footer {
+      background: var(--primary);
+      color: #ccc;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-graduation-cap text-warning"></i> Mr. <span>Yasser</span> Nofal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html">📝 التسجيل</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👤 لوحة الطالب</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== المحتوى ===== -->
+  <section class="container py-5">
+    <h1 class="fw-bold text-center mb-3"><i class="fas fa-headphones text-primary"></i> المكتبة الصوتية المشفرة</h1>
+    <p class="text-center text-muted mb-4">ملفات صوتية عالية الجودة مع تشفير متقدم لحماية المحتوى</p>
+
+    <div class="category-filter d-flex gap-2 flex-wrap justify-content-center mb-4">
+      <button class="btn-filter active" onclick="filterAudio('all')">الكل</button>
+      <button class="btn-filter" onclick="filterAudio('pronunciation')">النطق</button>
+      <button class="btn-filter" onclick="filterAudio('conversation')">محادثات</button>
+      <button class="btn-filter" onclick="filterAudio('grammar')">قواعد</button>
+      <button class="btn-filter" onclick="filterAudio('vocabulary')">مفردات</button>
+      <button class="btn-filter" onclick="filterAudio('listening')">استماع</button>
+    </div>
+
+    <div class="row g-4" id="audioList">
+      <!-- سيتم حقن البيانات بواسطة JavaScript -->
+    </div>
+  </section>
+
+  <!-- ===== التذييل ===== -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-0">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script>
+    const audioData = [
+      { id: 1, title: 'نطق الحروف الإنجليزية - الجزء الأول', category: 'pronunciation', icon: 'fa-microphone', level: 'مبتدئ' },
+      { id: 2, title: 'محادثة في المطعم - المستوى المتوسط', category: 'conversation', icon: 'fa-comments', level: 'متوسط' },
+      { id: 3, title: 'شرح قاعدة Present Perfect بالتفصيل', category: 'grammar', icon: 'fa-book', level: 'ثانوي' },
+      { id: 4, title: 'مفردات السفر والطيران - الجزء الأول', category: 'vocabulary', icon: 'fa-plane', level: 'متوسط' },
+      { id: 5, title: 'تدريب استماع - نشرة الأخبار العالمية', category: 'listening', icon: 'fa-newspaper', level: 'متقدم' },
+      { id: 6, title: 'الفرق بين النطق الأمريكي والبريطاني', category: 'pronunciation', icon: 'fa-language', level: 'متقدم' },
+      { id: 7, title: 'محادثة في العمل - مقابلة وظيفية', category: 'conversation', icon: 'fa-briefcase', level: 'ما بعد الجامعة' },
+      { id: 8, title: 'شرح الأزمنة الماضية - الجزء الثاني', category: 'grammar', icon: 'fa-clock', level: 'ثانوي' },
+      { id: 9, title: 'مفردات الطب والصحة', category: 'vocabulary', icon: 'fa-heartbeat', level: 'جامعي' },
+      { id: 10, title: 'تدريب استماع - محاضرة أكاديمية', category: 'listening', icon: 'fa-university', level: 'جامعي' }
+    ];
+
+    function renderAudio(category = 'all') {
+      const container = document.getElementById('audioList');
+      const filtered = category === 'all' ? audioData : audioData.filter(a => a.category === category);
+
+      container.innerHTML = filtered.map(audio => `
+        <div class="col-md-3 col-6">
+          <div class="audio-card" onclick="playAudio('${audio.title}')">
+            <div class="play-btn"><i class="fas ${audio.icon}"></i></div>
+            <h6 class="mt-3 mb-1">${audio.title}</h6>
+            <div class="d-flex justify-content-center gap-2">
+              <span class="badge bg-secondary">${audio.level}</span>
+              <span class="encryption-badge"><i class="fas fa-lock"></i> مشفر</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function playAudio(title) {
+      alert(`🎵 جاري تشغيل: ${title}\n🔒 الملف مشفر لحماية المحتوى`);
+    }
+
+    function filterAudio(category) {
+      document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      renderAudio(category);
+    }
+
+    renderAudio();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/content-protection.js"></script>
+</body>
+</html>

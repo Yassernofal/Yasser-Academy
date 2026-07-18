@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المستويات – Mr. Yasser Nofal Academy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0a2f6c;
+      --secondary: #1a73e8;
+      --accent: #f9a825;
+      --light-bg: #f0f4fa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--light-bg);
+    }
+    .navbar-custom {
+      background: var(--primary) !important;
+      padding: 12px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #fff !important;
+    }
+    .navbar-brand span { color: var(--accent); }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-link:hover {
+      color: var(--accent) !important;
+      transform: translateY(-2px);
+    }
+    .level-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      text-align: center;
+      height: 100%;
+      transition: 0.3s;
+      border-bottom: 4px solid var(--secondary);
+    }
+    .level-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+      border-color: var(--accent);
+    }
+    .level-card i {
+      font-size: 3rem;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+    .level-card h5 {
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .level-card .badge {
+      font-size: 0.8rem;
+      padding: 6px 15px;
+    }
+    footer {
+      background: var(--primary);
+      color: #ccc;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+    }
+    @media (max-width: 768px) {
+      .level-card { padding: 15px; }
+      .level-card i { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-graduation-cap text-warning"></i> Mr. <span>Yasser</span> Nofal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html">📝 التسجيل</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👤 لوحة الطالب</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== المحتوى ===== -->
+  <section class="container py-5">
+    <h1 class="fw-bold text-center mb-3">📚 جميع المستويات التعليمية</h1>
+    <p class="text-center text-muted mb-5">اختر المستوى المناسب لك وابدأ رحلة التعلم</p>
+
+    <div class="row g-4">
+      <div class="col-md-3 col-6">
+        <div class="level-card">
+          <i class="fas fa-baby"></i>
+          <h5>ما قبل الروضة</h5>
+          <p class="text-muted small">تعليم الحروف والأرقام بالصور والأغاني</p>
+          <span class="badge bg-primary">24 درس</span>
+          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="level-card">
+          <i class="fas fa-child"></i>
+          <h5>رياض الأطفال</h5>
+          <p class="text-muted small">تأسيس قوي في اللغة: الحروف والكلمات</p>
+          <span class="badge bg-primary">30 درس</span>
+          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="level-card">
+          <i class="fas fa-school"></i>
+          <h5>المرحلة الابتدائية</h5>
+          <p class="text-muted small">قواعد أساسية، محادثات يومية، قراءة وكتابة</p>
+          <span class="badge bg-primary">36 درس</span>
+          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="level-card">
+          <i class="fas fa-user-graduate"></i>
+          <h5>المرحلة الإعدادية</h5>
+          <p class="text-muted small">توسيع المفردات، الأزمنة، مهارات المحادثة</p>
+          <span class="badge bg-primary">40 درس</span>
+          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="level-card">
+          <i class="fas fa-users"></i>
+          <h5>المرحلة الثانوية</h5>
+          <p class="text-muted small">تحليل نصوص، كتابة مقالات، استعداد للجامعة</p>
+          <span class="badge bg-primary">45 درس</span>
+          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="level-card">
+          <i class="fas fa-university"></i>
+          <h5>المرحلة الجامعية</h5>
+          <p class="text-muted small">أكاديمي متخصص: أبحاث، عروض، مناقشات</p>
+          <span class="badge bg-primary">50 درس</span>
+          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="level-card">
+          <i class="fas fa-briefcase"></i>
+          <h5>ما بعد الجامعة</h5>
+          <p class="text-muted small">سوق العمل: مقابلات، مراسلات، مفردات مهنية</p>
+          <span class="badge bg-primary">35 درس</span>
+          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="level-card">
+          <i class="fas fa-microphone-alt"></i>
+          <h5>الصوتيات والمحادثات</h5>
+          <p class="text-muted small">نطق صحيح، حوارات تفاعلية لكل المستويات</p>
+          <span class="badge bg-primary">60 درس</span>
+          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== التذييل ===== -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-0">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/content-protection.js"></script>
+</body>
+</html>
