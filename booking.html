@@ -171,39 +171,25 @@
 
   <script>
     // ===== إعدادات Firebase (استبدل ببياناتك الحقيقية) =====
-    // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    const firebaseConfig = {
+      apiKey: "AIzaSy...", // استبدل ببياناتك
+      authDomain: "yasser-academy.firebaseapp.com",
+      databaseURL: "https://yasser-academy-default-rtdb.firebaseio.com",
+      projectId: "yasser-academy",
+      storageBucket: "yasser-academy.appspot.com",
+      messagingSenderId: "123456789",
+      appId: "1:123456789:web:abcdef"
+    };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
-  authDomain: "yasser-nofal-english-academy.firebaseapp.com",
-  projectId: "yasser-nofal-english-academy",
-  storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
-  messagingSenderId: "654488740819",
-  appId: "1:654488740819:web:7a513cb6c2a74d98324526"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-    // ===== تهيئة Firebase =====
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // ===== دالة حفظ البيانات في Firebase =====
     function saveToFirebase(bookingData) {
       const bookingsRef = database.ref('bookings');
       const newBookingRef = bookingsRef.push();
       newBookingRef.set(bookingData)
-        .then(() => {
-          console.log('✅ تم حفظ البيانات في Firebase');
-        })
-        .catch((error) => {
-          console.error('❌ خطأ في الحفظ:', error);
-          alert('❌ حدث خطأ في حفظ البيانات، يرجى المحاولة مرة أخرى');
-        });
+        .then(() => console.log('✅ تم حفظ البيانات في Firebase'))
+        .catch((error) => console.error('❌ خطأ في الحفظ:', error));
     }
 
     // ===== بيانات الأسئلة =====
@@ -223,33 +209,49 @@ const app = initializeApp(firebaseConfig);
     let current = 0, answers = new Array(questions.length).fill(null), timerInterval, timeLeft = 300;
 
     function goToStep2() {
-      const name = document.getElementById('studentName').value, grade = document.getElementById('studentGrade').value, school = document.getElementById('schoolName').value, phone = document.getElementById('parentPhone').value;
-      if (!name || !grade || !school || !phone) { alert('❌ يرجى ملء جميع الحقول المطلوبة'); return; }
+      const name = document.getElementById('studentName').value;
+      const grade = document.getElementById('studentGrade').value;
+      const school = document.getElementById('schoolName').value;
+      const phone = document.getElementById('parentPhone').value;
+
+      if (!name || !grade || !school || !phone) {
+        alert('❌ يرجى ملء جميع الحقول المطلوبة');
+        return;
+      }
+
       document.getElementById('step1Content').style.display = 'none';
       document.getElementById('step2Content').style.display = 'block';
       document.getElementById('stepTitle').textContent = '📝 الخطوة 2: اختبار تحديد المستوى';
-      document.getElementById('step1').classList.remove('active'); document.getElementById('step1').classList.add('completed');
+      document.getElementById('step1').classList.remove('active');
+      document.getElementById('step1').classList.add('completed');
       document.getElementById('step2').classList.add('active');
       document.getElementById('line1').classList.add('completed');
-      renderQuestion(0); startTimer();
+      renderQuestion(0);
+      startTimer();
     }
 
     function goToStep3() {
       document.getElementById('step2Content').style.display = 'none';
       document.getElementById('step3Content').style.display = 'block';
       document.getElementById('stepTitle').textContent = '💳 الخطوة 3: الأسعار والدفع';
-      document.getElementById('step2').classList.remove('active'); document.getElementById('step2').classList.add('completed');
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('step2').classList.add('completed');
       document.getElementById('step3').classList.add('active');
       document.getElementById('line2').classList.add('completed');
     }
 
     function goToStep4() {
-      const price = document.getElementById('selectedPrice').value, payment = document.getElementById('selectedPayment').value;
-      if (!price || !payment) { alert('❌ يرجى اختيار الباقة وطريقة الدفع'); return; }
+      const price = document.getElementById('selectedPrice').value;
+      const payment = document.getElementById('selectedPayment').value;
+      if (!price || !payment) {
+        alert('❌ يرجى اختيار الباقة وطريقة الدفع');
+        return;
+      }
       document.getElementById('step3Content').style.display = 'none';
       document.getElementById('step4Content').style.display = 'block';
       document.getElementById('stepTitle').textContent = '✅ الخطوة 4: تأكيد الحجز';
-      document.getElementById('step3').classList.remove('active'); document.getElementById('step3').classList.add('completed');
+      document.getElementById('step3').classList.remove('active');
+      document.getElementById('step3').classList.add('completed');
       document.getElementById('step4').classList.add('active');
       document.getElementById('line3').classList.add('completed');
       document.getElementById('confirmName').textContent = document.getElementById('studentName').value;
@@ -258,7 +260,6 @@ const app = initializeApp(firebaseConfig);
       document.getElementById('confirmPrice').textContent = price;
       document.getElementById('confirmPayment').textContent = payment === 'instapay' ? 'انستاباي' : 'فودافون كاش';
 
-      // ===== حفظ البيانات =====
       const bookingData = {
         studentName: document.getElementById('studentName').value,
         grade: document.getElementById('studentGrade').value,
@@ -271,12 +272,8 @@ const app = initializeApp(firebaseConfig);
         date: new Date().toISOString()
       };
 
-      // حفظ في localStorage
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
-
-      // حفظ في Firebase
       saveToFirebase(bookingData);
-
       alert('✅ تم حفظ بيانات الحجز بنجاح!');
     }
 
