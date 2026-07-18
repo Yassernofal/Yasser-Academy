@@ -223,6 +223,8 @@
       document.getElementById('confirmSchool').textContent = document.getElementById('schoolName').value;
       document.getElementById('confirmPrice').textContent = price;
       document.getElementById('confirmPayment').textContent = payment === 'instapay' ? 'انستاباي' : 'فودافون كاش';
+
+      // ===== حفظ البيانات في localStorage =====
       const bookingData = {
         studentName: document.getElementById('studentName').value,
         grade: document.getElementById('studentGrade').value,
@@ -235,7 +237,18 @@
         date: new Date().toISOString()
       };
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
-      console.log('✅ بيانات الحجز:', bookingData);
+
+      // ===== محاولة حفظ البيانات في Firebase (لو مش موجود، يتجاهل) =====
+      if (typeof firebase !== 'undefined' && firebase.database) {
+        try {
+          const dbRef = firebase.database().ref('bookings');
+          const newBookingRef = dbRef.push();
+          newBookingRef.set(bookingData);
+        } catch (e) {
+          console.log('Firebase مش متصل، البيانات محفوظة في localStorage');
+        }
+      }
+
       alert('✅ تم حفظ بيانات الحجز بنجاح!');
     }
 
