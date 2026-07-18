@@ -89,7 +89,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
     // ===== تهيئة Firebase =====
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
@@ -110,6 +109,7 @@ const app = initializeApp(firebaseConfig);
       const bookingsRef = database.ref('bookings');
       bookingsRef.on('value', (snapshot) => {
         const data = snapshot.val();
+        console.log('📊 البيانات من Firebase:', data); // للتأكد
         if (data) {
           const bookings = Object.values(data);
           displayBookings(bookings);
