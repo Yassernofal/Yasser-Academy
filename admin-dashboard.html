@@ -66,7 +66,26 @@
 
   <footer class="text-center"><div class="container"><p class="mb-0">© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p></div></footer>
 
+  <!-- ===== Firebase ===== -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
   <script>
+    // ===== إعدادات Firebase (استبدل ببياناتك الحقيقية) =====
+    const firebaseConfig = {
+      apiKey: "AIzaSy...", // استبدل ببياناتك
+      authDomain: "yasser-academy.firebaseapp.com",
+      databaseURL: "https://yasser-academy-default-rtdb.firebaseio.com",
+      projectId: "yasser-academy",
+      storageBucket: "yasser-academy.appspot.com",
+      messagingSenderId: "123456789",
+      appId: "1:123456789:web:abcdef"
+    };
+
+    // ===== تهيئة Firebase =====
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
     // ===== التحقق من دخول المدرب =====
     if (!localStorage.getItem('admin')) {
       const adminPassword = prompt('🔐 أدخل كلمة مرور المدرب:');
@@ -78,23 +97,24 @@
       }
     }
 
-    // ===== عرض الحجوزات =====
-    function loadBookings() {
-      const bookings = JSON.parse(localStorage.getItem('bookingData')) || [];
+    // ===== عرض الحجوزات من Firebase =====
+    function loadBookingsFromFirebase() {
+      const bookingsRef = database.ref('bookings');
+      bookingsRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const bookings = Object.values(data);
+          displayBookings(bookings);
+        } else {
+          displayBookings([]);
+        }
+      });
+    }
+
+    function displayBookings(bookings) {
       const table = document.getElementById('bookingsTable');
       const total = document.getElementById('totalBookings');
       const today = document.getElementById('todayBookings');
-
-      if (!Array.isArray(bookings)) {
-        const singleBooking = JSON.parse(localStorage.getItem('bookingData'));
-        if (singleBooking && singleBooking.studentName) {
-          const bookingsArray = [singleBooking];
-          localStorage.setItem('bookingData', JSON.stringify(bookingsArray));
-          loadBookings();
-          return;
-        }
-        return;
-      }
 
       total.textContent = bookings.length;
 
@@ -120,7 +140,8 @@
       `).join('');
     }
 
-    loadBookings();
+    // ===== تحميل البيانات عند فتح الصفحة =====
+    loadBookingsFromFirebase();
   </script>
 </body>
 </html>
