@@ -170,18 +170,16 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
   <script>
-    // ===== إعدادات Firebase (⚠️ استبدل ببياناتك الحقيقية) =====
+    // ===== إعدادات Firebase =====
     const firebaseConfig = {
-      apiKey: "AIzaSy...", // ⚠️ استبدل بـ API Key الحقيقي
-      authDomain: "yasser-academy.firebaseapp.com",
-      databaseURL: "https://yasser-academy-default-rtdb.firebaseio.com",
-      projectId: "yasser-academy",
-      storageBucket: "yasser-academy.appspot.com",
-      messagingSenderId: "1076543210",
-      appId: "1:1076543210:web:abcdef123456"
+      apiKey: "AIzaSyAFuAjSYHumAXJ_98AbYxFI8N9dSd27xL8",
+      authDomain: "yasser-nofal-english-academy.firebaseapp.com",
+      projectId: "yasser-nofal-english-academy",
+      storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
+      messagingSenderId: "654488740819",
+      appId: "1:654488740819:web:7a513cb6c2a74d98324526"
     };
 
-    // ===== تهيئة Firebase =====
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
@@ -193,7 +191,6 @@
         .catch((error) => console.error('❌ خطأ في الحفظ:', error));
     }
 
-    // ===== بيانات الأسئلة =====
     const questions = [
       { q: 'ما هو الفعل الماضي لكلمة "go"؟', options: ['Going', 'Went', 'Gone', 'Goes'], correct: 1 },
       { q: 'اختر الجملة الصحيحة:', options: ['She don\'t like coffee', 'She doesn\'t like coffee', 'She not like coffee', 'She no like coffee'], correct: 1 },
