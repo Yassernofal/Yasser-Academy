@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pre-KG Lessons – Mr. Yasser Nofal Academy</title>
+  <title>دروس ما قبل الروضة – أكاديمية مستر ياسر نوفل</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
@@ -18,7 +18,6 @@
     body {
       font-family: 'Comic Neue', cursive;
       background: var(--light-bg);
-      direction: ltr;
     }
     .navbar-custom { background: #2d3436 !important; padding: 12px 0; }
     .navbar-brand { font-weight: 700; font-size: 1.6rem; color: #fff !important; }
@@ -31,6 +30,11 @@
       padding: 60px 0;
       text-align: center;
       border-radius: 0 0 40px 40px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
     .hero-lesson h1 { font-size: 3.5rem; font-weight: 700; color: #2d3436; }
     .hero-lesson p { font-size: 1.4rem; color: #2d3436; }
@@ -44,22 +48,65 @@
       transition: 0.3s;
       height: 100%;
       border: 4px solid #dfe6e9;
+      cursor: pointer;
     }
     .letter-card:hover { transform: scale(1.02); border-color: var(--secondary); }
     .letter-card .letter { font-size: 5rem; font-weight: 700; color: var(--primary); }
     .letter-card img { width: 80px; height: 80px; object-fit: contain; margin: 10px 0; }
     .letter-card .word { font-size: 1.8rem; font-weight: 700; color: #2d3436; }
-    .letter-card .btn-sound { background: var(--accent); border: none; border-radius: 50px; padding: 10px 25px; font-weight: 700; }
 
-    .video-section {
+    .game-section {
+      background: #2d3436;
+      padding: 40px;
+      border-radius: 30px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .game-section h3 { color: #fff; margin-bottom: 20px; }
+    .game-option {
+      background: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 10px;
+      font-size: 3rem;
+      transition: 0.3s;
+      width: 120px;
+      height: 120px;
+    }
+    .game-option:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255,255,255,0.3); }
+    .game-option.correct { background: #4ecdc4; }
+    .game-option.wrong { background: #ff6b6b; }
+
+    .video-container {
       background: #2d3436;
       padding: 40px;
       border-radius: 30px;
       margin-top: 40px;
     }
-    .video-section h3 { color: #fff; margin-bottom: 20px; }
+    .video-container h3 { color: #fff; margin-bottom: 20px; }
 
     footer { background: #2d3436; color: #ccc; padding: 35px 0; border-radius: 40px 40px 0 0; margin-top: 50px; }
+
+    .btn-sound {
+      background: var(--accent);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .btn-sound:hover { transform: scale(1.05); }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
@@ -76,10 +123,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
-          <li class="nav-item"><a class="nav-link" href="pre-kg-lessons.html">📖 Pre-KG Lessons</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">🔑 Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="pre-kg-lessons.html">📖 دروس ما قبل الروضة</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
         </ul>
       </div>
     </div>
@@ -88,51 +135,68 @@
   <!-- Hero -->
   <section class="hero-lesson">
     <div class="container">
-      <h1>🌈 Pre-KG Lessons</h1>
-      <p>Learn letters, numbers, and colors with fun!</p>
+      <h1>🌈 مرحباً في عالم الحروف</h1>
+      <p>تعلم الحروف الإنجليزية بطريقة ممتعة مع الألعاب والرسوم المتحركة</p>
     </div>
   </section>
 
   <!-- Letters Section -->
   <section class="container py-5">
-    <h2 class="text-center mb-5" style="font-size: 2.8rem; font-weight: 700;">🔤 Lesson 1: Letters A, B, C</h2>
+    <h2 class="text-center mb-5" style="font-size: 2.8rem; font-weight: 700;">🔤 الدرس الأول: الحروف A, B, C</h2>
     <div class="row g-4">
       <!-- Letter A -->
       <div class="col-md-4">
-        <div class="letter-card">
+        <div class="letter-card" onclick="speak('Apple')">
           <div class="letter">A</div>
           <img src="https://cdn-icons-png.flaticon.com/512/181/181549.png" alt="Apple" />
           <div class="word">Apple</div>
-          <button class="btn btn-sound mt-2" onclick="speak('Apple')"><i class="fas fa-volume-up"></i> Listen</button>
+          <button class="btn-sound mt-2" onclick="event.stopPropagation(); speak('Apple')"><i class="fas fa-volume-up"></i> استمع</button>
         </div>
       </div>
       <!-- Letter B -->
       <div class="col-md-4">
-        <div class="letter-card">
+        <div class="letter-card" onclick="speak('Ball')">
           <div class="letter">B</div>
           <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Ball" />
           <div class="word">Ball</div>
-          <button class="btn btn-sound mt-2" onclick="speak('Ball')"><i class="fas fa-volume-up"></i> Listen</button>
+          <button class="btn-sound mt-2" onclick="event.stopPropagation(); speak('Ball')"><i class="fas fa-volume-up"></i> استمع</button>
         </div>
       </div>
       <!-- Letter C -->
       <div class="col-md-4">
-        <div class="letter-card">
+        <div class="letter-card" onclick="speak('Cat')">
           <div class="letter">C</div>
           <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Cat" />
           <div class="word">Cat</div>
-          <button class="btn btn-sound mt-2" onclick="speak('Cat')"><i class="fas fa-volume-up"></i> Listen</button>
+          <button class="btn-sound mt-2" onclick="event.stopPropagation(); speak('Cat')"><i class="fas fa-volume-up"></i> استمع</button>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Game Section -->
+  <section class="container">
+    <div class="game-section">
+      <h3>🎮 لعبة: اختر الصورة الصحيحة</h3>
+      <p style="color: #fff; font-size: 1.5rem;" id="gameQuestion">أين الحرف <strong>A</strong>؟</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <button class="game-option" onclick="checkAnswer('A', 'apple')">🍎</button>
+        <button class="game-option" onclick="checkAnswer('A', 'ball')">⚽</button>
+        <button class="game-option" onclick="checkAnswer('A', 'cat')">🐱</button>
+      </div>
+      <div id="gameResult" style="font-size: 2rem; margin-top: 20px; color: #fff;"></div>
+    </div>
+  </section>
+
   <!-- Video Section -->
   <section class="container">
-    <div class="video-section">
-      <h3>🎥 Watch the Video</h3>
+    <div class="video-container">
+      <h3>🎥 فيديو تعليمي</h3>
       <div class="ratio ratio-16x9">
-        <iframe src="https://www.youtube.com/embed/8W9L2COrM_8" allowfullscreen></iframe>
+        <video controls>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          متصفحك لا يدعم تشغيل الفيديو
+        </video>
       </div>
     </div>
   </section>
@@ -140,17 +204,77 @@
   <!-- Footer -->
   <footer class="text-center">
     <div class="container">
-      <p class="mb-0">© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+      <p class="mb-0">© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p>
     </div>
   </footer>
 
   <script>
+    // ===== النطق =====
     function speak(text) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'en-US';
       utterance.rate = 0.8;
       speechSynthesis.speak(utterance);
     }
+
+    // ===== اللعبة =====
+    function checkAnswer(letter, selected) {
+      const correctMap = {
+        'A': 'apple',
+        'B': 'ball',
+        'C': 'cat'
+      };
+
+      const resultDiv = document.getElementById('gameResult');
+      const buttons = document.querySelectorAll('.game-option');
+
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (selected === correctMap[letter]) {
+        resultDiv.innerHTML = '🎉 إجابة صحيحة! أحسنت!';
+        resultDiv.style.color = '#4ecdc4';
+        launchConfetti();
+      } else {
+        resultDiv.innerHTML = '❌ حاول مرة أخرى!';
+        resultDiv.style.color = '#ff6b6b';
+        setTimeout(() => {
+          buttons.forEach(btn => btn.disabled = false);
+          resultDiv.innerHTML = '';
+        }, 1500);
+      }
+    }
+
+    // ===== تأثير الاحتفال =====
+    function launchConfetti() {
+      const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#a29bfe', '#fd79a8'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.cssText = `
+          position: fixed;
+          width: 10px;
+          height: 10px;
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          top: -10px;
+          left: ${Math.random() * 100}%;
+          border-radius: 50%;
+          animation: fall ${2 + Math.random() * 2}s linear forwards;
+          pointer-events: none;
+          z-index: 9999;
+        `;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+
+    // إضافة انيميشن للـ confetti
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+      @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(styleSheet);
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/content-protection.js"></script>
