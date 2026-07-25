@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KG Lessons – Mr. Yasser Nofal Academy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #6c5ce7;
+      --secondary: #00b894;
+      --accent: #fdcb6e;
+      --light-bg: #f9f9f9;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Comic Neue', cursive;
+      background: var(--light-bg);
+      direction: ltr;
+      text-align: left;
+    }
+    .navbar-custom { background: #2d3436 !important; padding: 12px 0; }
+    .navbar-brand { font-weight: 700; font-size: 1.6rem; color: #fff !important; }
+    .navbar-brand span { color: var(--accent); }
+    .nav-link { color: #fff !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: var(--accent) !important; }
+
+    .hero-lesson {
+      background: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%);
+      padding: 60px 0;
+      text-align: center;
+      border-radius: 0 0 40px 40px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .hero-lesson h1 { font-size: 3.5rem; font-weight: 700; color: #fff; }
+    .hero-lesson p { font-size: 1.4rem; color: #fff; }
+
+    .animal-card {
+      background: #fff;
+      border-radius: 30px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      height: 100%;
+      border: 4px solid #dfe6e9;
+      cursor: pointer;
+    }
+    .animal-card:hover { transform: scale(1.02); border-color: var(--secondary); }
+    .animal-card .animal-icon { font-size: 4rem; }
+    .animal-card .animal-name { font-size: 1.8rem; font-weight: 700; color: #2d3436; }
+    .animal-card .action-text { font-size: 1.2rem; color: #636e72; }
+
+    .action-card {
+      background: #2d3436;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .action-card:hover { transform: scale(1.05); background: var(--primary); }
+
+    .game-section {
+      background: #2d3436;
+      padding: 40px;
+      border-radius: 30px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .game-section h3 { color: #fff; margin-bottom: 20px; }
+    .game-option {
+      background: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 10px;
+      font-size: 2rem;
+      transition: 0.3s;
+      min-width: 150px;
+    }
+    .game-option:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
+
+    .video-container {
+      background: #2d3436;
+      padding: 40px;
+      border-radius: 30px;
+      margin-top: 40px;
+    }
+    .video-container h3 { color: #fff; margin-bottom: 20px; }
+
+    footer { background: #2d3436; color: #ccc; padding: 35px 0; border-radius: 40px 40px 0 0; margin-top: 50px; }
+
+    .btn-sound {
+      background: var(--accent);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .btn-sound:hover { transform: scale(1.05); }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Logo" style="height: 35px; margin-left: 10px;" />
+        <span>Yasser</span> Nofal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="kg-lessons.html">📖 KG Lessons</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">🔑 Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-lesson">
+    <div class="container">
+      <h1>🐾 Let's Learn Animals & Actions!</h1>
+      <p>Learn animal names and what they can do</p>
+    </div>
+  </section>
+
+  <!-- Animals Section -->
+  <section class="container py-5">
+    <h2 class="text-center mb-5" style="font-size: 2.8rem; font-weight: 700;">🦁 Animals & Their Actions</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="animal-card" onclick="speak('Cat')">
+          <div class="animal-icon">🐱</div>
+          <div class="animal-name">Cat</div>
+          <div class="action-text">Can run and jump</div>
+          <button class="btn-sound mt-2" onclick="event.stopPropagation(); speak('Cat')"><i class="fas fa-volume-up"></i> Listen</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="animal-card" onclick="speak('Dog')">
+          <div class="animal-icon">🐶</div>
+          <div class="animal-name">Dog</div>
+          <div class="action-text">Can run and swim</div>
+          <button class="btn-sound mt-2" onclick="event.stopPropagation(); speak('Dog')"><i class="fas fa-volume-up"></i> Listen</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="animal-card" onclick="speak('Bird')">
+          <div class="animal-icon">🐦</div>
+          <div class="animal-name">Bird</div>
+          <div class="action-text">Can fly and jump</div>
+          <button class="btn-sound mt-2" onclick="event.stopPropagation(); speak('Bird')"><i class="fas fa-volume-up"></i> Listen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Actions Section -->
+  <section class="container">
+    <h2 class="text-center mb-4" style="font-size: 2.5rem; font-weight: 700;">🏃 Actions</h2>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="action-card" onclick="speak('Run')">🏃 Run</div></div>
+      <div class="col-md-4"><div class="action-card" onclick="speak('Jump')">🤸 Jump</div></div>
+      <div class="col-md-4"><div class="action-card" onclick="speak('Swim')">🏊 Swim</div></div>
+    </div>
+  </section>
+
+  <!-- Game Section -->
+  <section class="container">
+    <div class="game-section">
+      <h3>🎮 Match the Animal to the Action</h3>
+      <p style="color: #fff; font-size: 1.5rem;" id="gameQuestion">Which animal can <strong>fly</strong>?</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <button class="game-option" onclick="checkMatch('fly', 'bird')">🐦 Bird</button>
+        <button class="game-option" onclick="checkMatch('fly', 'cat')">🐱 Cat</button>
+        <button class="game-option" onclick="checkMatch('fly', 'dog')">🐶 Dog</button>
+      </div>
+      <div id="gameResult" style="font-size: 2rem; margin-top: 20px; color: #fff;"></div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="container">
+    <div class="video-container">
+      <h3>🎥 Animal Sounds & Actions</h3>
+      <div class="ratio ratio-16x9">
+        <video controls>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-0">© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.8;
+      speechSynthesis.speak(utterance);
+    }
+
+    function checkMatch(action, animal) {
+      const correctMap = {
+        'fly': 'bird',
+        'run': 'dog',
+        'jump': 'cat'
+      };
+
+      const resultDiv = document.getElementById('gameResult');
+      const buttons = document.querySelectorAll('.game-option');
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (animal === correctMap[action]) {
+        resultDiv.innerHTML = '🎉 Correct! Well done!';
+        resultDiv.style.color = '#00b894';
+        launchConfetti();
+      } else {
+        resultDiv.innerHTML = '❌ Try again!';
+        resultDiv.style.color = '#ff6b6b';
+        setTimeout(() => {
+          buttons.forEach(btn => btn.disabled = false);
+          resultDiv.innerHTML = '';
+        }, 1500);
+      }
+    }
+
+    function launchConfetti() {
+      const colors = ['#6c5ce7', '#00b894', '#fdcb6e', '#fd79a8', '#0984e3'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.cssText = `
+          position: fixed;
+          width: 10px;
+          height: 10px;
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          top: -10px;
+          left: ${Math.random() * 100}%;
+          border-radius: 50%;
+          animation: fall ${2 + Math.random() * 2}s linear forwards;
+          pointer-events: none;
+          z-index: 9999;
+        `;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+      @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/content-protection.js"></script>
+</body>
+</html>
