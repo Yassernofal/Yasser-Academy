@@ -1,31 +1,70 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>دروس ما قبل الروضة – أكاديمية مستر ياسر نوفل</title>
+  <title>Pre-KG Lessons – Mr. Yasser Nofal Academy</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    :root { --primary: #0a2f6c; --secondary: #1a73e8; --accent: #f9a825; --light-bg: #f0f4fa; }
+    :root {
+      --primary: #ff6b6b;
+      --secondary: #4ecdc4;
+      --accent: #ffe66d;
+      --light-bg: #f9f9f9;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Tajawal', sans-serif; background: var(--light-bg); }
-    .navbar-custom { background: var(--primary) !important; padding: 12px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-    .navbar-brand { font-weight: 800; font-size: 1.6rem; color: #fff !important; }
+    body {
+      font-family: 'Comic Neue', cursive;
+      background: var(--light-bg);
+      direction: ltr;
+    }
+    .navbar-custom { background: #2d3436 !important; padding: 12px 0; }
+    .navbar-brand { font-weight: 700; font-size: 1.6rem; color: #fff !important; }
     .navbar-brand span { color: var(--accent); }
     .nav-link { color: #fff !important; font-weight: 500; transition: 0.3s; }
-    .nav-link:hover { color: var(--accent) !important; transform: translateY(-2px); }
-    .lesson-box { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.05); margin-bottom: 20px; border-right: 4px solid var(--secondary); }
-    .lesson-box h4 { color: var(--primary); }
-    .letter-card { background: #f8f9fa; border-radius: 15px; padding: 20px; text-align: center; }
-    .letter-card h1 { font-size: 4rem; color: var(--primary); }
-    footer { background: var(--primary); color: #ccc; padding: 35px 0; border-radius: 40px 40px 0 0; margin-top: 50px; }
-    @media (max-width: 768px) { .letter-card h1 { font-size: 2.5rem; } }
+    .nav-link:hover { color: var(--accent) !important; }
+
+    .hero-lesson {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+      padding: 60px 0;
+      text-align: center;
+      border-radius: 0 0 40px 40px;
+    }
+    .hero-lesson h1 { font-size: 3.5rem; font-weight: 700; color: #2d3436; }
+    .hero-lesson p { font-size: 1.4rem; color: #2d3436; }
+
+    .letter-card {
+      background: #fff;
+      border-radius: 30px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      height: 100%;
+      border: 4px solid #dfe6e9;
+    }
+    .letter-card:hover { transform: scale(1.02); border-color: var(--secondary); }
+    .letter-card .letter { font-size: 5rem; font-weight: 700; color: var(--primary); }
+    .letter-card img { width: 80px; height: 80px; object-fit: contain; margin: 10px 0; }
+    .letter-card .word { font-size: 1.8rem; font-weight: 700; color: #2d3436; }
+    .letter-card .btn-sound { background: var(--accent); border: none; border-radius: 50px; padding: 10px 25px; font-weight: 700; }
+
+    .video-section {
+      background: #2d3436;
+      padding: 40px;
+      border-radius: 30px;
+      margin-top: 40px;
+    }
+    .video-section h3 { color: #fff; margin-bottom: 20px; }
+
+    footer { background: #2d3436; color: #ccc; padding: 35px 0; border-radius: 40px 40px 0 0; margin-top: 50px; }
   </style>
 </head>
 <body>
 
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
@@ -37,67 +76,82 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
-          <li class="nav-item"><a class="nav-link" href="pre-kg-lessons.html">📖 دروس ما قبل الروضة</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="pre-kg-lessons.html">📖 Pre-KG Lessons</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">🔑 Login</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <section class="container py-5">
-    <h1 class="fw-bold text-center mb-4"><i class="fas fa-baby text-primary"></i> دروس ما قبل الروضة</h1>
-    <p class="text-center text-muted mb-5">تعلم الحروف والأرقام والألوان بطريقة ممتعة</p>
+  <!-- Hero -->
+  <section class="hero-lesson">
+    <div class="container">
+      <h1>🌈 Pre-KG Lessons</h1>
+      <p>Learn letters, numbers, and colors with fun!</p>
+    </div>
+  </section>
 
-    <div class="lesson-box">
-      <h4>🔤 الدرس الأول: الحروف الإنجليزية (A, B, C)</h4>
-      <div class="row g-3 mt-3">
-        <div class="col-md-4">
-          <div class="letter-card">
-            <h1>A</h1>
-            <img src="https://via.placeholder.com/80?text=🍎" alt="Apple" />
-            <p>Apple</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="letter-card">
-            <h1>B</h1>
-            <img src="https://via.placeholder.com/80?text=⚽" alt="Ball" />
-            <p>Ball</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="letter-card">
-            <h1>C</h1>
-            <img src="https://via.placeholder.com/80?text=🐱" alt="Cat" />
-            <p>Cat</p>
-          </div>
+  <!-- Letters Section -->
+  <section class="container py-5">
+    <h2 class="text-center mb-5" style="font-size: 2.8rem; font-weight: 700;">🔤 Lesson 1: Letters A, B, C</h2>
+    <div class="row g-4">
+      <!-- Letter A -->
+      <div class="col-md-4">
+        <div class="letter-card">
+          <div class="letter">A</div>
+          <img src="https://cdn-icons-png.flaticon.com/512/181/181549.png" alt="Apple" />
+          <div class="word">Apple</div>
+          <button class="btn btn-sound mt-2" onclick="speak('Apple')"><i class="fas fa-volume-up"></i> Listen</button>
         </div>
       </div>
-      <div class="mt-3">
-        <h6>🎥 فيديو تعليمي:</h6>
-        <div class="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/8W9L2COrM_8" allowfullscreen></iframe>
+      <!-- Letter B -->
+      <div class="col-md-4">
+        <div class="letter-card">
+          <div class="letter">B</div>
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Ball" />
+          <div class="word">Ball</div>
+          <button class="btn btn-sound mt-2" onclick="speak('Ball')"><i class="fas fa-volume-up"></i> Listen</button>
         </div>
       </div>
-      <div class="mt-3">
-        <h6>🎨 نشاط:</h6>
-        <p>اختر الصورة الصحيحة للحرف:</p>
-        <div class="d-flex gap-3">
-          <button class="btn btn-outline-primary" onclick="alert('✅ إجابة صحيحة!')">🍎</button>
-          <button class="btn btn-outline-danger" onclick="alert('❌ حاول مرة أخرى')">🐱</button>
+      <!-- Letter C -->
+      <div class="col-md-4">
+        <div class="letter-card">
+          <div class="letter">C</div>
+          <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Cat" />
+          <div class="word">Cat</div>
+          <button class="btn btn-sound mt-2" onclick="speak('Cat')"><i class="fas fa-volume-up"></i> Listen</button>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Video Section -->
+  <section class="container">
+    <div class="video-section">
+      <h3>🎥 Watch the Video</h3>
+      <div class="ratio ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/8W9L2COrM_8" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="text-center">
     <div class="container">
-      <p class="mb-0">© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p>
+      <p class="mb-0">© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
     </div>
   </footer>
 
+  <script>
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.8;
+      speechSynthesis.speak(utterance);
+    }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/content-protection.js"></script>
 </body>
