@@ -105,8 +105,8 @@
       <div id="step2Content" style="display: none;">
         <div id="testContainer">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5><i class="fas fa-clock text-primary"></i> <span id="timer">5:00</span></h5>
-            <span id="questionCounter" class="badge bg-primary">1 / 5</span>
+            <h5><i class="fas fa-clock text-primary"></i> <span id="timer">10:00</span></h5>
+            <span id="questionCounter" class="badge bg-primary">1 / 10</span>
           </div>
           <div id="questionBox" class="question-box">
             <h5 id="questionText">السؤال الأول</h5>
@@ -192,48 +192,54 @@
         .catch((error) => console.error('❌ خطأ في الحفظ:', error));
     }
 
-    // ===== أسئلة حسب المستوى =====
-    function getQuestionsForGrade(grade) {
-      if (grade === 'pre-kg' || grade === 'kg') {
-        return [
-          { q: 'What is the color of the sun?', options: ['Red', 'Yellow', 'Blue', 'Green'], correct: 1 },
-          { q: 'How many legs does a cat have?', options: ['2', '3', '4', '5'], correct: 2 }
-        ];
-      } else if (grade === 'primary') {
-        return [
-          { q: 'What is the plural of "child"?', options: ['Childs', 'Children', 'Childrens', 'Childes'], correct: 1 },
-          { q: 'Choose the correct sentence:', options: ['She go to school', 'She goes to school', 'She going to school', 'She gone to school'], correct: 1 }
-        ];
-      } else if (grade === 'prep') {
-        return [
+    // ===== بنك الأسئلة حسب المستوى =====
+    function getQuestionBank(grade) {
+      const allQuestions = {
+        prep: [
           { q: 'What is the past tense of "run"?', options: ['Running', 'Ran', 'Runned', 'Runs'], correct: 1 },
-          { q: 'Choose the correct sentence:', options: ['He don\'t like coffee', 'He doesn\'t like coffee', 'He not like coffee', 'He no like coffee'], correct: 1 }
-        ];
-      } else if (grade === 'secondary') {
-        return [
+          { q: 'Choose the correct sentence:', options: ['He don\'t like coffee', 'He doesn\'t like coffee', 'He not like coffee', 'He no like coffee'], correct: 1 },
+          { q: 'What is the plural of "child"?', options: ['Childs', 'Children', 'Childrens', 'Childes'], correct: 1 },
+          { q: 'What is the opposite of "hot"?', options: ['Warm', 'Cold', 'Cool', 'Freezing'], correct: 1 },
+          { q: 'Which sentence is correct?', options: ['He go to school', 'He goes to school', 'He going to school', 'He gone to school'], correct: 1 },
+          { q: 'What is the past of "eat"?', options: ['Eated', 'Ate', 'Eaten', 'Eating'], correct: 1 },
+          { q: 'Choose the correct pronoun: "____ is a teacher."', options: ['He', 'She', 'It', 'They'], correct: 1 },
+          { q: 'What is the plural of "foot"?', options: ['Foots', 'Feet', 'Feets', 'Footes'], correct: 1 },
+          { q: 'Which word means "big"?', options: ['Small', 'Large', 'Tiny', 'Short'], correct: 1 },
+          { q: 'Choose the correct verb: "She ____ to school every day."', options: ['go', 'goes', 'going', 'gone'], correct: 1 }
+        ],
+        secondary: [
           { q: 'What is the correct passive form of "They build houses"?', options: ['Houses are built by them', 'Houses were built by them', 'Houses have been built by them', 'Houses are being built by them'], correct: 0 },
-          { q: 'Which sentence is in the present perfect?', options: ['I ate', 'I have eaten', 'I eat', 'I am eating'], correct: 1 }
-        ];
-      } else {
-        return [
+          { q: 'Which sentence is in the present perfect?', options: ['I ate', 'I have eaten', 'I eat', 'I am eating'], correct: 1 },
           { q: 'What is the past tense of "go"?', options: ['Going', 'Went', 'Gone', 'Goes'], correct: 1 },
-          { q: 'Choose the correct sentence:', options: ['She don\'t like coffee', 'She doesn\'t like coffee', 'She not like coffee', 'She no like coffee'], correct: 1 }
-        ];
-      }
+          { q: 'Choose the correct sentence:', options: ['She don\'t like coffee', 'She doesn\'t like coffee', 'She not like coffee', 'She no like coffee'], correct: 1 },
+          { q: 'What is the correct passive form of "She wrote a letter"?', options: ['A letter is written by her', 'A letter was written by her', 'A letter has been written by her', 'A letter is being written by her'], correct: 1 },
+          { q: 'Which sentence is in the past perfect?', options: ['I ate', 'I had eaten', 'I have eaten', 'I was eating'], correct: 1 },
+          { q: 'What is the correct conditional: "If I ____ you, I would study."', options: ['was', 'were', 'am', 'had been'], correct: 1 },
+          { q: 'Choose the correct reported speech: "He said, I am happy."', options: ['He said he is happy', 'He said he was happy', 'He said he were happy', 'He said he has been happy'], correct: 1 },
+          { q: 'What is the correct use of "since"?', options: ['I have lived here since 2010', 'I live here since 2010', 'I have lived here for 2010', 'I lived here since 2010'], correct: 0 },
+          { q: 'Which is the correct question tag: "She is a doctor, ____?"', options: ['is she', 'isn\'t she', 'does she', 'doesn\'t she'], correct: 1 }
+        ]
+      };
+
+      // لو المستوى مش موجود، نرجع أسئلة إعدادي كـ default
+      return allQuestions[grade] || allQuestions.prep;
     }
 
-    // ===== باقات حسب المستوى =====
+    // ===== اختيار 10 أسئلة عشوائية =====
+    function getRandomQuestions(grade) {
+      const bank = getQuestionBank(grade);
+      const shuffled = bank.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, 10);
+    }
+
+    // ===== الباقات الجديدة =====
     function getPriceForGrade(grade) {
-      if (grade === 'pre-kg' || grade === 'kg') {
-        return { basic: 300, standard: 500, premium: 700, basicLabel: 'باقة الأطفال', standardLabel: 'باقة الأطفال الممتازة', premiumLabel: 'باقة الأطفال الذهبية' };
-      } else if (grade === 'primary') {
-        return { basic: 400, standard: 600, premium: 900, basicLabel: 'باقة المبتدئين', standardLabel: 'باقة المبتدئين المتقدمة', premiumLabel: 'باقة المبتدئين الذهبية' };
-      } else if (grade === 'prep') {
-        return { basic: 500, standard: 750, premium: 1000, basicLabel: 'باقة الإعدادي', standardLabel: 'باقة الإعدادي المتقدمة', premiumLabel: 'باقة الإعدادي الذهبية' };
+      if (grade === 'prep') {
+        return { basic: 300, standard: 550, premium: 800, basicLabel: 'باقة الإعدادي الأساسية', standardLabel: 'باقة الإعدادي المتقدمة', premiumLabel: 'باقة الإعدادي الذهبية' };
       } else if (grade === 'secondary') {
-        return { basic: 600, standard: 850, premium: 1200, basicLabel: 'باقة الثانوي', standardLabel: 'باقة الثانوي المتقدمة', premiumLabel: 'باقة الثانوي الذهبية' };
+        return { basic: 500, standard: 900, premium: 1300, basicLabel: 'باقة الثانوي الأساسية', standardLabel: 'باقة الثانوي المتقدمة', premiumLabel: 'باقة الثانوي الذهبية' };
       } else {
-        return { basic: 500, standard: 800, premium: 1200, basicLabel: 'الباقة الأساسية', standardLabel: 'الباقة القياسية', premiumLabel: 'الباقة الممتازة' };
+        return { basic: 300, standard: 550, premium: 800, basicLabel: 'الباقة الأساسية', standardLabel: 'الباقة المتقدمة', premiumLabel: 'الباقة الذهبية' };
       }
     }
 
@@ -242,7 +248,7 @@
     let current = 0;
     let answers = [];
     let timerInterval;
-    let timeLeft = 300;
+    let timeLeft = 600; // 10 دقائق
 
     function updatePriceOptions() {
       const grade = document.getElementById('studentGrade').value;
@@ -264,7 +270,7 @@
         alert('❌ يرجى اختيار الصف الدراسي');
         return;
       }
-      currentQuestions = getQuestionsForGrade(grade);
+      currentQuestions = getRandomQuestions(grade);
       answers = new Array(currentQuestions.length).fill(null);
       document.getElementById('step1Content').style.display = 'none';
       document.getElementById('step2Content').style.display = 'block';
@@ -309,8 +315,8 @@
     }
 
     function startTimer() {
-      timeLeft = 300;
-      document.getElementById('timer').textContent = '5:00';
+      timeLeft = 600;
+      document.getElementById('timer').textContent = '10:00';
       clearInterval(timerInterval);
       timerInterval = setInterval(() => {
         timeLeft--;
