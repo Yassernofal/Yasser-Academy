@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pre-KG Lessons – Mr. Yasser Nofal Academy</title>
+  <title>Lesson 3 – Pre-KG</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
@@ -16,30 +16,12 @@
     .navbar-brand span { color: var(--accent); }
     .nav-link { color: #fff !important; font-weight: 500; transition: 0.3s; }
     .nav-link:hover { color: var(--accent) !important; }
-    .hero-lesson {
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-      padding: 60px 0;
-      text-align: center;
-      border-radius: 0 0 40px 40px;
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .hero-lesson h1 { font-size: 3.5rem; font-weight: 700; color: #2d3436; }
-    .hero-lesson p { font-size: 1.4rem; color: #2d3436; }
-    .lesson-card {
-      background: #fff;
-      border-radius: 30px;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      transition: 0.3s;
-      height: 100%;
-      border: 4px solid #dfe6e9;
-      cursor: pointer;
-    }
-    .lesson-card:hover { transform: scale(1.02); border-color: var(--secondary); }
-    .lesson-card .lesson-icon { font-size: 3rem; }
-    .lesson-card .lesson-title { font-size: 1.5rem; font-weight: 700; color: #2d3436; }
+    .lesson-content { background: #fff; border-radius: 30px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); border: 2px solid #dfe6e9; }
+    .color-box { font-size: 5rem; font-weight: 700; }
+    .btn-sound { background: var(--accent); border: none; border-radius: 50px; padding: 10px 25px; font-weight: 700; transition: 0.3s; }
+    .btn-sound:hover { transform: scale(1.05); }
+    .back-btn { background: #2d3436; color: #fff; border: none; border-radius: 50px; padding: 10px 25px; font-weight: 700; transition: 0.3s; }
+    .back-btn:hover { background: var(--primary); color: #fff; }
     footer { background: #2d3436; color: #ccc; padding: 35px 0; border-radius: 40px 40px 0 0; margin-top: 50px; }
   </style>
 </head>
@@ -65,41 +47,41 @@
     </div>
   </nav>
 
-  <section class="hero-lesson">
-    <div class="container">
-      <h1>🌈 Pre-KG Lessons</h1>
-      <p>Choose a lesson to start learning!</p>
-    </div>
-  </section>
-
   <section class="container py-5">
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="lesson-card" onclick="window.location.href='pre-kg-lesson1.html'">
-          <div class="lesson-icon">🔤</div>
-          <div class="lesson-title">Lesson 1</div>
-          <p class="text-muted">Letters A, B, C</p>
+    <div class="lesson-content">
+      <h1 class="text-center" style="font-size: 2.8rem; font-weight: 700;">🎨 Lesson 3: Colors Red, Blue, Yellow</h1>
+      <div class="row g-4 mt-3">
+        <div class="col-md-4 text-center">
+          <div class="color-box" style="color: #ff0000;">●</div>
+          <div style="font-size: 1.5rem; font-weight: 700;">Red</div>
+          <button class="btn-sound mt-2" onclick="speak('Red')"><i class="fas fa-volume-up"></i> Listen</button>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="color-box" style="color: #0000ff;">●</div>
+          <div style="font-size: 1.5rem; font-weight: 700;">Blue</div>
+          <button class="btn-sound mt-2" onclick="speak('Blue')"><i class="fas fa-volume-up"></i> Listen</button>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="color-box" style="color: #ffcc00;">●</div>
+          <div style="font-size: 1.5rem; font-weight: 700;">Yellow</div>
+          <button class="btn-sound mt-2" onclick="speak('Yellow')"><i class="fas fa-volume-up"></i> Listen</button>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="lesson-card" onclick="window.location.href='pre-kg-lesson2.html'">
-          <div class="lesson-icon">🔢</div>
-          <div class="lesson-title">Lesson 2</div>
-          <p class="text-muted">Numbers 1, 2, 3</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="lesson-card" onclick="window.location.href='pre-kg-lesson3.html'">
-          <div class="lesson-icon">🎨</div>
-          <div class="lesson-title">Lesson 3</div>
-          <p class="text-muted">Colors Red, Blue, Yellow</p>
-        </div>
-      </div>
+      <div class="mt-4"><div class="ratio ratio-16x9"><video controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />Your browser does not support the video tag.</video></div></div>
+      <div class="text-center mt-4"><button class="back-btn" onclick="window.location.href='pre-kg-lessons.html'">⬅ Back to Lessons</button></div>
     </div>
   </section>
 
   <footer class="text-center"><div class="container"><p class="mb-0">© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p></div></footer>
 
+  <script>
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.8;
+      speechSynthesis.speak(utterance);
+    }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/content-protection.js"></script>
 </body>
