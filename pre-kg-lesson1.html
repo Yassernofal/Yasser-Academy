@@ -17,17 +17,8 @@
       --light: #f8f9fa;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background: var(--light);
-      direction: ltr;
-      text-align: left;
-    }
-    .navbar-custom {
-      background: var(--dark) !important;
-      padding: 15px 0;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
+    body { font-family: 'Quicksand', sans-serif; background: var(--light); direction: ltr; text-align: left; }
+    .navbar-custom { background: var(--dark) !important; padding: 15px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
     .navbar-brand { font-weight: 700; font-size: 1.6rem; color: #fff !important; }
     .navbar-brand span { color: var(--accent); }
     .nav-link { color: #fff !important; font-weight: 600; transition: 0.3s; }
@@ -51,10 +42,7 @@
       background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
       animation: rotate 20s linear infinite;
     }
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     .lesson-hero h1 { font-size: 3rem; font-weight: 700; color: #fff; position: relative; z-index: 1; }
     .lesson-hero p { font-size: 1.2rem; color: #fff; position: relative; z-index: 1; }
 
@@ -65,35 +53,73 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.08);
       border-bottom: 5px solid var(--secondary);
     }
-    .letter-box {
-      font-size: 5rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-    .btn-sound {
-      background: var(--accent);
-      border: none;
-      border-radius: 50px;
-      padding: 10px 25px;
-      font-weight: 700;
-      transition: 0.3s;
-    }
+    .letter-box { font-size: 5rem; font-weight: 700; color: var(--primary); }
+    .btn-sound { background: var(--accent); border: none; border-radius: 50px; padding: 10px 25px; font-weight: 700; transition: 0.3s; }
     .btn-sound:hover { transform: scale(1.05); background: #fdcb6e; }
-    .back-btn {
-      background: var(--dark);
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      padding: 12px 30px;
-      font-weight: 700;
-      transition: 0.3s;
-    }
+    .back-btn { background: var(--dark); color: #fff; border: none; border-radius: 50px; padding: 12px 30px; font-weight: 700; transition: 0.3s; }
     .back-btn:hover { background: var(--primary); color: #fff; }
+
+    .game-section {
+      background: #2d3436;
+      padding: 30px;
+      border-radius: 30px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .game-section h3 { color: #fff; margin-bottom: 20px; }
+    .game-option {
+      background: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 20px;
+      font-size: 3rem;
+      transition: 0.3s;
+      width: 120px;
+      height: 120px;
+      margin: 10px;
+    }
+    .game-option:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
+    .game-option.correct { background: #00b894; }
+    .game-option.wrong { background: #ff6b6b; }
+    #gameResult { font-size: 2rem; margin-top: 20px; color: #fff; }
+
+    .song-section {
+      background: #dfe6e9;
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .song-section .song-text { font-size: 1.2rem; font-weight: 600; color: var(--dark); }
 
     .video-container { background: var(--dark); padding: 30px; border-radius: 30px; margin-top: 30px; }
     .video-container h3 { color: #fff; margin-bottom: 20px; }
 
+    .activity-section {
+      background: #ffeaa7;
+      padding: 30px;
+      border-radius: 30px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .activity-section h3 { color: var(--dark); font-weight: 700; }
+    .activity-section p { color: var(--dark); }
+
     footer { background: var(--dark); color: #ccc; padding: 35px 0; border-radius: 50px 50px 0 0; margin-top: 50px; }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -121,13 +147,16 @@
   <section class="lesson-hero" data-aos="fade-up">
     <div class="container">
       <h1>🔤 Lesson 1: Letters A, B, C</h1>
-      <p>Learn the first three letters with fun pictures and sounds!</p>
+      <p>Learn the first three letters with fun, songs, and games!</p>
     </div>
   </section>
 
   <section class="container py-5">
     <div class="lesson-content" data-aos="fade-up">
-      <div class="row g-4 text-center">
+
+      <!-- ===== Letters ===== -->
+      <h2 class="text-center" style="font-weight: 700;">🔤 Letters</h2>
+      <div class="row g-4 text-center mt-3">
         <div class="col-md-4">
           <div class="letter-box">A</div>
           <img src="https://cdn-icons-png.flaticon.com/512/181/181549.png" alt="Apple" style="width: 80px; height: 80px; object-fit: contain;" />
@@ -148,7 +177,32 @@
         </div>
       </div>
 
-      <div class="video-container">
+      <!-- ===== Song Section ===== -->
+      <div class="song-section" data-aos="fade-up">
+        <h3>🎵 Letter Song</h3>
+        <div class="song-text">
+          "A is for Apple, so red and sweet,<br />
+          B is for Ball, let's bounce and greet,<br />
+          C is for Cat, so soft and neat,<br />
+          Learning letters is a treat!"
+        </div>
+        <button class="btn-sound mt-2" onclick="speak('A is for Apple, B is for Ball, C is for Cat')"><i class="fas fa-music"></i> Sing Along</button>
+      </div>
+
+      <!-- ===== Game Section ===== -->
+      <div class="game-section" data-aos="fade-up">
+        <h3>🎮 Game: Find the Letter!</h3>
+        <p style="color: #fff; font-size: 1.5rem;" id="gameQuestion">Which one is <strong>A</strong>?</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <button class="game-option" onclick="checkGame('A', 'apple')">🍎</button>
+          <button class="game-option" onclick="checkGame('A', 'ball')">⚽</button>
+          <button class="game-option" onclick="checkGame('A', 'cat')">🐱</button>
+        </div>
+        <div id="gameResult"></div>
+      </div>
+
+      <!-- ===== Video Section ===== -->
+      <div class="video-container" data-aos="fade-up">
         <h3>🎥 Educational Video</h3>
         <div class="ratio ratio-16x9">
           <video controls>
@@ -158,6 +212,14 @@
         </div>
       </div>
 
+      <!-- ===== Activity Section ===== -->
+      <div class="activity-section" data-aos="fade-up">
+        <h3>🎨 Activity: Draw & Color</h3>
+        <p>Draw a big letter <strong>A</strong> and color an <strong>Apple</strong> next to it!</p>
+        <p style="font-size: 0.9rem; color: #2d3436;">Share your drawing with your teacher!</p>
+      </div>
+
+      <!-- ===== Back Button ===== -->
       <div class="text-center mt-4">
         <button class="back-btn" onclick="window.location.href='pre-kg-lessons.html'">⬅ Back to Lessons</button>
       </div>
@@ -171,12 +233,67 @@
   </footer>
 
   <script>
+    // ===== Speak Function =====
     function speak(text) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'en-US';
       utterance.rate = 0.8;
       speechSynthesis.speak(utterance);
     }
+
+    // ===== Game Logic =====
+    function checkGame(letter, selected) {
+      const correctMap = { 'A': 'apple', 'B': 'ball', 'C': 'cat' };
+      const resultDiv = document.getElementById('gameResult');
+      const buttons = document.querySelectorAll('.game-option');
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (selected === correctMap[letter]) {
+        resultDiv.innerHTML = '🎉 Correct! Well done!';
+        resultDiv.style.color = '#00b894';
+        launchConfetti();
+        speak('Correct! Well done!');
+      } else {
+        resultDiv.innerHTML = '❌ Try again!';
+        resultDiv.style.color = '#ff6b6b';
+        setTimeout(() => {
+          buttons.forEach(btn => btn.disabled = false);
+          resultDiv.innerHTML = '';
+        }, 1500);
+      }
+    }
+
+    // ===== Confetti Effect =====
+    function launchConfetti() {
+      const colors = ['#6c5ce7', '#00b894', '#fdcb6e', '#fd79a8', '#0984e3'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.cssText = `
+          position: fixed;
+          width: 10px;
+          height: 10px;
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          top: -10px;
+          left: ${Math.random() * 100}%;
+          border-radius: 50%;
+          animation: fall ${2 + Math.random() * 2}s linear forwards;
+          pointer-events: none;
+          z-index: 9999;
+        `;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+
+    // ===== Confetti CSS =====
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+      @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(styleSheet);
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
