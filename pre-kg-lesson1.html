@@ -71,16 +71,15 @@
       background: #fff;
       border: none;
       border-radius: 20px;
-      padding: 20px;
-      font-size: 3rem;
+      padding: 15px 25px;
+      font-size: 1.5rem;
+      font-weight: 700;
       transition: 0.3s;
-      width: 120px;
-      height: 120px;
       margin: 10px;
     }
-    .game-option:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
-    .game-option.correct { background: #00b894; }
-    .game-option.wrong { background: #ff6b6b; }
+    .game-option:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
+    .game-option.correct { background: #00b894; color: #fff; }
+    .game-option.wrong { background: #ff6b6b; color: #fff; }
     #gameResult { font-size: 2rem; margin-top: 20px; color: #fff; }
 
     .song-section {
@@ -177,26 +176,25 @@
         </div>
       </div>
 
-      <!-- ===== Song Section ===== -->
+      <!-- ===== Song Section (Full Song) ===== -->
       <div class="song-section" data-aos="fade-up">
         <h3>🎵 Letter Song</h3>
         <div class="song-text">
-          "A is for Apple, so red and sweet,<br />
-          B is for Ball, let's bounce and greet,<br />
-          C is for Cat, so soft and neat,<br />
-          Learning letters is a treat!"
+          "A for Apple, red and round,<br />
+          B for Ball, bouncing on the ground,<br />
+          C for Cat, soft and small,<br />
+          Let's learn our letters, one and all!"
         </div>
-        <button class="btn-sound mt-2" onclick="speak('A is for Apple, B is for Ball, C is for Cat')"><i class="fas fa-music"></i> Sing Along</button>
+        <button class="btn-sound mt-2" onclick="speak('A for Apple, red and round, B for Ball, bouncing on the ground, C for Cat, soft and small, Lets learn our letters, one and all!')"><i class="fas fa-music"></i> Sing Along</button>
       </div>
 
-      <!-- ===== Game Section ===== -->
+      <!-- ===== Game Section (Words, not pictures) ===== -->
       <div class="game-section" data-aos="fade-up">
-        <h3>🎮 Game: Find the Letter!</h3>
-        <p style="color: #fff; font-size: 1.5rem;" id="gameQuestion">Which one is <strong>A</strong>?</p>
+        <h3>🎮 Game: Which word starts with <strong>A</strong>?</h3>
         <div class="d-flex justify-content-center gap-3 flex-wrap">
-          <button class="game-option" onclick="checkGame('A', 'apple')">🍎</button>
-          <button class="game-option" onclick="checkGame('A', 'ball')">⚽</button>
-          <button class="game-option" onclick="checkGame('A', 'cat')">🐱</button>
+          <button class="game-option" onclick="checkGame('A', 'Apple')">Apple</button>
+          <button class="game-option" onclick="checkGame('A', 'Ball')">Ball</button>
+          <button class="game-option" onclick="checkGame('A', 'Cat')">Cat</button>
         </div>
         <div id="gameResult"></div>
       </div>
@@ -242,13 +240,13 @@
     }
 
     // ===== Game Logic =====
-    function checkGame(letter, selected) {
-      const correctMap = { 'A': 'apple', 'B': 'ball', 'C': 'cat' };
+    function checkGame(letter, selectedWord) {
+      const correctMap = { 'A': 'Apple', 'B': 'Ball', 'C': 'Cat' };
       const resultDiv = document.getElementById('gameResult');
       const buttons = document.querySelectorAll('.game-option');
       buttons.forEach(btn => btn.disabled = true);
 
-      if (selected === correctMap[letter]) {
+      if (selectedWord === correctMap[letter]) {
         resultDiv.innerHTML = '🎉 Correct! Well done!';
         resultDiv.style.color = '#00b894';
         launchConfetti();
@@ -285,7 +283,6 @@
       }
     }
 
-    // ===== Confetti CSS =====
     const styleSheet = document.createElement("style");
     styleSheet.textContent = `
       @keyframes fall {
