@@ -6,21 +6,33 @@
   <title>Lesson 2 – Pre-KG | Mr. Yasser Nofal Academy</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
-    :root { --primary: #6c5ce7; --secondary: #00b894; --accent: #fdcb6e; --dark: #2d3436; --light: #f8f9fa; }
+    :root {
+      --primary: #6c5ce7;
+      --secondary: #00b894;
+      --accent: #fdcb6e;
+      --dark: #2d3436;
+      --light: #f8f9fa;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Quicksand', sans-serif; background: var(--light); direction: ltr; text-align: left; }
+    body {
+      font-family: 'Comic Neue', cursive;
+      background: var(--light);
+      direction: ltr;
+      text-align: left;
+      overflow-x: hidden;
+    }
     .navbar-custom { background: var(--dark) !important; padding: 15px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-    .navbar-brand { font-weight: 700; font-size: 1.6rem; color: #fff !important; }
+    .navbar-brand { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: #fff !important; }
     .navbar-brand span { color: var(--accent); }
     .nav-link { color: #fff !important; font-weight: 600; transition: 0.3s; }
     .nav-link:hover { color: var(--accent) !important; }
 
     .lesson-hero {
       background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
-      padding: 60px 0;
+      padding: 80px 0 60px;
       text-align: center;
       border-radius: 0 0 50px 50px;
       position: relative;
@@ -33,26 +45,40 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
       animation: rotate 20s linear infinite;
     }
     @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .lesson-hero h1 { font-size: 3rem; font-weight: 700; color: #fff; position: relative; z-index: 1; }
-    .lesson-hero p { font-size: 1.2rem; color: #fff; position: relative; z-index: 1; }
+    .lesson-hero h1 { font-family: 'Fredoka One', cursive; font-size: 3.5rem; color: #fff; position: relative; z-index: 1; text-shadow: 2px 2px 10px rgba(0,0,0,0.2); }
+    .lesson-hero p { font-family: 'Comic Neue', cursive; font-size: 1.4rem; color: #fff; position: relative; z-index: 1; }
 
-    .lesson-content {
-      background: #fff;
-      border-radius: 30px;
-      padding: 40px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-      border-bottom: 5px solid var(--secondary);
-    }
-    .number-box { font-size: 5rem; font-weight: 700; color: var(--primary); }
-    .btn-sound { background: var(--accent); border: none; border-radius: 50px; padding: 10px 25px; font-weight: 700; transition: 0.3s; }
+    .lesson-content { background: #fff; border-radius: 30px; padding: 40px; box-shadow: 0 12px 40px rgba(0,0,0,0.08); border-bottom: 5px solid var(--secondary); }
+    .number-box { font-family: 'Fredoka One', cursive; font-size: 6rem; color: var(--primary); text-shadow: 2px 2px 20px rgba(108, 92, 231, 0.2); }
+    .btn-sound { background: var(--accent); border: none; border-radius: 50px; padding: 12px 30px; font-family: 'Nunito', sans-serif; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 15px rgba(253, 203, 110, 0.4); }
     .btn-sound:hover { transform: scale(1.05); background: #fdcb6e; }
-    .back-btn { background: var(--dark); color: #fff; border: none; border-radius: 50px; padding: 12px 30px; font-weight: 700; transition: 0.3s; }
+    .back-btn { background: var(--dark); color: #fff; border: none; border-radius: 50px; padding: 12px 35px; font-family: 'Nunito', sans-serif; font-weight: 700; transition: 0.3s; }
     .back-btn:hover { background: var(--primary); color: #fff; }
-    footer { background: var(--dark); color: #ccc; padding: 35px 0; border-radius: 50px 50px 0 0; margin-top: 50px; }
+
+    .song-section { background: linear-gradient(135deg, #dfe6e9, #b2bec3); padding: 25px; border-radius: 25px; margin-top: 25px; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
+    .game-section { background: linear-gradient(135deg, #2d3436, #636e72); padding: 35px; border-radius: 30px; margin-top: 30px; text-align: center; box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+    .game-section h3 { font-family: 'Fredoka One', cursive; color: #fff; margin-bottom: 20px; }
+    .game-option { background: #fff; border: none; border-radius: 25px; padding: 15px 25px; font-family: 'Nunito', sans-serif; font-size: 1.3rem; font-weight: 700; transition: 0.3s; margin: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: inline-flex; align-items: center; gap: 10px; }
+    .game-option img { width: 50px; height: 50px; object-fit: contain; }
+    .game-option:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,255,255,0.15); }
+    .game-option.correct { background: #00b894; color: #fff; }
+    .game-option.wrong { background: #ff6b6b; color: #fff; }
+    #gameResult { font-family: 'Fredoka One', cursive; font-size: 2.2rem; margin-top: 20px; color: #fff; }
+
+    .video-container { background: var(--dark); padding: 30px; border-radius: 30px; margin-top: 30px; }
+    .video-container h3 { font-family: 'Fredoka One', cursive; color: #fff; margin-bottom: 20px; }
+
+    .activity-section { background: linear-gradient(135deg, #ffeaa7, #fdcb6e); padding: 30px; border-radius: 30px; margin-top: 30px; text-align: center; }
+    .activity-section h3 { font-family: 'Fredoka One', cursive; color: var(--dark); }
+
+    footer { background: var(--dark); color: #ccc; padding: 35px 0; border-radius: 50px 50px 0 0; margin-top: 60px; font-family: 'Nunito', sans-serif; }
+
+    .confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+    @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
   </style>
 </head>
 <body>
@@ -80,41 +106,81 @@
   <section class="lesson-hero" data-aos="fade-up">
     <div class="container">
       <h1>🔢 Lesson 2: Numbers 1, 2, 3</h1>
-      <p>Learn to count from 1 to 3 with fun pictures!</p>
+      <p>Learn to count with fun songs and games!</p>
     </div>
   </section>
 
   <section class="container py-5">
     <div class="lesson-content" data-aos="fade-up">
-      <div class="row g-4 text-center">
+
+      <h2 class="text-center" style="font-family: 'Fredoka One', cursive; font-size: 2.5rem; color: var(--primary);">🔢 Numbers</h2>
+      <div class="row g-4 text-center mt-3">
         <div class="col-md-4">
           <div class="number-box">1</div>
-          <img src="https://cdn-icons-png.flaticon.com/512/181/181549.png" alt="One" style="width: 80px; height: 80px; object-fit: contain;" />
-          <div style="font-size: 1.5rem; font-weight: 700;">One</div>
+          <img src="assets/images/one.png" alt="One" style="width: 80px; height: 80px; object-fit: contain;" />
+          <div style="font-family: 'Nunito', sans-serif; font-size: 1.5rem; font-weight: 700;">One</div>
           <button class="btn-sound mt-2" onclick="speak('One')"><i class="fas fa-volume-up"></i> Listen</button>
         </div>
         <div class="col-md-4">
           <div class="number-box">2</div>
-          <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Two" style="width: 80px; height: 80px; object-fit: contain;" />
-          <div style="font-size: 1.5rem; font-weight: 700;">Two</div>
+          <img src="assets/images/two.png" alt="Two" style="width: 80px; height: 80px; object-fit: contain;" />
+          <div style="font-family: 'Nunito', sans-serif; font-size: 1.5rem; font-weight: 700;">Two</div>
           <button class="btn-sound mt-2" onclick="speak('Two')"><i class="fas fa-volume-up"></i> Listen</button>
         </div>
         <div class="col-md-4">
           <div class="number-box">3</div>
-          <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Three" style="width: 80px; height: 80px; object-fit: contain;" />
-          <div style="font-size: 1.5rem; font-weight: 700;">Three</div>
+          <img src="assets/images/three.png" alt="Three" style="width: 80px; height: 80px; object-fit: contain;" />
+          <div style="font-family: 'Nunito', sans-serif; font-size: 1.5rem; font-weight: 700;">Three</div>
           <button class="btn-sound mt-2" onclick="speak('Three')"><i class="fas fa-volume-up"></i> Listen</button>
         </div>
       </div>
 
-      <div class="video-container" style="background: var(--dark); padding: 30px; border-radius: 30px; margin-top: 30px;">
-        <h3 style="color: #fff;">🎥 Educational Video</h3>
+      <div class="song-section" data-aos="fade-up">
+        <h3 style="font-family: 'Fredoka One', cursive; color: var(--dark);">🎵 Number Song</h3>
+        <div class="mt-2">
+          <audio controls>
+            <source src="assets/audio/numbers-song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div style="font-family: 'Nunito', sans-serif; font-weight: 600; margin-top: 10px;">
+          "One, two, three,<br />
+          Count with me,<br />
+          One, two, three,<br />
+          As easy as can be!"
+        </div>
+      </div>
+
+      <div class="game-section" data-aos="fade-up">
+        <h3>🎮 Which number is <strong>2</strong>?</h3>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <button class="game-option" onclick="checkGame('2', 'one')">
+            <img src="assets/images/one.png" alt="One" /> One
+          </button>
+          <button class="game-option" onclick="checkGame('2', 'two')">
+            <img src="assets/images/two.png" alt="Two" /> Two
+          </button>
+          <button class="game-option" onclick="checkGame('2', 'three')">
+            <img src="assets/images/three.png" alt="Three" /> Three
+          </button>
+        </div>
+        <div id="gameResult"></div>
+      </div>
+
+      <div class="video-container" data-aos="fade-up">
+        <h3>🎥 Educational Video</h3>
         <div class="ratio ratio-16x9">
           <video controls>
             <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
+      </div>
+
+      <div class="activity-section" data-aos="fade-up">
+        <h3>🎨 Activity: Draw & Count</h3>
+        <p>Draw <strong>2</strong> apples and color them red!</p>
+        <p style="font-size: 0.9rem; color: #2d3436;">Share your drawing with your teacher!</p>
       </div>
 
       <div class="text-center mt-4">
@@ -136,6 +202,57 @@
       utterance.rate = 0.8;
       speechSynthesis.speak(utterance);
     }
+
+    function checkGame(number, selected) {
+      const correctMap = { '1': 'one', '2': 'two', '3': 'three' };
+      const resultDiv = document.getElementById('gameResult');
+      const buttons = document.querySelectorAll('.game-option');
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (selected === correctMap[number]) {
+        resultDiv.innerHTML = '🎉 Correct! Well done! 🌟';
+        resultDiv.style.color = '#00b894';
+        launchConfetti();
+        speak('Correct! Well done!');
+      } else {
+        resultDiv.innerHTML = '❌ Try again! 💪';
+        resultDiv.style.color = '#ff6b6b';
+        setTimeout(() => {
+          buttons.forEach(btn => btn.disabled = false);
+          resultDiv.innerHTML = '';
+        }, 1500);
+      }
+    }
+
+    function launchConfetti() {
+      const colors = ['#6c5ce7', '#00b894', '#fdcb6e', '#fd79a8', '#0984e3', '#ff6b6b'];
+      for (let i = 0; i < 60; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.cssText = `
+          position: fixed;
+          width: 12px;
+          height: 12px;
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          top: -10px;
+          left: ${Math.random() * 100}%;
+          border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+          animation: fall ${2 + Math.random() * 2}s linear forwards;
+          pointer-events: none;
+          z-index: 9999;
+        `;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+      @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(styleSheet);
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
