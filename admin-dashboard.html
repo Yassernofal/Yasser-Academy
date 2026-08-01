@@ -110,20 +110,30 @@
           const todayCount = bookings.filter(b => new Date(b.date).toLocaleDateString('ar-EG') === todayDate).length;
           today.textContent = todayCount;
 
+          // حساب الإيرادات
+          let revenue = 0;
+          bookings.forEach(b => {
+            const price = parseInt(b.price);
+            if (!isNaN(price)) revenue += price;
+          });
+          document.getElementById('totalRevenue').textContent = revenue + ' ج.م';
+
+          // عرض الجدول
           table.innerHTML = bookings.map((b, i) => `
             <tr>
               <td>${i+1}</td>
-              <td>${b.studentName}</td>
-              <td>${b.grade}</td>
-              <td>${b.school}</td>
-              <td>${b.price} ج.م</td>
-              <td>${b.payment === 'instapay' ? 'انستاباي' : 'فودافون كاش'}</td>
+              <td>${b.studentName || 'غير محدد'}</td>
+              <td>${b.grade || 'غير محدد'}</td>
+              <td>${b.school || 'غير محدد'}</td>
+              <td>${b.price || 'غير محدد'} ج.م</td>
+              <td>${b.payment === 'instapay' ? 'انستاباي' : b.payment === 'vodafone' ? 'فودافون كاش' : 'غير محدد'}</td>
               <td>${new Date(b.date).toLocaleDateString('ar-EG')}</td>
             </tr>
           `).join('');
         } else {
           total.textContent = '0';
           today.textContent = '0';
+          document.getElementById('totalRevenue').textContent = '0 ج.م';
           table.innerHTML = `<tr><td colspan="7" class="text-center">لا توجد حجوزات</td></tr>`;
         }
       });
