@@ -122,10 +122,20 @@
       gap: 15px;
       flex-wrap: wrap;
     }
-    .text-content .brand-header img {
+    /* ===== اللوجو في مكان الشخبطة ===== */
+    .text-content .brand-header .logo-img {
       height: 70px;
       width: 70px;
       object-fit: contain;
+      order: -1; /* يخلي اللوجو في أقصى اليسار */
+    }
+    /* ===== صورتك الشخصية ===== */
+    .text-content .brand-header .profile-img {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      border: 3px solid #f7e05e;
+      object-fit: cover;
     }
     .text-content .brand-header h1 {
       font-family: 'Cinzel', 'Playfair Display', serif;
@@ -237,7 +247,8 @@
       .text-content .subtitle { font-size: 1.4rem; }
       .video-content iframe { height: 200px; }
       .text-content .desc { font-size: 1.4rem; }
-      .text-content .brand-header img { height: 50px; width: 50px; }
+      .text-content .brand-header .logo-img,
+      .text-content .brand-header .profile-img { height: 50px; width: 50px; }
     }
 
     /* ===== باقي الأقسام ===== */
@@ -369,7 +380,7 @@
     </div>
   </nav>
 
-  <!-- ===== الشريط المتحرك (من غير لوجو) ===== -->
+  <!-- ===== الشريط المتحرك ===== -->
   <div class="top-bar">
     <marquee behavior="scroll" direction="right" scrollamount="7">
       🎉 مرحباً بكم في أكاديمية مستر ياسر نوفل – التسجيل مفتوح الآن! اختبار تحديد المستوى مجاناً – خصم 20% على الباقات الذهبية 🎉
@@ -382,7 +393,10 @@
       <div class="hero-content">
         <div class="text-content">
           <div class="brand-header">
-            <img src="assets/images/logo.png" alt="Logo" />
+            <!-- اللوجو في مكان الشخبطة -->
+            <img src="assets/images/logo.png" alt="Logo" class="logo-img" />
+            <!-- صورتك الشخصية -->
+            <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" class="profile-img" />
             <h1>
               Mr. Yasser Nofal Academy
               <small>أكاديمية مستر ياسر نوفل</small>
