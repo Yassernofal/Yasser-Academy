@@ -45,31 +45,42 @@
       color: var(--accent) !important;
       transform: translateY(-2px);
     }
-    /* ===== شريط متحرك ===== */
+    /* ===== شريط متحرك (بالصور والاسم) ===== */
     .top-bar {
       background: #f9a825;
-      color: #0a2f6c;
       padding: 10px 0;
       text-align: center;
       font-weight: 700;
       font-size: 1.1rem;
       overflow: hidden;
-      white-space: nowrap;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 15px;
       flex-wrap: wrap;
     }
-    .top-bar img {
+    .top-bar .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .top-bar .brand-section img {
       height: 40px;
+      width: 40px;
       border-radius: 50%;
       border: 2px solid #0a2f6c;
+      object-fit: cover;
+    }
+    .top-bar .brand-section .brand-name {
+      color: #0a2f6c;
+      font-size: 1.3rem;
+      font-weight: 800;
     }
     .top-bar marquee {
       display: inline-block;
       width: auto;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      color: #0a2f6c;
     }
     /* ===== الهيدر ===== */
     .hero {
@@ -237,8 +248,9 @@
       .hero .subtitle { font-size: 1.4rem; }
       .achievements .number { font-size: 2rem; }
       .top-bar { gap: 8px; }
-      .top-bar img { height: 30px; }
-      .top-bar marquee { font-size: 1rem; }
+      .top-bar .brand-section img { height: 30px; width: 30px; }
+      .top-bar .brand-section .brand-name { font-size: 1rem; }
+      .top-bar marquee { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -266,12 +278,15 @@
     </div>
   </nav>
 
-  <!-- ===== شريط متحرك (إعلان علوي + ترحيب) ===== -->
+  <!-- ===== شريط متحرك (بالاسم والصورة) ===== -->
   <div class="top-bar">
-    <img src="assets/images/logo.png" alt="Logo" />
-    <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" />
+    <div class="brand-section">
+      <img src="assets/images/logo.png" alt="Logo" />
+      <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" />
+      <span class="brand-name">Mr. Yasser Nofal Academy</span>
+    </div>
     <marquee behavior="scroll" direction="left" scrollamount="6">
-      🎉 مرحباً بكم في أكاديمية مستر ياسر نوفل – التسجيل مفتوح الآن! احصل على اختبار تحديد المستوى مجاناً – خصم 20% على الباقات الذهبية لمدة محدودة 🎉
+      🎉 مرحباً بكم في أكاديمية مستر ياسر نوفل – التسجيل مفتوح الآن! اختبار تحديد المستوى مجاناً – خصم 20% على الباقات الذهبية 🎉
     </marquee>
   </div>
 
