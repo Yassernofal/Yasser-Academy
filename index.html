@@ -55,8 +55,22 @@
       font-size: 1.1rem;
       overflow: hidden;
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
     }
-    .top-bar marquee { display: inline-block; width: 100%; }
+    .top-bar img {
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #0a2f6c;
+    }
+    .top-bar marquee {
+      display: inline-block;
+      width: auto;
+      font-size: 1.2rem;
+    }
     /* ===== الهيدر ===== */
     .hero {
       background: linear-gradient(135deg, #0a2f6c 0%, #1a73e8 100%);
@@ -222,6 +236,9 @@
       .hero h1 { font-size: 2.5rem; }
       .hero .subtitle { font-size: 1.4rem; }
       .achievements .number { font-size: 2rem; }
+      .top-bar { gap: 8px; }
+      .top-bar img { height: 30px; }
+      .top-bar marquee { font-size: 1rem; }
     }
   </style>
 </head>
@@ -249,10 +266,12 @@
     </div>
   </nav>
 
-  <!-- ===== شريط متحرك ===== -->
+  <!-- ===== شريط متحرك (إعلان علوي + ترحيب) ===== -->
   <div class="top-bar">
+    <img src="assets/images/logo.png" alt="Logo" />
+    <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" />
     <marquee behavior="scroll" direction="left" scrollamount="6">
-      🎉 التسجيل مفتوح الآن! احصل على اختبار تحديد المستوى مجاناً – خصم 20% على الباقات الذهبية لمدة محدودة 🎉
+      🎉 مرحباً بكم في أكاديمية مستر ياسر نوفل – التسجيل مفتوح الآن! احصل على اختبار تحديد المستوى مجاناً – خصم 20% على الباقات الذهبية لمدة محدودة 🎉
     </marquee>
   </div>
 
