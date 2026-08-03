@@ -45,9 +45,22 @@
       color: var(--accent) !important;
       transform: translateY(-2px);
     }
+    /* ===== شريط متحرك ===== */
+    .top-bar {
+      background: #f9a825;
+      color: #0a2f6c;
+      padding: 10px 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .top-bar marquee { display: inline-block; width: 100%; }
+    /* ===== الهيدر ===== */
     .hero {
       background: linear-gradient(135deg, #0a2f6c 0%, #1a73e8 100%);
-      padding: 100px 0 80px;
+      padding: 80px 0 60px;
       border-radius: 0 0 60px 60px;
       position: relative;
       overflow: hidden;
@@ -64,16 +77,16 @@
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 4rem;
+      font-size: 3.8rem;
       font-weight: 700;
       color: var(--accent);
       text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
     }
     .hero .subtitle {
       font-family: 'Nunito', sans-serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 300;
-      color: #ffffff;
+      color: #fff;
       letter-spacing: 2px;
       text-shadow: 1px 1px 10px rgba(0,0,0,0.2);
     }
@@ -104,6 +117,7 @@
       color: var(--primary) !important;
       border-color: var(--accent);
     }
+    /* ===== المميزات ===== */
     .feature-box {
       background: #fff;
       border-radius: 24px;
@@ -129,6 +143,7 @@
       font-weight: 700;
       color: var(--primary);
     }
+    /* ===== المستويات ===== */
     .level-card {
       background: #fff;
       border-radius: 20px;
@@ -136,14 +151,17 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.05);
       text-align: center;
       height: 100%;
-      transition: 0.3s;
+      transition: all 0.3s ease;
       border-bottom: 4px solid var(--secondary);
       cursor: pointer;
     }
     .level-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
       border-color: var(--accent);
+    }
+    .level-card:active {
+      transform: scale(0.95);
     }
     .level-card i {
       font-size: 2.8rem;
@@ -155,6 +173,19 @@
       font-weight: 700;
       color: var(--primary);
     }
+    /* ===== الإنجازات ===== */
+    .achievements {
+      background: #0a2f6c;
+      border-radius: 30px;
+      color: #fff;
+      padding: 50px 0;
+    }
+    .achievements .number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #f9a825;
+    }
+    /* ===== واتساب ===== */
     .btn-whatsapp {
       background: #25d366;
       color: #fff;
@@ -187,19 +218,10 @@
       margin-top: 50px;
     }
     @media (max-width: 768px) {
-      .hero { padding: 80px 0 60px; }
+      .hero { padding: 60px 0 40px; }
       .hero h1 { font-size: 2.5rem; }
-      .hero .subtitle { font-size: 1.5rem; }
-      .level-card { padding: 15px; }
-      .feature-box { padding: 25px 15px; }
-    }
-    .fade-in {
-      animation: fadeInUp 0.8s ease forwards;
-      opacity: 0;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      .hero .subtitle { font-size: 1.4rem; }
+      .achievements .number { font-size: 2rem; }
     }
   </style>
 </head>
@@ -227,7 +249,14 @@
     </div>
   </nav>
 
-  <!-- ===== الهيدر الفخم ===== -->
+  <!-- ===== شريط متحرك ===== -->
+  <div class="top-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="6">
+      🎉 التسجيل مفتوح الآن! احصل على اختبار تحديد المستوى مجاناً – خصم 20% على الباقات الذهبية لمدة محدودة 🎉
+    </marquee>
+  </div>
+
+  <!-- ===== الهيدر ===== -->
   <section class="hero text-center">
     <div class="container">
       <div class="row align-items-center">
@@ -277,6 +306,30 @@
           <i class="fas fa-headset"></i>
           <h5>دعم 24/7</h5>
           <p>فريق دعم عبر واتساب والبريد الإلكتروني</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== الإنجازات ===== -->
+  <section class="container py-4">
+    <div class="achievements">
+      <div class="row text-center g-4">
+        <div class="col-md-3" data-aos="fade-up">
+          <h2 class="number" id="count1">0</h2>
+          <p style="font-size: 1.2rem;">طالب</p>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="number" id="count2">0</h2>
+          <p style="font-size: 1.2rem;">سنة خبرة</p>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+          <h2 class="number" id="count3">0</h2>
+          <p style="font-size: 1.2rem;">درس</p>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+          <h2 class="number" id="count4">0</h2>
+          <p style="font-size: 1.2rem;">نسبة نجاح</p>
         </div>
       </div>
     </div>
@@ -361,6 +414,33 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
+
+    // ===== عدادات الإنجازات =====
+    function animateCounters() {
+      const targets = [10000, 35, 500, 98];
+      const ids = ['count1', 'count2', 'count3', 'count4'];
+      const duration = 2000;
+      const startTime = performance.now();
+
+      function updateCounters(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        ids.forEach((id, i) => {
+          const target = targets[i];
+          const current = Math.floor(progress * target);
+          document.getElementById(id).textContent = current + (i === 3 ? '%' : '');
+        });
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounters);
+        }
+      }
+
+      requestAnimationFrame(updateCounters);
+    }
+
+    window.addEventListener('load', animateCounters);
   </script>
   <script src="js/content-protection.js"></script>
 </body>
