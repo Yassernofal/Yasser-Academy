@@ -45,7 +45,7 @@
       color: var(--accent) !important;
       transform: translateY(-2px);
     }
-    /* ===== شريط متحرك (بالصور والاسم) ===== */
+    /* ===== شريط متحرك (إعلان فقط) ===== */
     .top-bar {
       background: #f9a825;
       padding: 10px 0;
@@ -53,33 +53,10 @@
       font-weight: 700;
       font-size: 1.1rem;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    .top-bar .brand-section {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .top-bar .brand-section img {
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-      border: 2px solid #0a2f6c;
-      object-fit: cover;
-    }
-    .top-bar .brand-section .brand-name {
-      color: #0a2f6c;
-      font-size: 1.3rem;
-      font-weight: 800;
     }
     .top-bar marquee {
       display: inline-block;
-      width: auto;
-      font-size: 1.1rem;
+      width: 100%;
       color: #0a2f6c;
     }
     /* ===== الهيدر ===== */
@@ -100,12 +77,30 @@
       background: var(--light-bg);
       border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     }
-    .hero h1 {
+    .hero .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .hero .brand-header img {
+      height: 60px;
+      width: 60px;
+      object-fit: contain;
+    }
+    .hero .brand-header .profile-img {
+      border-radius: 50%;
+      border: 3px solid #f9a825;
+      object-fit: cover;
+    }
+    .hero .brand-header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.8rem;
+      font-size: 3.2rem;
       font-weight: 700;
-      color: var(--accent);
+      color: #f9a825;
       text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+      margin: 0;
     }
     .hero .subtitle {
       font-family: 'Nunito', sans-serif;
@@ -244,13 +239,10 @@
     }
     @media (max-width: 768px) {
       .hero { padding: 60px 0 40px; }
-      .hero h1 { font-size: 2.5rem; }
+      .hero .brand-header h1 { font-size: 2.2rem; }
       .hero .subtitle { font-size: 1.4rem; }
+      .hero .brand-header img { height: 40px; width: 40px; }
       .achievements .number { font-size: 2rem; }
-      .top-bar { gap: 8px; }
-      .top-bar .brand-section img { height: 30px; width: 30px; }
-      .top-bar .brand-section .brand-name { font-size: 1rem; }
-      .top-bar marquee { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -278,13 +270,8 @@
     </div>
   </nav>
 
-  <!-- ===== شريط متحرك (بالاسم والصورة) ===== -->
+  <!-- ===== شريط متحرك (إعلان فقط) ===== -->
   <div class="top-bar">
-    <div class="brand-section">
-      <img src="assets/images/logo.png" alt="Logo" />
-      <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" />
-      <span class="brand-name">Mr. Yasser Nofal Academy</span>
-    </div>
     <marquee behavior="scroll" direction="left" scrollamount="6">
       🎉 مرحباً بكم في أكاديمية مستر ياسر نوفل – التسجيل مفتوح الآن! اختبار تحديد المستوى مجاناً – خصم 20% على الباقات الذهبية 🎉
     </marquee>
@@ -295,7 +282,11 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6 text-md-start" data-aos="fade-right">
-          <h1>Mr. Yasser Nofal Academy</h1>
+          <div class="brand-header">
+            <img src="assets/images/logo.png" alt="Logo" />
+            <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" class="profile-img" />
+            <h1>Mr. Yasser Nofal Academy</h1>
+          </div>
           <p class="subtitle">Learn English with Confidence</p>
           <p class="fs-5 mt-3">من الصفر حتى الاحتراف – مع صوتيات ومحادثات لكل مستوى</p>
           <div class="d-flex flex-wrap gap-3 mt-4">
