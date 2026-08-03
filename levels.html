@@ -6,77 +6,183 @@
   <title>المستويات – Mr. Yasser Nofal Academy</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --primary: #0a2f6c;
-      --secondary: #1a73e8;
-      --accent: #f9a825;
-      --light-bg: #f0f4fa;
-    }
+    /* ===== الأساسيات ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Tajawal', sans-serif;
-      background: var(--light-bg);
+      font-family: 'El Messiri', 'Lateef', serif;
+      background: #f0f4fa;
     }
+
+    /* ===== شريط التنقل ===== */
     .navbar-custom {
-      background: var(--primary) !important;
+      background: #0a1f44 !important;
       padding: 12px 0;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
     .navbar-brand {
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: #fff !important;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.7rem;
+      color: #f7e05e !important;
     }
-    .navbar-brand span { color: var(--accent); }
+    .navbar-brand span { color: #ffb347; }
     .nav-link {
-      color: #fff !important;
+      color: #e0e8f0 !important;
       font-weight: 500;
       transition: 0.3s;
     }
-    .nav-link:hover {
-      color: var(--accent) !important;
-      transform: translateY(-2px);
+    .nav-link:hover { color: #f7e05e !important; transform: translateY(-2px); }
+
+    /* ===== الهيدر ===== */
+    .page-header {
+      background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 50%, #2e6ab0 100%);
+      padding: 60px 0 40px;
+      border-radius: 0 0 50px 50px;
+      color: #fff;
+      text-align: center;
     }
+    .page-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      color: #f7e05e;
+    }
+    .page-header p {
+      font-family: 'Lateef', serif;
+      font-size: 1.4rem;
+      color: #dce8f5;
+    }
+
+    /* ===== بطاقات المستويات ===== */
     .level-card {
       background: #fff;
-      border-radius: 20px;
-      padding: 25px 15px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      border-radius: 28px;
+      padding: 30px 20px 25px;
       text-align: center;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       height: 100%;
+      border: 1px solid rgba(0,0,0,0.03);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .level-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(180deg, #f7e05e, #f7b731);
+      border-radius: 0 4px 4px 0;
+      opacity: 0;
       transition: 0.3s;
-      border-bottom: 4px solid var(--secondary);
     }
+    .level-card:hover::before { opacity: 1; }
     .level-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.1);
-      border-color: var(--accent);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 24px 60px rgba(247, 224, 94, 0.18);
+      border-color: rgba(247, 224, 94, 0.2);
     }
-    .level-card i {
-      font-size: 3rem;
-      color: var(--secondary);
-      margin-bottom: 10px;
+    .level-card:active {
+      transform: scale(0.96);
+      transition-duration: 0.1s;
     }
-    .level-card h5 {
+    .level-card .icon-wrapper {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(247, 224, 94, 0.12), rgba(247, 183, 49, 0.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      transition: 0.3s;
+    }
+    .level-card:hover .icon-wrapper {
+      background: linear-gradient(135deg, #f7e05e, #f7b731);
+      box-shadow: 0 8px 25px rgba(247, 224, 94, 0.3);
+    }
+    .level-card .icon-wrapper i {
+      font-size: 2.8rem;
+      color: #f7b731;
+      transition: 0.3s;
+    }
+    .level-card:hover .icon-wrapper i { color: #0a1f44; }
+
+    .level-card .level-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
       font-weight: 700;
-      color: var(--primary);
+      color: #0a1f44;
+      margin-bottom: 6px;
     }
-    .level-card .badge {
-      font-size: 0.8rem;
-      padding: 6px 15px;
+    .level-card .level-desc {
+      font-family: 'Lateef', serif;
+      font-size: 1.1rem;
+      color: #636e72;
+      margin-bottom: 12px;
+      flex-grow: 1;
     }
+    .level-card .level-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f7e05e, #f7b731);
+      color: #0a1f44;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-top: 8px;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(247, 224, 94, 0.2);
+    }
+    .level-card:hover .level-badge {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(247, 224, 94, 0.35);
+    }
+    .level-card .btn-start {
+      background: transparent;
+      border: 2px solid #f7e05e;
+      color: #0a1f44;
+      border-radius: 50px;
+      padding: 8px 25px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: 0.3s;
+      margin-top: 12px;
+      width: 100%;
+      max-width: 180px;
+    }
+    .level-card .btn-start:hover {
+      background: #f7e05e;
+      color: #0a1f44;
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(247, 224, 94, 0.3);
+    }
+
+    /* ===== الفوتر ===== */
     footer {
-      background: var(--primary);
-      color: #ccc;
+      background: #0a1f44;
+      color: #b0c4de;
       padding: 35px 0;
       border-radius: 40px 40px 0 0;
       margin-top: 50px;
     }
+
+    /* ===== تحسين الموبايل ===== */
     @media (max-width: 768px) {
-      .level-card { padding: 15px; }
-      .level-card i { font-size: 2.2rem; }
+      .page-header h1 { font-size: 2.2rem; }
+      .level-card { padding: 20px 15px; }
+      .level-card .icon-wrapper { width: 60px; height: 60px; }
+      .level-card .icon-wrapper i { font-size: 2rem; }
+      .level-card .level-title { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -86,7 +192,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <i class="fas fa-graduation-cap text-warning"></i> Mr. <span>Yasser</span> Nofal
+        <i class="fas fa-graduation-cap" style="color: #f7e05e;"></i> Mr. <span>Yasser</span> Nofal
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -95,6 +201,7 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
           <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 الاختبار المجاني</a></li>
           <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
           <li class="nav-item"><a class="nav-link" href="register.html">📝 التسجيل</a></li>
           <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👤 لوحة الطالب</a></li>
@@ -103,88 +210,108 @@
     </div>
   </nav>
 
-  <!-- ===== المحتوى ===== -->
-  <section class="container py-5">
-    <h1 class="fw-bold text-center mb-3">📚 جميع المستويات التعليمية</h1>
-    <p class="text-center text-muted mb-5">اختر المستوى المناسب لك وابدأ رحلة التعلم</p>
+  <!-- ===== هيدر الصفحة ===== -->
+  <section class="page-header">
+    <div class="container">
+      <h1>📚 المستويات التعليمية</h1>
+      <p>اختر المستوى المناسب لك وابدأ رحلة التعلم</p>
+    </div>
+  </section>
 
+  <!-- ===== المستويات ===== -->
+  <section class="container py-5">
     <div class="row g-4">
+      <!-- ما قبل الروضة -->
       <div class="col-md-3 col-6">
-        <div class="level-card">
-          <i class="fas fa-baby"></i>
-          <h5>ما قبل الروضة</h5>
-          <p class="text-muted small">تعليم الحروف والأرقام بالصور والأغاني</p>
-          <span class="badge bg-primary">24 درس</span>
-          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        <div class="level-card" onclick="window.location.href='pre-kg-lessons.html'">
+          <div class="icon-wrapper"><i class="fas fa-baby"></i></div>
+          <h5 class="level-title">ما قبل الروضة</h5>
+          <p class="level-desc">تمهيد بالصور والأغاني</p>
+          <span class="level-badge">👶 مناسب للأطفال</span>
+          <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
+
+      <!-- رياض الأطفال -->
       <div class="col-md-3 col-6">
-        <div class="level-card">
-          <i class="fas fa-child"></i>
-          <h5>رياض الأطفال</h5>
-          <p class="text-muted small">تأسيس قوي في اللغة: الحروف والكلمات</p>
-          <span class="badge bg-primary">30 درس</span>
-          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+        <div class="level-card" onclick="window.location.href='kg-lessons.html'">
+          <div class="icon-wrapper"><i class="fas fa-child"></i></div>
+          <h5 class="level-title">رياض الأطفال</h5>
+          <p class="level-desc">الحروف والكلمات الأساسية</p>
+          <span class="level-badge">🧸 تعلم ممتع</span>
+          <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
+
+      <!-- ابتدائي -->
       <div class="col-md-3 col-6">
         <div class="level-card">
-          <i class="fas fa-school"></i>
-          <h5>المرحلة الابتدائية</h5>
-          <p class="text-muted small">قواعد أساسية، محادثات يومية، قراءة وكتابة</p>
-          <span class="badge bg-primary">36 درس</span>
-          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+          <div class="icon-wrapper"><i class="fas fa-school"></i></div>
+          <h5 class="level-title">ابتدائي</h5>
+          <p class="level-desc">قواعد ومحادثات يومية</p>
+          <span class="level-badge">📖 تأسيس قوي</span>
+          <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
+
+      <!-- إعدادي -->
       <div class="col-md-3 col-6">
         <div class="level-card">
-          <i class="fas fa-user-graduate"></i>
-          <h5>المرحلة الإعدادية</h5>
-          <p class="text-muted small">توسيع المفردات، الأزمنة، مهارات المحادثة</p>
-          <span class="badge bg-primary">40 درس</span>
-          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+          <div class="icon-wrapper"><i class="fas fa-user-graduate"></i></div>
+          <h5 class="level-title">إعدادي</h5>
+          <p class="level-desc">توسيع المفردات والأزمنة</p>
+          <span class="level-badge">📈 تطوير مستمر</span>
+          <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
+
+      <!-- ثانوي -->
       <div class="col-md-3 col-6">
         <div class="level-card">
-          <i class="fas fa-users"></i>
-          <h5>المرحلة الثانوية</h5>
-          <p class="text-muted small">تحليل نصوص، كتابة مقالات، استعداد للجامعة</p>
-          <span class="badge bg-primary">45 درس</span>
-          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+          <div class="icon-wrapper"><i class="fas fa-users"></i></div>
+          <h5 class="level-title">ثانوي</h5>
+          <p class="level-desc">تحليل نصوص ومهارات كتابة</p>
+          <span class="level-badge">🎯 تركيز أكاديمي</span>
+          <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
+
+      <!-- جامعي -->
       <div class="col-md-3 col-6">
         <div class="level-card">
-          <i class="fas fa-university"></i>
-          <h5>المرحلة الجامعية</h5>
-          <p class="text-muted small">أكاديمي متخصص: أبحاث، عروض، مناقشات</p>
-          <span class="badge bg-primary">50 درس</span>
-          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+          <div class="icon-wrapper"><i class="fas fa-university"></i></div>
+          <h5 class="level-title">جامعي</h5>
+          <p class="level-desc">أكاديمي – أبحاث – عروض</p>
+          <span class="level-badge">📚 مستوى متقدم</span>
+          <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
+
+      <!-- ما بعد الجامعة -->
       <div class="col-md-3 col-6">
         <div class="level-card">
-          <i class="fas fa-briefcase"></i>
-          <h5>ما بعد الجامعة</h5>
-          <p class="text-muted small">سوق العمل: مقابلات، مراسلات، مفردات مهنية</p>
-          <span class="badge bg-primary">35 درس</span>
-          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+          <div class="icon-wrapper"><i class="fas fa-briefcase"></i></div>
+          <h5 class="level-title">ما بعد الجامعة</h5>
+          <p class="level-desc">سوق العمل – مقابلات – مراسلات</p>
+          <span class="level-badge">💼 احتراف</span>
+          <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
+
+      <!-- صوتيات ومحادثات -->
       <div class="col-md-3 col-6">
         <div class="level-card">
-          <i class="fas fa-microphone-alt"></i>
-          <h5>الصوتيات والمحادثات</h5>
-          <p class="text-muted small">نطق صحيح، حوارات تفاعلية لكل المستويات</p>
-          <span class="badge bg-primary">60 درس</span>
-          <a href="booking.html" class="btn btn-sm btn-primary mt-2">سجل الآن</a>
+          <div class="icon-wrapper"><i class="fas fa-microphone-alt"></i></div>
+          <h5 class="level-title">صوتيات ومحادثات</h5>
+          <p class="level-desc">نطق صحيح – حوارات تفاعلية</p>
+          <span class="level-badge">🎤 تحدث بثقة</span>
+          <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== التذييل ===== -->
+  <!-- ===== الفوتر ===== -->
   <footer class="text-center">
     <div class="container">
       <p class="mb-0">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
