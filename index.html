@@ -26,9 +26,21 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       z-index: 1050;
     }
-    .navbar-brand { display: flex; align-items: center; gap: 6px; transition: 0.3s; }
-    .navbar-brand:hover { transform: scale(1.02); }
-    .navbar-brand img { height: 40px; width: auto; }
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      direction: ltr;
+    }
+    .navbar-brand img { height: 45px; width: auto; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
     .navbar-nav .nav-item { margin: 0 4px; position: relative; }
     .navbar-nav .nav-link {
       color: rgba(255, 255, 255, 0.8) !important;
@@ -42,10 +54,18 @@
       align-items: center;
       gap: 8px;
       position: relative;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     .navbar-nav .nav-link i { font-size: 0.95rem; color: #f7e05e; transition: 0.3s; }
-    .navbar-nav .nav-link:hover { color: #fff !important; background: rgba(247, 224, 94, 0.10); transform: translateY(-2px); }
-    .navbar-nav .nav-link.active { color: #f7e05e !important; background: rgba(247, 224, 94, 0.12); }
+    .navbar-nav .nav-link:hover {
+      color: #fff !important;
+      background: rgba(247, 224, 94, 0.10);
+      transform: translateY(-2px);
+    }
+    .navbar-nav .nav-link.active {
+      color: #f7e05e !important;
+      background: rgba(247, 224, 94, 0.12);
+    }
     .nav-indicator {
       position: absolute;
       bottom: 2px;
@@ -122,8 +142,15 @@
       flex-wrap: wrap;
       margin-bottom: 10px;
     }
-    .text-content .brand-header img { height: 60px; width: 60px; object-fit: contain; }
-    .text-content .brand-header .profile-img { border-radius: 50%; border: 2px solid #f7e05e; object-fit: cover; }
+    .text-content .brand-header .main-logo { height: 60px; width: 60px; object-fit: contain; }
+    .text-content .brand-header .profile-img {
+      border-radius: 50%;
+      border: 2px solid #f7e05e;
+      object-fit: cover;
+      height: 60px;
+      width: 60px;
+      display: none; /* إخفاء الصورة الشخصية من الهيدر */
+    }
     .text-content .brand-header h1 {
       font-family: 'Cinzel', serif;
       font-size: 3.2rem;
@@ -131,12 +158,14 @@
       color: #f7e05e;
       margin: 0;
       text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      direction: ltr;
     }
     .text-content .brand-header h1 small {
       font-family: 'El Messiri', serif;
       font-size: 1.6rem;
       color: #ffb347;
       display: block;
+      direction: rtl;
     }
     .text-content .subtitle {
       font-family: 'Playfair Display', serif;
@@ -144,12 +173,14 @@
       color: #ffe28a;
       border-right: 3px solid #f7e05e;
       padding-right: 15px;
+      direction: ltr;
     }
     .text-content .desc {
       font-family: 'Lateef', serif;
       font-size: 1.5rem;
       color: #dce8f5;
       margin-top: 10px;
+      direction: rtl;
     }
     .text-content .btn-group { margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap; }
     .text-content .btn-group .btn {
@@ -158,6 +189,7 @@
       font-family: 'Cinzel', serif;
       font-weight: 700;
       transition: 0.3s;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     .text-content .btn-group .btn-warning { background: #f7e05e; color: #0a1f44; border: none; }
     .text-content .btn-group .btn-warning:hover { transform: scale(1.05); background: #ffd93d; }
@@ -186,7 +218,7 @@
       .text-content .subtitle { font-size: 1.3rem; }
       .text-content .desc { font-size: 1.2rem; }
       .video-content iframe { height: 200px; }
-      .text-content .brand-header img { height: 45px; width: 45px; }
+      .text-content .brand-header .main-logo { height: 45px; width: 45px; }
     }
 
     /* ===== المميزات ===== */
@@ -353,6 +385,7 @@
       font-weight: 600;
       transition: 0.3s;
       border: none;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     .btn-whatsapp:hover { background: #128c7e; color: #fff; transform: scale(1.02); }
 
@@ -533,9 +566,7 @@
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="assets/images/logo.png" alt="Logo" />
-        <span style="font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e;">
-          Mr. <span style="color: #ffb347;">Yasser</span> Nofal
-        </span>
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -565,9 +596,12 @@
     <div class="container hero-content">
       <div class="text-content">
         <div class="brand-header">
-          <img src="assets/images/logo.png" alt="Logo" />
+          <img src="assets/images/logo.png" alt="Logo" class="main-logo" />
           <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" class="profile-img" />
-          <h1>Mr. Yasser Nofal Academy <small>أكاديمية مستر ياسر نوفل</small></h1>
+          <h1>
+            Mr. Yasser Nofal Academy
+            <small>أكاديمية مستر ياسر نوفل</small>
+          </h1>
         </div>
         <p class="subtitle">Learn English with Confidence</p>
         <p class="desc">من الصفر حتى الاحتراف – مع صوتيات ومحادثات لكل مستوى</p>
@@ -665,7 +699,7 @@
             <div class="row g-4">
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/student1.jpg" alt="Student" />
+                  <img src="assets/images/mr-yasser.jpg" alt="Student" />
                   <h5>أحمد محمد</h5>
                   <p class="role">طالب ثانوي</p>
                   <div class="stars">★★★★★</div>
@@ -674,7 +708,7 @@
               </div>
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/student2.jpg" alt="Student" />
+                  <img src="assets/images/mr-yasser.jpg" alt="Student" />
                   <h5>سارة علي</h5>
                   <p class="role">طالبة جامعية</p>
                   <div class="stars">★★★★★</div>
@@ -683,7 +717,7 @@
               </div>
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/student3.jpg" alt="Student" />
+                  <img src="assets/images/mr-yasser.jpg" alt="Student" />
                   <h5>خالد إبراهيم</h5>
                   <p class="role">مهندس برمجيات</p>
                   <div class="stars">★★★★★</div>
@@ -696,7 +730,7 @@
             <div class="row g-4">
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/student1.jpg" alt="Student" />
+                  <img src="assets/images/mr-yasser.jpg" alt="Student" />
                   <h5>نورا حسن</h5>
                   <p class="role">طالبة إعدادي</p>
                   <div class="stars">★★★★★</div>
@@ -705,7 +739,7 @@
               </div>
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/student2.jpg" alt="Student" />
+                  <img src="assets/images/mr-yasser.jpg" alt="Student" />
                   <h5>يوسف عادل</h5>
                   <p class="role">طالب ثانوي</p>
                   <div class="stars">★★★★★</div>
@@ -714,7 +748,7 @@
               </div>
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/student3.jpg" alt="Student" />
+                  <img src="assets/images/mr-yasser.jpg" alt="Student" />
                   <h5>فاطمة الزهراء</h5>
                   <p class="role">طالبة طب</p>
                   <div class="stars">★★★★★</div>
@@ -725,12 +759,10 @@
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">السابق</span>
+          <span class="carousel-control-prev-icon"></span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">التالي</span>
+          <span class="carousel-control-next-icon"></span>
         </button>
       </div>
     </div>
