@@ -8,34 +8,94 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* ===== الأساسيات ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'El Messiri', 'Lateef', serif;
       background: #f0f4fa;
+      padding-top: 78px;
     }
+    @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
     /* ===== شريط التنقل ===== */
     .navbar-custom {
-      background: #0a1f44 !important;
-      padding: 12px 0;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      background: rgba(10, 31, 68, 0.85) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.3s ease;
+      z-index: 1050;
     }
-    .navbar-brand {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 1.7rem;
-      color: #f7e05e !important;
-    }
-    .navbar-brand span { color: #ffb347; }
-    .nav-link {
-      color: #e0e8f0 !important;
+    .navbar-brand { display: flex; align-items: center; gap: 6px; transition: 0.3s; }
+    .navbar-brand:hover { transform: scale(1.02); }
+    .navbar-brand img { height: 40px; width: auto; }
+    .navbar-nav .nav-item { margin: 0 4px; position: relative; }
+    .navbar-nav .nav-link {
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-family: 'El Messiri', serif;
       font-weight: 500;
+      font-size: 1.05rem;
+      padding: 10px 18px;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+    .navbar-nav .nav-link i { font-size: 0.95rem; color: #f7e05e; transition: 0.3s; }
+    .navbar-nav .nav-link:hover { color: #fff !important; background: rgba(247, 224, 94, 0.10); transform: translateY(-2px); }
+    .navbar-nav .nav-link.active { color: #f7e05e !important; background: rgba(247, 224, 94, 0.12); }
+    .nav-indicator {
+      position: absolute;
+      bottom: 2px;
+      right: 50%;
+      width: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, #f7e05e, #f7b731);
+      border-radius: 4px;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateX(50%);
+    }
+    .nav-link:hover .nav-indicator,
+    .nav-link.active .nav-indicator { width: 60%; }
+    .navbar-toggler {
+      border: none;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-radius: 12px;
       transition: 0.3s;
     }
-    .nav-link:hover { color: #f7e05e !important; transform: translateY(-2px); }
+    .navbar-toggler:hover { background: rgba(255, 255, 255, 0.10) !important; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        background: rgba(10, 31, 68, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 20px 15px;
+        margin-top: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        animation: slideDown 0.3s ease forwards;
+      }
+      .navbar-nav .nav-item { margin: 2px 0; }
+      .navbar-nav .nav-link { padding: 12px 18px; border-radius: 12px; font-size: 1.05rem; }
+      .navbar-nav .nav-link i { width: 24px; text-align: center; }
+      .nav-indicator { display: none; }
+      .navbar-nav .nav-link.active { background: rgba(247, 224, 94, 0.12); }
+    }
+    @keyframes slideDown {
+      0% { opacity: 0; transform: translateY(-15px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    html { scroll-behavior: smooth; }
 
-    /* ===== الهيدر ===== */
+    /* ===== هيدر الصفحة ===== */
     .page-header {
       background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 50%, #2e6ab0 100%);
       padding: 60px 0 40px;
@@ -43,16 +103,8 @@
       color: #fff;
       text-align: center;
     }
-    .page-header h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 3rem;
-      color: #f7e05e;
-    }
-    .page-header p {
-      font-family: 'Lateef', serif;
-      font-size: 1.4rem;
-      color: #dce8f5;
-    }
+    .page-header h1 { font-family: 'Cinzel', serif; font-size: 3rem; color: #f7e05e; }
+    .page-header p { font-family: 'Lateef', serif; font-size: 1.4rem; color: #dce8f5; }
 
     /* ===== بطاقات المستويات ===== */
     .level-card {
@@ -89,10 +141,7 @@
       box-shadow: 0 24px 60px rgba(247, 224, 94, 0.18);
       border-color: rgba(247, 224, 94, 0.2);
     }
-    .level-card:active {
-      transform: scale(0.96);
-      transition-duration: 0.1s;
-    }
+    .level-card:active { transform: scale(0.96); transition-duration: 0.1s; }
     .level-card .icon-wrapper {
       width: 80px;
       height: 80px;
@@ -108,27 +157,10 @@
       background: linear-gradient(135deg, #f7e05e, #f7b731);
       box-shadow: 0 8px 25px rgba(247, 224, 94, 0.3);
     }
-    .level-card .icon-wrapper i {
-      font-size: 2.8rem;
-      color: #f7b731;
-      transition: 0.3s;
-    }
+    .level-card .icon-wrapper i { font-size: 2.8rem; color: #f7b731; transition: 0.3s; }
     .level-card:hover .icon-wrapper i { color: #0a1f44; }
-
-    .level-card .level-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #0a1f44;
-      margin-bottom: 6px;
-    }
-    .level-card .level-desc {
-      font-family: 'Lateef', serif;
-      font-size: 1.1rem;
-      color: #636e72;
-      margin-bottom: 12px;
-      flex-grow: 1;
-    }
+    .level-card .level-title { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700; color: #0a1f44; margin-bottom: 6px; }
+    .level-card .level-desc { font-family: 'Lateef', serif; font-size: 1.1rem; color: #636e72; margin-bottom: 12px; flex-grow: 1; }
     .level-card .level-badge {
       display: inline-block;
       background: linear-gradient(135deg, #f7e05e, #f7b731);
@@ -142,10 +174,7 @@
       transition: 0.3s;
       box-shadow: 0 4px 15px rgba(247, 224, 94, 0.2);
     }
-    .level-card:hover .level-badge {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(247, 224, 94, 0.35);
-    }
+    .level-card:hover .level-badge { transform: scale(1.05); box-shadow: 0 8px 25px rgba(247, 224, 94, 0.35); }
     .level-card .btn-start {
       background: transparent;
       border: 2px solid #f7e05e;
@@ -167,16 +196,14 @@
       box-shadow: 0 8px 25px rgba(247, 224, 94, 0.3);
     }
 
-    /* ===== الفوتر ===== */
     footer {
       background: #0a1f44;
       color: #b0c4de;
       padding: 35px 0;
       border-radius: 40px 40px 0 0;
       margin-top: 50px;
+      text-align: center;
     }
-
-    /* ===== تحسين الموبايل ===== */
     @media (max-width: 768px) {
       .page-header h1 { font-size: 2.2rem; }
       .level-card { padding: 20px 15px; }
@@ -189,22 +216,25 @@
 <body>
 
   <!-- ===== شريط التنقل ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <i class="fas fa-graduation-cap" style="color: #f7e05e;"></i> Mr. <span>Yasser</span> Nofal
+        <img src="assets/images/logo.png" alt="Logo" />
+        <span style="font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e;">
+          Mr. <span style="color: #ffb347;">Yasser</span> Nofal
+        </span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html">📝 الاختبار المجاني</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
-          <li class="nav-item"><a class="nav-link" href="register.html">📝 التسجيل</a></li>
-          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👤 لوحة الطالب</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> الرئيسية<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link active" href="levels.html"><i class="fas fa-layer-group"></i> المستويات<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html"><i class="fas fa-pencil-alt"></i> الاختبار<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus"></i> التسجيل<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html"><i class="fas fa-user-graduate"></i> لوحة الطالب<span class="nav-indicator"></span></a></li>
         </ul>
       </div>
     </div>
@@ -221,7 +251,6 @@
   <!-- ===== المستويات ===== -->
   <section class="container py-5">
     <div class="row g-4">
-      <!-- ما قبل الروضة -->
       <div class="col-md-3 col-6">
         <div class="level-card" onclick="window.location.href='pre-kg-lessons.html'">
           <div class="icon-wrapper"><i class="fas fa-baby"></i></div>
@@ -231,8 +260,6 @@
           <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
-
-      <!-- رياض الأطفال -->
       <div class="col-md-3 col-6">
         <div class="level-card" onclick="window.location.href='kg-lessons.html'">
           <div class="icon-wrapper"><i class="fas fa-child"></i></div>
@@ -242,8 +269,6 @@
           <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
-
-      <!-- ابتدائي -->
       <div class="col-md-3 col-6">
         <div class="level-card">
           <div class="icon-wrapper"><i class="fas fa-school"></i></div>
@@ -253,8 +278,6 @@
           <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
-
-      <!-- إعدادي -->
       <div class="col-md-3 col-6">
         <div class="level-card">
           <div class="icon-wrapper"><i class="fas fa-user-graduate"></i></div>
@@ -264,8 +287,6 @@
           <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
-
-      <!-- ثانوي -->
       <div class="col-md-3 col-6">
         <div class="level-card">
           <div class="icon-wrapper"><i class="fas fa-users"></i></div>
@@ -275,8 +296,6 @@
           <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
-
-      <!-- جامعي -->
       <div class="col-md-3 col-6">
         <div class="level-card">
           <div class="icon-wrapper"><i class="fas fa-university"></i></div>
@@ -286,8 +305,6 @@
           <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
-
-      <!-- ما بعد الجامعة -->
       <div class="col-md-3 col-6">
         <div class="level-card">
           <div class="icon-wrapper"><i class="fas fa-briefcase"></i></div>
@@ -297,8 +314,6 @@
           <button class="btn-start">ابدأ الآن <i class="fas fa-arrow-left"></i></button>
         </div>
       </div>
-
-      <!-- صوتيات ومحادثات -->
       <div class="col-md-3 col-6">
         <div class="level-card">
           <div class="icon-wrapper"><i class="fas fa-microphone-alt"></i></div>
@@ -311,11 +326,8 @@
     </div>
   </section>
 
-  <!-- ===== الفوتر ===== -->
-  <footer class="text-center">
-    <div class="container">
-      <p class="mb-0">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
-    </div>
+  <footer>
+    <div class="container"><p class="mb-0">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
