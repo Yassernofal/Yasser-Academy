@@ -16,6 +16,29 @@
     }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
+    /* ===== علامة مائية ===== */
+    .watermark {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      opacity: 0.06;
+      z-index: 999;
+      pointer-events: none;
+      font-size: 0.8rem;
+      color: #0a1f44;
+      font-family: 'Cinzel', serif;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .watermark img { height: 40px; width: auto; opacity: 0.6; }
+    .watermark .profile-watermark {
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      object-fit: cover;
+    }
+
     /* ===== شريط التنقل ===== */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
@@ -149,7 +172,6 @@
       object-fit: cover;
       height: 60px;
       width: 60px;
-      display: none; /* إخفاء الصورة الشخصية من الهيدر */
     }
     .text-content .brand-header h1 {
       font-family: 'Cinzel', serif;
@@ -219,6 +241,7 @@
       .text-content .desc { font-size: 1.2rem; }
       .video-content iframe { height: 200px; }
       .text-content .brand-header .main-logo { height: 45px; width: 45px; }
+      .text-content .brand-header .profile-img { height: 45px; width: 45px; }
     }
 
     /* ===== المميزات ===== */
@@ -561,6 +584,13 @@
 </head>
 <body>
 
+  <!-- ===== علامة مائية ===== -->
+  <div class="watermark">
+    <img src="assets/images/logo.png" alt="Logo" />
+    <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser" class="profile-watermark" />
+    <span>Mr. Yasser Nofal Academy</span>
+  </div>
+
   <!-- ===== شريط التنقل ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
@@ -579,6 +609,7 @@
           <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus"></i> التسجيل<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="student-dashboard.html"><i class="fas fa-user-graduate"></i> لوحة الطالب<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="parent-dashboard.html"><i class="fas fa-users"></i> ولي الأمر<span class="nav-indicator"></span></a></li>
         </ul>
       </div>
     </div>

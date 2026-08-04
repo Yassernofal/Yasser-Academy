@@ -16,6 +16,29 @@
     }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
+    /* ===== علامة مائية ===== */
+    .watermark {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      opacity: 0.06;
+      z-index: 999;
+      pointer-events: none;
+      font-size: 0.8rem;
+      color: #0a1f44;
+      font-family: 'Cinzel', serif;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .watermark img { height: 40px; width: auto; opacity: 0.6; }
+    .watermark .profile-watermark {
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      object-fit: cover;
+    }
+
     /* ===== شريط التنقل ===== */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
@@ -26,9 +49,21 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       z-index: 1050;
     }
-    .navbar-brand { display: flex; align-items: center; gap: 6px; transition: 0.3s; }
-    .navbar-brand:hover { transform: scale(1.02); }
-    .navbar-brand img { height: 40px; width: auto; }
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      direction: ltr;
+    }
+    .navbar-brand img { height: 45px; width: auto; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
     .navbar-nav .nav-item { margin: 0 4px; position: relative; }
     .navbar-nav .nav-link {
       color: rgba(255, 255, 255, 0.8) !important;
@@ -42,10 +77,18 @@
       align-items: center;
       gap: 8px;
       position: relative;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     .navbar-nav .nav-link i { font-size: 0.95rem; color: #f7e05e; transition: 0.3s; }
-    .navbar-nav .nav-link:hover { color: #fff !important; background: rgba(247, 224, 94, 0.10); transform: translateY(-2px); }
-    .navbar-nav .nav-link.active { color: #f7e05e !important; background: rgba(247, 224, 94, 0.12); }
+    .navbar-nav .nav-link:hover {
+      color: #fff !important;
+      background: rgba(247, 224, 94, 0.10);
+      transform: translateY(-2px);
+    }
+    .navbar-nav .nav-link.active {
+      color: #f7e05e !important;
+      background: rgba(247, 224, 94, 0.12);
+    }
     .nav-indicator {
       position: absolute;
       bottom: 2px;
@@ -214,26 +257,32 @@
 </head>
 <body>
 
+  <!-- ===== علامة مائية ===== -->
+  <div class="watermark">
+    <img src="assets/images/logo.png" alt="Logo" />
+    <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser" class="profile-watermark" />
+    <span>Mr. Yasser Nofal Academy</span>
+  </div>
+
   <!-- ===== شريط التنقل ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="assets/images/logo.png" alt="Logo" />
-        <span style="font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e;">
-          Mr. <span style="color: #ffb347;">Yasser</span> Nofal
-        </span>
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> الرئيسية<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link active" href="levels.html"><i class="fas fa-layer-group"></i> المستويات<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fas fa-home"></i> الرئيسية<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html"><i class="fas fa-layer-group"></i> المستويات<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="booking.html"><i class="fas fa-pencil-alt"></i> الاختبار<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus"></i> التسجيل<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="student-dashboard.html"><i class="fas fa-user-graduate"></i> لوحة الطالب<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="parent-dashboard.html"><i class="fas fa-users"></i> ولي الأمر<span class="nav-indicator"></span></a></li>
         </ul>
       </div>
     </div>
