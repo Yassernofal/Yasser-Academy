@@ -27,12 +27,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       z-index: 1050;
     }
-    .navbar-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      direction: ltr;
-    }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
     .navbar-brand img { height: 40px; width: auto; }
     .navbar-brand .brand-name {
       font-family: 'Cinzel', serif;
@@ -125,12 +120,19 @@
     /* ===== الشريط المتحرك ===== */
     .top-bar {
       background: #f7e05e;
-      padding: 10px 0;
+      padding: 12px 0;
       color: #0a1f44;
       font-weight: 700;
       font-size: 1.1rem;
       border-bottom: 2px solid #0a1f44;
       text-align: center;
+      overflow: visible !important;
+      white-space: normal !important;
+    }
+    .top-bar marquee {
+      display: block;
+      width: 100%;
+      font-size: 1.2rem;
     }
 
     /* ===== الهيدر ===== */
@@ -179,12 +181,6 @@
       transform: scale(1.05);
       border-color: #fff;
       box-shadow: 0 12px 40px rgba(247, 224, 94, 0.3);
-    }
-    .text-content .brand-header .cap-icon {
-      font-size: 3.5rem;
-      color: #1a1a1a;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-      animation: capGlow 3s ease-in-out infinite;
     }
     .text-content .brand-header h1 {
       font-family: 'Cinzel', serif;
@@ -270,15 +266,13 @@
       .text-content .brand-header h1 { font-size: 2.5rem; }
       .text-content .brand-header h1 small { font-size: 1.4rem; }
       .text-content .brand-header .profile-img { width: 100px; height: 100px; }
-      .text-content .brand-header .cap-icon { font-size: 2.5rem; }
       .text-content .subtitle { font-size: 1.3rem; }
       .text-content .desc { font-size: 1.2rem; }
       .video-content iframe { height: 200px; }
       .text-content .brand-header .main-logo { height: 45px; width: 45px; }
     }
 
-    /* ===== باقي الأقسام (مثل المميزات، الإحصائيات، الشهادات، المستويات، التواصل) ===== */
-    /* تم اختصارها للعرض، لكنها موجودة في النسخة الكاملة */
+    /* ===== باقي الأقسام مختصرة ===== */
     .feature-box {
       background: #fff;
       border-radius: 24px;
@@ -621,7 +615,6 @@
         <div class="brand-header">
           <img src="assets/images/logo.png" alt="Logo" class="main-logo" />
           <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" class="profile-img" />
-          <i class="fas fa-graduation-cap cap-icon"></i>
           <h1>
             Mr. Yasser Nofal Academy
             <small>أكاديمية مستر ياسر نوفل</small>
