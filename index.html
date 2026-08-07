@@ -17,6 +17,37 @@
     }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
+    /* ===== العلامة المائية المتحركة ===== */
+    .watermark {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 999;
+      opacity: 0.06;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: watermarkFloat 6s ease-in-out infinite;
+    }
+    .watermark img {
+      height: 50px;
+      width: auto;
+      opacity: 0.6;
+    }
+    .watermark .watermark-text {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: #0a1f44;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    @keyframes watermarkFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
+      50% { transform: translateY(-10px) rotate(2deg); opacity: 0.09; }
+    }
+
     /* ===== شريط التنقل ===== */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
@@ -579,6 +610,12 @@
   </style>
 </head>
 <body>
+
+  <!-- ===== العلامة المائية المتحركة ===== -->
+  <div class="watermark">
+    <img src="assets/images/logo.png" alt="Logo" />
+    <span class="watermark-text">Mr. Yasser Nofal Academy</span>
+  </div>
 
   <!-- ===== شريط التنقل ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
