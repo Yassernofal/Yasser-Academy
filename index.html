@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    /* ===== الأساسيات ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'El Messiri', 'Lateef', serif;
@@ -15,29 +16,6 @@
       padding-top: 78px;
     }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
-
-    /* ===== علامة مائية ===== */
-    .watermark {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      opacity: 0.06;
-      z-index: 999;
-      pointer-events: none;
-      font-size: 0.8rem;
-      color: #0a1f44;
-      font-family: 'Cinzel', serif;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .watermark img { height: 40px; width: auto; opacity: 0.6; }
-    .watermark .profile-watermark {
-      border-radius: 50%;
-      height: 30px;
-      width: 30px;
-      object-fit: cover;
-    }
 
     /* ===== شريط التنقل ===== */
     .navbar-custom {
@@ -49,12 +27,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       z-index: 1050;
     }
-    .navbar-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      direction: ltr;
-    }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
     .navbar-brand img { height: 45px; width: auto; }
     .navbar-brand .brand-name {
       font-family: 'Cinzel', serif;
@@ -85,10 +58,7 @@
       background: rgba(247, 224, 94, 0.10);
       transform: translateY(-2px);
     }
-    .navbar-nav .nav-link.active {
-      color: #f7e05e !important;
-      background: rgba(247, 224, 94, 0.12);
-    }
+    .navbar-nav .nav-link.active { color: #f7e05e !important; background: rgba(247, 224, 94, 0.12); }
     .nav-indicator {
       position: absolute;
       bottom: 2px;
@@ -167,11 +137,16 @@
     }
     .text-content .brand-header .main-logo { height: 60px; width: 60px; object-fit: contain; }
     .text-content .brand-header .profile-img {
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      border: 2px solid #f7e05e;
+      border: 3px solid #f7e05e;
       object-fit: cover;
-      height: 60px;
-      width: 60px;
+      transition: 0.3s;
+    }
+    .text-content .brand-header .profile-img:hover {
+      transform: scale(1.05);
+      border-color: #fff;
     }
     .text-content .brand-header h1 {
       font-family: 'Cinzel', serif;
@@ -241,7 +216,7 @@
       .text-content .desc { font-size: 1.2rem; }
       .video-content iframe { height: 200px; }
       .text-content .brand-header .main-logo { height: 45px; width: 45px; }
-      .text-content .brand-header .profile-img { height: 45px; width: 45px; }
+      .text-content .brand-header .profile-img { width: 60px; height: 60px; }
     }
 
     /* ===== المميزات ===== */
@@ -580,15 +555,18 @@
       .ai-assistant-window { width: 95%; right: 2.5%; bottom: 80px; }
       .ai-body { height: 200px; }
     }
+
+    /* ===== نظام الصلاحيات ===== */
+    .hidden-role { display: none !important; }
   </style>
 </head>
 <body>
 
   <!-- ===== علامة مائية ===== -->
-  <div class="watermark">
-    <img src="assets/images/logo.png" alt="Logo" />
-    <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser" class="profile-watermark" />
-    <span>Mr. Yasser Nofal Academy</span>
+  <div class="watermark" style="position:fixed;bottom:10px;left:10px;opacity:0.04;z-index:999;pointer-events:none;">
+    <img src="assets/images/logo.png" alt="Logo" style="height:30px;opacity:0.4;" />
+    <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser" style="border-radius:50%;height:30px;width:30px;object-fit:cover;opacity:0.4;" />
+    <span style="font-family:'Cinzel',serif;color:#0a1f44;">Mr. Yasser Nofal Academy</span>
   </div>
 
   <!-- ===== شريط التنقل ===== -->
@@ -608,8 +586,8 @@
           <li class="nav-item"><a class="nav-link" href="booking.html"><i class="fas fa-pencil-alt"></i> الاختبار<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus"></i> التسجيل<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="student-dashboard.html"><i class="fas fa-user-graduate"></i> لوحة الطالب<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="parent-dashboard.html"><i class="fas fa-users"></i> ولي الأمر<span class="nav-indicator"></span></a></li>
+          <li class="nav-item" id="studentDashboardLink"><a class="nav-link" href="student-dashboard.html"><i class="fas fa-user-graduate"></i> لوحة الطالب<span class="nav-indicator"></span></a></li>
+          <li class="nav-item" id="parentDashboardLink"><a class="nav-link" href="parent-dashboard.html"><i class="fas fa-users"></i> ولي الأمر<span class="nav-indicator"></span></a></li>
         </ul>
       </div>
     </div>
@@ -983,6 +961,41 @@
       };
       recognition.start();
     }
+
+    // ===== نظام الصلاحيات =====
+    function checkUserRole() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      console.log('👤 المستخدم الحالي:', user);
+
+      if (!user) {
+        // إخفاء روابط الأدوار إذا لم يكن هناك مستخدم
+        document.getElementById('studentDashboardLink').style.display = 'none';
+        document.getElementById('parentDashboardLink').style.display = 'none';
+        return;
+      }
+
+      const role = user.role || 'student';
+
+      // إظهار الكل أولاً
+      document.getElementById('studentDashboardLink').style.display = '';
+      document.getElementById('parentDashboardLink').style.display = '';
+
+      // إخفاء حسب الدور
+      if (role === 'student') {
+        document.getElementById('parentDashboardLink').style.display = 'none';
+      } else if (role === 'parent') {
+        document.getElementById('studentDashboardLink').style.display = 'none';
+      } else if (role === 'admin') {
+        // الأدمن يشوف كل حاجة
+      }
+
+      console.log('🔐 الدور الحالي:', role);
+    }
+
+    // تشغيل عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', checkUserRole);
+
+    console.log('✅ تم تحميل الصفحة بنجاح');
   </script>
   <script src="js/content-protection.js"></script>
 </body>
