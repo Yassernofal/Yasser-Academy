@@ -192,7 +192,7 @@
   </footer>
 
   <script>
-    // ===== حماية الصفحة: التأكد من دور المستخدم =====
+    // ===== حماية الصفحة (السماح للطالب والأدمن) =====
     (function() {
       const user = JSON.parse(localStorage.getItem('user'));
       console.log('👤 المستخدم:', user);
@@ -203,7 +203,7 @@
         return;
       }
 
-      if (user.role !== 'student') {
+      if (user.role !== 'student' && user.role !== 'admin') {
         alert('⛔ هذه الصفحة مخصصة للطلاب فقط');
         window.location.href = 'index.html';
         return;

@@ -981,32 +981,36 @@
       recognition.start();
     }
 
-    // ===== نظام الصلاحيات =====
+    // ===== نظام الصلاحيات المعدل =====
     function checkUserRole() {
       const user = JSON.parse(localStorage.getItem('user'));
       console.log('👤 المستخدم الحالي:', user);
 
+      const studentLink = document.getElementById('studentDashboardLink');
+      const parentLink = document.getElementById('parentDashboardLink');
+
       if (!user) {
-        document.getElementById('studentDashboardLink').style.display = 'none';
-        document.getElementById('parentDashboardLink').style.display = 'none';
+        if (studentLink) studentLink.style.display = 'none';
+        if (parentLink) parentLink.style.display = 'none';
         return;
       }
 
       const role = user.role || 'student';
 
+      // الأدمن يشوف كل حاجة
       if (role === 'admin') {
-        document.getElementById('studentDashboardLink').style.display = '';
-        document.getElementById('parentDashboardLink').style.display = '';
+        if (studentLink) studentLink.style.display = '';
+        if (parentLink) parentLink.style.display = '';
         return;
       }
 
-      document.getElementById('studentDashboardLink').style.display = '';
-      document.getElementById('parentDashboardLink').style.display = '';
-
+      // الطالب وولي الأمر
       if (role === 'student') {
-        document.getElementById('parentDashboardLink').style.display = 'none';
+        if (studentLink) studentLink.style.display = '';
+        if (parentLink) parentLink.style.display = 'none';
       } else if (role === 'parent') {
-        document.getElementById('studentDashboardLink').style.display = 'none';
+        if (studentLink) studentLink.style.display = 'none';
+        if (parentLink) parentLink.style.display = '';
       }
     }
 
