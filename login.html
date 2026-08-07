@@ -189,7 +189,6 @@
         return;
       }
 
-      // محاكاة التحقق (في الواقع هنستخدم Firebase أو Backend)
       const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
       const user = users.find(u => u.email === email && u.password === password);
 
@@ -198,13 +197,11 @@
         return;
       }
 
-      // التأكد من تطابق الدور
       if (user.role !== role) {
         alert(`❌ هذا الحساب مسجل كـ ${user.role === 'student' ? 'طالب' : user.role === 'parent' ? 'ولي أمر' : 'أدمن'}. الرجاء اختيار الدور الصحيح.`);
         return;
       }
 
-      // حفظ بيانات المستخدم
       const userData = {
         name: user.name || email.split('@')[0],
         email: user.email,
@@ -221,11 +218,10 @@
       } else if (user.role === 'parent') {
         window.location.href = 'parent-dashboard.html';
       } else if (user.role === 'admin') {
-        window.location.href = 'admin-dashboard.html';
+        window.location.href = 'index.html';
       }
     }
 
-    // استعادة الدور المحفوظ
     const savedRole = localStorage.getItem('selectedRole') || 'student';
     selectRole(savedRole);
   </script>

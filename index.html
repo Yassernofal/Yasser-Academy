@@ -23,7 +23,7 @@
       bottom: 20px;
       left: 20px;
       z-index: 999;
-      opacity: 0.06;
+      opacity: 0.15;
       pointer-events: none;
       display: flex;
       align-items: center;
@@ -33,7 +33,7 @@
     .watermark img {
       height: 50px;
       width: auto;
-      opacity: 0.6;
+      opacity: 0.9;
     }
     .watermark .watermark-text {
       font-family: 'Cinzel', serif;
@@ -44,8 +44,8 @@
       text-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
     @keyframes watermarkFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
-      50% { transform: translateY(-10px) rotate(2deg); opacity: 0.09; }
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.12; }
+      50% { transform: translateY(-10px) rotate(2deg); opacity: 0.18; }
     }
 
     /* ===== شريط التنقل ===== */
@@ -164,10 +164,11 @@
       box-shadow: 0 4px 20px rgba(255, 23, 68, 0.15);
     }
     .top-bar marquee {
-      display: block;
+      display: inline-block;
       width: 100%;
       font-size: 1.2rem;
       color: #ff1744;
+      text-align: center;
     }
 
     /* ===== الهيدر ===== */
@@ -635,8 +636,8 @@
           <li class="nav-item"><a class="nav-link" href="booking.html"><i class="fas fa-pencil-alt"></i> الاختبار<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول<span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus"></i> التسجيل<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="student-dashboard.html"><i class="fas fa-user-graduate"></i> لوحة الطالب<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="parent-dashboard.html"><i class="fas fa-users"></i> ولي الأمر<span class="nav-indicator"></span></a></li>
+          <li class="nav-item" id="studentDashboardLink"><a class="nav-link" href="student-dashboard.html"><i class="fas fa-user-graduate"></i> لوحة الطالب<span class="nav-indicator"></span></a></li>
+          <li class="nav-item" id="parentDashboardLink"><a class="nav-link" href="parent-dashboard.html"><i class="fas fa-users"></i> ولي الأمر<span class="nav-indicator"></span></a></li>
         </ul>
       </div>
     </div>
@@ -979,6 +980,37 @@
       };
       recognition.start();
     }
+
+    // ===== نظام الصلاحيات =====
+    function checkUserRole() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      console.log('👤 المستخدم الحالي:', user);
+
+      if (!user) {
+        document.getElementById('studentDashboardLink').style.display = 'none';
+        document.getElementById('parentDashboardLink').style.display = 'none';
+        return;
+      }
+
+      const role = user.role || 'student';
+
+      if (role === 'admin') {
+        document.getElementById('studentDashboardLink').style.display = '';
+        document.getElementById('parentDashboardLink').style.display = '';
+        return;
+      }
+
+      document.getElementById('studentDashboardLink').style.display = '';
+      document.getElementById('parentDashboardLink').style.display = '';
+
+      if (role === 'student') {
+        document.getElementById('parentDashboardLink').style.display = 'none';
+      } else if (role === 'parent') {
+        document.getElementById('studentDashboardLink').style.display = 'none';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', checkUserRole);
   </script>
   <script src="js/content-protection.js"></script>
 </body>

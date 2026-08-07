@@ -199,7 +199,6 @@
         return;
       }
 
-      // حفظ المستخدم
       const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
 
       if (users.some(u => u.email === email)) {
@@ -219,11 +218,25 @@
 
       alert(`✅ تم إنشاء حسابك بنجاح! دورك: ${role === 'student' ? 'طالب' : role === 'parent' ? 'ولي أمر' : 'أدمن'}`);
 
-      // التوجيه لتسجيل الدخول
       window.location.href = 'login.html';
     }
 
-    // استعادة الدور المحفوظ
+    // ===== إضافة أدمن افتراضي =====
+    (function() {
+      const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+      const adminExists = users.some(u => u.role === 'admin');
+      if (!adminExists) {
+        users.push({
+          name: 'مدير النظام',
+          email: 'admin@yassernofal.com',
+          password: 'admin123',
+          role: 'admin',
+          registerDate: new Date().toISOString()
+        });
+        localStorage.setItem('registeredUsers', JSON.stringify(users));
+      }
+    })();
+
     const savedRole = localStorage.getItem('selectedRole') || 'student';
     selectRole(savedRole);
   </script>
