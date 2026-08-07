@@ -19,7 +19,6 @@
     }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
-    /* ===== شريط التنقل ===== */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
       backdrop-filter: blur(18px);
@@ -27,78 +26,24 @@
       padding: 14px 0;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      transition: all 0.3s ease;
+      position: fixed;
+      top: 0;
+      width: 100%;
       z-index: 1050;
     }
-    .navbar-brand { display: flex; align-items: center; gap: 6px; transition: 0.3s; }
-    .navbar-brand:hover { transform: scale(1.02); }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
     .navbar-brand img { height: 40px; width: auto; }
-    .navbar-nav .nav-item { margin: 0 4px; position: relative; }
-    .navbar-nav .nav-link {
-      color: rgba(255, 255, 255, 0.8) !important;
-      font-family: 'El Messiri', serif;
-      font-weight: 500;
-      font-size: 1.05rem;
-      padding: 10px 18px;
-      border-radius: 12px;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      position: relative;
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
     }
-    .navbar-nav .nav-link i { font-size: 0.95rem; color: #f7e05e; transition: 0.3s; }
-    .navbar-nav .nav-link:hover { color: #fff !important; background: rgba(247, 224, 94, 0.10); transform: translateY(-2px); }
-    .navbar-nav .nav-link.active { color: #f7e05e !important; background: rgba(247, 224, 94, 0.12); }
-    .nav-indicator {
-      position: absolute;
-      bottom: 2px;
-      right: 50%;
-      width: 0;
-      height: 2.5px;
-      background: linear-gradient(90deg, #f7e05e, #f7b731);
-      border-radius: 4px;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform: translateX(50%);
-    }
-    .nav-link:hover .nav-indicator,
-    .nav-link.active .nav-indicator { width: 60%; }
-    .navbar-toggler {
-      border: none;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.05) !important;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
-    .navbar-toggler:hover { background: rgba(255, 255, 255, 0.10) !important; }
-    .navbar-toggler:focus { box-shadow: none; }
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    }
-    @media (max-width: 991.98px) {
-      .navbar-collapse {
-        background: rgba(10, 31, 68, 0.96);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 20px 15px;
-        margin-top: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        animation: slideDown 0.3s ease forwards;
-      }
-      .navbar-nav .nav-item { margin: 2px 0; }
-      .navbar-nav .nav-link { padding: 12px 18px; border-radius: 12px; font-size: 1.05rem; }
-      .navbar-nav .nav-link i { width: 24px; text-align: center; }
-      .nav-indicator { display: none; }
-      .navbar-nav .nav-link.active { background: rgba(247, 224, 94, 0.12); }
-    }
-    @keyframes slideDown {
-      0% { opacity: 0; transform: translateY(-15px) scale(0.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    html { scroll-behavior: smooth; }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
 
-    /* ===== بطاقة تسجيل الدخول ===== */
     .login-card {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
@@ -131,30 +76,49 @@
     .btn-login:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(26, 67, 138, 0.3); }
     .login-card a { color: #1f4b8a; font-weight: 700; text-decoration: none; }
     .login-card a:hover { color: #0a1f44; }
+    .role-selector {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .role-selector .btn-role {
+      flex: 1;
+      border-radius: 50px;
+      padding: 8px 12px;
+      border: 2px solid #dee2e6;
+      background: #fff;
+      transition: 0.3s;
+      font-family: 'El Messiri', serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .role-selector .btn-role.active {
+      border-color: #0a1f44;
+      background: #0a1f44;
+      color: #fff;
+    }
+    .role-selector .btn-role:hover { border-color: #0a1f44; }
   </style>
 </head>
 <body>
 
   <!-- ===== شريط التنقل ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="assets/images/logo.png" alt="Logo" />
-        <span style="font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e;">
-          Mr. <span style="color: #ffb347;">Yasser</span> Nofal
-        </span>
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> الرئيسية<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html"><i class="fas fa-layer-group"></i> المستويات<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html"><i class="fas fa-pencil-alt"></i> الاختبار<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link active" href="login.html"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus"></i> التسجيل<span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="student-dashboard.html"><i class="fas fa-user-graduate"></i> لوحة الطالب<span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 الاختبار</a></li>
+          <li class="nav-item"><a class="nav-link active" href="login.html">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html">📝 التسجيل</a></li>
         </ul>
       </div>
     </div>
@@ -168,9 +132,24 @@
         <h4 class="mt-2">Mr. Yasser Nofal Academy</h4>
         <p class="text-muted">🔐 تسجيل الدخول إلى حسابك</p>
       </div>
-      <div class="alert alert-info text-center py-2">
-        <i class="fas fa-info-circle"></i> لديك حساب بالفعل؟ سجل دخولك هنا
+
+      <!-- اختيار الدور -->
+      <div class="role-selector">
+        <button class="btn-role active" data-role="student" onclick="selectRole('student')">
+          <i class="fas fa-user-graduate"></i> طالب
+        </button>
+        <button class="btn-role" data-role="parent" onclick="selectRole('parent')">
+          <i class="fas fa-users"></i> ولي أمر
+        </button>
+        <button class="btn-role" data-role="admin" onclick="selectRole('admin')">
+          <i class="fas fa-user-tie"></i> أدمن
+        </button>
       </div>
+
+      <div class="alert alert-info text-center py-2">
+        <i class="fas fa-info-circle"></i> اختر دورك ثم سجل الدخول
+      </div>
+
       <form onsubmit="handleLogin(event)">
         <div class="mb-3">
           <label class="form-label">البريد الإلكتروني</label>
@@ -182,6 +161,7 @@
         </div>
         <button type="submit" class="btn-login"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</button>
       </form>
+
       <div class="text-center mt-3">
         <p>✅ ليس لديك حساب؟ <a href="register.html">سجل الآن مجاناً</a></p>
       </div>
@@ -189,20 +169,66 @@
   </div>
 
   <script>
+    // ===== اختيار الدور =====
+    function selectRole(role) {
+      document.querySelectorAll('.btn-role').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`[data-role="${role}"]`).classList.add('active');
+      localStorage.setItem('selectedRole', role);
+    }
+
+    // ===== تسجيل الدخول =====
     function handleLogin(e) {
       e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      if (email && password) {
-        localStorage.setItem('user', JSON.stringify({ email, name: email.split('@')[0] }));
-        alert('✅ تم تسجيل الدخول بنجاح! مرحباً بك 👋');
-        window.location.href = 'student-dashboard.html';
-      } else {
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const role = localStorage.getItem('selectedRole') || 'student';
+
+      if (!email || !password) {
         alert('❌ يرجى إدخال البريد الإلكتروني وكلمة المرور');
+        return;
+      }
+
+      // محاكاة التحقق (في الواقع هنستخدم Firebase أو Backend)
+      const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        alert('❌ البريد الإلكتروني أو كلمة المرور غير صحيحة');
+        return;
+      }
+
+      // التأكد من تطابق الدور
+      if (user.role !== role) {
+        alert(`❌ هذا الحساب مسجل كـ ${user.role === 'student' ? 'طالب' : user.role === 'parent' ? 'ولي أمر' : 'أدمن'}. الرجاء اختيار الدور الصحيح.`);
+        return;
+      }
+
+      // حفظ بيانات المستخدم
+      const userData = {
+        name: user.name || email.split('@')[0],
+        email: user.email,
+        role: user.role,
+        loginTime: new Date().toISOString()
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
+
+      alert(`✅ مرحباً ${userData.name}! تم تسجيل الدخول بنجاح.`);
+
+      // التوجيه حسب الدور
+      if (user.role === 'student') {
+        window.location.href = 'student-dashboard.html';
+      } else if (user.role === 'parent') {
+        window.location.href = 'parent-dashboard.html';
+      } else if (user.role === 'admin') {
+        window.location.href = 'admin-dashboard.html';
       }
     }
+
+    // استعادة الدور المحفوظ
+    const savedRole = localStorage.getItem('selectedRole') || 'student';
+    selectRole(savedRole);
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/content-protection.js"></script>
 </body>
 </html>
