@@ -193,7 +193,7 @@
       <!-- ===== 3. عروض الباقات ===== -->
       <div class="price-table" style="background: #fff8e1;" id="plansContainer">
         <h5 class="fw-bold"><i class="fas fa-gem text-warning"></i> عروض الباقات</h5>
-        <p class="text-muted small" id="planMessage">🔹 اختر الصف الدراسي أولاً لعرض الباقات المناسبة</p>
+        <p class="text-muted small" id="planMessage">🔹 اختر الصف الدراسي من القائمة لعرض الباقات المناسبة</p>
         <div class="row g-3" id="plansRow">
           <!-- سيتم حقن الباقات بواسطة JavaScript -->
         </div>
@@ -289,15 +289,18 @@
       return [];
     }
 
-    // ===== تحديث الباقات عند اختيار الصف =====
+    // ===== تحديث الباقات =====
     function updatePlans() {
       const grade = document.getElementById('studentGrade').value;
       const row = document.getElementById('plansRow');
       const msg = document.getElementById('planMessage');
 
+      // إظهار الرسالة إذا لم يتم اختيار صف
       if (!grade) {
         row.innerHTML = '';
         msg.style.display = 'block';
+        document.getElementById('selectedPlanPrice').value = '';
+        document.getElementById('selectedPlanLabel').value = '';
         return;
       }
       msg.style.display = 'none';
@@ -346,7 +349,6 @@
         return;
       }
 
-      // حفظ البيانات
       const bookingData = {
         studentName: name,
         grade: grade,
@@ -361,13 +363,12 @@
 
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
 
-      // رسالة الدفع
       alert(`✅ تم استلام طلب الحجز!\n\n📌 المطلوب:\n- دفع قيمة الملزمة (100 ج.م PDF أو 200 ج.م مطبوعة)\n- الدفع عبر انستاباي على رقم: 01203145717\n- سيتم إرسال كود الاستلام على واتساب بعد تأكيد الدفع.\n\n📞 للاستفسار: 01203145717`);
 
       window.location.href = 'index.html';
     }
 
-    // تشغيل التحديث عند تحميل الصفحة
+    // ===== تشغيل التحديث عند تحميل الصفحة =====
     document.addEventListener('DOMContentLoaded', function() {
       updatePlans();
       // تحديث عند تغيير الصف
