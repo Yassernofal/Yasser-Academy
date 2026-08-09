@@ -3,143 +3,318 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>لوحة تحكم المدرب</title>
+  <title>لوحة تحكم المدرب – Mr. Yasser Nofal Academy</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    :root { --primary: #0a2f6c; --secondary: #1a73e8; --accent: #f9a825; --light-bg: #f0f4fa; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Tajawal', sans-serif; background: var(--light-bg); }
-    .navbar-custom { background: var(--primary) !important; padding: 12px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-    .navbar-brand { font-weight: 800; font-size: 1.6rem; color: #fff !important; }
-    .navbar-brand span { color: var(--accent); }
-    .nav-link { color: #fff !important; font-weight: 500; transition: 0.3s; }
-    .nav-link:hover { color: var(--accent) !important; transform: translateY(-2px); }
-    .dashboard-card { background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.05); height: 100%; transition: 0.3s; }
-    .dashboard-card:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(0,0,0,0.08); }
-    .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
-    .table-custom { background: #fff; border-radius: 15px; overflow: hidden; }
-    footer { background: var(--primary); color: #ccc; padding: 35px 0; border-radius: 40px 40px 0 0; margin-top: 50px; }
+    body {
+      font-family: 'El Messiri', 'Lateef', serif;
+      background: #f0f4fa;
+      padding-top: 78px;
+    }
+    @media (max-width: 991.98px) { body { padding-top: 72px; } }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.85) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      z-index: 1050;
+    }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+    .navbar-brand img { height: 40px; width: auto; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
+
+    .dashboard-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 25px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+      height: 100%;
+      transition: 0.3s;
+    }
+    .dashboard-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #0a1f44;
+    }
+    .table-custom {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .table-custom th { background: #0a1f44; color: #fff; padding: 12px; }
+    .table-custom td { padding: 12px; vertical-align: middle; }
+    .badge-pending { background: #ffc107; color: #000; }
+    .badge-paid { background: #28a745; color: #fff; }
+    .badge-completed { background: #17a2b8; color: #fff; }
+    .btn-clear {
+      background: #dc3545;
+      color: #fff;
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 700;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-clear:hover { background: #c82333; transform: scale(1.02); }
+    .btn-export {
+      background: #28a745;
+      color: #fff;
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 700;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-export:hover { background: #1e7e34; transform: scale(1.02); }
+    footer {
+      background: #0a1f44;
+      color: #b0c4de;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .dashboard-card { padding: 15px; }
+      .stat-number { font-size: 1.8rem; }
+    }
   </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" style="height: 35px; margin-left: 10px;" />
-        <span>Yasser</span> Nofal
+        <img src="assets/images/logo.png" alt="Logo" />
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">📊 لوحة التحكم</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html" onclick="localStorage.removeItem('admin');">🚪 خروج</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 الحجز</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html">📝 التسجيل</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin-dashboard.html">📊 لوحة التحكم</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
+  <!-- ===== المحتوى ===== -->
   <section class="container py-4">
-    <h2 class="fw-bold mb-4"><i class="fas fa-chart-line text-primary"></i> لوحة تحكم المدرب</h2>
-
-    <div class="row g-4">
-      <div class="col-md-3"><div class="dashboard-card text-center"><div class="stat-number" id="totalBookings">0</div><p>إجمالي الحجوزات</p></div></div>
-      <div class="col-md-3"><div class="dashboard-card text-center"><div class="stat-number" id="todayBookings">0</div><p>حجوزات اليوم</p></div></div>
-      <div class="col-md-3"><div class="dashboard-card text-center"><div class="stat-number" id="pendingPayments">0</div><p>مدفوعات معلقة</p></div></div>
-      <div class="col-md-3"><div class="dashboard-card text-center"><div class="stat-number" id="totalRevenue">0</div><p>إجمالي الإيرادات</p></div></div>
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <h2 class="fw-bold"><i class="fas fa-chart-line text-primary"></i> لوحة تحكم المدرب</h2>
+      <div class="d-flex gap-2 flex-wrap">
+        <button class="btn-export" onclick="exportBookings()"><i class="fas fa-file-excel"></i> تصدير Excel</button>
+        <button class="btn-clear" onclick="clearAllBookings()"><i class="fas fa-trash"></i> مسح كل الحجوزات</button>
+      </div>
     </div>
 
-    <div class="dashboard-card mt-4">
+    <!-- ===== الإحصائيات ===== -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-3 col-6">
+        <div class="dashboard-card text-center">
+          <div class="stat-number" id="totalBookings">0</div>
+          <p>إجمالي الحجوزات</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="dashboard-card text-center">
+          <div class="stat-number" id="todayBookings">0</div>
+          <p>حجوزات اليوم</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="dashboard-card text-center">
+          <div class="stat-number" id="pendingPayments">0</div>
+          <p>مدفوعات معلقة</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="dashboard-card text-center">
+          <div class="stat-number" id="totalRevenue">0</div>
+          <p>إجمالي الإيرادات</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== جدول الحجوزات ===== -->
+    <div class="dashboard-card">
       <h5><i class="fas fa-list text-primary"></i> قائمة الحجوزات</h5>
       <div class="table-responsive">
         <table class="table table-striped table-custom">
-          <thead><tr><th>#</th><th>اسم الطالب</th><th>الصف</th><th>المدرسة</th><th>الباقة</th><th>طريقة الدفع</th><th>التاريخ</th></tr></thead>
-          <tbody id="bookingsTable"></tbody>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>اسم الطالب</th>
+              <th>الصف</th>
+              <th>رقم الهاتف</th>
+              <th>الباقة</th>
+              <th>الحالة</th>
+              <th>التاريخ</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsTable">
+            <tr><td colspan="8" class="text-center">لا توجد حجوزات</td></tr>
+          </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <footer class="text-center"><div class="container"><p class="mb-0">© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p></div></footer>
+  <!-- ===== الفوتر ===== -->
+  <footer>
+    <div class="container"><p class="mb-0">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
+  </footer>
 
-  <!-- ===== Firebase ===== -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // ===== إعدادات Firebase (استبدل ببياناتك الحقيقية) =====
-    const firebaseConfig = {
-      apiKey: "AIzaSyAFuAjSYHumAXJ_98AbYxFI8N9dSd27xL8",
-      authDomain: "yasser-nofal-english-academy.firebaseapp.com",
-      projectId: "yasser-nofal-english-academy",
-      storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
-      messagingSenderId: "654488740819",
-      appId: "1:654488740819:web:7a513cb6c2a74d98324526"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-
     // ===== التحقق من دخول المدرب =====
-    if (!localStorage.getItem('admin')) {
-      const adminPassword = prompt('🔐 أدخل كلمة مرور المدرب:');
-      if (adminPassword === 'Yasser@2026#') {
-        localStorage.setItem('admin', 'true');
-      } else {
-        alert('❌ كلمة مرور خاطئة!');
-        window.location.href = 'index.html';
+    (function() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user || user.role !== 'admin') {
+        alert('⛔ هذه الصفحة مخصصة للمدربين فقط');
+        window.location.href = 'login.html';
       }
-    }
+    })();
 
     // ===== عرض الحجوزات =====
     function loadBookings() {
-      const bookingsRef = database.ref('bookings');
-      bookingsRef.on('value', (snapshot) => {
-        const data = snapshot.val();
-        console.log('📊 البيانات من Firebase:', data);
-        const table = document.getElementById('bookingsTable');
-        const total = document.getElementById('totalBookings');
-        const today = document.getElementById('todayBookings');
+      const bookings = JSON.parse(localStorage.getItem('bookingData')) || [];
+      const table = document.getElementById('bookingsTable');
+      const total = document.getElementById('totalBookings');
+      const today = document.getElementById('todayBookings');
+      const pending = document.getElementById('pendingPayments');
+      const revenue = document.getElementById('totalRevenue');
 
-        if (data) {
-          const bookings = Object.values(data);
-          total.textContent = bookings.length;
-          const todayDate = new Date().toLocaleDateString('ar-EG');
-          const todayCount = bookings.filter(b => new Date(b.date).toLocaleDateString('ar-EG') === todayDate).length;
-          today.textContent = todayCount;
+      // إذا كانت الحجوزات object مش array (من الإصدارات القديمة)
+      let bookingsArray = [];
+      if (Array.isArray(bookings)) {
+        bookingsArray = bookings;
+      } else if (bookings && typeof bookings === 'object') {
+        bookingsArray = Object.values(bookings);
+      }
 
-          // حساب الإيرادات
-          let revenue = 0;
-          bookings.forEach(b => {
-            const price = parseInt(b.price);
-            if (!isNaN(price)) revenue += price;
-          });
-          document.getElementById('totalRevenue').textContent = revenue + ' ج.م';
+      total.textContent = bookingsArray.length;
 
-          // عرض الجدول
-          table.innerHTML = bookings.map((b, i) => `
-            <tr>
-              <td>${i+1}</td>
-              <td>${b.studentName || 'غير محدد'}</td>
-              <td>${b.grade || 'غير محدد'}</td>
-              <td>${b.school || 'غير محدد'}</td>
-              <td>${b.price || 'غير محدد'} ج.م</td>
-              <td>${b.payment === 'instapay' ? 'انستاباي' : b.payment === 'vodafone' ? 'فودافون كاش' : 'غير محدد'}</td>
-              <td>${new Date(b.date).toLocaleDateString('ar-EG')}</td>
-            </tr>
-          `).join('');
-        } else {
-          total.textContent = '0';
-          today.textContent = '0';
-          document.getElementById('totalRevenue').textContent = '0 ج.م';
-          table.innerHTML = `<tr><td colspan="7" class="text-center">لا توجد حجوزات</td></tr>`;
-        }
+      const todayDate = new Date().toLocaleDateString('ar-EG');
+      const todayCount = bookingsArray.filter(b => new Date(b.date).toLocaleDateString('ar-EG') === todayDate).length;
+      today.textContent = todayCount;
+
+      const pendingCount = bookingsArray.filter(b => b.status === 'pending' || b.status === undefined).length;
+      pending.textContent = pendingCount;
+
+      // حساب الإيرادات (قيمة الباقة)
+      let totalRevenue = 0;
+      bookingsArray.forEach(b => {
+        const price = parseInt(b.planPrice);
+        if (!isNaN(price)) totalRevenue += price;
       });
+      revenue.textContent = totalRevenue + ' ج.م';
+
+      if (bookingsArray.length === 0) {
+        table.innerHTML = `<tr><td colspan="8" class="text-center">لا توجد حجوزات حتى الآن</td></tr>`;
+        return;
+      }
+
+      table.innerHTML = bookingsArray.map((b, i) => `
+        <tr>
+          <td>${i+1}</td>
+          <td>${b.studentName || 'غير محدد'}</td>
+          <td>${b.grade || 'غير محدد'}</td>
+          <td>${b.parentPhone || 'غير محدد'}</td>
+          <td>${b.planLabel || b.planPrice || 'غير محدد'}</td>
+          <td>
+            <span class="badge ${b.status === 'paid' ? 'badge-paid' : b.status === 'completed' ? 'badge-completed' : 'badge-pending'}">
+              ${b.status === 'paid' ? '✅ مدفوع' : b.status === 'completed' ? '✔️ مكتمل' : '⏳ معلق'}
+            </span>
+          </td>
+          <td>${new Date(b.date).toLocaleDateString('ar-EG')}</td>
+          <td>
+            <button class="btn btn-sm btn-success" onclick="updateStatus('${i}', 'paid')"><i class="fas fa-check"></i></button>
+            <button class="btn btn-sm btn-danger" onclick="deleteBooking('${i}')"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      `).join('');
     }
 
+    // ===== تحديث حالة الحجز =====
+    function updateStatus(index, status) {
+      const bookings = JSON.parse(localStorage.getItem('bookingData')) || [];
+      if (bookings[index]) {
+        bookings[index].status = status;
+        localStorage.setItem('bookingData', JSON.stringify(bookings));
+        loadBookings();
+        alert('✅ تم تحديث حالة الحجز بنجاح');
+      }
+    }
+
+    // ===== حذف حجز فردي =====
+    function deleteBooking(index) {
+      if (confirm('⚠️ هل أنت متأكد من حذف هذا الحجز؟')) {
+        const bookings = JSON.parse(localStorage.getItem('bookingData')) || [];
+        bookings.splice(index, 1);
+        localStorage.setItem('bookingData', JSON.stringify(bookings));
+        loadBookings();
+        alert('✅ تم حذف الحجز بنجاح');
+      }
+    }
+
+    // ===== مسح كل الحجوزات =====
+    function clearAllBookings() {
+      if (confirm('⚠️ تحذير! هل أنت متأكد من مسح كل الحجوزات القديمة؟')) {
+        localStorage.removeItem('bookingData');
+        loadBookings();
+        alert('✅ تم مسح كل الحجوزات القديمة بنجاح!');
+      }
+    }
+
+    // ===== تصدير Excel =====
+    function exportBookings() {
+      const bookings = JSON.parse(localStorage.getItem('bookingData')) || [];
+      if (bookings.length === 0) {
+        alert('لا توجد حجوزات للتصدير');
+        return;
+      }
+
+      let csv = 'اسم الطالب,الصف,رقم الهاتف,الباقة,الحالة,التاريخ\n';
+      bookings.forEach(b => {
+        const status = b.status === 'paid' ? 'مدفوع' : b.status === 'completed' ? 'مكتمل' : 'معلق';
+        csv += `${b.studentName || ''},${b.grade || ''},${b.parentPhone || ''},${b.planLabel || b.planPrice || ''},${status},${new Date(b.date).toLocaleDateString('ar-EG')}\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `الحجوزات_${new Date().toLocaleDateString('ar-EG')}.csv`;
+      link.click();
+    }
+
+    // ===== تحميل البيانات عند فتح الصفحة =====
     loadBookings();
   </script>
+  <script src="js/content-protection.js"></script>
 </body>
 </html>

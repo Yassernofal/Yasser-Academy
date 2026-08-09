@@ -94,6 +94,19 @@
       transition: 0.3s;
     }
     .btn-book:hover { background: #f7b731; transform: scale(1.02); }
+    .plan-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 15px;
+      border: 2px solid #dee2e6;
+      text-align: center;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .plan-card:hover { border-color: #f7e05e; transform: translateY(-3px); }
+    .plan-card.selected { border-color: #f7e05e; background: #fff8e1; }
+    .plan-card .price { font-size: 1.8rem; font-weight: 800; color: #0a1f44; }
+    .plan-card .label { font-size: 0.9rem; color: #6c757d; }
     footer {
       background: #0a1f44;
       color: #b0c4de;
@@ -138,7 +151,25 @@
       <h2 class="fw-bold text-center mb-4"><i class="fas fa-calendar-check text-primary"></i> حجز كورس جديد</h2>
       <p class="text-center text-muted mb-4">اختر صفك الدراسي وتعرف على الأسعار والمواعيد</p>
 
-      <!-- ===== 1. خطة الأسعار ===== -->
+      <!-- ===== 1. مواعيد المجموعات ===== -->
+      <div class="schedule-box">
+        <h5><i class="fas fa-clock text-primary"></i> مواعيد المجموعات وأماكنها</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <p><strong>📘 الصف الأول الثانوي</strong><br>
+            📍 الأحد والأربعاء – الساعة 6 مساءً<br>
+            📍 المكان: أبراج الحاسب الآلي (نفس مكان العام السابق)</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>📘 الصف الثالث الثانوي</strong><br>
+            📍 الأحد والأربعاء – الساعة 8 مساءً<br>
+            📍 المكان: أبراج الحاسب الآلي (نفس مكان العام السابق)</p>
+          </div>
+        </div>
+        <p class="mt-2"><i class="fas fa-phone text-success"></i> للاستفسار: <strong>01203145717</strong> (واتساب)</p>
+      </div>
+
+      <!-- ===== 2. خطة الأسعار ===== -->
       <div class="price-table">
         <h5 class="fw-bold"><i class="fas fa-money-bill-wave text-success"></i> خطة الأسعار الشهرية</h5>
         <table>
@@ -156,42 +187,55 @@
         </table>
       </div>
 
-      <!-- ===== 2. أسعار الملازم ===== -->
+      <!-- ===== 3. عروض الباقات ===== -->
       <div class="price-table" style="background: #fff8e1;">
+        <h5 class="fw-bold"><i class="fas fa-gem text-warning"></i> عروض الباقات (الأول والثالث الثانوي)</h5>
+        <div class="row g-3">
+          <div class="col-md-3">
+            <div class="plan-card" onclick="selectPlan(this, 400, 'شهري')">
+              <div class="price">400 ج.م</div>
+              <div class="label">شهري (8 حصص)</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="plan-card" onclick="selectPlan(this, 750, 'شهرين')">
+              <div class="price">750 ج.م</div>
+              <div class="label">شهرين (16 حصة)</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="plan-card" onclick="selectPlan(this, 1100, '3 شهور')">
+              <div class="price">1,100 ج.م</div>
+              <div class="label">3 شهور (24 حصة)</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="plan-card" onclick="selectPlan(this, 1450, '4 شهور')">
+              <div class="price">1,450 ج.م</div>
+              <div class="label">4 شهور (32 حصة)</div>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" id="selectedPlanPrice" />
+        <input type="hidden" id="selectedPlanLabel" />
+      </div>
+
+      <!-- ===== 4. أسعار الملازم ===== -->
+      <div class="price-table" style="background: #e8f4fd;">
         <h5 class="fw-bold"><i class="fas fa-book text-primary"></i> أسعار الملازم</h5>
         <table>
           <thead>
             <tr><th>النوع</th><th>السعر</th></tr>
           </thead>
           <tbody>
-            <tr><td>ملزمة PDF (تحميل من الموقع)</td><td>100 ج.م</td></tr>
+            <tr><td>ملزمة PDF (تحميل من الموقع بعد الدفع)</td><td>100 ج.م</td></tr>
             <tr><td>ملزمة مطبوعة (استلام من المكتبة بكود)</td><td>200 ج.م</td></tr>
           </tbody>
         </table>
-        <small class="text-muted">📌 للاستلام من المكتبة، سيتم إرسال كود الاستلام على واتساب.</small>
+        <small class="text-muted">📌 سيتم إرسال كود الاستلام على واتساب بعد تأكيد الدفع.</small>
       </div>
 
-      <!-- ===== 3. مواعيد المجموعات ===== -->
-      <div class="schedule-box">
-        <h5><i class="fas fa-clock text-primary"></i> مواعيد المجموعات وأماكنها</h5>
-        <div class="row g-3">
-          <div class="col-md-6">
-            <p><strong>📍 الأحد</strong><br>مجموعة إعدادي – الساعة 5 م<br>مجموعة ثانوي – الساعة 7 م</p>
-          </div>
-          <div class="col-md-6">
-            <p><strong>📍 الثلاثاء</strong><br>مجموعة إعدادي – الساعة 5 م<br>مجموعة ثانوي – الساعة 7 م</p>
-          </div>
-          <div class="col-md-6">
-            <p><strong>📍 الخميس</strong><br>مجموعة إعدادي – الساعة 4 م<br>مجموعة ثانوي – الساعة 6 م</p>
-          </div>
-          <div class="col-md-6">
-            <p><strong>📍 السبت</strong><br>مجموعة جامعي – الساعة 5 م<br>مجموعة كبار – الساعة 7 م</p>
-          </div>
-        </div>
-        <p class="mt-2"><i class="fas fa-map-marker-alt text-danger"></i> <strong>العنوان:</strong> مجمع محمد السيد وحسن البدراوى الرسمى – لغات</p>
-      </div>
-
-      <!-- ===== نموذج الحجز ===== -->
+      <!-- ===== 5. نموذج الحجز ===== -->
       <form id="bookingForm" onsubmit="handleBooking(event)">
         <div class="row g-3">
           <div class="col-md-6">
@@ -211,16 +255,16 @@
             </select>
           </div>
           <div class="col-md-6">
-            <label class="form-label">رقم ولي الأمر <span class="text-danger">*</span></label>
+            <label class="form-label">رقم الهاتف <span class="text-danger">*</span></label>
             <input type="tel" class="form-control" id="parentPhone" required placeholder="01234567890" />
           </div>
           <div class="col-md-6">
-            <label class="form-label">البريد الإلكتروني</label>
+            <label class="form-label">البريد الإلكتروني (اختياري)</label>
             <input type="email" class="form-control" id="parentEmail" placeholder="parent@email.com" />
           </div>
           <div class="col-12">
             <label class="form-label">ملاحظات إضافية</label>
-            <textarea class="form-control" rows="2" placeholder="أي استفسارات أو طلبات خاصة..."></textarea>
+            <textarea class="form-control" rows="2" placeholder="أي استفسارات أو طلبات خاصة..." id="notes"></textarea>
           </div>
           <div class="col-12">
             <button type="submit" class="btn-book"><i class="fas fa-check-circle"></i> تأكيد الحجز</button>
@@ -237,11 +281,23 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // ===== اختيار الباقة =====
+    function selectPlan(el, price, label) {
+      document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('selectedPlanPrice').value = price;
+      document.getElementById('selectedPlanLabel').value = label;
+    }
+
+    // ===== تأكيد الحجز =====
     function handleBooking(e) {
       e.preventDefault();
+
       const name = document.getElementById('studentName').value.trim();
       const grade = document.getElementById('studentGrade').value;
       const phone = document.getElementById('parentPhone').value.trim();
+      const planPrice = document.getElementById('selectedPlanPrice').value;
+      const planLabel = document.getElementById('selectedPlanLabel').value;
 
       if (!name || !grade || !phone) {
         alert('❌ يرجى ملء جميع الحقول المطلوبة');
@@ -254,11 +310,18 @@
         grade: grade,
         parentPhone: phone,
         parentEmail: document.getElementById('parentEmail').value,
+        planPrice: planPrice || 'لم يختار',
+        planLabel: planLabel || 'لم يختار',
+        notes: document.getElementById('notes').value,
+        status: 'pending',
         date: new Date().toISOString()
       };
+
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
 
-      alert('✅ تم استلام طلب الحجز! سنتواصل معك خلال 24 ساعة.');
+      // عرض رسالة الدفع
+      alert(`✅ تم استلام طلب الحجز!\n\n📌 المطلوب:\n- دفع قيمة الملزمة (100 ج.م PDF أو 200 ج.م مطبوعة)\n- الدفع عبر انستاباي على رقم: 01203145717\n- سيتم إرسال كود الاستلام على واتساب بعد تأكيد الدفع.\n\n📞 للاستفسار: 01203145717`);
+
       window.location.href = 'index.html';
     }
   </script>
