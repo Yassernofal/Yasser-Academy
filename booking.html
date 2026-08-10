@@ -33,6 +33,7 @@
     .navbar-brand .brand-name span { color: #ffb347; }
     .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
     .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
 
     .booking-card {
       background: #fff;
@@ -219,6 +220,27 @@
               <label class="form-label">البريد الإلكتروني (اختياري)</label>
               <input type="email" class="form-control" id="parentEmail" placeholder="parent@email.com" />
             </div>
+            
+            <!-- ===== NEW: طريقة الدفع ===== -->
+            <div class="col-12">
+              <label class="form-label">طريقة الدفع <span class="text-danger">*</span></label>
+              <select class="form-select" id="paymentMethod" required>
+                <option value="">-- اختر طريقة الدفع --</option>
+                <option value="instapay">انستاباي</option>
+                <option value="vodafone">فودافون كاش</option>
+              </select>
+            </div>
+
+            <!-- ===== NEW: رقم التحويل ===== -->
+            <div class="col-12" id="paymentNumberBox" style="display:none;">
+              <div class="info-box">
+                <i class="fas fa-info-circle text-primary"></i>
+                <strong>رقم التحويل:</strong>
+                <span class="fs-5 fw-bold">01203145717</span>
+                <span class="text-muted d-block">(انستاباي / فودافون كاش)</span>
+              </div>
+            </div>
+
             <div class="col-12">
               <label class="form-label">نوع الملزمة المطلوبة</label>
               <select class="form-select" id="bookType">
@@ -345,6 +367,10 @@
       document.getElementById('selectedPlanPrice').value = '';
       document.getElementById('selectedPlanLabel').value = '';
       document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+      
+      // إخفاء رقم التحويل
+      document.getElementById('paymentNumberBox').style.display = 'none';
+      document.getElementById('paymentMethod').value = '';
     }
 
     // ===== اختيار الباقة =====
@@ -355,16 +381,33 @@
       document.getElementById('selectedPlanLabel').value = label;
     }
 
+    // ===== إظهار رقم التحويل عند اختيار طريقة الدفع =====
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('paymentMethod').addEventListener('change', function() {
+        const box = document.getElementById('paymentNumberBox');
+        if (this.value) {
+          box.style.display = 'block';
+        } else {
+          box.style.display = 'none';
+        }
+      });
+      
+      // تحديد الصف الافتراضي (أولى ثانوي)
+      selectGrade('sec1');
+    });
+
     // ===== تأكيد الحجز =====
     function handleBooking(e) {
       e.preventDefault();
-
+      
       const name = document.getElementById('studentName').value.trim();
       const phone = document.getElementById('parentPhone').value.trim();
+      const paymentMethod = document.getElementById('paymentMethod').value;
       const planPrice = document.getElementById('selectedPlanPrice').value;
       const planLabel = document.getElementById('selectedPlanLabel').value;
       const bookType = document.getElementById('bookType').value;
 
+      // التحقق من الحقول المطلوبة
       if (!name || !phone) {
         alert('❌ يرجى ملء جميع الحقول المطلوبة');
         return;
@@ -375,13 +418,23 @@
         return;
       }
 
+      if (!paymentMethod) {
+        alert('❌ يرجى اختيار طريقة الدفع');
+        return;
+      }
+
       const data = gradeData[selectedGrade];
       let bookPrice = 0;
       let bookLabel = 'لا يوجد';
-      if (bookType === 'pdf') bookPrice = data.books.pdf;
-      else if (bookType === 'printed') bookPrice = data.books.printed;
+      if (bookType === 'pdf') {
+        bookPrice = data.books.pdf;
+        bookLabel = 'PDF';
+      } else if (bookType === 'printed') {
+        bookPrice = data.books.printed;
+        bookLabel = 'مطبوعه';
+      }
 
-      // إنشاء كود فريد للملزمة
+      // ===== توليد كود فريد للملزمة =====
       const bookCode = 'YNA-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000);
 
       const bookingData = {
@@ -390,9 +443,10 @@
         gradeKey: selectedGrade,
         parentPhone: phone,
         parentEmail: document.getElementById('parentEmail').value,
+        paymentMethod: paymentMethod === 'instapay' ? 'انستاباي' : 'فودافون كاش',
         planPrice: planPrice || 'لم يختار',
         planLabel: planLabel || 'لم يختار',
-        bookType: bookType === 'none' ? 'لا يوجد' : (bookType === 'pdf' ? 'PDF' : 'مطبوعه'),
+        bookType: bookType === 'none' ? 'لا يوجد' : bookLabel,
         bookPrice: bookPrice,
         bookCode: bookType !== 'none' ? bookCode : null,
         notes: document.getElementById('notes').value,
@@ -400,14 +454,18 @@
         date: new Date().toISOString()
       };
 
+      // حفظ البيانات في localStorage
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
 
+      // ===== إنشاء رسالة التأكيد =====
       let message = `✅ تم استلام طلب الحجز!\n\n`;
       message += `📌 بيانات الحجز:\n`;
       message += `- الطالب: ${name}\n`;
       message += `- الصف: ${data.name}\n`;
+      message += `- طريقة الدفع: ${bookingData.paymentMethod}\n`;
+      message += `- رقم التحويل: 01203145717\n`;
       message += `- الباقة: ${planLabel || 'لم يختار'} (${planPrice || '0'} ج.م)\n`;
-      message += `- الملزمة: ${bookType === 'none' ? 'لا يوجد' : (bookType === 'pdf' ? 'PDF' : 'مطبوعه')} (${bookPrice} ج.م)\n`;
+      message += `- الملزمة: ${bookLabel} (${bookPrice} ج.م)\n`;
 
       if (bookType === 'printed') {
         message += `\n📖 كود استلام الملزمة المطبوعة من المكتبة: ${bookCode}\n`;
@@ -419,19 +477,15 @@
         message += `🔗 رابط التحميل: سيتم إرساله على واتساب\n`;
       }
 
-      message += `\n💳 إجمالي المبلغ: ${(parseInt(planPrice) || 0) + bookPrice} ج.م\n`;
+      const total = (parseInt(planPrice) || 0) + bookPrice;
+      message += `\n💳 إجمالي المبلغ: ${total} ج.م\n`;
       message += `\n📞 للاستفسار: 01203145717 (واتساب)`;
 
       alert(message);
+      
+      // توجيه المستخدم للصفحة الرئيسية
       window.location.href = 'index.html';
     }
-
-    // ===== تهيئة الصفحة =====
-    document.addEventListener('DOMContentLoaded', function() {
-      // تحديد الصف الافتراضي (أولى ثانوي)
-      selectGrade('sec1');
-    });
   </script>
-  <script src="js/content-protection.js"></script>
 </body>
 </html>
