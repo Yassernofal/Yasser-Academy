@@ -17,7 +17,6 @@
     }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
-    /* ===== نفس الـ Navbar ===== */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
       backdrop-filter: blur(18px);
@@ -40,7 +39,6 @@
     .nav-link:hover { color: #f7e05e !important; }
     .nav-link.active { color: #f7e05e !important; }
 
-    /* ===== محتوى اللوحة ===== */
     .dashboard-container {
       max-width: 1000px;
       margin: 30px auto;
@@ -96,6 +94,13 @@
     }
     .btn-whatsapp:hover { background: #128C7E; color: #fff; }
 
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+    }
+
     footer {
       background: #0a1f44;
       color: #b0c4de;
@@ -125,7 +130,7 @@
           <li class="nav-item"><a class="nav-link" href="booking.html">📝 الحجز</a></li>
           <li class="nav-item"><a class="nav-link" href="games.html">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link active" href="parent-dashboard.html">👨‍👧 ولي الأمر</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html" id="loginLogoutBtn">🔑 تسجيل الدخول</a></li>
         </ul>
       </div>
     </div>
@@ -137,113 +142,29 @@
       <h2 class="fw-bold text-center mb-4">
         <i class="fas fa-user-friends text-primary"></i> لوحة ولي الأمر
       </h2>
-      <p class="text-center text-muted mb-4">تابع تقدم أبنائك الدراسي وحضورهم ومدفوعاتهم</p>
+      
+      <!-- ===== حالة تسجيل الدخول ===== -->
+      <div id="authStatus" class="text-center mb-4"></div>
 
-      <!-- ===== البحث عن الطالب ===== -->
-      <div class="row g-3 mb-4">
-        <div class="col-md-8">
-          <input type="text" class="form-control" id="studentSearch" placeholder="🔍 ابحث باسم الطالب أو رقم التليفون..." />
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-primary w-100" onclick="searchStudent()">
-            <i class="fas fa-search"></i> بحث
-          </button>
-        </div>
+      <!-- ===== بيانات الطلاب (تظهر بعد تسجيل الدخول) ===== -->
+      <div id="studentsData" style="display: none;">
+        <!-- هتظهر بيانات الطالب/الطلاب هنا -->
+        <div id="studentsList"></div>
       </div>
 
-      <!-- ===== بيانات الطالب (نموذج) ===== -->
-      <div id="studentResult">
-        <!-- هتظهر بيانات الطالب هنا بعد البحث -->
-        <div class="text-center text-muted py-5">
-          <i class="fas fa-user-graduate fa-4x mb-3 d-block"></i>
-          <p>ادخل اسم الطالب أو رقمه للبحث عن بياناته</p>
-        </div>
+      <!-- ===== رسالة لو مفيش طلاب ===== -->
+      <div id="noStudents" style="display: none;" class="text-center text-muted py-5">
+        <i class="fas fa-user-graduate fa-4x mb-3 d-block"></i>
+        <p>لا يوجد طلاب مسجلون بهذا الحساب</p>
       </div>
 
-      <!-- ===== بيانات افتراضية (تظهر كمثال) ===== -->
-      <div id="studentData" style="display: none;">
-        <!-- بطاقة الطالب -->
-        <div class="student-card">
-          <div class="row align-items-center">
-            <div class="col-md-8">
-              <h5 id="studentNameDisplay">أحمد محمد</h5>
-              <p class="mb-1"><i class="fas fa-graduation-cap text-primary"></i> الصف: <span id="studentGrade">أولى ثانوي</span></p>
-              <p class="mb-1"><i class="fas fa-phone text-success"></i> ولي الأمر: <span id="parentPhone">01234567890</span></p>
-              <p><i class="fas fa-envelope text-info"></i> البريد: <span id="parentEmail">parent@email.com</span></p>
-            </div>
-            <div class="col-md-4 text-md-start text-center">
-              <span class="badge bg-success fs-6 p-2">✅ نشط</span>
-              <button class="btn btn-whatsapp mt-2 d-block" onclick="contactParent()">
-                <i class="fab fa-whatsapp"></i> تواصل مع ولي الأمر
-              </button>
-            </div>
+      <!-- ===== شاشة التحميل ===== -->
+      <div id="loadingScreen" class="loading-spinner">
+        <div class="text-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">جاري التحميل...</span>
           </div>
-        </div>
-
-        <!-- الإحصائيات -->
-        <div class="row g-3 mb-4">
-          <div class="col-md-3 col-6">
-            <div class="stat-box">
-              <div class="number" id="attendanceCount">24</div>
-              <div class="label">📅 نسبة الحضور</div>
-              <span class="badge bg-success">96%</span>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-box">
-              <div class="number" id="gradeAvg">88%</div>
-              <div class="label">📊 متوسط الدرجات</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-box">
-              <div class="number" id="testsCompleted">6</div>
-              <div class="label">📝 اختبار مكتمل</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-box">
-              <div class="number" id="booksCount">2</div>
-              <div class="label">📚 ملازم تم شراؤها</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- سجل الدفعات -->
-        <div class="payment-history">
-          <h6><i class="fas fa-credit-card text-primary"></i> سجل المدفوعات</h6>
-          <div class="table-responsive">
-            <table class="table table-sm">
-              <thead>
-                <tr>
-                  <th>التاريخ</th>
-                  <th>البيان</th>
-                  <th>المبلغ</th>
-                  <th>الحالة</th>
-                </tr>
-              </thead>
-              <tbody id="paymentTable">
-                <tr>
-                  <td>2026-08-01</td>
-                  <td>اشتراك شهري - أولى ثانوي</td>
-                  <td>400 ج.م</td>
-                  <td><span class="paid">✅ مدفوع</span></td>
-                </tr>
-                <tr>
-                  <td>2026-07-01</td>
-                  <td>اشتراك شهري - أولى ثانوي</td>
-                  <td>400 ج.م</td>
-                  <td><span class="paid">✅ مدفوع</span></td>
-                </tr>
-                <tr>
-                  <td>2026-06-15</td>
-                  <td>ملزمة PDF - أولى ثانوي</td>
-                  <td>150 ج.م</td>
-                  <td><span class="paid">✅ مدفوع</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <p class="mt-2">جاري تحميل بيانات الطلاب...</p>
         </div>
       </div>
     </div>
@@ -254,110 +175,213 @@
     <div class="container"><p class="mb-0">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ===== Firebase ===== -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
   <script>
-    // ===== بيانات الطلاب التجريبية (للتجربة) =====
-    const studentsData = [
-      {
-        id: 1,
-        name: 'أحمد محمد',
-        grade: 'أولى ثانوي',
-        parentPhone: '01234567890',
-        parentEmail: 'ahmed.parent@email.com',
-        attendance: '96%',
-        average: '88%',
-        tests: 6,
-        books: 2,
-        payments: [
-          { date: '2026-08-01', desc: 'اشتراك شهري - أولى ثانوي', amount: '400 ج.م', status: 'paid' },
-          { date: '2026-07-01', desc: 'اشتراك شهري - أولى ثانوي', amount: '400 ج.م', status: 'paid' },
-          { date: '2026-06-15', desc: 'ملزمة PDF - أولى ثانوي', amount: '150 ج.م', status: 'paid' }
-        ]
-      },
-      {
-        id: 2,
-        name: 'سارة علي',
-        grade: 'تالتة ثانوي',
-        parentPhone: '01123456789',
-        parentEmail: 'sara.parent@email.com',
-        attendance: '92%',
-        average: '95%',
-        tests: 8,
-        books: 3,
-        payments: [
-          { date: '2026-08-01', desc: 'اشتراك شهري - تالتة ثانوي', amount: '500 ج.م', status: 'paid' },
-          { date: '2026-07-01', desc: 'اشتراك شهري - تالتة ثانوي', amount: '500 ج.م', status: 'pending' }
-        ]
-      }
-    ];
+    // ===== إعدادات Firebase (ضع بيانات مشروعك هنا) =====
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
 
-    // ===== البحث عن الطالب =====
-    function searchStudent() {
-      const query = document.getElementById('studentSearch').value.trim().toLowerCase();
-      if (!query) {
-        alert('❌ يرجى إدخال اسم الطالب أو رقم التليفون');
-        return;
-      }
+    // تهيئة Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-      const found = studentsData.find(s => 
-        s.name.toLowerCase().includes(query) || 
-        s.parentPhone.includes(query)
-      );
+    // ===== عناصر الصفحة =====
+    const loadingScreen = document.getElementById('loadingScreen');
+    const studentsDataDiv = document.getElementById('studentsData');
+    const studentsList = document.getElementById('studentsList');
+    const noStudentsDiv = document.getElementById('noStudents');
+    const authStatus = document.getElementById('authStatus');
+    const loginLogoutBtn = document.getElementById('loginLogoutBtn');
 
-      if (found) {
-        displayStudent(found);
-      } else {
-        document.getElementById('studentResult').innerHTML = `
-          <div class="alert alert-warning text-center">
-            <i class="fas fa-exclamation-circle"></i> لم يتم العثور على طالب بهذه البيانات
+    // ===== مراقبة حالة تسجيل الدخول =====
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        // ===== المستخدم مسجل دخول =====
+        loginLogoutBtn.textContent = '🚪 تسجيل الخروج';
+        loginLogoutBtn.href = '#';
+        loginLogoutBtn.onclick = (e) => {
+          e.preventDefault();
+          auth.signOut();
+          window.location.reload();
+        };
+
+        authStatus.innerHTML = `
+          <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> مرحباً! أنت مسجل كـ <strong>${user.email}</strong>
           </div>
         `;
-        document.getElementById('studentData').style.display = 'none';
+
+        // جلب بيانات الطلاب المرتبطة بهذا البريد
+        await loadStudents(user.email);
+      } else {
+        // ===== المستخدم غير مسجل دخول =====
+        loginLogoutBtn.textContent = '🔑 تسجيل الدخول';
+        loginLogoutBtn.href = 'login.html';
+        loginLogoutBtn.onclick = null;
+
+        authStatus.innerHTML = `
+          <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i> يرجى <a href="login.html" class="alert-link">تسجيل الدخول</a> لعرض بيانات أبنائك.
+          </div>
+        `;
+
+        loadingScreen.style.display = 'none';
+        studentsDataDiv.style.display = 'none';
+        noStudentsDiv.style.display = 'none';
+      }
+    });
+
+    // ===== دالة جلب بيانات الطلاب =====
+    async function loadStudents(parentEmail) {
+      loadingScreen.style.display = 'flex';
+      studentsDataDiv.style.display = 'none';
+      noStudentsDiv.style.display = 'none';
+
+      try {
+        // جلب الطلاب من Firestore حيث parentEmail = بريد ولي الأمر
+        const querySnapshot = await db.collection('students')
+          .where('parentEmail', '==', parentEmail)
+          .get();
+
+        if (querySnapshot.empty) {
+          loadingScreen.style.display = 'none';
+          noStudentsDiv.style.display = 'block';
+          return;
+        }
+
+        // ===== عرض بيانات الطلاب =====
+        studentsList.innerHTML = '';
+        querySnapshot.forEach((doc) => {
+          const student = doc.data();
+          const studentId = doc.id;
+          studentsList.innerHTML += createStudentCard(student, studentId);
+        });
+
+        loadingScreen.style.display = 'none';
+        studentsDataDiv.style.display = 'block';
+
+      } catch (error) {
+        console.error('خطأ في جلب البيانات:', error);
+        loadingScreen.style.display = 'none';
+        authStatus.innerHTML = `
+          <div class="alert alert-danger">
+            <i class="fas fa-times-circle"></i> حدث خطأ في تحميل البيانات: ${error.message}
+          </div>
+        `;
       }
     }
 
-    // ===== عرض بيانات الطالب =====
-    function displayStudent(student) {
-      document.getElementById('studentResult').innerHTML = '';
-      document.getElementById('studentData').style.display = 'block';
+    // ===== دالة إنشاء بطاقة الطالب =====
+    function createStudentCard(student, studentId) {
+      // حساب إجمالي المدفوعات
+      let totalPaid = 0;
+      let paymentRows = '';
+      if (student.payments && student.payments.length > 0) {
+        student.payments.forEach(p => {
+          const statusClass = p.status === 'paid' ? 'paid' : 'pending';
+          const statusText = p.status === 'paid' ? '✅ مدفوع' : '⏳ معلق';
+          const amount = parseInt(p.amount) || 0;
+          if (p.status === 'paid') totalPaid += amount;
+          paymentRows += `
+            <tr>
+              <td>${p.date || '--'}</td>
+              <td>${p.desc || '--'}</td>
+              <td>${p.amount || '0'} ج.م</td>
+              <td><span class="${statusClass}">${statusText}</span></td>
+            </tr>
+          `;
+        });
+      } else {
+        paymentRows = `<tr><td colspan="4" class="text-center">لا يوجد مدفوعات مسجلة</td></tr>`;
+      }
 
-      document.getElementById('studentNameDisplay').textContent = student.name;
-      document.getElementById('studentGrade').textContent = student.grade;
-      document.getElementById('parentPhone').textContent = student.parentPhone;
-      document.getElementById('parentEmail').textContent = student.parentEmail;
-      document.getElementById('attendanceCount').textContent = student.attendance;
-      document.getElementById('gradeAvg').textContent = student.average;
-      document.getElementById('testsCompleted').textContent = student.tests;
-      document.getElementById('booksCount').textContent = student.books;
+      return `
+        <div class="student-card">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <h5><i class="fas fa-user-graduate text-primary"></i> ${student.name || 'غير محدد'}</h5>
+              <p class="mb-1"><i class="fas fa-graduation-cap text-primary"></i> الصف: <strong>${student.grade || 'غير محدد'}</strong></p>
+              <p class="mb-1"><i class="fas fa-phone text-success"></i> ولي الأمر: <strong>${student.parentPhone || 'غير محدد'}</strong></p>
+              <p><i class="fas fa-envelope text-info"></i> البريد: <strong>${student.parentEmail || 'غير محدد'}</strong></p>
+            </div>
+            <div class="col-md-4 text-md-start text-center">
+              <span class="badge bg-success fs-6 p-2">✅ نشط</span>
+              ${student.parentPhone ? `
+                <button class="btn btn-whatsapp mt-2 d-block" onclick="contactParent('${student.parentPhone}', '${student.name}')">
+                  <i class="fab fa-whatsapp"></i> تواصل مع ولي الأمر
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        </div>
 
-      // سجل المدفوعات
-      const tbody = document.getElementById('paymentTable');
-      tbody.innerHTML = '';
-      student.payments.forEach(p => {
-        const statusClass = p.status === 'paid' ? 'paid' : 'pending';
-        const statusText = p.status === 'paid' ? '✅ مدفوع' : '⏳ معلق';
-        tbody.innerHTML += `
-          <tr>
-            <td>${p.date}</td>
-            <td>${p.desc}</td>
-            <td>${p.amount}</td>
-            <td><span class="${statusClass}">${statusText}</span></td>
-          </tr>
-        `;
-      });
+        <!-- الإحصائيات -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-3 col-6">
+            <div class="stat-box">
+              <div class="number">${student.attendance || '0%'}</div>
+              <div class="label">📅 نسبة الحضور</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-box">
+              <div class="number">${student.average || '0%'}</div>
+              <div class="label">📊 متوسط الدرجات</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-box">
+              <div class="number">${student.tests || 0}</div>
+              <div class="label">📝 اختبار مكتمل</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-box">
+              <div class="number">${student.books || 0}</div>
+              <div class="label">📚 ملازم تم شراؤها</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- سجل المدفوعات -->
+        <div class="payment-history">
+          <h6><i class="fas fa-credit-card text-primary"></i> سجل المدفوعات (إجمالي المدفوع: <strong>${totalPaid} ج.م</strong>)</h6>
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>التاريخ</th>
+                  <th>البيان</th>
+                  <th>المبلغ</th>
+                  <th>الحالة</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${paymentRows}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <hr />
+      `;
     }
 
-    // ===== التواصل مع ولي الأمر =====
-    function contactParent() {
-      const phone = document.getElementById('parentPhone').textContent;
-      const name = document.getElementById('studentNameDisplay').textContent;
-      window.open(`https://wa.me/2${phone}?text=مرحباً%20ولي%20أمر%20الطالب%20${name}%20،%20هذه%20رسالة%20من%20أكاديمية%20مستر%20ياسر%20نوفل`, '_blank');
+    // ===== دالة التواصل عبر واتساب =====
+    function contactParent(phone, studentName) {
+      if (!phone) return;
+      window.open(`https://wa.me/2${phone}?text=مرحباً%20ولي%20أمر%20الطالب%20${studentName}%20،%20هذه%20رسالة%20من%20أكاديمية%20مستر%20ياسر%20نوفل`, '_blank');
     }
-
-    // ===== تشغيل البحث بالضغط على Enter =====
-    document.getElementById('studentSearch').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') searchStudent();
-    });
   </script>
 </body>
 </html>
