@@ -217,7 +217,7 @@
           <small class="text-muted" data-i18n="books_note">📌 سيتم إرسال كود الاستلام على واتساب بعد تأكيد الدفع.</small>
         </div>
 
-        <!-- نموذج الحجز -->
+        <!-- ===== نموذج الحجز ===== -->
         <form id="bookingForm" onsubmit="handleBooking(event)">
           <div class="row g-3">
             <div class="col-md-6">
@@ -265,6 +265,32 @@
                 <option value="printed" data-i18n="book_printed">مطبوعة (استلام من المكتبة بكود) – 300 ج.م</option>
               </select>
             </div>
+            
+            <!-- ===== نموذج تأكيد الدفع ===== -->
+            <div class="col-12 mt-3">
+              <hr />
+              <h6 class="fw-bold" data-i18n="payment_confirmation_title"><i class="fas fa-check-circle text-success"></i> تأكيد الدفع</h6>
+              <div class="info-box">
+                <p><i class="fas fa-info-circle text-primary"></i> <span data-i18n="payment_instructions">يرجى تحويل المبلغ الإجمالي على رقم:</span> <strong>01203145717</strong></p>
+                <p><span data-i18n="payment_methods">(انستاباي / فودافون كاش)</span></p>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" data-i18n="transfer_number_label">رقم التحويل <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="transferNumber" required placeholder="مثال: 1234567890" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" data-i18n="transfer_date_label">تاريخ التحويل <span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" id="transferDate" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" data-i18n="transfer_amount_label">المبلغ المحول <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="transferAmount" required placeholder="أدخل المبلغ" />
+                </div>
+              </div>
+            </div>
+
             <div class="col-12">
               <label class="form-label" data-i18n="notes_label">ملاحظات إضافية</label>
               <textarea class="form-control" rows="2" placeholder="أي استفسارات أو طلبات خاصة..." id="notes"></textarea>
@@ -403,14 +429,18 @@
     // ===== تأكيد الحجز =====
     function handleBooking(e) {
       e.preventDefault();
-      
+
       const name = document.getElementById('studentName').value.trim();
       const phone = document.getElementById('parentPhone').value.trim();
       const paymentMethod = document.getElementById('paymentMethod').value;
+      const transferNumber = document.getElementById('transferNumber').value.trim();
+      const transferDate = document.getElementById('transferDate').value;
+      const transferAmount = document.getElementById('transferAmount').value.trim();
       const planPrice = document.getElementById('selectedPlanPrice').value;
       const planLabel = document.getElementById('selectedPlanLabel').value;
       const bookType = document.getElementById('bookType').value;
 
+      // التحقق من الحقول المطلوبة
       if (!name || !phone) {
         alert('❌ يرجى ملء جميع الحقول المطلوبة');
         return;
@@ -426,6 +456,12 @@
         return;
       }
 
+      if (!transferNumber || !transferDate || !transferAmount) {
+        alert('❌ يرجى إدخال بيانات التحويل');
+        return;
+      }
+
+      // حساب المبلغ الإجمالي
       const data = gradeData[selectedGrade];
       let bookPrice = 0;
       let bookLabel = 'لا يوجد';
@@ -436,8 +472,15 @@
         bookPrice = data.books.printed;
         bookLabel = 'مطبوعه';
       }
+      const total = (parseInt(planPrice) || 0) + bookPrice;
 
-      // ===== توليد كود فريد للملزمة =====
+      // التأكد من تطابق المبلغ المحول مع الإجمالي
+      if (parseInt(transferAmount) !== total) {
+        alert(`❌ المبلغ المحول (${transferAmount} ج.م) لا يتطابق مع الإجمالي المطلوب (${total} ج.م)`);
+        return;
+      }
+
+      // توليد كود فريد للملزمة
       const bookCode = 'YNA-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000);
 
       const bookingData = {
@@ -447,26 +490,38 @@
         parentPhone: phone,
         parentEmail: document.getElementById('parentEmail').value,
         paymentMethod: paymentMethod === 'instapay' ? 'انستاباي' : 'فودافون كاش',
+        transferNumber: transferNumber,
+        transferDate: transferDate,
+        transferAmount: transferAmount,
         planPrice: planPrice || 'لم يختار',
         planLabel: planLabel || 'لم يختار',
         bookType: bookType === 'none' ? 'لا يوجد' : bookLabel,
         bookPrice: bookPrice,
         bookCode: bookType !== 'none' ? bookCode : null,
         notes: document.getElementById('notes').value,
+        total: total,
         status: 'pending',
         date: new Date().toISOString()
       };
 
+      // حفظ البيانات في localStorage
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
 
+      // إرسال إشعار عبر واتساب
+      sendWhatsAppNotification(bookingData);
+
+      // عرض رسالة التأكيد
       let message = `✅ تم استلام طلب الحجز!\n\n`;
       message += `📌 بيانات الحجز:\n`;
       message += `- الطالب: ${name}\n`;
       message += `- الصف: ${data.name}\n`;
       message += `- طريقة الدفع: ${bookingData.paymentMethod}\n`;
-      message += `- رقم التحويل: 01203145717\n`;
+      message += `- رقم التحويل: ${transferNumber}\n`;
+      message += `- تاريخ التحويل: ${transferDate}\n`;
+      message += `- المبلغ المحول: ${transferAmount} ج.م\n`;
       message += `- الباقة: ${planLabel || 'لم يختار'} (${planPrice || '0'} ج.م)\n`;
       message += `- الملزمة: ${bookLabel} (${bookPrice} ج.م)\n`;
+      message += `- الإجمالي: ${total} ج.م\n`;
 
       if (bookType === 'printed') {
         message += `\n📖 كود استلام الملزمة المطبوعة من المكتبة: ${bookCode}\n`;
@@ -478,12 +533,31 @@
         message += `🔗 رابط التحميل: سيتم إرساله على واتساب\n`;
       }
 
-      const total = (parseInt(planPrice) || 0) + bookPrice;
-      message += `\n💳 إجمالي المبلغ: ${total} ج.م\n`;
       message += `\n📞 للاستفسار: 01203145717 (واتساب)`;
 
       alert(message);
       window.location.href = 'index.html';
+    }
+
+    // ===== إرسال إشعار واتساب =====
+    function sendWhatsAppNotification(bookingData) {
+      const message = `
+        📌 *طلب حجز جديد*
+        👤 الطالب: ${bookingData.studentName}
+        🎓 الصف: ${bookingData.grade}
+        💳 طريقة الدفع: ${bookingData.paymentMethod}
+        🏷️ رقم التحويل: ${bookingData.transferNumber}
+        📅 تاريخ التحويل: ${bookingData.transferDate}
+        💰 المبلغ المحول: ${bookingData.transferAmount} ج.م
+        💳 الباقة: ${bookingData.planLabel} (${bookingData.planPrice} ج.م)
+        📖 الملزمة: ${bookingData.bookType} (${bookingData.bookPrice} ج.م)
+        💰 الإجمالي: ${bookingData.total} ج.م
+        🔑 كود الملزمة: ${bookingData.bookCode || 'لا يوجد'}
+        📝 ملاحظات: ${bookingData.notes || 'لا يوجد'}
+      `;
+
+      const phone = '201001297414'; // رقم ولي الأمر (للتجربة)
+      window.open(`https://wa.me/2${phone}?text=${encodeURIComponent(message)}`);
     }
   </script>
 </body>
