@@ -4,17 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="parent_page_title">لوحة ولي الأمر – Mr. Yasser Nofal Academy</title>
+  
+  <!-- ===== Google Analytics ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N3R3KFEO8');
+  </script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'El Messiri', serif;
-      background: #f0f4fa;
-      padding-top: 78px;
-      min-height: 100vh;
-    }
+    body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; min-height: 100vh; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
     .navbar-custom {
@@ -64,15 +69,8 @@
       text-align: center;
       height: 100%;
     }
-    .stat-box .number {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #0a1f44;
-    }
-    .stat-box .label {
-      font-size: 0.9rem;
-      color: #555;
-    }
+    .stat-box .number { font-size: 2rem; font-weight: 800; color: #0a1f44; }
+    .stat-box .label { font-size: 0.9rem; color: #555; }
 
     .payment-history {
       background: #fff8e1;
@@ -134,9 +132,7 @@
           <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a></li>
           <!-- ===== زر اللغة ===== -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">
-              🌐
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
               <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
@@ -150,25 +146,14 @@
   <!-- ===== المحتوى ===== -->
   <section class="container">
     <div class="dashboard-container">
-      <h2 class="fw-bold text-center mb-4" data-i18n="parent_title">
-        <i class="fas fa-user-friends text-primary"></i> لوحة ولي الأمر
-      </h2>
+      <h2 class="fw-bold text-center mb-4" data-i18n="parent_title"><i class="fas fa-user-friends text-primary"></i> لوحة ولي الأمر</h2>
       
-      <!-- ===== حالة تسجيل الدخول ===== -->
       <div id="authStatus" class="text-center mb-4"></div>
-
-      <!-- ===== بيانات الطلاب (تظهر بعد تسجيل الدخول) ===== -->
-      <div id="studentsData" style="display: none;">
-        <div id="studentsList"></div>
-      </div>
-
-      <!-- ===== رسالة لو مفيش طلاب ===== -->
+      <div id="studentsData" style="display: none;"><div id="studentsList"></div></div>
       <div id="noStudents" style="display: none;" class="text-center text-muted py-5">
         <i class="fas fa-user-graduate fa-4x mb-3 d-block"></i>
         <p data-i18n="parent_no_students">لا يوجد طلاب مسجلون بهذا الحساب</p>
       </div>
-
-      <!-- ===== شاشة التحميل ===== -->
       <div id="loadingScreen" class="loading-spinner">
         <div class="text-center">
           <div class="spinner-border text-primary" role="status">
@@ -190,9 +175,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <script src="assets/js/lang.js"></script>
-
   <script>
-    // ===== إعدادات Firebase (ضع بيانات مشروعك هنا) =====
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -212,38 +195,25 @@
     const noStudentsDiv = document.getElementById('noStudents');
     const authStatus = document.getElementById('authStatus');
 
-    // ===== مراقبة حالة تسجيل الدخول =====
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        authStatus.innerHTML = `
-          <div class="alert alert-success">
-            <i class="fas fa-check-circle"></i> <span data-i18n="parent_welcome">مرحباً!</span> <strong>${user.email}</strong>
-          </div>
-        `;
+        authStatus.innerHTML = `<div class="alert alert-success"><i class="fas fa-check-circle"></i> <span data-i18n="parent_welcome">مرحباً!</span> <strong>${user.email}</strong></div>`;
         await loadStudents(user.email);
       } else {
-        authStatus.innerHTML = `
-          <div class="alert alert-warning">
-            <i class="fas fa-exclamation-triangle"></i> <span data-i18n="parent_login_required">يرجى <a href="login.html" class="alert-link">تسجيل الدخول</a> لعرض بيانات أبنائك.</span>
-          </div>
-        `;
+        authStatus.innerHTML = `<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> <span data-i18n="parent_login_required">يرجى <a href="login.html" class="alert-link">تسجيل الدخول</a> لعرض بيانات أبنائك.</span></div>`;
         loadingScreen.style.display = 'none';
         studentsDataDiv.style.display = 'none';
         noStudentsDiv.style.display = 'none';
       }
     });
 
-    // ===== دالة جلب بيانات الطلاب =====
     async function loadStudents(parentEmail) {
       loadingScreen.style.display = 'flex';
       studentsDataDiv.style.display = 'none';
       noStudentsDiv.style.display = 'none';
 
       try {
-        const querySnapshot = await db.collection('students')
-          .where('parentEmail', '==', parentEmail)
-          .get();
-
+        const querySnapshot = await db.collection('students').where('parentEmail', '==', parentEmail).get();
         if (querySnapshot.empty) {
           loadingScreen.style.display = 'none';
           noStudentsDiv.style.display = 'block';
@@ -258,19 +228,13 @@
 
         loadingScreen.style.display = 'none';
         studentsDataDiv.style.display = 'block';
-
       } catch (error) {
         console.error('خطأ في جلب البيانات:', error);
         loadingScreen.style.display = 'none';
-        authStatus.innerHTML = `
-          <div class="alert alert-danger">
-            <i class="fas fa-times-circle"></i> حدث خطأ في تحميل البيانات: ${error.message}
-          </div>
-        `;
+        authStatus.innerHTML = `<div class="alert alert-danger"><i class="fas fa-times-circle"></i> حدث خطأ في تحميل البيانات: ${error.message}</div>`;
       }
     }
 
-    // ===== دالة إنشاء بطاقة الطالب =====
     function createStudentCard(student) {
       let totalPaid = 0;
       let paymentRows = '';
@@ -280,14 +244,7 @@
           const statusText = p.status === 'paid' ? '✅ مدفوع' : '⏳ معلق';
           const amount = parseInt(p.amount) || 0;
           if (p.status === 'paid') totalPaid += amount;
-          paymentRows += `
-            <tr>
-              <td>${p.date || '--'}</td>
-              <td>${p.desc || '--'}</td>
-              <td>${p.amount || '0'} ج.م</td>
-              <td><span class="${statusClass}">${statusText}</span></td>
-            </tr>
-          `;
+          paymentRows += `<tr><td>${p.date || '--'}</td><td>${p.desc || '--'}</td><td>${p.amount || '0'} ج.م</td><td><span class="${statusClass}">${statusText}</span></td></tr>`;
         });
       } else {
         paymentRows = `<tr><td colspan="4" class="text-center" data-i18n="parent_no_payments">لا يوجد مدفوعات مسجلة</td></tr>`;
@@ -304,57 +261,24 @@
             </div>
             <div class="col-md-4 text-md-start text-center">
               <span class="badge bg-success fs-6 p-2" data-i18n="parent_active">✅ نشط</span>
-              ${student.parentPhone ? `
-                <button class="btn btn-whatsapp mt-2 d-block" onclick="contactParent('${student.parentPhone}', '${student.name}')">
-                  <i class="fab fa-whatsapp"></i> <span data-i18n="parent_contact_btn">تواصل مع ولي الأمر</span>
-                </button>
-              ` : ''}
+              ${student.parentPhone ? `<button class="btn btn-whatsapp mt-2 d-block" onclick="contactParent('${student.parentPhone}', '${student.name}')"><i class="fab fa-whatsapp"></i> <span data-i18n="parent_contact_btn">تواصل مع ولي الأمر</span></button>` : ''}
             </div>
           </div>
         </div>
 
         <div class="row g-3 mb-4">
-          <div class="col-md-3 col-6">
-            <div class="stat-box">
-              <div class="number">${student.attendance || '0%'}</div>
-              <div class="label" data-i18n="parent_attendance_label">📅 نسبة الحضور</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-box">
-              <div class="number">${student.average || '0%'}</div>
-              <div class="label" data-i18n="parent_avg_label">📊 متوسط الدرجات</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-box">
-              <div class="number">${student.tests || 0}</div>
-              <div class="label" data-i18n="parent_tests_label">📝 اختبار مكتمل</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-box">
-              <div class="number">${student.books || 0}</div>
-              <div class="label" data-i18n="parent_books_label">📚 ملازم تم شراؤها</div>
-            </div>
-          </div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.attendance || '0%'}</div><div class="label" data-i18n="parent_attendance_label">📅 نسبة الحضور</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.average || '0%'}</div><div class="label" data-i18n="parent_avg_label">📊 متوسط الدرجات</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.tests || 0}</div><div class="label" data-i18n="parent_tests_label">📝 اختبار مكتمل</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.books || 0}</div><div class="label" data-i18n="parent_books_label">📚 ملازم تم شراؤها</div></div></div>
         </div>
 
         <div class="payment-history">
           <h6><i class="fas fa-credit-card text-primary"></i> <span data-i18n="parent_payments_title">سجل المدفوعات</span> (<span data-i18n="parent_total_paid">إجمالي المدفوع</span>: <strong>${totalPaid} ج.م</strong>)</h6>
           <div class="table-responsive">
             <table class="table table-sm">
-              <thead>
-                <tr>
-                  <th data-i18n="parent_payment_date">التاريخ</th>
-                  <th data-i18n="parent_payment_desc">البيان</th>
-                  <th data-i18n="parent_payment_amount">المبلغ</th>
-                  <th data-i18n="parent_payment_status">الحالة</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${paymentRows}
-              </tbody>
+              <thead><tr><th data-i18n="parent_payment_date">التاريخ</th><th data-i18n="parent_payment_desc">البيان</th><th data-i18n="parent_payment_amount">المبلغ</th><th data-i18n="parent_payment_status">الحالة</th></tr></thead>
+              <tbody>${paymentRows}</tbody>
             </table>
           </div>
         </div>
@@ -362,7 +286,6 @@
       `;
     }
 
-    // ===== دالة التواصل عبر واتساب =====
     function contactParent(phone, studentName) {
       if (!phone) return;
       window.open(`https://wa.me/2${phone}?text=مرحباً%20ولي%20أمر%20الطالب%20${studentName}%20،%20هذه%20رسالة%20من%20أكاديمية%20مستر%20ياسر%20نوفل`, '_blank');

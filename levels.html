@@ -4,17 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="levels_page_title">المستويات التعليمية – Mr. Yasser Nofal Academy</title>
+  
+  <!-- ===== Google Analytics ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N3R3KFEO8');
+  </script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'El Messiri', serif;
-      background: #f0f4fa;
-      padding-top: 78px;
-      min-height: 100vh;
-    }
+    body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; min-height: 100vh; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
     .navbar-custom {
@@ -57,11 +62,7 @@
       cursor: pointer;
       height: 100%;
     }
-    .level-card:hover {
-      transform: translateY(-6px);
-      border-color: #f7e05e;
-      box-shadow: 0 12px 30px rgba(247, 224, 94, 0.15);
-    }
+    .level-card:hover { transform: translateY(-6px); border-color: #f7e05e; box-shadow: 0 12px 30px rgba(247, 224, 94, 0.15); }
     .level-card i { font-size: 2.5rem; color: #f7b731; margin-bottom: 10px; }
     .level-card h5 { font-family: 'Cinzel', serif; color: #0a1f44; }
     .level-card p { color: #666; font-size: 0.9rem; }
@@ -99,9 +100,7 @@
           <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a></li>
           <!-- ===== زر اللغة ===== -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">
-              🌐
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
               <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
@@ -119,62 +118,14 @@
       <p class="text-center text-muted mb-4" data-i18n="levels_subtitle">اختر المستوى المناسب لك وابدأ رحلة التعلم</p>
 
       <div class="row g-4">
-        <div class="col-md-3 col-6">
-          <div class="level-card" onclick="window.location.href='pre-kg-lessons.html'">
-            <i class="fas fa-baby"></i>
-            <h5 data-i18n="level_pre">ما قبل الروضة</h5>
-            <p data-i18n="level_pre_desc">تعلم الحروف والكلمات الأساسية</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="level-card" onclick="window.location.href='kg-lessons.html'">
-            <i class="fas fa-child"></i>
-            <h5 data-i18n="level_kg">رياض الأطفال</h5>
-            <p data-i18n="level_kg_desc">تأسيس قوي في اللغة الإنجليزية</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="level-card">
-            <i class="fas fa-school"></i>
-            <h5 data-i18n="level_primary">ابتدائي</h5>
-            <p data-i18n="level_primary_desc">القواعد والمفردات الأساسية</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="level-card">
-            <i class="fas fa-user-graduate"></i>
-            <h5 data-i18n="level_prep">إعدادي</h5>
-            <p data-i18n="level_prep_desc">تطوير مهارات القراءة والكتابة</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="level-card">
-            <i class="fas fa-users"></i>
-            <h5 data-i18n="level_sec">ثانوي</h5>
-            <p data-i18n="level_sec_desc">الاستعداد للامتحانات الدولية</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="level-card">
-            <i class="fas fa-university"></i>
-            <h5 data-i18n="level_univ">جامعي</h5>
-            <p data-i18n="level_univ_desc">مهارات متقدمة في اللغة</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="level-card">
-            <i class="fas fa-briefcase"></i>
-            <h5 data-i18n="level_post">ما بعد الجامعة</h5>
-            <p data-i18n="level_post_desc">إتقان اللغة للعمل والسفر</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="level-card">
-            <i class="fas fa-microphone-alt"></i>
-            <h5 data-i18n="level_phonics">صوتيات ومحادثات</h5>
-            <p data-i18n="level_phonics_desc">تحسين النطق والمحادثة</p>
-          </div>
-        </div>
+        <div class="col-md-3 col-6"><div class="level-card" onclick="window.location.href='pre-kg-lessons.html'"><i class="fas fa-baby"></i><h5 data-i18n="level_pre">ما قبل الروضة</h5><p data-i18n="level_pre_desc">تعلم الحروف والكلمات الأساسية</p></div></div>
+        <div class="col-md-3 col-6"><div class="level-card" onclick="window.location.href='kg-lessons.html'"><i class="fas fa-child"></i><h5 data-i18n="level_kg">رياض الأطفال</h5><p data-i18n="level_kg_desc">تأسيس قوي في اللغة الإنجليزية</p></div></div>
+        <div class="col-md-3 col-6"><div class="level-card"><i class="fas fa-school"></i><h5 data-i18n="level_primary">ابتدائي</h5><p data-i18n="level_primary_desc">القواعد والمفردات الأساسية</p></div></div>
+        <div class="col-md-3 col-6"><div class="level-card"><i class="fas fa-user-graduate"></i><h5 data-i18n="level_prep">إعدادي</h5><p data-i18n="level_prep_desc">تطوير مهارات القراءة والكتابة</p></div></div>
+        <div class="col-md-3 col-6"><div class="level-card"><i class="fas fa-users"></i><h5 data-i18n="level_sec">ثانوي</h5><p data-i18n="level_sec_desc">الاستعداد للامتحانات الدولية</p></div></div>
+        <div class="col-md-3 col-6"><div class="level-card"><i class="fas fa-university"></i><h5 data-i18n="level_univ">جامعي</h5><p data-i18n="level_univ_desc">مهارات متقدمة في اللغة</p></div></div>
+        <div class="col-md-3 col-6"><div class="level-card"><i class="fas fa-briefcase"></i><h5 data-i18n="level_post">ما بعد الجامعة</h5><p data-i18n="level_post_desc">إتقان اللغة للعمل والسفر</p></div></div>
+        <div class="col-md-3 col-6"><div class="level-card"><i class="fas fa-microphone-alt"></i><h5 data-i18n="level_phonics">صوتيات ومحادثات</h5><p data-i18n="level_phonics_desc">تحسين النطق والمحادثة</p></div></div>
       </div>
     </div>
   </section>

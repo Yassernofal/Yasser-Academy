@@ -4,19 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="admin_page_title">لوحة تحكم المدير – Mr. Yasser Nofal Academy</title>
+  
+  <!-- ===== Google Analytics ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N3R3KFEO8');
+  </script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
-  <!-- Chart.js للرسوم البيانية -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'El Messiri', serif;
-      background: #f0f4fa;
-      padding-top: 78px;
-      min-height: 100vh;
-    }
+    body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; min-height: 100vh; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
     .navbar-custom {
@@ -41,11 +45,7 @@
     .nav-link:hover { color: #f7e05e !important; }
     .nav-link.active { color: #f7e05e !important; }
 
-    .dashboard-container {
-      max-width: 1300px;
-      margin: 30px auto;
-      padding: 0 15px;
-    }
+    .dashboard-container { max-width: 1300px; margin: 30px auto; padding: 0 15px; }
 
     .stat-card {
       background: #fff;
@@ -72,25 +72,13 @@
     }
     .table-container h5 { font-family: 'Cinzel', serif; color: #0a1f44; }
 
-    .status-badge {
-      padding: 5px 15px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
+    .status-badge { padding: 5px 15px; border-radius: 50px; font-weight: 600; font-size: 0.85rem; }
     .status-pending { background: #fff3cd; color: #856404; }
     .status-confirmed { background: #d4edda; color: #155724; }
     .status-completed { background: #cce5ff; color: #004085; }
     .status-cancelled { background: #f8d7da; color: #721c24; }
 
-    .btn-action {
-      padding: 5px 12px;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      border: none;
-      transition: 0.3s;
-      margin: 2px;
-    }
+    .btn-action { padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; border: none; transition: 0.3s; margin: 2px; }
     .btn-action:hover { transform: scale(1.05); }
 
     .chart-container {
@@ -189,14 +177,8 @@
     <div class="admin-login-box">
       <h3 class="text-center mb-3" data-i18n="admin_login_title">🔐 دخول المدير</h3>
       <form onsubmit="adminLogin(event)">
-        <div class="mb-3">
-          <label class="form-label" data-i18n="admin_login_email">البريد الإلكتروني</label>
-          <input type="email" class="form-control" id="adminEmail" value="admin@yassernofalacademy.com" required />
-        </div>
-        <div class="mb-3">
-          <label class="form-label" data-i18n="admin_login_password">كلمة المرور</label>
-          <input type="password" class="form-control" id="adminPassword" value="admin123" required />
-        </div>
+        <div class="mb-3"><label class="form-label" data-i18n="admin_login_email">البريد الإلكتروني</label><input type="email" class="form-control" id="adminEmail" value="admin@yassernofalacademy.com" required /></div>
+        <div class="mb-3"><label class="form-label" data-i18n="admin_login_password">كلمة المرور</label><input type="password" class="form-control" id="adminPassword" value="admin123" required /></div>
         <button type="submit" class="btn-login" data-i18n="admin_login_btn"><i class="fas fa-sign-in-alt"></i> دخول</button>
         <p class="text-center mt-3 text-muted small" data-i18n="admin_login_hint">👆 استخدم admin@yassernofalacademy.com / admin123</p>
       </form>
@@ -205,54 +187,20 @@
 
   <!-- ===== المحتوى الرئيسي ===== -->
   <div class="dashboard-container" id="adminContent" style="display: none;">
-    <!-- عنوان -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;" data-i18n="admin_welcome">
-        <i class="fas fa-user-cog text-primary"></i> لوحة تحكم المدير
-      </h2>
-      <button class="btn btn-outline-danger" onclick="adminLogout()" data-i18n="admin_logout">
-        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-      </button>
+      <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;" data-i18n="admin_welcome"><i class="fas fa-user-cog text-primary"></i> لوحة تحكم المدير</h2>
+      <button class="btn btn-outline-danger" onclick="adminLogout()" data-i18n="admin_logout"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
     </div>
 
-    <!-- الإحصائيات -->
     <div class="row g-4 mb-4">
-      <div class="col-md-3 col-6">
-        <div class="stat-card">
-          <div class="icon"><i class="fas fa-users"></i></div>
-          <div class="number" id="totalStudents">0</div>
-          <div class="label" data-i18n="admin_stat_students">إجمالي الطلاب</div>
-        </div>
-      </div>
-      <div class="col-md-3 col-6">
-        <div class="stat-card">
-          <div class="icon"><i class="fas fa-file-invoice"></i></div>
-          <div class="number" id="totalOrders">0</div>
-          <div class="label" data-i18n="admin_stat_orders">إجمالي الطلبات</div>
-        </div>
-      </div>
-      <div class="col-md-3 col-6">
-        <div class="stat-card">
-          <div class="icon"><i class="fas fa-clock"></i></div>
-          <div class="number" id="pendingOrders">0</div>
-          <div class="label" data-i18n="admin_stat_pending">طلبات معلقة</div>
-        </div>
-      </div>
-      <div class="col-md-3 col-6">
-        <div class="stat-card">
-          <div class="icon"><i class="fas fa-money-bill-wave"></i></div>
-          <div class="number" id="totalRevenue">0 ج.م</div>
-          <div class="label" data-i18n="admin_stat_revenue">إجمالي الإيرادات</div>
-        </div>
-      </div>
+      <div class="col-md-3 col-6"><div class="stat-card"><div class="icon"><i class="fas fa-users"></i></div><div class="number" id="totalStudents">0</div><div class="label" data-i18n="admin_stat_students">إجمالي الطلاب</div></div></div>
+      <div class="col-md-3 col-6"><div class="stat-card"><div class="icon"><i class="fas fa-file-invoice"></i></div><div class="number" id="totalOrders">0</div><div class="label" data-i18n="admin_stat_orders">إجمالي الطلبات</div></div></div>
+      <div class="col-md-3 col-6"><div class="stat-card"><div class="icon"><i class="fas fa-clock"></i></div><div class="number" id="pendingOrders">0</div><div class="label" data-i18n="admin_stat_pending">طلبات معلقة</div></div></div>
+      <div class="col-md-3 col-6"><div class="stat-card"><div class="icon"><i class="fas fa-money-bill-wave"></i></div><div class="number" id="totalRevenue">0 ج.م</div><div class="label" data-i18n="admin_stat_revenue">إجمالي الإيرادات</div></div></div>
     </div>
 
-    <!-- الرسم البياني -->
-    <div class="chart-container">
-      <canvas id="revenueChart"></canvas>
-    </div>
+    <div class="chart-container"><canvas id="revenueChart"></canvas></div>
 
-    <!-- جدول الطلبات -->
     <div class="table-container">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 data-i18n="admin_orders_table"><i class="fas fa-list"></i> قائمة الطلبات</h5>
@@ -268,21 +216,8 @@
       </div>
       <div class="table-responsive">
         <table class="table table-hover" id="ordersTable">
-          <thead>
-            <tr>
-              <th data-i18n="admin_table_id">#</th>
-              <th data-i18n="admin_table_student">الطالب</th>
-              <th data-i18n="admin_table_grade">الصف</th>
-              <th data-i18n="admin_table_phone">الهاتف</th>
-              <th data-i18n="admin_table_amount">المبلغ</th>
-              <th data-i18n="admin_table_status">الحالة</th>
-              <th data-i18n="admin_table_date">التاريخ</th>
-              <th data-i18n="admin_table_actions">الإجراءات</th>
-            </tr>
-          </thead>
-          <tbody id="ordersBody">
-            <!-- تملأ بـ JavaScript -->
-          </tbody>
+          <thead><tr><th data-i18n="admin_table_id">#</th><th data-i18n="admin_table_student">الطالب</th><th data-i18n="admin_table_grade">الصف</th><th data-i18n="admin_table_phone">الهاتف</th><th data-i18n="admin_table_amount">المبلغ</th><th data-i18n="admin_table_status">الحالة</th><th data-i18n="admin_table_date">التاريخ</th><th data-i18n="admin_table_actions">الإجراءات</th></tr></thead>
+          <tbody id="ordersBody"></tbody>
         </table>
       </div>
     </div>
@@ -296,7 +231,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    // ===== بيانات تجريبية للطلبات =====
     let orders = [
       { id: 1, student: 'أحمد محمد', grade: 'أولى ثانوي', phone: '01234567890', amount: 550, status: 'pending', date: '2026-08-11' },
       { id: 2, student: 'سارة علي', grade: 'تالتة ثانوي', phone: '01123456789', amount: 850, status: 'confirmed', date: '2026-08-10' },
@@ -307,7 +241,6 @@
 
     let chartInstance = null;
 
-    // ===== تسجيل الدخول =====
     function adminLogin(e) {
       e.preventDefault();
       const email = document.getElementById('adminEmail').value;
@@ -321,43 +254,30 @@
       }
     }
 
-    // ===== تسجيل الخروج =====
     function adminLogout() {
       document.getElementById('adminLoginOverlay').style.display = 'flex';
       document.getElementById('adminContent').style.display = 'none';
     }
 
-    // ===== تحميل لوحة التحكم =====
-    function loadDashboard() {
-      updateStats();
-      renderOrders();
-      renderChart();
-    }
+    function loadDashboard() { updateStats(); renderOrders(); renderChart(); }
 
-    // ===== تحديث الإحصائيات =====
     function updateStats() {
       const total = orders.length;
       const pending = orders.filter(o => o.status === 'pending').length;
-      const revenue = orders.filter(o => o.status === 'confirmed' || o.status === 'completed')
-                             .reduce((sum, o) => sum + o.amount, 0);
-
-      document.getElementById('totalStudents').textContent = total * 3; // تجريبي
+      const revenue = orders.filter(o => o.status === 'confirmed' || o.status === 'completed').reduce((sum, o) => sum + o.amount, 0);
+      document.getElementById('totalStudents').textContent = total * 3;
       document.getElementById('totalOrders').textContent = total;
       document.getElementById('pendingOrders').textContent = pending;
       document.getElementById('totalRevenue').textContent = revenue + ' ج.م';
     }
 
-    // ===== عرض الطلبات =====
     function renderOrders(filter = 'all') {
       const tbody = document.getElementById('ordersBody');
-      let filtered = orders;
-      if (filter !== 'all') filtered = orders.filter(o => o.status === filter);
-
+      let filtered = filter === 'all' ? orders : orders.filter(o => o.status === filter);
       if (filtered.length === 0) {
         tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted" data-i18n="admin_no_orders">لا توجد طلبات</td></tr>`;
         return;
       }
-
       tbody.innerHTML = filtered.map((o, idx) => `
         <tr>
           <td>${idx + 1}</td>
@@ -365,16 +285,14 @@
           <td>${o.grade}</td>
           <td>${o.phone}</td>
           <td>${o.amount} ج.م</td>
-          <td><span class="status-badge status-${o.status}">${getStatusText(o.status)}</span></td>
+          <td><span class="status-badge status-${o.status}">${o.status === 'pending' ? '⏳ معلق' : o.status === 'confirmed' ? '✅ مؤكد' : o.status === 'completed' ? '📌 مكتمل' : '❌ ملغي'}</span></td>
           <td>${o.date}</td>
           <td>
             ${o.status === 'pending' ? `
               <button class="btn-action btn-success" onclick="updateOrder(${o.id}, 'confirmed')" data-i18n="admin_confirm">✅ تأكيد</button>
               <button class="btn-action btn-danger" onclick="updateOrder(${o.id}, 'cancelled')" data-i18n="admin_cancel">❌ إلغاء</button>
             ` : ''}
-            ${o.status === 'confirmed' ? `
-              <button class="btn-action btn-primary" onclick="updateOrder(${o.id}, 'completed')" data-i18n="admin_complete">📌 إكمال</button>
-            ` : ''}
+            ${o.status === 'confirmed' ? `<button class="btn-action btn-primary" onclick="updateOrder(${o.id}, 'completed')" data-i18n="admin_complete">📌 إكمال</button>` : ''}
             ${o.status === 'completed' ? `<span class="text-success" data-i18n="admin_completed_label">✅ مكتمل</span>` : ''}
             ${o.status === 'cancelled' ? `<span class="text-danger" data-i18n="admin_cancelled_label">❌ ملغي</span>` : ''}
           </td>
@@ -382,79 +300,26 @@
       `).join('');
     }
 
-    // ===== ترجمة الحالة =====
-    function getStatusText(status) {
-      const map = {
-        pending: '⏳ معلق',
-        confirmed: '✅ مؤكد',
-        completed: '📌 مكتمل',
-        cancelled: '❌ ملغي'
-      };
-      return map[status] || status;
-    }
-
-    // ===== تحديث حالة الطلب =====
     function updateOrder(id, newStatus) {
       const order = orders.find(o => o.id === id);
-      if (order) {
-        order.status = newStatus;
-        updateStats();
-        renderOrders(document.getElementById('filterStatus').value);
-        renderChart();
-        alert(`✅ تم تحديث حالة الطلب إلى "${getStatusText(newStatus)}"`);
-      }
+      if (order) { order.status = newStatus; updateStats(); renderOrders(document.getElementById('filterStatus').value); renderChart(); }
     }
 
-    // ===== تصفية الطلبات =====
-    function filterOrders() {
-      const filter = document.getElementById('filterStatus').value;
-      renderOrders(filter);
-    }
+    function filterOrders() { renderOrders(document.getElementById('filterStatus').value); }
 
-    // ===== الرسم البياني =====
     function renderChart() {
       const ctx = document.getElementById('revenueChart').getContext('2d');
       if (chartInstance) chartInstance.destroy();
-
-      // بيانات تجريبية للأيام
       const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
       const revenues = [1200, 800, 1500, 2200, 1800, 900, 600];
-
       chartInstance = new Chart(ctx, {
         type: 'bar',
-        data: {
-          labels: days,
-          datasets: [{
-            label: 'الإيرادات اليومية (ج.م)',
-            data: revenues,
-            backgroundColor: 'rgba(10, 31, 68, 0.7)',
-            borderColor: '#0a1f44',
-            borderWidth: 2,
-            borderRadius: 8
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              grid: { color: 'rgba(0,0,0,0.05)' }
-            },
-            x: {
-              grid: { display: false }
-            }
-          }
-        }
+        data: { labels: days, datasets: [{ label: 'الإيرادات اليومية (ج.م)', data: revenues, backgroundColor: 'rgba(10, 31, 68, 0.7)', borderColor: '#0a1f44', borderWidth: 2, borderRadius: 8 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } } }
       });
     }
 
-    // ===== تحميل الصفحة =====
     document.addEventListener('DOMContentLoaded', function() {
-      // التأكد من أن الصفحة تبدأ بشاشة تسجيل الدخول
       document.getElementById('adminLoginOverlay').style.display = 'flex';
       document.getElementById('adminContent').style.display = 'none';
     });
