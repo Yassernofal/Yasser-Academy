@@ -1,0 +1,34 @@
+{
+    "nav_home": "🏠 Home",
+    "nav_levels": "📚 Levels",
+    "nav_booking": "📝 Booking",
+    "nav_games": "🎮 Games",
+    "nav_parent": "👨‍👧 Parent",
+    "nav_login": "🔑 Login",
+    "nav_logout": "🚪 Logout",
+    
+    "hero_title": "Mr. Yasser Nofal Academy",
+    "hero_subtitle": "Learn English with Confidence",
+    "hero_desc": "From Zero to Professional – with Phonics and Conversations for Every Level",
+    
+    "booking_title": "New Course Booking",
+    "booking_select_grade": "Select your grade first",
+    "booking_payment": "Payment Method",
+    "booking_instapay": "Instapay",
+    "booking_vodafone": "Vodafone Cash",
+    "booking_confirm": "Confirm Booking",
+    
+    "games_title": "Educational Games",
+    "games_score": "Score",
+    "games_correct": "Correct!",
+    "games_wrong": "Wrong Answer",
+    
+    "parent_title": "Parent Dashboard",
+    "parent_search": "🔍 Search by student name",
+    "parent_attendance": "Attendance",
+    "parent_avg": "Average Grade",
+    "parent_tests": "Completed Tests",
+    "parent_books": "Books Purchased",
+    
+    "footer_copyright": "© 2026 Mr. Yasser Nofal Academy – All Rights Reserved"
+}

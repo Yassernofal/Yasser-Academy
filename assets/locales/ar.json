@@ -1,0 +1,34 @@
+{
+    "nav_home": "🏠 الرئيسية",
+    "nav_levels": "📚 المستويات",
+    "nav_booking": "📝 الحجز",
+    "nav_games": "🎮 الألعاب",
+    "nav_parent": "👨‍👧 ولي الأمر",
+    "nav_login": "🔑 تسجيل الدخول",
+    "nav_logout": "🚪 تسجيل الخروج",
+    
+    "hero_title": "أكاديمية مستر ياسر نوفل",
+    "hero_subtitle": "تعلم الإنجليزية بثقة",
+    "hero_desc": "من الصفر حتى الاحتراف – مع صوتيات ومحادثات لكل مستوى",
+    
+    "booking_title": "حجز كورس جديد",
+    "booking_select_grade": "اختر صفك الدراسي أولاً",
+    "booking_payment": "طريقة الدفع",
+    "booking_instapay": "انستاباي",
+    "booking_vodafone": "فودافون كاش",
+    "booking_confirm": "تأكيد الحجز",
+    
+    "games_title": "ألعاب تعليمية",
+    "games_score": "النقاط",
+    "games_correct": "إجابة صحيحة!",
+    "games_wrong": "إجابة خاطئة",
+    
+    "parent_title": "لوحة ولي الأمر",
+    "parent_search": "🔍 ابحث باسم الطالب",
+    "parent_attendance": "نسبة الحضور",
+    "parent_avg": "متوسط الدرجات",
+    "parent_tests": "اختبار مكتمل",
+    "parent_books": "ملازم تم شراؤها",
+    
+    "footer_copyright": "© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة"
+}
