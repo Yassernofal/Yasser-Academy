@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin-dashboard.html
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /assets/js/
+Disallow: /assets/css/
+
+Sitemap: https://yasser-academy-amsz-five.vercel.app/sitemap.xml
