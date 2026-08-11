@@ -3,176 +3,338 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الشهادات – أكاديمية مستر ياسر نوفل</title>
+  <title data-i18n="cert_page_title">شهادة إنجاز – Mr. Yasser Nofal Academy</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --primary: #0a2f6c;
-      --secondary: #1a73e8;
-      --accent: #f9a825;
-      --light-bg: #f0f4fa;
-    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Tajawal', sans-serif;
-      background: var(--light-bg);
+      font-family: 'El Messiri', serif;
+      background: #f0f4fa;
+      padding-top: 78px;
+      min-height: 100vh;
     }
+    @media (max-width: 991.98px) { body { padding-top: 72px; } }
+
     .navbar-custom {
-      background: var(--primary) !important;
-      padding: 12px 0;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      background: rgba(10, 31, 68, 0.85) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      z-index: 1050;
     }
-    .navbar-brand { font-weight: 800; font-size: 1.6rem; color: #fff !important; }
-    .navbar-brand span { color: var(--accent); }
-    .nav-link { color: #fff !important; font-weight: 500; transition: 0.3s; }
-    .nav-link:hover { color: var(--accent) !important; transform: translateY(-2px); }
-    .certificate-wrapper {
-      max-width: 850px;
-      margin: 0 auto;
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+    .navbar-brand img { height: 40px; width: auto; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    .cert-container {
+      max-width: 900px;
+      margin: 30px auto;
       background: #fff;
-      border-radius: 30px;
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-      border: 8px solid var(--accent);
+      border-radius: 28px;
+      padding: 35px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      text-align: center;
     }
-    .certificate-wrapper .border-decoration {
-      border: 2px solid var(--primary);
+
+    .cert-preview {
+      background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 100%);
       border-radius: 20px;
-      padding: 30px;
-    }
-    .certificate-wrapper .student-name {
-      font-size: 2rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .btn-download {
-      background: var(--primary);
+      padding: 50px 30px;
       color: #fff;
-      border-radius: 50px;
-      padding: 12px 40px;
+      border: 8px solid #f7e05e;
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .cert-preview .cert-badge {
+      font-size: 4rem;
+      color: #f7e05e;
+      margin-bottom: 15px;
+    }
+    .cert-preview h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: #f7e05e;
+      margin-bottom: 10px;
+    }
+    .cert-preview .student-name {
+      font-size: 2rem;
       font-weight: 700;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 30px;
+      border-radius: 50px;
+      margin: 15px 0;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .cert-preview .level-name {
+      font-size: 1.3rem;
+      color: #ffe28a;
+      margin-bottom: 10px;
+    }
+    .cert-preview .cert-date {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 10px;
+    }
+    .cert-preview .cert-code {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 5px;
+      font-family: monospace;
+    }
+    .cert-preview .signature {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .cert-preview .signature-item {
+      text-align: center;
+      border-top: 2px solid rgba(255,255,255,0.3);
+      padding-top: 8px;
+      min-width: 120px;
+    }
+    .cert-preview .signature-item span {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .btn-download {
+      background: #f7e05e;
+      color: #0a1f44;
       border: none;
+      padding: 12px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
       transition: 0.3s;
+      margin-top: 20px;
     }
     .btn-download:hover {
-      background: var(--secondary);
+      background: #f7b731;
       transform: scale(1.02);
     }
+
+    .form-control-custom {
+      max-width: 400px;
+      margin: 10px auto;
+    }
+
     footer {
-      background: var(--primary);
-      color: #ccc;
+      background: #0a1f44;
+      color: #b0c4de;
       padding: 35px 0;
       border-radius: 40px 40px 0 0;
       margin-top: 50px;
+      text-align: center;
     }
-    .signature-img {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent);
+
+    @media (max-width: 576px) {
+      .cert-preview { padding: 30px 15px; }
+      .cert-preview h2 { font-size: 1.8rem; }
+      .cert-preview .student-name { font-size: 1.3rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- ===== شريط التنقل ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" style="height: 35px; margin-left: 10px;" />
-        <span>Yasser</span> Nofal
+        <img src="assets/images/logo.png" alt="Logo" />
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
-          <li class="nav-item"><a class="nav-link" href="register.html">📝 التسجيل</a></li>
-          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👤 لوحة الطالب</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 الحجز</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
+          <li class="nav-item"><a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a></li>
+          <li class="nav-item"><a class="nav-link active" href="certificate.html" data-i18n="nav_cert">📜 الشهادات</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
+              <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
   <!-- ===== المحتوى ===== -->
-  <section class="container py-5">
-    <h1 class="fw-bold text-center mb-4"><i class="fas fa-certificate text-warning"></i> الشهادات الإلكترونية</h1>
+  <section class="container">
+    <div class="cert-container">
+      <h2 class="fw-bold mb-3" data-i18n="cert_title"><i class="fas fa-certificate text-primary"></i> شهادة إنجاز</h2>
+      <p class="text-muted" data-i18n="cert_subtitle">أدخل اسمك واختر المستوى لعرض شهادتك</p>
 
-    <div class="certificate-wrapper" id="certificate">
-      <div class="border-decoration">
-        <div class="text-center">
-          <img src="assets/images/logo.png" alt="Logo" style="height: 60px; margin-bottom: 10px;" />
-          <h5 class="fw-bold" style="color: var(--primary);">أكاديمية مستر ياسر نوفل</h5>
-          <p class="text-muted">شهادة إتمام</p>
-          <h1 class="fw-bold" style="color: var(--primary);">شهادة تقدير</h1>
-          <p>تُمنح هذه الشهادة للطالب</p>
-          <h2 class="student-name" id="studentName">محمد أحمد</h2>
-          <p>لإتمامه بنجاح</p>
-          <h4 class="text-primary" id="levelName">المستوى الثانوي</h4>
-          <p>في أكاديمية مستر ياسر نوفل للغة الإنجليزية</p>
-          <div class="d-flex justify-content-center gap-4 mt-3">
-            <div><i class="fas fa-calendar-alt"></i> التاريخ: <span id="certDate">2026-07-16</span></div>
-            <div><i class="fas fa-hashtag"></i> الرمز: <span id="certCode">YNA-2026-1024</span></div>
-          </div>
-          <div class="mt-4">
-            <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" class="signature-img" />
-            <p class="text-muted small">مستر ياسر نوفل</p>
-            <p class="text-muted small" style="font-size: 10px;">مؤسس الأكاديمية</p>
-          </div>
-          <div class="mt-3">
-            <span class="badge bg-success"><i class="fas fa-check-circle"></i> شهادة معتمدة</span>
-          </div>
+      <!-- نموذج إدخال البيانات -->
+      <div class="row justify-content-center g-3 mb-4">
+        <div class="col-md-5">
+          <input type="text" class="form-control form-control-custom" id="studentNameInput" placeholder="أدخل اسم الطالب..." data-i18n="cert_name_placeholder" />
+        </div>
+        <div class="col-md-4">
+          <select class="form-select form-control-custom" id="levelSelect">
+            <option value="ما قبل الروضة" data-i18n="level_pre">ما قبل الروضة</option>
+            <option value="رياض الأطفال" data-i18n="level_kg">رياض الأطفال</option>
+            <option value="ابتدائي" data-i18n="level_primary">ابتدائي</option>
+            <option value="إعدادي" data-i18n="level_prep">إعدادي</option>
+            <option value="ثانوي" data-i18n="level_sec">ثانوي</option>
+            <option value="جامعي" data-i18n="level_univ">جامعي</option>
+            <option value="ما بعد الجامعة" data-i18n="level_post">ما بعد الجامعة</option>
+            <option value="صوتيات ومحادثات" data-i18n="level_phonics">صوتيات ومحادثات</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary w-100" onclick="generateCertificate()" data-i18n="cert_generate_btn">
+            <i class="fas fa-eye"></i> عرض الشهادة
+          </button>
         </div>
       </div>
-    </div>
 
-    <div class="text-center mt-4">
-      <button class="btn btn-download" onclick="downloadCertificate()"><i class="fas fa-file-pdf"></i> تحميل الشهادة (PDF)</button>
-      <button class="btn btn-outline-secondary" onclick="window.print()"><i class="fas fa-print"></i> طباعة</button>
-      <button class="btn btn-outline-primary" onclick="alert('📤 تم نسخ رابط الشهادة')"><i class="fas fa-share-alt"></i> مشاركة</button>
+      <!-- معاينة الشهادة -->
+      <div id="certPreview" style="display: none;">
+        <div class="cert-preview" id="certContent">
+          <div class="cert-badge"><i class="fas fa-award"></i></div>
+          <h2 data-i18n="cert_academy_name">Mr. Yasser Nofal Academy</h2>
+          <p data-i18n="cert_this_certifies">تشهد هذه الشهادة بأن</p>
+          <div class="student-name" id="displayName">أحمد محمد</div>
+          <p data-i18n="cert_has_completed">قد أتم بنجاح مستوى</p>
+          <div class="level-name" id="displayLevel">ثانوي</div>
+          <div class="signature">
+            <div class="signature-item">
+              <span data-i18n="cert_signature">توقيع المدير</span>
+            </div>
+            <div class="signature-item">
+              <span data-i18n="cert_date">التاريخ</span>
+            </div>
+          </div>
+          <div class="cert-date" id="displayDate">11 أغسطس 2026</div>
+          <div class="cert-code" id="displayCode">📌 YNA-CERT-XXXXXX</div>
+        </div>
+
+        <button class="btn-download" onclick="downloadCertificate()" data-i18n="cert_download_btn">
+          <i class="fas fa-download"></i> تحميل الشهادة (PDF)
+        </button>
+        <button class="btn btn-outline-secondary mt-2" onclick="shareCertificate()" data-i18n="cert_share_btn">
+          <i class="fas fa-share-alt"></i> مشاركة الشهادة
+        </button>
+      </div>
     </div>
   </section>
 
-  <!-- ===== التذييل ===== -->
-  <footer class="text-center">
-    <div class="container">
-      <p class="mb-0">© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p>
-    </div>
+  <!-- ===== الفوتر ===== -->
+  <footer>
+    <div class="container"><p class="mb-0" data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/lang.js"></script>
+  <!-- html2canvas لتحويل الشهادة لصورة/PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.name) {
-      document.getElementById('studentName').textContent = user.name;
-    }
-    const urlParams = new URLSearchParams(window.location.search);
-    const level = urlParams.get('level') || 'المستوى الثانوي';
-    document.getElementById('levelName').textContent = level;
-    document.getElementById('certDate').textContent = new Date().toLocaleDateString('ar-EG');
-    const code = 'YNA-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
-    document.getElementById('certCode').textContent = code;
+    // ===== توليد الشهادة =====
+    function generateCertificate() {
+      const name = document.getElementById('studentNameInput').value.trim();
+      const level = document.getElementById('levelSelect').value;
 
-    function downloadCertificate() {
-      const element = document.getElementById('certificate');
-      html2pdf()
-        .set({
-          margin: 0.5,
-          filename: `شهادة_${document.getElementById('studentName').textContent}.pdf`,
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2, useCORS: true },
-          jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
-        })
-        .from(element)
-        .save();
+      if (!name) {
+        alert('❌ يرجى إدخال اسم الطالب');
+        return;
+      }
+
+      // عرض الشهادة
+      document.getElementById('displayName').textContent = name;
+      document.getElementById('displayLevel').textContent = level;
+      document.getElementById('displayDate').textContent = new Date().toLocaleDateString('ar-EG', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+
+      // توليد كود فريد للشهادة
+      const code = 'YNA-CERT-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000);
+      document.getElementById('displayCode').textContent = '📌 ' + code;
+
+      document.getElementById('certPreview').style.display = 'block';
+      document.getElementById('certPreview').scrollIntoView({ behavior: 'smooth' });
     }
+
+    // ===== تحميل الشهادة كـ PDF (باستخدام html2canvas) =====
+    function downloadCertificate() {
+      const element = document.getElementById('certContent');
+      const btn = event.target;
+      btn.textContent = '⏳ جاري التحميل...';
+      btn.disabled = true;
+
+      html2canvas(element, {
+        scale: 2,
+        backgroundColor: '#0a1f44',
+        allowTaint: true,
+        useCORS: true,
+        logging: false
+      }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.download = `شهادة-${document.getElementById('displayName').textContent}.png`;
+        link.href = imgData;
+        link.click();
+        btn.textContent = '📥 تحميل الشهادة (PDF)';
+        btn.disabled = false;
+      }).catch(err => {
+        alert('❌ حدث خطأ في تحميل الشهادة: ' + err.message);
+        btn.textContent = '📥 تحميل الشهادة (PDF)';
+        btn.disabled = false;
+      });
+    }
+
+    // ===== مشاركة الشهادة =====
+    function shareCertificate() {
+      const name = document.getElementById('displayName').textContent;
+      const level = document.getElementById('displayLevel').textContent;
+      const text = `🎓 حصلت على شهادة إنجاز من أكاديمية مستر ياسر نوفل!\n👤 الطالب: ${name}\n📚 المستوى: ${level}\n🏆 أكاديمية مستر ياسر نوفل – تعلم الإنجليزية بثقة`;
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'شهادة إنجاز - Mr. Yasser Nofal Academy',
+          text: text,
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        // نسخ النص للحالات التي لا تدعم المشاركة
+        navigator.clipboard.writeText(text + '\n' + window.location.href);
+        alert('✅ تم نسخ نص الشهادة، يمكنك مشاركته الآن!');
+      }
+    }
+
+    // ===== تشغيل عند تحميل الصفحة =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // تعيين اسم افتراضي للعرض
+      document.getElementById('studentNameInput').value = 'أحمد محمد';
+      generateCertificate();
+    });
   </script>
 </body>
 </html>
