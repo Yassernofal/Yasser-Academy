@@ -19,7 +19,12 @@
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; min-height: 100vh; }
+    body {
+      font-family: 'El Messiri', serif;
+      background: #f0f4fa;
+      padding-top: 78px;
+      min-height: 100vh;
+    }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
     .navbar-custom {
@@ -45,22 +50,59 @@
     .nav-link.active { color: #f7e05e !important; }
 
     .dashboard-container {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 30px auto;
       background: #fff;
       border-radius: 28px;
       padding: 35px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.08);
     }
+
     .stat-card {
       background: #f8f9fa;
       border-radius: 16px;
       padding: 20px;
       text-align: center;
       height: 100%;
+      transition: 0.3s;
     }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
     .stat-card .number { font-size: 2.5rem; font-weight: 800; color: #0a1f44; }
     .stat-card .label { color: #666; }
+
+    .points-box {
+      background: linear-gradient(135deg, #f7e05e, #f7b731);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      color: #0a1f44;
+      margin-bottom: 25px;
+    }
+    .points-box .points-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      font-family: 'Cinzel', serif;
+    }
+    .points-box .points-label {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .badge-item {
+      display: inline-block;
+      background: #fff;
+      border-radius: 50px;
+      padding: 8px 20px;
+      margin: 5px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border: 2px solid #f7e05e;
+      font-weight: 600;
+    }
+    .badge-item.locked {
+      opacity: 0.4;
+      border-color: #dee2e6;
+      filter: grayscale(1);
+    }
 
     .btn-logout {
       background: #dc3545;
@@ -72,6 +114,36 @@
       transition: 0.3s;
     }
     .btn-logout:hover { background: #b02a37; transform: scale(1.02); }
+
+    .progress-section {
+      margin: 25px 0;
+    }
+    .progress-section .progress {
+      height: 12px;
+      border-radius: 50px;
+      background: #e9ecef;
+    }
+    .progress-section .progress-bar {
+      background: linear-gradient(90deg, #f7e05e, #f7b731);
+      border-radius: 50px;
+      transition: width 0.6s ease;
+    }
+
+    .recent-activity {
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .recent-activity .activity-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .recent-activity .activity-item:last-child { border-bottom: none; }
+    .recent-activity .activity-icon { font-size: 1.5rem; color: #f7b731; }
 
     footer {
       background: #0a1f44;
@@ -89,7 +161,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+        <img src="assets/images/logo.png" alt="Logo" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -101,11 +173,9 @@
           <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels">📚 المستويات</a></li>
           <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 الحجز</a></li>
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
+          <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests">📝 اختبارات</a></li>
           <li class="nav-item"><a class="nav-link active" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 لوحة الطالب</a></li>
-          <li class="nav-item"><a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a></li>
-          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ المدير</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">🌟 من نحن</a></li>
-          <li class="nav-item" id="logoutLink"><a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 تسجيل الخروج</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -118,49 +188,209 @@
     </div>
   </nav>
 
-  <!-- ===== لوحة الطالب ===== -->
+  <!-- ===== المحتوى ===== -->
   <section class="container">
     <div class="dashboard-container">
-      <h2 class="text-center fw-bold mb-4" data-i18n="student_dashboard_title">لوحة الطالب</h2>
+      <h2 class="text-center fw-bold mb-4" data-i18n="student_dashboard_title">👨‍🎓 لوحة الطالب</h2>
       <p class="text-center text-muted" data-i18n="student_welcome">مرحباً، أحمد!</p>
 
+      <!-- ===== النقاط والمكافآت ===== -->
+      <div class="points-box">
+        <div class="points-label"><i class="fas fa-star"></i> <span data-i18n="points_title">نقاطي</span></div>
+        <div class="points-number" id="pointsDisplay">0</div>
+        <div class="points-label" data-i18n="points_next_badge">الشارة القادمة: <span id="nextBadge">🥉 برونزية (100 نقطة)</span></div>
+      </div>
+
+      <!-- ===== الشارات ===== -->
+      <div class="text-center mb-4" id="badgesContainer">
+        <span class="badge-item locked" data-badge="bronze">🥉 برونزية</span>
+        <span class="badge-item locked" data-badge="silver">🥈 فضية</span>
+        <span class="badge-item locked" data-badge="gold">🥇 ذهبية</span>
+        <span class="badge-item locked" data-badge="platinum">🏆 بلاتينية</span>
+      </div>
+
+      <!-- ===== الإحصائيات ===== -->
       <div class="row g-4 mb-4">
         <div class="col-md-3 col-6">
           <div class="stat-card">
-            <div class="number">3</div>
+            <div class="number" id="levelDisplay">3</div>
             <div class="label" data-i18n="student_level">المستوى الحالي</div>
           </div>
         </div>
         <div class="col-md-3 col-6">
           <div class="stat-card">
-            <div class="number">70%</div>
+            <div class="number" id="progressDisplay">70%</div>
             <div class="label" data-i18n="student_progress">نسبة التقدم</div>
           </div>
         </div>
         <div class="col-md-3 col-6">
           <div class="stat-card">
-            <div class="number">86%</div>
+            <div class="number" id="gradeDisplay">86%</div>
             <div class="label" data-i18n="student_grade">الدرجة الإجمالية</div>
           </div>
         </div>
         <div class="col-md-3 col-6">
           <div class="stat-card">
-            <div class="number">2</div>
+            <div class="number" id="certificatesDisplay">2</div>
             <div class="label" data-i18n="student_certificates">الشهادات</div>
           </div>
         </div>
       </div>
 
-      <button class="btn-logout w-100" onclick="logoutUser()" data-i18n="student_logout"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+      <!-- ===== شريط التقدم ===== -->
+      <div class="progress-section">
+        <div class="d-flex justify-content-between">
+          <span data-i18n="progress_to_next_level">التقدم للمستوى التالي</span>
+          <span id="progressPercentage">70%</span>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" id="progressBar" style="width: 70%;"></div>
+        </div>
+      </div>
+
+      <!-- ===== النشاط الأخير ===== -->
+      <div class="recent-activity">
+        <h6 class="fw-bold mb-3" data-i18n="recent_activity"><i class="fas fa-clock text-primary"></i> آخر الأنشطة</h6>
+        <div id="activityList">
+          <div class="activity-item">
+            <span><span class="activity-icon">📝</span> اختبار المستوى – حصلت على 85%</span>
+            <span class="text-muted small">منذ ساعتين</span>
+          </div>
+          <div class="activity-item">
+            <span><span class="activity-icon">📚</span> أتممت درس القواعد المتقدمة</span>
+            <span class="text-muted small">منذ يوم</span>
+          </div>
+          <div class="activity-item">
+            <span><span class="activity-icon">🏆</span> حصلت على شارة برونزية</span>
+            <span class="text-muted small">منذ يومين</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== زر تسجيل الخروج ===== -->
+      <button class="btn-logout w-100 mt-4" onclick="logoutUser()" data-i18n="student_logout">
+        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+      </button>
     </div>
   </section>
 
-  <!-- ===== الفوتير ===== -->
+  <!-- ===== الفوتر ===== -->
   <footer>
     <div class="container"><p class="mb-0" data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
+  <script>
+    // ===== نظام النقاط والمكافآت =====
+    function getPoints() {
+      return parseInt(localStorage.getItem('userPoints')) || 0;
+    }
+
+    function setPoints(points) {
+      localStorage.setItem('userPoints', points);
+      updateUI(points);
+    }
+
+    function addPoints(action, value = 0) {
+      let points = getPoints();
+      switch(action) {
+        case 'login': points += 10; break;
+        case 'test': points += Math.floor(value / 10) * 5; break; // كل 10% = 5 نقاط
+        case 'lesson': points += 5; break;
+        case 'game': points += 3; break;
+        default: break;
+      }
+      setPoints(points);
+      return points;
+    }
+
+    function getBadges(points) {
+      const badges = [
+        { name: '🥉 برونزية', min: 100, key: 'bronze' },
+        { name: '🥈 فضية', min: 250, key: 'silver' },
+        { name: '🥇 ذهبية', min: 500, key: 'gold' },
+        { name: '🏆 بلاتينية', min: 1000, key: 'platinum' }
+      ];
+      return badges.map(b => ({
+        ...b,
+        earned: points >= b.min
+      }));
+    }
+
+    function getNextBadge(points) {
+      const badges = [
+        { name: '🥉 برونزية', min: 100 },
+        { name: '🥈 فضية', min: 250 },
+        { name: '🥇 ذهبية', min: 500 },
+        { name: '🏆 بلاتينية', min: 1000 }
+      ];
+      for (let b of badges) {
+        if (points < b.min) return b;
+      }
+      return null;
+    }
+
+    function updateUI(points) {
+      // تحديث النقاط
+      document.getElementById('pointsDisplay').textContent = points;
+
+      // تحديث الشارات
+      const badges = getBadges(points);
+      document.querySelectorAll('.badge-item').forEach(el => {
+        const key = el.dataset.badge;
+        const badge = badges.find(b => b.key === key);
+        if (badge) {
+          if (badge.earned) {
+            el.classList.remove('locked');
+          } else {
+            el.classList.add('locked');
+          }
+        }
+      });
+
+      // تحديث الشارة القادمة
+      const next = getNextBadge(points);
+      const nextBadgeEl = document.getElementById('nextBadge');
+      if (next) {
+        nextBadgeEl.textContent = `${next.name} (${next.min} نقطة)`;
+      } else {
+        nextBadgeEl.textContent = '🏆 جميع الشارات مكتملة!';
+      }
+    }
+
+    // ===== محاكاة بيانات الطالب =====
+    function loadStudentData() {
+      // في الواقع، هنشيل البيانات من Firebase
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        document.querySelector('p.text-center.text-muted').textContent = `مرحباً، ${user.name || 'أحمد'}!`;
+      }
+
+      // نقاط وهمية للتجربة
+      const points = getPoints() || 45;
+      setPoints(points);
+
+      // بيانات وهمية
+      document.getElementById('levelDisplay').textContent = '3';
+      document.getElementById('progressDisplay').textContent = '70%';
+      document.getElementById('gradeDisplay').textContent = '86%';
+      document.getElementById('certificatesDisplay').textContent = '2';
+      document.getElementById('progressBar').style.width = '70%';
+      document.getElementById('progressPercentage').textContent = '70%';
+    }
+
+    // ===== تسجيل الخروج =====
+    function logoutUser() {
+      localStorage.removeItem('user');
+      window.location.href = 'login.html';
+    }
+
+    // ===== تهيئة الصفحة =====
+    document.addEventListener('DOMContentLoaded', function() {
+      loadStudentData();
+      console.log('✅ تم تحميل لوحة الطالب مع نظام النقاط');
+    });
+  </script>
 </body>
 </html>
