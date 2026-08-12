@@ -14,27 +14,12 @@
     gtag('config', 'G-N3R3KFEO8');
   </script>
 
-  <!-- ===== SEO ===== -->
-  <meta name="description" content="تعرف على أكاديمية مستر ياسر نوفل، قصة النجاح، الرؤية، الرسالة، والفريق الذي يغير مستقبل تعلم الإنجليزية." />
-  <meta name="keywords" content="من نحن, أكاديمية مستر ياسر نوفل, تعلم الإنجليزية, فريق العمل, رؤيتنا" />
-  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/about.html" />
-
-  <!-- ===== Open Graph ===== -->
-  <meta property="og:title" content="من نحن – Mr. Yasser Nofal Academy" />
-  <meta property="og:description" content="تعرف على أكاديمية مستر ياسر نوفل، قصة النجاح، الرؤية، الرسالة، والفريق." />
-  <meta property="og:image" content="https://yasser-academy-amsz-five.vercel.app/assets/images/logo.png" />
-  <meta property="og:url" content="https://yasser-academy-amsz-five.vercel.app/about.html" />
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'El Messiri', 'Lateef', serif;
-      background: #f0f4fa;
-      padding-top: 78px;
-    }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
     .navbar-custom {
@@ -61,36 +46,12 @@
 
     .about-hero {
       background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 100%);
-      padding: 80px 0 60px;
+      padding: 60px 0 40px;
       border-radius: 0 0 60px 60px;
       color: #fff;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
-    .about-hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -30%;
-      width: 500px;
-      height: 500px;
-      background: rgba(247, 224, 94, 0.05);
-      border-radius: 50%;
-    }
-    .about-hero h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 3.2rem;
-      color: #f7e05e;
-      margin-bottom: 15px;
-    }
-    .about-hero p {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
+    .about-hero h1 { font-family: 'Cinzel', serif; font-size: 2.8rem; color: #f7e05e; }
     .about-section {
       background: #fff;
       border-radius: 28px;
@@ -106,101 +67,19 @@
       padding-right: 15px;
       margin-bottom: 20px;
     }
-    .about-section p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #2d3436;
-    }
-
-    .mission-vision {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
+    .mission-vision { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 20px; }
     .mission-vision .card {
-      flex: 1;
-      min-width: 250px;
-      background: #f8f9fa;
-      border-radius: 20px;
-      padding: 25px;
-      text-align: center;
-      border: none;
-      transition: 0.3s;
-      border-bottom: 4px solid #0a1f44;
+      flex: 1; min-width: 250px; background: #f8f9fa; border-radius: 20px; padding: 25px;
+      text-align: center; border: none; transition: 0.3s; border-bottom: 4px solid #0a1f44;
     }
-    .mission-vision .card:hover {
-      transform: translateY(-6px);
-      border-color: #f7e05e;
-      box-shadow: 0 12px 30px rgba(247, 224, 94, 0.12);
-    }
-    .mission-vision .card i {
-      font-size: 3rem;
-      color: #f7b731;
-      margin-bottom: 15px;
-    }
-    .mission-vision .card h5 {
-      font-family: 'Cinzel', serif;
-      color: #0a1f44;
-    }
-
+    .mission-vision .card:hover { transform: translateY(-6px); border-color: #f7e05e; }
     .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      margin-top: 20px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px; margin-top: 20px;
     }
-    .team-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-      transition: 0.3s;
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-    .team-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-    }
-    .team-card img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #f7e05e;
-      margin-bottom: 10px;
-    }
-    .team-card h6 {
-      font-family: 'Cinzel', serif;
-      color: #0a1f44;
-      margin-bottom: 2px;
-    }
-    .team-card .role {
-      font-size: 0.9rem;
-      color: #636e72;
-    }
-
-    .stats-about {
-      background: linear-gradient(135deg, #0a1f44, #1f4b8a);
-      border-radius: 60px 60px 0 0;
-      padding: 60px 0 50px;
-      margin-top: 40px;
-      color: #fff;
-    }
-    .stats-about .stat-item {
-      text-align: center;
-    }
-    .stats-about .stat-item .number {
-      font-size: 3rem;
-      font-weight: 800;
-      color: #f7e05e;
-      font-family: 'Cinzel', serif;
-    }
-    .stats-about .stat-item .label {
-      font-size: 1.1rem;
-      opacity: 0.8;
-    }
+    .team-card { background: #fff; border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.04); }
+    .team-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #f7e05e; margin-bottom: 10px; }
+    .team-card h6 { font-family: 'Cinzel', serif; color: #0a1f44; }
 
     footer {
       background: #0a1f44;
@@ -210,9 +89,8 @@
       margin-top: 50px;
       text-align: center;
     }
-
     @media (max-width: 768px) {
-      .about-hero h1 { font-size: 2.2rem; }
+      .about-hero h1 { font-size: 2rem; }
       .about-section { padding: 25px; }
       .mission-vision .card { min-width: 100%; }
     }
@@ -224,7 +102,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" />
+        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -237,10 +115,11 @@
           <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 الحجز</a></li>
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link active" href="about.html" data-i18n="nav_about">🌟 من نحن</a></li>
-          <li class="nav-item"><a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
-          <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a></li>
-          <!-- ===== زر اللغة ===== -->
+          <li class="nav-item" id="loginRegisterLinks"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item" id="studentDashboardLink" style="display:none;"><a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 لوحة الطالب</a></li>
+          <li class="nav-item" id="parentDashboardLink" style="display:none;"><a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a></li>
+          <li class="nav-item" id="adminDashboardLink" style="display:none;"><a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ المدير</a></li>
+          <li class="nav-item" id="logoutLink" style="display:none;"><a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 تسجيل الخروج</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -253,7 +132,7 @@
     </div>
   </nav>
 
-  <!-- ===== الهيدر ===== -->
+  <!-- ===== المحتوى ===== -->
   <section class="about-hero">
     <div class="container">
       <h1 data-i18n="about_hero_title">🌟 من نحن</h1>
@@ -261,145 +140,39 @@
     </div>
   </section>
 
-  <!-- ===== القصة ===== -->
   <section class="container">
     <div class="about-section">
       <h2 data-i18n="about_story_title"><i class="fas fa-book-open" style="color: #f7b731;"></i> قصتنا</h2>
-      <p data-i18n="about_story_text">
-        انطلقت أكاديمية مستر ياسر نوفل منذ أكثر من 35 عاماً برؤية واضحة: <strong>تعليم اللغة الإنجليزية بطريقة مبسطة وممتعة تناسب جميع الأعمار والمستويات.</strong> 
-        بدأنا بفصل صغير، ومع مرور السنوات أصبحنا منصة تعليمية رائدة تضم آلاف الطلاب من مختلف أنحاء العالم العربي.
-      </p>
-      <p data-i18n="about_story_text2">
-        نؤمن بأن اللغة الإنجليزية ليست مجرد مادة دراسية، بل هي <strong>مفتاح المستقبل</strong> ووسيلة للتواصل مع العالم. لذلك، نقدم محتوى تعليمياً متكاملاً يشمل الصوتيات، المحادثات، القواعد، والاختبارات التفاعلية.
-      </p>
+      <p data-i18n="about_story_text">انطلقت أكاديمية مستر ياسر نوفل منذ أكثر من 35 عاماً برؤية واضحة: <strong>تعليم اللغة الإنجليزية بطريقة مبسطة وممتعة تناسب جميع الأعمار والمستويات.</strong></p>
+      <p data-i18n="about_story_text2">نؤمن بأن اللغة الإنجليزية ليست مجرد مادة دراسية، بل هي <strong>مفتاح المستقبل</strong> ووسيلة للتواصل مع العالم.</p>
     </div>
 
-    <!-- ===== الرؤية والرسالة ===== -->
     <div class="about-section">
       <h2 data-i18n="about_mission_title"><i class="fas fa-flag" style="color: #f7b731;"></i> رؤيتنا ورسالتنا</h2>
       <div class="mission-vision">
-        <div class="card">
-          <i class="fas fa-eye"></i>
-          <h5 data-i18n="about_vision_title">رؤيتنا</h5>
-          <p data-i18n="about_vision_text">أن نكون المنصة التعليمية الأولى في العالم العربي لتعليم اللغة الإنجليزية، ونصنع جيلاً واثقاً ومتقناً للغة.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-bullseye"></i>
-          <h5 data-i18n="about_mission_title_2">رسالتنا</h5>
-          <p data-i18n="about_mission_text">تقديم تعليم إنجليزي متميز، يعتمد على أحدث الأساليب التربوية، ويساعد المتعلمين على تحقيق أهدافهم الأكاديمية والمهنية.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-hand-holding-heart"></i>
-          <h5 data-i18n="about_values_title">قيمنا</h5>
-          <p data-i18n="about_values_text">الجودة، الإبداع، الاحترام، والتميز. نؤمن بأن كل طالب يستحق أفضل فرصة للتعلم.</p>
-        </div>
+        <div class="card"><i class="fas fa-eye"></i><h5 data-i18n="about_vision_title">رؤيتنا</h5><p data-i18n="about_vision_text">أن نكون المنصة التعليمية الأولى في العالم العربي.</p></div>
+        <div class="card"><i class="fas fa-bullseye"></i><h5 data-i18n="about_mission_title_2">رسالتنا</h5><p data-i18n="about_mission_text">تقديم تعليم إنجليزي متميز يعتمد على أحدث الأساليب التربوية.</p></div>
+        <div class="card"><i class="fas fa-hand-holding-heart"></i><h5 data-i18n="about_values_title">قيمنا</h5><p data-i18n="about_values_text">الجودة، الإبداع، الاحترام، والتميز.</p></div>
       </div>
     </div>
 
-    <!-- ===== الفريق ===== -->
     <div class="about-section">
       <h2 data-i18n="about_team_title"><i class="fas fa-users" style="color: #f7b731;"></i> فريقنا</h2>
       <div class="team-grid">
-        <div class="team-card">
-          <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" />
-          <h6 data-i18n="about_team_yasser">مستر ياسر نوفل</h6>
-          <span class="role" data-i18n="about_team_yasser_role">مؤسس الأكاديمية وخبير اللغة الإنجليزية</span>
-        </div>
-        <div class="team-card">
-          <img src="assets/images/mr-yasser.jpg" alt="Team Member" />
-          <h6 data-i18n="about_team_member1">أحمد سامي</h6>
-          <span class="role" data-i18n="about_team_member1_role">مدير المنصة التعليمية</span>
-        </div>
-        <div class="team-card">
-          <img src="assets/images/mr-yasser.jpg" alt="Team Member" />
-          <h6 data-i18n="about_team_member2">د. نورة خالد</h6>
-          <span class="role" data-i18n="about_team_member2_role">خبيرة تطوير المناهج</span>
-        </div>
-        <div class="team-card">
-          <img src="assets/images/mr-yasser.jpg" alt="Team Member" />
-          <h6 data-i18n="about_team_member3">محمد عبدالله</h6>
-          <span class="role" data-i18n="about_team_member3_role">مصمم تجربة المستخدم</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== الإحصائيات ===== -->
-  <section class="stats-about">
-    <div class="container">
-      <div class="row g-4 text-center">
-        <div class="col-md-3 col-6">
-          <div class="stat-item">
-            <div class="number">35+</div>
-            <div class="label" data-i18n="about_stat_experience">سنوات من الخبرة</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="stat-item">
-            <div class="number">10k+</div>
-            <div class="label" data-i18n="about_stat_students">طلاب حول العالم</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="stat-item">
-            <div class="number">8</div>
-            <div class="label" data-i18n="about_stat_levels">مستويات تعليمية</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="stat-item">
-            <div class="number">98%</div>
-            <div class="label" data-i18n="about_stat_success">نسبة نجاح الطلاب</div>
-          </div>
-        </div>
+        <div class="team-card"><img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" /><h6 data-i18n="about_team_yasser">مستر ياسر نوفل</h6><span class="role" data-i18n="about_team_yasser_role">مؤسس الأكاديمية</span></div>
+        <div class="team-card"><img src="assets/images/mr-yasser.jpg" alt="Team Member" /><h6 data-i18n="about_team_member1">أحمد سامي</h6><span class="role" data-i18n="about_team_member1_role">مدير المنصة</span></div>
+        <div class="team-card"><img src="assets/images/mr-yasser.jpg" alt="Team Member" /><h6 data-i18n="about_team_member2">د. نورة خالد</h6><span class="role" data-i18n="about_team_member2_role">خبيرة تطوير المناهج</span></div>
+        <div class="team-card"><img src="assets/images/mr-yasser.jpg" alt="Team Member" /><h6 data-i18n="about_team_member3">محمد عبدالله</h6><span class="role" data-i18n="about_team_member3_role">مصمم تجربة المستخدم</span></div>
       </div>
     </div>
   </section>
 
   <!-- ===== الفوتير ===== -->
-<footer class="footer">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-md-4">
-        <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
-        <p data-i18n="footer_about_desc">تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-tiktok"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <h5 data-i18n="footer_links_title">روابط سريعة</h5>
-        <ul class="footer-links">
-          <li><a href="levels.html" data-i18n="footer_link_levels">المستويات</a></li>
-          <li><a href="booking.html" data-i18n="footer_link_booking">الحجز</a></li>
-          <li><a href="about.html" data-i18n="footer_link_about">من نحن</a></li>
-          <li><a href="privacy-policy.html" data-i18n="footer_link_privacy">سياسة الخصوصية</a></li>
-          <li><a href="terms.html" data-i18n="footer_link_terms">الشروط والأحكام</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <h5 data-i18n="footer_contact_title">تواصل</h5>
-        <p><i class="fas fa-phone"></i> 01203145717</p>
-        <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
-        <p><i class="fab fa-whatsapp"></i> 01001297414</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
-    </div>
-  </div>
-</footer>
-    // تشغيل الترجمة عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof switchLanguage === 'function') {
-        const currentLang = localStorage.getItem('lang') || 'ar';
-        switchLanguage(currentLang);
-      }
-    });
-  </script>
+  <footer>
+    <div class="container"><p class="mb-0" data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/lang.js"></script>
 </body>
 </html>
