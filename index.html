@@ -325,6 +325,11 @@
             <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin"><i class="fas fa-user-cog"></i> <span data-i18n="nav_admin">المدير</span><span class="nav-indicator"></span></a>
           </li>
 
+          <!-- ===== زر تسجيل الخروج ===== -->
+          <li class="nav-item" id="logoutLink" style="display:none;">
+            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout"><i class="fas fa-sign-out-alt"></i> <span data-i18n="nav_logout">تسجيل الخروج</span><span class="nav-indicator"></span></a>
+          </li>
+
           <!-- ===== زر اللغة ===== -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
@@ -352,7 +357,8 @@
           <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" class="profile-img" loading="lazy" />
           <h1>Mr. Yasser Nofal Academy <small data-i18n="hero_title_small">أكاديمية مستر ياسر نوفل</small></h1>
         </div>
-        <p class="subtitle" data-i18n="hero_subtitle">Learn English with Confidence</p>
+        <!-- ===== تم إصلاح اتجاه الجملة ===== -->
+        <p class="subtitle" data-i18n="hero_subtitle" style="direction: ltr; text-align: right;">Learn English with Confidence</p>
         <p class="desc" data-i18n="hero_desc">من الصفر حتى الاحتراف – مع صوتيات ومحادثات لكل مستوى</p>
         <div class="btn-group">
           <a href="levels.html" class="btn btn-warning" data-i18n="hero_btn_levels">📚 المستويات</a>
@@ -701,7 +707,7 @@
       recognition.start();
     }
 
-    // ===== نظام تسجيل الدخول متعدد الأدوار =====
+    // ===== نظام تسجيل الدخول المتعدد الأدوار =====
     function checkUserRole() {
       const user = JSON.parse(localStorage.getItem('user'));
       
@@ -710,12 +716,16 @@
       document.getElementById('studentDashboardLink').style.display = 'none';
       document.getElementById('parentDashboardLink').style.display = 'none';
       document.getElementById('adminDashboardLink').style.display = 'none';
+      document.getElementById('logoutLink').style.display = 'none';
 
       if (!user) {
-        // لو مش مسجل دخول، يظهر له تسجيل الدخول والتسجيل
+        // لو مش مسجل دخول، يظهر له تسجيل الدخول
         document.getElementById('loginRegisterLinks').style.display = 'block';
         return;
       }
+
+      // لو مسجل دخول، يظهر له زر تسجيل الخروج
+      document.getElementById('logoutLink').style.display = 'block';
 
       const role = user.role || 'student';
       if (role === 'student') {
@@ -725,6 +735,12 @@
       } else if (role === 'admin') {
         document.getElementById('adminDashboardLink').style.display = 'block';
       }
+    }
+
+    // ===== دالة تسجيل الخروج =====
+    function logoutUser() {
+      localStorage.removeItem('user');
+      window.location.reload();
     }
 
     // تشغيل عند تحميل الصفحة
