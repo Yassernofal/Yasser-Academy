@@ -797,6 +797,7 @@
     function checkUserRole() {
       const user = JSON.parse(localStorage.getItem('user'));
       
+      // إخفاء الكل أولاً
       document.getElementById('loginLink').style.display = 'none';
       document.getElementById('registerLink').style.display = 'none';
       document.getElementById('studentDashboardLink').style.display = 'none';
@@ -805,11 +806,13 @@
       document.getElementById('logoutLink').style.display = 'none';
 
       if (!user) {
+        // لو مش مسجل دخول، يظهر له تسجيل الدخول والتسجيل
         document.getElementById('loginLink').style.display = 'block';
         document.getElementById('registerLink').style.display = 'block';
         return;
       }
 
+      // لو مسجل دخول، يظهر له زر تسجيل الخروج
       document.getElementById('logoutLink').style.display = 'block';
 
       const role = user.role || 'student';
