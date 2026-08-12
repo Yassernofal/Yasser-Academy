@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="cert_page_title">شهادة إنجاز – Mr. Yasser Nofal Academy</title>
   
-  <meta name="description" content="احصل على شهادة إنجاز من أكاديمية مستر ياسر نوفل." />
+  <meta name="description" content="شهادة إنجاز من أكاديمية مستر ياسر نوفل." />
   <meta name="keywords" content="شهادة, إنجاز, أكاديمية مستر ياسر نوفل" />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/certificate.html" />
 
@@ -19,16 +19,18 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; min-height: 100vh; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
       backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       padding: 14px 0;
       box-shadow: 0 4px 30px rgba(0,0,0,0.15);
       border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -44,101 +46,9 @@
       letter-spacing: 1px;
     }
     .navbar-brand .brand-name span { color: #ffb347; }
-    .navbar-nav .nav-item { margin: 0 2px; position: relative; }
-    .navbar-nav .nav-link {
-      color: rgba(255, 255, 255, 0.8) !important;
-      font-family: 'El Messiri', serif;
-      font-weight: 500;
-      font-size: 0.95rem;
-      padding: 8px 12px;
-      border-radius: 12px;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      position: relative;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      white-space: nowrap;
-    }
-    .navbar-nav .nav-link i { font-size: 0.85rem; color: #f7e05e; transition: 0.3s; }
-    .navbar-nav .nav-link:hover {
-      color: #fff !important;
-      background: rgba(247, 224, 94, 0.10);
-      transform: translateY(-2px);
-    }
-    .navbar-nav .nav-link.active { color: #f7e05e !important; background: rgba(247, 224, 94, 0.12); }
-    .nav-indicator {
-      position: absolute;
-      bottom: 2px;
-      right: 50%;
-      width: 0;
-      height: 2.5px;
-      background: linear-gradient(90deg, #f7e05e, #f7b731);
-      border-radius: 4px;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform: translateX(50%);
-    }
-    .nav-link:hover .nav-indicator,
-    .nav-link.active .nav-indicator { width: 60%; }
-    .navbar-toggler {
-      border: none;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.05) !important;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
-    .navbar-toggler:hover { background: rgba(255, 255, 255, 0.10) !important; }
-    .navbar-toggler:focus { box-shadow: none; }
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    }
-    @media (max-width: 1199.98px) {
-      .navbar-nav .nav-link { font-size: 0.85rem; padding: 6px 10px; }
-    }
-    @media (max-width: 991.98px) {
-      .navbar-collapse {
-        background: rgba(10, 31, 68, 0.96);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 20px 15px;
-        margin-top: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        animation: slideDown 0.3s ease forwards;
-      }
-      .navbar-nav .nav-item { margin: 2px 0; }
-      .navbar-nav .nav-link { padding: 12px 18px; border-radius: 12px; font-size: 1.05rem; white-space: normal; }
-      .navbar-nav .nav-link i { width: 24px; text-align: center; }
-      .nav-indicator { display: none; }
-      .navbar-nav .nav-link.active { background: rgba(247, 224, 94, 0.12); }
-    }
-    @keyframes slideDown {
-      0% { opacity: 0; transform: translateY(-15px) scale(0.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    html { scroll-behavior: smooth; }
-
-    .extra-links {
-      background: #f8f9fa;
-      padding: 10px 0;
-      border-bottom: 1px solid #e9ecef;
-      text-align: center;
-    }
-    .extra-links a {
-      color: #0a1f44;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: 500;
-      transition: 0.3s;
-      font-size: 0.95rem;
-    }
-    .extra-links a:hover {
-      color: #f7b731;
-      text-decoration: underline;
-    }
-    @media (max-width: 768px) {
-      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
-    }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
 
     .cert-container {
       max-width: 900px;
@@ -188,60 +98,13 @@
 
     .form-control-custom { max-width: 400px; margin: 10px auto; }
 
-    .footer {
+    footer {
       background: #0a1f44;
       color: #b0c4de;
-      padding: 50px 0 20px;
-      border-radius: 50px 50px 0 0;
-      margin-top: 40px;
-      position: relative;
-      overflow: hidden;
-    }
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(247, 224, 94, 0.03), transparent, rgba(247, 224, 94, 0.03), transparent);
-      animation: spinGradient 10s linear infinite;
-    }
-    @keyframes spinGradient {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .footer h5 { font-family: 'Cinzel', serif; color: #f7e05e; margin-bottom: 15px; }
-    .footer .social-icons a {
-      display: inline-block;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      color: #f7e05e;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
       text-align: center;
-      line-height: 45px;
-      font-size: 1.2rem;
-      margin-right: 8px;
-      transition: 0.3s;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .footer .social-icons a:hover {
-      background: #f7e05e;
-      color: #0a1f44;
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(247, 224, 94, 0.2);
-    }
-    .footer-links { list-style: none; padding: 0; }
-    .footer-links li { margin-bottom: 8px; }
-    .footer-links a { color: #b0c4de; text-decoration: none; transition: 0.3s; display: inline-block; }
-    .footer-links a:hover { color: #f7e05e; transform: translateX(-5px); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 20px;
-      margin-top: 30px;
-      text-align: center;
-      font-size: 0.9rem;
     }
 
     @media (max-width: 576px) {
@@ -249,38 +112,69 @@
       .cert-preview h2 { font-size: 1.8rem; }
       .cert-preview .student-name { font-size: 1.3rem; }
     }
+
+    .extra-links {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      text-align: center;
+    }
+    .extra-links a {
+      color: #0a1f44;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .extra-links a:hover {
+      color: #f7b731;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
+    }
   </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" role="navigation" aria-label="القائمة الرئيسية">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+      <a class="navbar-brand" href="index.html" aria-label="الرئيسية">
+        <img src="assets/images/logo.png" alt="شعار أكاديمية مستر ياسر نوفل" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="تبديل القائمة">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home"><i class="fas fa-home"></i> <span data-i18n="nav_home">الرئيسية</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels"><i class="fas fa-layer-group"></i> <span data-i18n="nav_levels">المستويات</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking"><i class="fas fa-pencil-alt"></i> <span data-i18n="nav_booking">الحجز</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games"><i class="fas fa-gamepad"></i> <span data-i18n="nav_games">الألعاب</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests"><i class="fas fa-pencil-alt"></i> <span data-i18n="nav_tests">اختبارات</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about"><i class="fas fa-star"></i> <span data-i18n="nav_about">من نحن</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 الحجز</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
+          <li class="nav-item"><a class="nav-link active" href="certificate.html" data-i18n="nav_cert">📜 الشهادات</a></li>
           
-          <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login"><i class="fas fa-sign-in-alt"></i> <span data-i18n="nav_login">تسجيل الدخول</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register"><i class="fas fa-user-plus"></i> <span data-i18n="nav_register">التسجيل</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item" id="loginLink">
+            <a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a>
+          </li>
+          <li class="nav-item" id="registerLink">
+            <a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a>
+          </li>
           
-          <li class="nav-item"><a class="nav-link" href="student-dashboard.html" data-i18n="nav_student"><i class="fas fa-user-graduate"></i> <span data-i18n="nav_student">لوحة الطالب</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent"><i class="fas fa-users"></i> <span data-i18n="nav_parent">ولي الأمر</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin"><i class="fas fa-user-cog"></i> <span data-i18n="nav_admin">المدير</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link active" href="certificate.html" data-i18n="nav_cert"><i class="fas fa-certificate"></i> <span data-i18n="nav_cert">الشهادات</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item" id="studentDashboardLink" style="display:none;">
+            <a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 لوحة الطالب</a>
+          </li>
+          <li class="nav-item" id="parentDashboardLink" style="display:none;">
+            <a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a>
+          </li>
+          <li class="nav-item" id="adminDashboardLink" style="display:none;">
+            <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ المدير</a>
+          </li>
 
           <li class="nav-item" id="logoutLink" style="display:none;">
-            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout"><i class="fas fa-sign-out-alt"></i> <span data-i18n="nav_logout">تسجيل الخروج</span><span class="nav-indicator"></span></a>
+            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 تسجيل الخروج</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -295,7 +189,8 @@
     </div>
   </nav>
 
-  <div class="extra-links">
+  <!-- ===== الروابط الإضافية ===== -->
+  <div class="extra-links" role="navigation" aria-label="روابط إضافية">
     <div class="container">
       <a href="about.html" data-i18n="nav_about">🌟 من نحن</a>
       <a href="privacy-policy.html" data-i18n="nav_privacy">🔒 سياسة الخصوصية</a>
@@ -303,15 +198,14 @@
     </div>
   </div>
 
+  <!-- ===== المحتوى ===== -->
   <section class="container">
     <div class="cert-container">
-      <h2 class="fw-bold mb-3" data-i18n="cert_title"><i class="fas fa-certificate text-primary"></i> شهادة إنجاز</h2>
+      <h2 class="fw-bold mb-3" data-i18n="cert_title"><i class="fas fa-certificate text-primary" aria-hidden="true"></i> شهادة إنجاز</h2>
       <p class="text-muted" data-i18n="cert_subtitle">أدخل اسمك واختر المستوى لعرض شهادتك</p>
 
       <div class="row justify-content-center g-3 mb-4">
-        <div class="col-md-5">
-          <input type="text" class="form-control form-control-custom" id="studentNameInput" placeholder="أدخل اسم الطالب..." data-i18n="cert_name_placeholder" value="أحمد محمد" />
-        </div>
+        <div class="col-md-5"><input type="text" class="form-control form-control-custom" id="studentNameInput" placeholder="أدخل اسم الطالب..." data-i18n="cert_name_placeholder" value="أحمد محمد" /></div>
         <div class="col-md-4">
           <select class="form-select form-control-custom" id="levelSelect">
             <option value="ما قبل الروضة" data-i18n="level_pre">ما قبل الروضة</option>
@@ -324,14 +218,12 @@
             <option value="صوتيات ومحادثات" data-i18n="level_phonics">صوتيات ومحادثات</option>
           </select>
         </div>
-        <div class="col-md-3">
-          <button class="btn btn-primary w-100" onclick="generateCertificate()" data-i18n="cert_generate_btn"><i class="fas fa-eye"></i> عرض الشهادة</button>
-        </div>
+        <div class="col-md-3"><button class="btn btn-primary w-100" onclick="generateCertificate()" data-i18n="cert_generate_btn"><i class="fas fa-eye" aria-hidden="true"></i> عرض الشهادة</button></div>
       </div>
 
       <div id="certPreview" style="display: none;">
         <div class="cert-preview" id="certContent">
-          <div class="cert-badge"><i class="fas fa-award"></i></div>
+          <div class="cert-badge"><i class="fas fa-award" aria-hidden="true"></i></div>
           <h2 data-i18n="cert_academy_name">Mr. Yasser Nofal Academy</h2>
           <p data-i18n="cert_this_certifies">تشهد هذه الشهادة بأن</p>
           <div class="student-name" id="displayName">أحمد محمد</div>
@@ -341,28 +233,29 @@
             <div class="signature-item"><span data-i18n="cert_signature">توقيع المدير</span></div>
             <div class="signature-item"><span data-i18n="cert_date">التاريخ</span></div>
           </div>
-          <div class="cert-date" id="displayDate">11 أغسطس 2026</div>
+          <div class="cert-date" id="displayDate">13 أغسطس 2026</div>
           <div class="cert-code" id="displayCode">📌 YNA-CERT-XXXXXX</div>
         </div>
 
-        <button class="btn-download" onclick="downloadCertificate()" data-i18n="cert_download_btn"><i class="fas fa-download"></i> تحميل الشهادة (PDF)</button>
-        <button class="btn btn-outline-secondary mt-2" onclick="shareCertificate()" data-i18n="cert_share_btn"><i class="fas fa-share-alt"></i> مشاركة الشهادة</button>
+        <button class="btn-download" onclick="downloadCertificate()" data-i18n="cert_download_btn"><i class="fas fa-download" aria-hidden="true"></i> تحميل الشهادة (PDF)</button>
+        <button class="btn btn-outline-secondary mt-2" onclick="shareCertificate()" data-i18n="cert_share_btn"><i class="fas fa-share-alt" aria-hidden="true"></i> مشاركة الشهادة</button>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
+  <!-- ===== الفوتير ===== -->
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
           <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
           <p data-i18n="footer_about_desc">تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="تيك توك"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
           </div>
         </div>
         <div class="col-md-4">
@@ -377,9 +270,9 @@
         </div>
         <div class="col-md-4">
           <h5 data-i18n="footer_contact_title">تواصل</h5>
-          <p><i class="fas fa-phone"></i> 01203145717</p>
-          <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
-          <p><i class="fab fa-whatsapp"></i> 01001297414</p>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -433,20 +326,7 @@
       }
     }
 
-    function checkUserRole() {
-      const user = JSON.parse(localStorage.getItem('user'));
-      document.getElementById('logoutLink').style.display = 'none';
-      if (!user) return;
-      document.getElementById('logoutLink').style.display = 'block';
-    }
-
-    function logoutUser() {
-      localStorage.removeItem('user');
-      window.location.href = 'login.html';
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
-      checkUserRole();
       document.getElementById('studentNameInput').value = 'أحمد محمد';
       generateCertificate();
     });
