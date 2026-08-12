@@ -276,7 +276,12 @@
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link active" href="interactive-tests.html" data-i18n="nav_tests">📝 اختبارات</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">🌟 من نحن</a></li>
+          
+          <!-- ===== تسجيل الدخول والتسجيل ===== -->
           <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a></li>
+          
+          <!-- ===== زر اللغة ===== -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -438,7 +443,6 @@
       ]
     };
 
-    // ===== متغيرات الاختبار =====
     let currentQuestions = [];
     let currentIndex = 0;
     let score = 0;
@@ -448,7 +452,6 @@
     let testLevel = '';
     let isTestStarted = false;
 
-    // ===== بدء الاختبار =====
     function startTest(level) {
       testLevel = level;
       currentQuestions = shuffleArray([...questionBank[level]]);
@@ -468,7 +471,6 @@
       startTimer();
     }
 
-    // ===== خلط الأسئلة =====
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -477,7 +479,6 @@
       return array;
     }
 
-    // ===== عرض السؤال =====
     function renderQuestion() {
       const q = currentQuestions[currentIndex];
       document.getElementById('currentQuestionNum').textContent = currentIndex + 1;
@@ -509,7 +510,6 @@
       }
     }
 
-    // ===== اختيار الإجابة =====
     function selectOption(index) {
       if (!isTestStarted) return;
       
@@ -521,7 +521,6 @@
       updatePreliminaryScore();
     }
 
-    // ===== تحديث النتيجة المبدئية =====
     function updatePreliminaryScore() {
       let tempScore = 0;
       selectedAnswers.forEach((ans, idx) => {
@@ -533,7 +532,6 @@
       document.getElementById('scoreDisplay').textContent = score;
     }
 
-    // ===== السؤال التالي =====
     function nextQuestion() {
       if (currentIndex < currentQuestions.length - 1) {
         currentIndex++;
@@ -547,7 +545,6 @@
       }
     }
 
-    // ===== السؤال السابق =====
     function prevQuestion() {
       if (currentIndex > 0) {
         currentIndex--;
@@ -555,7 +552,6 @@
       }
     }
 
-    // ===== المؤقت =====
     function startTimer() {
       clearInterval(timerInterval);
       timerInterval = setInterval(() => {
@@ -576,7 +572,6 @@
       }, 1000);
     }
 
-    // ===== إشعار عند إنهاء الاختبار =====
     function notifyTestComplete(score, level) {
       const user = JSON.parse(localStorage.getItem('user'));
       if (user) {
@@ -590,7 +585,6 @@
       }
     }
 
-    // ===== إنهاء الاختبار =====
     function submitTest() {
       if (!isTestStarted) return;
       
@@ -637,11 +631,9 @@
       document.getElementById('resultArea').style.display = 'block';
       document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
 
-      // ===== إشعار إكمال الاختبار =====
       notifyTestComplete(percentage, level);
     }
 
-    // ===== إعادة الاختبار =====
     function resetTest() {
       clearInterval(timerInterval);
       isTestStarted = false;

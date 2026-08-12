@@ -170,8 +170,12 @@
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests">📝 اختبارات</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">🌟 من نحن</a></li>
+          
+          <!-- ===== تسجيل الدخول والتسجيل ===== -->
           <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
           <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a></li>
+          
+          <!-- ===== زر اللغة ===== -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -498,26 +502,7 @@
 
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
 
-      // ===== إشعار تأكيد الحجز =====
       showNotification('✅ تأكيد حجز', `تم تسجيل طلب الحجز للطالب ${name} بنجاح!`, 'success');
-
-      // ===== إشعار واتساب =====
-      const whatsappMessage = `
-        📌 *طلب حجز جديد*
-        👤 الطالب: ${name}
-        🎓 الصف: ${data.name}
-        💳 طريقة الدفع: ${bookingData.paymentMethod}
-        🏷️ رقم التحويل: ${transferNumber}
-        📅 تاريخ التحويل: ${transferDate}
-        💰 المبلغ المحول: ${transferAmount} ج.م
-        💳 الباقة: ${planLabel} (${planPrice} ج.م)
-        📖 الملزمة: ${bookLabel} (${bookPrice} ج.م)
-        💰 الإجمالي: ${total} ج.م
-        🔑 كود الملزمة: ${bookCode || 'لا يوجد'}
-      `;
-      
-      // فتح واتساب مع الرسالة (اختياري)
-      // sendWhatsAppNotification('201001297414', whatsappMessage);
 
       let alertMessage = `✅ تم استلام طلب الحجز!\n\n`;
       alertMessage += `📌 بيانات الحجز:\n`;
