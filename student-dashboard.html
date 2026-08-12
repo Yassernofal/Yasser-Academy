@@ -89,7 +89,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" />
+        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -103,8 +103,9 @@
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link active" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 لوحة الطالب</a></li>
           <li class="nav-item"><a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
-          <!-- ===== زر اللغة ===== -->
+          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ المدير</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">🌟 من نحن</a></li>
+          <li class="nav-item" id="logoutLink"><a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 تسجيل الخروج</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -124,57 +125,42 @@
       <p class="text-center text-muted" data-i18n="student_welcome">مرحباً، أحمد!</p>
 
       <div class="row g-4 mb-4">
-        <div class="col-md-3 col-6"><div class="stat-card"><div class="number">3</div><div class="label" data-i18n="student_level">المستوى الحالي</div></div></div>
-        <div class="col-md-3 col-6"><div class="stat-card"><div class="number">70%</div><div class="label" data-i18n="student_progress">نسبة التقدم</div></div></div>
-        <div class="col-md-3 col-6"><div class="stat-card"><div class="number">86%</div><div class="label" data-i18n="student_grade">الدرجة الإجمالية</div></div></div>
-        <div class="col-md-3 col-6"><div class="stat-card"><div class="number">2</div><div class="label" data-i18n="student_certificates">الشهادات</div></div></div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="number">3</div>
+            <div class="label" data-i18n="student_level">المستوى الحالي</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="number">70%</div>
+            <div class="label" data-i18n="student_progress">نسبة التقدم</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="number">86%</div>
+            <div class="label" data-i18n="student_grade">الدرجة الإجمالية</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="number">2</div>
+            <div class="label" data-i18n="student_certificates">الشهادات</div>
+          </div>
+        </div>
       </div>
 
-      <button class="btn-logout w-100" onclick="logout()" data-i18n="student_logout"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+      <button class="btn-logout w-100" onclick="logoutUser()" data-i18n="student_logout"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
     </div>
   </section>
 
   <!-- ===== الفوتير ===== -->
-<footer class="footer">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-md-4">
-        <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
-        <p data-i18n="footer_about_desc">تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-tiktok"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <h5 data-i18n="footer_links_title">روابط سريعة</h5>
-        <ul class="footer-links">
-          <li><a href="levels.html" data-i18n="footer_link_levels">المستويات</a></li>
-          <li><a href="booking.html" data-i18n="footer_link_booking">الحجز</a></li>
-          <li><a href="about.html" data-i18n="footer_link_about">من نحن</a></li>
-          <li><a href="privacy-policy.html" data-i18n="footer_link_privacy">سياسة الخصوصية</a></li>
-          <li><a href="terms.html" data-i18n="footer_link_terms">الشروط والأحكام</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <h5 data-i18n="footer_contact_title">تواصل</h5>
-        <p><i class="fas fa-phone"></i> 01203145717</p>
-        <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
-        <p><i class="fab fa-whatsapp"></i> 01001297414</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
-    </div>
-  </div>
-</footer>
-    function logout() {
-      localStorage.removeItem('user');
-      window.location.href = 'login.html';
-    }
-  </script>
+  <footer>
+    <div class="container"><p class="mb-0" data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/lang.js"></script>
 </body>
 </html>

@@ -14,22 +14,12 @@
     gtag('config', 'G-N3R3KFEO8');
   </script>
 
-  <!-- ===== SEO ===== -->
-  <meta name="description" content="اختبارات تفاعلية لتقييم مستواك في اللغة الإنجليزية مع نتائج فورية." />
-  <meta name="keywords" content="اختبارات, تفاعلية, تقييم, مستوى, English, tests" />
-  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/interactive-tests.html" />
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'El Messiri', serif;
-      background: #f0f4fa;
-      padding-top: 78px;
-      min-height: 100vh;
-    }
+    body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; min-height: 100vh; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
     .navbar-custom {
@@ -62,28 +52,6 @@
       padding: 35px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.08);
     }
-
-    .test-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-    .test-header .progress-info {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #0a1f44;
-    }
-    .test-header .score-box {
-      background: #0a1f44;
-      color: #f7e05e;
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-weight: 700;
-    }
-
     .question-box {
       background: #f8f9fa;
       border-radius: 20px;
@@ -91,25 +59,10 @@
       margin-bottom: 25px;
       border-right: 4px solid #0a1f44;
     }
-    .question-box .question-text {
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #0a1f44;
-      margin-bottom: 15px;
-    }
-    .question-box .question-number {
-      font-size: 0.9rem;
-      color: #888;
-      margin-bottom: 10px;
-    }
-
     .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-    }
-    @media (max-width: 576px) {
-      .options-grid { grid-template-columns: 1fr; }
     }
     .option-btn {
       padding: 14px 20px;
@@ -117,139 +70,15 @@
       border-radius: 14px;
       background: #fff;
       font-size: 1.05rem;
-      font-weight: 500;
       transition: 0.3s;
       cursor: pointer;
+      font-family: 'El Messiri', serif;
       text-align: right;
-      font-family: 'El Messiri', serif;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
-    .option-btn:hover {
-      border-color: #0a1f44;
-      background: #f8f9fa;
-      transform: scale(1.01);
-    }
-    .option-btn .option-label {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: #e9ecef;
-      text-align: center;
-      line-height: 30px;
-      font-weight: 700;
-      color: #495057;
-    }
-    .option-btn.selected {
-      border-color: #0a1f44;
-      background: #e8f4fd;
-    }
-    .option-btn.correct {
-      border-color: #28a745;
-      background: #d4edda;
-    }
-    .option-btn.correct .option-label {
-      background: #28a745;
-      color: #fff;
-    }
-    .option-btn.wrong {
-      border-color: #dc3545;
-      background: #f8d7da;
-    }
-    .option-btn.wrong .option-label {
-      background: #dc3545;
-      color: #fff;
-    }
-    .option-btn.disabled {
-      cursor: not-allowed;
-      opacity: 0.8;
-    }
-
-    .test-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .btn-next-prev {
-      padding: 10px 30px;
-      border-radius: 50px;
-      border: none;
-      font-weight: 600;
-      transition: 0.3s;
-      font-family: 'El Messiri', serif;
-      font-size: 1rem;
-    }
-    .btn-next-prev:hover { transform: scale(1.03); }
-    .btn-next-prev:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-    .btn-prev {
-      background: #e9ecef;
-      color: #495057;
-    }
-    .btn-prev:hover:not(:disabled) { background: #dee2e6; }
-    .btn-next {
-      background: #0a1f44;
-      color: #f7e05e;
-    }
-    .btn-next:hover:not(:disabled) { background: #1f4b8a; }
-    .btn-submit {
-      background: #28a745;
-      color: #fff;
-      padding: 10px 35px;
-      border-radius: 50px;
-      border: none;
-      font-weight: 600;
-      transition: 0.3s;
-      font-family: 'El Messiri', serif;
-      font-size: 1rem;
-    }
-    .btn-submit:hover { background: #218838; transform: scale(1.03); }
-
-    .result-box {
-      text-align: center;
-      padding: 40px 20px;
-      background: #e8f4fd;
-      border-radius: 20px;
-      margin-top: 20px;
-    }
-    .result-box .final-score {
-      font-size: 4rem;
-      font-weight: 800;
-      color: #0a1f44;
-      font-family: 'Cinzel', serif;
-    }
-    .result-box .final-message {
-      font-size: 1.3rem;
-      margin: 15px 0;
-    }
-    .result-box .level-suggestion {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      display: inline-block;
-      margin-top: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    }
-    .result-box .level-suggestion h6 {
-      font-family: 'Cinzel', serif;
-      color: #0a1f44;
-    }
-
-    .timer-box {
-      background: #fff3cd;
-      border-radius: 50px;
-      padding: 6px 20px;
-      font-weight: 600;
-      color: #856404;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .timer-box.warning { background: #f8d7da; color: #721c24; }
+    .option-btn:hover { border-color: #0a1f44; background: #f8f9fa; }
+    .option-btn.selected { border-color: #0a1f44; background: #e8f4fd; }
+    .option-btn.correct { border-color: #28a745; background: #d4edda; }
+    .option-btn.wrong { border-color: #dc3545; background: #f8d7da; }
 
     footer {
       background: #0a1f44;
@@ -267,7 +96,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" />
+        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -281,8 +110,11 @@
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link active" href="interactive-tests.html" data-i18n="nav_tests">📝 اختبارات</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">🌟 من نحن</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
-          <!-- ===== زر اللغة ===== -->
+          <li class="nav-item" id="loginRegisterLinks"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item" id="studentDashboardLink" style="display:none;"><a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 لوحة الطالب</a></li>
+          <li class="nav-item" id="parentDashboardLink" style="display:none;"><a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a></li>
+          <li class="nav-item" id="adminDashboardLink" style="display:none;"><a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ المدير</a></li>
+          <li class="nav-item" id="logoutLink" style="display:none;"><a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 تسجيل الخروج</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -297,11 +129,10 @@
 
   <!-- ===== المحتوى ===== -->
   <section class="container">
-    <div class="tests-container" id="testContainer">
+    <div class="tests-container">
       <h2 class="text-center fw-bold mb-3" data-i18n="tests_title"><i class="fas fa-pencil-alt text-primary"></i> اختبار تحديد المستوى</h2>
       <p class="text-center text-muted mb-4" data-i18n="tests_subtitle">أجب عن 20 سؤالاً لتحديد مستواك في اللغة الإنجليزية</p>
 
-      <!-- ===== اختيار المستوى ===== -->
       <div id="levelSelector" class="text-center mb-4">
         <p class="fw-bold" data-i18n="tests_select_level">اختر نوع الاختبار:</p>
         <div class="d-flex justify-content-center gap-3 flex-wrap">
@@ -309,66 +140,38 @@
           <button class="btn btn-outline-primary btn-lg" onclick="startTest('intermediate')" data-i18n="tests_intermediate">متوسط</button>
           <button class="btn btn-outline-primary btn-lg" onclick="startTest('advanced')" data-i18n="tests_advanced">متقدم</button>
         </div>
-        <p class="mt-3 text-muted small" data-i18n="tests_hint">سيتم عرض 20 سؤالاً مع خيارات متعددة</p>
       </div>
 
-      <!-- ===== منطقة الاختبار ===== -->
       <div id="testArea" style="display: none;">
-        <div class="test-header">
-          <div class="progress-info">
-            <span data-i18n="tests_question">السؤال</span>
-            <span id="currentQuestionNum">1</span>
-            <span data-i18n="tests_of">من</span>
-            <span id="totalQuestions">20</span>
-          </div>
-          <div class="d-flex align-items-center gap-3 flex-wrap">
-            <div class="timer-box" id="timerBox">
-              <i class="fas fa-clock"></i>
-              <span id="timerDisplay">15:00</span>
-            </div>
-            <div class="score-box">
-              <i class="fas fa-star"></i>
-              <span id="scoreDisplay">0</span>
-            </div>
-          </div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span data-i18n="tests_question">السؤال <span id="currentQuestionNum">1</span> من <span id="totalQuestions">20</span></span>
+          <span class="badge bg-primary fs-6" id="scoreDisplay">0</span>
         </div>
 
-        <div class="progress mb-4" style="height: 8px;">
-          <div class="progress-bar bg-primary" id="progressBar" role="progressbar" style="width: 0%;"></div>
+        <div class="question-box">
+          <div class="question-text fs-5" id="qText">السؤال هنا</div>
         </div>
+        <div class="options-grid" id="optionsContainer"></div>
 
-        <div id="questionContainer">
-          <div class="question-box">
-            <div class="question-number" id="qNumber">السؤال 1 من 20</div>
-            <div class="question-text" id="qText">السؤال هنا</div>
-          </div>
-          <div class="options-grid" id="optionsContainer"></div>
-        </div>
-
-        <div class="test-footer">
-          <button class="btn-next-prev btn-prev" id="prevBtn" onclick="prevQuestion()" data-i18n="tests_prev">السابق</button>
-          <button class="btn-next-prev btn-next" id="nextBtn" onclick="nextQuestion()" data-i18n="tests_next">التالي</button>
-          <button class="btn-submit" id="submitBtn" style="display: none;" onclick="submitTest()" data-i18n="tests_submit">إنهاء الاختبار</button>
+        <div class="d-flex justify-content-between mt-4">
+          <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" data-i18n="tests_prev">السابق</button>
+          <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" data-i18n="tests_next">التالي</button>
+          <button class="btn btn-success" id="submitBtn" style="display:none;" onclick="submitTest()" data-i18n="tests_submit">إنهاء الاختبار</button>
         </div>
       </div>
 
-      <!-- ===== النتيجة ===== -->
       <div id="resultArea" style="display: none;">
-        <div class="result-box">
-          <div class="final-score" id="finalScore">0</div>
-          <div class="final-message" id="finalMessage"></div>
-          <div class="level-suggestion" id="levelSuggestion">
-            <h6 data-i18n="tests_suggested_level">المستوى المقترح</h6>
-            <p id="suggestedLevel" style="font-size: 1.5rem; font-weight: 700; color: #0a1f44;">--</p>
-          </div>
+        <div class="text-center p-4 bg-light rounded">
+          <h3 data-i18n="tests_result_title">🎉 انتهى الاختبار!</h3>
+          <p class="fs-4">نتيجتك: <span id="finalScore" class="fw-bold">0%</span></p>
+          <p id="finalMessage"></p>
           <button class="btn btn-primary mt-3" onclick="resetTest()" data-i18n="tests_retry"><i class="fas fa-redo"></i> إعادة الاختبار</button>
-          <button class="btn btn-outline-secondary mt-2" onclick="window.location.href='booking.html'" data-i18n="tests_book_now">📝 احجز كورسك الآن</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== الفوتر ===== -->
+  <!-- ===== الفوتير ===== -->
   <footer>
     <div class="container"><p class="mb-0" data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
   </footer>
@@ -376,107 +179,39 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    // ===== بنك الأسئلة =====
+    // بنك الأسئلة (مختصر للتجربة)
     const questionBank = {
       beginner: [
         { q: 'I ___ a student.', options: ['am', 'is', 'are', 'be'], correct: 0 },
         { q: 'She ___ to school every day.', options: ['go', 'goes', 'going', 'went'], correct: 1 },
         { q: '___ you like coffee?', options: ['Does', 'Do', 'Is', 'Are'], correct: 1 },
         { q: 'This is ___ apple.', options: ['a', 'an', 'the', 'no article'], correct: 1 },
-        { q: 'My parents ___ teachers.', options: ['is', 'am', 'are', 'be'], correct: 2 },
-        { q: 'He ___ playing football now.', options: ['is', 'are', 'am', 'be'], correct: 0 },
-        { q: 'I have ___ brother.', options: ['a', 'an', 'the', 'no article'], correct: 0 },
-        { q: 'We ___ to the cinema yesterday.', options: ['go', 'goes', 'went', 'going'], correct: 2 },
-        { q: '___ is your name?', options: ['What', 'Who', 'Where', 'How'], correct: 0 },
-        { q: 'She ___ a new car.', options: ['have', 'has', 'is', 'are'], correct: 1 },
-        { q: 'I ___ born in Cairo.', options: ['was', 'were', 'am', 'is'], correct: 0 },
-        { q: 'They ___ playing outside.', options: ['is', 'are', 'am', 'be'], correct: 1 },
-        { q: '___ you speak English?', options: ['Does', 'Do', 'Is', 'Are'], correct: 1 },
-        { q: 'This book is ___ than that one.', options: ['good', 'better', 'best', 'more good'], correct: 1 },
-        { q: 'I have ___ finished my homework.', options: ['just', 'yet', 'already', 'never'], correct: 2 },
-        { q: 'She ___ to music now.', options: ['listen', 'listens', 'is listening', 'listened'], correct: 2 },
-        { q: 'We ___ go to the party.', options: ['don’t', 'doesn’t', 'isn’t', 'aren’t'], correct: 0 },
-        { q: 'He is ___ than me.', options: ['tall', 'taller', 'tallest', 'more tall'], correct: 1 },
-        { q: '___ you like ice cream?', options: ['Does', 'Do', 'Is', 'Are'], correct: 1 },
-        { q: 'I ___ a doctor in the future.', options: ['want', 'want to be', 'wants', 'wanted'], correct: 1 }
+        { q: 'My parents ___ teachers.', options: ['is', 'am', 'are', 'be'], correct: 2 }
       ],
       intermediate: [
         { q: 'If I ___ you, I would study harder.', options: ['was', 'were', 'am', 'is'], correct: 1 },
         { q: 'She has been working here ___ 2015.', options: ['since', 'for', 'from', 'during'], correct: 0 },
-        { q: 'The book ___ is on the table is mine.', options: ['who', 'which', 'whom', 'whose'], correct: 1 },
-        { q: 'I ___ finished the project yet.', options: ['haven’t', 'hasn’t', 'don’t', 'didn’t'], correct: 0 },
-        { q: 'He told me ___ wait.', options: ['to', 'for', 'on', 'with'], correct: 0 },
-        { q: 'By the time we arrived, the movie ___.', options: ['started', 'had started', 'was starting', 'has started'], correct: 1 },
-        { q: 'She ___ to call you tomorrow.', options: ['is going', 'will', 'goes', 'went'], correct: 1 },
-        { q: 'This is ___ best restaurant in town.', options: ['a', 'an', 'the', 'no article'], correct: 2 },
-        { q: 'I’m not interested ___ politics.', options: ['in', 'on', 'at', 'about'], correct: 0 },
-        { q: 'They ___ married for 10 years.', options: ['have been', 'has been', 'are', 'were'], correct: 0 },
-        { q: '___ you help me with this?', options: ['Could', 'May', 'Must', 'Should'], correct: 0 },
-        { q: 'I wish I ___ speak French.', options: ['can', 'could', 'will', 'may'], correct: 1 },
-        { q: 'She ___ been working all day.', options: ['have', 'has', 'is', 'was'], correct: 1 },
-        { q: 'We went to a restaurant ___ serves seafood.', options: ['who', 'which', 'whom', 'whose'], correct: 1 },
-        { q: 'I ___ really tired today.', options: ['am feeling', 'feel', 'felt', 'have felt'], correct: 1 },
-        { q: 'You ___ wear a uniform at work.', options: ['must', 'can', 'may', 'might'], correct: 0 },
-        { q: 'She told me she ___ come.', options: ['will', 'would', 'can', 'may'], correct: 1 },
-        { q: 'I’ve been here ___ 8 AM.', options: ['since', 'for', 'from', 'during'], correct: 0 },
-        { q: 'The movie was ___ boring.', options: ['so', 'too', 'very', 'enough'], correct: 2 },
-        { q: 'He drives ___ than me.', options: ['more careful', 'more carefully', 'carefuler', 'carefuller'], correct: 1 }
+        { q: 'The book ___ is on the table is mine.', options: ['who', 'which', 'whom', 'whose'], correct: 1 }
       ],
       advanced: [
         { q: 'Had I known, I ___ helped you.', options: ['would have', 'will have', 'would', 'have'], correct: 0 },
-        { q: 'She is the person ___ I admire most.', options: ['who', 'whom', 'which', 'whose'], correct: 1 },
-        { q: 'By next year, I ___ here for 10 years.', options: ['will work', 'will have worked', 'will be working', 'have worked'], correct: 1 },
-        { q: 'He ___ have finished already.', options: ['might', 'may', 'must', 'can'], correct: 2 },
-        { q: 'She has a ___ understanding of the subject.', options: ['deep', 'depth', 'deeply', 'deeper'], correct: 0 },
-        { q: 'I would rather you ___ quiet.', options: ['keep', 'kept', 'have kept', 'will keep'], correct: 1 },
-        { q: 'The issue ___ addressed tomorrow.', options: ['will be', 'is being', 'has been', 'was'], correct: 0 },
-        { q: 'He is known ___ a great teacher.', options: ['as', 'for', 'with', 'by'], correct: 0 },
-        { q: 'She always ___ her promises.', options: ['keep', 'keeps', 'kept', 'has kept'], correct: 1 },
-        { q: 'I’d like to ___ my knowledge.', options: ['expand', 'extend', 'enlarge', 'increase'], correct: 0 },
-        { q: 'The report ___ written by the team.', options: ['is', 'was', 'has', 'have'], correct: 1 },
-        { q: 'He ___ rather than apologize.', options: ['left', 'leaves', 'has left', 'would leave'], correct: 0 },
-        { q: 'I’m used to ___ early.', options: ['wake up', 'waking up', 'woke up', 'waken up'], correct: 1 },
-        { q: 'The project ___ due to lack of funding.', options: ['was postponed', 'postponed', 'has postponed', 'is postponing'], correct: 0 },
-        { q: 'She is the ___ person I know.', options: ['most intelligent', 'more intelligent', 'intelligentest', 'most intelligenter'], correct: 0 },
-        { q: '___ the weather, we will go.', options: ['Regardless of', 'Despite of', 'In spite', 'Regardless'], correct: 0 },
-        { q: 'I wish I ___ more time.', options: ['had', 'have', 'would have', 'will have'], correct: 0 },
-        { q: 'The film was ___ for an Oscar.', options: ['nominated', 'named', 'selected', 'chosen'], correct: 0 },
-        { q: 'He ___ be at the office by now.', options: ['must', 'can', 'may', 'might'], correct: 0 },
-        { q: 'This is the ___ beautiful view I’ve ever seen.', options: ['most', 'more', 'much', 'many'], correct: 0 }
+        { q: 'She is the person ___ I admire most.', options: ['who', 'whom', 'which', 'whose'], correct: 1 }
       ]
     };
 
-    // ===== متغيرات الاختبار =====
-    let currentQuestions = [];
-    let currentIndex = 0;
-    let score = 0;
-    let selectedAnswers = [];
-    let timerInterval = null;
-    let timeLeft = 900; // 15 دقيقة
-    let testLevel = '';
+    let currentQuestions = [], currentIndex = 0, score = 0, selectedAnswers = [];
     let isTestStarted = false;
 
-    // ===== بدء الاختبار =====
     function startTest(level) {
-      testLevel = level;
       currentQuestions = shuffleArray([...questionBank[level]]);
-      currentIndex = 0;
-      score = 0;
-      timeLeft = 900;
-      selectedAnswers = new Array(currentQuestions.length).fill(null);
-
+      currentIndex = 0; score = 0; selectedAnswers = new Array(currentQuestions.length).fill(null);
       document.getElementById('levelSelector').style.display = 'none';
       document.getElementById('testArea').style.display = 'block';
       document.getElementById('resultArea').style.display = 'none';
-      document.getElementById('submitBtn').style.display = 'none';
-      document.getElementById('totalQuestions').textContent = currentQuestions.length;
       isTestStarted = true;
-
       renderQuestion();
-      startTimer();
     }
 
-    // ===== خلط الأسئلة =====
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -485,88 +220,46 @@
       return array;
     }
 
-    // ===== عرض السؤال =====
     function renderQuestion() {
+      if (!isTestStarted) return;
       const q = currentQuestions[currentIndex];
       document.getElementById('currentQuestionNum').textContent = currentIndex + 1;
-      document.getElementById('qNumber').textContent = `السؤال ${currentIndex + 1} من ${currentQuestions.length}`;
+      document.getElementById('totalQuestions').textContent = currentQuestions.length;
       document.getElementById('qText').textContent = q.q;
-      document.getElementById('scoreDisplay').textContent = score;
-      document.getElementById('progressBar').style.width = `${((currentIndex + 1) / currentQuestions.length) * 100}%`;
-
-      const optionsContainer = document.getElementById('optionsContainer');
-      optionsContainer.innerHTML = '';
-      const labels = ['أ', 'ب', 'ج', 'د'];
-
+      
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
       q.options.forEach((opt, idx) => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
+        btn.textContent = opt;
         if (selectedAnswers[currentIndex] === idx) btn.classList.add('selected');
-        btn.innerHTML = `<span class="option-label">${labels[idx]}</span> ${opt}`;
         btn.onclick = () => selectOption(idx);
-        optionsContainer.appendChild(btn);
+        container.appendChild(btn);
       });
 
       document.getElementById('prevBtn').disabled = currentIndex === 0;
       document.getElementById('nextBtn').textContent = currentIndex === currentQuestions.length - 1 ? 'نتيجة' : 'التالي';
-      
-      // إظهار زر الإنهاء في آخر سؤال
-      if (currentIndex === currentQuestions.length - 1) {
-        document.getElementById('submitBtn').style.display = 'block';
-      } else {
-        document.getElementById('submitBtn').style.display = 'none';
-      }
+      document.getElementById('submitBtn').style.display = currentIndex === currentQuestions.length - 1 ? 'block' : 'none';
     }
 
-    // ===== اختيار الإجابة =====
     function selectOption(index) {
       if (!isTestStarted) return;
-      
-      // إذا كان السؤال محدد بالفعل، نسمح بتغيير الإجابة
       const options = document.querySelectorAll('.option-btn');
       options.forEach(btn => btn.classList.remove('selected'));
       options[index].classList.add('selected');
-      
-      // حفظ الإجابة المختارة
-      if (selectedAnswers[currentIndex] !== null && selectedAnswers[currentIndex] !== index) {
-        // تغيير الإجابة (نحتاج لإعادة حساب النتيجة)
-        // سنقوم بحساب النتيجة عند الإنهاء
-      }
       selectedAnswers[currentIndex] = index;
-      
-      // تحديث النتيجة المبدئية (للإحساس بالتقدم)
-      // يتم حساب النتيجة الكاملة عند الإنهاء
-      updatePreliminaryScore();
     }
 
-    // ===== تحديث النتيجة المبدئية =====
-    function updatePreliminaryScore() {
-      let tempScore = 0;
-      selectedAnswers.forEach((ans, idx) => {
-        if (ans !== null && ans === currentQuestions[idx].correct) {
-          tempScore++;
-        }
-      });
-      score = tempScore;
-      document.getElementById('scoreDisplay').textContent = score;
-    }
-
-    // ===== السؤال التالي =====
     function nextQuestion() {
       if (currentIndex < currentQuestions.length - 1) {
         currentIndex++;
         renderQuestion();
       } else {
-        // الوصول لآخر سؤال، نعرض زر الإنهاء
-        if (selectedAnswers[currentIndex] !== null) {
-          submitTest();
-        } else {
-          alert('⚠️ يرجى الإجابة على السؤال الأخير قبل الإنهاء.');
-        }
+        submitTest();
       }
     }
 
-    // ===== السؤال السابق =====
     function prevQuestion() {
       if (currentIndex > 0) {
         currentIndex--;
@@ -574,100 +267,26 @@
       }
     }
 
-    // ===== المؤقت =====
-    function startTimer() {
-      clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        const mins = Math.floor(timeLeft / 60);
-        const secs = timeLeft % 60;
-        document.getElementById('timerDisplay').textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-        
-        if (timeLeft < 60) {
-          document.getElementById('timerBox').classList.add('warning');
-        }
-        
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          alert('⏰ انتهى الوقت! سيتم إرسال الاختبار تلقائياً.');
-          submitTest();
-        }
-      }, 1000);
-    }
-
-    // ===== إنهاء الاختبار =====
     function submitTest() {
       if (!isTestStarted) return;
-      
-      // التأكد من الإجابة على جميع الأسئلة
-      const unanswered = selectedAnswers.some(ans => ans === null);
-      if (unanswered) {
-        const confirmSubmit = confirm('⚠️ هناك أسئلة لم تجب عليها. هل تريد إنهاء الاختبار؟');
-        if (!confirmSubmit) return;
-      }
-
-      clearInterval(timerInterval);
-      isTestStarted = false;
-
-      // حساب النتيجة النهائية
       let finalScore = 0;
       selectedAnswers.forEach((ans, idx) => {
-        if (ans !== null && ans === currentQuestions[idx].correct) {
-          finalScore++;
-        }
+        if (ans !== null && ans === currentQuestions[idx].correct) finalScore++;
       });
-
-      const total = currentQuestions.length;
-      const percentage = Math.round((finalScore / total) * 100);
-      document.getElementById('finalScore').textContent = `${percentage}%`;
-      
-      let message = '';
-      let level = '';
-      if (percentage >= 80) {
-        message = '🏆 ممتاز! مستواك متقدم جداً. أنت جاهز للدورات المتقدمة.';
-        level = 'متقدم (Advanced)';
-      } else if (percentage >= 60) {
-        message = '👍 جيد جداً! مستواك متوسط. أنت جاهز للدورات المتوسطة.';
-        level = 'متوسط (Intermediate)';
-      } else if (percentage >= 40) {
-        message = '📖 جيد! مستواك مبتدئ. أنت بحاجة إلى دورات تأسيسية.';
-        level = 'مبتدئ (Beginner)';
-      } else {
-        message = '💪 لا تستسلم! مستواك في البداية. ننصحك بالدورات التأسيسية.';
-        level = 'مبتدئ (Beginner)';
-      }
-
-      document.getElementById('finalMessage').textContent = message;
-      document.getElementById('suggestedLevel').textContent = level;
-
+      const percentage = Math.round((finalScore / currentQuestions.length) * 100);
+      document.getElementById('finalScore').textContent = percentage + '%';
+      document.getElementById('finalMessage').textContent = percentage >= 60 ? '👍 ممتاز! أنت جاهز للمستوى التالي.' : '💪 لا تستسلم! تدرب أكثر.';
       document.getElementById('testArea').style.display = 'none';
       document.getElementById('resultArea').style.display = 'block';
-      document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
+      isTestStarted = false;
     }
 
-    // ===== إعادة الاختبار =====
     function resetTest() {
-      clearInterval(timerInterval);
       isTestStarted = false;
       document.getElementById('resultArea').style.display = 'none';
       document.getElementById('testArea').style.display = 'none';
       document.getElementById('levelSelector').style.display = 'block';
-      document.getElementById('timerBox').classList.remove('warning');
-      document.getElementById('timerDisplay').textContent = '15:00';
     }
-
-    // ===== التحقق من وجود إجابة عند النقر على Next =====
-    document.addEventListener('DOMContentLoaded', function() {
-      // مفتاح Enter للتنقل السريع
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && isTestStarted) {
-          const nextBtn = document.getElementById('nextBtn');
-          if (!nextBtn.disabled) {
-            nextBtn.click();
-          }
-        }
-      });
-    });
   </script>
 </body>
 </html>

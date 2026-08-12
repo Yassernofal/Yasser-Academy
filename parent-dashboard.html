@@ -52,7 +52,6 @@
       padding: 35px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.08);
     }
-
     .student-card {
       background: #f8f9fa;
       border-radius: 16px;
@@ -60,8 +59,6 @@
       margin-bottom: 20px;
       border-right: 4px solid #0a1f44;
     }
-    .student-card h5 { color: #0a1f44; font-weight: 700; }
-
     .stat-box {
       background: #e8f4fd;
       border-radius: 12px;
@@ -71,33 +68,6 @@
     }
     .stat-box .number { font-size: 2rem; font-weight: 800; color: #0a1f44; }
     .stat-box .label { font-size: 0.9rem; color: #555; }
-
-    .payment-history {
-      background: #fff8e1;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 15px;
-    }
-    .payment-history .paid { color: #28a745; font-weight: 700; }
-    .payment-history .pending { color: #dc3545; font-weight: 700; }
-
-    .btn-whatsapp {
-      background: #25d366;
-      color: #fff;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 50px;
-      font-weight: 700;
-      transition: 0.3s;
-    }
-    .btn-whatsapp:hover { background: #128C7E; color: #fff; }
-
-    .loading-spinner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 300px;
-    }
 
     footer {
       background: #0a1f44;
@@ -115,7 +85,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" />
+        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -128,9 +98,10 @@
           <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 الحجز</a></li>
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link active" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
-          <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a></li>
-          <!-- ===== زر اللغة ===== -->
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 لوحة الطالب</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ المدير</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">🌟 من نحن</a></li>
+          <li class="nav-item" id="logoutLink"><a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 تسجيل الخروج</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -147,149 +118,29 @@
   <section class="container">
     <div class="dashboard-container">
       <h2 class="fw-bold text-center mb-4" data-i18n="parent_title"><i class="fas fa-user-friends text-primary"></i> لوحة ولي الأمر</h2>
-      
-      <div id="authStatus" class="text-center mb-4"></div>
-      <div id="studentsData" style="display: none;"><div id="studentsList"></div></div>
-      <div id="noStudents" style="display: none;" class="text-center text-muted py-5">
-        <i class="fas fa-user-graduate fa-4x mb-3 d-block"></i>
-        <p data-i18n="parent_no_students">لا يوجد طلاب مسجلون بهذا الحساب</p>
-      </div>
-      <div id="loadingScreen" class="loading-spinner">
-        <div class="text-center">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden" data-i18n="parent_loading">جاري التحميل...</span>
-          </div>
-          <p class="mt-2" data-i18n="parent_loading_text">جاري تحميل بيانات الطلاب...</p>
+      <p class="text-center text-muted" data-i18n="parent_welcome">مرحباً، ولي الأمر</p>
+
+      <div class="student-card">
+        <h5><i class="fas fa-user-graduate text-primary"></i> أحمد محمد</h5>
+        <p>الصف: <strong>أولى ثانوي</strong></p>
+        <div class="row g-3 mt-2">
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">96%</div><div class="label" data-i18n="parent_attendance_label">📅 نسبة الحضور</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">88%</div><div class="label" data-i18n="parent_avg_label">📊 متوسط الدرجات</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">6</div><div class="label" data-i18n="parent_tests_label">📝 اختبار مكتمل</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">2</div><div class="label" data-i18n="parent_books_label">📚 ملازم تم شراؤها</div></div></div>
         </div>
       </div>
+
+      <button class="btn btn-warning w-100 mt-3" onclick="window.location.href='booking.html'"><i class="fas fa-plus"></i> حجز كورس جديد</button>
     </div>
   </section>
 
-  <!-- ===== الفوتر ===== -->
+  <!-- ===== الفوتير ===== -->
   <footer>
     <div class="container"><p class="mb-0" data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
   </footer>
 
-  <!-- ===== Firebase ===== -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    const loadingScreen = document.getElementById('loadingScreen');
-    const studentsDataDiv = document.getElementById('studentsData');
-    const studentsList = document.getElementById('studentsList');
-    const noStudentsDiv = document.getElementById('noStudents');
-    const authStatus = document.getElementById('authStatus');
-
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        authStatus.innerHTML = `<div class="alert alert-success"><i class="fas fa-check-circle"></i> <span data-i18n="parent_welcome">مرحباً!</span> <strong>${user.email}</strong></div>`;
-        await loadStudents(user.email);
-      } else {
-        authStatus.innerHTML = `<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> <span data-i18n="parent_login_required">يرجى <a href="login.html" class="alert-link">تسجيل الدخول</a> لعرض بيانات أبنائك.</span></div>`;
-        loadingScreen.style.display = 'none';
-        studentsDataDiv.style.display = 'none';
-        noStudentsDiv.style.display = 'none';
-      }
-    });
-
-    async function loadStudents(parentEmail) {
-      loadingScreen.style.display = 'flex';
-      studentsDataDiv.style.display = 'none';
-      noStudentsDiv.style.display = 'none';
-
-      try {
-        const querySnapshot = await db.collection('students').where('parentEmail', '==', parentEmail).get();
-        if (querySnapshot.empty) {
-          loadingScreen.style.display = 'none';
-          noStudentsDiv.style.display = 'block';
-          return;
-        }
-
-        studentsList.innerHTML = '';
-        querySnapshot.forEach((doc) => {
-          const student = doc.data();
-          studentsList.innerHTML += createStudentCard(student);
-        });
-
-        loadingScreen.style.display = 'none';
-        studentsDataDiv.style.display = 'block';
-      } catch (error) {
-        console.error('خطأ في جلب البيانات:', error);
-        loadingScreen.style.display = 'none';
-        authStatus.innerHTML = `<div class="alert alert-danger"><i class="fas fa-times-circle"></i> حدث خطأ في تحميل البيانات: ${error.message}</div>`;
-      }
-    }
-
-    function createStudentCard(student) {
-      let totalPaid = 0;
-      let paymentRows = '';
-      if (student.payments && student.payments.length > 0) {
-        student.payments.forEach(p => {
-          const statusClass = p.status === 'paid' ? 'paid' : 'pending';
-          const statusText = p.status === 'paid' ? '✅ مدفوع' : '⏳ معلق';
-          const amount = parseInt(p.amount) || 0;
-          if (p.status === 'paid') totalPaid += amount;
-          paymentRows += `<tr><td>${p.date || '--'}</td><td>${p.desc || '--'}</td><td>${p.amount || '0'} ج.م</td><td><span class="${statusClass}">${statusText}</span></td></tr>`;
-        });
-      } else {
-        paymentRows = `<tr><td colspan="4" class="text-center" data-i18n="parent_no_payments">لا يوجد مدفوعات مسجلة</td></tr>`;
-      }
-
-      return `
-        <div class="student-card">
-          <div class="row align-items-center">
-            <div class="col-md-8">
-              <h5><i class="fas fa-user-graduate text-primary"></i> ${student.name || 'غير محدد'}</h5>
-              <p class="mb-1"><i class="fas fa-graduation-cap text-primary"></i> <span data-i18n="parent_grade_label">الصف:</span> <strong>${student.grade || 'غير محدد'}</strong></p>
-              <p class="mb-1"><i class="fas fa-phone text-success"></i> <span data-i18n="parent_phone_label">ولي الأمر:</span> <strong>${student.parentPhone || 'غير محدد'}</strong></p>
-              <p><i class="fas fa-envelope text-info"></i> <span data-i18n="parent_email_label">البريد:</span> <strong>${student.parentEmail || 'غير محدد'}</strong></p>
-            </div>
-            <div class="col-md-4 text-md-start text-center">
-              <span class="badge bg-success fs-6 p-2" data-i18n="parent_active">✅ نشط</span>
-              ${student.parentPhone ? `<button class="btn btn-whatsapp mt-2 d-block" onclick="contactParent('${student.parentPhone}', '${student.name}')"><i class="fab fa-whatsapp"></i> <span data-i18n="parent_contact_btn">تواصل مع ولي الأمر</span></button>` : ''}
-            </div>
-          </div>
-        </div>
-
-        <div class="row g-3 mb-4">
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.attendance || '0%'}</div><div class="label" data-i18n="parent_attendance_label">📅 نسبة الحضور</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.average || '0%'}</div><div class="label" data-i18n="parent_avg_label">📊 متوسط الدرجات</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.tests || 0}</div><div class="label" data-i18n="parent_tests_label">📝 اختبار مكتمل</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.books || 0}</div><div class="label" data-i18n="parent_books_label">📚 ملازم تم شراؤها</div></div></div>
-        </div>
-
-        <div class="payment-history">
-          <h6><i class="fas fa-credit-card text-primary"></i> <span data-i18n="parent_payments_title">سجل المدفوعات</span> (<span data-i18n="parent_total_paid">إجمالي المدفوع</span>: <strong>${totalPaid} ج.م</strong>)</h6>
-          <div class="table-responsive">
-            <table class="table table-sm">
-              <thead><tr><th data-i18n="parent_payment_date">التاريخ</th><th data-i18n="parent_payment_desc">البيان</th><th data-i18n="parent_payment_amount">المبلغ</th><th data-i18n="parent_payment_status">الحالة</th></tr></thead>
-              <tbody>${paymentRows}</tbody>
-            </table>
-          </div>
-        </div>
-        <hr />
-      `;
-    }
-
-    function contactParent(phone, studentName) {
-      if (!phone) return;
-      window.open(`https://wa.me/2${phone}?text=مرحباً%20ولي%20أمر%20الطالب%20${studentName}%20،%20هذه%20رسالة%20من%20أكاديمية%20مستر%20ياسر%20نوفل`, '_blank');
-    }
-  </script>
 </body>
 </html>
