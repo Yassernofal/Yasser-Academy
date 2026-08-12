@@ -26,12 +26,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   
   <style>
-    /* ===== الأساسيات ===== */
+    /* ===== جميع الـ Styles (نفس اللي قبل كده) ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
-    /* ===== شريط التنقل ===== */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
       backdrop-filter: blur(18px);
@@ -125,7 +124,6 @@
     }
     html { scroll-behavior: smooth; }
 
-    /* ===== الشريط المتحرك ===== */
     .top-bar {
       background: #f7e05e;
       padding: 10px 0;
@@ -136,7 +134,6 @@
       text-align: center;
     }
 
-    /* ===== الهيدر ===== */
     .hero {
       background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 50%, #2e6ab0 100%);
       padding: 80px 0 70px;
@@ -218,13 +215,11 @@
       .text-content .brand-header .profile-img { width: 60px; height: 60px; }
     }
 
-    /* ===== المميزات ===== */
     .feature-box { background: #fff; border-radius: 24px; padding: 35px 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.06); text-align: center; height: 100%; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border-bottom: 4px solid #1a3a6b; cursor: default; }
     .feature-box:hover { transform: translateY(-8px); border-color: #f7e05e; box-shadow: 0 12px 40px rgba(247, 224, 94, 0.15); }
     .feature-box i { font-size: 3rem; color: #f7b731; margin-bottom: 15px; }
     .feature-box h5 { font-family: 'Cinzel', serif; color: #0a1f44; }
 
-    /* ===== الإحصائيات ===== */
     .stats-section { background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 100%); border-radius: 60px 60px 0 0; padding: 60px 0 50px; margin-top: 40px; position: relative; overflow: hidden; }
     .stats-section::before { content: ''; position: absolute; top: -50%; right: -20%; width: 300px; height: 300px; background: rgba(247, 224, 94, 0.05); border-radius: 50%; }
     .stats-section::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 200px; height: 200px; background: rgba(247, 224, 94, 0.04); border-radius: 50%; }
@@ -236,7 +231,6 @@
     .stat-plus { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #f7e05e; margin-top: 2px; }
     @media (max-width: 768px) { .stat-number { font-size: 2.2rem; } .stat-card { padding: 20px 10px; min-height: 160px; } .stat-icon { font-size: 2rem; } }
 
-    /* ===== شهادات الطلاب ===== */
     .testimonials-section { background: #f0f4fa; padding: 60px 0; }
     .testimonial-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 28px; padding: 30px 20px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); height: 100%; cursor: default; }
     .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(247, 224, 94, 0.12); }
@@ -248,20 +242,17 @@
     .carousel-control-prev-icon, .carousel-control-next-icon { background-color: #0a1f44; border-radius: 50%; padding: 20px; }
     @media (max-width: 768px) { .testimonial-card { padding: 20px 15px; } .testimonial-card img { width: 60px; height: 60px; } }
 
-    /* ===== المستويات ===== */
     .level-card { background: #fff; border-radius: 20px; padding: 25px 15px; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.05); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border-bottom: 4px solid #1a3a6b; cursor: pointer; }
     .level-card:hover { transform: translateY(-6px); border-color: #f7e05e; box-shadow: 0 12px 35px rgba(247, 224, 94, 0.15); }
     .level-card:active { transform: scale(0.97); }
     .level-card i { font-size: 2.5rem; color: #f7b731; margin-bottom: 10px; }
     .level-card h6 { font-family: 'Cinzel', serif; color: #0a1f44; }
 
-    /* ===== التواصل ===== */
     .contact-box { background: #fff; border-radius: 24px; padding: 30px; box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
     .btn-whatsapp { background: #25d366; color: #fff; border-radius: 50px; padding: 12px 35px; font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border: none; text-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer; }
     .btn-whatsapp:hover { background: #128c7e; color: #fff; transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3); }
     .btn-whatsapp:active { transform: scale(0.97); }
 
-    /* ===== الفوتير ===== */
     .footer { background: #0a1f44; color: #b0c4de; padding: 50px 0 20px; border-radius: 50px 50px 0 0; margin-top: 40px; position: relative; overflow: hidden; }
     .footer::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(247, 224, 94, 0.03), transparent, rgba(247, 224, 94, 0.03), transparent); animation: spinGradient 10s linear infinite; }
     @keyframes spinGradient { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -274,7 +265,6 @@
     .footer-links a:hover { color: #f7e05e; transform: translateX(-5px); }
     .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 20px; margin-top: 30px; text-align: center; font-size: 0.9rem; }
 
-    /* ===== مساعد الذكاء الاصطناعي ===== */
     .ai-assistant-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; border: none; box-shadow: 0 8px 30px rgba(10, 31, 68, 0.4); font-size: 2rem; cursor: pointer; z-index: 1050; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
     .ai-assistant-btn:hover { transform: scale(1.1) rotate(-5deg); box-shadow: 0 12px 40px rgba(10, 31, 68, 0.5); }
     .ai-assistant-btn:active { transform: scale(0.95); }
@@ -295,7 +285,7 @@
 
     .hidden-role { display: none !important; }
     
-    /* ===== قسم الروابط الإضافية (About, Privacy, Terms) ===== */
+    /* ===== قسم الروابط الإضافية ===== */
     .extra-links {
       background: #f8f9fa;
       padding: 10px 0;
@@ -347,9 +337,12 @@
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games"><i class="fas fa-gamepad"></i> <span data-i18n="nav_games">الألعاب</span><span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests"><i class="fas fa-pencil-alt"></i> <span data-i18n="nav_tests">اختبارات</span><span class="nav-indicator"></span></a></li>
           
-          <!-- ===== تسجيل الدخول ===== -->
-          <li class="nav-item" id="loginRegisterLinks">
+          <!-- ===== تسجيل الدخول والتسجيل ===== -->
+          <li class="nav-item" id="loginLink">
             <a class="nav-link" href="login.html" data-i18n="nav_login"><i class="fas fa-sign-in-alt"></i> <span data-i18n="nav_login">تسجيل الدخول</span><span class="nav-indicator"></span></a>
+          </li>
+          <li class="nav-item" id="registerLink">
+            <a class="nav-link" href="register.html" data-i18n="nav_register"><i class="fas fa-user-plus"></i> <span data-i18n="nav_register">التسجيل</span><span class="nav-indicator"></span></a>
           </li>
           
           <!-- ===== روابط الأدوار (مخفية افتراضياً) ===== -->
@@ -757,17 +750,22 @@
     function checkUserRole() {
       const user = JSON.parse(localStorage.getItem('user'));
       
-      document.getElementById('loginRegisterLinks').style.display = 'none';
+      // إخفاء الكل أولاً
+      document.getElementById('loginLink').style.display = 'none';
+      document.getElementById('registerLink').style.display = 'none';
       document.getElementById('studentDashboardLink').style.display = 'none';
       document.getElementById('parentDashboardLink').style.display = 'none';
       document.getElementById('adminDashboardLink').style.display = 'none';
       document.getElementById('logoutLink').style.display = 'none';
 
       if (!user) {
-        document.getElementById('loginRegisterLinks').style.display = 'block';
+        // لو مش مسجل دخول، يظهر له تسجيل الدخول والتسجيل
+        document.getElementById('loginLink').style.display = 'block';
+        document.getElementById('registerLink').style.display = 'block';
         return;
       }
 
+      // لو مسجل دخول، يظهر له زر تسجيل الخروج
       document.getElementById('logoutLink').style.display = 'block';
 
       const role = user.role || 'student';
