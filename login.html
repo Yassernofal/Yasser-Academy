@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="login_page_title">تسجيل الدخول – Mr. Yasser Nofal Academy</title>
   
-  <!-- ===== Google Analytics ===== -->
+  <meta name="description" content="تسجيل الدخول إلى حسابك في أكاديمية مستر ياسر نوفل." />
+  <meta name="keywords" content="تسجيل الدخول, أكاديمية مستر ياسر نوفل" />
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/login.html" />
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -40,9 +43,101 @@
       letter-spacing: 1px;
     }
     .navbar-brand .brand-name span { color: #ffb347; }
-    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
-    .nav-link:hover { color: #f7e05e !important; }
-    .nav-link.active { color: #f7e05e !important; }
+    .navbar-nav .nav-item { margin: 0 2px; position: relative; }
+    .navbar-nav .nav-link {
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-family: 'El Messiri', serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      white-space: nowrap;
+    }
+    .navbar-nav .nav-link i { font-size: 0.85rem; color: #f7e05e; transition: 0.3s; }
+    .navbar-nav .nav-link:hover {
+      color: #fff !important;
+      background: rgba(247, 224, 94, 0.10);
+      transform: translateY(-2px);
+    }
+    .navbar-nav .nav-link.active { color: #f7e05e !important; background: rgba(247, 224, 94, 0.12); }
+    .nav-indicator {
+      position: absolute;
+      bottom: 2px;
+      right: 50%;
+      width: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, #f7e05e, #f7b731);
+      border-radius: 4px;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateX(50%);
+    }
+    .nav-link:hover .nav-indicator,
+    .nav-link.active .nav-indicator { width: 60%; }
+    .navbar-toggler {
+      border: none;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+    .navbar-toggler:hover { background: rgba(255, 255, 255, 0.10) !important; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+    @media (max-width: 1199.98px) {
+      .navbar-nav .nav-link { font-size: 0.85rem; padding: 6px 10px; }
+    }
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        background: rgba(10, 31, 68, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 20px 15px;
+        margin-top: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        animation: slideDown 0.3s ease forwards;
+      }
+      .navbar-nav .nav-item { margin: 2px 0; }
+      .navbar-nav .nav-link { padding: 12px 18px; border-radius: 12px; font-size: 1.05rem; white-space: normal; }
+      .navbar-nav .nav-link i { width: 24px; text-align: center; }
+      .nav-indicator { display: none; }
+      .navbar-nav .nav-link.active { background: rgba(247, 224, 94, 0.12); }
+    }
+    @keyframes slideDown {
+      0% { opacity: 0; transform: translateY(-15px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    html { scroll-behavior: smooth; }
+
+    .extra-links {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      text-align: center;
+    }
+    .extra-links a {
+      color: #0a1f44;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .extra-links a:hover {
+      color: #f7b731;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
+    }
 
     .login-container {
       max-width: 450px;
@@ -64,19 +159,65 @@
     }
     .btn-login:hover { background: #f7b731; transform: scale(1.02); }
 
-    footer {
+    .footer {
       background: #0a1f44;
       color: #b0c4de;
-      padding: 35px 0;
-      border-radius: 40px 40px 0 0;
-      margin-top: 50px;
+      padding: 50px 0 20px;
+      border-radius: 50px 50px 0 0;
+      margin-top: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(247, 224, 94, 0.03), transparent, rgba(247, 224, 94, 0.03), transparent);
+      animation: spinGradient 10s linear infinite;
+    }
+    @keyframes spinGradient {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .footer h5 { font-family: 'Cinzel', serif; color: #f7e05e; margin-bottom: 15px; }
+    .footer .social-icons a {
+      display: inline-block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #f7e05e;
       text-align: center;
+      line-height: 45px;
+      font-size: 1.2rem;
+      margin-right: 8px;
+      transition: 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .footer .social-icons a:hover {
+      background: #f7e05e;
+      color: #0a1f44;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(247, 224, 94, 0.2);
+    }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 8px; }
+    .footer-links a { color: #b0c4de; text-decoration: none; transition: 0.3s; display: inline-block; }
+    .footer-links a:hover { color: #f7e05e; transform: translateX(-5px); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 20px;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== شريط التنقل ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
@@ -88,17 +229,30 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">🏠 الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels">📚 المستويات</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 الحجز</a></li>
-          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
-          <li class="nav-item"><a class="nav-link active" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
-          <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">🌟 من نحن</a></li>
-          <li class="nav-item" id="studentDashboardLink" style="display:none;"><a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 لوحة الطالب</a></li>
-          <li class="nav-item" id="parentDashboardLink" style="display:none;"><a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a></li>
-          <li class="nav-item" id="adminDashboardLink" style="display:none;"><a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ المدير</a></li>
-          <li class="nav-item" id="logoutLink" style="display:none;"><a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 تسجيل الخروج</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home"><i class="fas fa-home"></i> <span data-i18n="nav_home">الرئيسية</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels"><i class="fas fa-layer-group"></i> <span data-i18n="nav_levels">المستويات</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking"><i class="fas fa-pencil-alt"></i> <span data-i18n="nav_booking">الحجز</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games"><i class="fas fa-gamepad"></i> <span data-i18n="nav_games">الألعاب</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests"><i class="fas fa-pencil-alt"></i> <span data-i18n="nav_tests">اختبارات</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about"><i class="fas fa-star"></i> <span data-i18n="nav_about">من نحن</span><span class="nav-indicator"></span></a></li>
+          
+          <li class="nav-item"><a class="nav-link active" href="login.html" data-i18n="nav_login"><i class="fas fa-sign-in-alt"></i> <span data-i18n="nav_login">تسجيل الدخول</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register"><i class="fas fa-user-plus"></i> <span data-i18n="nav_register">التسجيل</span><span class="nav-indicator"></span></a></li>
+          
+          <li class="nav-item" id="studentDashboardLink" style="display:none;">
+            <a class="nav-link" href="student-dashboard.html" data-i18n="nav_student"><i class="fas fa-user-graduate"></i> <span data-i18n="nav_student">لوحة الطالب</span><span class="nav-indicator"></span></a>
+          </li>
+          <li class="nav-item" id="parentDashboardLink" style="display:none;">
+            <a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent"><i class="fas fa-users"></i> <span data-i18n="nav_parent">ولي الأمر</span><span class="nav-indicator"></span></a>
+          </li>
+          <li class="nav-item" id="adminDashboardLink" style="display:none;">
+            <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin"><i class="fas fa-user-cog"></i> <span data-i18n="nav_admin">المدير</span><span class="nav-indicator"></span></a>
+          </li>
+
+          <li class="nav-item" id="logoutLink" style="display:none;">
+            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout"><i class="fas fa-sign-out-alt"></i> <span data-i18n="nav_logout">تسجيل الخروج</span><span class="nav-indicator"></span></a>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -111,11 +265,18 @@
     </div>
   </nav>
 
-  <!-- ===== محتوى تسجيل الدخول ===== -->
+  <div class="extra-links">
+    <div class="container">
+      <a href="about.html" data-i18n="nav_about">🌟 من نحن</a>
+      <a href="privacy-policy.html" data-i18n="nav_privacy">🔒 سياسة الخصوصية</a>
+      <a href="terms.html" data-i18n="nav_terms">📜 شروط الاستخدام</a>
+    </div>
+  </div>
+
   <section class="container">
     <div class="login-container">
       <h2 class="text-center fw-bold mb-4" data-i18n="login_title">تسجيل الدخول</h2>
-      <form id="loginForm" onsubmit="handleLogin(event)">
+      <form id="loginForm">
         <div class="mb-3">
           <label class="form-label" data-i18n="login_email">البريد الإلكتروني</label>
           <input type="email" class="form-control" id="loginEmail" required />
@@ -124,48 +285,92 @@
           <label class="form-label" data-i18n="login_password">كلمة المرور</label>
           <input type="password" class="form-control" id="loginPassword" required />
         </div>
-        <div class="mb-3">
-          <label class="form-label" data-i18n="login_role">الدور</label>
-          <select class="form-select" id="loginRole">
-            <option value="student" data-i18n="login_role_student">طالب</option>
-            <option value="parent" data-i18n="login_role_parent">ولي أمر</option>
-            <option value="admin" data-i18n="login_role_admin">مدير</option>
-          </select>
-        </div>
         <button type="submit" class="btn-login" data-i18n="login_btn"><i class="fas fa-sign-in-alt"></i> دخول</button>
-        <p class="text-center mt-3"><a href="register.html" data-i18n="login_register_link">ليس لديك حساب؟ سجل الآن</a></p>
+        <p class="text-center mt-3">
+          <a href="register.html" data-i18n="login_register_link">ليس لديك حساب؟ سجل الآن</a>
+        </p>
       </form>
     </div>
   </section>
 
-  <!-- ===== الفوتير ===== -->
-  <footer>
-    <div class="container"><p class="mb-0" data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p></div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
+          <p data-i18n="footer_about_desc">تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5 data-i18n="footer_links_title">روابط سريعة</h5>
+          <ul class="footer-links">
+            <li><a href="levels.html" data-i18n="footer_link_levels">المستويات</a></li>
+            <li><a href="booking.html" data-i18n="footer_link_booking">الحجز</a></li>
+            <li><a href="about.html" data-i18n="footer_link_about">من نحن</a></li>
+            <li><a href="privacy-policy.html" data-i18n="footer_link_privacy">سياسة الخصوصية</a></li>
+            <li><a href="terms.html" data-i18n="footer_link_terms">الشروط والأحكام</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 data-i18n="footer_contact_title">تواصل</h5>
+          <p><i class="fas fa-phone"></i> 01203145717</p>
+          <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp"></i> 01001297414</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
+      </div>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    function handleLogin(e) {
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const email = document.getElementById('loginEmail').value;
       const password = document.getElementById('loginPassword').value;
-      const role = document.getElementById('loginRole').value;
       
-      if (!email || !password) {
-        alert('❌ يرجى ملء جميع الحقول');
-        return;
+      // تجربة تسجيل دخول بسيطة (للتجربة)
+      if (email === 'student@test.com' && password === '123456') {
+        localStorage.setItem('user', JSON.stringify({ email: email, role: 'student' }));
+        window.location.href = 'student-dashboard.html';
+      } else if (email === 'parent@test.com' && password === '123456') {
+        localStorage.setItem('user', JSON.stringify({ email: email, role: 'parent' }));
+        window.location.href = 'parent-dashboard.html';
+      } else if (email === 'admin@test.com' && password === '123456') {
+        localStorage.setItem('user', JSON.stringify({ email: email, role: 'admin' }));
+        window.location.href = 'admin-dashboard.html';
+      } else {
+        alert('❌ البريد الإلكتروني أو كلمة المرور غير صحيحة.\n\n✅ حسابات تجريبية:\nstudent@test.com / 123456\nparent@test.com / 123456\nadmin@test.com / 123456');
       }
+    });
+
+    function checkUserRole() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      document.getElementById('studentDashboardLink').style.display = 'none';
+      document.getElementById('parentDashboardLink').style.display = 'none';
+      document.getElementById('adminDashboardLink').style.display = 'none';
+      document.getElementById('logoutLink').style.display = 'none';
       
-      // محاكاة تسجيل الدخول (في الواقع هنربط بـ Firebase)
-      const user = { email, role, name: email.split('@')[0] };
-      localStorage.setItem('user', JSON.stringify(user));
+      if (!user) return;
       
-      // توجيه حسب الدور
-      if (role === 'student') window.location.href = 'student-dashboard.html';
-      else if (role === 'parent') window.location.href = 'parent-dashboard.html';
-      else if (role === 'admin') window.location.href = 'admin-dashboard.html';
+      document.getElementById('logoutLink').style.display = 'block';
+      const role = user.role || 'student';
+      if (role === 'student') document.getElementById('studentDashboardLink').style.display = 'block';
+      else if (role === 'parent') document.getElementById('parentDashboardLink').style.display = 'block';
+      else if (role === 'admin') document.getElementById('adminDashboardLink').style.display = 'block';
     }
+
+    function logoutUser() { localStorage.removeItem('user'); window.location.href = 'login.html'; }
+    document.addEventListener('DOMContentLoaded', checkUserRole);
   </script>
 </body>
 </html>
