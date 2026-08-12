@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="booking_page_title">حجز كورس – Mr. Yasser Nofal Academy</title>
   
-  <!-- ===== SEO ===== -->
   <meta name="description" content="احجز كورسك في أكاديمية مستر ياسر نوفل وابدأ رحلة تعلم الإنجليزية." />
   <meta name="keywords" content="حجز, كورس, أكاديمية مستر ياسر نوفل, تعلم الإنجليزية" />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/booking.html" />
 
-  <!-- ===== Google Analytics ===== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -24,12 +22,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   
   <style>
-    /* ===== الأساسيات ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
-    /* ===== شريط التنقل ===== */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
       backdrop-filter: blur(18px);
@@ -40,7 +36,7 @@
       z-index: 1050;
     }
     .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
-    .navbar-brand img { height: 45px; width: auto; }
+    .navbar-brand img { height: 40px; width: auto; }
     .navbar-brand .brand-name {
       font-family: 'Cinzel', serif;
       font-weight: 700;
@@ -49,103 +45,10 @@
       letter-spacing: 1px;
     }
     .navbar-brand .brand-name span { color: #ffb347; }
-    .navbar-nav .nav-item { margin: 0 2px; position: relative; }
-    .navbar-nav .nav-link {
-      color: rgba(255, 255, 255, 0.8) !important;
-      font-family: 'El Messiri', serif;
-      font-weight: 500;
-      font-size: 0.95rem;
-      padding: 8px 12px;
-      border-radius: 12px;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      position: relative;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      white-space: nowrap;
-    }
-    .navbar-nav .nav-link i { font-size: 0.85rem; color: #f7e05e; transition: 0.3s; }
-    .navbar-nav .nav-link:hover {
-      color: #fff !important;
-      background: rgba(247, 224, 94, 0.10);
-      transform: translateY(-2px);
-    }
-    .navbar-nav .nav-link.active { color: #f7e05e !important; background: rgba(247, 224, 94, 0.12); }
-    .nav-indicator {
-      position: absolute;
-      bottom: 2px;
-      right: 50%;
-      width: 0;
-      height: 2.5px;
-      background: linear-gradient(90deg, #f7e05e, #f7b731);
-      border-radius: 4px;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform: translateX(50%);
-    }
-    .nav-link:hover .nav-indicator,
-    .nav-link.active .nav-indicator { width: 60%; }
-    .navbar-toggler {
-      border: none;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.05) !important;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
-    .navbar-toggler:hover { background: rgba(255, 255, 255, 0.10) !important; }
-    .navbar-toggler:focus { box-shadow: none; }
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-    }
-    @media (max-width: 1199.98px) {
-      .navbar-nav .nav-link { font-size: 0.85rem; padding: 6px 10px; }
-    }
-    @media (max-width: 991.98px) {
-      .navbar-collapse {
-        background: rgba(10, 31, 68, 0.96);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 20px;
-        padding: 20px 15px;
-        margin-top: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        animation: slideDown 0.3s ease forwards;
-      }
-      .navbar-nav .nav-item { margin: 2px 0; }
-      .navbar-nav .nav-link { padding: 12px 18px; border-radius: 12px; font-size: 1.05rem; white-space: normal; }
-      .navbar-nav .nav-link i { width: 24px; text-align: center; }
-      .nav-indicator { display: none; }
-      .navbar-nav .nav-link.active { background: rgba(247, 224, 94, 0.12); }
-    }
-    @keyframes slideDown {
-      0% { opacity: 0; transform: translateY(-15px) scale(0.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    html { scroll-behavior: smooth; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
 
-    .extra-links {
-      background: #f8f9fa;
-      padding: 10px 0;
-      border-bottom: 1px solid #e9ecef;
-      text-align: center;
-    }
-    .extra-links a {
-      color: #0a1f44;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: 500;
-      transition: 0.3s;
-      font-size: 0.95rem;
-    }
-    .extra-links a:hover {
-      color: #f7b731;
-      text-decoration: underline;
-    }
-    @media (max-width: 768px) {
-      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
-    }
-
-    /* ===== محتوى الحجز ===== */
     .booking-card {
       background: #fff;
       border-radius: 28px;
@@ -231,107 +134,81 @@
       border-right: 4px solid #f7e05e;
     }
 
-    .footer {
+    footer {
       background: #0a1f44;
       color: #b0c4de;
-      padding: 50px 0 20px;
-      border-radius: 50px 50px 0 0;
-      margin-top: 40px;
-      position: relative;
-      overflow: hidden;
-    }
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(247, 224, 94, 0.03), transparent, rgba(247, 224, 94, 0.03), transparent);
-      animation: spinGradient 10s linear infinite;
-    }
-    @keyframes spinGradient {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .footer h5 { font-family: 'Cinzel', serif; color: #f7e05e; margin-bottom: 15px; }
-    .footer .social-icons a {
-      display: inline-block;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      color: #f7e05e;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
       text-align: center;
-      line-height: 45px;
-      font-size: 1.2rem;
-      margin-right: 8px;
-      transition: 0.3s;
-      border: 1px solid rgba(255, 255, 255, 0.05);
     }
-    .footer .social-icons a:hover {
-      background: #f7e05e;
-      color: #0a1f44;
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(247, 224, 94, 0.2);
-    }
-    .footer-links { list-style: none; padding: 0; }
-    .footer-links li { margin-bottom: 8px; }
-    .footer-links a { color: #b0c4de; text-decoration: none; transition: 0.3s; display: inline-block; }
-    .footer-links a:hover { color: #f7e05e; transform: translateX(-5px); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 20px;
-      margin-top: 30px;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
     @media (max-width: 768px) {
       .booking-card { padding: 20px; }
       .grade-selector .btn-grade { min-width: 80px; padding: 8px 10px; font-size: 0.9rem; }
+    }
+
+    .extra-links {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      text-align: center;
+    }
+    .extra-links a {
+      color: #0a1f44;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .extra-links a:hover {
+      color: #f7b731;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- ===== شريط التنقل ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" role="navigation" aria-label="القائمة الرئيسية">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+      <a class="navbar-brand" href="index.html" aria-label="الرئيسية">
+        <img src="assets/images/logo.png" alt="شعار أكاديمية مستر ياسر نوفل" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="تبديل القائمة">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home"><i class="fas fa-home"></i> <span data-i18n="nav_home">الرئيسية</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels"><i class="fas fa-layer-group"></i> <span data-i18n="nav_levels">المستويات</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link active" href="booking.html" data-i18n="nav_booking"><i class="fas fa-pencil-alt"></i> <span data-i18n="nav_booking">الحجز</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games"><i class="fas fa-gamepad"></i> <span data-i18n="nav_games">الألعاب</span><span class="nav-indicator"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests"><i class="fas fa-pencil-alt"></i> <span data-i18n="nav_tests">اختبارات</span><span class="nav-indicator"></span></a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link active" href="booking.html" data-i18n="nav_booking">📝 الحجز</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
+          <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests">📝 اختبارات</a></li>
           
           <li class="nav-item" id="loginLink">
-            <a class="nav-link" href="login.html" data-i18n="nav_login"><i class="fas fa-sign-in-alt"></i> <span data-i18n="nav_login">تسجيل الدخول</span><span class="nav-indicator"></span></a>
+            <a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a>
           </li>
           <li class="nav-item" id="registerLink">
-            <a class="nav-link" href="register.html" data-i18n="nav_register"><i class="fas fa-user-plus"></i> <span data-i18n="nav_register">التسجيل</span><span class="nav-indicator"></span></a>
+            <a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a>
           </li>
           
           <li class="nav-item" id="studentDashboardLink" style="display:none;">
-            <a class="nav-link" href="student-dashboard.html" data-i18n="nav_student"><i class="fas fa-user-graduate"></i> <span data-i18n="nav_student">لوحة الطالب</span><span class="nav-indicator"></span></a>
+            <a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 لوحة الطالب</a>
           </li>
           <li class="nav-item" id="parentDashboardLink" style="display:none;">
-            <a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent"><i class="fas fa-users"></i> <span data-i18n="nav_parent">ولي الأمر</span><span class="nav-indicator"></span></a>
+            <a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a>
           </li>
           <li class="nav-item" id="adminDashboardLink" style="display:none;">
-            <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin"><i class="fas fa-user-cog"></i> <span data-i18n="nav_admin">المدير</span><span class="nav-indicator"></span></a>
+            <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ المدير</a>
           </li>
 
           <li class="nav-item" id="logoutLink" style="display:none;">
-            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout"><i class="fas fa-sign-out-alt"></i> <span data-i18n="nav_logout">تسجيل الخروج</span><span class="nav-indicator"></span></a>
+            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 تسجيل الخروج</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -347,7 +224,7 @@
   </nav>
 
   <!-- ===== الروابط الإضافية ===== -->
-  <div class="extra-links">
+  <div class="extra-links" role="navigation" aria-label="روابط إضافية">
     <div class="container">
       <a href="about.html" data-i18n="nav_about">🌟 من نحن</a>
       <a href="privacy-policy.html" data-i18n="nav_privacy">🔒 سياسة الخصوصية</a>
@@ -358,43 +235,40 @@
   <!-- ===== المحتوى ===== -->
   <section class="container py-4">
     <div class="booking-card">
-      <h2 class="fw-bold text-center mb-4" data-i18n="booking_title"><i class="fas fa-calendar-check text-primary"></i> حجز كورس جديد</h2>
+      <h2 class="fw-bold text-center mb-4" data-i18n="booking_title"><i class="fas fa-calendar-check text-primary" aria-hidden="true"></i> حجز كورس جديد</h2>
       <p class="text-center text-muted mb-4" data-i18n="booking_subtitle">اختر صفك الدراسي أولاً لعرض التفاصيل</p>
 
-      <!-- ===== اختيار الصف ===== -->
       <div class="grade-selector" id="gradeSelector">
         <button class="btn-grade" data-grade="prep" onclick="selectGrade('prep')" data-i18n="grade_prep">📘 إعدادي</button>
         <button class="btn-grade" data-grade="sec1" onclick="selectGrade('sec1')" data-i18n="grade_sec1">📘 أولى ثانوي</button>
         <button class="btn-grade" data-grade="sec3" onclick="selectGrade('sec3')" data-i18n="grade_sec3">📘 تالتة ثانوي</button>
       </div>
 
-      <!-- ===== المعلومات الخاصة بالصف ===== -->
       <div id="gradeInfo" style="display: none;">
         <div class="schedule-box" id="scheduleInfo">
-          <h5 data-i18n="schedule_title"><i class="fas fa-clock text-primary"></i> مواعيد المجموعات وأماكنها</h5>
+          <h5 data-i18n="schedule_title"><i class="fas fa-clock text-primary" aria-hidden="true"></i> مواعيد المجموعات وأماكنها</h5>
           <div id="scheduleDetails"></div>
-          <p class="mt-2"><i class="fas fa-phone text-success"></i> <span data-i18n="schedule_contact">للاستفسار:</span> <strong>01203145717</strong> (<span data-i18n="schedule_whatsapp">واتساب</span>)</p>
+          <p class="mt-2"><i class="fas fa-phone text-success" aria-hidden="true"></i> <span data-i18n="schedule_contact">للاستفسار:</span> <strong>01203145717</strong> (<span data-i18n="schedule_whatsapp">واتساب</span>)</p>
         </div>
 
         <div class="price-table">
-          <h5 class="fw-bold" data-i18n="monthly_price_title"><i class="fas fa-money-bill-wave text-success"></i> الأسعار الشهرية</h5>
+          <h5 class="fw-bold" data-i18n="monthly_price_title"><i class="fas fa-money-bill-wave text-success" aria-hidden="true"></i> الأسعار الشهرية</h5>
           <div id="monthlyPrice"></div>
         </div>
 
         <div class="price-table" style="background: #fff8e1;">
-          <h5 class="fw-bold" data-i18n="plans_title"><i class="fas fa-gem text-warning"></i> عروض الباقات</h5>
+          <h5 class="fw-bold" data-i18n="plans_title"><i class="fas fa-gem text-warning" aria-hidden="true"></i> عروض الباقات</h5>
           <div class="row g-3" id="plansRow"></div>
           <input type="hidden" id="selectedPlanPrice" />
           <input type="hidden" id="selectedPlanLabel" />
         </div>
 
         <div class="price-table" style="background: #e8f4fd;">
-          <h5 class="fw-bold" data-i18n="books_title"><i class="fas fa-book text-primary"></i> أسعار الملازم</h5>
+          <h5 class="fw-bold" data-i18n="books_title"><i class="fas fa-book text-primary" aria-hidden="true"></i> أسعار الملازم</h5>
           <div id="bookPrices"></div>
           <small class="text-muted" data-i18n="books_note">📌 سيتم إرسال كود الاستلام على واتساب بعد تأكيد الدفع.</small>
         </div>
 
-        <!-- ===== نموذج الحجز ===== -->
         <form id="bookingForm" onsubmit="handleBooking(event)">
           <div class="row g-3">
             <div class="col-md-6">
@@ -425,7 +299,7 @@
 
             <div class="col-12" id="paymentNumberBox" style="display:none;">
               <div class="info-box">
-                <i class="fas fa-info-circle text-primary"></i>
+                <i class="fas fa-info-circle text-primary" aria-hidden="true"></i>
                 <strong data-i18n="transfer_number_label">رقم التحويل:</strong>
                 <span class="fs-5 fw-bold">01203145717</span>
                 <span class="text-muted d-block" data-i18n="transfer_number_note">(انستاباي / فودافون كاش)</span>
@@ -443,9 +317,9 @@
 
             <div class="col-12 mt-3">
               <hr />
-              <h6 class="fw-bold" data-i18n="payment_confirmation_title"><i class="fas fa-check-circle text-success"></i> تأكيد الدفع</h6>
+              <h6 class="fw-bold" data-i18n="payment_confirmation_title"><i class="fas fa-check-circle text-success" aria-hidden="true"></i> تأكيد الدفع</h6>
               <div class="info-box">
-                <p><i class="fas fa-info-circle text-primary"></i> <span data-i18n="payment_instructions">يرجى تحويل المبلغ الإجمالي على رقم:</span> <strong>01203145717</strong></p>
+                <p><i class="fas fa-info-circle text-primary" aria-hidden="true"></i> <span data-i18n="payment_instructions">يرجى تحويل المبلغ الإجمالي على رقم:</span> <strong>01203145717</strong></p>
                 <p><span data-i18n="payment_methods">(انستاباي / فودافون كاش)</span></p>
               </div>
 
@@ -470,7 +344,7 @@
               <textarea class="form-control" rows="2" placeholder="أي استفسارات أو طلبات خاصة..." id="notes"></textarea>
             </div>
             <div class="col-12">
-              <button type="submit" class="btn-book" data-i18n="confirm_booking"><i class="fas fa-check-circle"></i> تأكيد الحجز</button>
+              <button type="submit" class="btn-book" data-i18n="confirm_booking"><i class="fas fa-check-circle" aria-hidden="true"></i> تأكيد الحجز</button>
             </div>
           </div>
         </form>
@@ -479,18 +353,18 @@
   </section>
 
   <!-- ===== الفوتير ===== -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
           <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
           <p data-i18n="footer_about_desc">تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="تيك توك"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
           </div>
         </div>
         <div class="col-md-4">
@@ -505,9 +379,9 @@
         </div>
         <div class="col-md-4">
           <h5 data-i18n="footer_contact_title">تواصل</h5>
-          <p><i class="fas fa-phone"></i> 01203145717</p>
-          <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
-          <p><i class="fab fa-whatsapp"></i> 01001297414</p>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -519,7 +393,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    // ===== بيانات الصفوف =====
     const gradeData = {
       prep: {
         name: 'إعدادي',
@@ -650,72 +523,48 @@
       const bookCode = 'YNA-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000);
 
       const bookingData = {
-        studentName: name, grade: data.name, gradeKey: selectedGrade,
-        parentPhone: phone, parentEmail: document.getElementById('parentEmail').value,
+        studentName: name,
+        grade: data.name,
+        gradeKey: selectedGrade,
+        parentPhone: phone,
+        parentEmail: document.getElementById('parentEmail').value,
         paymentMethod: paymentMethod === 'instapay' ? 'انستاباي' : 'فودافون كاش',
-        transferNumber, transferDate, transferAmount,
-        planPrice: planPrice || 'لم يختار', planLabel: planLabel || 'لم يختار',
+        transferNumber: transferNumber,
+        transferDate: transferDate,
+        transferAmount: transferAmount,
+        planPrice: planPrice || 'لم يختار',
+        planLabel: planLabel || 'لم يختار',
         bookType: bookType === 'none' ? 'لا يوجد' : bookLabel,
-        bookPrice, bookCode: bookType !== 'none' ? bookCode : null,
+        bookPrice: bookPrice,
+        bookCode: bookType !== 'none' ? bookCode : null,
         notes: document.getElementById('notes').value,
-        total, status: 'pending', date: new Date().toISOString()
+        total: total,
+        status: 'pending',
+        date: new Date().toISOString()
       };
 
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
 
-      let message = `✅ تم استلام طلب الحجز!\n\n`;
-      message += `📌 بيانات الحجز:\n`;
-      message += `- الطالب: ${name}\n- الصف: ${data.name}\n- طريقة الدفع: ${bookingData.paymentMethod}\n`;
-      message += `- رقم التحويل: ${transferNumber}\n- تاريخ التحويل: ${transferDate}\n- المبلغ المحول: ${transferAmount} ج.م\n`;
-      message += `- الباقة: ${planLabel || 'لم يختار'} (${planPrice || '0'} ج.م)\n- الملزمة: ${bookLabel} (${bookPrice} ج.م)\n`;
-      message += `- الإجمالي: ${total} ج.م\n`;
-
-      if (bookType === 'printed') {
-        message += `\n📖 كود استلام الملزمة المطبوعة من المكتبة: ${bookCode}\n📍 العنوان: أبراج الحاسب الآلي\n`;
-      }
-      if (bookType === 'pdf') {
-        message += `\n📄 كود تحميل PDF: ${bookCode}\n🔗 رابط التحميل: سيتم إرساله على واتساب\n`;
-      }
-      message += `\n📞 للاستفسار: 01203145717 (واتساب)`;
+      const message = `
+        ✅ تم استلام طلب الحجز!
+        📌 بيانات الحجز:
+        - الطالب: ${name}
+        - الصف: ${data.name}
+        - طريقة الدفع: ${bookingData.paymentMethod}
+        - رقم التحويل: ${transferNumber}
+        - تاريخ التحويل: ${transferDate}
+        - المبلغ المحول: ${transferAmount} ج.م
+        - الباقة: ${planLabel} (${planPrice} ج.م)
+        - الملزمة: ${bookLabel} (${bookPrice} ج.م)
+        - الإجمالي: ${total} ج.م
+        ${bookType === 'printed' ? `\n📖 كود استلام الملزمة المطبوعة من المكتبة: ${bookCode}\n📍 العنوان: أبراج الحاسب الآلي` : ''}
+        ${bookType === 'pdf' ? `\n📄 كود تحميل PDF: ${bookCode}\n🔗 رابط التحميل: سيتم إرساله على واتساب` : ''}
+        \n📞 للاستفسار: 01203145717 (واتساب)
+      `;
 
       alert(message);
       window.location.href = 'index.html';
     }
-
-    // ===== نظام تسجيل الدخول =====
-    function checkUserRole() {
-      const user = JSON.parse(localStorage.getItem('user'));
-      document.getElementById('loginLink').style.display = 'none';
-      document.getElementById('registerLink').style.display = 'none';
-      document.getElementById('studentDashboardLink').style.display = 'none';
-      document.getElementById('parentDashboardLink').style.display = 'none';
-      document.getElementById('adminDashboardLink').style.display = 'none';
-      document.getElementById('logoutLink').style.display = 'none';
-
-      if (!user) {
-        document.getElementById('loginLink').style.display = 'block';
-        document.getElementById('registerLink').style.display = 'block';
-        return;
-      }
-
-      document.getElementById('logoutLink').style.display = 'block';
-
-      const role = user.role || 'student';
-      if (role === 'student') {
-        document.getElementById('studentDashboardLink').style.display = 'block';
-      } else if (role === 'parent') {
-        document.getElementById('parentDashboardLink').style.display = 'block';
-      } else if (role === 'admin') {
-        document.getElementById('adminDashboardLink').style.display = 'block';
-      }
-    }
-
-    function logoutUser() {
-      localStorage.removeItem('user');
-      window.location.reload();
-    }
-
-    document.addEventListener('DOMContentLoaded', checkUserRole);
   </script>
 </body>
 </html>

@@ -26,12 +26,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   
   <style>
-    /* ===== الأساسيات ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
-    /* ===== شريط التنقل ===== */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
       backdrop-filter: blur(18px);
@@ -125,7 +123,6 @@
     }
     html { scroll-behavior: smooth; }
 
-    /* ===== الشريط المتحرك ===== */
     .top-bar {
       background: #f7e05e;
       padding: 10px 0;
@@ -136,7 +133,6 @@
       text-align: center;
     }
 
-    /* ===== الهيدر ===== */
     .hero {
       background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 50%, #2e6ab0 100%);
       padding: 80px 0 70px;
@@ -150,8 +146,6 @@
     .text-content .brand-header .main-logo { height: 60px; width: 60px; object-fit: contain; }
     .text-content .brand-header .profile-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #f7e05e; object-fit: cover; transition: 0.3s; }
     .text-content .brand-header .profile-img:hover { transform: scale(1.05); border-color: #fff; }
-    
-    /* ===== النصوص الإنجليزية من اليسار ===== */
     .text-content .brand-header h1 {
       font-family: 'Cinzel', serif;
       font-size: 3.2rem;
@@ -187,7 +181,6 @@
       direction: ltr;
       text-align: left;
     }
-    
     .text-content .btn-group { margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap; }
     .text-content .btn-group .btn {
       border-radius: 50px;
@@ -221,13 +214,11 @@
       .text-content .brand-header .profile-img { width: 60px; height: 60px; }
     }
 
-    /* ===== المميزات ===== */
     .feature-box { background: #fff; border-radius: 24px; padding: 35px 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.06); text-align: center; height: 100%; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border-bottom: 4px solid #1a3a6b; cursor: default; }
     .feature-box:hover { transform: translateY(-8px); border-color: #f7e05e; box-shadow: 0 12px 40px rgba(247, 224, 94, 0.15); }
     .feature-box i { font-size: 3rem; color: #f7b731; margin-bottom: 15px; }
     .feature-box h5 { font-family: 'Cinzel', serif; color: #0a1f44; }
 
-    /* ===== الإحصائيات ===== */
     .stats-section { background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 100%); border-radius: 60px 60px 0 0; padding: 60px 0 50px; margin-top: 40px; position: relative; overflow: hidden; }
     .stats-section::before { content: ''; position: absolute; top: -50%; right: -20%; width: 300px; height: 300px; background: rgba(247, 224, 94, 0.05); border-radius: 50%; }
     .stats-section::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 200px; height: 200px; background: rgba(247, 224, 94, 0.04); border-radius: 50%; }
@@ -239,7 +230,6 @@
     .stat-plus { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #f7e05e; margin-top: 2px; }
     @media (max-width: 768px) { .stat-number { font-size: 2.2rem; } .stat-card { padding: 20px 10px; min-height: 160px; } .stat-icon { font-size: 2rem; } }
 
-    /* ===== شهادات الطلاب ===== */
     .testimonials-section { background: #f0f4fa; padding: 60px 0; }
     .testimonial-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 28px; padding: 30px 20px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); height: 100%; cursor: default; }
     .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(247, 224, 94, 0.12); }
@@ -251,20 +241,17 @@
     .carousel-control-prev-icon, .carousel-control-next-icon { background-color: #0a1f44; border-radius: 50%; padding: 20px; }
     @media (max-width: 768px) { .testimonial-card { padding: 20px 15px; } .testimonial-card img { width: 60px; height: 60px; } }
 
-    /* ===== المستويات ===== */
     .level-card { background: #fff; border-radius: 20px; padding: 25px 15px; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.05); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border-bottom: 4px solid #1a3a6b; cursor: pointer; }
     .level-card:hover { transform: translateY(-6px); border-color: #f7e05e; box-shadow: 0 12px 35px rgba(247, 224, 94, 0.15); }
     .level-card:active { transform: scale(0.97); }
     .level-card i { font-size: 2.5rem; color: #f7b731; margin-bottom: 10px; }
     .level-card h6 { font-family: 'Cinzel', serif; color: #0a1f44; }
 
-    /* ===== التواصل ===== */
     .contact-box { background: #fff; border-radius: 24px; padding: 30px; box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
     .btn-whatsapp { background: #25d366; color: #fff; border-radius: 50px; padding: 12px 35px; font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border: none; text-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer; }
     .btn-whatsapp:hover { background: #128c7e; color: #fff; transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3); }
     .btn-whatsapp:active { transform: scale(0.97); }
 
-    /* ===== الفوتير ===== */
     .footer { background: #0a1f44; color: #b0c4de; padding: 50px 0 20px; border-radius: 50px 50px 0 0; margin-top: 40px; position: relative; overflow: hidden; }
     .footer::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(247, 224, 94, 0.03), transparent, rgba(247, 224, 94, 0.03), transparent); animation: spinGradient 10s linear infinite; }
     @keyframes spinGradient { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -277,7 +264,6 @@
     .footer-links a:hover { color: #f7e05e; transform: translateX(-5px); }
     .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 20px; margin-top: 30px; text-align: center; font-size: 0.9rem; }
 
-    /* ===== مساعد الذكاء الاصطناعي ===== */
     .ai-assistant-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; border: none; box-shadow: 0 8px 30px rgba(10, 31, 68, 0.4); font-size: 2rem; cursor: pointer; z-index: 1050; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
     .ai-assistant-btn:hover { transform: scale(1.1) rotate(-5deg); box-shadow: 0 12px 40px rgba(10, 31, 68, 0.5); }
     .ai-assistant-btn:active { transform: scale(0.95); }
@@ -298,7 +284,6 @@
 
     .hidden-role { display: none !important; }
     
-    /* ===== قسم الروابط الإضافية ===== */
     .extra-links {
       background: #f8f9fa;
       padding: 10px 0;
@@ -320,37 +305,52 @@
     @media (max-width: 768px) {
       .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
     }
+
+    /* ===== تحسينات الوصولية ===== */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+    .focus-visible:focus-visible {
+      outline: 3px solid #f7b731;
+      outline-offset: 2px;
+    }
+    img:not([alt]) { border: 2px solid red; } /* تنبيه للصور بدون وصف */
   </style>
 </head>
 <body>
 
   <!-- ===== علامة مائية ===== -->
   <div class="watermark" style="position:fixed;bottom:10px;left:10px;opacity:0.04;z-index:999;pointer-events:none;">
-    <img src="assets/images/logo.png" alt="Logo" style="height:30px;opacity:0.4;" />
-    <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser" style="border-radius:50%;height:30px;width:30px;object-fit:cover;opacity:0.4;" />
+    <img src="assets/images/logo.png" alt="شعار أكاديمية مستر ياسر نوفل" style="height:30px;opacity:0.4;" />
+    <img src="assets/images/mr-yasser.jpg" alt="صورة مستر ياسر نوفل" style="border-radius:50%;height:30px;width:30px;object-fit:cover;opacity:0.4;" />
     <span style="font-family:'Cinzel',serif;color:#0a1f44;">Mr. Yasser Nofal Academy</span>
   </div>
 
   <!-- ===== شريط التنقل ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" role="navigation" aria-label="القائمة الرئيسية">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+      <a class="navbar-brand" href="index.html" aria-label="الرئيسية">
+        <img src="assets/images/logo.png" alt="شعار أكاديمية مستر ياسر نوفل" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="تبديل القائمة">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <!-- ===== الروابط الأساسية ===== -->
           <li class="nav-item"><a class="nav-link active" href="index.html" data-i18n="nav_home"><i class="fas fa-home"></i> <span data-i18n="nav_home">الرئيسية</span><span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels"><i class="fas fa-layer-group"></i> <span data-i18n="nav_levels">المستويات</span><span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking"><i class="fas fa-pencil-alt"></i> <span data-i18n="nav_booking">الحجز</span><span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games"><i class="fas fa-gamepad"></i> <span data-i18n="nav_games">الألعاب</span><span class="nav-indicator"></span></a></li>
           <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests"><i class="fas fa-pencil-alt"></i> <span data-i18n="nav_tests">اختبارات</span><span class="nav-indicator"></span></a></li>
           
-          <!-- ===== تسجيل الدخول والتسجيل ===== -->
           <li class="nav-item" id="loginLink">
             <a class="nav-link" href="login.html" data-i18n="nav_login"><i class="fas fa-sign-in-alt"></i> <span data-i18n="nav_login">تسجيل الدخول</span><span class="nav-indicator"></span></a>
           </li>
@@ -358,7 +358,6 @@
             <a class="nav-link" href="register.html" data-i18n="nav_register"><i class="fas fa-user-plus"></i> <span data-i18n="nav_register">التسجيل</span><span class="nav-indicator"></span></a>
           </li>
           
-          <!-- ===== روابط الأدوار (مخفية افتراضياً) ===== -->
           <li class="nav-item" id="studentDashboardLink" style="display:none;">
             <a class="nav-link" href="student-dashboard.html" data-i18n="nav_student"><i class="fas fa-user-graduate"></i> <span data-i18n="nav_student">لوحة الطالب</span><span class="nav-indicator"></span></a>
           </li>
@@ -369,15 +368,13 @@
             <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin"><i class="fas fa-user-cog"></i> <span data-i18n="nav_admin">المدير</span><span class="nav-indicator"></span></a>
           </li>
 
-          <!-- ===== زر تسجيل الخروج ===== -->
           <li class="nav-item" id="logoutLink" style="display:none;">
             <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout"><i class="fas fa-sign-out-alt"></i> <span data-i18n="nav_logout">تسجيل الخروج</span><span class="nav-indicator"></span></a>
           </li>
 
-          <!-- ===== زر اللغة ===== -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
-            <ul class="dropdown-menu dropdown-menu-end">
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">🌐</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
               <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
               <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
             </ul>
@@ -387,8 +384,8 @@
     </div>
   </nav>
 
-  <!-- ===== الروابط الإضافية (About, Privacy, Terms) ===== -->
-  <div class="extra-links">
+  <!-- ===== الروابط الإضافية ===== -->
+  <div class="extra-links" role="navigation" aria-label="روابط إضافية">
     <div class="container">
       <a href="about.html" data-i18n="nav_about">🌟 من نحن</a>
       <a href="privacy-policy.html" data-i18n="nav_privacy">🔒 سياسة الخصوصية</a>
@@ -397,18 +394,18 @@
   </div>
 
   <!-- ===== الشريط المتحرك ===== -->
-  <div class="top-bar" data-i18n="marquee_text">
+  <div class="top-bar" data-i18n="marquee_text" role="marquee">
     <marquee behavior="scroll" direction="right" scrollamount="6">🎉 مرحباً بكم في أكاديمية مستر ياسر نوفل – التسجيل مفتوح الآن! اختبار تحديد المستوى مجاناً – خصم 20% على الباقات الذهبية 🎉</marquee>
   </div>
 
   <!-- ===== الهيدر ===== -->
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="container hero-content">
       <div class="text-content">
         <div class="brand-header">
-          <img src="assets/images/logo.png" alt="Logo" class="main-logo" loading="lazy" />
-          <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" class="profile-img" loading="lazy" />
-          <h1>Mr. Yasser Nofal Academy <small data-i18n="hero_title_small">أكاديمية مستر ياسر نوفل</small></h1>
+          <img src="assets/images/logo.png" alt="شعار أكاديمية مستر ياسر نوفل" class="main-logo" loading="lazy" />
+          <img src="assets/images/mr-yasser.jpg" alt="صورة مستر ياسر نوفل" class="profile-img" loading="lazy" />
+          <h1 id="hero-title">Mr. Yasser Nofal Academy <small data-i18n="hero_title_small">أكاديمية مستر ياسر نوفل</small></h1>
         </div>
         <p class="subtitle" data-i18n="hero_subtitle">Learn English with Confidence</p>
         <p class="desc" data-i18n="hero_desc">From Zero to Professional – with Phonics and Conversations for Every Level</p>
@@ -423,32 +420,32 @@
         </div>
       </div>
       <div class="video-content">
-        <iframe src="https://www.youtube.com/embed/H8jUrAFRGPk" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/H8jUrAFRGPk" allowfullscreen loading="lazy" title="فيديو تعريفي لأكاديمية مستر ياسر نوفل"></iframe>
       </div>
     </div>
   </section>
 
   <!-- ===== المميزات ===== -->
-  <section class="container py-5">
-    <h2 class="text-center fw-bold mb-5" style="font-family: 'Cinzel', serif; color: #0a1f44;" data-i18n="features_title">لماذا <span style="color: #f7b731;">أكاديميتنا</span>؟</h2>
+  <section class="container py-5" aria-labelledby="features-title">
+    <h2 class="text-center fw-bold mb-5" style="font-family: 'Cinzel', serif; color: #0a1f44;" id="features-title" data-i18n="features_title">لماذا <span style="color: #f7b731;">أكاديميتنا</span>؟</h2>
     <div class="row g-4">
       <div class="col-md-4">
         <div class="feature-box">
-          <i class="fas fa-chalkboard-teacher"></i>
+          <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
           <h5 data-i18n="feature1_title">خبرة 35+ عاماً</h5>
           <p data-i18n="feature1_desc">تدريس جميع المستويات بأحدث الأساليب التعليمية</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="feature-box">
-          <i class="fas fa-lock"></i>
+          <i class="fas fa-lock" aria-hidden="true"></i>
           <h5 data-i18n="feature2_title">محتوى محمي</h5>
           <p data-i18n="feature2_desc">تشفير متقدم لحماية الدروس والفيديوهات</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="feature-box">
-          <i class="fas fa-headset"></i>
+          <i class="fas fa-headset" aria-hidden="true"></i>
           <h5 data-i18n="feature3_title">دعم 24/7</h5>
           <p data-i18n="feature3_desc">فريق دعم عبر واتساب والبريد الإلكتروني</p>
         </div>
@@ -457,37 +454,38 @@
   </section>
 
   <!-- ===== الإحصائيات ===== -->
-  <section class="stats-section py-5">
+  <section class="stats-section py-5" aria-labelledby="stats-title">
     <div class="container">
+      <h2 id="stats-title" class="sr-only">إحصائيات الأكاديمية</h2>
       <div class="row g-4 text-center" id="statsRow">
         <div class="col-md-3 col-6">
           <div class="stat-card">
-            <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
-            <h2 class="stat-number" data-target="10000" data-i18n="stat_students_number">0</h2>
+            <div class="stat-icon"><i class="fas fa-user-graduate" aria-hidden="true"></i></div>
+            <h3 class="stat-number" data-target="10000" data-i18n="stat_students_number">0</h3>
             <p class="stat-label" data-i18n="stat_students_label">طالب</p>
             <span class="stat-plus">+</span>
           </div>
         </div>
         <div class="col-md-3 col-6">
           <div class="stat-card">
-            <div class="stat-icon"><i class="fas fa-book-open"></i></div>
-            <h2 class="stat-number" data-target="500" data-i18n="stat_lessons_number">0</h2>
+            <div class="stat-icon"><i class="fas fa-book-open" aria-hidden="true"></i></div>
+            <h3 class="stat-number" data-target="500" data-i18n="stat_lessons_number">0</h3>
             <p class="stat-label" data-i18n="stat_lessons_label">درس</p>
             <span class="stat-plus">+</span>
           </div>
         </div>
         <div class="col-md-3 col-6">
           <div class="stat-card">
-            <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
-            <h2 class="stat-number" data-target="15" data-i18n="stat_experience_number">0</h2>
+            <div class="stat-icon"><i class="fas fa-calendar-alt" aria-hidden="true"></i></div>
+            <h3 class="stat-number" data-target="15" data-i18n="stat_experience_number">0</h3>
             <p class="stat-label" data-i18n="stat_experience_label">سنة خبرة</p>
             <span class="stat-plus">+</span>
           </div>
         </div>
         <div class="col-md-3 col-6">
           <div class="stat-card">
-            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-            <h2 class="stat-number" data-target="98" data-i18n="stat_success_number">0</h2>
+            <div class="stat-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+            <h3 class="stat-number" data-target="98" data-i18n="stat_success_number">0</h3>
             <p class="stat-label" data-i18n="stat_success_label">نسبة نجاح</p>
             <span class="stat-plus">%</span>
           </div>
@@ -497,37 +495,37 @@
   </section>
 
   <!-- ===== شهادات الطلاب ===== -->
-  <section class="testimonials-section py-5">
+  <section class="testimonials-section py-5" aria-labelledby="testimonials-title">
     <div class="container">
-      <h2 class="text-center fw-bold mb-5" style="font-family: 'Cinzel', serif; color: #0a1f44;" data-i18n="testimonials_title">آراء <span style="color: #f7b731;">طلابنا</span></h2>
+      <h2 class="text-center fw-bold mb-5" style="font-family: 'Cinzel', serif; color: #0a1f44;" id="testimonials-title" data-i18n="testimonials_title">آراء <span style="color: #f7b731;">طلابنا</span></h2>
       <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="row g-4">
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/mr-yasser.jpg" alt="Student" loading="lazy" />
+                  <img src="assets/images/mr-yasser.jpg" alt="صورة الطالب أحمد محمد" loading="lazy" />
                   <h5 data-i18n="testimonial1_name">أحمد محمد</h5>
                   <p class="role" data-i18n="testimonial1_role">طالب ثانوي</p>
-                  <div class="stars">★★★★★</div>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
                   <p class="feedback" data-i18n="testimonial1_text">"أفضل أكاديمية لتعلم الإنجليزية! مستر ياسر شرحه مبسط وفعال."</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/mr-yasser.jpg" alt="Student" loading="lazy" />
+                  <img src="assets/images/mr-yasser.jpg" alt="صورة الطالبة سارة علي" loading="lazy" />
                   <h5 data-i18n="testimonial2_name">سارة علي</h5>
                   <p class="role" data-i18n="testimonial2_role">طالبة جامعية</p>
-                  <div class="stars">★★★★★</div>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
                   <p class="feedback" data-i18n="testimonial2_text">"المنصة ساعدتني أتحدث بطلاقة في 3 شهور فقط. شكراً!"</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/mr-yasser.jpg" alt="Student" loading="lazy" />
+                  <img src="assets/images/mr-yasser.jpg" alt="صورة الطالب خالد إبراهيم" loading="lazy" />
                   <h5 data-i18n="testimonial3_name">خالد إبراهيم</h5>
                   <p class="role" data-i18n="testimonial3_role">مهندس برمجيات</p>
-                  <div class="stars">★★★★★</div>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
                   <p class="feedback" data-i18n="testimonial3_text">"الدروس التفاعلية والاختبارات خلتني أتطور بسرعة كبيرة."</p>
                 </div>
               </div>
@@ -537,48 +535,48 @@
             <div class="row g-4">
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/mr-yasser.jpg" alt="Student" loading="lazy" />
+                  <img src="assets/images/mr-yasser.jpg" alt="صورة الطالبة نورا حسن" loading="lazy" />
                   <h5 data-i18n="testimonial4_name">نورا حسن</h5>
                   <p class="role" data-i18n="testimonial4_role">طالبة إعدادي</p>
-                  <div class="stars">★★★★★</div>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
                   <p class="feedback" data-i18n="testimonial4_text">"أسلوب مستر ياسر ممتع جداً، وبخلي الواحد يحب اللغة."</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/mr-yasser.jpg" alt="Student" loading="lazy" />
+                  <img src="assets/images/mr-yasser.jpg" alt="صورة الطالب يوسف عادل" loading="lazy" />
                   <h5 data-i18n="testimonial5_name">يوسف عادل</h5>
                   <p class="role" data-i18n="testimonial5_role">طالب ثانوي</p>
-                  <div class="stars">★★★★★</div>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
                   <p class="feedback" data-i18n="testimonial5_text">"قسم المحادثات هو الأفضل! حسنت نطقي بشكل ملحوظ."</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="testimonial-card">
-                  <img src="assets/images/mr-yasser.jpg" alt="Student" loading="lazy" />
+                  <img src="assets/images/mr-yasser.jpg" alt="صورة الطالبة فاطمة الزهراء" loading="lazy" />
                   <h5 data-i18n="testimonial6_name">فاطمة الزهراء</h5>
                   <p class="role" data-i18n="testimonial6_role">طالبة طب</p>
-                  <div class="stars">★★★★★</div>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
                   <p class="feedback" data-i18n="testimonial6_text">"شكراً لأكاديمية مستر ياسر نوفل، غيرت مستقبلي الأكاديمي."</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev" aria-label="السابق">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next" aria-label="التالي">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
       </div>
     </div>
   </section>
 
   <!-- ===== المستويات ===== -->
-  <section class="container py-4">
+  <section class="container py-4" aria-labelledby="levels-title">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;" data-i18n="levels_title">المستويات التعليمية</h2>
+      <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;" id="levels-title" data-i18n="levels_title">المستويات التعليمية</h2>
       <a href="levels.html" class="btn btn-outline-primary" data-i18n="levels_view_all">عرض الكل <i class="fas fa-arrow-left"></i></a>
     </div>
     <div class="row g-4">
@@ -594,31 +592,31 @@
   </section>
 
   <!-- ===== تواصل ===== -->
-  <section id="contact" class="container py-4">
+  <section id="contact" class="container py-4" aria-labelledby="contact-title">
     <div class="row g-4">
       <div class="col-lg-6">
-        <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;" data-i18n="contact_title"><i class="fas fa-address-book" style="color: #f7b731;"></i> تواصل معنا</h2>
+        <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;" id="contact-title" data-i18n="contact_title"><i class="fas fa-address-book" style="color: #f7b731;" aria-hidden="true"></i> تواصل معنا</h2>
         <div class="contact-box">
-          <p data-i18n="contact_address"><i class="fas fa-map-marker-alt" style="color: #f7b731;"></i> مجمع محمد السيد وحسن البدراوى الرسمى – لغات</p>
-          <p><i class="fas fa-phone" style="color: #f7b731;"></i> <strong>01203145717</strong> – <strong>01001297414</strong></p>
-          <p><i class="fas fa-envelope" style="color: #f7b731;"></i> info@yassernofalacademy.com</p>
-          <p><i class="fab fa-whatsapp" style="color: #25d366;"></i> واتساب: <strong>01001297414</strong></p>
+          <p data-i18n="contact_address"><i class="fas fa-map-marker-alt" style="color: #f7b731;" aria-hidden="true"></i> مجمع محمد السيد وحسن البدراوى الرسمى – لغات</p>
+          <p><i class="fas fa-phone" style="color: #f7b731;" aria-hidden="true"></i> <strong>01203145717</strong> – <strong>01001297414</strong></p>
+          <p><i class="fas fa-envelope" style="color: #f7b731;" aria-hidden="true"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp" style="color: #25d366;" aria-hidden="true"></i> واتساب: <strong>01001297414</strong></p>
           <hr />
-          <h6 data-i18n="contact_payment"><i class="fas fa-credit-card"></i> طرق الدفع:</h6>
-          <span class="badge bg-light text-dark p-2 m-1" data-i18n="contact_instapay"><i class="fas fa-mobile-alt"></i> انستاباي</span>
-          <span class="badge bg-light text-dark p-2 m-1" data-i18n="contact_vodafone"><i class="fas fa-mobile"></i> فودافون كاش</span>
+          <h6 data-i18n="contact_payment"><i class="fas fa-credit-card" aria-hidden="true"></i> طرق الدفع:</h6>
+          <span class="badge bg-light text-dark p-2 m-1" data-i18n="contact_instapay"><i class="fas fa-mobile-alt" aria-hidden="true"></i> انستاباي</span>
+          <span class="badge bg-light text-dark p-2 m-1" data-i18n="contact_vodafone"><i class="fas fa-mobile" aria-hidden="true"></i> فودافون كاش</span>
           <p class="mt-3" data-i18n="contact_numbers">على الأرقام: <strong>01203145717</strong> – <strong>01001297414</strong></p>
-          <a href="https://wa.me/201001297414" target="_blank" class="btn btn-whatsapp" data-i18n="contact_book_now"><i class="fab fa-whatsapp"></i> احجز الآن</a>
+          <a href="https://wa.me/201001297414" target="_blank" class="btn btn-whatsapp" data-i18n="contact_book_now"><i class="fab fa-whatsapp" aria-hidden="true"></i> احجز الآن</a>
         </div>
       </div>
       <div class="col-lg-6">
-        <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;" data-i18n="inquiry_title"><i class="fas fa-paper-plane" style="color: #f7b731;"></i> أرسل استفساراً</h2>
+        <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;" data-i18n="inquiry_title"><i class="fas fa-paper-plane" style="color: #f7b731;" aria-hidden="true"></i> أرسل استفساراً</h2>
         <div class="contact-box">
           <form>
-            <div class="mb-3"><label class="form-label" data-i18n="inquiry_name">الاسم</label><input type="text" class="form-control" /></div>
-            <div class="mb-3"><label class="form-label" data-i18n="inquiry_email">البريد</label><input type="email" class="form-control" /></div>
-            <div class="mb-3"><label class="form-label" data-i18n="inquiry_message">الرسالة</label><textarea class="form-control" rows="3"></textarea></div>
-            <button type="submit" class="btn btn-primary w-100" data-i18n="inquiry_send"><i class="fas fa-send"></i> إرسال</button>
+            <div class="mb-3"><label class="form-label" data-i18n="inquiry_name">الاسم</label><input type="text" class="form-control" aria-required="true" /></div>
+            <div class="mb-3"><label class="form-label" data-i18n="inquiry_email">البريد</label><input type="email" class="form-control" aria-required="true" /></div>
+            <div class="mb-3"><label class="form-label" data-i18n="inquiry_message">الرسالة</label><textarea class="form-control" rows="3" aria-required="true"></textarea></div>
+            <button type="submit" class="btn btn-primary w-100" data-i18n="inquiry_send"><i class="fas fa-send" aria-hidden="true"></i> إرسال</button>
           </form>
         </div>
       </div>
@@ -626,18 +624,18 @@
   </section>
 
   <!-- ===== الفوتير ===== -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
           <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
           <p data-i18n="footer_about_desc">تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="تيك توك"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
           </div>
         </div>
         <div class="col-md-4">
@@ -652,9 +650,9 @@
         </div>
         <div class="col-md-4">
           <h5 data-i18n="footer_contact_title">تواصل</h5>
-          <p><i class="fas fa-phone"></i> 01203145717</p>
-          <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
-          <p><i class="fab fa-whatsapp"></i> 01001297414</p>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -664,25 +662,24 @@
   </footer>
 
   <!-- ===== مساعد الذكاء الاصطناعي ===== -->
-  <button class="ai-assistant-btn" onclick="toggleAI()"><i class="fas fa-robot"></i></button>
-  <div class="ai-assistant-window" id="aiWindow">
+  <button class="ai-assistant-btn" onclick="toggleAI()" aria-label="فتح مساعد الذكاء الاصطناعي"><i class="fas fa-robot" aria-hidden="true"></i></button>
+  <div class="ai-assistant-window" id="aiWindow" role="dialog" aria-label="نافذة مساعد الذكاء الاصطناعي">
     <div class="ai-header">
-      <span><i class="fas fa-robot"></i> <span data-i18n="ai_title">AI Assistant</span></span>
-      <button onclick="toggleAI()" style="background: none; border: none; color: #fff; font-size: 1.5rem;">&times;</button>
+      <span><i class="fas fa-robot" aria-hidden="true"></i> <span data-i18n="ai_title">AI Assistant</span></span>
+      <button onclick="toggleAI()" style="background: none; border: none; color: #fff; font-size: 1.5rem;" aria-label="إغلاق">×</button>
     </div>
     <div class="ai-body" id="aiBody">
       <div class="ai-message ai-bot" data-i18n="ai_welcome">مرحباً! أنا مساعدك الذكي. اسألني أي سؤال عن الإنجليزية.</div>
     </div>
     <div class="ai-footer">
-      <input type="text" id="aiInput" placeholder="اكتب سؤالك..." onkeypress="if(event.key==='Enter') sendAI()" />
-      <button onclick="sendAI()"><i class="fas fa-paper-plane"></i></button>
-      <button onclick="startVoice()"><i class="fas fa-microphone"></i></button>
+      <input type="text" id="aiInput" placeholder="اكتب سؤالك..." onkeypress="if(event.key==='Enter') sendAI()" aria-label="اكتب سؤالك" />
+      <button onclick="sendAI()" aria-label="إرسال"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+      <button onclick="startVoice()" aria-label="إدخال صوتي"><i class="fas fa-microphone" aria-hidden="true"></i></button>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // ===== عدادات الإحصائيات =====
     function animateStats() {
       const statsSection = document.querySelector('.stats-section');
       if (!statsSection) return;
@@ -711,7 +708,6 @@
     }
     document.addEventListener('DOMContentLoaded', animateStats);
 
-    // ===== الذكاء الاصطناعي =====
     function toggleAI() {
       const win = document.getElementById('aiWindow');
       win.classList.toggle('open');
@@ -759,7 +755,6 @@
       recognition.start();
     }
 
-    // ===== نظام تسجيل الدخول المتعدد الأدوار =====
     function checkUserRole() {
       const user = JSON.parse(localStorage.getItem('user'));
       
