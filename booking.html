@@ -170,9 +170,11 @@
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests">📝 اختبارات</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">🌟 من نحن</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
-          <li class="nav-item"><a class="nav-link" href="register.html" data-i18n="nav_register">📝 التسجيل</a></li>
-          <!-- ===== زر اللغة ===== -->
+          <li class="nav-item" id="loginRegisterLinks"><a class="nav-link" href="login.html" data-i18n="nav_login">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item" id="studentDashboardLink" style="display:none;"><a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 لوحة الطالب</a></li>
+          <li class="nav-item" id="parentDashboardLink" style="display:none;"><a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 ولي الأمر</a></li>
+          <li class="nav-item" id="adminDashboardLink" style="display:none;"><a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ المدير</a></li>
+          <li class="nav-item" id="logoutLink" style="display:none;"><a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 تسجيل الخروج</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -349,62 +351,22 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    // ===== بيانات الصفوف =====
     const gradeData = {
-      prep: {
-        name: 'إعدادي',
-        schedule: '📘 الأحد والأربعاء – الساعة 5 مساءً<br>📍 أبراج الحاسب الآلي',
-        monthly: '300 ج.م',
-        plans: [
-          { price: 300, label: 'شهري (8 حصص)', badge: 'شهري' },
-          { price: 550, label: 'شهرين (16 حصة)', badge: 'شهرين' },
-          { price: 800, label: '3 شهور (24 حصة)', badge: '3 شهور' },
-          { price: 1050, label: '4 شهور (32 حصة)', badge: '4 شهور' }
-        ],
-        books: { pdf: 150, printed: 300 }
-      },
-      sec1: {
-        name: 'الصف الأول الثانوي',
-        schedule: '📘 الأحد والأربعاء – الساعة 6 مساءً<br>📍 أبراج الحاسب الآلي',
-        monthly: '400 ج.م',
-        plans: [
-          { price: 400, label: 'شهري (8 حصص)', badge: 'شهري' },
-          { price: 750, label: 'شهرين (16 حصة)', badge: 'شهرين' },
-          { price: 1100, label: '3 شهور (24 حصة)', badge: '3 شهور' },
-          { price: 1450, label: '4 شهور (32 حصة)', badge: '4 شهور' }
-        ],
-        books: { pdf: 150, printed: 300 }
-      },
-      sec3: {
-        name: 'الصف الثالث الثانوي',
-        schedule: '📘 الأحد والأربعاء – الساعة 8 مساءً<br>📍 أبراج الحاسب الآلي',
-        monthly: '500 ج.م',
-        plans: [
-          { price: 500, label: 'شهري (8 حصص)', badge: 'شهري' },
-          { price: 950, label: 'شهرين (16 حصة)', badge: 'شهرين' },
-          { price: 1400, label: '3 شهور (24 حصة)', badge: '3 شهور' },
-          { price: 1850, label: '4 شهور (32 حصة)', badge: '4 شهور' }
-        ],
-        books: { pdf: 150, printed: 300 }
-      }
+      prep: { name: 'إعدادي', schedule: '📘 الأحد والأربعاء – الساعة 5 مساءً<br>📍 أبراج الحاسب الآلي', monthly: '300 ج.م', plans: [{ price: 300, label: 'شهري (8 حصص)', badge: 'شهري' }, { price: 550, label: 'شهرين (16 حصة)', badge: 'شهرين' }, { price: 800, label: '3 شهور (24 حصة)', badge: '3 شهور' }, { price: 1050, label: '4 شهور (32 حصة)', badge: '4 شهور' }], books: { pdf: 150, printed: 300 } },
+      sec1: { name: 'الصف الأول الثانوي', schedule: '📘 الأحد والأربعاء – الساعة 6 مساءً<br>📍 أبراج الحاسب الآلي', monthly: '400 ج.م', plans: [{ price: 400, label: 'شهري (8 حصص)', badge: 'شهري' }, { price: 750, label: 'شهرين (16 حصة)', badge: 'شهرين' }, { price: 1100, label: '3 شهور (24 حصة)', badge: '3 شهور' }, { price: 1450, label: '4 شهور (32 حصة)', badge: '4 شهور' }], books: { pdf: 150, printed: 300 } },
+      sec3: { name: 'الصف الثالث الثانوي', schedule: '📘 الأحد والأربعاء – الساعة 8 مساءً<br>📍 أبراج الحاسب الآلي', monthly: '500 ج.م', plans: [{ price: 500, label: 'شهري (8 حصص)', badge: 'شهري' }, { price: 950, label: 'شهرين (16 حصة)', badge: 'شهرين' }, { price: 1400, label: '3 شهور (24 حصة)', badge: '3 شهور' }, { price: 1850, label: '4 شهور (32 حصة)', badge: '4 شهور' }], books: { pdf: 150, printed: 300 } }
     };
-
     let selectedGrade = null;
-
-    // ===== اختيار الصف =====
     function selectGrade(gradeKey) {
       selectedGrade = gradeKey;
       const data = gradeData[gradeKey];
       if (!data) return;
-
       document.querySelectorAll('.btn-grade').forEach(btn => btn.classList.remove('active'));
       document.querySelector(`.btn-grade[data-grade="${gradeKey}"]`).classList.add('active');
-
       document.getElementById('gradeInfo').style.display = 'block';
       document.getElementById('selectedGradeDisplay').value = data.name;
       document.getElementById('scheduleDetails').innerHTML = data.schedule;
       document.getElementById('monthlyPrice').innerHTML = `<p class="text-center fs-4 fw-bold">${data.monthly}</p>`;
-
       const plansRow = document.getElementById('plansRow');
       plansRow.innerHTML = data.plans.map((p, i) => `
         <div class="col-md-3 col-6">
@@ -415,7 +377,6 @@
           </div>
         </div>
       `).join('');
-
       document.getElementById('bookPrices').innerHTML = `
         <table>
           <thead><tr><th>النوع</th><th>السعر</th></tr></thead>
@@ -425,23 +386,18 @@
           </tbody>
         </table>
       `;
-
       document.getElementById('selectedPlanPrice').value = '';
       document.getElementById('selectedPlanLabel').value = '';
       document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
       document.getElementById('paymentNumberBox').style.display = 'none';
       document.getElementById('paymentMethod').value = '';
     }
-
-    // ===== اختيار الباقة =====
     function selectPlan(el, price, label) {
       document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
       el.classList.add('selected');
       document.getElementById('selectedPlanPrice').value = price;
       document.getElementById('selectedPlanLabel').value = label;
     }
-
-    // ===== إظهار رقم التحويل عند اختيار طريقة الدفع =====
     document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('paymentMethod').addEventListener('change', function() {
         const box = document.getElementById('paymentNumberBox');
@@ -450,11 +406,8 @@
       });
       selectGrade('sec1');
     });
-
-    // ===== تأكيد الحجز =====
     function handleBooking(e) {
       e.preventDefault();
-
       const name = document.getElementById('studentName').value.trim();
       const phone = document.getElementById('parentPhone').value.trim();
       const paymentMethod = document.getElementById('paymentMethod').value;
@@ -464,83 +417,46 @@
       const planPrice = document.getElementById('selectedPlanPrice').value;
       const planLabel = document.getElementById('selectedPlanLabel').value;
       const bookType = document.getElementById('bookType').value;
-
       if (!name || !phone) { alert('❌ يرجى ملء جميع الحقول المطلوبة'); return; }
       if (!selectedGrade) { alert('❌ يرجى اختيار الصف الدراسي'); return; }
       if (!paymentMethod) { alert('❌ يرجى اختيار طريقة الدفع'); return; }
       if (!transferNumber || !transferDate || !transferAmount) { alert('❌ يرجى إدخال بيانات التحويل'); return; }
-
       const data = gradeData[selectedGrade];
       let bookPrice = 0, bookLabel = 'لا يوجد';
       if (bookType === 'pdf') { bookPrice = data.books.pdf; bookLabel = 'PDF'; }
       else if (bookType === 'printed') { bookPrice = data.books.printed; bookLabel = 'مطبوعه'; }
       const total = (parseInt(planPrice) || 0) + bookPrice;
-
       if (parseInt(transferAmount) !== total) {
         alert(`❌ المبلغ المحول (${transferAmount} ج.م) لا يتطابق مع الإجمالي المطلوب (${total} ج.م)`);
         return;
       }
-
       const bookCode = 'YNA-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000);
-
       const bookingData = {
-        studentName: name,
-        grade: data.name,
-        gradeKey: selectedGrade,
-        parentPhone: phone,
-        parentEmail: document.getElementById('parentEmail').value,
+        studentName: name, grade: data.name, gradeKey: selectedGrade,
+        parentPhone: phone, parentEmail: document.getElementById('parentEmail').value,
         paymentMethod: paymentMethod === 'instapay' ? 'انستاباي' : 'فودافون كاش',
-        transferNumber: transferNumber,
-        transferDate: transferDate,
-        transferAmount: transferAmount,
-        planPrice: planPrice || 'لم يختار',
-        planLabel: planLabel || 'لم يختار',
+        transferNumber, transferDate, transferAmount,
+        planPrice: planPrice || 'لم يختار', planLabel: planLabel || 'لم يختار',
         bookType: bookType === 'none' ? 'لا يوجد' : bookLabel,
-        bookPrice: bookPrice,
-        bookCode: bookType !== 'none' ? bookCode : null,
+        bookPrice, bookCode: bookType !== 'none' ? bookCode : null,
         notes: document.getElementById('notes').value,
-        total: total,
-        status: 'pending',
-        date: new Date().toISOString()
+        total, status: 'pending', date: new Date().toISOString()
       };
-
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
-
-      // ===== إرسال إشعار واتساب =====
-      const message = `
-        📌 *طلب حجز جديد*
-        👤 الطالب: ${name}
-        🎓 الصف: ${data.name}
-        💳 طريقة الدفع: ${bookingData.paymentMethod}
-        🏷️ رقم التحويل: ${transferNumber}
-        📅 تاريخ التحويل: ${transferDate}
-        💰 المبلغ المحول: ${transferAmount} ج.م
-        💳 الباقة: ${planLabel} (${planPrice} ج.م)
-        📖 الملزمة: ${bookLabel} (${bookPrice} ج.م)
-        💰 الإجمالي: ${total} ج.م
-        🔑 كود الملزمة: ${bookCode || 'لا يوجد'}
-        📝 ملاحظات: ${document.getElementById('notes').value || 'لا يوجد'}
-      `;
-      
-      const phoneNumber = '201001297414'; // رقم ولي الأمر (للتجربة)
-      window.open(`https://wa.me/2${phoneNumber}?text=${encodeURIComponent(message)}`);
-
-      let alertMessage = `✅ تم استلام طلب الحجز!\n\n`;
-      alertMessage += `📌 بيانات الحجز:\n`;
-      alertMessage += `- الطالب: ${name}\n- الصف: ${data.name}\n- طريقة الدفع: ${bookingData.paymentMethod}\n`;
-      alertMessage += `- رقم التحويل: ${transferNumber}\n- تاريخ التحويل: ${transferDate}\n- المبلغ المحول: ${transferAmount} ج.م\n`;
-      alertMessage += `- الباقة: ${planLabel || 'لم يختار'} (${planPrice || '0'} ج.م)\n- الملزمة: ${bookLabel} (${bookPrice} ج.م)\n`;
-      alertMessage += `- الإجمالي: ${total} ج.م\n`;
-
+      let message = `✅ تم استلام طلب الحجز!\n\n`;
+      message += `📌 بيانات الحجز:\n`;
+      message += `- الطالب: ${name}\n- الصف: ${data.name}\n- طريقة الدفع: ${bookingData.paymentMethod}\n`;
+      message += `- رقم التحويل: ${transferNumber}\n- تاريخ التحويل: ${transferDate}\n- المبلغ المحول: ${transferAmount} ج.م\n`;
+      message += `- الباقة: ${planLabel || 'لم يختار'} (${planPrice || '0'} ج.م)\n- الملزمة: ${bookLabel} (${bookPrice} ج.م)\n`;
+      message += `- الإجمالي: ${total} ج.م\n`;
       if (bookType === 'printed') {
-        alertMessage += `\n📖 كود استلام الملزمة المطبوعة من المكتبة: ${bookCode}\n📍 العنوان: أبراج الحاسب الآلي\n`;
+        message += `\n📖 كود استلام الملزمة المطبوعة من المكتبة: ${bookCode}\n📍 العنوان: أبراج الحاسب الآلي\n`;
       }
       if (bookType === 'pdf') {
-        alertMessage += `\n📄 كود تحميل PDF: ${bookCode}\n🔗 رابط التحميل: سيتم إرساله على واتساب\n`;
+        message += `\n📄 كود تحميل PDF: ${bookCode}\n🔗 رابط التحميل: سيتم إرساله على واتساب\n`;
       }
-      alertMessage += `\n📞 للاستفسار: 01203145717 (واتساب)`;
-
-      alert(alertMessage);
+      message += `\n📞 للاستفسار: 01203145717 (واتساب)`;
+      alert(message);
       window.location.href = 'index.html';
     }
   </script>
