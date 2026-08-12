@@ -41,22 +41,23 @@
       letter-spacing: 1px;
     }
     .navbar-brand .brand-name span { color: #ffb347; }
-    .navbar-nav .nav-item { margin: 0 4px; position: relative; }
+    .navbar-nav .nav-item { margin: 0 2px; position: relative; } /* تقليل المسافة بين الأزرار */
     .navbar-nav .nav-link {
       color: rgba(255, 255, 255, 0.8) !important;
       font-family: 'El Messiri', serif;
       font-weight: 500;
-      font-size: 1.05rem;
-      padding: 10px 18px;
+      font-size: 0.95rem; /* تصغير حجم الخط */
+      padding: 8px 12px; /* تقليل الحشو */
       border-radius: 12px;
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       position: relative;
       text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      white-space: nowrap; /* منع النزول للسطر الثاني */
     }
-    .navbar-nav .nav-link i { font-size: 0.95rem; color: #f7e05e; transition: 0.3s; }
+    .navbar-nav .nav-link i { font-size: 0.85rem; color: #f7e05e; transition: 0.3s; }
     .navbar-nav .nav-link:hover {
       color: #fff !important;
       background: rgba(247, 224, 94, 0.10);
@@ -88,6 +89,9 @@
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
     }
+    @media (max-width: 1199.98px) {
+      .navbar-nav .nav-link { font-size: 0.85rem; padding: 6px 10px; } /* تصغير إضافي للشاشات المتوسطة */
+    }
     @media (max-width: 991.98px) {
       .navbar-collapse {
         background: rgba(10, 31, 68, 0.96);
@@ -100,7 +104,7 @@
         animation: slideDown 0.3s ease forwards;
       }
       .navbar-nav .nav-item { margin: 2px 0; }
-      .navbar-nav .nav-link { padding: 12px 18px; border-radius: 12px; font-size: 1.05rem; }
+      .navbar-nav .nav-link { padding: 12px 18px; border-radius: 12px; font-size: 1.05rem; white-space: normal; } /* في الموبايل يسمح بالنزول */
       .navbar-nav .nav-link i { width: 24px; text-align: center; }
       .nav-indicator { display: none; }
       .navbar-nav .nav-link.active { background: rgba(247, 224, 94, 0.12); }
@@ -111,6 +115,7 @@
     }
     html { scroll-behavior: smooth; }
 
+    /* ===== باقي الـ Styles (زي ما هي) ===== */
     .top-bar {
       background: #f7e05e;
       padding: 10px 0;
