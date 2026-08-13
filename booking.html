@@ -15,6 +15,14 @@
     gtag('config', 'G-N3R3KFEO8');
   </script>
 
+  <!-- ===== Firebase ===== -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <!-- ===== Stripe ===== -->
+  <script src="https://js.stripe.com/v3/"></script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
@@ -87,6 +95,18 @@
       transition: 0.3s;
     }
     .btn-book:hover { background: #f7b731; transform: scale(1.02); }
+
+    .btn-stripe {
+      background: #6772e5;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 50px;
+      padding: 14px;
+      width: 100%;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-stripe:hover { background: #5469d4; transform: scale(1.02); }
 
     .plan-card {
       background: #fff;
@@ -263,6 +283,16 @@
           <small class="text-muted">📌 The pickup code will be sent via WhatsApp after payment confirmation.</small>
         </div>
 
+        <!-- ===== Stripe Payment ===== -->
+        <div class="price-table" style="background: #e8f4fd; border: 2px solid #6772e5;">
+          <h5 class="fw-bold" style="color: #6772e5;"><i class="fas fa-credit-card" aria-hidden="true"></i> Pay with Stripe (Card)</h5>
+          <p class="text-muted">Secure payment via credit/debit card</p>
+          <button class="btn-stripe" id="stripePaymentBtn" onclick="processStripePayment()">
+            <i class="fas fa-lock" aria-hidden="true"></i> Pay Now with Stripe
+          </button>
+          <div id="stripeStatus" class="mt-2"></div>
+        </div>
+
         <form id="bookingForm" onsubmit="handleBooking(event)">
           <div class="row g-3">
             <div class="col-md-6">
@@ -288,6 +318,7 @@
                 <option value="">-- Select Payment Method --</option>
                 <option value="instapay">Instapay</option>
                 <option value="vodafone">Vodafone Cash</option>
+                <option value="stripe">Stripe (Credit Card)</option>
               </select>
             </div>
 
@@ -387,6 +418,23 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
+    // ===== Firebase Configuration =====
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // ===== Stripe =====
+    const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY'); // استبدل بمفتاحك
+
     // ===== بيانات الصفوف =====
     const gradeData = {
       prep: {
@@ -429,6 +477,7 @@
 
     let selectedGrade = null;
 
+    // ===== اختيار الصف =====
     function selectGrade(gradeKey) {
       selectedGrade = gradeKey;
       const data = gradeData[gradeKey];
@@ -470,6 +519,7 @@
       document.getElementById('paymentMethod').value = '';
     }
 
+    // ===== اختيار الباقة =====
     function selectPlan(el, price, label) {
       document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
       el.classList.add('selected');
@@ -477,15 +527,90 @@
       document.getElementById('selectedPlanLabel').value = label;
     }
 
+    // ===== إظهار رقم التحويل عند اختيار طريقة الدفع =====
     document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('paymentMethod').addEventListener('change', function() {
         const box = document.getElementById('paymentNumberBox');
-        if (this.value) box.style.display = 'block';
-        else box.style.display = 'none';
+        if (this.value === 'instapay' || this.value === 'vodafone') {
+          box.style.display = 'block';
+        } else {
+          box.style.display = 'none';
+        }
       });
       selectGrade('sec1');
     });
 
+    // ===== معالجة الدفع بـ Stripe =====
+    async function processStripePayment() {
+      const status = document.getElementById('stripeStatus');
+      const btn = document.getElementById('stripePaymentBtn');
+      
+      const name = document.getElementById('studentName').value.trim();
+      const phone = document.getElementById('parentPhone').value.trim();
+      const planPrice = parseInt(document.getElementById('selectedPlanPrice').value) || 0;
+      const bookType = document.getElementById('bookType').value;
+      const data = gradeData[selectedGrade];
+      
+      let bookPrice = 0;
+      if (bookType === 'pdf') bookPrice = data.books.pdf;
+      else if (bookType === 'printed') bookPrice = data.books.printed;
+      const total = planPrice + bookPrice;
+
+      if (!name || !phone) {
+        status.innerHTML = '<div class="alert alert-warning">❌ Please enter your name and phone number</div>';
+        return;
+      }
+
+      if (!selectedGrade) {
+        status.innerHTML = '<div class="alert alert-warning">❌ Please select your grade</div>';
+        return;
+      }
+
+      if (total === 0) {
+        status.innerHTML = '<div class="alert alert-warning">❌ Please select a package or book</div>';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Processing...';
+      status.innerHTML = '';
+
+      try {
+        // إنشاء جلسة دفع في Stripe
+        const response = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: total * 100, // Stripe يتعامل مع المبلغ بـ "قرش"
+            currency: 'EGP',
+            studentName: name,
+            grade: data.name,
+            phone: phone,
+            bookType: bookType
+          })
+        });
+
+        const session = await response.json();
+
+        if (session.id) {
+          // توجيه المستخدم لصفحة الدفع
+          const result = await stripe.redirectToCheckout({ sessionId: session.id });
+          if (result.error) {
+            status.innerHTML = `<div class="alert alert-danger">❌ ${result.error.message}</div>`;
+          }
+        } else {
+          status.innerHTML = `<div class="alert alert-danger">❌ Failed to create payment session</div>`;
+        }
+      } catch (error) {
+        console.error('Stripe Error:', error);
+        status.innerHTML = `<div class="alert alert-danger">❌ Payment error: ${error.message}</div>`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock" aria-hidden="true"></i> Pay Now with Stripe';
+      }
+    }
+
+    // ===== تأكيد الحجز =====
     function handleBooking(e) {
       e.preventDefault();
 
@@ -502,7 +627,10 @@
       if (!name || !phone) { alert('❌ Please fill in all required fields'); return; }
       if (!selectedGrade) { alert('❌ Please select your grade'); return; }
       if (!paymentMethod) { alert('❌ Please select payment method'); return; }
-      if (!transferNumber || !transferDate || !transferAmount) { alert('❌ Please enter transfer details'); return; }
+      
+      if (paymentMethod !== 'stripe') {
+        if (!transferNumber || !transferDate || !transferAmount) { alert('❌ Please enter transfer details'); return; }
+      }
 
       const data = gradeData[selectedGrade];
       let bookPrice = 0, bookLabel = 'None';
@@ -510,7 +638,7 @@
       else if (bookType === 'printed') { bookPrice = data.books.printed; bookLabel = 'Printed'; }
       const total = (parseInt(planPrice) || 0) + bookPrice;
 
-      if (parseInt(transferAmount) !== total) {
+      if (paymentMethod !== 'stripe' && parseInt(transferAmount) !== total) {
         alert(`❌ Transferred amount (${transferAmount} EGP) does not match the total (${total} EGP)`);
         return;
       }
@@ -523,10 +651,11 @@
         gradeKey: selectedGrade,
         parentPhone: phone,
         parentEmail: document.getElementById('parentEmail').value,
-        paymentMethod: paymentMethod === 'instapay' ? 'Instapay' : 'Vodafone Cash',
-        transferNumber: transferNumber,
-        transferDate: transferDate,
-        transferAmount: transferAmount,
+        paymentMethod: paymentMethod === 'instapay' ? 'Instapay' : 
+                       paymentMethod === 'vodafone' ? 'Vodafone Cash' : 'Stripe',
+        transferNumber: transferNumber || 'Stripe Payment',
+        transferDate: transferDate || new Date().toISOString().split('T')[0],
+        transferAmount: transferAmount || total,
         planPrice: planPrice || 'Not selected',
         planLabel: planLabel || 'Not selected',
         bookType: bookType === 'none' ? 'None' : bookLabel,
@@ -534,16 +663,31 @@
         bookCode: bookType !== 'none' ? bookCode : null,
         notes: document.getElementById('notes').value,
         total: total,
-        status: 'pending',
+        status: paymentMethod === 'stripe' ? 'paid' : 'pending',
         date: new Date().toISOString()
       };
+
+      // حفظ في Firestore
+      if (auth.currentUser) {
+        db.collection('bookings').add({
+          ...bookingData,
+          userId: auth.currentUser.uid,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+          console.log('Booking saved to Firestore');
+        }).catch(error => {
+          console.error('Error saving booking:', error);
+        });
+      }
 
       localStorage.setItem('bookingData', JSON.stringify(bookingData));
 
       let message = `✅ Booking request received!\n\n`;
       message += `📌 Booking details:\n`;
       message += `- Student: ${name}\n- Grade: ${data.name}\n- Payment method: ${bookingData.paymentMethod}\n`;
-      message += `- Transfer number: ${transferNumber}\n- Transfer date: ${transferDate}\n- Amount: ${transferAmount} EGP\n`;
+      if (paymentMethod !== 'stripe') {
+        message += `- Transfer number: ${transferNumber}\n- Transfer date: ${transferDate}\n- Amount: ${transferAmount} EGP\n`;
+      }
       message += `- Package: ${planLabel} (${planPrice} EGP)\n- Book: ${bookLabel} (${bookPrice} EGP)\n`;
       message += `- Total: ${total} EGP\n`;
 
@@ -557,12 +701,56 @@
 
       alert(message);
       
-      // فتح واتساب للتواصل مع الأكاديمية
       const whatsappMessage = encodeURIComponent(`مرحباً، لقد قمت بحجز كورس في أكاديمية مستر ياسر نوفل.\nالاسم: ${name}\nكود الحجز: ${bookCode || 'لا يوجد'}`);
       window.open(`https://wa.me/201001297414?text=${whatsappMessage}`, '_blank');
       
       window.location.href = 'index.html';
     }
+
+    // ===== التحقق من حالة المستخدم للقائمة =====
+    function checkUserRole() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          document.getElementById('registerLink').style.display = 'none';
+          document.getElementById('logoutLink').style.display = 'block';
+          document.getElementById('loginLink').style.display = 'none';
+          
+          db.collection('users').doc(user.uid).get().then(doc => {
+            if (doc.exists) {
+              const role = doc.data().role || 'student';
+              if (role === 'student') {
+                document.getElementById('studentDashboardLink').style.display = 'block';
+              } else if (role === 'parent') {
+                document.getElementById('parentDashboardLink').style.display = 'block';
+              } else if (role === 'admin') {
+                document.getElementById('adminDashboardLink').style.display = 'block';
+              }
+            }
+          }).catch(error => {
+            console.error('Error fetching user role:', error);
+          });
+        } else {
+          document.getElementById('registerLink').style.display = 'block';
+          document.getElementById('logoutLink').style.display = 'none';
+          document.getElementById('loginLink').style.display = 'block';
+          document.getElementById('studentDashboardLink').style.display = 'none';
+          document.getElementById('parentDashboardLink').style.display = 'none';
+          document.getElementById('adminDashboardLink').style.display = 'none';
+        }
+      });
+    }
+
+    function logoutUser() {
+      auth.signOut().then(() => {
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
+      }).catch(error => {
+        alert('❌ Error logging out: ' + error.message);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', checkUserRole);
+    console.log('✅ Booking page loaded with Stripe and Firebase');
   </script>
 </body>
 </html>
