@@ -365,5 +365,63 @@
     document.addEventListener('DOMContentLoaded', checkUserRole);
     console.log('✅ Login page loaded with Firebase');
   </script>
+  <script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged } from "firebase/auth";
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // المستخدم مسجل الدخول - اظهر محتوى الصفحة
+      console.log("مرحباً " + user.email);
+      document.getElementById('user-email').textContent = user.email;
+    } else {
+      // المستخدم غير مسجل - خذه لصفحة التسجيل
+      window.location.href = 'login.html';
+    }
+  });
+</script>
+<script type="module">
+  import { auth } from './firebase-config.js';
+  import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+
+  // إذا كان المستخدم مسجلاً بالفعل، حوله للوحة التحكم
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      window.location.href = 'dashboard.html';
+    }
+  });
+
+  // كود التسجيل (في register.html)
+  document.getElementById('register-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        alert("✅ تم التسجيل بنجاح!");
+        window.location.href = 'dashboard.html';
+      })
+      .catch((error) => {
+        alert("❌ خطأ: " + error.message);
+      });
+  });
+
+  // كود تسجيل الدخول (في login.html)
+  document.getElementById('login-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        alert("✅ مرحباً بعودتك!");
+        window.location.href = 'dashboard.html';
+      })
+      .catch((error) => {
+        alert("❌ خطأ: " + error.message);
+      });
+  });
+</script>
 </body>
 </html>

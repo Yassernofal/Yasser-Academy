@@ -445,5 +445,20 @@
     document.addEventListener('DOMContentLoaded', checkUserRole);
     console.log('✅ About page loaded with Firebase');
   </script>
+  <script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged } from "firebase/auth";
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // المستخدم مسجل الدخول - اظهر محتوى الصفحة
+      console.log("مرحباً " + user.email);
+      document.getElementById('user-email').textContent = user.email;
+    } else {
+      // المستخدم غير مسجل - خذه لصفحة التسجيل
+      window.location.href = 'login.html';
+    }
+  });
+</script>
 </body>
 </html>

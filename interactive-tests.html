@@ -747,5 +747,58 @@ const app = initializeApp(firebaseConfig);
     document.addEventListener('DOMContentLoaded', checkUserRole);
     console.log('✅ Tests page loaded with Firebase');
   </script>
+  <script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged } from "firebase/auth";
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // المستخدم مسجل الدخول - اظهر محتوى الصفحة
+      console.log("مرحباً " + user.email);
+      document.getElementById('user-email').textContent = user.email;
+    } else {
+      // المستخدم غير مسجل - خذه لصفحة التسجيل
+      window.location.href = 'login.html';
+    }
+  });
+</script>
+<script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged, signOut } from "firebase/auth";
+
+  // 1. التحقق من حالة المستخدم
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // ✅ المستخدم مسجل - نعرض المحتوى
+      console.log("✅ مرحباً: " + user.email);
+      
+      // عرض البريد الإلكتروني في أي مكان في الصفحة (اختياري)
+      const emailElement = document.getElementById('user-email');
+      if (emailElement) {
+        emailElement.textContent = user.email;
+      }
+      
+      // إظهار المحتوى المخفي (إذا كان مخفياً)
+      document.body.style.display = 'block';
+      
+    } else {
+      // ❌ المستخدم غير مسجل - ننقله لتسجيل الدخول
+      console.log("❌ غير مسجل دخول - جاري التحويل...");
+      window.location.href = 'login.html';
+    }
+  });
+
+  // 2. وظيفة تسجيل الخروج (ضع زر بخاصية logout-btn)
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      signOut(auth).then(() => {
+        window.location.href = 'index.html';
+      }).catch((error) => {
+        console.error("خطأ في تسجيل الخروج:", error);
+      });
+    });
+  }
+</script>
 </body>
 </html>
