@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Parent Dashboard – Mr. Yasser Nofal Academy</title>
-  
   <meta name="description" content="Parent dashboard to track children at Mr. Yasser Nofal Academy." />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/parent-dashboard.html" />
 
@@ -15,6 +14,11 @@
     gtag('js', new Date());
     gtag('config', 'G-N3R3KFEO8');
   </script>
+
+  <!-- ===== Firebase ===== -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -63,7 +67,9 @@
       padding: 20px;
       margin-bottom: 20px;
       border-right: 4px solid #0a1f44;
+      transition: 0.3s;
     }
+    .student-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
     .student-card h5 { color: #0a1f44; font-weight: 700; }
 
     .stat-box {
@@ -94,7 +100,7 @@
       font-weight: 700;
       transition: 0.3s;
     }
-    .btn-whatsapp:hover { background: #128C7E; color: #fff; }
+    .btn-whatsapp:hover { background: #128C7E; color: #fff; transform: scale(1.02); }
 
     .loading-spinner {
       display: flex;
@@ -199,19 +205,22 @@
     <div class="dashboard-container">
       <h2 class="fw-bold text-center mb-4"><i class="fas fa-user-friends text-primary" aria-hidden="true"></i> Parent Dashboard</h2>
       
-      <div id="authStatus" class="text-center mb-4"></div>
-      <div id="studentsData" style="display: none;"><div id="studentsList"></div></div>
-      <div id="noStudents" style="display: none;" class="text-center text-muted py-5">
-        <i class="fas fa-user-graduate fa-4x mb-3 d-block" aria-hidden="true"></i>
-        <p>No students registered with this account</p>
-      </div>
       <div id="loadingScreen" class="loading-spinner">
         <div class="text-center">
           <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
-          <p class="mt-2">Loading student data...</p>
+          <p class="mt-2">Loading your children's data...</p>
         </div>
+      </div>
+
+      <div id="dashboardContent" style="display: none;">
+        <div id="studentsList"></div>
+      </div>
+
+      <div id="noStudents" style="display: none;" class="text-center text-muted py-5">
+        <i class="fas fa-user-graduate fa-4x mb-3 d-block" aria-hidden="true"></i>
+        <p>No students registered with this account</p>
       </div>
     </div>
   </section>
@@ -254,22 +263,10 @@
     </div>
   </footer>
 
-  <!-- ===== Firebase ===== -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    // ===== التحقق من دور ولي الأمر =====
-    function checkParentRole() {
-      const user = JSON.parse(localStorage.getItem('user'));
-      if (!user || user.role !== 'parent') {
-        window.location.href = 'login.html';
-        return false;
-      }
-      return true;
-    }
-
+    // ===== Firebase Configuration =====
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -283,54 +280,64 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    const loadingScreen = document.getElementById('loadingScreen');
-    const studentsDataDiv = document.getElementById('studentsData');
-    const studentsList = document.getElementById('studentsList');
-    const noStudentsDiv = document.getElementById('noStudents');
-    const authStatus = document.getElementById('authStatus');
+    // ===== التحقق من صلاحيات ولي الأمر =====
+    function checkParentRole() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          db.collection('users').doc(user.uid).get().then(doc => {
+            if (doc.exists) {
+              const role = doc.data().role;
+              if (role !== 'parent') {
+                window.location.href = role === 'admin' ? 'admin-dashboard.html' : 'student-dashboard.html';
+                return;
+              }
+              loadChildrenData(user.uid);
+            } else {
+              window.location.href = 'login.html';
+            }
+          }).catch(() => {
+            window.location.href = 'login.html';
+          });
+        } else {
+          window.location.href = 'login.html';
+        }
+      });
+    }
 
-    auth.onAuthStateChanged(async (user) => {
-      if (!checkParentRole()) return;
-      
-      if (user) {
-        authStatus.innerHTML = `<div class="alert alert-success"><i class="fas fa-check-circle" aria-hidden="true"></i> Welcome! <strong>${user.email}</strong></div>`;
-        await loadStudents(user.email);
-      } else {
-        authStatus.innerHTML = `<div class="alert alert-warning"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Please <a href="login.html" class="alert-link">login</a> to view your children's data.</div>`;
-        loadingScreen.style.display = 'none';
-        studentsDataDiv.style.display = 'none';
-        noStudentsDiv.style.display = 'none';
-      }
-    });
-
-    async function loadStudents(parentEmail) {
-      loadingScreen.style.display = 'flex';
-      studentsDataDiv.style.display = 'none';
-      noStudentsDiv.style.display = 'none';
-
+    // ===== تحميل بيانات الأبناء =====
+    async function loadChildrenData(parentUid) {
       try {
-        const querySnapshot = await db.collection('students').where('parentEmail', '==', parentEmail).get();
+        const querySnapshot = await db.collection('students')
+          .where('parentUid', '==', parentUid)
+          .get();
+
+        document.getElementById('loadingScreen').style.display = 'none';
+
         if (querySnapshot.empty) {
-          loadingScreen.style.display = 'none';
-          noStudentsDiv.style.display = 'block';
+          document.getElementById('noStudents').style.display = 'block';
           return;
         }
 
+        const studentsList = document.getElementById('studentsList');
         studentsList.innerHTML = '';
         querySnapshot.forEach((doc) => {
           const student = doc.data();
           studentsList.innerHTML += createStudentCard(student);
         });
 
-        loadingScreen.style.display = 'none';
-        studentsDataDiv.style.display = 'block';
+        document.getElementById('dashboardContent').style.display = 'block';
       } catch (error) {
-        console.error('Error loading data:', error);
-        loadingScreen.style.display = 'none';
-        authStatus.innerHTML = `<div class="alert alert-danger"><i class="fas fa-times-circle" aria-hidden="true"></i> Error loading data: ${error.message}</div>`;
+        console.error('Error loading children data:', error);
+        document.getElementById('loadingScreen').innerHTML = `
+          <div class="alert alert-danger text-center">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+            Error loading data: ${error.message}
+          </div>
+        `;
       }
     }
 
+    // ===== إنشاء بطاقة الطالب =====
     function createStudentCard(student) {
       let totalPaid = 0;
       let paymentRows = '';
@@ -340,7 +347,12 @@
           const statusText = p.status === 'paid' ? '✅ Paid' : '⏳ Pending';
           const amount = parseInt(p.amount) || 0;
           if (p.status === 'paid') totalPaid += amount;
-          paymentRows += `<tr><td>${p.date || '--'}</td><td>${p.desc || '--'}</td><td>${p.amount || '0'} EGP</td><td><span class="${statusClass}">${statusText}</span></td></tr>`;
+          paymentRows += `<tr>
+            <td>${p.date || '--'}</td>
+            <td>${p.desc || '--'}</td>
+            <td>${p.amount || '0'} EGP</td>
+            <td><span class="${statusClass}">${statusText}</span></td>
+          </tr>`;
         });
       } else {
         paymentRows = `<tr><td colspan="4" class="text-center">No payments recorded</td></tr>`;
@@ -350,30 +362,61 @@
         <div class="student-card">
           <div class="row align-items-center">
             <div class="col-md-8">
-              <h5><i class="fas fa-user-graduate text-primary" aria-hidden="true"></i> ${student.name || 'Not specified'}</h5>
+              <h5><i class="fas fa-user-graduate text-primary" aria-hidden="true"></i> ${student.name || 'Student'}</h5>
               <p class="mb-1"><i class="fas fa-graduation-cap text-primary" aria-hidden="true"></i> Grade: <strong>${student.grade || 'Not specified'}</strong></p>
-              <p class="mb-1"><i class="fas fa-phone text-success" aria-hidden="true"></i> Parent: <strong>${student.parentPhone || 'Not specified'}</strong></p>
-              <p><i class="fas fa-envelope text-info" aria-hidden="true"></i> Email: <strong>${student.parentEmail || 'Not specified'}</strong></p>
+              <p class="mb-1"><i class="fas fa-phone text-success" aria-hidden="true"></i> Phone: <strong>${student.phone || 'Not specified'}</strong></p>
+              <p><i class="fas fa-envelope text-info" aria-hidden="true"></i> Email: <strong>${student.email || 'Not specified'}</strong></p>
             </div>
             <div class="col-md-4 text-md-start text-center">
               <span class="badge bg-success fs-6 p-2">✅ Active</span>
-              ${student.parentPhone ? `<button class="btn btn-whatsapp mt-2 d-block" onclick="contactParent('${student.parentPhone}', '${student.name}')"><i class="fab fa-whatsapp" aria-hidden="true"></i> Contact Parent</button>` : ''}
+              ${student.phone ? `
+                <button class="btn btn-whatsapp mt-2 d-block" onclick="contactParent('${student.phone}', '${student.name}')">
+                  <i class="fab fa-whatsapp" aria-hidden="true"></i> Contact Parent
+                </button>
+              ` : ''}
             </div>
           </div>
         </div>
 
         <div class="row g-3 mb-4">
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.attendance || '0%'}</div><div class="label">📅 Attendance</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.average || '0%'}</div><div class="label">📊 Average Grade</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.tests || 0}</div><div class="label">📝 Completed Tests</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.books || 0}</div><div class="label">📚 Books Purchased</div></div></div>
+          <div class="col-md-3 col-6">
+            <div class="stat-box">
+              <div class="number">${student.attendance || '0%'}</div>
+              <div class="label">📅 Attendance</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-box">
+              <div class="number">${student.average || '0%'}</div>
+              <div class="label">📊 Average Grade</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-box">
+              <div class="number">${student.tests || 0}</div>
+              <div class="label">📝 Completed Tests</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-box">
+              <div class="number">${student.books || 0}</div>
+              <div class="label">📚 Books Purchased</div>
+            </div>
+          </div>
         </div>
 
         <div class="payment-history">
           <h6><i class="fas fa-credit-card text-primary" aria-hidden="true"></i> Payment History (Total Paid: <strong>${totalPaid} EGP</strong>)</h6>
           <div class="table-responsive">
             <table class="table table-sm">
-              <thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
               <tbody>${paymentRows}</tbody>
             </table>
           </div>
@@ -382,15 +425,61 @@
       `;
     }
 
+    // ===== التواصل عبر واتساب =====
     function contactParent(phone, studentName) {
       if (!phone) return;
       window.open(`https://wa.me/2${phone}?text=Hello%20parent%20of%20${studentName}%2C%20this%20is%20a%20message%20from%20Mr.%20Yasser%20Nofal%20Academy`, '_blank');
     }
 
+    // ===== تسجيل الخروج =====
     function logoutUser() {
-      localStorage.removeItem('user');
-      window.location.href = 'login.html';
+      auth.signOut().then(() => {
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
+      }).catch(error => {
+        alert('❌ Error logging out: ' + error.message);
+      });
     }
+
+    // ===== التحقق من حالة المستخدم للقائمة =====
+    function checkUserRole() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          document.getElementById('registerLink').style.display = 'none';
+          document.getElementById('logoutLink').style.display = 'block';
+          document.getElementById('loginLink').style.display = 'none';
+          
+          db.collection('users').doc(user.uid).get().then(doc => {
+            if (doc.exists) {
+              const role = doc.data().role || 'student';
+              if (role === 'student') {
+                document.getElementById('studentDashboardLink').style.display = 'block';
+              } else if (role === 'parent') {
+                document.getElementById('parentDashboardLink').style.display = 'block';
+              } else if (role === 'admin') {
+                document.getElementById('adminDashboardLink').style.display = 'block';
+              }
+            }
+          }).catch(error => {
+            console.error('Error fetching user role:', error);
+          });
+        } else {
+          document.getElementById('registerLink').style.display = 'block';
+          document.getElementById('logoutLink').style.display = 'none';
+          document.getElementById('loginLink').style.display = 'block';
+          document.getElementById('studentDashboardLink').style.display = 'none';
+          document.getElementById('parentDashboardLink').style.display = 'none';
+          document.getElementById('adminDashboardLink').style.display = 'none';
+        }
+      });
+    }
+
+    // تشغيل عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+      checkUserRole();
+      checkParentRole();
+    });
+    console.log('✅ Parent Dashboard page loaded with Firebase');
   </script>
 </body>
 </html>
