@@ -242,24 +242,19 @@
   <script src="assets/js/lang.js"></script>
   <script>
     // ===== Firebase Configuration =====
-    // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    const firebaseConfig = {
+      apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
+      authDomain: "yasser-academy-9b7e6.firebaseapp.com",
+      projectId: "yasser-academy-9b7e6",
+      storageBucket: "yasser-academy-9b7e6.firebasestorage.app",
+      messagingSenderId: "324295594200",
+      appId: "1:324295594200:web:9b3c2f0b2e4f1a2b3c4d"
+    };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
-  authDomain: "yasser-nofal-english-academy.firebaseapp.com",
-  databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
-  projectId: "yasser-nofal-english-academy",
-  storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
-  messagingSenderId: "654488740819",
-  appId: "1:654488740819:web:7a513cb6c2a74d98324526"
-};
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
     // ===== إنشاء حساب جديد =====
     async function registerUser(e) {
       e.preventDefault();
@@ -306,11 +301,11 @@ const app = initializeApp(firebaseConfig);
         });
 
         // ✅ رسالة نجاح
-        status.innerHTML = `<div class="alert alert-success">✅ Account created successfully! Redirecting to login...</div>`;
+        status.innerHTML = `<div class="alert alert-success">✅ Account created successfully! Redirecting to home...</div>`;
         
-        // 🚀 توجيه المستخدم لصفحة تسجيل الدخول بعد 2 ثانية
+        // 🚀 توجيه المستخدم للصفحة الرئيسية بعد 2 ثانية
         setTimeout(() => {
-          window.location.href = 'login.html';
+          window.location.href = 'index.html';
         }, 2000);
 
       } catch (error) {
