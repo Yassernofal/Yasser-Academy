@@ -15,6 +15,10 @@
     gtag('config', 'G-N3R3KFEO8');
   </script>
 
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
@@ -449,7 +453,20 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    // ===== بنك الأسئلة الموسع (100 سؤال لكل مستوى) =====
+    // ===== Firebase =====
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // ===== بنك الأسئلة (موسع) =====
     const questionBank = {
       beginner: [
         { q: 'I ___ a student.', options: ['am', 'is', 'are', 'be'], correct: 0 },
@@ -481,27 +498,7 @@
         { q: 'She ___ her homework every day.', options: ['do', 'does', 'doing', 'did'], correct: 1 },
         { q: 'We ___ a party last weekend.', options: ['have', 'has', 'had', 'having'], correct: 2 },
         { q: '___ you tired?', options: ['Is', 'Are', 'Am', 'Do'], correct: 1 },
-        { q: 'He ___ to school by bus.', options: ['go', 'goes', 'going', 'went'], correct: 1 },
-        { q: 'I ___ a letter to my friend.', options: ['write', 'writes', 'writing', 'wrote'], correct: 0 },
-        { q: 'She ___ breakfast at 7 AM.', options: ['have', 'has', 'having', 'had'], correct: 1 },
-        { q: 'We ___ to the beach tomorrow.', options: ['go', 'goes', 'will go', 'went'], correct: 2 },
-        { q: 'He ___ his car every Sunday.', options: ['wash', 'washes', 'washing', 'washed'], correct: 1 },
-        { q: 'I ___ a teacher in the future.', options: ['become', 'becomes', 'will become', 'became'], correct: 2 },
-        { q: 'She ___ her grandmother last week.', options: ['visit', 'visits', 'visiting', 'visited'], correct: 3 },
-        { q: 'We ___ to school together.', options: ['walk', 'walks', 'walking', 'walked'], correct: 0 },
-        { q: 'He ___ a new phone yesterday.', options: ['buy', 'buys', 'bought', 'buying'], correct: 2 },
-        { q: '___ you like chocolate?', options: ['Does', 'Do', 'Is', 'Are'], correct: 1 },
-        { q: 'She ___ a beautiful dress.', options: ['have', 'has', 'having', 'had'], correct: 1 },
-        { q: 'I ___ to the gym every morning.', options: ['go', 'goes', 'going', 'went'], correct: 0 },
-        { q: 'They ___ their homework now.', options: ['do', 'does', 'are doing', 'did'], correct: 2 },
-        { q: 'He ___ playing the guitar.', options: ['is', 'are', 'am', 'be'], correct: 0 },
-        { q: 'We ___ to a restaurant last night.', options: ['go', 'goes', 'went', 'going'], correct: 2 },
-        { q: '___ you ready?', options: ['Is', 'Are', 'Am', 'Do'], correct: 1 },
-        { q: 'She ___ her teeth twice a day.', options: ['brush', 'brushes', 'brushing', 'brushed'], correct: 1 },
-        { q: 'I ___ a book now.', options: ['read', 'reads', 'am reading', 'readed'], correct: 2 },
-        { q: 'We ___ a big house.', options: ['have', 'has', 'having', 'had'], correct: 0 },
-        { q: 'He ___ to the office by car.', options: ['go', 'goes', 'going', 'went'], correct: 1 },
-        { q: 'I ___ my friend at the mall.', options: ['meet', 'meets', 'met', 'meeting'], correct: 2 }
+        { q: 'He ___ to school by bus.', options: ['go', 'goes', 'going', 'went'], correct: 1 }
       ],
       intermediate: [
         { q: 'If I ___ you, I would study harder.', options: ['was', 'were', 'am', 'is'], correct: 1 },
@@ -523,37 +520,7 @@
         { q: 'She told me she ___ come.', options: ['will', 'would', 'can', 'may'], correct: 1 },
         { q: 'I’ve been here ___ 8 AM.', options: ['since', 'for', 'from', 'during'], correct: 0 },
         { q: 'The movie was ___ boring.', options: ['so', 'too', 'very', 'enough'], correct: 2 },
-        { q: 'He drives ___ than me.', options: ['more careful', 'more carefully', 'carefuler', 'carefuller'], correct: 1 },
-        { q: 'I ___ a shower when you called.', options: ['took', 'was taking', 'have taken', 'take'], correct: 1 },
-        { q: 'They ___ to the party if they had been invited.', options: ['would come', 'would have come', 'came', 'come'], correct: 1 },
-        { q: 'She ___ a lot of progress in her English.', options: ['have made', 'has made', 'made', 'making'], correct: 1 },
-        { q: 'We ___ a great time at the concert.', options: ['have', 'had', 'have had', 'are having'], correct: 1 },
-        { q: 'He ___ to the gym every day.', options: ['go', 'goes', 'going', 'went'], correct: 1 },
-        { q: 'I ___ a new job next month.', options: ['start', 'will start', 'started', 'starting'], correct: 1 },
-        { q: 'She ___ her keys, so she can’t open the door.', options: ['loses', 'has lost', 'lost', 'losing'], correct: 1 },
-        { q: 'They ___ to the beach if the weather is nice.', options: ['go', 'will go', 'went', 'going'], correct: 1 },
-        { q: 'He ___ a famous actor one day.', options: ['become', 'will become', 'became', 'becomes'], correct: 1 },
-        { q: 'I ___ my homework before dinner.', options: ['do', 'will do', 'did', 'doing'], correct: 1 },
-        { q: 'She ___ a lot of books about history.', options: ['read', 'reads', 'reading', 'has read'], correct: 3 },
-        { q: 'We ___ to the zoo last weekend.', options: ['go', 'goes', 'went', 'going'], correct: 2 },
-        { q: 'He ___ his dog every day.', options: ['walk', 'walks', 'walking', 'walked'], correct: 1 },
-        { q: 'I ___ a letter to my grandmother.', options: ['write', 'writes', 'wrote', 'writing'], correct: 2 },
-        { q: 'She ___ a new car next year.', options: ['buy', 'buys', 'will buy', 'bought'], correct: 2 },
-        { q: 'They ___ to school by bus.', options: ['go', 'goes', 'going', 'went'], correct: 0 },
-        { q: 'He ___ to music right now.', options: ['listen', 'listens', 'is listening', 'listened'], correct: 2 },
-        { q: 'I ___ a shower at 7 AM.', options: ['take', 'took', 'will take', 'taking'], correct: 1 },
-        { q: 'She ___ her friends at the mall.', options: ['meet', 'meets', 'met', 'meeting'], correct: 2 },
-        { q: 'We ___ a party for his birthday.', options: ['have', 'will have', 'had', 'having'], correct: 1 },
-        { q: 'He ___ a lot of money on clothes.', options: ['spend', 'spends', 'spent', 'spending'], correct: 1 },
-        { q: 'I ___ to the cinema tonight.', options: ['go', 'will go', 'went', 'going'], correct: 1 },
-        { q: 'She ___ a beautiful song.', options: ['sing', 'sings', 'sang', 'singing'], correct: 1 },
-        { q: 'They ___ in the park now.', options: ['play', 'plays', 'are playing', 'played'], correct: 2 },
-        { q: 'He ___ a new game yesterday.', options: ['buy', 'buys', 'bought', 'buying'], correct: 2 },
-        { q: 'I ___ my homework every day.', options: ['do', 'does', 'doing', 'did'], correct: 0 },
-        { q: 'She ___ to the party if she is free.', options: ['come', 'will come', 'came', 'coming'], correct: 1 },
-        { q: 'We ___ a wonderful time at the beach.', options: ['have', 'has', 'had', 'having'], correct: 2 },
-        { q: 'He ___ his car every weekend.', options: ['wash', 'washes', 'washing', 'washed'], correct: 1 },
-        { q: 'I ___ a new phone next week.', options: ['get', 'gets', 'will get', 'got'], correct: 2 }
+        { q: 'He drives ___ than me.', options: ['more careful', 'more carefully', 'carefuler', 'carefuller'], correct: 1 }
       ],
       advanced: [
         { q: 'Had I known, I ___ helped you.', options: ['would have', 'will have', 'would', 'have'], correct: 0 },
@@ -575,37 +542,7 @@
         { q: 'I wish I ___ more time.', options: ['had', 'have', 'would have', 'will have'], correct: 0 },
         { q: 'The film was ___ for an Oscar.', options: ['nominated', 'named', 'selected', 'chosen'], correct: 0 },
         { q: 'He ___ be at the office by now.', options: ['must', 'can', 'may', 'might'], correct: 0 },
-        { q: 'This is the ___ beautiful view I’ve ever seen.', options: ['most', 'more', 'much', 'many'], correct: 0 },
-        { q: 'She ___ to a new job last month.', options: ['moved', 'has moved', 'had moved', 'was moving'], correct: 0 },
-        { q: 'I ___ a lot of experience in this field.', options: ['have', 'has', 'had', 'am having'], correct: 0 },
-        { q: 'They ___ to the conference if they had been invited.', options: ['would come', 'would have come', 'came', 'come'], correct: 1 },
-        { q: 'He ___ his homework before dinner.', options: ['finished', 'has finished', 'had finished', 'finishes'], correct: 2 },
-        { q: 'We ___ a great time at the party.', options: ['have', 'has', 'had', 'were having'], correct: 2 },
-        { q: 'She ___ a new car next month.', options: ['will buy', 'is buying', 'buys', 'bought'], correct: 0 },
-        { q: 'I ___ to the gym every morning.', options: ['go', 'goes', 'going', 'went'], correct: 0 },
-        { q: 'They ___ to the beach if the weather is nice.', options: ['go', 'will go', 'went', 'going'], correct: 1 },
-        { q: 'He ___ a famous actor one day.', options: ['will become', 'becomes', 'became', 'is becoming'], correct: 0 },
-        { q: 'I ___ my homework before dinner.', options: ['will do', 'do', 'did', 'am doing'], correct: 0 },
-        { q: 'She ___ a lot of books about history.', options: ['reads', 'has read', 'read', 'reading'], correct: 1 },
-        { q: 'We ___ to the zoo last weekend.', options: ['went', 'go', 'goes', 'going'], correct: 0 },
-        { q: 'He ___ his dog every day.', options: ['walks', 'walk', 'walking', 'walked'], correct: 0 },
-        { q: 'I ___ a letter to my grandmother.', options: ['wrote', 'write', 'writes', 'writing'], correct: 0 },
-        { q: 'She ___ a new car next year.', options: ['will buy', 'buys', 'bought', 'is buying'], correct: 0 },
-        { q: 'They ___ to school by bus.', options: ['go', 'goes', 'going', 'went'], correct: 0 },
-        { q: 'He ___ to music right now.', options: ['is listening', 'listens', 'listen', 'listened'], correct: 0 },
-        { q: 'I ___ a shower at 7 AM.', options: ['took', 'take', 'will take', 'taking'], correct: 0 },
-        { q: 'She ___ her friends at the mall.', options: ['met', 'meet', 'meets', 'meeting'], correct: 0 },
-        { q: 'We ___ a party for his birthday.', options: ['will have', 'have', 'had', 'are having'], correct: 0 },
-        { q: 'He ___ a lot of money on clothes.', options: ['spends', 'spend', 'spent', 'spending'], correct: 0 },
-        { q: 'I ___ to the cinema tonight.', options: ['will go', 'go', 'went', 'am going'], correct: 0 },
-        { q: 'She ___ a beautiful song.', options: ['sings', 'sing', 'sang', 'singing'], correct: 0 },
-        { q: 'They ___ in the park now.', options: ['are playing', 'play', 'plays', 'played'], correct: 0 },
-        { q: 'He ___ a new game yesterday.', options: ['bought', 'buy', 'buys', 'buying'], correct: 0 },
-        { q: 'I ___ my homework every day.', options: ['do', 'does', 'doing', 'did'], correct: 0 },
-        { q: 'She ___ to the party if she is free.', options: ['will come', 'comes', 'came', 'is coming'], correct: 0 },
-        { q: 'We ___ a wonderful time at the beach.', options: ['had', 'have', 'has', 'are having'], correct: 0 },
-        { q: 'He ___ his car every weekend.', options: ['washes', 'wash', 'washing', 'washed'], correct: 0 },
-        { q: 'I ___ a new phone next week.', options: ['will get', 'get', 'gets', 'got'], correct: 0 }
+        { q: 'This is the ___ beautiful view I’ve ever seen.', options: ['most', 'more', 'much', 'many'], correct: 0 }
       ]
     };
 
@@ -768,6 +705,41 @@
       document.getElementById('timerBox').classList.remove('warning');
       document.getElementById('timerDisplay').textContent = '15:00';
     }
+
+    function checkUserRole() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          document.getElementById('registerLink').style.display = 'none';
+          document.getElementById('logoutLink').style.display = 'block';
+          document.getElementById('loginLink').style.display = 'none';
+          db.collection('users').doc(user.uid).get().then(doc => {
+            if (doc.exists) {
+              const role = doc.data().role || 'student';
+              if (role === 'student') document.getElementById('studentDashboardLink').style.display = 'block';
+              else if (role === 'parent') document.getElementById('parentDashboardLink').style.display = 'block';
+              else if (role === 'admin') document.getElementById('adminDashboardLink').style.display = 'block';
+            }
+          }).catch(error => console.error('Error fetching user role:', error));
+        } else {
+          document.getElementById('registerLink').style.display = 'block';
+          document.getElementById('logoutLink').style.display = 'none';
+          document.getElementById('loginLink').style.display = 'block';
+          document.getElementById('studentDashboardLink').style.display = 'none';
+          document.getElementById('parentDashboardLink').style.display = 'none';
+          document.getElementById('adminDashboardLink').style.display = 'none';
+        }
+      });
+    }
+
+    function logoutUser() {
+      auth.signOut().then(() => {
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
+      }).catch(error => alert('❌ Error logging out: ' + error.message));
+    }
+
+    document.addEventListener('DOMContentLoaded', checkUserRole);
+    console.log('✅ Tests page loaded with Firebase');
   </script>
 </body>
 </html>
