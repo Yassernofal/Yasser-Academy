@@ -168,7 +168,6 @@
     <div class="login-container">
       <h2 class="text-center fw-bold mb-4">Login</h2>
       
-      <!-- ===== رسائل الحالة ===== -->
       <div id="loginStatus" class="text-center mb-3"></div>
       
       <form id="loginForm" onsubmit="loginUser(event)">
@@ -228,25 +227,20 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    // ===== Firebase Configuration =====
-    // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    // ===== Firebase Configuration (Correct) =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
+      authDomain: "yasser-nofal-english-academy.firebaseapp.com",
+      databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
+      projectId: "yasser-nofal-english-academy",
+      storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
+      messagingSenderId: "654488740819",
+      appId: "1:654488740819:web:7a513cb6c2a74d98324526"
+    };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
-  authDomain: "yasser-nofal-english-academy.firebaseapp.com",
-  databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
-  projectId: "yasser-nofal-english-academy",
-  storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
-  messagingSenderId: "654488740819",
-  appId: "1:654488740819:web:7a513cb6c2a74d98324526"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
     // ===== تسجيل الدخول =====
     async function loginUser(e) {
@@ -270,13 +264,11 @@ const app = initializeApp(firebaseConfig);
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
         const user = userCredential.user;
         
-        // جلب دور المستخدم من Firestore
         const doc = await db.collection('users').doc(user.uid).get();
         if (doc.exists) {
           const userData = doc.data();
           const role = userData.role || 'student';
           
-          // تخزين بيانات المستخدم في localStorage (للتسهيل)
           localStorage.setItem('user', JSON.stringify({
             uid: user.uid,
             email: user.email,
@@ -291,7 +283,6 @@ const app = initializeApp(firebaseConfig);
                                    'student-dashboard.html';
           }, 1500);
         } else {
-          // لو مفيش دور، نعتبره طالب
           localStorage.setItem('user', JSON.stringify({
             uid: user.uid,
             email: user.email,
@@ -371,7 +362,6 @@ const app = initializeApp(firebaseConfig);
       });
     }
 
-    // تشغيل عند تحميل الصفحة
     document.addEventListener('DOMContentLoaded', checkUserRole);
     console.log('✅ Login page loaded with Firebase');
   </script>

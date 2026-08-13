@@ -165,7 +165,6 @@
     <div class="register-container">
       <h2 class="text-center fw-bold mb-4">Create New Account</h2>
       
-      <!-- ===== رسائل الحالة ===== -->
       <div id="registerStatus" class="text-center mb-3"></div>
       
       <form id="registerForm" onsubmit="registerUser(event)">
@@ -241,14 +240,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    // ===== Firebase Configuration =====
+    // ===== Firebase Configuration (Correct) =====
     const firebaseConfig = {
       apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
-      authDomain: "yasser-academy-9b7e6.firebaseapp.com",
-      projectId: "yasser-academy-9b7e6",
-      storageBucket: "yasser-academy-9b7e6.firebasestorage.app",
-      messagingSenderId: "324295594200",
-      appId: "1:324295594200:web:9b3c2f0b2e4f1a2b3c4d"
+      authDomain: "yasser-nofal-english-academy.firebaseapp.com",
+      databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
+      projectId: "yasser-nofal-english-academy",
+      storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
+      messagingSenderId: "654488740819",
+      appId: "1:654488740819:web:7a513cb6c2a74d98324526"
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -267,7 +267,6 @@
       const status = document.getElementById('registerStatus');
       const btn = document.getElementById('registerBtn');
 
-      // التحقق من الحقول
       if (!name || !email || !password || !confirm) {
         status.innerHTML = '<div class="alert alert-warning">❌ Please fill in all fields</div>';
         return;
@@ -288,11 +287,9 @@
       status.innerHTML = '';
 
       try {
-        // إنشاء المستخدم في Firebase Auth
         const userCredential = await auth.createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
-        // تخزين بيانات المستخدم في Firestore
         await db.collection('users').doc(user.uid).set({
           name: name,
           email: email,
@@ -300,10 +297,8 @@
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
-        // ✅ رسالة نجاح
         status.innerHTML = `<div class="alert alert-success">✅ Account created successfully! Redirecting to home...</div>`;
         
-        // 🚀 توجيه المستخدم للصفحة الرئيسية بعد 2 ثانية
         setTimeout(() => {
           window.location.href = 'index.html';
         }, 2000);
@@ -364,7 +359,6 @@
       });
     }
 
-    // تشغيل عند تحميل الصفحة
     document.addEventListener('DOMContentLoaded', function() {
       checkUserRole();
     });
