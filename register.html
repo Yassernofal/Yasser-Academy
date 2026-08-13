@@ -122,8 +122,8 @@
           <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
           <li class="nav-item"><a class="nav-link" href="booking.html">📝 Booking</a></li>
           <li class="nav-item"><a class="nav-link" href="games.html">🎮 Games</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">🔑 Login</a></li>
           <li class="nav-item"><a class="nav-link active" href="register.html">📝 Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">🔑 Login</a></li>
           
           <li class="nav-item" id="studentDashboardLink" style="display:none;">
             <a class="nav-link" href="student-dashboard.html">👨‍🎓 Student</a>
@@ -242,24 +242,20 @@
   <script src="assets/js/lang.js"></script>
   <script>
     // ===== Firebase Configuration =====
-    // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    // ⚠️ استبدل القيم أدناه بقيم مشروعك الحقيقية من Firebase Console ⚠️
+    const firebaseConfig = {
+      apiKey: "AIzaSyD...",  // ضع المفتاح الحقيقي هنا
+      authDomain: "your-project.firebaseapp.com",
+      projectId: "your-project",
+      storageBucket: "your-project.appspot.com",
+      messagingSenderId: "123456789",
+      appId: "1:123456789:web:abcdef"
+    };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
-  authDomain: "yasser-nofal-english-academy.firebaseapp.com",
-  databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
-  projectId: "yasser-nofal-english-academy",
-  storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
-  messagingSenderId: "654488740819",
-  appId: "1:654488740819:web:7a513cb6c2a74d98324526"
-};
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
     // ===== إنشاء حساب جديد =====
     async function registerUser(e) {
       e.preventDefault();
@@ -305,8 +301,10 @@ const app = initializeApp(firebaseConfig);
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
+        // ✅ رسالة نجاح
         status.innerHTML = `<div class="alert alert-success">✅ Account created successfully! Redirecting to login...</div>`;
         
+        // 🚀 توجيه المستخدم لصفحة تسجيل الدخول بعد 2 ثانية
         setTimeout(() => {
           window.location.href = 'login.html';
         }, 2000);
@@ -368,7 +366,9 @@ const app = initializeApp(firebaseConfig);
     }
 
     // تشغيل عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', checkUserRole);
+    document.addEventListener('DOMContentLoaded', function() {
+      checkUserRole();
+    });
     console.log('✅ Register page loaded with Firebase');
   </script>
 </body>
