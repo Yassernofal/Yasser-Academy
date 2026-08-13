@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="parent_page_title">Parent Dashboard – Mr. Yasser Nofal Academy</title>
+  <title>Parent Dashboard – Mr. Yasser Nofal Academy</title>
   
   <meta name="description" content="Parent dashboard to track children at Mr. Yasser Nofal Academy." />
-  <meta name="keywords" content="Parent Dashboard, Mr. Yasser Nofal Academy" />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/parent-dashboard.html" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
@@ -139,39 +138,39 @@
 <body>
 
   <!-- ===== شريط التنقل ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" role="navigation" aria-label="Main navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="index.html" aria-label="Home">
+      <a class="navbar-brand" href="index.html">
         <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">🏠 Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels">📚 Levels</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 Booking</a></li>
-          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 Games</a></li>
-          <li class="nav-item"><a class="nav-link active" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 Parent</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 Booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html">🎮 Games</a></li>
+          <li class="nav-item"><a class="nav-link active" href="parent-dashboard.html">👨‍👧 Parent</a></li>
           
           <li class="nav-item" id="loginLink">
-            <a class="nav-link" href="login.html" data-i18n="nav_login">🔑 Login</a>
+            <a class="nav-link" href="login.html">🔑 Login</a>
           </li>
           <li class="nav-item" id="registerLink">
-            <a class="nav-link" href="register.html" data-i18n="nav_register">📝 Register</a>
+            <a class="nav-link" href="register.html">📝 Register</a>
           </li>
           
           <li class="nav-item" id="studentDashboardLink" style="display:none;">
-            <a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 Student</a>
+            <a class="nav-link" href="student-dashboard.html">👨‍🎓 Student</a>
           </li>
           <li class="nav-item" id="adminDashboardLink" style="display:none;">
-            <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ Admin</a>
+            <a class="nav-link" href="admin-dashboard.html">⚙️ Admin</a>
           </li>
 
           <li class="nav-item" id="logoutLink" style="display:none;">
-            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 Logout</a>
+            <a class="nav-link" href="#" onclick="logoutUser()">🚪 Logout</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -187,43 +186,43 @@
   </nav>
 
   <!-- ===== الروابط الإضافية ===== -->
-  <div class="extra-links" role="navigation" aria-label="Additional links">
+  <div class="extra-links">
     <div class="container">
-      <a href="about.html" data-i18n="nav_about">🌟 About Us</a>
-      <a href="privacy-policy.html" data-i18n="nav_privacy">🔒 Privacy Policy</a>
-      <a href="terms.html" data-i18n="nav_terms">📜 Terms of Use</a>
+      <a href="about.html">🌟 About Us</a>
+      <a href="privacy-policy.html">🔒 Privacy Policy</a>
+      <a href="terms.html">📜 Terms of Use</a>
     </div>
   </div>
 
   <!-- ===== المحتوى ===== -->
   <section class="container">
     <div class="dashboard-container">
-      <h2 class="fw-bold text-center mb-4" data-i18n="parent_title"><i class="fas fa-user-friends text-primary" aria-hidden="true"></i> Parent Dashboard</h2>
+      <h2 class="fw-bold text-center mb-4"><i class="fas fa-user-friends text-primary" aria-hidden="true"></i> Parent Dashboard</h2>
       
       <div id="authStatus" class="text-center mb-4"></div>
       <div id="studentsData" style="display: none;"><div id="studentsList"></div></div>
       <div id="noStudents" style="display: none;" class="text-center text-muted py-5">
         <i class="fas fa-user-graduate fa-4x mb-3 d-block" aria-hidden="true"></i>
-        <p data-i18n="parent_no_students">No students registered with this account</p>
+        <p>No students registered with this account</p>
       </div>
       <div id="loadingScreen" class="loading-spinner">
         <div class="text-center">
           <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden" data-i18n="parent_loading">Loading...</span>
+            <span class="visually-hidden">Loading...</span>
           </div>
-          <p class="mt-2" data-i18n="parent_loading_text">Loading student data...</p>
+          <p class="mt-2">Loading student data...</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== الفوتير ===== -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
-          <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
-          <p data-i18n="footer_about_desc">Learn English from scratch to professionalism with the best trainers.</p>
+          <h5>Mr. Yasser Nofal Academy</h5>
+          <p>Learn English from scratch to professionalism with the best trainers.</p>
           <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
             <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
@@ -233,24 +232,24 @@
           </div>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="footer_links_title">Quick Links</h5>
+          <h5>Quick Links</h5>
           <ul class="footer-links">
-            <li><a href="levels.html" data-i18n="footer_link_levels">Levels</a></li>
-            <li><a href="booking.html" data-i18n="footer_link_booking">Booking</a></li>
-            <li><a href="about.html" data-i18n="footer_link_about">About Us</a></li>
-            <li><a href="privacy-policy.html" data-i18n="footer_link_privacy">Privacy Policy</a></li>
-            <li><a href="terms.html" data-i18n="footer_link_terms">Terms & Conditions</a></li>
+            <li><a href="levels.html">Levels</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
           </ul>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="footer_contact_title">Contact</h5>
+          <h5>Contact</h5>
           <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
           <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
           <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+        <p>© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
       </div>
     </div>
   </footer>
@@ -261,6 +260,16 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
+    // ===== التحقق من دور ولي الأمر =====
+    function checkParentRole() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user || user.role !== 'parent') {
+        window.location.href = 'login.html';
+        return false;
+      }
+      return true;
+    }
+
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -281,11 +290,13 @@
     const authStatus = document.getElementById('authStatus');
 
     auth.onAuthStateChanged(async (user) => {
+      if (!checkParentRole()) return;
+      
       if (user) {
-        authStatus.innerHTML = `<div class="alert alert-success"><i class="fas fa-check-circle" aria-hidden="true"></i> <span data-i18n="parent_welcome">Welcome!</span> <strong>${user.email}</strong></div>`;
+        authStatus.innerHTML = `<div class="alert alert-success"><i class="fas fa-check-circle" aria-hidden="true"></i> Welcome! <strong>${user.email}</strong></div>`;
         await loadStudents(user.email);
       } else {
-        authStatus.innerHTML = `<div class="alert alert-warning"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> <span data-i18n="parent_login_required">Please <a href="login.html" class="alert-link">login</a> to view your children's data.</span></div>`;
+        authStatus.innerHTML = `<div class="alert alert-warning"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Please <a href="login.html" class="alert-link">login</a> to view your children's data.</div>`;
         loadingScreen.style.display = 'none';
         studentsDataDiv.style.display = 'none';
         noStudentsDiv.style.display = 'none';
@@ -332,7 +343,7 @@
           paymentRows += `<tr><td>${p.date || '--'}</td><td>${p.desc || '--'}</td><td>${p.amount || '0'} EGP</td><td><span class="${statusClass}">${statusText}</span></td></tr>`;
         });
       } else {
-        paymentRows = `<tr><td colspan="4" class="text-center" data-i18n="parent_no_payments">No payments recorded</td></tr>`;
+        paymentRows = `<tr><td colspan="4" class="text-center">No payments recorded</td></tr>`;
       }
 
       return `
@@ -340,29 +351,29 @@
           <div class="row align-items-center">
             <div class="col-md-8">
               <h5><i class="fas fa-user-graduate text-primary" aria-hidden="true"></i> ${student.name || 'Not specified'}</h5>
-              <p class="mb-1"><i class="fas fa-graduation-cap text-primary" aria-hidden="true"></i> <span data-i18n="parent_grade_label">Grade:</span> <strong>${student.grade || 'Not specified'}</strong></p>
-              <p class="mb-1"><i class="fas fa-phone text-success" aria-hidden="true"></i> <span data-i18n="parent_phone_label">Parent:</span> <strong>${student.parentPhone || 'Not specified'}</strong></p>
-              <p><i class="fas fa-envelope text-info" aria-hidden="true"></i> <span data-i18n="parent_email_label">Email:</span> <strong>${student.parentEmail || 'Not specified'}</strong></p>
+              <p class="mb-1"><i class="fas fa-graduation-cap text-primary" aria-hidden="true"></i> Grade: <strong>${student.grade || 'Not specified'}</strong></p>
+              <p class="mb-1"><i class="fas fa-phone text-success" aria-hidden="true"></i> Parent: <strong>${student.parentPhone || 'Not specified'}</strong></p>
+              <p><i class="fas fa-envelope text-info" aria-hidden="true"></i> Email: <strong>${student.parentEmail || 'Not specified'}</strong></p>
             </div>
             <div class="col-md-4 text-md-start text-center">
-              <span class="badge bg-success fs-6 p-2" data-i18n="parent_active">✅ Active</span>
-              ${student.parentPhone ? `<button class="btn btn-whatsapp mt-2 d-block" onclick="contactParent('${student.parentPhone}', '${student.name}')"><i class="fab fa-whatsapp" aria-hidden="true"></i> <span data-i18n="parent_contact_btn">Contact Parent</span></button>` : ''}
+              <span class="badge bg-success fs-6 p-2">✅ Active</span>
+              ${student.parentPhone ? `<button class="btn btn-whatsapp mt-2 d-block" onclick="contactParent('${student.parentPhone}', '${student.name}')"><i class="fab fa-whatsapp" aria-hidden="true"></i> Contact Parent</button>` : ''}
             </div>
           </div>
         </div>
 
         <div class="row g-3 mb-4">
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.attendance || '0%'}</div><div class="label" data-i18n="parent_attendance_label">📅 Attendance</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.average || '0%'}</div><div class="label" data-i18n="parent_avg_label">📊 Average Grade</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.tests || 0}</div><div class="label" data-i18n="parent_tests_label">📝 Completed Tests</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.books || 0}</div><div class="label" data-i18n="parent_books_label">📚 Books Purchased</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.attendance || '0%'}</div><div class="label">📅 Attendance</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.average || '0%'}</div><div class="label">📊 Average Grade</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.tests || 0}</div><div class="label">📝 Completed Tests</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-box"><div class="number">${student.books || 0}</div><div class="label">📚 Books Purchased</div></div></div>
         </div>
 
         <div class="payment-history">
-          <h6><i class="fas fa-credit-card text-primary" aria-hidden="true"></i> <span data-i18n="parent_payments_title">Payment History</span> (<span data-i18n="parent_total_paid">Total Paid</span>: <strong>${totalPaid} EGP</strong>)</h6>
+          <h6><i class="fas fa-credit-card text-primary" aria-hidden="true"></i> Payment History (Total Paid: <strong>${totalPaid} EGP</strong>)</h6>
           <div class="table-responsive">
             <table class="table table-sm">
-              <thead><tr><th data-i18n="parent_payment_date">Date</th><th data-i18n="parent_payment_desc">Description</th><th data-i18n="parent_payment_amount">Amount</th><th data-i18n="parent_payment_status">Status</th></tr></thead>
+              <thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead>
               <tbody>${paymentRows}</tbody>
             </table>
           </div>
@@ -374,6 +385,11 @@
     function contactParent(phone, studentName) {
       if (!phone) return;
       window.open(`https://wa.me/2${phone}?text=Hello%20parent%20of%20${studentName}%2C%20this%20is%20a%20message%20from%20Mr.%20Yasser%20Nofal%20Academy`, '_blank');
+    }
+
+    function logoutUser() {
+      localStorage.removeItem('user');
+      window.location.href = 'login.html';
     }
   </script>
 </body>
