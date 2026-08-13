@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="login_page_title">Login – Mr. Yasser Nofal Academy</title>
-  
+  <title>Login – Mr. Yasser Nofal Academy</title>
   <meta name="description" content="Login to your account at Mr. Yasser Nofal Academy." />
-  <meta name="keywords" content="Login, Mr. Yasser Nofal Academy" />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/login.html" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
@@ -104,39 +102,39 @@
 <body>
 
   <!-- ===== شريط التنقل ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" role="navigation" aria-label="Main navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="index.html" aria-label="Home">
+      <a class="navbar-brand" href="index.html">
         <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">🏠 Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels">📚 Levels</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 Booking</a></li>
-          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 Games</a></li>
-          <li class="nav-item"><a class="nav-link active" href="login.html" data-i18n="nav_login">🔑 Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 Booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html">🎮 Games</a></li>
+          <li class="nav-item"><a class="nav-link active" href="login.html">🔑 Login</a></li>
           
           <li class="nav-item" id="registerLink">
-            <a class="nav-link" href="register.html" data-i18n="nav_register">📝 Register</a>
+            <a class="nav-link" href="register.html">📝 Register</a>
           </li>
           
           <li class="nav-item" id="studentDashboardLink" style="display:none;">
-            <a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 Student</a>
+            <a class="nav-link" href="student-dashboard.html">👨‍🎓 Student</a>
           </li>
           <li class="nav-item" id="parentDashboardLink" style="display:none;">
-            <a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 Parent</a>
+            <a class="nav-link" href="parent-dashboard.html">👨‍👧 Parent</a>
           </li>
           <li class="nav-item" id="adminDashboardLink" style="display:none;">
-            <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ Admin</a>
+            <a class="nav-link" href="admin-dashboard.html">⚙️ Admin</a>
           </li>
 
           <li class="nav-item" id="logoutLink" style="display:none;">
-            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 Logout</a>
+            <a class="nav-link" href="#" onclick="logoutUser()">🚪 Logout</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -152,40 +150,40 @@
   </nav>
 
   <!-- ===== الروابط الإضافية ===== -->
-  <div class="extra-links" role="navigation" aria-label="Additional links">
+  <div class="extra-links">
     <div class="container">
-      <a href="about.html" data-i18n="nav_about">🌟 About Us</a>
-      <a href="privacy-policy.html" data-i18n="nav_privacy">🔒 Privacy Policy</a>
-      <a href="terms.html" data-i18n="nav_terms">📜 Terms of Use</a>
+      <a href="about.html">🌟 About Us</a>
+      <a href="privacy-policy.html">🔒 Privacy Policy</a>
+      <a href="terms.html">📜 Terms of Use</a>
     </div>
   </div>
 
   <!-- ===== محتوى تسجيل الدخول ===== -->
   <section class="container">
     <div class="login-container">
-      <h2 class="text-center fw-bold mb-4" data-i18n="login_title">Login</h2>
+      <h2 class="text-center fw-bold mb-4">Login</h2>
       <form onsubmit="loginUser(event)">
         <div class="mb-3">
-          <label class="form-label" data-i18n="login_email">Email</label>
+          <label class="form-label">Email</label>
           <input type="email" class="form-control" id="loginEmail" required placeholder="example@email.com" />
         </div>
         <div class="mb-3">
-          <label class="form-label" data-i18n="login_password">Password</label>
+          <label class="form-label">Password</label>
           <input type="password" class="form-control" id="loginPassword" required placeholder="••••••••" />
         </div>
-        <button type="submit" class="btn-login" data-i18n="login_btn"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</button>
-        <p class="text-center mt-3"><a href="register.html" data-i18n="login_register_link">Don't have an account? Register</a></p>
+        <button type="submit" class="btn-login"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Login</button>
+        <p class="text-center mt-3"><a href="register.html">Don't have an account? Register</a></p>
       </form>
     </div>
   </section>
 
   <!-- ===== الفوتير ===== -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
-          <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
-          <p data-i18n="footer_about_desc">Learn English from scratch to professionalism with the best trainers.</p>
+          <h5>Mr. Yasser Nofal Academy</h5>
+          <p>Learn English from scratch to professionalism with the best trainers.</p>
           <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
             <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
@@ -195,24 +193,24 @@
           </div>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="footer_links_title">Quick Links</h5>
+          <h5>Quick Links</h5>
           <ul class="footer-links">
-            <li><a href="levels.html" data-i18n="footer_link_levels">Levels</a></li>
-            <li><a href="booking.html" data-i18n="footer_link_booking">Booking</a></li>
-            <li><a href="about.html" data-i18n="footer_link_about">About Us</a></li>
-            <li><a href="privacy-policy.html" data-i18n="footer_link_privacy">Privacy Policy</a></li>
-            <li><a href="terms.html" data-i18n="footer_link_terms">Terms & Conditions</a></li>
+            <li><a href="levels.html">Levels</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
           </ul>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="footer_contact_title">Contact</h5>
+          <h5>Contact</h5>
           <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
           <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
           <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+        <p>© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
       </div>
     </div>
   </footer>

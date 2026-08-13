@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="games_page_title">Educational Games – Mr. Yasser Nofal Academy</title>
-  
+  <title>Educational Games – Mr. Yasser Nofal Academy</title>
   <meta name="description" content="Interactive educational games to improve your English skills." />
-  <meta name="keywords" content="Games, Educational, Interactive, English" />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/games.html" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
@@ -189,42 +187,42 @@
 <body>
 
   <!-- ===== شريط التنقل ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" role="navigation" aria-label="Main navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="index.html" aria-label="Home">
+      <a class="navbar-brand" href="index.html">
         <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">🏠 Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels">📚 Levels</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 Booking</a></li>
-          <li class="nav-item"><a class="nav-link active" href="games.html" data-i18n="nav_games">🎮 Games</a></li>
-          <li class="nav-item"><a class="nav-link" href="interactive-tests.html" data-i18n="nav_tests">📝 Tests</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 Booking</a></li>
+          <li class="nav-item"><a class="nav-link active" href="games.html">🎮 Games</a></li>
+          <li class="nav-item"><a class="nav-link" href="interactive-tests.html">📝 Tests</a></li>
           
           <li class="nav-item" id="loginLink">
-            <a class="nav-link" href="login.html" data-i18n="nav_login">🔑 Login</a>
+            <a class="nav-link" href="login.html">🔑 Login</a>
           </li>
           <li class="nav-item" id="registerLink">
-            <a class="nav-link" href="register.html" data-i18n="nav_register">📝 Register</a>
+            <a class="nav-link" href="register.html">📝 Register</a>
           </li>
           
           <li class="nav-item" id="studentDashboardLink" style="display:none;">
-            <a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 Student</a>
+            <a class="nav-link" href="student-dashboard.html">👨‍🎓 Student</a>
           </li>
           <li class="nav-item" id="parentDashboardLink" style="display:none;">
-            <a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 Parent</a>
+            <a class="nav-link" href="parent-dashboard.html">👨‍👧 Parent</a>
           </li>
           <li class="nav-item" id="adminDashboardLink" style="display:none;">
-            <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ Admin</a>
+            <a class="nav-link" href="admin-dashboard.html">⚙️ Admin</a>
           </li>
 
           <li class="nav-item" id="logoutLink" style="display:none;">
-            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 Logout</a>
+            <a class="nav-link" href="#" onclick="logoutUser()">🚪 Logout</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -240,11 +238,11 @@
   </nav>
 
   <!-- ===== الروابط الإضافية ===== -->
-  <div class="extra-links" role="navigation" aria-label="Additional links">
+  <div class="extra-links">
     <div class="container">
-      <a href="about.html" data-i18n="nav_about">🌟 About Us</a>
-      <a href="privacy-policy.html" data-i18n="nav_privacy">🔒 Privacy Policy</a>
-      <a href="terms.html" data-i18n="nav_terms">📜 Terms of Use</a>
+      <a href="about.html">🌟 About Us</a>
+      <a href="privacy-policy.html">🔒 Privacy Policy</a>
+      <a href="terms.html">📜 Terms of Use</a>
     </div>
   </div>
 
@@ -252,16 +250,16 @@
   <section class="container">
     <div class="game-container" id="gameContainer">
       <div class="game-header">
-        <div class="score"><span data-i18n="games_score">⭐</span> <span id="scoreDisplay">0</span></div>
-        <div class="question-counter" id="questionCounter" data-i18n="games_question_counter">Question 1 of 10</div>
-        <button class="btn btn-sm btn-outline-danger" onclick="resetGame()" data-i18n="games_reset"><i class="fas fa-redo" aria-hidden="true"></i> Reset</button>
+        <div class="score">⭐ <span id="scoreDisplay">0</span></div>
+        <div class="question-counter" id="questionCounter">Question 1 of 10</div>
+        <button class="btn btn-sm btn-outline-danger" onclick="resetGame()"><i class="fas fa-redo" aria-hidden="true"></i> Reset</button>
       </div>
 
       <div id="questionArea">
         <div class="image-box">
           <div>
             <div class="emoji-display" id="emojiDisplay">🐱</div>
-            <div class="word-hint" data-i18n="games_hint">Choose the correct word for the image</div>
+            <div class="word-hint">Choose the correct word for the image</div>
           </div>
         </div>
         <div class="options-grid" id="optionsContainer">
@@ -274,27 +272,27 @@
 
       <div class="game-footer">
         <div></div>
-        <button class="btn-next" id="nextBtn" disabled onclick="nextQuestion()" data-i18n="games_next"><i class="fas fa-arrow-left" aria-hidden="true"></i> Next</button>
+        <button class="btn-next" id="nextBtn" disabled onclick="nextQuestion()"><i class="fas fa-arrow-left" aria-hidden="true"></i> Next</button>
       </div>
 
       <div id="resultArea" style="display: none;">
         <div class="result-box">
-          <h3 data-i18n="games_result_title">🎉 Game Over!</h3>
+          <h3>🎉 Game Over!</h3>
           <div class="final-score" id="finalScore">0</div>
-          <div class="final-message" id="finalMessage" data-i18n="games_result_great">Great job! Keep practicing 💪</div>
-          <button class="btn btn-primary mt-3" onclick="resetGame()" data-i18n="games_play_again"><i class="fas fa-play" aria-hidden="true"></i> Play Again</button>
+          <div class="final-message" id="finalMessage">Great job! Keep practicing 💪</div>
+          <button class="btn btn-primary mt-3" onclick="resetGame()"><i class="fas fa-play" aria-hidden="true"></i> Play Again</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== الفوتير ===== -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
-          <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
-          <p data-i18n="footer_about_desc">Learn English from scratch to professionalism with the best trainers.</p>
+          <h5>Mr. Yasser Nofal Academy</h5>
+          <p>Learn English from scratch to professionalism with the best trainers.</p>
           <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
             <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
@@ -304,24 +302,24 @@
           </div>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="footer_links_title">Quick Links</h5>
+          <h5>Quick Links</h5>
           <ul class="footer-links">
-            <li><a href="levels.html" data-i18n="footer_link_levels">Levels</a></li>
-            <li><a href="booking.html" data-i18n="footer_link_booking">Booking</a></li>
-            <li><a href="about.html" data-i18n="footer_link_about">About Us</a></li>
-            <li><a href="privacy-policy.html" data-i18n="footer_link_privacy">Privacy Policy</a></li>
-            <li><a href="terms.html" data-i18n="footer_link_terms">Terms & Conditions</a></li>
+            <li><a href="levels.html">Levels</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
           </ul>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="footer_contact_title">Contact</h5>
+          <h5>Contact</h5>
           <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
           <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
           <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+        <p>© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
       </div>
     </div>
   </footer>
@@ -329,7 +327,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/lang.js"></script>
   <script>
-    // ===== بنك الأسئلة (موسع) =====
+    // ===== بنك الأسئلة الموسع (50 سؤالاً) =====
     const questions = [
       { emoji: '🐱', correct: 'Cat', options: ['Cat', 'Dog', 'Bird', 'Fish'] },
       { emoji: '🐶', correct: 'Dog', options: ['Cat', 'Dog', 'Bird', 'Fish'] },
@@ -351,6 +349,38 @@
       { emoji: '🏀', correct: 'Basketball', options: ['Football', 'Basketball', 'Tennis', 'Golf'] },
       { emoji: '🎾', correct: 'Tennis', options: ['Football', 'Basketball', 'Tennis', 'Golf'] },
       { emoji: '⛳', correct: 'Golf', options: ['Football', 'Basketball', 'Tennis', 'Golf'] },
+      { emoji: '🌞', correct: 'Sun', options: ['Sun', 'Moon', 'Star', 'Cloud'] },
+      { emoji: '🌙', correct: 'Moon', options: ['Sun', 'Moon', 'Star', 'Cloud'] },
+      { emoji: '⭐', correct: 'Star', options: ['Sun', 'Moon', 'Star', 'Cloud'] },
+      { emoji: '☁️', correct: 'Cloud', options: ['Sun', 'Moon', 'Star', 'Cloud'] },
+      { emoji: '🌹', correct: 'Rose', options: ['Rose', 'Lily', 'Tulip', 'Sunflower'] },
+      { emoji: '🌷', correct: 'Tulip', options: ['Rose', 'Lily', 'Tulip', 'Sunflower'] },
+      { emoji: '🌻', correct: 'Sunflower', options: ['Rose', 'Lily', 'Tulip', 'Sunflower'] },
+      { emoji: '🌺', correct: 'Lily', options: ['Rose', 'Lily', 'Tulip', 'Sunflower'] },
+      { emoji: '🍕', correct: 'Pizza', options: ['Pizza', 'Burger', 'Sushi', 'Pasta'] },
+      { emoji: '🍔', correct: 'Burger', options: ['Pizza', 'Burger', 'Sushi', 'Pasta'] },
+      { emoji: '🍣', correct: 'Sushi', options: ['Pizza', 'Burger', 'Sushi', 'Pasta'] },
+      { emoji: '🍝', correct: 'Pasta', options: ['Pizza', 'Burger', 'Sushi', 'Pasta'] },
+      { emoji: '🎸', correct: 'Guitar', options: ['Guitar', 'Piano', 'Drums', 'Violin'] },
+      { emoji: '🎹', correct: 'Piano', options: ['Guitar', 'Piano', 'Drums', 'Violin'] },
+      { emoji: '🥁', correct: 'Drums', options: ['Guitar', 'Piano', 'Drums', 'Violin'] },
+      { emoji: '🎻', correct: 'Violin', options: ['Guitar', 'Piano', 'Drums', 'Violin'] },
+      { emoji: '🦁', correct: 'Lion', options: ['Lion', 'Tiger', 'Bear', 'Wolf'] },
+      { emoji: '🐯', correct: 'Tiger', options: ['Lion', 'Tiger', 'Bear', 'Wolf'] },
+      { emoji: '🐻', correct: 'Bear', options: ['Lion', 'Tiger', 'Bear', 'Wolf'] },
+      { emoji: '🐺', correct: 'Wolf', options: ['Lion', 'Tiger', 'Bear', 'Wolf'] },
+      { emoji: '🐧', correct: 'Penguin', options: ['Penguin', 'Eagle', 'Owl', 'Parrot'] },
+      { emoji: '🦅', correct: 'Eagle', options: ['Penguin', 'Eagle', 'Owl', 'Parrot'] },
+      { emoji: '🦉', correct: 'Owl', options: ['Penguin', 'Eagle', 'Owl', 'Parrot'] },
+      { emoji: '🦜', correct: 'Parrot', options: ['Penguin', 'Eagle', 'Owl', 'Parrot'] },
+      { emoji: '🏠', correct: 'House', options: ['House', 'Apartment', 'Villa', 'Cottage'] },
+      { emoji: '🏢', correct: 'Apartment', options: ['House', 'Apartment', 'Villa', 'Cottage'] },
+      { emoji: '🏡', correct: 'Villa', options: ['House', 'Apartment', 'Villa', 'Cottage'] },
+      { emoji: '🏚️', correct: 'Cottage', options: ['House', 'Apartment', 'Villa', 'Cottage'] },
+      { emoji: '⏰', correct: 'Clock', options: ['Clock', 'Watch', 'Timer', 'Alarm'] },
+      { emoji: '⌚', correct: 'Watch', options: ['Clock', 'Watch', 'Timer', 'Alarm'] },
+      { emoji: '⏱️', correct: 'Timer', options: ['Clock', 'Watch', 'Timer', 'Alarm'] },
+      { emoji: '⏰', correct: 'Alarm', options: ['Clock', 'Watch', 'Timer', 'Alarm'] }
     ];
 
     let currentQuestions = [], currentIndex = 0, score = 0, isAnswered = false;

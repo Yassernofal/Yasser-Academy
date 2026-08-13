@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="cert_page_title">Certificate – Mr. Yasser Nofal Academy</title>
-  
+  <title>Certificate – Mr. Yasser Nofal Academy</title>
   <meta name="description" content="Certificate of achievement from Mr. Yasser Nofal Academy." />
-  <meta name="keywords" content="Certificate, Achievement, Mr. Yasser Nofal Academy" />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/certificate.html" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
@@ -139,42 +137,42 @@
 <body>
 
   <!-- ===== شريط التنقل ===== -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" role="navigation" aria-label="Main navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="index.html" aria-label="Home">
+      <a class="navbar-brand" href="index.html">
         <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">🏠 Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav_levels">📚 Levels</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav_booking">📝 Booking</a></li>
-          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav_games">🎮 Games</a></li>
-          <li class="nav-item"><a class="nav-link active" href="certificate.html" data-i18n="nav_cert">📜 Certificate</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 Booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html">🎮 Games</a></li>
+          <li class="nav-item"><a class="nav-link active" href="certificate.html">📜 Certificate</a></li>
           
           <li class="nav-item" id="loginLink">
-            <a class="nav-link" href="login.html" data-i18n="nav_login">🔑 Login</a>
+            <a class="nav-link" href="login.html">🔑 Login</a>
           </li>
           <li class="nav-item" id="registerLink">
-            <a class="nav-link" href="register.html" data-i18n="nav_register">📝 Register</a>
+            <a class="nav-link" href="register.html">📝 Register</a>
           </li>
           
           <li class="nav-item" id="studentDashboardLink" style="display:none;">
-            <a class="nav-link" href="student-dashboard.html" data-i18n="nav_student">👨‍🎓 Student</a>
+            <a class="nav-link" href="student-dashboard.html">👨‍🎓 Student</a>
           </li>
           <li class="nav-item" id="parentDashboardLink" style="display:none;">
-            <a class="nav-link" href="parent-dashboard.html" data-i18n="nav_parent">👨‍👧 Parent</a>
+            <a class="nav-link" href="parent-dashboard.html">👨‍👧 Parent</a>
           </li>
           <li class="nav-item" id="adminDashboardLink" style="display:none;">
-            <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">⚙️ Admin</a>
+            <a class="nav-link" href="admin-dashboard.html">⚙️ Admin</a>
           </li>
 
           <li class="nav-item" id="logoutLink" style="display:none;">
-            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav_logout">🚪 Logout</a>
+            <a class="nav-link" href="#" onclick="logoutUser()">🚪 Logout</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -190,66 +188,66 @@
   </nav>
 
   <!-- ===== الروابط الإضافية ===== -->
-  <div class="extra-links" role="navigation" aria-label="Additional links">
+  <div class="extra-links">
     <div class="container">
-      <a href="about.html" data-i18n="nav_about">🌟 About Us</a>
-      <a href="privacy-policy.html" data-i18n="nav_privacy">🔒 Privacy Policy</a>
-      <a href="terms.html" data-i18n="nav_terms">📜 Terms of Use</a>
+      <a href="about.html">🌟 About Us</a>
+      <a href="privacy-policy.html">🔒 Privacy Policy</a>
+      <a href="terms.html">📜 Terms of Use</a>
     </div>
   </div>
 
   <!-- ===== المحتوى ===== -->
   <section class="container">
     <div class="cert-container">
-      <h2 class="fw-bold mb-3" data-i18n="cert_title"><i class="fas fa-certificate text-primary" aria-hidden="true"></i> Certificate of Achievement</h2>
-      <p class="text-muted" data-i18n="cert_subtitle">Enter your name and choose the level to view your certificate</p>
+      <h2 class="fw-bold mb-3"><i class="fas fa-certificate text-primary" aria-hidden="true"></i> Certificate of Achievement</h2>
+      <p class="text-muted">Enter your name and choose the level to view your certificate</p>
 
       <div class="row justify-content-center g-3 mb-4">
-        <div class="col-md-5"><input type="text" class="form-control form-control-custom" id="studentNameInput" placeholder="Enter student name..." data-i18n="cert_name_placeholder" value="Ahmed Mohamed" /></div>
+        <div class="col-md-5"><input type="text" class="form-control form-control-custom" id="studentNameInput" placeholder="Enter student name..." value="Ahmed Mohamed" /></div>
         <div class="col-md-4">
           <select class="form-select form-control-custom" id="levelSelect">
-            <option value="Pre-KG" data-i18n="level_pre">Pre-KG</option>
-            <option value="Kindergarten" data-i18n="level_kg">Kindergarten</option>
-            <option value="Primary" data-i18n="level_primary">Primary</option>
-            <option value="Preparatory" data-i18n="level_prep">Preparatory</option>
-            <option value="Secondary" data-i18n="level_sec" selected>Secondary</option>
-            <option value="University" data-i18n="level_univ">University</option>
-            <option value="Postgraduate" data-i18n="level_post">Postgraduate</option>
-            <option value="Phonics & Conversation" data-i18n="level_phonics">Phonics & Conversation</option>
+            <option value="Pre-KG">Pre-KG</option>
+            <option value="Kindergarten">Kindergarten</option>
+            <option value="Primary">Primary</option>
+            <option value="Preparatory">Preparatory</option>
+            <option value="Secondary" selected>Secondary</option>
+            <option value="University">University</option>
+            <option value="Postgraduate">Postgraduate</option>
+            <option value="Phonics & Conversation">Phonics & Conversation</option>
           </select>
         </div>
-        <div class="col-md-3"><button class="btn btn-primary w-100" onclick="generateCertificate()" data-i18n="cert_generate_btn"><i class="fas fa-eye" aria-hidden="true"></i> View Certificate</button></div>
+        <div class="col-md-3"><button class="btn btn-primary w-100" onclick="generateCertificate()"><i class="fas fa-eye" aria-hidden="true"></i> View Certificate</button></div>
       </div>
 
       <div id="certPreview" style="display: none;">
         <div class="cert-preview" id="certContent">
           <div class="cert-badge"><i class="fas fa-award" aria-hidden="true"></i></div>
-          <h2 data-i18n="cert_academy_name">Mr. Yasser Nofal Academy</h2>
-          <p data-i18n="cert_this_certifies">This certifies that</p>
+          <h2>Mr. Yasser Nofal Academy</h2>
+          <p>This certifies that</p>
           <div class="student-name" id="displayName">Ahmed Mohamed</div>
-          <p data-i18n="cert_has_completed">has successfully completed the level</p>
+          <p>has successfully completed the level</p>
           <div class="level-name" id="displayLevel">Secondary</div>
           <div class="signature">
-            <div class="signature-item"><span data-i18n="cert_signature">Director's Signature</span></div>
-            <div class="signature-item"><span data-i18n="cert_date">Date</span></div>
+            <div class="signature-item"><span>Director's Signature</span></div>
+            <div class="signature-item"><span>Date</span></div>
           </div>
           <div class="cert-date" id="displayDate">August 13, 2026</div>
           <div class="cert-code" id="displayCode">📌 YNA-CERT-XXXXXX</div>
         </div>
 
-        <button class="btn-download" onclick="downloadCertificate()" data-i18n="cert_download_btn"><i class="fas fa-download" aria-hidden="true"></i> Download Certificate (PDF)</button>
-        <button class="btn btn-outline-secondary mt-2" onclick="shareCertificate()" data-i18n="cert_share_btn"><i class="fas fa-share-alt" aria-hidden="true"></i> Share Certificate</button>
+        <button class="btn-download" onclick="downloadCertificate()"><i class="fas fa-download" aria-hidden="true"></i> Download Certificate (PDF)</button>
+        <button class="btn btn-outline-secondary mt-2" onclick="shareCertificate()"><i class="fas fa-share-alt" aria-hidden="true"></i> Share Certificate</button>
       </div>
     </div>
   </section>
 
   <!-- ===== الفوتير ===== -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
-          <h5 data-i18n="footer_about_title">Mr. Yasser Nofal Academy</h5>
-          <p data-i18n="footer_about_desc">Learn English from scratch to professionalism with the best trainers.</p>
+          <h5>Mr. Yasser Nofal Academy</h5>
+          <p>Learn English from scratch to professionalism with the best trainers.</p>
           <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
             <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
@@ -259,24 +257,24 @@
           </div>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="footer_links_title">Quick Links</h5>
+          <h5>Quick Links</h5>
           <ul class="footer-links">
-            <li><a href="levels.html" data-i18n="footer_link_levels">Levels</a></li>
-            <li><a href="booking.html" data-i18n="footer_link_booking">Booking</a></li>
-            <li><a href="about.html" data-i18n="footer_link_about">About Us</a></li>
-            <li><a href="privacy-policy.html" data-i18n="footer_link_privacy">Privacy Policy</a></li>
-            <li><a href="terms.html" data-i18n="footer_link_terms">Terms & Conditions</a></li>
+            <li><a href="levels.html">Levels</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
           </ul>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="footer_contact_title">Contact</h5>
+          <h5>Contact</h5>
           <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
           <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
           <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p data-i18n="footer_copyright">© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+        <p>© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
       </div>
     </div>
   </footer>
