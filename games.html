@@ -332,7 +332,13 @@
   <script src="assets/js/lang.js"></script>
   <script>
     // ===== Firebase =====
-    const firebaseConfig = {
+    // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
   apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
   authDomain: "yasser-nofal-english-academy.firebaseapp.com",
   databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
@@ -341,10 +347,9 @@
   messagingSenderId: "654488740819",
   appId: "1:654488740819:web:7a513cb6c2a74d98324526"
 };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
     // ===== بنك الأسئلة =====
     const questions = [
       { emoji: '🐱', correct: 'Cat', options: ['Cat', 'Dog', 'Bird', 'Fish'] },
