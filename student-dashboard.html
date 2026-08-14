@@ -3,28 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Dashboard – Mr. Yasser Nofal Academy</title>
-  <meta name="description" content="Student dashboard at Mr. Yasser Nofal Academy." />
+  <title>لوحة الطالب – أكاديمية مستر ياسر نوفل</title>
+  <meta name="description" content="لوحة تحكم الطالب في أكاديمية مستر ياسر نوفل." />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/student-dashboard.html" />
 
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-N3R3KFEO8');
   </script>
 
-  <!-- ===== Firebase ===== -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
+  <!-- Bootstrap & Fonts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
   
   <style>
+    /* --- نفس الستايلات الموجودة لديك، احتفظ بها كما هي --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
@@ -150,13 +148,6 @@
             <a class="nav-link" href="register.html">📝 Register</a>
           </li>
           
-          <li class="nav-item" id="parentDashboardLink" style="display:none;">
-            <a class="nav-link" href="parent-dashboard.html">👨‍👧 Parent</a>
-          </li>
-          <li class="nav-item" id="adminDashboardLink" style="display:none;">
-            <a class="nav-link" href="admin-dashboard.html">⚙️ Admin</a>
-          </li>
-
           <li class="nav-item" id="logoutLink" style="display:none;">
             <a class="nav-link" href="#" onclick="logoutUser()">🚪 Logout</a>
           </li>
@@ -192,69 +183,62 @@
           <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
-          <p class="mt-2">Loading your data...</p>
+          <p class="mt-2">جاري تحميل بياناتك...</p>
         </div>
       </div>
 
       <div id="dashboardContent" style="display: none;">
-        <p class="text-center text-muted" id="welcomeMessage">Welcome, Student!</p>
+        <p class="text-center text-muted" id="welcomeMessage">مرحباً، الطالب!</p>
 
         <div class="row g-4 mb-4">
           <div class="col-md-3 col-6">
             <div class="stat-card">
-              <div class="number" id="studentLevel">3</div>
-              <div class="label">Current Level</div>
+              <div class="number" id="studentLevel">-</div>
+              <div class="label">المستوى الحالي</div>
             </div>
           </div>
           <div class="col-md-3 col-6">
             <div class="stat-card">
-              <div class="number" id="studentProgress">70%</div>
-              <div class="label">Progress</div>
+              <div class="number" id="studentProgress">-</div>
+              <div class="label">نسبة التقدم</div>
             </div>
           </div>
           <div class="col-md-3 col-6">
             <div class="stat-card">
-              <div class="number" id="studentGrade">86%</div>
-              <div class="label">Total Grade</div>
+              <div class="number" id="studentGrade">-</div>
+              <div class="label">الدرجة الكلية</div>
             </div>
           </div>
           <div class="col-md-3 col-6">
             <div class="stat-card">
-              <div class="number" id="studentCertificates">2</div>
-              <div class="label">Certificates</div>
+              <div class="number" id="studentCertificates">-</div>
+              <div class="label">الشهادات</div>
             </div>
           </div>
         </div>
 
         <!-- ===== قسم الاختبارات الأخيرة ===== -->
         <div class="mb-4">
-          <h5 class="fw-bold"><i class="fas fa-history text-primary" aria-hidden="true"></i> Recent Tests</h5>
+          <h5 class="fw-bold"><i class="fas fa-history text-primary" aria-hidden="true"></i> آخر الاختبارات</h5>
           <div id="recentTests" class="table-responsive">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th>Test</th>
-                  <th>Score</th>
-                  <th>Date</th>
+                  <th>الاختبار</th>
+                  <th>الدرجة</th>
+                  <th>التاريخ</th>
                 </tr>
               </thead>
               <tbody id="testsBody">
                 <tr>
-                  <td>Level Test - Intermediate</td>
-                  <td>85%</td>
-                  <td>2026-08-12</td>
-                </tr>
-                <tr>
-                  <td>Vocabulary Test - Week 3</td>
-                  <td>92%</td>
-                  <td>2026-08-10</td>
+                  <td colspan="3" class="text-center text-muted">لا توجد اختبارات سابقة</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <button class="btn-logout w-100" onclick="logoutUser()"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</button>
+        <button class="btn-logout w-100" onclick="logoutUser()"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> تسجيل الخروج</button>
       </div>
     </div>
   </section>
@@ -265,7 +249,7 @@
       <div class="row g-4">
         <div class="col-md-4">
           <h5>Mr. Yasser Nofal Academy</h5>
-          <p>Learn English from scratch to professionalism with the best trainers.</p>
+          <p>تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
           <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
             <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
@@ -275,216 +259,150 @@
           </div>
         </div>
         <div class="col-md-4">
-          <h5>Quick Links</h5>
+          <h5>روابط سريعة</h5>
           <ul class="footer-links">
-            <li><a href="levels.html">Levels</a></li>
-            <li><a href="booking.html">Booking</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="levels.html">المستويات</a></li>
+            <li><a href="booking.html">الحجز</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+            <li><a href="terms.html">الشروط والأحكام</a></li>
           </ul>
         </div>
         <div class="col-md-4">
-          <h5>Contact</h5>
+          <h5>اتصل بنا</h5>
           <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
           <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
           <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+        <p>© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
       </div>
     </div>
   </footer>
 
+  <!-- ===== Bootstrap JS ===== -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/lang.js"></script>
-  <script>
-    // ===== Firebase Configuration =====
-    // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+  
+  <!-- ===== Firebase Script (Type="Module") ===== -->
+  <script type="module">
+    // استيراد Firebase من الملف المركزي
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "firebase/auth";
+    import { ref, get, set, update, child, onValue } from "firebase/database";
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
-  authDomain: "yasser-nofal-english-academy.firebaseapp.com",
-  databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
-  projectId: "yasser-nofal-english-academy",
-  storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
-  messagingSenderId: "654488740819",
-  appId: "1:654488740819:web:7a513cb6c2a74d98324526"
-};
+    // --- العناصر في الصفحة ---
+    const loadingScreen = document.getElementById('loadingScreen');
+    const dashboardContent = document.getElementById('dashboardContent');
+    const welcomeMsg = document.getElementById('welcomeMessage');
+    const levelEl = document.getElementById('studentLevel');
+    const progressEl = document.getElementById('studentProgress');
+    const gradeEl = document.getElementById('studentGrade');
+    const certsEl = document.getElementById('studentCertificates');
+    const testsBody = document.getElementById('testsBody');
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-    // ===== التحقق من صلاحيات الطالب =====
-    function checkStudentRole() {
-      auth.onAuthStateChanged(user => {
-        if (user) {
-          db.collection('users').doc(user.uid).get().then(doc => {
-            if (doc.exists) {
-              const role = doc.data().role;
-              if (role !== 'student') {
-                window.location.href = role === 'admin' ? 'admin-dashboard.html' : 'parent-dashboard.html';
-                return;
-              }
-              loadStudentData(user.uid);
-            } else {
-              window.location.href = 'login.html';
-            }
-          }).catch(() => {
-            window.location.href = 'login.html';
-          });
-        } else {
-          window.location.href = 'login.html';
-        }
-      });
-    }
-
-    // ===== تحميل بيانات الطالب =====
+    // --- دالة لجلب بيانات الطالب من Realtime Database ---
     async function loadStudentData(uid) {
       try {
-        const doc = await db.collection('students').doc(uid).get();
-        if (doc.exists) {
-          const data = doc.data();
-          document.getElementById('welcomeMessage').textContent = `Welcome, ${data.name || 'Student'}!`;
-          document.getElementById('studentLevel').textContent = data.level || '3';
-          document.getElementById('studentProgress').textContent = data.progress || '70%';
-          document.getElementById('studentGrade').textContent = data.grade || '86%';
-          document.getElementById('studentCertificates').textContent = data.certificates || '2';
+        const studentRef = ref(database, `students/${uid}`);
+        const snapshot = await get(studentRef);
+        
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          console.log('✅ بيانات الطالب:', data);
+          
+          // تحديث الواجهة بالبيانات
+          welcomeMsg.textContent = `مرحباً، ${data.name || 'طالب'}!`;
+          levelEl.textContent = data.level || '1';
+          progressEl.textContent = data.progress || '0%';
+          gradeEl.textContent = data.grade || '0%';
+          certsEl.textContent = data.certificates || '0';
 
-          // عرض الاختبارات الأخيرة
-          if (data.tests && data.tests.length > 0) {
-            const tbody = document.getElementById('testsBody');
-            tbody.innerHTML = '';
-            data.tests.slice(0, 5).forEach(test => {
-              tbody.innerHTML += `
+          // عرض آخر الاختبارات
+          if (data.tests && Array.isArray(data.tests)) {
+            testsBody.innerHTML = '';
+            data.tests.slice(-5).reverse().forEach(test => {
+              testsBody.innerHTML += `
                 <tr>
-                  <td>${test.name || 'Test'}</td>
+                  <td>${test.name || 'اختبار'}</td>
                   <td>${test.score || '0%'}</td>
                   <td>${test.date || '--'}</td>
                 </tr>
               `;
             });
+          } else {
+            testsBody.innerHTML = `<tr><td colspan="3" class="text-center text-muted">لا توجد اختبارات سابقة</td></tr>`;
           }
+
+        } else {
+          // إذا لم توجد بيانات، ننشئ بيانات افتراضية
+          console.log('ℹ️ لا توجد بيانات، سيتم إنشاء بيانات افتراضية.');
+          const defaultData = {
+            name: 'طالب جديد',
+            level: '1',
+            progress: '0%',
+            grade: '0%',
+            certificates: '0',
+            tests: []
+          };
+          await set(ref(database, `students/${uid}`), defaultData);
+          // نعيد تحميل البيانات بعد الإنشاء
+          loadStudentData(uid);
+          return;
         }
-        document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('dashboardContent').style.display = 'block';
       } catch (error) {
-        console.error('Error loading student data:', error);
-        document.getElementById('loadingScreen').innerHTML = `
+        console.error('❌ خطأ في تحميل البيانات:', error);
+        loadingScreen.innerHTML = `
           <div class="alert alert-danger text-center">
             <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-            Error loading data: ${error.message}
+            خطأ في تحميل البيانات: ${error.message}
           </div>
         `;
+        return;
       }
+      
+      // إخفاء شاشة التحميل وإظهار المحتوى
+      loadingScreen.style.display = 'none';
+      dashboardContent.style.display = 'block';
     }
 
-    // ===== تسجيل الخروج =====
-    function logoutUser() {
-      auth.signOut().then(() => {
-        localStorage.removeItem('user');
-        window.location.href = 'index.html';
-      }).catch(error => {
-        alert('❌ Error logging out: ' + error.message);
-      });
-    }
-
-    // ===== التحقق من حالة المستخدم للقائمة =====
-    function checkUserRole() {
-      auth.onAuthStateChanged(user => {
+    // --- دالة للتحقق من حالة المصادقة ---
+    function checkAuth() {
+      onAuthStateChanged(auth, (user) => {
         if (user) {
+          console.log('✅ مستخدم مسجل:', user.email);
+          // تحديث واجهة القائمة
+          document.getElementById('loginLink').style.display = 'none';
           document.getElementById('registerLink').style.display = 'none';
           document.getElementById('logoutLink').style.display = 'block';
-          document.getElementById('loginLink').style.display = 'none';
           
-          db.collection('users').doc(user.uid).get().then(doc => {
-            if (doc.exists) {
-              const role = doc.data().role || 'student';
-              if (role === 'student') {
-                document.getElementById('studentDashboardLink').style.display = 'block';
-              } else if (role === 'parent') {
-                document.getElementById('parentDashboardLink').style.display = 'block';
-              } else if (role === 'admin') {
-                document.getElementById('adminDashboardLink').style.display = 'block';
-              }
-            }
-          }).catch(error => {
-            console.error('Error fetching user role:', error);
-          });
+          // جلب بيانات الطالب
+          loadStudentData(user.uid);
         } else {
-          document.getElementById('registerLink').style.display = 'block';
-          document.getElementById('logoutLink').style.display = 'none';
-          document.getElementById('loginLink').style.display = 'block';
-          document.getElementById('studentDashboardLink').style.display = 'none';
-          document.getElementById('parentDashboardLink').style.display = 'none';
-          document.getElementById('adminDashboardLink').style.display = 'none';
+          console.log('❌ غير مسجل دخول، جاري التحويل...');
+          window.location.href = 'login.html';
         }
       });
     }
 
-    // تشغيل عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', function() {
-      checkUserRole();
-      checkStudentRole();
-    });
-    console.log('✅ Student Dashboard page loaded with Firebase');
-  </script>
-  <script type="module">
-  import { auth } from './firebase-config.js';
-  import { onAuthStateChanged } from "firebase/auth";
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // المستخدم مسجل الدخول - اظهر محتوى الصفحة
-      console.log("مرحباً " + user.email);
-      document.getElementById('user-email').textContent = user.email;
-    } else {
-      // المستخدم غير مسجل - خذه لصفحة التسجيل
-      window.location.href = 'login.html';
-    }
-  });
-</script>
-<script type="module">
-  import { auth } from './firebase-config.js';
-  import { onAuthStateChanged, signOut } from "firebase/auth";
-
-  // 1. التحقق من حالة المستخدم
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // ✅ المستخدم مسجل - نعرض المحتوى
-      console.log("✅ مرحباً: " + user.email);
-      
-      // عرض البريد الإلكتروني في أي مكان في الصفحة (اختياري)
-      const emailElement = document.getElementById('user-email');
-      if (emailElement) {
-        emailElement.textContent = user.email;
-      }
-      
-      // إظهار المحتوى المخفي (إذا كان مخفياً)
-      document.body.style.display = 'block';
-      
-    } else {
-      // ❌ المستخدم غير مسجل - ننقله لتسجيل الدخول
-      console.log("❌ غير مسجل دخول - جاري التحويل...");
-      window.location.href = 'login.html';
-    }
-  });
-
-  // 2. وظيفة تسجيل الخروج (ضع زر بخاصية logout-btn)
-  const logoutBtn = document.getElementById('logout-btn');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
+    // --- دالة تسجيل الخروج (لجعلها عامة) ---
+    window.logoutUser = function() {
       signOut(auth).then(() => {
+        console.log('✅ تم تسجيل الخروج');
         window.location.href = 'index.html';
       }).catch((error) => {
-        console.error("خطأ في تسجيل الخروج:", error);
+        console.error('❌ خطأ في تسجيل الخروج:', error);
+        alert('حدث خطأ أثناء تسجيل الخروج: ' + error.message);
       });
+    };
+
+    // --- تشغيل كل شيء عند تحميل الصفحة ---
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
     });
-  }
-</script>
+
+    console.log('✅ Student Dashboard page loaded with Firebase (Realtime DB)');
+  </script>
+
 </body>
 </html>
