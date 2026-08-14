@@ -261,14 +261,16 @@
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav-games">🎮 Games</a></li>
           <li class="nav-item"><a class="nav-link active" href="student-dashboard.html" data-i18n="nav-student">👨‍🎓 Student</a></li>
           
-          <li class="nav-item" id="loginLink">
+          <!-- ===== أزرار تسجيل الدخول والتسجيل (تظهر دائماً بشكل افتراضي) ===== -->
+          <li class="nav-item" id="loginLink" style="display: block;">
             <a class="nav-link" href="login.html" data-i18n="nav-login">🔑 Login</a>
           </li>
-          <li class="nav-item" id="registerLink">
+          <li class="nav-item" id="registerLink" style="display: block;">
             <a class="nav-link" href="register.html" data-i18n="nav-register">📝 Register</a>
           </li>
           
-          <li class="nav-item" id="logoutLink" style="display:none;">
+          <!-- ===== زر تسجيل الخروج (مخفي افتراضياً) ===== -->
+          <li class="nav-item" id="logoutLink" style="display: none;">
             <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav-logout">🚪 Logout</a>
           </li>
 
@@ -464,20 +466,24 @@
     const lessonsEl = document.getElementById('studentLessons');
     const testsBody = document.getElementById('testsBody');
 
-    // --- دالة لإظهار/إخفاء أزرار القائمة حسب حالة المستخدم ---
+    // ============================================================
+    // 🔥 الدالة المعدلة لإظهار/إخفاء الأزرار (الحل الجديد)
+    // ============================================================
     function updateNavbar(user) {
       const loginLink = document.getElementById('loginLink');
       const registerLink = document.getElementById('registerLink');
       const logoutLink = document.getElementById('logoutLink');
 
+      // أولاً: نضع الحالة الافتراضية (إظهار أزرار تسجيل الدخول)
+      loginLink.style.display = 'block';
+      registerLink.style.display = 'block';
+      logoutLink.style.display = 'none';
+
+      // إذا كان هناك مستخدم مسجل نخفي أزرار الدخول ونظهر الخروج
       if (user) {
         loginLink.style.display = 'none';
         registerLink.style.display = 'none';
         logoutLink.style.display = 'block';
-      } else {
-        loginLink.style.display = 'block';
-        registerLink.style.display = 'block';
-        logoutLink.style.display = 'none';
       }
     }
 
@@ -586,18 +592,30 @@
       dashboardContent.style.display = 'block';
     }
 
-    // --- دالة للتحقق من حالة المصادقة ---
+    // ============================================================
+    // 🔥 دالة التحقق من المصادقة (معدلة)
+    // ============================================================
     function checkAuth() {
+      // تأكد من ظهور الأزرار أولاً (حتى لو كان Firebase بطيئاً)
+      updateNavbar(null);
+      
       onAuthStateChanged(auth, (user) => {
+        // تحديث الأزرار بناءً على حالة المستخدم
         updateNavbar(user);
         
         if (user) {
           console.log('✅ مستخدم مسجل:', user.email);
-          // جلب بيانات الطالب
           loadStudentData(user.uid);
         } else {
-          console.log('❌ غير مسجل دخول، جاري التحويل...');
-          window.location.href = 'login.html';
+          console.log('ℹ️ مستخدم غير مسجل، الأزرار ظاهرة');
+          // ننهي التحميل ونظهر المحتوى مع رسالة ترحيبية للزوار
+          loadingScreen.style.display = 'none';
+          dashboardContent.style.display = 'block';
+          welcomeMsg.textContent = '👋 مرحباً! يرجى تسجيل الدخول أو إنشاء حساب للوصول إلى لوحة التحكم.';
+          
+          // إخفاء الإحصائيات والجدول (لأنها خاصة بالطلاب المسجلين)
+          document.querySelector('.row.g-4')?.classList.add('d-none');
+          document.getElementById('recentTests')?.classList.add('d-none');
         }
       });
     }
