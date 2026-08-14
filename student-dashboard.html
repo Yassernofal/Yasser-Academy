@@ -239,6 +239,11 @@
       background: #1e1e2f;
       color: #e0e0e0;
     }
+
+    /* ===== Fix for Navbar Buttons ===== */
+    #loginLink, #registerLink, #logoutLink {
+      display: block !important;
+    }
   </style>
 </head>
 <body>
@@ -261,16 +266,14 @@
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav-games">🎮 Games</a></li>
           <li class="nav-item"><a class="nav-link active" href="student-dashboard.html" data-i18n="nav-student">👨‍🎓 Student</a></li>
           
-          <!-- ===== أزرار تسجيل الدخول والتسجيل (تظهر دائماً بشكل افتراضي) ===== -->
-          <li class="nav-item" id="loginLink" style="display: block;">
+          <li class="nav-item" id="loginLink">
             <a class="nav-link" href="login.html" data-i18n="nav-login">🔑 Login</a>
           </li>
-          <li class="nav-item" id="registerLink" style="display: block;">
+          <li class="nav-item" id="registerLink">
             <a class="nav-link" href="register.html" data-i18n="nav-register">📝 Register</a>
           </li>
           
-          <!-- ===== زر تسجيل الخروج (مخفي افتراضياً) ===== -->
-          <li class="nav-item" id="logoutLink" style="display: none;">
+          <li class="nav-item" id="logoutLink" style="display:none;">
             <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav-logout">🚪 Logout</a>
           </li>
 
@@ -444,9 +447,6 @@
   <!-- ===== Bootstrap JS ===== -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- ===== ملف الترجمة ===== -->
-  <script src="assets/js/lang.js"></script>
-
   <!-- ===== Firebase Script (Type="Module") ===== -->
   <script type="module">
     // استيراد Firebase من الملف المركزي
@@ -454,7 +454,107 @@
     import { onAuthStateChanged, signOut } from "firebase/auth";
     import { ref, get, set } from "firebase/database";
 
-    // --- العناصر في الصفحة ---
+    // ===== الترجمة المدمجة (بديل عن الملفات الخارجية) =====
+    const translations = {
+      ar: {
+        'nav-home': '🏠 الرئيسية',
+        'nav-levels': '📚 المستويات',
+        'nav-booking': '📝 الحجز',
+        'nav-games': '🎮 الألعاب',
+        'nav-student': '👨‍🎓 الطالب',
+        'nav-login': '🔑 تسجيل الدخول',
+        'nav-register': '📝 إنشاء حساب',
+        'nav-logout': '🚪 تسجيل الخروج',
+        'welcome': 'مرحباً، أيها الطالب!',
+        'dashboard-title': 'لوحة تحكم الطالب',
+        'level-label': 'المستوى الحالي',
+        'progress-label': 'نسبة التقدم',
+        'grade-label': 'الدرجة الكلية',
+        'certs-label': 'الشهادات',
+        'lessons-label': 'الدروس المكتملة',
+        'recent-tests': 'آخر الاختبارات',
+        'test-col': 'الاختبار',
+        'score-col': 'الدرجة',
+        'date-col': 'التاريخ',
+        'no-tests': 'لا توجد اختبارات سابقة',
+        'logout-btn': 'تسجيل الخروج',
+        'loading-text': 'جاري تحميل بياناتك...',
+        'about-link': '🌟 من نحن',
+        'privacy-link': '🔒 سياسة الخصوصية',
+        'terms-link': '📜 شروط الاستخدام',
+        'footer-title': 'أكاديمية مستر ياسر نوفل',
+        'footer-desc': 'تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.',
+        'quick-links': 'روابط سريعة',
+        'levels-link': 'المستويات',
+        'booking-link': 'الحجز',
+        'contact-title': 'اتصل بنا',
+        'copyright': '© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة'
+      },
+      en: {
+        'nav-home': '🏠 Home',
+        'nav-levels': '📚 Levels',
+        'nav-booking': '📝 Booking',
+        'nav-games': '🎮 Games',
+        'nav-student': '👨‍🎓 Student',
+        'nav-login': '🔑 Login',
+        'nav-register': '📝 Register',
+        'nav-logout': '🚪 Logout',
+        'welcome': 'Welcome, Student!',
+        'dashboard-title': 'Student Dashboard',
+        'level-label': 'Current Level',
+        'progress-label': 'Progress',
+        'grade-label': 'Total Grade',
+        'certs-label': 'Certificates',
+        'lessons-label': 'Lessons Completed',
+        'recent-tests': 'Recent Tests',
+        'test-col': 'Test',
+        'score-col': 'Score',
+        'date-col': 'Date',
+        'no-tests': 'No previous tests',
+        'logout-btn': 'Logout',
+        'loading-text': 'Loading your data...',
+        'about-link': '🌟 About Us',
+        'privacy-link': '🔒 Privacy Policy',
+        'terms-link': '📜 Terms of Use',
+        'footer-title': 'Mr. Yasser Nofal Academy',
+        'footer-desc': 'Learn English from scratch to professionalism with the best trainers.',
+        'quick-links': 'Quick Links',
+        'levels-link': 'Levels',
+        'booking-link': 'Booking',
+        'contact-title': 'Contact Us',
+        'copyright': '© 2026 Mr. Yasser Nofal Academy – All Rights Reserved'
+      }
+    };
+
+    // ===== دوال الترجمة =====
+    window.switchLanguage = function(lang) {
+      localStorage.setItem('preferredLanguage', lang);
+      applyLanguage(lang);
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
+      showToast(lang === 'ar' ? 'تم التبديل إلى العربية 🇸🇦' : 'Switched to English 🇬🇧', 'info');
+    };
+
+    function applyLanguage(lang) {
+      const t = translations[lang] || translations.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          // الحفاظ على الأيقونات إذا كانت موجودة
+          const iconMatch = el.innerHTML.match(/^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[\u{1F300}-\u{1F5FF}]|\p{Emoji})\s*/u);
+          const icon = iconMatch ? iconMatch[0] : '';
+          el.innerHTML = icon + t[key];
+        }
+      });
+    }
+
+    // تطبيق اللغة عند تحميل الصفحة
+    const savedLang = localStorage.getItem('preferredLanguage') || 'ar';
+    applyLanguage(savedLang);
+    document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = savedLang;
+
+    // ===== عناصر الصفحة =====
     const loadingScreen = document.getElementById('loadingScreen');
     const dashboardContent = document.getElementById('dashboardContent');
     const welcomeMsg = document.getElementById('welcomeMessage');
@@ -466,35 +566,47 @@
     const lessonsEl = document.getElementById('studentLessons');
     const testsBody = document.getElementById('testsBody');
 
-    // ============================================================
-    // 🔥 الدالة المعدلة لإظهار/إخفاء الأزرار (الحل الجديد)
-    // ============================================================
+    // ===== دالة التحكم في أزرار القائمة (معدلة ومضمونة) =====
     function updateNavbar(user) {
       const loginLink = document.getElementById('loginLink');
       const registerLink = document.getElementById('registerLink');
       const logoutLink = document.getElementById('logoutLink');
 
-      // أولاً: نضع الحالة الافتراضية (إظهار أزرار تسجيل الدخول)
-      loginLink.style.display = 'block';
-      registerLink.style.display = 'block';
-      logoutLink.style.display = 'none';
+      if (!loginLink || !registerLink || !logoutLink) {
+        console.warn('⚠️ عناصر القائمة غير موجودة');
+        return;
+      }
 
-      // إذا كان هناك مستخدم مسجل نخفي أزرار الدخول ونظهر الخروج
       if (user) {
+        // مستخدم مسجل دخول
         loginLink.style.display = 'none';
         registerLink.style.display = 'none';
         logoutLink.style.display = 'block';
+        console.log('✅ تم إخفاء أزرار Login/Register');
+      } else {
+        // مستخدم غير مسجل
+        loginLink.style.display = 'block';
+        registerLink.style.display = 'block';
+        logoutLink.style.display = 'none';
+        console.log('✅ تم إظهار أزرار Login/Register');
       }
     }
 
-    // --- دالة إظهار الإشعار (Toast) ---
+    // ===== دوال الإشعارات =====
     window.showToast = function(message, type = 'success') {
       const toast = document.getElementById('toastNotification');
       const toastMsg = document.getElementById('toastMessage');
       toastMsg.textContent = message;
       
       const toastDiv = toast.querySelector('.toast');
-      toastDiv.className = `toast align-items-center text-white border-0 toast-custom bg-${type}`;
+      const bgColor = {
+        success: 'bg-success',
+        danger: 'bg-danger',
+        warning: 'bg-warning',
+        info: 'bg-info'
+      }[type] || 'bg-success';
+      
+      toastDiv.className = `toast align-items-center text-white border-0 toast-custom ${bgColor}`;
       
       toast.style.display = 'block';
       setTimeout(() => {
@@ -506,7 +618,7 @@
       document.getElementById('toastNotification').style.display = 'none';
     };
 
-    // --- دالة تبديل الوضع الليلي ---
+    // ===== دالة تبديل الوضع الليلي =====
     window.toggleDarkMode = function() {
       const body = document.body;
       body.classList.toggle('dark-mode');
@@ -516,7 +628,18 @@
       showToast(isDark ? 'تم تفعيل الوضع الليلي 🌙' : 'تم تفعيل الوضع النهاري ☀️', 'info');
     };
 
-    // --- دالة لجلب بيانات الطالب من Realtime Database ---
+    // تطبيق الوضع الليلي المحفوظ
+    function applySavedDarkMode() {
+      const darkMode = localStorage.getItem('darkMode');
+      if (darkMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('darkModeToggle').textContent = '☀️';
+      } else {
+        document.getElementById('darkModeToggle').textContent = '🌙';
+      }
+    }
+
+    // ===== دالة جلب بيانات الطالب =====
     async function loadStudentData(uid) {
       try {
         const studentRef = ref(database, `students/${uid}`);
@@ -526,11 +649,10 @@
           const data = snapshot.val();
           console.log('✅ بيانات الطالب:', data);
           
-          // تحديث الواجهة بالبيانات
+          // تحديث الواجهة
           welcomeMsg.textContent = `مرحباً، ${data.name || 'طالب'}!`;
           levelEl.textContent = data.level || '1';
           
-          // تحديث شريط التقدم
           const progressValue = parseInt(data.progress) || 0;
           progressBar.style.width = progressValue + '%';
           progressBar.setAttribute('aria-valuenow', progressValue);
@@ -540,7 +662,7 @@
           certsEl.textContent = data.certificates || '0';
           lessonsEl.textContent = data.lessonsCompleted || '0';
 
-          // عرض آخر الاختبارات
+          // عرض الاختبارات
           if (data.tests && Array.isArray(data.tests) && data.tests.length > 0) {
             testsBody.innerHTML = '';
             data.tests.slice(-5).reverse().forEach(test => {
@@ -556,11 +678,10 @@
             testsBody.innerHTML = `<tr><td colspan="3" class="text-center text-muted" data-i18n="no-tests">لا توجد اختبارات سابقة</td></tr>`;
           }
 
-          // إظهار إشعار ترحيبي
           showToast(`مرحباً بعودتك ${data.name || 'طالب'}! 👋`, 'success');
 
         } else {
-          // إذا لم توجد بيانات، ننشئ بيانات افتراضية
+          // إنشاء بيانات افتراضية
           console.log('ℹ️ لا توجد بيانات، سيتم إنشاء بيانات افتراضية.');
           const defaultData = {
             name: 'طالب جديد',
@@ -572,7 +693,6 @@
             tests: []
           };
           await set(ref(database, `students/${uid}`), defaultData);
-          // نعيد تحميل البيانات بعد الإنشاء
           await loadStudentData(uid);
           return;
         }
@@ -587,40 +707,26 @@
         return;
       }
       
-      // إخفاء شاشة التحميل وإظهار المحتوى
       loadingScreen.style.display = 'none';
       dashboardContent.style.display = 'block';
     }
 
-    // ============================================================
-    // 🔥 دالة التحقق من المصادقة (معدلة)
-    // ============================================================
+    // ===== التحقق من المصادقة =====
     function checkAuth() {
-      // تأكد من ظهور الأزرار أولاً (حتى لو كان Firebase بطيئاً)
-      updateNavbar(null);
-      
       onAuthStateChanged(auth, (user) => {
-        // تحديث الأزرار بناءً على حالة المستخدم
         updateNavbar(user);
         
         if (user) {
           console.log('✅ مستخدم مسجل:', user.email);
           loadStudentData(user.uid);
         } else {
-          console.log('ℹ️ مستخدم غير مسجل، الأزرار ظاهرة');
-          // ننهي التحميل ونظهر المحتوى مع رسالة ترحيبية للزوار
-          loadingScreen.style.display = 'none';
-          dashboardContent.style.display = 'block';
-          welcomeMsg.textContent = '👋 مرحباً! يرجى تسجيل الدخول أو إنشاء حساب للوصول إلى لوحة التحكم.';
-          
-          // إخفاء الإحصائيات والجدول (لأنها خاصة بالطلاب المسجلين)
-          document.querySelector('.row.g-4')?.classList.add('d-none');
-          document.getElementById('recentTests')?.classList.add('d-none');
+          console.log('❌ غير مسجل دخول، جاري التحويل...');
+          window.location.href = 'login.html';
         }
       });
     }
 
-    // --- دالة تسجيل الخروج (لجعلها عامة) ---
+    // ===== تسجيل الخروج =====
     window.logoutUser = function() {
       signOut(auth).then(() => {
         console.log('✅ تم تسجيل الخروج');
@@ -634,24 +740,13 @@
       });
     };
 
-    // --- تطبيق الوضع الليلي المحفوظ ---
-    function applySavedDarkMode() {
-      const darkMode = localStorage.getItem('darkMode');
-      if (darkMode === 'enabled') {
-        document.body.classList.add('dark-mode');
-        document.getElementById('darkModeToggle').textContent = '☀️';
-      } else {
-        document.getElementById('darkModeToggle').textContent = '🌙';
-      }
-    }
-
-    // --- تشغيل كل شيء عند تحميل الصفحة ---
+    // ===== تشغيل كل شيء =====
     document.addEventListener('DOMContentLoaded', () => {
       applySavedDarkMode();
       checkAuth();
     });
 
-    console.log('✅ Student Dashboard page loaded with Firebase (Realtime DB)');
+    console.log('✅ Student Dashboard page loaded with all fixes');
   </script>
 
 </body>
