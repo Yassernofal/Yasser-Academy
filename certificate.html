@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificate – Mr. Yasser Nofal Academy</title>
+  <meta name="description" content="Certificate of achievement from Mr. Yasser Nofal Academy." />
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/certificate.html" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N3R3KFEO8');
+  </script>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
+    @media (max-width: 991.98px) { body { padding-top: 72px; } }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.85) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      z-index: 1050;
+    }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+    .navbar-brand img { height: 40px; width: auto; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    .cert-container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 28px;
+      padding: 35px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .cert-preview {
+      background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 100%);
+      border-radius: 20px;
+      padding: 50px 30px;
+      color: #fff;
+      border: 8px solid #f7e05e;
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .cert-preview .cert-badge { font-size: 4rem; color: #f7e05e; margin-bottom: 15px; }
+    .cert-preview h2 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #f7e05e; margin-bottom: 10px; }
+    .cert-preview .student-name { font-size: 2rem; font-weight: 700; background: rgba(255,255,255,0.1); padding: 10px 30px; border-radius: 50px; margin: 15px 0; border: 2px solid rgba(255,255,255,0.2); }
+    .cert-preview .level-name { font-size: 1.3rem; color: #ffe28a; margin-bottom: 10px; }
+    .cert-preview .cert-date { font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: 10px; }
+    .cert-preview .cert-code { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 5px; font-family: monospace; }
+    .cert-preview .signature { margin-top: 20px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .cert-preview .signature-item { text-align: center; border-top: 2px solid rgba(255,255,255,0.3); padding-top: 8px; min-width: 120px; }
+    .cert-preview .signature-item span { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+    .btn-download {
+      background: #f7e05e;
+      color: #0a1f44;
+      border: none;
+      padding: 12px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+    .btn-download:hover { background: #f7b731; transform: scale(1.02); }
+
+    .form-control-custom { max-width: 400px; margin: 10px auto; }
+
+    footer {
+      background: #0a1f44;
+      color: #b0c4de;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    @media (max-width: 576px) {
+      .cert-preview { padding: 30px 15px; }
+      .cert-preview h2 { font-size: 1.8rem; }
+      .cert-preview .student-name { font-size: 1.3rem; }
+    }
+
+    .extra-links {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      text-align: center;
+    }
+    .extra-links a {
+      color: #0a1f44;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .extra-links a:hover {
+      color: #f7b731;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 Booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html">🎮 Games</a></li>
+          <li class="nav-item"><a class="nav-link active" href="certificate.html">📜 Certificate</a></li>
+          
+          <li class="nav-item" id="loginLink">
+            <a class="nav-link" href="login.html">🔑 Login</a>
+          </li>
+          <li class="nav-item" id="registerLink">
+            <a class="nav-link" href="register.html">📝 Register</a>
+          </li>
+          
+          <li class="nav-item" id="studentDashboardLink" style="display:none;">
+            <a class="nav-link" href="student-dashboard.html">👨‍🎓 Student</a>
+          </li>
+          <li class="nav-item" id="parentDashboardLink" style="display:none;">
+            <a class="nav-link" href="parent-dashboard.html">👨‍👧 Parent</a>
+          </li>
+          <li class="nav-item" id="adminDashboardLink" style="display:none;">
+            <a class="nav-link" href="admin-dashboard.html">⚙️ Admin</a>
+          </li>
+
+          <li class="nav-item" id="logoutLink" style="display:none;">
+            <a class="nav-link" href="#" onclick="logoutUser()">🚪 Logout</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
+              <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== الروابط الإضافية ===== -->
+  <div class="extra-links">
+    <div class="container">
+      <a href="about.html">🌟 About Us</a>
+      <a href="privacy-policy.html">🔒 Privacy Policy</a>
+      <a href="terms.html">📜 Terms of Use</a>
+    </div>
+  </div>
+
+  <!-- ===== المحتوى ===== -->
+  <section class="container">
+    <div class="cert-container">
+      <h2 class="fw-bold mb-3"><i class="fas fa-certificate text-primary" aria-hidden="true"></i> Certificate of Achievement</h2>
+      <p class="text-muted">Enter your name and choose the level to view your certificate</p>
+
+      <div class="row justify-content-center g-3 mb-4">
+        <div class="col-md-5"><input type="text" class="form-control form-control-custom" id="studentNameInput" placeholder="Enter student name..." value="Ahmed Mohamed" /></div>
+        <div class="col-md-4">
+          <select class="form-select form-control-custom" id="levelSelect">
+            <option value="Pre-KG">Pre-KG</option>
+            <option value="Kindergarten">Kindergarten</option>
+            <option value="Primary">Primary</option>
+            <option value="Preparatory">Preparatory</option>
+            <option value="Secondary" selected>Secondary</option>
+            <option value="University">University</option>
+            <option value="Postgraduate">Postgraduate</option>
+            <option value="Phonics & Conversation">Phonics & Conversation</option>
+          </select>
+        </div>
+        <div class="col-md-3"><button class="btn btn-primary w-100" onclick="generateCertificate()"><i class="fas fa-eye" aria-hidden="true"></i> View Certificate</button></div>
+      </div>
+
+      <div id="certPreview" style="display: none;">
+        <div class="cert-preview" id="certContent">
+          <div class="cert-badge"><i class="fas fa-award" aria-hidden="true"></i></div>
+          <h2>Mr. Yasser Nofal Academy</h2>
+          <p>This certifies that</p>
+          <div class="student-name" id="displayName">Ahmed Mohamed</div>
+          <p>has successfully completed the level</p>
+          <div class="level-name" id="displayLevel">Secondary</div>
+          <div class="signature">
+            <div class="signature-item"><span>Director's Signature</span></div>
+            <div class="signature-item"><span>Date</span></div>
+          </div>
+          <div class="cert-date" id="displayDate">August 13, 2026</div>
+          <div class="cert-code" id="displayCode">📌 YNA-CERT-XXXXXX</div>
+        </div>
+
+        <button class="btn-download" onclick="downloadCertificate()"><i class="fas fa-download" aria-hidden="true"></i> Download Certificate (PDF)</button>
+        <button class="btn btn-outline-secondary mt-2" onclick="shareCertificate()"><i class="fas fa-share-alt" aria-hidden="true"></i> Share Certificate</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== الفوتير ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5>Mr. Yasser Nofal Academy</h5>
+          <p>Learn English from scratch to professionalism with the best trainers.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="levels.html">Levels</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/lang.js"></script>
+  <script>
+    // ===== Firebase =====
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    function generateCertificate() {
+      const name = document.getElementById('studentNameInput').value.trim();
+      const level = document.getElementById('levelSelect').value;
+      if (!name) { alert('❌ Please enter student name'); return; }
+      document.getElementById('displayName').textContent = name;
+      document.getElementById('displayLevel').textContent = level;
+      document.getElementById('displayDate').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const code = 'YNA-CERT-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000);
+      document.getElementById('displayCode').textContent = '📌 ' + code;
+      document.getElementById('certPreview').style.display = 'block';
+      document.getElementById('certPreview').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function downloadCertificate() {
+      const element = document.getElementById('certContent');
+      const btn = event.target;
+      btn.textContent = '⏳ Loading...';
+      btn.disabled = true;
+      html2canvas(element, { scale: 2, backgroundColor: '#0a1f44', allowTaint: true, useCORS: true, logging: false })
+        .then(canvas => {
+          const imgData = canvas.toDataURL('image/png');
+          const link = document.createElement('a');
+          link.download = `Certificate-${document.getElementById('displayName').textContent}.png`;
+          link.href = imgData;
+          link.click();
+          btn.textContent = '📥 Download Certificate (PDF)';
+          btn.disabled = false;
+        }).catch(err => { alert('❌ Error downloading certificate: ' + err.message); btn.textContent = '📥 Download Certificate (PDF)'; btn.disabled = false; });
+    }
+
+    function shareCertificate() {
+      const name = document.getElementById('displayName').textContent;
+      const level = document.getElementById('displayLevel').textContent;
+      const text = `🎓 I received a certificate from Mr. Yasser Nofal Academy!\n👤 Student: ${name}\n📚 Level: ${level}\n🏆 Mr. Yasser Nofal Academy – Learn English with Confidence`;
+      if (navigator.share) {
+        navigator.share({ title: 'Certificate - Mr. Yasser Nofal Academy', text: text, url: window.location.href }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(text + '\n' + window.location.href);
+        alert('✅ Certificate text copied, you can share it now!');
+      }
+    }
+
+    function checkUserRole() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          document.getElementById('registerLink').style.display = 'none';
+          document.getElementById('logoutLink').style.display = 'block';
+          document.getElementById('loginLink').style.display = 'none';
+          db.collection('users').doc(user.uid).get().then(doc => {
+            if (doc.exists) {
+              const role = doc.data().role || 'student';
+              if (role === 'student') document.getElementById('studentDashboardLink').style.display = 'block';
+              else if (role === 'parent') document.getElementById('parentDashboardLink').style.display = 'block';
+              else if (role === 'admin') document.getElementById('adminDashboardLink').style.display = 'block';
+            }
+          }).catch(error => console.error('Error fetching user role:', error));
+        } else {
+          document.getElementById('registerLink').style.display = 'block';
+          document.getElementById('logoutLink').style.display = 'none';
+          document.getElementById('loginLink').style.display = 'block';
+          document.getElementById('studentDashboardLink').style.display = 'none';
+          document.getElementById('parentDashboardLink').style.display = 'none';
+          document.getElementById('adminDashboardLink').style.display = 'none';
+        }
+      });
+    }
+
+    function logoutUser() {
+      auth.signOut().then(() => {
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
+      }).catch(error => alert('❌ Error logging out: ' + error.message));
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      checkUserRole();
+      document.getElementById('studentNameInput').value = 'Ahmed Mohamed';
+      generateCertificate();
+    });
+    console.log('✅ Certificate page loaded with Firebase');
+  </script>
+  <script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged } from "firebase/auth";
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // المستخدم مسجل الدخول - اظهر محتوى الصفحة
+      console.log("مرحباً " + user.email);
+      document.getElementById('user-email').textContent = user.email;
+    } else {
+      // المستخدم غير مسجل - خذه لصفحة التسجيل
+      window.location.href = 'login.html';
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة الطالب – أكاديمية مستر ياسر نوفل</title>
+  <meta name="description" content="لوحة تحكم الطالب في أكاديمية مستر ياسر نوفل." />
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/student-dashboard.html" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-N3R3KFEO8');
+  </script>
+
+  <!-- Bootstrap & Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* ===== General Styles ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; transition: background 0.3s, color 0.3s; }
+    @media (max-width: 991.98px) { body { padding-top: 72px; } }
+
+    /* ===== Navbar ===== */
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.85) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      z-index: 1050;
+      transition: background 0.3s;
+    }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+    .navbar-brand img { height: 40px; width: auto; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    /* ===== Dashboard Container ===== */
+    .dashboard-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 28px;
+      padding: 35px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    /* ===== Stat Cards ===== */
+    .stat-card {
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      height: 100%;
+      transition: 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+    .stat-card .number { font-size: 2.5rem; font-weight: 800; color: #0a1f44; }
+    .stat-card .label { color: #666; }
+
+    /* ===== Buttons ===== */
+    .btn-logout {
+      background: #dc3545;
+      color: #fff;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .btn-logout:hover { background: #b02a37; transform: scale(1.02); }
+
+    .btn-dark-mode {
+      background: transparent;
+      border: 1px solid #e0e8f0;
+      color: #e0e8f0;
+      border-radius: 50px;
+      padding: 5px 15px;
+      transition: 0.3s;
+    }
+    .btn-dark-mode:hover {
+      background: #f7e05e;
+      color: #0a1f44;
+      border-color: #f7e05e;
+    }
+
+    /* ===== Loading Skeleton ===== */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 12px;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* ===== Progress Bar ===== */
+    .progress-custom {
+      height: 10px;
+      border-radius: 10px;
+      background: #e9ecef;
+      overflow: hidden;
+    }
+    .progress-custom .progress-bar {
+      background: #28a745;
+      transition: width 0.8s ease;
+    }
+
+    /* ===== Toast Notification ===== */
+    #toastNotification {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      min-width: 280px;
+    }
+    .toast-custom {
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+    }
+
+    /* ===== Extra Links ===== */
+    .extra-links {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .extra-links a {
+      color: #0a1f44;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .extra-links a:hover {
+      color: #f7b731;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #0a1f44;
+      color: #b0c4de;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .social-icons a {
+      color: #b0c4de;
+      margin: 0 8px;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+    .social-icons a:hover { color: #f7e05e; }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin: 5px 0; }
+    .footer-links a { color: #b0c4de; text-decoration: none; transition: 0.3s; }
+    .footer-links a:hover { color: #f7e05e; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
+
+    /* ===== Dark Mode ===== */
+    body.dark-mode {
+      background: #121212;
+      color: #e0e0e0;
+    }
+    body.dark-mode .navbar-custom {
+      background: rgba(0, 0, 0, 0.95) !important;
+    }
+    body.dark-mode .dashboard-container {
+      background: #1e1e2f;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    body.dark-mode .stat-card {
+      background: #2a2a40;
+    }
+    body.dark-mode .stat-card .number {
+      color: #f7e05e;
+    }
+    body.dark-mode .stat-card .label {
+      color: #b0b0c0;
+    }
+    body.dark-mode .extra-links {
+      background: #1a1a2e;
+    }
+    body.dark-mode .extra-links a {
+      color: #b0c4de;
+    }
+    body.dark-mode .extra-links a:hover {
+      color: #f7e05e;
+    }
+    body.dark-mode .btn-dark-mode {
+      border-color: #f7e05e;
+      color: #f7e05e;
+    }
+    body.dark-mode .btn-dark-mode:hover {
+      background: #f7e05e;
+      color: #0a1f44;
+    }
+    body.dark-mode .progress-custom {
+      background: #2a2a40;
+    }
+    body.dark-mode .skeleton {
+      background: linear-gradient(90deg, #2a2a40 25%, #3a3a50 50%, #2a2a40 75%);
+    }
+    body.dark-mode footer {
+      background: #0a0a1a;
+    }
+    body.dark-mode .toast-custom {
+      background: #1e1e2f;
+      color: #e0e0e0;
+    }
+
+    /* ===== Fix for Navbar Buttons ===== */
+    #loginLink, #registerLink, #logoutLink {
+      display: block !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav-home">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav-levels">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav-booking">📝 Booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav-games">🎮 Games</a></li>
+          <li class="nav-item"><a class="nav-link active" href="student-dashboard.html" data-i18n="nav-student">👨‍🎓 Student</a></li>
+          
+          <li class="nav-item" id="loginLink">
+            <a class="nav-link" href="login.html" data-i18n="nav-login">🔑 Login</a>
+          </li>
+          <li class="nav-item" id="registerLink">
+            <a class="nav-link" href="register.html" data-i18n="nav-register">📝 Register</a>
+          </li>
+          
+          <li class="nav-item" id="logoutLink" style="display:none;">
+            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav-logout">🚪 Logout</a>
+          </li>
+
+          <!-- Dark Mode Toggle -->
+          <li class="nav-item">
+            <button class="btn btn-dark-mode btn-sm" id="darkModeToggle" onclick="toggleDarkMode()">
+              🌙
+            </button>
+          </li>
+
+          <!-- Language Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
+              <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== الروابط الإضافية ===== -->
+  <div class="extra-links">
+    <div class="container">
+      <a href="about.html" data-i18n="about-link">🌟 About Us</a>
+      <a href="privacy-policy.html" data-i18n="privacy-link">🔒 Privacy Policy</a>
+      <a href="terms.html" data-i18n="terms-link">📜 Terms of Use</a>
+    </div>
+  </div>
+
+  <!-- ===== لوحة الطالب ===== -->
+  <section class="container">
+    <div class="dashboard-container">
+      <h2 class="text-center fw-bold mb-4" data-i18n="dashboard-title">Student Dashboard</h2>
+      
+      <!-- ===== Skeleton Loading ===== -->
+      <div id="loadingScreen">
+        <div class="row g-4">
+          <div class="col-6 col-md-3"><div class="skeleton" style="height:120px;"></div></div>
+          <div class="col-6 col-md-3"><div class="skeleton" style="height:120px;"></div></div>
+          <div class="col-6 col-md-3"><div class="skeleton" style="height:120px;"></div></div>
+          <div class="col-6 col-md-3"><div class="skeleton" style="height:120px;"></div></div>
+        </div>
+        <div class="skeleton" style="height:250px; margin-top:25px;"></div>
+        <div class="skeleton" style="height:60px; margin-top:25px;"></div>
+      </div>
+
+      <!-- ===== Dashboard Content ===== -->
+      <div id="dashboardContent" style="display: none;">
+        <p class="text-center text-muted" id="welcomeMessage" data-i18n="welcome">مرحباً، الطالب!</p>
+
+        <!-- Progress Bar -->
+        <div class="mt-3 mb-4">
+          <div class="d-flex justify-content-between">
+            <span data-i18n="progress-label">نسبة التقدم</span>
+            <span id="progressPercentage">0%</span>
+          </div>
+          <div class="progress-custom">
+            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-3 col-6">
+            <div class="stat-card">
+              <div class="number" id="studentLevel">-</div>
+              <div class="label" data-i18n="level-label">المستوى الحالي</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-card">
+              <div class="number" id="studentGrade">-</div>
+              <div class="label" data-i18n="grade-label">الدرجة الكلية</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-card">
+              <div class="number" id="studentCertificates">-</div>
+              <div class="label" data-i18n="certs-label">الشهادات</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-card">
+              <div class="number" id="studentLessons">-</div>
+              <div class="label" data-i18n="lessons-label">الدروس المكتملة</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== قسم الاختبارات الأخيرة ===== -->
+        <div class="mb-4">
+          <h5 class="fw-bold"><i class="fas fa-history text-primary" aria-hidden="true"></i> <span data-i18n="recent-tests">آخر الاختبارات</span></h5>
+          <div id="recentTests" class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th data-i18n="test-col">الاختبار</th>
+                  <th data-i18n="score-col">الدرجة</th>
+                  <th data-i18n="date-col">التاريخ</th>
+                </tr>
+              </thead>
+              <tbody id="testsBody">
+                <tr>
+                  <td colspan="3" class="text-center text-muted" data-i18n="no-tests">لا توجد اختبارات سابقة</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <button class="btn-logout w-100" onclick="logoutUser()" data-i18n="logout-btn">
+          <i class="fas fa-sign-out-alt" aria-hidden="true"></i> تسجيل الخروج
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Toast Notification ===== -->
+  <div id="toastNotification" style="display: none;">
+    <div class="toast align-items-center text-white border-0 toast-custom" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMessage">
+          ✅ تم الإجراء بنجاح!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" onclick="hideToast()"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== الفوتير ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5 data-i18n="footer-title">Mr. Yasser Nofal Academy</h5>
+          <p data-i18n="footer-desc">تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5 data-i18n="quick-links">روابط سريعة</h5>
+          <ul class="footer-links">
+            <li><a href="levels.html" data-i18n="levels-link">المستويات</a></li>
+            <li><a href="booking.html" data-i18n="booking-link">الحجز</a></li>
+            <li><a href="about.html" data-i18n="about-link">من نحن</a></li>
+            <li><a href="privacy-policy.html" data-i18n="privacy-link">سياسة الخصوصية</a></li>
+            <li><a href="terms.html" data-i18n="terms-link">الشروط والأحكام</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 data-i18n="contact-title">اتصل بنا</h5>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Bootstrap JS ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- ===== Firebase Script (Type="Module") ===== -->
+  <script type="module">
+    // استيراد Firebase من الملف المركزي
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "firebase/auth";
+    import { ref, get, set } from "firebase/database";
+
+    // ===== الترجمة المدمجة (بديل عن الملفات الخارجية) =====
+    const translations = {
+      ar: {
+        'nav-home': '🏠 الرئيسية',
+        'nav-levels': '📚 المستويات',
+        'nav-booking': '📝 الحجز',
+        'nav-games': '🎮 الألعاب',
+        'nav-student': '👨‍🎓 الطالب',
+        'nav-login': '🔑 تسجيل الدخول',
+        'nav-register': '📝 إنشاء حساب',
+        'nav-logout': '🚪 تسجيل الخروج',
+        'welcome': 'مرحباً، أيها الطالب!',
+        'dashboard-title': 'لوحة تحكم الطالب',
+        'level-label': 'المستوى الحالي',
+        'progress-label': 'نسبة التقدم',
+        'grade-label': 'الدرجة الكلية',
+        'certs-label': 'الشهادات',
+        'lessons-label': 'الدروس المكتملة',
+        'recent-tests': 'آخر الاختبارات',
+        'test-col': 'الاختبار',
+        'score-col': 'الدرجة',
+        'date-col': 'التاريخ',
+        'no-tests': 'لا توجد اختبارات سابقة',
+        'logout-btn': 'تسجيل الخروج',
+        'loading-text': 'جاري تحميل بياناتك...',
+        'about-link': '🌟 من نحن',
+        'privacy-link': '🔒 سياسة الخصوصية',
+        'terms-link': '📜 شروط الاستخدام',
+        'footer-title': 'أكاديمية مستر ياسر نوفل',
+        'footer-desc': 'تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.',
+        'quick-links': 'روابط سريعة',
+        'levels-link': 'المستويات',
+        'booking-link': 'الحجز',
+        'contact-title': 'اتصل بنا',
+        'copyright': '© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة'
+      },
+      en: {
+        'nav-home': '🏠 Home',
+        'nav-levels': '📚 Levels',
+        'nav-booking': '📝 Booking',
+        'nav-games': '🎮 Games',
+        'nav-student': '👨‍🎓 Student',
+        'nav-login': '🔑 Login',
+        'nav-register': '📝 Register',
+        'nav-logout': '🚪 Logout',
+        'welcome': 'Welcome, Student!',
+        'dashboard-title': 'Student Dashboard',
+        'level-label': 'Current Level',
+        'progress-label': 'Progress',
+        'grade-label': 'Total Grade',
+        'certs-label': 'Certificates',
+        'lessons-label': 'Lessons Completed',
+        'recent-tests': 'Recent Tests',
+        'test-col': 'Test',
+        'score-col': 'Score',
+        'date-col': 'Date',
+        'no-tests': 'No previous tests',
+        'logout-btn': 'Logout',
+        'loading-text': 'Loading your data...',
+        'about-link': '🌟 About Us',
+        'privacy-link': '🔒 Privacy Policy',
+        'terms-link': '📜 Terms of Use',
+        'footer-title': 'Mr. Yasser Nofal Academy',
+        'footer-desc': 'Learn English from scratch to professionalism with the best trainers.',
+        'quick-links': 'Quick Links',
+        'levels-link': 'Levels',
+        'booking-link': 'Booking',
+        'contact-title': 'Contact Us',
+        'copyright': '© 2026 Mr. Yasser Nofal Academy – All Rights Reserved'
+      }
+    };
+
+    // ===== دوال الترجمة =====
+    window.switchLanguage = function(lang) {
+      localStorage.setItem('preferredLanguage', lang);
+      applyLanguage(lang);
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
+      showToast(lang === 'ar' ? 'تم التبديل إلى العربية 🇸🇦' : 'Switched to English 🇬🇧', 'info');
+    };
+
+    function applyLanguage(lang) {
+      const t = translations[lang] || translations.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          // الحفاظ على الأيقونات إذا كانت موجودة
+          const iconMatch = el.innerHTML.match(/^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[\u{1F300}-\u{1F5FF}]|\p{Emoji})\s*/u);
+          const icon = iconMatch ? iconMatch[0] : '';
+          el.innerHTML = icon + t[key];
+        }
+      });
+    }
+
+    // تطبيق اللغة عند تحميل الصفحة
+    const savedLang = localStorage.getItem('preferredLanguage') || 'ar';
+    applyLanguage(savedLang);
+    document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = savedLang;
+
+    // ===== عناصر الصفحة =====
+    const loadingScreen = document.getElementById('loadingScreen');
+    const dashboardContent = document.getElementById('dashboardContent');
+    const welcomeMsg = document.getElementById('welcomeMessage');
+    const levelEl = document.getElementById('studentLevel');
+    const progressBar = document.getElementById('progressBar');
+    const progressPercentage = document.getElementById('progressPercentage');
+    const gradeEl = document.getElementById('studentGrade');
+    const certsEl = document.getElementById('studentCertificates');
+    const lessonsEl = document.getElementById('studentLessons');
+    const testsBody = document.getElementById('testsBody');
+
+    // ===== دالة التحكم في أزرار القائمة (معدلة ومضمونة) =====
+    function updateNavbar(user) {
+      const loginLink = document.getElementById('loginLink');
+      const registerLink = document.getElementById('registerLink');
+      const logoutLink = document.getElementById('logoutLink');
+
+      if (!loginLink || !registerLink || !logoutLink) {
+        console.warn('⚠️ عناصر القائمة غير موجودة');
+        return;
+      }
+
+      if (user) {
+        // مستخدم مسجل دخول
+        loginLink.style.display = 'none';
+        registerLink.style.display = 'none';
+        logoutLink.style.display = 'block';
+        console.log('✅ تم إخفاء أزرار Login/Register');
+      } else {
+        // مستخدم غير مسجل
+        loginLink.style.display = 'block';
+        registerLink.style.display = 'block';
+        logoutLink.style.display = 'none';
+        console.log('✅ تم إظهار أزرار Login/Register');
+      }
+    }
+
+    // ===== دوال الإشعارات =====
+    window.showToast = function(message, type = 'success') {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+      toastMsg.textContent = message;
+      
+      const toastDiv = toast.querySelector('.toast');
+      const bgColor = {
+        success: 'bg-success',
+        danger: 'bg-danger',
+        warning: 'bg-warning',
+        info: 'bg-info'
+      }[type] || 'bg-success';
+      
+      toastDiv.className = `toast align-items-center text-white border-0 toast-custom ${bgColor}`;
+      
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 4000);
+    };
+
+    window.hideToast = function() {
+      document.getElementById('toastNotification').style.display = 'none';
+    };
+
+    // ===== دالة تبديل الوضع الليلي =====
+    window.toggleDarkMode = function() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+      document.getElementById('darkModeToggle').textContent = isDark ? '☀️' : '🌙';
+      showToast(isDark ? 'تم تفعيل الوضع الليلي 🌙' : 'تم تفعيل الوضع النهاري ☀️', 'info');
+    };
+
+    // تطبيق الوضع الليلي المحفوظ
+    function applySavedDarkMode() {
+      const darkMode = localStorage.getItem('darkMode');
+      if (darkMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('darkModeToggle').textContent = '☀️';
+      } else {
+        document.getElementById('darkModeToggle').textContent = '🌙';
+      }
+    }
+
+    // ===== دالة جلب بيانات الطالب =====
+    async function loadStudentData(uid) {
+      try {
+        const studentRef = ref(database, `students/${uid}`);
+        const snapshot = await get(studentRef);
+        
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          console.log('✅ بيانات الطالب:', data);
+          
+          // تحديث الواجهة
+          welcomeMsg.textContent = `مرحباً، ${data.name || 'طالب'}!`;
+          levelEl.textContent = data.level || '1';
+          
+          const progressValue = parseInt(data.progress) || 0;
+          progressBar.style.width = progressValue + '%';
+          progressBar.setAttribute('aria-valuenow', progressValue);
+          progressPercentage.textContent = progressValue + '%';
+          
+          gradeEl.textContent = data.grade || '0%';
+          certsEl.textContent = data.certificates || '0';
+          lessonsEl.textContent = data.lessonsCompleted || '0';
+
+          // عرض الاختبارات
+          if (data.tests && Array.isArray(data.tests) && data.tests.length > 0) {
+            testsBody.innerHTML = '';
+            data.tests.slice(-5).reverse().forEach(test => {
+              testsBody.innerHTML += `
+                <tr>
+                  <td>${test.name || 'اختبار'}</td>
+                  <td>${test.score || '0%'}</td>
+                  <td>${test.date || '--'}</td>
+                </tr>
+              `;
+            });
+          } else {
+            testsBody.innerHTML = `<tr><td colspan="3" class="text-center text-muted" data-i18n="no-tests">لا توجد اختبارات سابقة</td></tr>`;
+          }
+
+          showToast(`مرحباً بعودتك ${data.name || 'طالب'}! 👋`, 'success');
+
+        } else {
+          // إنشاء بيانات افتراضية
+          console.log('ℹ️ لا توجد بيانات، سيتم إنشاء بيانات افتراضية.');
+          const defaultData = {
+            name: 'طالب جديد',
+            level: '1',
+            progress: '0',
+            grade: '0%',
+            certificates: '0',
+            lessonsCompleted: '0',
+            tests: []
+          };
+          await set(ref(database, `students/${uid}`), defaultData);
+          await loadStudentData(uid);
+          return;
+        }
+      } catch (error) {
+        console.error('❌ خطأ في تحميل البيانات:', error);
+        loadingScreen.innerHTML = `
+          <div class="alert alert-danger text-center">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+            خطأ في تحميل البيانات: ${error.message}
+          </div>
+        `;
+        return;
+      }
+      
+      loadingScreen.style.display = 'none';
+      dashboardContent.style.display = 'block';
+    }
+
+    // ===== التحقق من المصادقة =====
+    function checkAuth() {
+      onAuthStateChanged(auth, (user) => {
+        updateNavbar(user);
+        
+        if (user) {
+          console.log('✅ مستخدم مسجل:', user.email);
+          loadStudentData(user.uid);
+        } else {
+          console.log('❌ غير مسجل دخول، جاري التحويل...');
+          window.location.href = 'login.html';
+        }
+      });
+    }
+
+    // ===== تسجيل الخروج =====
+    window.logoutUser = function() {
+      signOut(auth).then(() => {
+        console.log('✅ تم تسجيل الخروج');
+        showToast('تم تسجيل الخروج بنجاح 👋', 'warning');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 500);
+      }).catch((error) => {
+        console.error('❌ خطأ في تسجيل الخروج:', error);
+        showToast('حدث خطأ أثناء تسجيل الخروج: ' + error.message, 'danger');
+      });
+    };
+
+    // ===== تشغيل كل شيء =====
+    document.addEventListener('DOMContentLoaded', () => {
+      applySavedDarkMode();
+      checkAuth();
+    });
+
+    console.log('✅ Student Dashboard page loaded with all fixes');
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard – Mr. Yasser Nofal Academy</title>
+  <meta name="description" content="Admin dashboard at Mr. Yasser Nofal Academy." />
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/admin-dashboard.html" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N3R3KFEO8');
+  </script>
+
+  <!-- ===== Firebase ===== -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
+    @media (max-width: 991.98px) { body { padding-top: 72px; } }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.85) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      z-index: 1050;
+    }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+    .navbar-brand img { height: 40px; width: auto; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    .dashboard-container { max-width: 1300px; margin: 30px auto; padding: 0 15px; }
+
+    .stat-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      text-align: center;
+      height: 100%;
+      transition: 0.3s;
+      border-bottom: 4px solid #0a1f44;
+    }
+    .stat-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .stat-card .icon { font-size: 2.5rem; color: #f7b731; margin-bottom: 10px; }
+    .stat-card .number { font-size: 2.5rem; font-weight: 800; color: #0a1f44; }
+    .stat-card .label { color: #666; font-size: 1rem; }
+
+    .table-container {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      margin-top: 30px;
+      overflow-x: auto;
+    }
+    .table-container h5 { font-family: 'Cinzel', serif; color: #0a1f44; }
+
+    .status-badge { padding: 5px 15px; border-radius: 50px; font-weight: 600; font-size: 0.85rem; }
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-confirmed { background: #d4edda; color: #155724; }
+    .status-completed { background: #cce5ff; color: #004085; }
+    .status-cancelled { background: #f8d7da; color: #721c24; }
+
+    .btn-action { padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; border: none; transition: 0.3s; margin: 2px; }
+    .btn-action:hover { transform: scale(1.05); }
+
+    .chart-container {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      margin-top: 30px;
+      height: 300px;
+    }
+
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+    }
+
+    footer {
+      background: #0a1f44;
+      color: #b0c4de;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .extra-links {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      text-align: center;
+    }
+    .extra-links a {
+      color: #0a1f44;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .extra-links a:hover {
+      color: #f7b731;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 Booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html">🎮 Games</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin-dashboard.html">⚙️ Admin</a></li>
+          
+          <li class="nav-item" id="loginLink">
+            <a class="nav-link" href="login.html">🔑 Login</a>
+          </li>
+          <li class="nav-item" id="registerLink">
+            <a class="nav-link" href="register.html">📝 Register</a>
+          </li>
+          
+          <li class="nav-item" id="studentDashboardLink" style="display:none;">
+            <a class="nav-link" href="student-dashboard.html">👨‍🎓 Student</a>
+          </li>
+          <li class="nav-item" id="parentDashboardLink" style="display:none;">
+            <a class="nav-link" href="parent-dashboard.html">👨‍👧 Parent</a>
+          </li>
+
+          <li class="nav-item" id="logoutLink" style="display:none;">
+            <a class="nav-link" href="#" onclick="logoutUser()">🚪 Logout</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
+              <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== الروابط الإضافية ===== -->
+  <div class="extra-links">
+    <div class="container">
+      <a href="about.html">🌟 About Us</a>
+      <a href="privacy-policy.html">🔒 Privacy Policy</a>
+      <a href="terms.html">📜 Terms of Use</a>
+    </div>
+  </div>
+
+  <!-- ===== المحتوى ===== -->
+  <div class="dashboard-container" id="adminContent">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;"><i class="fas fa-user-cog text-primary" aria-hidden="true"></i> Admin Dashboard</h2>
+      <button class="btn btn-outline-danger" onclick="logoutUser()"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout</button>
+    </div>
+
+    <div id="loadingScreen" class="loading-spinner">
+      <div class="text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Loading dashboard data...</p>
+      </div>
+    </div>
+
+    <div id="dashboardContent" style="display: none;">
+      <div class="row g-4 mb-4">
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+            <div class="number" id="totalStudents">0</div>
+            <div class="label">Total Students</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="icon"><i class="fas fa-file-invoice" aria-hidden="true"></i></div>
+            <div class="number" id="totalOrders">0</div>
+            <div class="label">Total Orders</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="icon"><i class="fas fa-clock" aria-hidden="true"></i></div>
+            <div class="number" id="pendingOrders">0</div>
+            <div class="label">Pending Orders</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="icon"><i class="fas fa-money-bill-wave" aria-hidden="true"></i></div>
+            <div class="number" id="totalRevenue">0 EGP</div>
+            <div class="label">Total Revenue</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-container"><canvas id="revenueChart"></canvas></div>
+
+      <div class="table-container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5><i class="fas fa-list" aria-hidden="true"></i> Orders List</h5>
+          <div>
+            <select class="form-select form-select-sm d-inline-block w-auto" id="filterStatus" onchange="filterOrders()">
+              <option value="all">All</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover" id="ordersTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Grade</th>
+                <th>Phone</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== الفوتير ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5>Mr. Yasser Nofal Academy</h5>
+          <p>Learn English from scratch to professionalism with the best trainers.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="levels.html">Levels</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/lang.js"></script>
+  <script>
+    // ===== Firebase Configuration =====
+    // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
+  authDomain: "yasser-nofal-english-academy.firebaseapp.com",
+  databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
+  projectId: "yasser-nofal-english-academy",
+  storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
+  messagingSenderId: "654488740819",
+  appId: "1:654488740819:web:7a513cb6c2a74d98324526"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+    // ===== بيانات الطلبات التجريبية =====
+    let orders = [
+      { id: 1, student: 'Ahmed Mohamed', grade: 'Grade 10', phone: '01234567890', amount: 550, status: 'pending', date: '2026-08-13' },
+      { id: 2, student: 'Sara Ali', grade: 'Grade 12', phone: '01123456789', amount: 850, status: 'confirmed', date: '2026-08-12' },
+      { id: 3, student: 'Khaled Ibrahim', grade: 'Preparatory', phone: '01012345678', amount: 300, status: 'completed', date: '2026-08-11' },
+      { id: 4, student: 'Nora Hassan', grade: 'Grade 10', phone: '01287654321', amount: 750, status: 'pending', date: '2026-08-13' },
+      { id: 5, student: 'Yousef Adel', grade: 'Grade 12', phone: '01187654321', amount: 950, status: 'cancelled', date: '2026-08-10' },
+    ];
+
+    let chartInstance = null;
+
+    // ===== التحقق من صلاحيات المدير =====
+    function checkAdminRole() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          db.collection('users').doc(user.uid).get().then(doc => {
+            if (doc.exists) {
+              const role = doc.data().role;
+              if (role !== 'admin') {
+                window.location.href = role === 'parent' ? 'parent-dashboard.html' : 'student-dashboard.html';
+                return;
+              }
+              loadAdminData();
+            } else {
+              window.location.href = 'login.html';
+            }
+          }).catch(() => {
+            window.location.href = 'login.html';
+          });
+        } else {
+          window.location.href = 'login.html';
+        }
+      });
+    }
+
+    // ===== تحميل بيانات المدير =====
+    async function loadAdminData() {
+      try {
+        // جلب إحصائيات الطلاب
+        const studentsSnapshot = await db.collection('students').get();
+        const totalStudents = studentsSnapshot.size;
+
+        // تحديث الإحصائيات
+        document.getElementById('totalStudents').textContent = totalStudents || 0;
+        document.getElementById('totalOrders').textContent = orders.length;
+        document.getElementById('pendingOrders').textContent = orders.filter(o => o.status === 'pending').length;
+        
+        const revenue = orders.filter(o => o.status === 'confirmed' || o.status === 'completed')
+          .reduce((sum, o) => sum + o.amount, 0);
+        document.getElementById('totalRevenue').textContent = revenue + ' EGP';
+
+        renderOrders();
+        renderChart();
+
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('dashboardContent').style.display = 'block';
+      } catch (error) {
+        console.error('Error loading admin data:', error);
+        document.getElementById('loadingScreen').innerHTML = `
+          <div class="alert alert-danger text-center">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+            Error loading data: ${error.message}
+          </div>
+        `;
+      }
+    }
+
+    // ===== عرض الطلبات =====
+    function renderOrders(filter = 'all') {
+      const tbody = document.getElementById('ordersBody');
+      let filtered = filter === 'all' ? orders : orders.filter(o => o.status === filter);
+      
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted">No orders found</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map((o, idx) => `
+        <tr>
+          <td>${idx + 1}</td>
+          <td>${o.student}</td>
+          <td>${o.grade}</td>
+          <td>${o.phone}</td>
+          <td>${o.amount} EGP</td>
+          <td><span class="status-badge status-${o.status}">${o.status === 'pending' ? '⏳ Pending' : o.status === 'confirmed' ? '✅ Confirmed' : o.status === 'completed' ? '📌 Completed' : '❌ Cancelled'}</span></td>
+          <td>${o.date}</td>
+          <td>
+            ${o.status === 'pending' ? `
+              <button class="btn-action btn-success" onclick="updateOrder(${o.id}, 'confirmed')">✅ Confirm</button>
+              <button class="btn-action btn-danger" onclick="updateOrder(${o.id}, 'cancelled')">❌ Cancel</button>
+            ` : ''}
+            ${o.status === 'confirmed' ? `<button class="btn-action btn-primary" onclick="updateOrder(${o.id}, 'completed')">📌 Complete</button>` : ''}
+            ${o.status === 'completed' ? `<span class="text-success">✅ Completed</span>` : ''}
+            ${o.status === 'cancelled' ? `<span class="text-danger">❌ Cancelled</span>` : ''}
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // ===== تحديث حالة الطلب =====
+    function updateOrder(id, newStatus) {
+      const order = orders.find(o => o.id === id);
+      if (order) {
+        order.status = newStatus;
+        loadAdminData();
+      }
+    }
+
+    // ===== تصفية الطلبات =====
+    function filterOrders() {
+      const filter = document.getElementById('filterStatus').value;
+      renderOrders(filter);
+    }
+
+    // ===== الرسم البياني =====
+    function renderChart() {
+      const ctx = document.getElementById('revenueChart').getContext('2d');
+      if (chartInstance) chartInstance.destroy();
+      
+      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const revenues = [1200, 800, 1500, 2200, 1800, 900, 600];
+      
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: days,
+          datasets: [{
+            label: 'Daily Revenue (EGP)',
+            data: revenues,
+            backgroundColor: 'rgba(10, 31, 68, 0.7)',
+            borderColor: '#0a1f44',
+            borderWidth: 2,
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+    }
+
+    // ===== تسجيل الخروج =====
+    function logoutUser() {
+      auth.signOut().then(() => {
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
+      }).catch(error => {
+        alert('❌ Error logging out: ' + error.message);
+      });
+    }
+
+    // ===== التحقق من حالة المستخدم للقائمة =====
+    function checkUserRole() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          document.getElementById('registerLink').style.display = 'none';
+          document.getElementById('logoutLink').style.display = 'block';
+          document.getElementById('loginLink').style.display = 'none';
+          
+          db.collection('users').doc(user.uid).get().then(doc => {
+            if (doc.exists) {
+              const role = doc.data().role || 'student';
+              if (role === 'student') {
+                document.getElementById('studentDashboardLink').style.display = 'block';
+              } else if (role === 'parent') {
+                document.getElementById('parentDashboardLink').style.display = 'block';
+              } else if (role === 'admin') {
+                document.getElementById('adminDashboardLink').style.display = 'block';
+              }
+            }
+          }).catch(error => {
+            console.error('Error fetching user role:', error);
+          });
+        } else {
+          document.getElementById('registerLink').style.display = 'block';
+          document.getElementById('logoutLink').style.display = 'none';
+          document.getElementById('loginLink').style.display = 'block';
+          document.getElementById('studentDashboardLink').style.display = 'none';
+          document.getElementById('parentDashboardLink').style.display = 'none';
+          document.getElementById('adminDashboardLink').style.display = 'none';
+        }
+      });
+    }
+
+    // تشغيل عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+      checkUserRole();
+      checkAdminRole();
+    });
+    console.log('✅ Admin Dashboard page loaded with Firebase');
+  </script>
+  <script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged } from "firebase/auth";
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // المستخدم مسجل الدخول - اظهر محتوى الصفحة
+      console.log("مرحباً " + user.email);
+      document.getElementById('user-email').textContent = user.email;
+    } else {
+      // المستخدم غير مسجل - خذه لصفحة التسجيل
+      window.location.href = 'login.html';
+    }
+  });
+</script>
+<script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged, signOut } from "firebase/auth";
+
+  // 1. التحقق من حالة المستخدم
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // ✅ المستخدم مسجل - نعرض المحتوى
+      console.log("✅ مرحباً: " + user.email);
+      
+      // عرض البريد الإلكتروني في أي مكان في الصفحة (اختياري)
+      const emailElement = document.getElementById('user-email');
+      if (emailElement) {
+        emailElement.textContent = user.email;
+      }
+      
+      // إظهار المحتوى المخفي (إذا كان مخفياً)
+      document.body.style.display = 'block';
+      
+    } else {
+      // ❌ المستخدم غير مسجل - ننقله لتسجيل الدخول
+      console.log("❌ غير مسجل دخول - جاري التحويل...");
+      window.location.href = 'login.html';
+    }
+  });
+
+  // 2. وظيفة تسجيل الخروج (ضع زر بخاصية logout-btn)
+  const logoutBtn = document.getElementById('logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      signOut(auth).then(() => {
+        window.location.href = 'index.html';
+      }).catch((error) => {
+        console.error("خطأ في تسجيل الخروج:", error);
+      });
+    });
+  }
+</script>
+</body>
+</html>

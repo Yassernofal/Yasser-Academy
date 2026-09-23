@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>البث المباشر – Mr. Yasser Nofal Academy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0a2f6c;
+      --secondary: #1a73e8;
+      --accent: #f9a825;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: #0a0a1a;
+      color: #fff;
+    }
+    .navbar-custom {
+      background: var(--primary) !important;
+      padding: 12px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #fff !important;
+    }
+    .navbar-brand span { color: var(--accent); }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .nav-link:hover {
+      color: var(--accent) !important;
+      transform: translateY(-2px);
+    }
+    .video-wrapper {
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      aspect-ratio: 16/9;
+    }
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .stream-controls {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .btn-stream {
+      background: var(--accent);
+      color: #000;
+      border-radius: 50px;
+      padding: 12px 30px;
+      font-weight: 700;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-stream:hover {
+      background: #fbc02d;
+      transform: scale(1.05);
+    }
+    .viewer-count {
+      background: rgba(0,0,0,0.5);
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-size: 14px;
+    }
+    .protection-badge {
+      background: rgba(220,53,69,0.2);
+      border: 1px solid rgba(220,53,69,0.3);
+      border-radius: 50px;
+      padding: 5px 15px;
+      font-size: 12px;
+      color: #ff6b6b;
+    }
+    .stream-info {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    footer {
+      background: var(--primary);
+      color: #ccc;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-graduation-cap text-warning"></i> Mr. <span>Yasser</span> Nofal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html">📝 التسجيل</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👤 لوحة الطالب</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== المحتوى ===== -->
+  <section class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4><i class="fas fa-broadcast text-danger"></i> البث المباشر</h4>
+      <div>
+        <span class="viewer-count me-2"><i class="fas fa-eye"></i> <span id="viewerCount">0</span> مشاهد</span>
+        <span class="protection-badge"><i class="fas fa-lock"></i> بث آمن</span>
+      </div>
+    </div>
+
+    <div class="video-wrapper">
+      <video id="liveVideo" controls autoplay playsinline>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+        متصفحك لا يدعم تشغيل الفيديو
+      </video>
+    </div>
+
+    <div class="stream-controls">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="d-flex gap-3 flex-wrap">
+            <button class="btn btn-stream" onclick="alert('🔴 جاري تسجيل البث...')"><i class="fas fa-circle"></i> تسجيل البث</button>
+            <button class="btn btn-outline-light" onclick="alert('💬 سيتم فتح الدردشة')"><i class="fas fa-comment"></i> الدردشة</button>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <span class="badge bg-success" id="streamStatus">● مباشر</span>
+          <span class="badge bg-secondary">جودة: HD</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stream-info">
+      <h6><i class="fas fa-info-circle text-primary"></i> تفاصيل البث المباشر</h6>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>المدرس:</strong> Mr. Yasser Nofal</p>
+          <p><strong>الموضوع:</strong> شرح قواعد اللغة الإنجليزية – المستوى الثانوي</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>المدة:</strong> ساعة ونصف</p>
+          <p><strong>التوقيت:</strong> كل يوم ثلاثاء وخميس الساعة 8 مساءً</p>
+        </div>
+      </div>
+      <p><strong>رابط التسجيل:</strong> <a href="booking.html" class="text-warning">سجل الآن للانضمام</a></p>
+    </div>
+  </section>
+
+  <!-- ===== التذييل ===== -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-0">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script>
+    // محاكاة عدد المشاهدين
+    let viewers = 0;
+    setInterval(() => {
+      viewers += Math.floor(Math.random() * 3);
+      document.getElementById('viewerCount').textContent = viewers;
+    }, 5000);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/content-protection.js"></script>
+</body>
+</html>

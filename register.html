@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إنشاء حساب – أكاديمية مستر ياسر نوفل</title>
+  <meta name="description" content="أنشئ حساباً جديداً في أكاديمية مستر ياسر نوفل." />
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/register.html" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N3R3KFEO8');
+  </script>
+
+  <!-- Bootstrap & Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; transition: background 0.3s; }
+    @media (max-width: 991.98px) { body { padding-top: 72px; } }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.85) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      z-index: 1050;
+    }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+    .navbar-brand img { height: 40px; width: auto; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    .register-container {
+      max-width: 550px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 28px;
+      padding: 35px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .btn-register {
+      background: #f7e05e;
+      color: #0a1f44;
+      font-weight: 700;
+      border-radius: 50px;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-register:hover { background: #f7b731; transform: scale(1.02); }
+    .btn-register:disabled { background: #ccc; cursor: not-allowed; }
+
+    .role-card {
+      border: 2px solid #e0e0e0;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+      height: 100%;
+    }
+    .role-card:hover {
+      border-color: #f7e05e;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(247, 224, 94, 0.2);
+    }
+    .role-card.selected {
+      border-color: #f7b731;
+      background: #fffbf0;
+      box-shadow: 0 8px 20px rgba(247, 183, 49, 0.3);
+    }
+    .role-card i {
+      font-size: 2.5rem;
+      color: #0a1f44;
+      margin-bottom: 10px;
+    }
+    .role-card h5 {
+      font-weight: 700;
+      color: #0a1f44;
+      margin-bottom: 5px;
+    }
+    .role-card p {
+      font-size: 0.85rem;
+      color: #666;
+      margin: 0;
+    }
+
+    footer {
+      background: #0a1f44;
+      color: #b0c4de;
+      padding: 35px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+      text-align: center;
+    }
+    .social-icons a { color: #b0c4de; margin: 0 8px; font-size: 1.2rem; transition: 0.3s; }
+    .social-icons a:hover { color: #f7e05e; }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin: 5px 0; }
+    .footer-links a { color: #b0c4de; text-decoration: none; transition: 0.3s; }
+    .footer-links a:hover { color: #f7e05e; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
+
+    .extra-links {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      text-align: center;
+    }
+    .extra-links a {
+      color: #0a1f44;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .extra-links a:hover { color: #f7b731; text-decoration: underline; }
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 الحجز</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html">🎮 الألعاب</a></li>
+          <li class="nav-item"><a class="nav-link active" href="register.html">📝 إنشاء حساب</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
+
+          <li class="nav-item" id="logoutLink" style="display:none;">
+            <a class="nav-link" href="#" onclick="logoutUser()">🚪 تسجيل الخروج</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== الروابط الإضافية ===== -->
+  <div class="extra-links">
+    <div class="container">
+      <a href="about.html">🌟 من نحن</a>
+      <a href="privacy-policy.html">🔒 سياسة الخصوصية</a>
+      <a href="terms.html">📜 شروط الاستخدام</a>
+    </div>
+  </div>
+
+  <!-- ===== محتوى التسجيل ===== -->
+  <section class="container">
+    <div class="register-container">
+      <h2 class="text-center fw-bold mb-2">إنشاء حساب جديد</h2>
+      <p class="text-center text-muted mb-4">اختر نوع الحساب ثم أكمل البيانات</p>
+      
+      <div id="registerStatus" class="mb-3"></div>
+      
+      <!-- ===== اختيار نوع الحساب ===== -->
+      <div class="mb-4">
+        <label class="form-label fw-bold mb-3">نوع الحساب</label>
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="role-card" data-role="student" onclick="selectRole('student')">
+              <i class="fas fa-user-graduate"></i>
+              <h5>طالب</h5>
+              <p>للتعلم ومشاهدة الدروس</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="role-card" data-role="parent" onclick="selectRole('parent')">
+              <i class="fas fa-users"></i>
+              <h5>ولي أمر</h5>
+              <p>لمتابعة تقدم الأبناء</p>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" id="selectedRole" value="" />
+      </div>
+
+      <!-- ===== نموذج التسجيل ===== -->
+      <form id="registerForm">
+        <div class="mb-3">
+          <label class="form-label fw-bold">الاسم الكامل</label>
+          <input type="text" class="form-control" id="registerName" required placeholder="أحمد محمد" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">البريد الإلكتروني</label>
+          <input type="email" class="form-control" id="registerEmail" required placeholder="example@email.com" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">كلمة المرور</label>
+          <input type="password" class="form-control" id="registerPassword" required placeholder="••••••••" />
+          <small class="text-muted">6 أحرف على الأقل</small>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">تأكيد كلمة المرور</label>
+          <input type="password" class="form-control" id="registerConfirm" required placeholder="••••••••" />
+        </div>
+
+        <!-- ===== حقل ولي الأمر (يظهر فقط عند اختيار parent) ===== -->
+        <div class="mb-3" id="childEmailField" style="display: none;">
+          <label class="form-label fw-bold">البريد الإلكتروني لابنك/ابنتك</label>
+          <input type="email" class="form-control" id="childEmail" placeholder="child@email.com" />
+          <small class="text-muted">سيتم ربط حسابك بحساب ابنك تلقائياً</small>
+        </div>
+
+        <button type="submit" class="btn-register" id="registerBtn">
+          <i class="fas fa-user-plus" aria-hidden="true"></i> إنشاء الحساب
+        </button>
+        <p class="text-center mt-3">
+          لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== الفوتير ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5>أكاديمية مستر ياسر نوفل</h5>
+          <p>تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>روابط سريعة</h5>
+          <ul class="footer-links">
+            <li><a href="levels.html">المستويات</a></li>
+            <li><a href="booking.html">الحجز</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+            <li><a href="terms.html">الشروط والأحكام</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>اتصل بنا</h5>
+          <p><i class="fas fa-phone"></i> 01203145717</p>
+          <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp"></i> 01001297414</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script type="module">
+    // ===== استيراد Firebase المركزي =====
+    import { auth, database } from './firebase-config.js';
+    import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+    import { ref, set, get, update } from "firebase/database";
+    import { redirectToCorrectDashboard } from './role-manager.js';
+
+    // ===== إذا كان المستخدم مسجلاً بالفعل، نوجهه للوحته =====
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          const userSnap = await get(ref(database, `users/${user.uid}`));
+          if (userSnap.exists()) {
+            const role = userSnap.val().role;
+            redirectToCorrectDashboard(role);
+          }
+        } catch (e) {
+          console.error('خطأ:', e);
+        }
+      }
+    });
+
+    // ===== اختيار الدور =====
+    window.selectRole = function(role) {
+      document.querySelectorAll('.role-card').forEach(card => {
+        card.classList.remove('selected');
+        if (card.dataset.role === role) {
+          card.classList.add('selected');
+        }
+      });
+      document.getElementById('selectedRole').value = role;
+      
+      // إظهار/إخفاء حقل ولي الأمر
+      document.getElementById('childEmailField').style.display = 
+        role === 'parent' ? 'block' : 'none';
+    };
+
+    // ===== تسجيل الخروج =====
+    window.logoutUser = function() {
+      signOut(auth).then(() => {
+        window.location.href = 'index.html';
+      });
+    };
+
+    // ===== معالجة نموذج التسجيل =====
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('registerName').value.trim();
+      const email = document.getElementById('registerEmail').value.trim();
+      const password = document.getElementById('registerPassword').value;
+      const confirm = document.getElementById('registerConfirm').value;
+      const role = document.getElementById('selectedRole').value;
+      const childEmail = document.getElementById('childEmail')?.value.trim();
+      const status = document.getElementById('registerStatus');
+      const btn = document.getElementById('registerBtn');
+
+      // ===== التحقق من البيانات =====
+      if (!role) {
+        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء اختيار نوع الحساب</div>';
+        return;
+      }
+      if (!name || !email || !password || !confirm) {
+        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء ملء جميع الحقول</div>';
+        return;
+      }
+      if (password !== confirm) {
+        status.innerHTML = '<div class="alert alert-warning">⚠️ كلمتا المرور غير متطابقتين</div>';
+        return;
+      }
+      if (password.length < 6) {
+        status.innerHTML = '<div class="alert alert-warning">⚠️ كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>';
+        return;
+      }
+      if (role === 'parent' && !childEmail) {
+        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء إدخال بريد ابنك الإلكتروني</div>';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري إنشاء الحساب...';
+      status.innerHTML = '';
+
+      try {
+        // 1. إنشاء المستخدم
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // 2. حفظ بيانات المستخدم في Realtime Database
+        await set(ref(database, `users/${user.uid}`), {
+          name: name,
+          email: email,
+          role: role,
+          createdAt: new Date().toISOString()
+        });
+
+        // 3. إذا كان طالباً، ننشئ بياناته
+        if (role === 'student') {
+          await set(ref(database, `students/${user.uid}`), {
+            name: name,
+            email: email,
+            level: '1',
+            progress: '0',
+            grade: '0%',
+            certificates: '0',
+            lessonsCompleted: '0',
+            assignedLessons: [],
+            tests: []
+          });
+        }
+
+        // 4. إذا كان ولي أمر، نربطه بابنه
+        if (role === 'parent' && childEmail) {
+          const usersRef = ref(database, 'users');
+          const snapshot = await get(usersRef);
+          
+          if (snapshot.exists()) {
+            const users = snapshot.val();
+            let childFound = false;
+            
+            for (const [userId, userData] of Object.entries(users)) {
+              if (userData.email === childEmail && userData.role === 'student') {
+                // نضيف الابن لقائمة أولياء الأمر
+                await update(ref(database, `parents/${user.uid}/children`), {
+                  [userId]: true
+                });
+                // نربط ولي الأمر بالطالب
+                await update(ref(database, `users/${userId}`), {
+                  parentId: user.uid
+                });
+                childFound = true;
+                console.log('✅ تم ربط ولي الأمر بالطالب');
+                break;
+              }
+            }
+            
+            if (!childFound) {
+              console.warn('⚠️ لم يتم العثور على الطالب بالبريد:', childEmail);
+            }
+          }
+        }
+
+        // 5. رسالة نجاح وتوجيه
+        status.innerHTML = '<div class="alert alert-success">✅ تم إنشاء الحساب بنجاح! جاري التوجيه...</div>';
+        
+        setTimeout(() => {
+          redirectToCorrectDashboard(role);
+        }, 1500);
+
+      } catch (error) {
+        let message = '❌ فشل التسجيل. ';
+        if (error.code === 'auth/email-already-in-use') message += 'البريد الإلكتروني مستخدم بالفعل.';
+        else if (error.code === 'auth/invalid-email') message += 'صيغة البريد الإلكتروني غير صحيحة.';
+        else if (error.code === 'auth/weak-password') message += 'كلمة المرور ضعيفة جداً.';
+        else message += error.message;
+        
+        status.innerHTML = `<div class="alert alert-danger">${message}</div>`;
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء الحساب';
+      }
+    });
+
+    console.log('✅ Register page loaded with role management');
+  </script>
+
+</body>
+</html>

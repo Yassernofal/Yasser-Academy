@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr. Yasser Nofal Academy – Learn English with Confidence</title>
+  
+  <meta name="description" content="Learn English from zero to professionalism with Mr. Yasser Nofal Academy. Phonics and conversation courses for all levels." />
+  <meta name="keywords" content="Learn English, Mr. Yasser Nofal Academy, English courses, phonics, conversations" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/" />
+  <link rel="alternate" hreflang="ar" href="https://yasser-academy-amsz-five.vercel.app/" />
+  <link rel="alternate" hreflang="en" href="https://yasser-academy-amsz-five.vercel.app/?lang=en" />
+
+  <meta property="og:title" content="Mr. Yasser Nofal Academy – Learn English with Confidence" />
+  <meta property="og:description" content="Learn English from zero to professionalism with Mr. Yasser Nofal Academy." />
+  <meta property="og:image" content="https://yasser-academy-amsz-five.vercel.app/assets/images/logo.png" />
+  <meta property="og:url" content="https://yasser-academy-amsz-five.vercel.app/" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mr. Yasser Nofal Academy – Learn English with Confidence" />
+  <meta name="twitter:description" content="Learn English from zero to professionalism with Mr. Yasser Nofal Academy." />
+  <meta name="twitter:image" content="https://yasser-academy-amsz-five.vercel.app/assets/images/logo.png" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N3R3KFEO8');
+  </script>
+
+  <!-- ===== Firebase ===== -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
+    @media (max-width: 991.98px) { body { padding-top: 72px; } }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.85) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      z-index: 1050;
+    }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+    .navbar-brand img { height: 45px; width: auto; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+      letter-spacing: 1px;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .navbar-nav .nav-item { margin: 0 2px; position: relative; }
+    .navbar-nav .nav-link {
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-family: 'El Messiri', serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      white-space: nowrap;
+    }
+    .navbar-nav .nav-link i { font-size: 0.85rem; color: #f7e05e; transition: 0.3s; }
+    .navbar-nav .nav-link:hover {
+      color: #fff !important;
+      background: rgba(247, 224, 94, 0.10);
+      transform: translateY(-2px);
+    }
+    .navbar-nav .nav-link.active { color: #f7e05e !important; background: rgba(247, 224, 94, 0.12); }
+    .nav-indicator {
+      position: absolute;
+      bottom: 2px;
+      right: 50%;
+      width: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, #f7e05e, #f7b731);
+      border-radius: 4px;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateX(50%);
+    }
+    .nav-link:hover .nav-indicator,
+    .nav-link.active .nav-indicator { width: 60%; }
+    .navbar-toggler {
+      border: none;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05) !important;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+    .navbar-toggler:hover { background: rgba(255, 255, 255, 0.10) !important; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+    @media (max-width: 1199.98px) {
+      .navbar-nav .nav-link { font-size: 0.85rem; padding: 6px 10px; }
+    }
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        background: rgba(10, 31, 68, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 20px 15px;
+        margin-top: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        animation: slideDown 0.3s ease forwards;
+      }
+      .navbar-nav .nav-item { margin: 2px 0; }
+      .navbar-nav .nav-link { padding: 12px 18px; border-radius: 12px; font-size: 1.05rem; white-space: normal; }
+      .navbar-nav .nav-link i { width: 24px; text-align: center; }
+      .nav-indicator { display: none; }
+      .navbar-nav .nav-link.active { background: rgba(247, 224, 94, 0.12); }
+    }
+    @keyframes slideDown {
+      0% { opacity: 0; transform: translateY(-15px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    html { scroll-behavior: smooth; }
+
+    .top-bar {
+      background: #f7e05e;
+      padding: 10px 0;
+      color: #0a1f44;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-bottom: 2px solid #0a1f44;
+      text-align: center;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 50%, #2e6ab0 100%);
+      padding: 80px 0 70px;
+      border-radius: 0 0 60px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+    .text-content { flex: 1 1 55%; color: #fff; }
+    .text-content .brand-header { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 10px; }
+    .text-content .brand-header .main-logo { height: 60px; width: 60px; object-fit: contain; }
+    .text-content .brand-header .profile-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #f7e05e; object-fit: cover; transition: 0.3s; }
+    .text-content .brand-header .profile-img:hover { transform: scale(1.05); border-color: #fff; }
+    .text-content .brand-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #f7e05e;
+      margin: 0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      direction: ltr;
+      text-align: left;
+    }
+    .text-content .brand-header h1 small {
+      font-family: 'El Messiri', serif;
+      font-size: 1.6rem;
+      color: #ffb347;
+      display: block;
+      direction: rtl;
+      text-align: right;
+    }
+    .text-content .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #ffe28a;
+      border-right: 3px solid #f7e05e;
+      padding-right: 15px;
+      direction: ltr;
+      text-align: left;
+    }
+    .text-content .desc {
+      font-family: 'Lateef', serif;
+      font-size: 1.5rem;
+      color: #dce8f5;
+      margin-top: 10px;
+      direction: ltr;
+      text-align: left;
+    }
+    .text-content .btn-group { margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap; }
+    .text-content .btn-group .btn {
+      border-radius: 50px;
+      padding: 12px 35px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      cursor: pointer;
+    }
+    .text-content .btn-group .btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(247, 224, 94, 0.3);
+    }
+    .text-content .btn-group .btn:active { transform: scale(0.97); }
+    .text-content .btn-group .btn-warning { background: #f7e05e; color: #0a1f44; border: none; }
+    .text-content .btn-group .btn-warning:hover { background: #ffd93d; box-shadow: 0 8px 25px rgba(247, 224, 94, 0.4); }
+    .text-content .btn-group .btn-outline-light { border: 2px solid #f7e05e; color: #f7e05e; }
+    .text-content .btn-group .btn-outline-light:hover { background: #f7e05e; color: #0a1f44; box-shadow: 0 8px 25px rgba(247, 224, 94, 0.3); }
+    .stats-header { display: flex; flex-wrap: wrap; gap: 25px; margin-top: 25px; font-size: 1.1rem; color: #fff; }
+    .stats-header span { white-space: nowrap; }
+    .video-content { flex: 1 1 35%; min-width: 280px; }
+    .video-content iframe { width: 100%; height: 300px; border-radius: 20px; border: 3px solid #f7e05e; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+    @media (max-width: 768px) {
+      .text-content .brand-header h1 { font-size: 2.2rem; }
+      .text-content .brand-header h1 small { font-size: 1.2rem; }
+      .text-content .subtitle { font-size: 1.3rem; }
+      .text-content .desc { font-size: 1.2rem; }
+      .video-content iframe { height: 200px; }
+      .text-content .brand-header .main-logo { height: 45px; width: 45px; }
+      .text-content .brand-header .profile-img { width: 60px; height: 60px; }
+    }
+
+    .feature-box { background: #fff; border-radius: 24px; padding: 35px 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.06); text-align: center; height: 100%; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border-bottom: 4px solid #1a3a6b; cursor: default; }
+    .feature-box:hover { transform: translateY(-8px); border-color: #f7e05e; box-shadow: 0 12px 40px rgba(247, 224, 94, 0.15); }
+    .feature-box i { font-size: 3rem; color: #f7b731; margin-bottom: 15px; }
+    .feature-box h5 { font-family: 'Cinzel', serif; color: #0a1f44; }
+
+    .stats-section { background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 100%); border-radius: 60px 60px 0 0; padding: 60px 0 50px; margin-top: 40px; position: relative; overflow: hidden; }
+    .stats-section::before { content: ''; position: absolute; top: -50%; right: -20%; width: 300px; height: 300px; background: rgba(247, 224, 94, 0.05); border-radius: 50%; }
+    .stats-section::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 200px; height: 200px; background: rgba(247, 224, 94, 0.04); border-radius: 50%; }
+    .stat-card { background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(10px); border-radius: 28px; padding: 25px 15px; border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; z-index: 2; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: default; }
+    .stat-card:hover { transform: translateY(-8px); background: rgba(255, 255, 255, 0.10); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15); }
+    .stat-icon { font-size: 2.5rem; color: #f7e05e; margin-bottom: 8px; }
+    .stat-number { font-family: 'Cinzel', serif; font-size: 3rem; font-weight: 700; color: #fff; margin: 0; line-height: 1.1; direction: ltr; }
+    .stat-label { font-family: 'El Messiri', serif; font-size: 1.1rem; color: rgba(255, 255, 255, 0.7); margin-top: 4px; }
+    .stat-plus { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #f7e05e; margin-top: 2px; }
+    @media (max-width: 768px) { .stat-number { font-size: 2.2rem; } .stat-card { padding: 20px 10px; min-height: 160px; } .stat-icon { font-size: 2rem; } }
+
+    .testimonials-section { background: #f0f4fa; padding: 60px 0; }
+    .testimonial-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 28px; padding: 30px 20px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); height: 100%; cursor: default; }
+    .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(247, 224, 94, 0.12); }
+    .testimonial-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #f7e05e; margin-bottom: 12px; }
+    .testimonial-card h5 { font-family: 'Cinzel', serif; color: #0a1f44; margin-bottom: 2px; }
+    .testimonial-card .role { font-family: 'El Messiri', serif; font-size: 0.9rem; color: #636e72; margin-bottom: 6px; }
+    .testimonial-card .stars { color: #f7b731; font-size: 1.2rem; letter-spacing: 4px; margin-bottom: 8px; }
+    .testimonial-card .feedback { font-family: 'Lateef', serif; font-size: 1.1rem; color: #2d3436; line-height: 1.6; }
+    .carousel-control-prev-icon, .carousel-control-next-icon { background-color: #0a1f44; border-radius: 50%; padding: 20px; }
+    @media (max-width: 768px) { .testimonial-card { padding: 20px 15px; } .testimonial-card img { width: 60px; height: 60px; } }
+
+    .level-card { background: #fff; border-radius: 20px; padding: 25px 15px; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.05); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border-bottom: 4px solid #1a3a6b; cursor: pointer; }
+    .level-card:hover { transform: translateY(-6px); border-color: #f7e05e; box-shadow: 0 12px 35px rgba(247, 224, 94, 0.15); }
+    .level-card:active { transform: scale(0.97); }
+    .level-card i { font-size: 2.5rem; color: #f7b731; margin-bottom: 10px; }
+    .level-card h6 { font-family: 'Cinzel', serif; color: #0a1f44; }
+
+    .contact-box { background: #fff; border-radius: 24px; padding: 30px; box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+    .btn-whatsapp { background: #25d366; color: #fff; border-radius: 50px; padding: 12px 35px; font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border: none; text-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer; }
+    .btn-whatsapp:hover { background: #128c7e; color: #fff; transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3); }
+    .btn-whatsapp:active { transform: scale(0.97); }
+
+    .footer { background: #0a1f44; color: #b0c4de; padding: 50px 0 20px; border-radius: 50px 50px 0 0; margin-top: 40px; position: relative; overflow: hidden; }
+    .footer::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(247, 224, 94, 0.03), transparent, rgba(247, 224, 94, 0.03), transparent); animation: spinGradient 10s linear infinite; }
+    @keyframes spinGradient { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .footer h5 { font-family: 'Cinzel', serif; color: #f7e05e; margin-bottom: 15px; }
+    .footer .social-icons a { display: inline-block; width: 45px; height: 45px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); color: #f7e05e; text-align: center; line-height: 45px; font-size: 1.2rem; margin-right: 8px; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); border: 1px solid rgba(255, 255, 255, 0.05); }
+    .footer .social-icons a:hover { background: #f7e05e; color: #0a1f44; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(247, 224, 94, 0.2); }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 8px; }
+    .footer-links a { color: #b0c4de; text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: inline-block; }
+    .footer-links a:hover { color: #f7e05e; transform: translateX(-5px); }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 20px; margin-top: 30px; text-align: center; font-size: 0.9rem; }
+
+    .ai-assistant-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; border: none; box-shadow: 0 8px 30px rgba(10, 31, 68, 0.4); font-size: 2rem; cursor: pointer; z-index: 1050; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .ai-assistant-btn:hover { transform: scale(1.1) rotate(-5deg); box-shadow: 0 12px 40px rgba(10, 31, 68, 0.5); }
+    .ai-assistant-btn:active { transform: scale(0.95); }
+    .ai-assistant-window { position: fixed; bottom: 100px; right: 30px; width: 380px; max-width: 90%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 28px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.2); z-index: 1050; display: none; overflow: hidden; animation: slideUp 0.3s ease; }
+    .ai-assistant-window.open { display: block; }
+    @keyframes slideUp { 0% { opacity: 0; transform: translateY(20px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    .ai-header { background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #fff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'Cinzel', serif; }
+    .ai-body { padding: 20px; height: 300px; overflow-y: auto; background: #f8f9fa; }
+    .ai-message { margin-bottom: 12px; padding: 12px 16px; border-radius: 16px; max-width: 85%; font-family: 'El Messiri', serif; line-height: 1.5; animation: fadeIn 0.3s ease; }
+    .ai-bot { background: #0a1f44; color: #fff; border-bottom-right-radius: 4px; margin-right: auto; }
+    .ai-user { background: #f7e05e; color: #0a1f44; border-bottom-left-radius: 4px; margin-left: auto; }
+    @keyframes fadeIn { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+    .ai-footer { display: flex; padding: 10px 15px; border-top: 1px solid rgba(0,0,0,0.05); gap: 8px; background: #fff; }
+    .ai-footer input { flex: 1; border: none; padding: 10px 15px; border-radius: 50px; background: #f1f3f5; font-family: 'El Messiri', serif; outline: none; }
+    .ai-footer button { width: 45px; height: 45px; border-radius: 50%; border: none; background: #0a1f44; color: #f7e05e; font-size: 1.2rem; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: pointer; }
+    .ai-footer button:hover { transform: scale(1.05); background: #1f4b8a; }
+    @media (max-width: 480px) { .ai-assistant-window { width: 95%; right: 2.5%; bottom: 80px; } .ai-body { height: 200px; } }
+
+    .hidden-role { display: none !important; }
+    
+    .extra-links {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      text-align: center;
+    }
+    .extra-links a {
+      color: #0a1f44;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .extra-links a:hover {
+      color: #f7b731;
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 Levels</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 Booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html">🎮 Games</a></li>
+          <li class="nav-item"><a class="nav-link" href="interactive-tests.html">📝 Tests</a></li>
+          
+          <li class="nav-item" id="loginLink">
+            <a class="nav-link" href="login.html">🔑 Login</a>
+          </li>
+          <li class="nav-item" id="registerLink">
+            <a class="nav-link" href="register.html">📝 Register</a>
+          </li>
+          
+          <li class="nav-item" id="studentDashboardLink" style="display:none;">
+            <a class="nav-link" href="student-dashboard.html">👨‍🎓 Student</a>
+          </li>
+          <li class="nav-item" id="parentDashboardLink" style="display:none;">
+            <a class="nav-link" href="parent-dashboard.html">👨‍👧 Parent</a>
+          </li>
+          <li class="nav-item" id="adminDashboardLink" style="display:none;">
+            <a class="nav-link" href="admin-dashboard.html">⚙️ Admin</a>
+          </li>
+
+          <li class="nav-item" id="logoutLink" style="display:none;">
+            <a class="nav-link" href="#" onclick="logoutUser()">🚪 Logout</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
+              <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="extra-links">
+    <div class="container">
+      <a href="about.html">🌟 About Us</a>
+      <a href="privacy-policy.html">🔒 Privacy Policy</a>
+      <a href="terms.html">📜 Terms of Use</a>
+    </div>
+  </div>
+
+  <div class="top-bar">
+    <marquee behavior="scroll" direction="right" scrollamount="6">🎉 Welcome to Mr. Yasser Nofal Academy – Enrollment is Now Open! Free Level Test – 20% Discount on Golden Packages 🎉</marquee>
+  </div>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="text-content">
+        <div class="brand-header">
+          <img src="assets/images/logo.png" alt="Logo" class="main-logo" loading="lazy" />
+          <img src="assets/images/mr-yasser.jpg" alt="Mr. Yasser Nofal" class="profile-img" loading="lazy" />
+          <h1>Mr. Yasser Nofal Academy <small>أكاديمية مستر ياسر نوفل</small></h1>
+        </div>
+        <p class="subtitle" style="direction: ltr; text-align: left;">Learn English with Confidence</p>
+        <p class="desc" style="direction: ltr; text-align: left;">From Zero to Professional – with Phonics and Conversations for Every Level</p>
+        <div class="btn-group">
+          <a href="levels.html" class="btn btn-warning">📚 Levels</a>
+          <a href="booking.html" class="btn btn-outline-light">📝 Free Test</a>
+        </div>
+        <div class="stats-header">
+          <span><i class="fas fa-user-graduate" style="color: #f7e05e;"></i> +10,000 Students</span>
+          <span><i class="fas fa-certificate" style="color: #f7e05e;"></i> 8 Levels</span>
+          <span><i class="fas fa-star" style="color: #f7e05e;"></i> 4.9 / 5</span>
+        </div>
+      </div>
+      <div class="video-content">
+        <iframe src="https://www.youtube.com/embed/H8jUrAFRGPk" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-5">
+    <h2 class="text-center fw-bold mb-5" style="font-family: 'Cinzel', serif; color: #0a1f44;">Why <span style="color: #f7b731;">Our Academy</span>?</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-box">
+          <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+          <h5>35+ Years Experience</h5>
+          <p>Teaching all levels with the latest educational methods</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-box">
+          <i class="fas fa-lock" aria-hidden="true"></i>
+          <h5>Protected Content</h5>
+          <p>Advanced encryption to protect lessons and videos</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-box">
+          <i class="fas fa-headset" aria-hidden="true"></i>
+          <h5>24/7 Support</h5>
+          <p>Support team via WhatsApp and Email</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section py-5">
+    <div class="container">
+      <div class="row g-4 text-center" id="statsRow">
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-user-graduate" aria-hidden="true"></i></div>
+            <h3 class="stat-number" data-target="10000">0</h3>
+            <p class="stat-label">Students</p>
+            <span class="stat-plus">+</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-book-open" aria-hidden="true"></i></div>
+            <h3 class="stat-number" data-target="500">0</h3>
+            <p class="stat-label">Lessons</p>
+            <span class="stat-plus">+</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-calendar-alt" aria-hidden="true"></i></div>
+            <h3 class="stat-number" data-target="15">0</h3>
+            <p class="stat-label">Years Experience</p>
+            <span class="stat-plus">+</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+            <h3 class="stat-number" data-target="98">0</h3>
+            <p class="stat-label">Success Rate</p>
+            <span class="stat-plus">%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials-section py-5">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5" style="font-family: 'Cinzel', serif; color: #0a1f44;">Student <span style="color: #f7b731;">Testimonials</span></h2>
+      <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="testimonial-card">
+                  <img src="assets/images/mr-yasser.jpg" alt="Ahmed Mohamed" loading="lazy" />
+                  <h5>Ahmed Mohamed</h5>
+                  <p class="role">High School Student</p>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
+                  <p class="feedback">"The best academy to learn English! Mr. Yasser's explanation is simple and effective."</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="testimonial-card">
+                  <img src="assets/images/mr-yasser.jpg" alt="Sara Ali" loading="lazy" />
+                  <h5>Sara Ali</h5>
+                  <p class="role">University Student</p>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
+                  <p class="feedback">"The platform helped me speak fluently in just 3 months. Thank you!"</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="testimonial-card">
+                  <img src="assets/images/mr-yasser.jpg" alt="Khaled Ibrahim" loading="lazy" />
+                  <h5>Khaled Ibrahim</h5>
+                  <p class="role">Software Engineer</p>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
+                  <p class="feedback">"The interactive lessons and tests made me progress very quickly."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="testimonial-card">
+                  <img src="assets/images/mr-yasser.jpg" alt="Nora Hassan" loading="lazy" />
+                  <h5>Nora Hassan</h5>
+                  <p class="role">Middle School Student</p>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
+                  <p class="feedback">"Mr. Yasser's style is very enjoyable and makes you love the language."</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="testimonial-card">
+                  <img src="assets/images/mr-yasser.jpg" alt="Yousef Adel" loading="lazy" />
+                  <h5>Yousef Adel</h5>
+                  <p class="role">High School Student</p>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
+                  <p class="feedback">"The conversation section is the best! It improved my pronunciation significantly."</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="testimonial-card">
+                  <img src="assets/images/mr-yasser.jpg" alt="Fatima Al-Zahra" loading="lazy" />
+                  <h5>Fatima Al-Zahra</h5>
+                  <p class="role">Medical Student</p>
+                  <div class="stars" aria-hidden="true">★★★★★</div>
+                  <p class="feedback">"Thank you to Mr. Yasser Nofal Academy, it changed my academic future."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;">Educational Levels</h2>
+      <a href="levels.html" class="btn btn-outline-primary">View All <i class="fas fa-arrow-left"></i></a>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-3 col-6"><div class="level-card" onclick="window.location.href='pre-kg-lessons.html'">Pre-KG</div></div>
+      <div class="col-md-3 col-6"><div class="level-card" onclick="window.location.href='kg-lessons.html'">Kindergarten</div></div>
+      <div class="col-md-3 col-6"><div class="level-card">Primary</div></div>
+      <div class="col-md-3 col-6"><div class="level-card">Preparatory</div></div>
+      <div class="col-md-3 col-6"><div class="level-card">Secondary</div></div>
+      <div class="col-md-3 col-6"><div class="level-card">University</div></div>
+      <div class="col-md-3 col-6"><div class="level-card">Postgraduate</div></div>
+      <div class="col-md-3 col-6"><div class="level-card">Phonics & Conversation</div></div>
+    </div>
+  </section>
+
+  <section id="contact" class="container py-4">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;"><i class="fas fa-address-book" style="color: #f7b731;" aria-hidden="true"></i> Contact Us</h2>
+        <div class="contact-box">
+          <p><i class="fas fa-map-marker-alt" style="color: #f7b731;" aria-hidden="true"></i> Mohamed El-Sayed & Hassan El-Badrawi Complex – Languages</p>
+          <p><i class="fas fa-phone" style="color: #f7b731;" aria-hidden="true"></i> <strong>01203145717</strong> – <strong>01001297414</strong></p>
+          <p><i class="fas fa-envelope" style="color: #f7b731;" aria-hidden="true"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp" style="color: #25d366;" aria-hidden="true"></i> WhatsApp: <strong>01001297414</strong></p>
+          <hr />
+          <h6><i class="fas fa-credit-card" aria-hidden="true"></i> Payment Methods:</h6>
+          <span class="badge bg-light text-dark p-2 m-1"><i class="fas fa-mobile-alt" aria-hidden="true"></i> Instapay</span>
+          <span class="badge bg-light text-dark p-2 m-1"><i class="fas fa-mobile" aria-hidden="true"></i> Vodafone Cash</span>
+          <p class="mt-3">On numbers: <strong>01203145717</strong> – <strong>01001297414</strong></p>
+          <a href="https://wa.me/201001297414" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp" aria-hidden="true"></i> Book Now</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="fw-bold" style="font-family: 'Cinzel', serif; color: #0a1f44;"><i class="fas fa-paper-plane" style="color: #f7b731;" aria-hidden="true"></i> Send Inquiry</h2>
+        <div class="contact-box">
+          <form>
+            <div class="mb-3"><label class="form-label">Name</label><input type="text" class="form-control" /></div>
+            <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" /></div>
+            <div class="mb-3"><label class="form-label">Message</label><textarea class="form-control" rows="3"></textarea></div>
+            <button type="submit" class="btn btn-primary w-100"><i class="fas fa-send" aria-hidden="true"></i> Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5>Mr. Yasser Nofal Academy</h5>
+          <p>Learn English from scratch to professionalism with the best trainers.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="levels.html">Levels</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Mr. Yasser Nofal Academy – All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="ai-assistant-btn" onclick="toggleAI()"><i class="fas fa-robot" aria-hidden="true"></i></button>
+  <div class="ai-assistant-window" id="aiWindow">
+    <div class="ai-header">
+      <span><i class="fas fa-robot" aria-hidden="true"></i> AI Assistant</span>
+      <button onclick="toggleAI()" style="background: none; border: none; color: #fff; font-size: 1.5rem;">×</button>
+    </div>
+    <div class="ai-body" id="aiBody">
+      <div class="ai-message ai-bot">Hello! I am your smart assistant. Ask me any question about English.</div>
+    </div>
+    <div class="ai-footer">
+      <input type="text" id="aiInput" placeholder="Type your question..." onkeypress="if(event.key==='Enter') sendAI()" />
+      <button onclick="sendAI()"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+      <button onclick="startVoice()"><i class="fas fa-microphone" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // ===== Firebase Configuration (Correct) =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
+      authDomain: "yasser-nofal-english-academy.firebaseapp.com",
+      databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
+      projectId: "yasser-nofal-english-academy",
+      storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
+      messagingSenderId: "654488740819",
+      appId: "1:654488740819:web:7a513cb6c2a74d98324526"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // ===== عدادات الإحصائيات =====
+    function animateStats() {
+      const statsSection = document.querySelector('.stats-section');
+      if (!statsSection) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const numbers = document.querySelectorAll('.stat-number');
+            numbers.forEach(num => {
+              const target = parseInt(num.getAttribute('data-target'));
+              const duration = 2000;
+              const startTime = performance.now();
+              function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(progress * target);
+                num.textContent = current + (num.closest('.col-md-3').querySelector('.stat-plus')?.textContent === '%' ? '%' : '');
+                if (progress < 1) requestAnimationFrame(updateCounter);
+              }
+              requestAnimationFrame(updateCounter);
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(statsSection);
+    }
+    document.addEventListener('DOMContentLoaded', animateStats);
+
+    // ===== الذكاء الاصطناعي =====
+    function toggleAI() {
+      const win = document.getElementById('aiWindow');
+      win.classList.toggle('open');
+    }
+    function sendAI() {
+      const input = document.getElementById('aiInput');
+      const text = input.value.trim();
+      if (!text) return;
+      const body = document.getElementById('aiBody');
+      const userMsg = document.createElement('div');
+      userMsg.className = 'ai-message ai-user';
+      userMsg.textContent = text;
+      body.appendChild(userMsg);
+      input.value = '';
+      body.scrollTop = body.scrollHeight;
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'ai-message ai-bot';
+        const q = text.toLowerCase();
+        if (q.includes('pronunciation')) {
+          botMsg.textContent = '🎤 Pronunciation is very important. Use pronunciation apps or listen to native speakers.';
+        } else if (q.includes('grammar')) {
+          botMsg.textContent = '📚 Golden rule: verb + s in present simple with he/she/it.';
+        } else if (q.includes('vocabulary')) {
+          botMsg.textContent = '📖 Learn 5 new words daily and use them in sentences.';
+        } else {
+          botMsg.textContent = '💡 Great question! Ask me something more specific about pronunciation, grammar, or vocabulary.';
+        }
+        body.appendChild(botMsg);
+        body.scrollTop = body.scrollHeight;
+      }, 500);
+    }
+    function startVoice() {
+      if (!('webkitSpeechRecognition' in window)) {
+        alert('Your browser does not support voice input.');
+        return;
+      }
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = 'ar-EG';
+      recognition.onresult = (e) => {
+        const text = e.results[0][0].transcript;
+        document.getElementById('aiInput').value = text;
+        sendAI();
+      };
+      recognition.start();
+    }
+
+    // ===== نظام تسجيل الدخول =====
+    function checkUserRole() {
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          document.getElementById('loginLink').style.display = 'none';
+          document.getElementById('registerLink').style.display = 'none';
+          document.getElementById('logoutLink').style.display = 'block';
+
+          db.collection('users').doc(user.uid).get().then(doc => {
+            if (doc.exists) {
+              const role = doc.data().role || 'student';
+              if (role === 'student') {
+                document.getElementById('studentDashboardLink').style.display = 'block';
+              } else if (role === 'parent') {
+                document.getElementById('parentDashboardLink').style.display = 'block';
+              } else if (role === 'admin') {
+                document.getElementById('adminDashboardLink').style.display = 'block';
+              }
+            }
+          }).catch(error => {
+            console.error('Error fetching user role:', error);
+          });
+        } else {
+          document.getElementById('loginLink').style.display = 'block';
+          document.getElementById('registerLink').style.display = 'block';
+          document.getElementById('logoutLink').style.display = 'none';
+          document.getElementById('studentDashboardLink').style.display = 'none';
+          document.getElementById('parentDashboardLink').style.display = 'none';
+          document.getElementById('adminDashboardLink').style.display = 'none';
+        }
+      });
+    }
+
+    function logoutUser() {
+      auth.signOut().then(() => {
+        window.location.reload();
+      }).catch(error => {
+        alert('❌ Error logging out: ' + error.message);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', checkUserRole);
+    console.log('✅ Page loaded successfully with Firebase');
+  </script>
+  <script src="js/content-protection.js"></script>
+  <script src="assets/js/lang.js"></script>
+  <script type="module">
+  import { auth } from './firebase-config.js';
+  import { onAuthStateChanged } from "firebase/auth";
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // المستخدم مسجل الدخول - اظهر محتوى الصفحة
+      console.log("مرحباً " + user.email);
+      document.getElementById('user-email').textContent = user.email;
+    } else {
+      // المستخدم غير مسجل - خذه لصفحة التسجيل
+      window.location.href = 'login.html';
+    }
+  });
+</script>
+</body>
+</html>
