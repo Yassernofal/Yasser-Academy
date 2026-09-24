@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بناء امتحان جديد – أكاديمية مستر ياسر نوفل</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding: 20px 0 40px; }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.95) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+    }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
+
+    .page-header {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #fff;
+      padding: 30px 30px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 30px rgba(10, 31, 68, 0.3);
+    }
+    .page-header h1 { color: #f7e05e; font-weight: 700; margin: 0; }
+    .page-header p { color: #b0c4de; margin: 5px 0 0; }
+
+    .builder-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+    .builder-card h4 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f7e05e;
+    }
+
+    .selection-summary {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .question-item {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-right: 4px solid #e0e0e0;
+      transition: 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .question-item:hover { background: #eef2f7; }
+    .question-item.selected {
+      border-right-color: #28a745;
+      background: #f1f8f4;
+    }
+
+    .q-checkbox {
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .q-content { flex: 1; }
+    .q-text-small {
+      font-weight: 700;
+      color: #0a1f44;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .q-meta-small {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 0.75rem;
+    }
+    .q-tag {
+      padding: 2px 10px;
+      border-radius: 50px;
+      font-weight: 700;
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
+    .sticky-summary {
+      position: sticky;
+      top: 20px;
+    }
+
+    .summary-box {
+      background: #0a1f44;
+      color: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .summary-box h5 {
+      color: #f7e05e;
+      margin-bottom: 15px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-row .label { color: #b0c4de; }
+    .summary-row .value { font-weight: 700; color: #f7e05e; }
+
+    .btn-save {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 30px;
+      font-weight: 700;
+      width: 100%;
+      transition: 0.3s;
+      font-size: 1.05rem;
+    }
+    .btn-save:hover:not(:disabled) { background: #218838; transform: scale(1.02); }
+    .btn-save:disabled { background: #ccc; cursor: not-allowed; }
+
+    .filter-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .filter-row > div { flex: 1; min-width: 150px; }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+    .empty-state i { font-size: 3rem; color: #ccc; margin-bottom: 15px; }
+
+    .loading-screen { text-align: center; padding: 80px 20px; }
+
+    @media (max-width: 992px) {
+      .sticky-summary { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="admin-dashboard.html">
+        <span class="brand-name">Admin Panel</span>
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">📊 اللوحة</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-exams.html">📝 الامتحانات</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-question-bank.html">📚 بنك الأسئلة</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="logoutUser()">🚪 خروج</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 1200px;">
+
+    <div id="loadingScreen" class="loading-screen">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+      <p class="mt-3">جاري التحميل...</p>
+    </div>
+
+    <div id="deniedScreen" style="display: none; text-align: center; padding: 80px 20px;">
+      <i class="fas fa-lock" style="font-size: 5rem; color: #dc3545;"></i>
+      <h3 class="mt-3">وصول مرفوض</h3>
+      <a href="index.html" class="btn btn-primary mt-3" style="border-radius: 50px;">العودة للرئيسية</a>
+    </div>
+
+    <div id="mainContent" style="display: none;">
+
+      <div class="page-header">
+        <h1><i class="fas fa-hammer"></i> بناء امتحان جديد</h1>
+        <p>اتبع الخطوات لإنشاء امتحان احترافي</p>
+      </div>
+
+      <div class="row g-4">
+        
+        <!-- العمود الأيسر: الإعدادات واختيار الأسئلة -->
+        <div class="col-lg-8">
+
+          <!-- بيانات الامتحان -->
+          <div class="builder-card">
+            <h4><i class="fas fa-info-circle"></i> بيانات الامتحان</h4>
+            
+            <div class="row g-3">
+              <div class="col-md-12">
+                <label class="form-label fw-bold">عنوان الامتحان *</label>
+                <input type="text" class="form-control" id="examTitle" placeholder="مثال: امتحان الوحدة الأولى - قواعد" />
+              </div>
+              <div class="col-md-12">
+                <label class="form-label fw-bold">الوصف (اختياري)</label>
+                <textarea class="form-control" id="examDesc" rows="2" placeholder="وصف مختصر للامتحان..."></textarea>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-bold">الصف *</label>
+                <select class="form-select" id="examGrade" onchange="loadQuestions()">
+                  <option value="">— اختر —</option>
+                  <option value="prep1">الأول الإعدادي</option>
+                  <option value="prep2">الثاني الإعدادي</option>
+                  <option value="prep3">الثالث الإعدادي</option>
+                  <option value="sec1">الأول الثانوي</option>
+                  <option value="sec2">الثاني الثانوي</option>
+                  <option value="sec3">الثالث الثانوي</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-bold">نوع الامتحان *</label>
+                <select class="form-select" id="examType">
+                  <option value="unit">امتحان وحدة</option>
+                  <option value="comprehensive">امتحان شامل</option>
+                  <option value="level">امتحان مستوى</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-bold">المدة (دقيقة) *</label>
+                <input type="number" class="form-control" id="examDuration" value="30" min="5" max="180" />
+              </div>
+            </div>
+          </div>
+
+          <!-- اختيار الأسئلة -->
+          <div class="builder-card">
+            <h4><i class="fas fa-list-check"></i> اختيار الأسئلة</h4>
+
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle"></i>
+              اختر الصف أولاً لعرض الأسئلة المتاحة
+            </div>
+
+            <div id="questionsLoading" style="display: none; text-align: center; padding: 30px;">
+              <div class="spinner-border text-primary"></div>
+            </div>
+
+            <div id="questionsWrapper" style="display: none;">
+              <div class="filter-row">
+                <div>
+                  <label class="form-label fw-bold">نوع السؤال</label>
+                  <select class="form-select form-select-sm" id="filterQType" onchange="renderQuestions()">
+                    <option value="">الكل</option>
+                    <option value="mcq">اختيار من متعدد</option>
+                    <option value="true_false">صح / خطأ</option>
+                    <option value="fill_blank">إكمال الفراغ</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label fw-bold">الموضوع</label>
+                  <select class="form-select form-select-sm" id="filterQTopic" onchange="renderQuestions()">
+                    <option value="">الكل</option>
+                    <option value="grammar">قواعد</option>
+                    <option value="vocabulary">مفردات</option>
+                    <option value="reading">قراءة</option>
+                    <option value="writing">كتابة</option>
+                    <option value="translation">ترجمة</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label fw-bold">إجراء</label>
+                  <button class="btn btn-sm btn-outline-primary w-100" onclick="selectAll()">
+                    <i class="fas fa-check-double"></i> تحديد الكل
+                  </button>
+                </div>
+                <div>
+                  <label class="form-label fw-bold">—</label>
+                  <button class="btn btn-sm btn-outline-secondary w-100" onclick="clearAll()">
+                    <i class="fas fa-times"></i> إلغاء الكل
+                  </button>
+                </div>
+              </div>
+
+              <div id="questionsList"></div>
+            </div>
+
+            <div id="questionsEmpty" class="empty-state" style="display: none;">
+              <i class="fas fa-inbox"></i>
+              <p>لا توجد أسئلة لهذا الصف. أضف أسئلة أولاً من بنك الأسئلة.</p>
+              <a href="admin-question-bank.html" class="btn btn-primary" style="border-radius: 50px;">
+                <i class="fas fa-plus"></i> إضافة أسئلة
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- العمود الأيمن: الملخص -->
+        <div class="col-lg-4">
+          <div class="sticky-summary">
+            
+            <div class="summary-box">
+              <h5><i class="fas fa-chart-simple"></i> ملخص الامتحان</h5>
+              <div class="summary-row">
+                <span class="label">العنوان</span>
+                <span class="value" id="sumTitle">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="label">الصف</span>
+                <span class="value" id="sumGrade">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="label">المدة</span>
+                <span class="value" id="sumDuration">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="label">عدد الأسئلة</span>
+                <span class="value" id="sumQuestions">0</span>
+              </div>
+            </div>
+
+            <button class="btn-save" id="saveBtn" onclick="saveExam()" disabled>
+              <i class="fas fa-save"></i> حفظ الامتحان
+            </button>
+
+            <a href="admin-exams.html" class="btn btn-secondary w-100 mt-2" style="border-radius: 50px; padding: 12px;">
+              <i class="fas fa-arrow-right"></i> رجوع
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "firebase/auth";
+    import { ref, get, set, push } from "firebase/database";
+
+    let allQuestions = [];
+    let selectedQuestionIds = new Set();
+
+    window.logoutUser = function() {
+      signOut(auth).then(() => window.location.href = 'index.html');
+    };
+
+    // ===== التحقق من صلاحيات المدير =====
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) { window.location.href = 'login.html'; return; }
+      
+      try {
+        const userSnap = await get(ref(database, `users/${user.uid}`));
+        if (!userSnap.exists() || userSnap.val().role !== 'admin') {
+          document.getElementById('loadingScreen').style.display = 'none';
+          document.getElementById('deniedScreen').style.display = 'block';
+          return;
+        }
+        
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        setupListeners();
+      } catch (error) {
+        console.error('❌', error);
+      }
+    });
+
+    // ===== ربط الأحداث =====
+    function setupListeners() {
+      document.getElementById('examTitle').addEventListener('input', updateSummary);
+      document.getElementById('examGrade').addEventListener('change', updateSummary);
+      document.getElementById('examDuration').addEventListener('input', updateSummary);
+      document.getElementById('examType').addEventListener('change', updateSummary);
+    }
+
+    // ===== تحميل الأسئلة =====
+    window.loadQuestions = async function() {
+      const grade = document.getElementById('examGrade').value;
+      
+      if (!grade) {
+        document.getElementById('questionsWrapper').style.display = 'none';
+        document.getElementById('questionsEmpty').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('questionsWrapper').style.display = 'none';
+      document.getElementById('questionsEmpty').style.display = 'none';
+      document.getElementById('questionsLoading').style.display = 'block';
+
+      try {
+        const qbRef = ref(database, 'questionBank');
+        const snapshot = await get(qbRef);
+        
+        allQuestions = [];
+        if (snapshot.exists()) {
+          snapshot.forEach(child => {
+            const q = { id: child.key, ...child.val() };
+            if (q.grade === grade) allQuestions.push(q);
+          });
+        }
+
+        document.getElementById('questionsLoading').style.display = 'none';
+
+        if (allQuestions.length === 0) {
+          document.getElementById('questionsEmpty').style.display = 'block';
+        } else {
+          document.getElementById('questionsWrapper').style.display = 'block';
+          renderQuestions();
+        }
+        
+        updateSummary();
+
+      } catch (error) {
+        console.error('❌', error);
+        document.getElementById('questionsLoading').style.display = 'none';
+      }
+    };
+
+    // ===== عرض الأسئلة =====
+    window.renderQuestions = function() {
+      const container = document.getElementById('questionsList');
+      const typeFilter = document.getElementById('filterQType').value;
+      const topicFilter = document.getElementById('filterQTopic').value;
+
+      container.innerHTML = '';
+
+      const filtered = allQuestions.filter(q => {
+        if (typeFilter && q.type !== typeFilter) return false;
+        if (topicFilter && q.topic !== topicFilter) return false;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="text-center text-muted">لا توجد أسئلة مطابقة للفلتر</p>';
+        return;
+      }
+
+      const typeLabels = {
+        mcq: 'اختيار متعدد', true_false: 'صح/خطأ', fill_blank: 'إكمال الفراغ'
+      };
+
+      filtered.forEach(q => {
+        const isSelected = selectedQuestionIds.has(q.id);
+        const item = document.createElement('div');
+        item.className = `question-item ${isSelected ? 'selected' : ''}`;
+        item.innerHTML = `
+          <input type="checkbox" class="q-checkbox" ${isSelected ? 'checked' : ''} 
+                 onchange="toggleQuestion('${q.id}', this.checked)" />
+          <div class="q-content">
+            <div class="q-text-small">${q.text}</div>
+            <div class="q-meta-small">
+              <span class="q-tag">${typeLabels[q.type] || q.type}</span>
+              ${q.topic ? `<span class="q-tag">${q.topic}</span>` : ''}
+            </div>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    };
+
+    // ===== اختيار/إلغاء سؤال =====
+    window.toggleQuestion = function(id, checked) {
+      if (checked) selectedQuestionIds.add(id);
+      else selectedQuestionIds.delete(id);
+      renderQuestions();
+      updateSummary();
+    };
+
+    // ===== تحديد الكل =====
+    window.selectAll = function() {
+      const typeFilter = document.getElementById('filterQType').value;
+      const topicFilter = document.getElementById('filterQTopic').value;
+      
+      allQuestions.forEach(q => {
+        if (typeFilter && q.type !== typeFilter) return;
+        if (topicFilter && q.topic !== topicFilter) return;
+        selectedQuestionIds.add(q.id);
+      });
+      
+      renderQuestions();
+      updateSummary();
+    };
+
+    // ===== إلغاء الكل =====
+    window.clearAll = function() {
+      selectedQuestionIds.clear();
+      renderQuestions();
+      updateSummary();
+    };
+
+    // ===== تحديث الملخص =====
+    function updateSummary() {
+      const title = document.getElementById('examTitle').value.trim();
+      const grade = document.getElementById('examGrade').value;
+      const duration = document.getElementById('examDuration').value;
+
+      const gradeLabels = {
+        prep1: 'الأول الإعدادي', prep2: 'الثاني الإعدادي', prep3: 'الثالث الإعدادي',
+        sec1: 'الأول الثانوي', sec2: 'الثاني الثانوي', sec3: 'الثالث الثانوي'
+      };
+
+      document.getElementById('sumTitle').textContent = title || '—';
+      document.getElementById('sumGrade').textContent = gradeLabels[grade] || '—';
+      document.getElementById('sumDuration').textContent = duration ? `${duration} دقيقة` : '—';
+      document.getElementById('sumQuestions').textContent = selectedQuestionIds.size;
+
+      // تفعيل/تعطيل زر الحفظ
+      const canSave = title && grade && duration && selectedQuestionIds.size > 0;
+      document.getElementById('saveBtn').disabled = !canSave;
+    }
+
+    // ===== حفظ الامتحان =====
+    window.saveExam = async function() {
+      const title = document.getElementById('examTitle').value.trim();
+      const description = document.getElementById('examDesc').value.trim();
+      const grade = document.getElementById('examGrade').value;
+      const type = document.getElementById('examType').value;
+      const duration = parseInt(document.getElementById('examDuration').value);
+
+      if (!title || !grade || !duration || selectedQuestionIds.size === 0) {
+        alert('⚠️ الرجاء ملء كل البيانات المطلوبة واختيار سؤال واحد على الأقل');
+        return;
+      }
+
+      const btn = document.getElementById('saveBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+
+      try {
+        const examData = {
+          title,
+          description,
+          grade,
+          type,
+          duration,
+          questions: Array.from(selectedQuestionIds),
+          createdBy: auth.currentUser.uid,
+          createdAt: new Date().toISOString(),
+          active: true
+        };
+
+        const examsRef = ref(database, 'exams');
+        const newRef = push(examsRef);
+        await set(newRef, examData);
+
+        alert('✅ تم إنشاء الامتحان بنجاح');
+        window.location.href = 'admin-exams.html';
+
+      } catch (error) {
+        console.error('❌', error);
+        alert('❌ خطأ: ' + error.message);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save"></i> حفظ الامتحان';
+      }
+    };
+
+    console.log('✅ Admin Builder loaded');
+  </script>
+
+</body>
+</html>
