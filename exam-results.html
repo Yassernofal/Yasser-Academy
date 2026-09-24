@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نتيجة الامتحان – أكاديمية مستر ياسر نوفل</title>
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/exam-results.html" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding: 20px 0 40px; }
+
+    .result-header {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #fff;
+      padding: 40px 30px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(10, 31, 68, 0.3);
+      margin-bottom: 25px;
+    }
+    .result-header h1 {
+      color: #f7e05e;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .score-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .score-circle .percentage {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .score-circle .label {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .grade-badge {
+      display: inline-block;
+      padding: 10px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-top: 15px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .stat-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    .stat-box .num {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+    .stat-box .lbl { color: #666; font-size: 0.9rem; }
+
+    .correct-color { color: #28a745; }
+    .wrong-color { color: #dc3545; }
+    .skip-color { color: #ffb347; }
+
+    .review-section {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+    .review-section h3 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f7e05e;
+      padding-bottom: 10px;
+    }
+
+    .review-item {
+      background: #f8f9fa;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-right: 5px solid #ccc;
+    }
+    .review-item.correct { border-right-color: #28a745; background: #f1f8f4; }
+    .review-item.wrong { border-right-color: #dc3545; background: #fdf3f4; }
+    .review-item.skipped { border-right-color: #ffb347; background: #fffaf0; }
+
+    .review-item .q-num {
+      display: inline-block;
+      background: #0a1f44;
+      color: #fff;
+      padding: 3px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .review-item .q-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0a1f44;
+      margin-bottom: 15px;
+    }
+    .review-item .answer-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+    }
+    .review-item .answer-row .key {
+      font-weight: 700;
+      color: #666;
+      min-width: 100px;
+    }
+    .review-item .answer-row .val {
+      font-weight: 700;
+    }
+    .review-item .explanation {
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #555;
+      border-right: 3px solid #f7b731;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .btn-action {
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary-custom { background: #0a1f44; color: #f7e05e; }
+    .btn-primary-custom:hover { background: #f7b731; color: #0a1f44; }
+    .btn-secondary-custom { background: #6c757d; color: #fff; }
+    .btn-secondary-custom:hover { background: #5a6268; }
+
+    .loading-screen { text-align: center; padding: 80px 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="container" style="max-width: 900px;">
+
+    <!-- شاشة التحميل -->
+    <div id="loadingScreen" class="loading-screen">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+      <p class="mt-3">جاري تحميل النتيجة...</p>
+    </div>
+
+    <!-- شاشة الخطأ -->
+    <div id="errorScreen" style="display: none; text-align: center; padding: 60px 20px;">
+      <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: #dc3545;"></i>
+      <h3 class="mt-3">حدث خطأ</h3>
+      <p id="errorMessage" style="color: #666;"></p>
+      <a href="exams.html" class="btn-action btn-primary-custom mt-3">العودة للامتحانات</a>
+    </div>
+
+    <!-- محتوى النتيجة -->
+    <div id="resultContent" style="display: none;">
+
+      <!-- الهيدر -->
+      <div class="result-header">
+        <h1 id="examTitle">نتيجة الامتحان</h1>
+        <div class="score-circle">
+          <div class="percentage" id="percentage">0%</div>
+          <div class="label" id="scoreText">0 / 0</div>
+        </div>
+        <div class="grade-badge" id="gradeBadge">—</div>
+      </div>
+
+      <!-- الإحصائيات -->
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="num correct-color" id="correctCount">0</div>
+          <div class="lbl">إجابات صحيحة</div>
+        </div>
+        <div class="stat-box">
+          <div class="num wrong-color" id="wrongCount">0</div>
+          <div class="lbl">إجابات خاطئة</div>
+        </div>
+        <div class="stat-box">
+          <div class="num skip-color" id="unansweredCount">0</div>
+          <div class="lbl">لم تُجب</div>
+        </div>
+        <div class="stat-box">
+          <div class="num" style="color: #0a1f44;" id="timeSpent">0:00</div>
+          <div class="lbl">الوقت المستغرق</div>
+        </div>
+      </div>
+
+      <!-- المراجعة -->
+      <div class="review-section">
+        <h3><i class="fas fa-list-check"></i> مراجعة الإجابات</h3>
+        <div id="reviewContainer"></div>
+      </div>
+
+      <!-- الأزرار -->
+      <div class="action-buttons">
+        <a href="exams.html" class="btn-action btn-primary-custom">
+          <i class="fas fa-list"></i> العودة للامتحانات
+        </a>
+        <button class="btn-action btn-secondary-custom" onclick="window.print()">
+          <i class="fas fa-print"></i> طباعة النتيجة
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import { auth } from './firebase-config.js';
+    import { onAuthStateChanged } from "firebase/auth";
+    import { getExamResult, getExam } from './assets/js/exam-storage.js';
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id');
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+      if (!examId) {
+        showError('لم يتم تحديد الامتحان.');
+        return;
+      }
+      await loadResult(user.uid);
+    });
+
+    async function loadResult(uid) {
+      try {
+        // جرب تجيب النتيجة من Firebase الأول
+        let result = await getExamResult(uid, examId);
+        
+        // لو مش موجودة، جرب من localStorage
+        if (!result) {
+          const localResult = localStorage.getItem(`exam_result_${examId}`);
+          if (localResult) result = JSON.parse(localResult);
+        }
+
+        if (!result) {
+          showError('لا توجد نتيجة لهذا الامتحان.');
+          return;
+        }
+
+        // جلب بيانات الامتحان
+        const exam = await getExam(examId);
+        
+        renderResult(result, exam);
+
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+        showError('حدث خطأ في تحميل النتيجة: ' + error.message);
+      }
+    }
+
+    function renderResult(result, exam) {
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('resultContent').style.display = 'block';
+
+      // العنوان
+      document.getElementById('examTitle').textContent = exam?.title || result.examTitle || 'نتيجة الامتحان';
+
+      // النسبة
+      const percentage = result.percentage || 0;
+      const percentageEl = document.getElementById('percentage');
+      percentageEl.textContent = percentage + '%';
+      
+      // لون النسبة
+      let color = '#dc3545';
+      if (percentage >= 80) color = '#28a745';
+      else if (percentage >= 50) color = '#ffb347';
+      percentageEl.style.color = color;
+
+      // النص
+      document.getElementById('scoreText').textContent = 
+        `${result.correct} / ${result.total}`;
+
+      // التقدير
+      const gradeBadge = document.getElementById('gradeBadge');
+      gradeBadge.textContent = result.grade || '—';
+      gradeBadge.style.background = color;
+      gradeBadge.style.color = '#fff';
+
+      // الإحصائيات
+      document.getElementById('correctCount').textContent = result.correct || 0;
+      document.getElementById('wrongCount').textContent = result.wrong || 0;
+      document.getElementById('unansweredCount').textContent = result.unanswered || 0;
+      
+      // الوقت
+      const timeSpent = result.timeSpent || 0;
+      const mins = Math.floor(timeSpent / 60);
+      const secs = timeSpent % 60;
+      document.getElementById('timeSpent').textContent = 
+        `${mins}:${String(secs).padStart(2, '0')}`;
+
+      // المراجعة
+      const reviewContainer = document.getElementById('reviewContainer');
+      reviewContainer.innerHTML = '';
+
+      if (result.details && result.details.length > 0) {
+        result.details.forEach((detail, idx) => {
+          const item = document.createElement('div');
+          item.className = 'review-item';
+          
+          if (detail.studentAnswer === undefined || detail.studentAnswer === null || detail.studentAnswer === '') {
+            item.classList.add('skipped');
+          } else if (detail.isCorrect) {
+            item.classList.add('correct');
+          } else {
+            item.classList.add('wrong');
+          }
+
+          // تنسيق الإجابات
+          const studentAns = formatAnswer(detail.studentAnswer, exam, idx);
+          const correctAns = formatAnswer(detail.correctAnswer, exam, idx);
+
+          item.innerHTML = `
+            <span class="q-num">السؤال ${idx + 1}</span>
+            <div class="q-text">${detail.questionText || '—'}</div>
+            
+            <div class="answer-row">
+              <span class="key">إجابتك:</span>
+              <span class="val" style="color: ${detail.isCorrect ? '#28a745' : '#dc3545'};">
+                ${studentAns || '— لم تُجب —'}
+                ${detail.isCorrect ? ' ✅' : ' ❌'}
+              </span>
+            </div>
+            
+            ${!detail.isCorrect ? `
+              <div class="answer-row">
+                <span class="key">الإجابة الصحيحة:</span>
+                <span class="val" style="color: #28a745;">${correctAns} ✅</span>
+              </div>
+            ` : ''}
+            
+            ${detail.explanation ? `
+              <div class="explanation">
+                <i class="fas fa-lightbulb" style="color: #f7b731;"></i>
+                <strong> الشرح:</strong> ${detail.explanation}
+              </div>
+            ` : ''}
+          `;
+          reviewContainer.appendChild(item);
+        });
+      } else {
+        reviewContainer.innerHTML = '<p style="text-align:center;color:#666;">لا توجد تفاصيل للمراجعة</p>';
+      }
+    }
+
+    function formatAnswer(answer, exam, qIdx) {
+      if (answer === undefined || answer === null || answer === '') return '';
+      
+      // لو الرقم ده index في الخيارات
+      if (typeof answer === 'number' && exam?.questions) {
+        return String(answer); // ممكن نحسنها لاحقاً
+      }
+      
+      return String(answer);
+    }
+
+    function showError(message) {
+      document.getElementById('loadingScreen').style.display = 'none';
+      document.getElementById('errorScreen').style.display = 'block';
+      document.getElementById('errorMessage').textContent = message;
+    }
+
+    console.log('✅ Exam Results page loaded');
+  </script>
+
+</body>
+</html>
