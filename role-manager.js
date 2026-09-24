@@ -2,8 +2,8 @@
 // نظام إدارة الصلاحيات المركزي
 
 import { auth, database } from './firebase-config.js';
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { ref, get, set, update } from "firebase/database";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { ref, get, set, update } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 
 // ===== الثوابت =====
 export const ROLES = {
@@ -20,7 +20,7 @@ export const PAGES = {
   INDEX: 'index.html'
 };
 
-// ===== دالة جلب بيانات المستخدم كاملة =====
+// ===== دالة جلب بيانات المستخدم =====
 export async function getUserData(uid) {
   try {
     const userRef = ref(database, `users/${uid}`);
@@ -56,7 +56,7 @@ export async function saveUserData(uid, data) {
   }
 }
 
-// ===== دالة حماية الصفحة (الأهم) =====
+// ===== دالة حماية الصفحة =====
 export function protectPage(allowedRoles = []) {
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -105,7 +105,7 @@ export function redirectToCorrectDashboard(role) {
   }
 }
 
-// ===== دالة التحقق من أن المستخدم الحالي هو نفسه =====
+// ===== دالة التحقق من المستخدم الحالي =====
 export function isCurrentUser(uid) {
   return auth.currentUser && auth.currentUser.uid === uid;
 }
