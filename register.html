@@ -15,7 +15,6 @@
     gtag('config', 'G-N3R3KFEO8');
   </script>
 
-  <!-- Bootstrap & Fonts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
@@ -142,7 +141,6 @@
 </head>
 <body>
 
-  <!-- ===== شريط التنقل ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
@@ -160,16 +158,11 @@
           <li class="nav-item"><a class="nav-link" href="games.html">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link active" href="register.html">📝 إنشاء حساب</a></li>
           <li class="nav-item"><a class="nav-link" href="login.html">🔑 تسجيل الدخول</a></li>
-
-          <li class="nav-item" id="logoutLink" style="display:none;">
-            <a class="nav-link" href="#" onclick="logoutUser()">🚪 تسجيل الخروج</a>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- ===== الروابط الإضافية ===== -->
   <div class="extra-links">
     <div class="container">
       <a href="about.html">🌟 من نحن</a>
@@ -178,7 +171,6 @@
     </div>
   </div>
 
-  <!-- ===== محتوى التسجيل ===== -->
   <section class="container">
     <div class="register-container">
       <h2 class="text-center fw-bold mb-2">إنشاء حساب جديد</h2>
@@ -186,19 +178,18 @@
       
       <div id="registerStatus" class="mb-3"></div>
       
-      <!-- ===== اختيار نوع الحساب ===== -->
       <div class="mb-4">
         <label class="form-label fw-bold mb-3">نوع الحساب</label>
         <div class="row g-3">
           <div class="col-6">
-            <div class="role-card" data-role="student" onclick="selectRole('student')">
+            <div class="role-card" data-role="student" id="roleStudent">
               <i class="fas fa-user-graduate"></i>
               <h5>طالب</h5>
               <p>للتعلم ومشاهدة الدروس</p>
             </div>
           </div>
           <div class="col-6">
-            <div class="role-card" data-role="parent" onclick="selectRole('parent')">
+            <div class="role-card" data-role="parent" id="roleParent">
               <i class="fas fa-users"></i>
               <h5>ولي أمر</h5>
               <p>لمتابعة تقدم الأبناء</p>
@@ -208,7 +199,6 @@
         <input type="hidden" id="selectedRole" value="" />
       </div>
 
-      <!-- ===== نموذج التسجيل ===== -->
       <form id="registerForm">
         <div class="mb-3">
           <label class="form-label fw-bold">الاسم الكامل</label>
@@ -228,7 +218,6 @@
           <input type="password" class="form-control" id="registerConfirm" required placeholder="••••••••" />
         </div>
 
-        <!-- ===== حقل ولي الأمر (يظهر فقط عند اختيار parent) ===== -->
         <div class="mb-3" id="childEmailField" style="display: none;">
           <label class="form-label fw-bold">البريد الإلكتروني لابنك/ابنتك</label>
           <input type="email" class="form-control" id="childEmail" placeholder="child@email.com" />
@@ -245,7 +234,6 @@
     </div>
   </section>
 
-  <!-- ===== الفوتير ===== -->
   <footer class="footer">
     <div class="container">
       <div class="row g-4">
@@ -292,7 +280,7 @@
     import { ref, set, get, update } from "firebase/database";
     import { redirectToCorrectDashboard } from './role-manager.js';
 
-    // ===== إذا كان المستخدم مسجلاً بالفعل، نوجهه للوحته =====
+    // ===== إذا كان المستخدم مسجلاً بالفعل =====
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
@@ -307,8 +295,8 @@
       }
     });
 
-    // ===== اختيار الدور =====
-    window.selectRole = function(role) {
+    // ===== دالة اختيار الدور =====
+    function selectRole(role) {
       document.querySelectorAll('.role-card').forEach(card => {
         card.classList.remove('selected');
         if (card.dataset.role === role) {
@@ -317,17 +305,15 @@
       });
       document.getElementById('selectedRole').value = role;
       
-      // إظهار/إخفاء حقل ولي الأمر
       document.getElementById('childEmailField').style.display = 
         role === 'parent' ? 'block' : 'none';
-    };
+      
+      console.log('✅ تم اختيار الدور:', role);
+    }
 
-    // ===== تسجيل الخروج =====
-    window.logoutUser = function() {
-      signOut(auth).then(() => {
-        window.location.href = 'index.html';
-      });
-    };
+    // ===== ربط الأزرار بالدالة =====
+    document.getElementById('roleStudent').addEventListener('click', () => selectRole('student'));
+    document.getElementById('roleParent').addEventListener('click', () => selectRole('parent'));
 
     // ===== معالجة نموذج التسجيل =====
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
@@ -342,7 +328,6 @@
       const status = document.getElementById('registerStatus');
       const btn = document.getElementById('registerBtn');
 
-      // ===== التحقق من البيانات =====
       if (!role) {
         status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء اختيار نوع الحساب</div>';
         return;
@@ -373,7 +358,7 @@
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // 2. حفظ بيانات المستخدم في Realtime Database
+        // 2. حفظ بيانات المستخدم
         await set(ref(database, `users/${user.uid}`), {
           name: name,
           email: email,
@@ -381,7 +366,7 @@
           createdAt: new Date().toISOString()
         });
 
-        // 3. إذا كان طالباً، ننشئ بياناته
+        // 3. إذا كان طالباً
         if (role === 'student') {
           await set(ref(database, `students/${user.uid}`), {
             name: name,
@@ -396,38 +381,29 @@
           });
         }
 
-        // 4. إذا كان ولي أمر، نربطه بابنه
+        // 4. إذا كان ولي أمر
         if (role === 'parent' && childEmail) {
           const usersRef = ref(database, 'users');
           const snapshot = await get(usersRef);
           
           if (snapshot.exists()) {
             const users = snapshot.val();
-            let childFound = false;
-            
             for (const [userId, userData] of Object.entries(users)) {
               if (userData.email === childEmail && userData.role === 'student') {
-                // نضيف الابن لقائمة أولياء الأمر
                 await update(ref(database, `parents/${user.uid}/children`), {
                   [userId]: true
                 });
-                // نربط ولي الأمر بالطالب
                 await update(ref(database, `users/${userId}`), {
                   parentId: user.uid
                 });
-                childFound = true;
                 console.log('✅ تم ربط ولي الأمر بالطالب');
                 break;
               }
             }
-            
-            if (!childFound) {
-              console.warn('⚠️ لم يتم العثور على الطالب بالبريد:', childEmail);
-            }
           }
         }
 
-        // 5. رسالة نجاح وتوجيه
+        // 5. رسالة نجاح
         status.innerHTML = '<div class="alert alert-success">✅ تم إنشاء الحساب بنجاح! جاري التوجيه...</div>';
         
         setTimeout(() => {
