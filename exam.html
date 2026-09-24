@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الامتحان التفاعلي – أكاديمية مستر ياسر نوفل</title>
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/exam.html" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', sans-serif; background: #f0f4fa; padding-top: 78px; transition: 0.3s; }
+    @media (max-width: 991.98px) { body { padding-top: 72px; } }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.85) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      z-index: 1050;
+    }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+    .navbar-brand img { height: 40px; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    .exam-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 28px;
+      padding: 35px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .exam-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #f0f4fa;
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+    }
+    .exam-title { font-weight: 700; color: #0a1f44; font-size: 1.3rem; }
+    .exam-timer {
+      background: #0a1f44;
+      color: #f7e05e;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .exam-timer.warning { background: #dc3545; color: #fff; animation: pulse 1s infinite; }
+    @keyframes pulse { 50% { opacity: 0.6; } }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      color: #666;
+      font-weight: 500;
+    }
+    .progress-custom {
+      height: 10px;
+      border-radius: 10px;
+      background: #e9ecef;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    .progress-custom .progress-bar {
+      background: linear-gradient(90deg, #f7e05e, #f7b731);
+      transition: width 0.5s ease;
+    }
+
+    .question-box { margin-bottom: 30px; }
+    .question-number {
+      display: inline-block;
+      background: #0a1f44;
+      color: #f7e05e;
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      border-radius: 50%;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .question-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #0a1f44;
+      margin-bottom: 25px;
+      line-height: 1.8;
+    }
+
+    .option {
+      display: block;
+      background: #f8f9fa;
+      border: 2px solid #e0e0e0;
+      border-radius: 16px;
+      padding: 15px 20px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1.05rem;
+    }
+    .option:hover {
+      border-color: #f7e05e;
+      background: #fffbf0;
+      transform: translateX(-5px);
+    }
+    .option.selected {
+      border-color: #f7b731;
+      background: #fffbf0;
+      box-shadow: 0 5px 15px rgba(247, 183, 49, 0.2);
+    }
+    .option.correct {
+      border-color: #28a745;
+      background: #d4edda;
+      color: #155724;
+    }
+    .option.wrong {
+      border-color: #dc3545;
+      background: #f8d7da;
+      color: #721c24;
+    }
+    .option input { display: none; }
+    .option .option-letter {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background: #0a1f44;
+      color: #fff;
+      border-radius: 50%;
+      font-weight: 700;
+      margin-left: 12px;
+    }
+    .option.selected .option-letter { background: #f7b731; color: #0a1f44; }
+    .option.correct .option-letter { background: #28a745; }
+    .option.wrong .option-letter { background: #dc3545; }
+
+    .explanation {
+      background: #e8f4fd;
+      border-right: 4px solid #0a1f44;
+      border-radius: 12px;
+      padding: 15px 20px;
+      margin-top: 15px;
+      display: none;
+    }
+    .explanation.show { display: block; animation: fadeIn 0.5s; }
+    .explanation i { color: #0a1f44; margin-left: 8px; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .btn-exam {
+      border: none;
+      padding: 12px 35px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: 0.3s;
+    }
+    .btn-next {
+      background: #0a1f44;
+      color: #f7e05e;
+    }
+    .btn-next:hover { background: #142c5c; transform: scale(1.02); }
+    .btn-next:disabled { background: #ccc; color: #666; cursor: not-allowed; transform: none; }
+
+    .btn-skip { background: transparent; color: #666; border: 2px solid #e0e0e0; }
+    .btn-skip:hover { border-color: #0a1f44; color: #0a1f44; }
+
+    .results-box { text-align: center; padding: 30px 0; }
+    .score-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin: 0 auto 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: conic-gradient(#28a745 0%, #e9ecef 0%);
+      position: relative;
+    }
+    .score-circle::before {
+      content: '';
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .score-circle .score-text {
+      position: relative;
+      z-index: 1;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #0a1f44;
+    }
+    .score-circle .score-label { position: relative; z-index: 1; color: #666; }
+    .result-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; }
+    .result-message { color: #666; font-size: 1.1rem; margin-bottom: 25px; }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 25px 0;
+    }
+    .stat-item {
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 15px 25px;
+      text-align: center;
+      min-width: 120px;
+    }
+    .stat-item .value { font-size: 1.8rem; font-weight: 800; color: #0a1f44; }
+    .stat-item .label { color: #666; font-size: 0.9rem; }
+    .stat-item.correct .value { color: #28a745; }
+    .stat-item.wrong .value { color: #dc3545; }
+
+    .btn-dark-mode {
+      background: transparent;
+      border: 1px solid #e0e8f0;
+      color: #e0e8f0;
+      border-radius: 50px;
+      padding: 5px 15px;
+      transition: 0.3s;
+    }
+    .btn-dark-mode:hover { background: #f7e05e; color: #0a1f44; }
+
+    /* ===== Dark Mode ===== */
+    body.dark-mode { background: #121212; color: #e0e0e0; }
+    body.dark-mode .navbar-custom { background: rgba(0, 0, 0, 0.95) !important; }
+    body.dark-mode .exam-container { background: #1e1e2f; box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+    body.dark-mode .exam-title { color: #f7e05e; }
+    body.dark-mode .question-text { color: #f7e05e; }
+    body.dark-mode .option { background: #2a2a40; border-color: #3a3a50; color: #e0e0e0; }
+    body.dark-mode .option:hover { background: #3a3a50; }
+    body.dark-mode .option.selected { background: #3a3a50; }
+    body.dark-mode .score-circle::before { background: #1e1e2f; }
+    body.dark-mode .score-circle .score-text { color: #f7e05e; }
+    body.dark-mode .stat-item { background: #2a2a40; }
+    body.dark-mode .stat-item .value { color: #f7e05e; }
+    body.dark-mode .explanation { background: #2a2a40; color: #e0e0e0; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== شريط التنقل ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Logo" />
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link active" href="exam.html">📝 الامتحانات</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👨‍🎓 لوحتي</a></li>
+          <li class="nav-item">
+            <button class="btn btn-dark-mode btn-sm" id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== صندوق الامتحان ===== -->
+  <section class="container">
+    <div class="exam-container">
+
+      <!-- Loading -->
+      <div id="loadingScreen" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-3">جاري تحميل الامتحان...</p>
+      </div>
+
+      <!-- Exam UI -->
+      <div id="examScreen" style="display: none;">
+        <div class="exam-header">
+          <div class="exam-title" id="examTitle">-</div>
+          <div class="exam-timer" id="examTimer">00:00</div>
+        </div>
+
+        <div class="progress-info">
+          <span>السؤال <strong id="currentQuestionNum">1</strong> من <strong id="totalQuestions">10</strong></span>
+          <span id="questionType">-</span>
+        </div>
+        <div class="progress-custom">
+          <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+        </div>
+
+        <div class="question-box">
+          <div class="question-number" id="questionNumber">1</div>
+          <div class="question-text" id="questionText">-</div>
+          <div id="optionsContainer"></div>
+          <div class="explanation" id="explanationBox">
+            <i class="fas fa-lightbulb"></i>
+            <strong>الشرح:</strong>
+            <span id="explanationText"></span>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <button class="btn-exam btn-skip" id="skipBtn" onclick="skipQuestion()">تخطي</button>
+          <button class="btn-exam btn-next" id="nextBtn" onclick="nextQuestion()" disabled>التالي <i class="fas fa-arrow-left"></i></button>
+        </div>
+      </div>
+
+      <!-- Results UI -->
+      <div id="resultsScreen" style="display: none;">
+        <div class="results-box">
+          <div class="score-circle" id="scoreCircle">
+            <div class="score-text" id="scorePercent">0%</div>
+            <div class="score-label">النتيجة</div>
+          </div>
+          <div class="result-title" id="resultTitle">-</div>
+          <div class="result-message" id="resultMessage">-</div>
+
+          <div class="stats-row">
+            <div class="stat-item correct">
+              <div class="value" id="correctCount">0</div>
+              <div class="label">إجابات صحيحة</div>
+            </div>
+            <div class="stat-item wrong">
+              <div class="value" id="wrongCount">0</div>
+              <div class="label">إجابات خاطئة</div>
+            </div>
+            <div class="stat-item">
+              <div class="value" id="timeTaken">0:00</div>
+              <div class="label">الوقت المستغرق</div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <button class="btn-exam btn-next" onclick="retryExam()"><i class="fas fa-redo"></i> إعادة الامتحان</button>
+            <a href="student-dashboard.html" class="btn-exam btn-skip"><i class="fas fa-home"></i> العودة للوحة</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script type="module">
+    import { protectPage, ROLES } from './role-manager.js';
+    import { ExamEngine } from './assets/js/exam-engine.js';
+    import { saveExamResult } from './assets/js/exam-storage.js';
+
+    // حماية الصفحة - طلاب فقط
+    protectPage([ROLES.STUDENT]);
+
+    // الوضع الليلي
+    window.toggleDarkMode = function() {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+      document.getElementById('darkModeToggle').textContent = isDark ? '☀️' : '🌙';
+    };
+
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+      document.getElementById('darkModeToggle').textContent = '☀️';
+    }
+
+    // الحصول على examId من الرابط
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id') || 'sec3-mock1';
+
+    // تحميل الامتحان
+    window.addEventListener('userReady', async (e) => {
+      const { user } = e.detail;
+      console.log('✅ الطالب جاهز للامتحان:', user.email);
+
+      try {
+        const engine = new ExamEngine(examId, {
+          onComplete: async (result) => {
+            console.log('✅ اكتمل الامتحان:', result);
+            // حفظ النتيجة في Firebase
+            await saveExamResult(user.uid, examId, result);
+          }
+        });
+        await engine.load();
+        window.__examEngine = engine;
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+        document.getElementById('loadingScreen').innerHTML = `
+          <div class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle"></i>
+            فشل تحميل الامتحان: ${error.message}
+          </div>
+        `;
+      }
+    });
+
+    // ربط أزرار UI بالـ engine
+    window.nextQuestion = () => window.__examEngine?.nextQuestion();
+    window.skipQuestion = () => window.__examEngine?.skipQuestion();
+    window.retryExam = () => window.__examEngine?.retry();
+  </script>
+
+</body>
+</html>

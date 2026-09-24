@@ -1,0 +1,86 @@
+{
+  "examId": "sec3-mock1",
+  "title": "محاكاة امتحان الثانوية العامة – النموذج الأول",
+  "level": "Third Secondary",
+  "duration": 1800,
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": 1,
+      "type": "mcq",
+      "question": "Choose the correct answer: I ___ to the library yesterday.",
+      "options": ["go", "went", "gone", "going"],
+      "correctAnswer": 1,
+      "explanation": "نستخدم 'went' (الماضي البسيط) لأن 'yesterday' تشير إلى حدث انتهى في الماضي."
+    },
+    {
+      "id": 2,
+      "type": "mcq",
+      "question": "She has been working here ___ 2015.",
+      "options": ["for", "since", "from", "during"],
+      "correctAnswer": 1,
+      "explanation": "نستخدم 'since' مع نقطة زمنية محددة (2015)، بينما 'for' تُستخدم مع مدة زمنية."
+    },
+    {
+      "id": 3,
+      "type": "true-false",
+      "question": "The word 'seldom' means 'always'.",
+      "correctAnswer": false,
+      "explanation": "'Seldom' تعني 'نادراً' أو 'قليلاً'، وهي عكس 'always' (دائماً)."
+    },
+    {
+      "id": 4,
+      "type": "mcq",
+      "question": "If I ___ rich, I would travel the world.",
+      "options": ["am", "was", "were", "be"],
+      "correctAnswer": 2,
+      "explanation": "في الجمل الشرطية غير الحقيقية (Second Conditional)، نستخدم 'were' مع جميع الضمائر."
+    },
+    {
+      "id": 5,
+      "type": "mcq",
+      "question": "The book ___ by Naguib Mahfouz is a masterpiece.",
+      "options": ["writing", "written", "wrote", "writes"],
+      "correctAnswer": 1,
+      "explanation": "نستخدم 'written' (Past Participle) لأنها صفة تصف الكتاب في صيغة المبني للمجهول."
+    },
+    {
+      "id": 6,
+      "type": "true-false",
+      "question": "The past tense of 'teach' is 'teached'.",
+      "correctAnswer": false,
+      "explanation": "'Teach' فعل شاذ (Irregular Verb)، وماضيه هو 'taught' وليس 'teached'."
+    },
+    {
+      "id": 7,
+      "type": "mcq",
+      "question": "He is looking forward to ___ his family.",
+      "options": ["see", "seeing", "saw", "seen"],
+      "correctAnswer": 1,
+      "explanation": "بعد 'look forward to' نستخدم الفعل مع '-ing' (Gerund) لأن 'to' هنا حرف جر."
+    },
+    {
+      "id": 8,
+      "type": "mcq",
+      "question": "Neither the students ___ the teacher was present.",
+      "options": ["or", "and", "nor", "but"],
+      "correctAnswer": 2,
+      "explanation": "نستخدم 'nor' مع 'neither' لتكوين التركيب 'neither...nor' (لا هذا ولا ذاك)."
+    },
+    {
+      "id": 9,
+      "type": "true-false",
+      "question": "An adverb can modify a noun.",
+      "correctAnswer": false,
+      "explanation": "الظرف (Adverb) يعدل الأفعال والصفات والظروف الأخرى، لكنه لا يعدل الأسماء. الصفة (Adjective) هي التي تعدل الأسماء."
+    },
+    {
+      "id": 10,
+      "type": "mcq",
+      "question": "By the time we arrived, the movie ___.",
+      "options": ["started", "has started", "had started", "was starting"],
+      "correctAnswer": 2,
+      "explanation": "نستخدم 'had started' (Past Perfect) للتعبير عن حدث وقع قبل حدث آخر في الماضي."
+    }
+  ]
+}
