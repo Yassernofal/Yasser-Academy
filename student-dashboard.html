@@ -7,7 +7,6 @@
   <meta name="description" content="لوحة تحكم الطالب في أكاديمية مستر ياسر نوفل." />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/student-dashboard.html" />
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,7 +15,6 @@
     gtag('config', 'G-N3R3KFEO8');
   </script>
 
-  <!-- Bootstrap & Fonts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
@@ -444,17 +442,16 @@
     </div>
   </footer>
 
-  <!-- ===== Bootstrap JS ===== -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- ===== Firebase Script (Type="Module") ===== -->
   <script type="module">
-    // استيراد Firebase من الملف المركزي
+    // ===== استيراد Firebase (روابط كاملة) =====
     import { auth, database } from './firebase-config.js';
-    import { onAuthStateChanged, signOut } from "firebase/auth";
-    import { ref, get, set } from "firebase/database";
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+    import { ref, get, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+    import { protectPage, ROLES, redirectToCorrectDashboard } from './role-manager.js';
 
-    // ===== الترجمة المدمجة (بديل عن الملفات الخارجية) =====
+    // ===== الترجمة المدمجة =====
     const translations = {
       ar: {
         'nav-home': '🏠 الرئيسية',
@@ -540,7 +537,6 @@
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key]) {
-          // الحفاظ على الأيقونات إذا كانت موجودة
           const iconMatch = el.innerHTML.match(/^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[\u{1F300}-\u{1F5FF}]|\p{Emoji})\s*/u);
           const icon = iconMatch ? iconMatch[0] : '';
           el.innerHTML = icon + t[key];
@@ -548,7 +544,6 @@
       });
     }
 
-    // تطبيق اللغة عند تحميل الصفحة
     const savedLang = localStorage.getItem('preferredLanguage') || 'ar';
     applyLanguage(savedLang);
     document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
@@ -566,29 +561,22 @@
     const lessonsEl = document.getElementById('studentLessons');
     const testsBody = document.getElementById('testsBody');
 
-    // ===== دالة التحكم في أزرار القائمة (معدلة ومضمونة) =====
+    // ===== التحكم في أزرار القائمة =====
     function updateNavbar(user) {
       const loginLink = document.getElementById('loginLink');
       const registerLink = document.getElementById('registerLink');
       const logoutLink = document.getElementById('logoutLink');
 
-      if (!loginLink || !registerLink || !logoutLink) {
-        console.warn('⚠️ عناصر القائمة غير موجودة');
-        return;
-      }
+      if (!loginLink || !registerLink || !logoutLink) return;
 
       if (user) {
-        // مستخدم مسجل دخول
         loginLink.style.display = 'none';
         registerLink.style.display = 'none';
         logoutLink.style.display = 'block';
-        console.log('✅ تم إخفاء أزرار Login/Register');
       } else {
-        // مستخدم غير مسجل
         loginLink.style.display = 'block';
         registerLink.style.display = 'block';
         logoutLink.style.display = 'none';
-        console.log('✅ تم إظهار أزرار Login/Register');
       }
     }
 
@@ -618,7 +606,7 @@
       document.getElementById('toastNotification').style.display = 'none';
     };
 
-    // ===== دالة تبديل الوضع الليلي =====
+    // ===== الوضع الليلي =====
     window.toggleDarkMode = function() {
       const body = document.body;
       body.classList.toggle('dark-mode');
@@ -628,7 +616,6 @@
       showToast(isDark ? 'تم تفعيل الوضع الليلي 🌙' : 'تم تفعيل الوضع النهاري ☀️', 'info');
     };
 
-    // تطبيق الوضع الليلي المحفوظ
     function applySavedDarkMode() {
       const darkMode = localStorage.getItem('darkMode');
       if (darkMode === 'enabled') {
@@ -639,7 +626,7 @@
       }
     }
 
-    // ===== دالة جلب بيانات الطالب =====
+    // ===== تحميل بيانات الطالب =====
     async function loadStudentData(uid) {
       try {
         const studentRef = ref(database, `students/${uid}`);
@@ -649,7 +636,6 @@
           const data = snapshot.val();
           console.log('✅ بيانات الطالب:', data);
           
-          // تحديث الواجهة
           welcomeMsg.textContent = `مرحباً، ${data.name || 'طالب'}!`;
           levelEl.textContent = data.level || '1';
           
@@ -662,7 +648,6 @@
           certsEl.textContent = data.certificates || '0';
           lessonsEl.textContent = data.lessonsCompleted || '0';
 
-          // عرض الاختبارات
           if (data.tests && Array.isArray(data.tests) && data.tests.length > 0) {
             testsBody.innerHTML = '';
             data.tests.slice(-5).reverse().forEach(test => {
@@ -681,8 +666,6 @@
           showToast(`مرحباً بعودتك ${data.name || 'طالب'}! 👋`, 'success');
 
         } else {
-          // إنشاء بيانات افتراضية
-          console.log('ℹ️ لا توجد بيانات، سيتم إنشاء بيانات افتراضية.');
           const defaultData = {
             name: 'طالب جديد',
             level: '1',
@@ -711,21 +694,6 @@
       dashboardContent.style.display = 'block';
     }
 
-    // ===== التحقق من المصادقة =====
-    function checkAuth() {
-      onAuthStateChanged(auth, (user) => {
-        updateNavbar(user);
-        
-        if (user) {
-          console.log('✅ مستخدم مسجل:', user.email);
-          loadStudentData(user.uid);
-        } else {
-          console.log('❌ غير مسجل دخول، جاري التحويل...');
-          window.location.href = 'login.html';
-        }
-      });
-    }
-
     // ===== تسجيل الخروج =====
     window.logoutUser = function() {
       signOut(auth).then(() => {
@@ -740,10 +708,20 @@
       });
     };
 
-    // ===== تشغيل كل شيء =====
+    // ===== حماية الصفحة + تشغيل =====
     document.addEventListener('DOMContentLoaded', () => {
       applySavedDarkMode();
-      checkAuth();
+      
+      // حماية الصفحة: الطلاب فقط
+      protectPage([ROLES.STUDENT]);
+      
+      // الاستماع لحدث جاهزية المستخدم
+      window.addEventListener('userReady', async (e) => {
+        const { user, role } = e.detail;
+        console.log('✅ الطالب جاهز:', user.email, '| الدور:', role);
+        updateNavbar(user);
+        loadStudentData(user.uid);
+      });
     });
 
     console.log('✅ Student Dashboard page loaded with all fixes');
