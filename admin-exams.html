@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إدارة الامتحانات – أكاديمية مستر ياسر نوفل</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding: 20px 0 40px; }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.95) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+    }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+    }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
+
+    .page-header {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #fff;
+      padding: 35px 30px;
+      border-radius: 24px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      box-shadow: 0 10px 30px rgba(10, 31, 68, 0.3);
+    }
+    .page-header h1 {
+      color: #f7e05e;
+      font-weight: 700;
+      margin: 0;
+    }
+    .page-header p { color: #b0c4de; margin: 5px 0 0; }
+
+    .btn-new-exam {
+      background: #f7e05e;
+      color: #0a1f44;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .btn-new-exam:hover {
+      background: #f7b731;
+      transform: scale(1.05);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border-bottom: 4px solid #f7e05e;
+    }
+    .stat-card .num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0a1f44;
+    }
+    .stat-card .lbl { color: #666; font-size: 0.9rem; }
+
+    .exam-table-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+    .exam-table-card h3 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    table.exams-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+    }
+    table.exams-table thead th {
+      background: #0a1f44;
+      color: #f7e05e;
+      padding: 14px 15px;
+      font-weight: 700;
+      text-align: right;
+      font-size: 0.9rem;
+    }
+    table.exams-table thead th:first-child { border-radius: 0 12px 12px 0; }
+    table.exams-table thead th:last-child { border-radius: 12px 0 0 12px; }
+
+    table.exams-table tbody tr {
+      background: #f8f9fa;
+      transition: 0.2s;
+    }
+    table.exams-table tbody tr:hover { background: #eef2f7; }
+    table.exams-table tbody td {
+      padding: 15px;
+      font-size: 0.95rem;
+      border-top: 1px solid #e9ecef;
+      border-bottom: 1px solid #e9ecef;
+      vertical-align: middle;
+    }
+    table.exams-table tbody td:first-child {
+      border-right: 1px solid #e9ecef;
+      border-radius: 0 12px 12px 0;
+    }
+    table.exams-table tbody td:last-child {
+      border-left: 1px solid #e9ecef;
+      border-radius: 12px 0 0 12px;
+    }
+
+    .badge-type {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .badge-unit { background: #e3f2fd; color: #1565c0; }
+    .badge-comprehensive { background: #fff3e0; color: #ef6c00; }
+    .badge-level { background: #f3e5f5; color: #6a1b9a; }
+
+    .badge-active {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .badge-active.on { background: #e8f5e9; color: #2e7d32; }
+    .badge-active.off { background: #ffebee; color: #c62828; }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #fff;
+      margin: 0 3px;
+    }
+    .action-btn.edit { background: #0d6efd; }
+    .action-btn.toggle { background: #ffb347; }
+    .action-btn.delete { background: #dc3545; }
+    .action-btn:hover { transform: scale(1.15); }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+    }
+    .empty-state i { font-size: 4rem; color: #ccc; margin-bottom: 20px; }
+
+    .loading-screen { text-align: center; padding: 80px 20px; }
+
+    @media (max-width: 768px) {
+      .page-header { flex-direction: column; text-align: center; }
+      table.exams-table { font-size: 0.85rem; }
+      .hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="admin-dashboard.html">
+        <span class="brand-name">Admin Panel</span>
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">📊 اللوحة</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin-exams.html">📝 الامتحانات</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-question-bank.html">📚 بنك الأسئلة</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="logoutUser()">🚪 خروج</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 1100px;">
+
+    <!-- شاشة التحميل -->
+    <div id="loadingScreen" class="loading-screen">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+      <p class="mt-3">جاري التحميل...</p>
+    </div>
+
+    <!-- شاشة الوصول مرفوض -->
+    <div id="deniedScreen" style="display: none; text-align: center; padding: 80px 20px;">
+      <i class="fas fa-lock" style="font-size: 5rem; color: #dc3545;"></i>
+      <h3 class="mt-3">وصول مرفوض</h3>
+      <p style="color: #666;">هذه الصفحة مخصصة للمدير فقط.</p>
+      <a href="index.html" class="btn btn-primary mt-3" style="border-radius: 50px;">العودة للرئيسية</a>
+    </div>
+
+    <!-- المحتوى -->
+    <div id="mainContent" style="display: none;">
+
+      <div class="page-header">
+        <div>
+          <h1><i class="fas fa-file-alt"></i> إدارة الامتحانات</h1>
+          <p>إنشاء وتعديل وإدارة كل الامتحانات</p>
+        </div>
+        <a href="admin-builder.html" class="btn btn-new-exam">
+          <i class="fas fa-plus"></i> امتحان جديد
+        </a>
+      </div>
+
+      <!-- الإحصائيات -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="num" id="totalExams">0</div>
+          <div class="lbl">إجمالي الامتحانات</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="activeExams">0</div>
+          <div class="lbl">امتحانات نشطة</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="totalAttempts">0</div>
+          <div class="lbl">إجمالي المحاولات</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="avgScore">0%</div>
+          <div class="lbl">متوسط الدرجات</div>
+        </div>
+      </div>
+
+      <!-- جدول الامتحانات -->
+      <div class="exam-table-card">
+        <h3><i class="fas fa-list"></i> قائمة الامتحانات</h3>
+        
+        <div id="emptyState" class="empty-state" style="display: none;">
+          <i class="fas fa-inbox"></i>
+          <h4>لا توجد امتحانات بعد</h4>
+          <p>ابدأ بإنشاء امتحان جديد</p>
+          <a href="admin-builder.html" class="btn btn-primary mt-3" style="border-radius: 50px;">
+            <i class="fas fa-plus"></i> إنشاء امتحان
+          </a>
+        </div>
+
+        <div class="table-responsive" id="tableWrapper">
+          <table class="exams-table">
+            <thead>
+              <tr>
+                <th>العنوان</th>
+                <th>الصف</th>
+                <th>النوع</th>
+                <th>الأسئلة</th>
+                <th class="hide-mobile">المدة</th>
+                <th>الحالة</th>
+                <th>إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="examsBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "firebase/auth";
+    import { ref, get, set, update } from "firebase/database";
+    import { getAllExams, deleteExam, toggleExamActive, getExamStats } from './assets/js/exam-storage.js';
+
+    let allExams = [];
+
+    window.logoutUser = function() {
+      signOut(auth).then(() => window.location.href = 'index.html');
+    };
+
+    // ===== التحقق من صلاحيات المدير =====
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      try {
+        const userSnap = await get(ref(database, `users/${user.uid}`));
+        if (!userSnap.exists() || userSnap.val().role !== 'admin') {
+          document.getElementById('loadingScreen').style.display = 'none';
+          document.getElementById('deniedScreen').style.display = 'block';
+          return;
+        }
+        
+        await loadExams();
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+      }
+    });
+
+    // ===== تحميل الامتحانات =====
+    async function loadExams() {
+      try {
+        allExams = await getAllExams();
+        
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+
+        if (allExams.length === 0) {
+          document.getElementById('emptyState').style.display = 'block';
+          document.getElementById('tableWrapper').style.display = 'none';
+          updateStats();
+          return;
+        }
+
+        renderExams();
+        updateStats();
+
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+      }
+    }
+
+    // ===== عرض الامتحانات =====
+    function renderExams() {
+      const tbody = document.getElementById('examsBody');
+      tbody.innerHTML = '';
+
+      const gradeLabels = {
+        prep1: 'الأول الإعدادي',
+        prep2: 'الثاني الإعدادي',
+        prep3: 'الثالث الإعدادي',
+        sec1: 'الأول الثانوي',
+        sec2: 'الثاني الثانوي',
+        sec3: 'الثالث الثانوي'
+      };
+      const typeLabels = {
+        unit: 'وحدة',
+        comprehensive: 'شامل',
+        level: 'مستوى'
+      };
+
+      allExams.forEach(exam => {
+        const qCount = exam.questions?.length || 0;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${exam.title || 'بدون عنوان'}</strong></td>
+          <td>${gradeLabels[exam.grade] || exam.grade || '—'}</td>
+          <td><span class="badge-type badge-${exam.type || 'comprehensive'}">${typeLabels[exam.type] || 'شامل'}</span></td>
+          <td>${qCount}</td>
+          <td class="hide-mobile">${exam.duration || 30} د</td>
+          <td>
+            <span class="badge-active ${exam.active !== false ? 'on' : 'off'}">
+              ${exam.active !== false ? 'نشط' : 'معطل'}
+            </span>
+          </td>
+          <td>
+            <button class="action-btn toggle" onclick="toggleActive('${exam.id}', ${exam.active !== false})" title="تفعيل/تعطيل">
+              <i class="fas fa-power-off"></i>
+            </button>
+            <button class="action-btn delete" onclick="deleteExamConfirm('${exam.id}', '${(exam.title || '').replace(/'/g, "\\'")}')" title="حذف">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // ===== تحديث الإحصائيات =====
+    function updateStats() {
+      const total = allExams.length;
+      const active = allExams.filter(e => e.active !== false).length;
+      
+      document.getElementById('totalExams').textContent = total;
+      document.getElementById('activeExams').textContent = active;
+      
+      // جلب المحاولات والمتوسط
+      getTotalStats();
+    }
+
+    async function getTotalStats() {
+      try {
+        const resultsRef = ref(database, 'examResults');
+        const snapshot = await get(resultsRef);
+        
+        let totalAttempts = 0;
+        let totalScore = 0;
+        
+        if (snapshot.exists()) {
+          snapshot.forEach(student => {
+            const studentResults = student.val();
+            Object.values(studentResults).forEach(result => {
+              totalAttempts++;
+              totalScore += result.percentage || 0;
+            });
+          });
+        }
+        
+        document.getElementById('totalAttempts').textContent = totalAttempts;
+        document.getElementById('avgScore').textContent = 
+          totalAttempts > 0 ? Math.round(totalScore / totalAttempts) + '%' : '0%';
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // ===== تفعيل/تعطيل =====
+    window.toggleActive = async function(examId, currentActive) {
+      const newState = !currentActive;
+      const success = await toggleExamActive(examId, newState);
+      if (success) {
+        alert(newState ? '✅ تم تفعيل الامتحان' : '⚠️ تم تعطيل الامتحان');
+        await loadExams();
+      }
+    };
+
+    // ===== حذف امتحان =====
+    window.deleteExamConfirm = async function(examId, title) {
+      if (!confirm(`هل أنت متأكد من حذف امتحان "${title}"؟\nلا يمكن التراجع عن هذا الإجراء!`)) return;
+      
+      const success = await deleteExam(examId);
+      if (success) {
+        alert('✅ تم حذف الامتحان');
+        await loadExams();
+      }
+    };
+
+    console.log('✅ Admin Exams page loaded');
+  </script>
+
+</body>
+</html>
