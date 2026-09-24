@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بنك الأسئلة – أكاديمية مستر ياسر نوفل</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding: 20px 0 40px; }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.95) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+    }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    .page-header {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #fff;
+      padding: 35px 30px;
+      border-radius: 24px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      box-shadow: 0 10px 30px rgba(10, 31, 68, 0.3);
+    }
+    .page-header h1 { color: #f7e05e; font-weight: 700; margin: 0; }
+
+    .btn-add {
+      background: #f7e05e;
+      color: #0a1f44;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .btn-add:hover { background: #f7b731; transform: scale(1.05); }
+
+    .btn-import {
+      background: #0d6efd;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .btn-import:hover { background: #0b5ed7; transform: scale(1.05); }
+
+    .filters-bar {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .filter-group { flex: 1; min-width: 180px; }
+    .filter-group label {
+      font-weight: 700;
+      color: #0a1f44;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .question-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border-right: 5px solid #f7e05e;
+      transition: 0.2s;
+    }
+    .question-card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+
+    .question-card .q-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .q-badge {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .badge-mcq { background: #e3f2fd; color: #1565c0; }
+    .badge-tf { background: #e8f5e9; color: #2e7d32; }
+    .badge-fill { background: #fff3e0; color: #ef6c00; }
+    .badge-grade { background: #f3e5f5; color: #6a1b9a; }
+    .badge-topic { background: #fff8e1; color: #b8860b; }
+    .badge-diff-easy { background: #e8f5e9; color: #2e7d32; }
+    .badge-diff-medium { background: #fff3e0; color: #ef6c00; }
+    .badge-diff-hard { background: #ffebee; color: #c62828; }
+
+    .question-card .q-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0a1f44;
+      margin-bottom: 12px;
+    }
+    .question-card .q-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .question-card .q-options .opt { padding: 6px 10px; border-radius: 8px; background: #f8f9fa; }
+    .question-card .q-options .opt.correct {
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-weight: 700;
+    }
+
+    .btn-delete-q {
+      background: #dc3545;
+      color: #fff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.2s;
+      float: left;
+    }
+    .btn-delete-q:hover { transform: scale(1.15); }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+    }
+    .empty-state i { font-size: 4rem; color: #ccc; margin-bottom: 20px; }
+
+    .loading-screen { text-align: center; padding: 80px 20px; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-content-custom {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-content-custom h3 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .options-list { display: flex; flex-direction: column; gap: 10px; }
+    .option-input-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .option-input-row input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .option-input-row input[type="text"] { flex: 1; }
+
+    @media (max-width: 768px) {
+      .page-header { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="admin-dashboard.html">
+        <span class="brand-name">Admin Panel</span>
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">📊 اللوحة</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-exams.html">📝 الامتحانات</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin-question-bank.html">📚 بنك الأسئلة</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="logoutUser()">🚪 خروج</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 1100px;">
+
+    <div id="loadingScreen" class="loading-screen">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+      <p class="mt-3">جاري التحميل...</p>
+    </div>
+
+    <div id="deniedScreen" style="display: none; text-align: center; padding: 80px 20px;">
+      <i class="fas fa-lock" style="font-size: 5rem; color: #dc3545;"></i>
+      <h3 class="mt-3">وصول مرفوض</h3>
+      <p style="color: #666;">هذه الصفحة مخصصة للمدير فقط.</p>
+      <a href="index.html" class="btn btn-primary mt-3" style="border-radius: 50px;">العودة للرئيسية</a>
+    </div>
+
+    <div id="mainContent" style="display: none;">
+
+      <div class="page-header">
+        <div>
+          <h1><i class="fas fa-book"></i> بنك الأسئلة</h1>
+          <p style="color: #b0c4de; margin: 5px 0 0;">إضافة وإدارة كل أسئلة الامتحانات</p>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn btn-import" onclick="openImportModal()">
+            <i class="fas fa-file-import"></i> استيراد CSV
+          </button>
+          <button class="btn btn-add" onclick="openAddModal()">
+            <i class="fas fa-plus"></i> سؤال جديد
+          </button>
+        </div>
+      </div>
+
+      <!-- الفلاتر -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>الصف</label>
+          <select class="form-select" id="filterGrade" onchange="loadQuestions()">
+            <option value="">كل الصفوف</option>
+            <option value="prep1">الأول الإعدادي</option>
+            <option value="prep2">الثاني الإعدادي</option>
+            <option value="prep3">الثالث الإعدادي</option>
+            <option value="sec1">الأول الثانوي</option>
+            <option value="sec2">الثاني الثانوي</option>
+            <option value="sec3">الثالث الثانوي</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>نوع السؤال</label>
+          <select class="form-select" id="filterType" onchange="loadQuestions()">
+            <option value="">كل الأنواع</option>
+            <option value="mcq">اختيار من متعدد</option>
+            <option value="true_false">صح / خطأ</option>
+            <option value="fill_blank">إكمال الفراغ</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>عدد الأسئلة</label>
+          <div class="form-control" style="background: #f8f9fa; font-weight: 700;" id="questionCount">0</div>
+        </div>
+      </div>
+
+      <!-- قائمة الأسئلة -->
+      <div id="questionsContainer"></div>
+
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <i class="fas fa-inbox"></i>
+        <h4>لا توجد أسئلة بعد</h4>
+        <p>ابدأ بإضافة سؤال جديد أو استيراد من CSV</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal: إضافة سؤال -->
+  <div class="modal-overlay" id="addModal">
+    <div class="modal-content-custom">
+      <h3><i class="fas fa-plus-circle"></i> إضافة سؤال جديد</h3>
+      
+      <div class="mb-3">
+        <label class="form-label fw-bold">نص السؤال</label>
+        <textarea class="form-control" id="qText" rows="3" placeholder="اكتب السؤال هنا..."></textarea>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label fw-bold">الصف</label>
+          <select class="form-select" id="qGrade">
+            <option value="prep1">الأول الإعدادي</option>
+            <option value="prep2">الثاني الإعدادي</option>
+            <option value="prep3">الثالث الإعدادي</option>
+            <option value="sec1">الأول الثانوي</option>
+            <option value="sec2">الثاني الثانوي</option>
+            <option value="sec3">الثالث الثانوي</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">نوع السؤال</label>
+          <select class="form-select" id="qType" onchange="onTypeChange()">
+            <option value="mcq">اختيار من متعدد</option>
+            <option value="true_false">صح / خطأ</option>
+            <option value="fill_blank">إكمال الفراغ</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label fw-bold">الموضوع</label>
+          <select class="form-select" id="qTopic">
+            <option value="grammar">قواعد</option>
+            <option value="vocabulary">مفردات</option>
+            <option value="reading">قراءة</option>
+            <option value="writing">كتابة</option>
+            <option value="translation">ترجمة</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">مستوى الصعوبة</label>
+          <select class="form-select" id="qDifficulty">
+            <option value="easy">سهل</option>
+            <option value="medium">متوسط</option>
+            <option value="hard">صعب</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- MCQ Options -->
+      <div id="mcqSection">
+        <label class="form-label fw-bold">الخيارات (اختر الإجابة الصحيحة)</label>
+        <div class="options-list">
+          <div class="option-input-row">
+            <input type="radio" name="correctOption" value="0" />
+            <input type="text" class="form-control" id="opt0" placeholder="الخيار A" />
+          </div>
+          <div class="option-input-row">
+            <input type="radio" name="correctOption" value="1" />
+            <input type="text" class="form-control" id="opt1" placeholder="الخيار B" />
+          </div>
+          <div class="option-input-row">
+            <input type="radio" name="correctOption" value="2" />
+            <input type="text" class="form-control" id="opt2" placeholder="الخيار C" />
+          </div>
+          <div class="option-input-row">
+            <input type="radio" name="correctOption" value="3" />
+            <input type="text" class="form-control" id="opt3" placeholder="الخيار D" />
+          </div>
+        </div>
+      </div>
+
+      <!-- True/False -->
+      <div id="tfSection" style="display: none;">
+        <label class="form-label fw-bold">الإجابة الصحيحة</label>
+        <select class="form-select" id="tfAnswer">
+          <option value="0">صح</option>
+          <option value="1">خطأ</option>
+        </select>
+      </div>
+
+      <!-- Fill in blank -->
+      <div id="fillSection" style="display: none;">
+        <label class="form-label fw-bold">الإجابة الصحيحة</label>
+        <input type="text" class="form-control" id="fillAnswer" placeholder="الإجابة..." />
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label class="form-label fw-bold">الشرح (اختياري)</label>
+        <textarea class="form-control" id="qExplanation" rows="2" placeholder="شرح الإجابة الصحيحة..."></textarea>
+      </div>
+
+      <div class="d-flex gap-2 justify-content-end mt-4">
+        <button class="btn btn-secondary" onclick="closeAddModal()" style="border-radius: 50px; padding: 10px 25px;">
+          إلغاء
+        </button>
+        <button class="btn btn-success" onclick="saveQuestion()" style="border-radius: 50px; padding: 10px 25px;">
+          <i class="fas fa-save"></i> حفظ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: استيراد CSV -->
+  <div class="modal-overlay" id="importModal">
+    <div class="modal-content-custom" style="max-width: 600px;">
+      <h3><i class="fas fa-file-import"></i> استيراد أسئلة من CSV</h3>
+      
+      <div class="alert alert-info">
+        <strong>صيغة الملف:</strong>
+        <code style="display: block; margin-top: 8px; font-size: 0.85rem;">
+          question,option1,option2,option3,option4,correct_index,grade,topic,difficulty,explanation
+        </code>
+        <small>correct_index = 0 للأول، 1 للتاني، إلخ</small>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">ملف CSV</label>
+        <input type="file" class="form-control" id="csvFile" accept=".csv" />
+      </div>
+
+      <div class="d-flex gap-2 justify-content-end mt-4">
+        <button class="btn btn-secondary" onclick="closeImportModal()" style="border-radius: 50px; padding: 10px 25px;">
+          إلغاء
+        </button>
+        <button class="btn btn-primary" onclick="importCSV()" style="border-radius: 50px; padding: 10px 25px;">
+          <i class="fas fa-upload"></i> استيراد
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "firebase/auth";
+    import { ref, get, set, push, remove } from "firebase/database";
+
+    let currentQuestions = [];
+
+    window.logoutUser = function() {
+      signOut(auth).then(() => window.location.href = 'index.html');
+    };
+
+    // ===== التحقق من صلاحيات المدير =====
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      try {
+        const userSnap = await get(ref(database, `users/${user.uid}`));
+        if (!userSnap.exists() || userSnap.val().role !== 'admin') {
+          document.getElementById('loadingScreen').style.display = 'none';
+          document.getElementById('deniedScreen').style.display = 'block';
+          return;
+        }
+        
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        await loadQuestions();
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+      }
+    });
+
+    // ===== تحميل الأسئلة =====
+    window.loadQuestions = async function() {
+      try {
+        const grade = document.getElementById('filterGrade').value;
+        const type = document.getElementById('filterType').value;
+
+        const qbRef = ref(database, 'questionBank');
+        const snapshot = await get(qbRef);
+        
+        currentQuestions = [];
+        
+        if (snapshot.exists()) {
+          snapshot.forEach(child => {
+            const q = { id: child.key, ...child.val() };
+            if (grade && q.grade !== grade) return;
+            if (type && q.type !== type) return;
+            currentQuestions.push(q);
+          });
+        }
+
+        renderQuestions();
+        document.getElementById('questionCount').textContent = currentQuestions.length;
+
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+      }
+    };
+
+    // ===== عرض الأسئلة =====
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+
+      if (currentQuestions.length === 0) {
+        document.getElementById('emptyState').style.display = 'block';
+        return;
+      }
+      document.getElementById('emptyState').style.display = 'none';
+
+      const gradeLabels = {
+        prep1: 'الأول الإعدادي', prep2: 'الثاني الإعدادي', prep3: 'الثالث الإعدادي',
+        sec1: 'الأول الثانوي', sec2: 'الثاني الثانوي', sec3: 'الثالث الثانوي'
+      };
+      const topicLabels = {
+        grammar: 'قواعد', vocabulary: 'مفردات', reading: 'قراءة',
+        writing: 'كتابة', translation: 'ترجمة'
+      };
+      const diffLabels = { easy: 'سهل', medium: 'متوسط', hard: 'صعب' };
+      const typeLabels = {
+        mcq: 'اختيار من متعدد', true_false: 'صح / خطأ', fill_blank: 'إكمال الفراغ'
+      };
+
+      currentQuestions.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        
+        let optionsHtml = '';
+        if (q.type === 'mcq' && q.options) {
+          optionsHtml = '<div class="q-options">';
+          q.options.forEach((opt, idx) => {
+            const isCorrect = idx === q.correctAnswer;
+            const letter = String.fromCharCode(65 + idx);
+            optionsHtml += `<div class="opt ${isCorrect ? 'correct' : ''}">${letter}. ${opt} ${isCorrect ? '✅' : ''}</div>`;
+          });
+          optionsHtml += '</div>';
+        } else if (q.type === 'true_false') {
+          const correct = q.correctAnswer === 0 ? 'صح' : 'خطأ';
+          optionsHtml = `<div class="q-options"><div class="opt correct">الإجابة: ${correct} ✅</div></div>`;
+        } else if (q.type === 'fill_blank') {
+          optionsHtml = `<div class="q-options"><div class="opt correct">الإجابة: ${q.correctAnswer} ✅</div></div>`;
+        }
+
+        card.innerHTML = `
+          <button class="btn-delete-q" onclick="deleteQuestion('${q.id}')" title="حذف">
+            <i class="fas fa-trash"></i>
+          </button>
+          <div class="q-meta">
+            <span class="q-badge badge-mcq">${typeLabels[q.type] || q.type}</span>
+            <span class="q-badge badge-grade">${gradeLabels[q.grade] || q.grade}</span>
+            <span class="q-badge badge-topic">${topicLabels[q.topic] || q.topic || '—'}</span>
+            <span class="q-badge badge-diff-${q.difficulty || 'medium'}">${diffLabels[q.difficulty] || 'متوسط'}</span>
+          </div>
+          <div class="q-text">${q.text}</div>
+          ${optionsHtml}
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ===== Modal إضافة سؤال =====
+    window.openAddModal = () => document.getElementById('addModal').classList.add('active');
+    window.closeAddModal = () => document.getElementById('addModal').classList.remove('active');
+    window.openImportModal = () => document.getElementById('importModal').classList.add('active');
+    window.closeImportModal = () => document.getElementById('importModal').classList.remove('active');
+
+    // ===== تغيير نوع السؤال =====
+    window.onTypeChange = function() {
+      const type = document.getElementById('qType').value;
+      document.getElementById('mcqSection').style.display = type === 'mcq' ? 'block' : 'none';
+      document.getElementById('tfSection').style.display = type === 'true_false' ? 'block' : 'none';
+      document.getElementById('fillSection').style.display = type === 'fill_blank' ? 'block' : 'none';
+    };
+
+    // ===== حفظ سؤال =====
+    window.saveQuestion = async function() {
+      const text = document.getElementById('qText').value.trim();
+      const grade = document.getElementById('qGrade').value;
+      const type = document.getElementById('qType').value;
+      const topic = document.getElementById('qTopic').value;
+      const difficulty = document.getElementById('qDifficulty').value;
+      const explanation = document.getElementById('qExplanation').value.trim();
+
+      if (!text) {
+        alert('⚠️ الرجاء إدخال نص السؤال');
+        return;
+      }
+
+      let questionData = { text, grade, type, topic, difficulty, explanation };
+
+      if (type === 'mcq') {
+        const options = [];
+        for (let i = 0; i < 4; i++) {
+          const opt = document.getElementById(`opt${i}`).value.trim();
+          if (!opt) { alert(`⚠️ الرجاء إدخال الخيار ${String.fromCharCode(65 + i)}`); return; }
+          options.push(opt);
+        }
+        const correctRadio = document.querySelector('input[name="correctOption"]:checked');
+        if (!correctRadio) { alert('⚠️ الرجاء تحديد الإجابة الصحيحة'); return; }
+        
+        questionData.options = options;
+        questionData.correctAnswer = parseInt(correctRadio.value);
+      } else if (type === 'true_false') {
+        questionData.correctAnswer = parseInt(document.getElementById('tfAnswer').value);
+      } else if (type === 'fill_blank') {
+        const ans = document.getElementById('fillAnswer').value.trim();
+        if (!ans) { alert('⚠️ الرجاء إدخال الإجابة'); return; }
+        questionData.correctAnswer = ans;
+      }
+
+      try {
+        const qbRef = ref(database, 'questionBank');
+        const newRef = push(qbRef);
+        await set(newRef, { ...questionData, createdAt: new Date().toISOString() });
+        
+        alert('✅ تم حفظ السؤال بنجاح');
+        closeAddModal();
+        resetForm();
+        await loadQuestions();
+      } catch (error) {
+        console.error(error);
+        alert('❌ خطأ في الحفظ: ' + error.message);
+      }
+    };
+
+    function resetForm() {
+      document.getElementById('qText').value = '';
+      document.getElementById('qExplanation').value = '';
+      for (let i = 0; i < 4; i++) document.getElementById(`opt${i}`).value = '';
+      document.querySelectorAll('input[name="correctOption"]').forEach(r => r.checked = false);
+      document.getElementById('fillAnswer').value = '';
+    }
+
+    // ===== حذف سؤال =====
+    window.deleteQuestion = async function(id) {
+      if (!confirm('هل أنت متأكد من حذف هذا السؤال؟')) return;
+      try {
+        await remove(ref(database, `questionBank/${id}`));
+        alert('✅ تم الحذف');
+        await loadQuestions();
+      } catch (error) {
+        alert('❌ خطأ: ' + error.message);
+      }
+    };
+
+    // ===== استيراد CSV =====
+    window.importCSV = async function() {
+      const fileInput = document.getElementById('csvFile');
+      if (!fileInput.files.length) {
+        alert('⚠️ الرجاء اختيار ملف CSV');
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const text = await file.text();
+      const lines = text.split('\n').filter(l => l.trim());
+      
+      if (lines.length < 2) {
+        alert('⚠️ الملف فارغ');
+        return;
+      }
+
+      let successCount = 0;
+      let errorCount = 0;
+
+      for (let i = 1; i < lines.length; i++) { // نتخطى السطر الأول (العناوين)
+        try {
+          const parts = lines[i].split(',').map(p => p.trim().replace(/^"|"$/g, ''));
+          if (parts.length < 7) continue;
+          
+          const questionData = {
+            text: parts[0],
+            options: [parts[1], parts[2], parts[3], parts[4]],
+            correctAnswer: parseInt(parts[5]),
+            grade: parts[6],
+            type: 'mcq',
+            topic: parts[7] || 'grammar',
+            difficulty: parts[8] || 'medium',
+            explanation: parts[9] || '',
+            createdAt: new Date().toISOString()
+          };
+          
+          const qbRef = ref(database, 'questionBank');
+          const newRef = push(qbRef);
+          await set(newRef, questionData);
+          successCount++;
+        } catch (e) {
+          errorCount++;
+        }
+      }
+
+      alert(`✅ تم استيراد ${successCount} سؤال\n${errorCount > 0 ? `❌ فشل ${errorCount} سؤال` : ''}`);
+      closeImportModal();
+      await loadQuestions();
+    };
+
+    console.log('✅ Admin Question Bank loaded');
+  </script>
+
+</body>
+</html>
