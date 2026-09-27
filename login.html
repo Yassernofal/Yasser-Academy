@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>تسجيل الدخول – أكاديمية مستر ياسر نوفل</title>
-  <meta name="description" content="تسجيل الدخول إلى حسابك في أكاديمية مستر ياسر نوفل." />
+  <meta name="description" content="سجل دخولك في أكاديمية مستر ياسر نوفل." />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/login.html" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
@@ -17,8 +17,19 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Firebase Import Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
@@ -27,10 +38,8 @@
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
       backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
       padding: 14px 0;
       box-shadow: 0 4px 30px rgba(0,0,0,0.15);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
       z-index: 1050;
     }
     .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
@@ -48,25 +57,81 @@
     .nav-link.active { color: #f7e05e !important; }
 
     .login-container {
-      max-width: 450px;
-      margin: 40px auto;
+      max-width: 480px;
+      margin: 50px auto;
       background: #fff;
       border-radius: 28px;
-      padding: 35px;
+      padding: 40px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.08);
     }
-    .btn-login {
-      background: #f7e05e;
+    .login-container h2 {
       color: #0a1f44;
       font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .login-container p.subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .form-control {
+      border-radius: 12px;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      transition: 0.3s;
+    }
+    .form-control:focus {
+      border-color: #f7b731;
+      box-shadow: 0 0 0 0.2rem rgba(247, 183, 49, 0.15);
+    }
+
+    .btn-login {
+      background: #0a1f44;
+      color: #f7e05e;
+      font-weight: 700;
       border-radius: 50px;
-      padding: 12px;
+      padding: 14px;
       width: 100%;
       border: none;
       transition: 0.3s;
+      font-size: 1.05rem;
     }
-    .btn-login:hover { background: #f7b731; transform: scale(1.02); }
-    .btn-login:disabled { background: #ccc; cursor: not-allowed; }
+    .btn-login:hover:not(:disabled) {
+      background: #f7b731;
+      color: #0a1f44;
+      transform: scale(1.02);
+    }
+    .btn-login:disabled {
+      background: #ccc;
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    .link-register {
+      color: #0a1f44;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .link-register:hover { color: #f7b731; text-decoration: underline; }
+
+    .alert { border-radius: 12px; }
+
+    .extra-links {
+      background: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+      text-align: center;
+    }
+    .extra-links a {
+      color: #0a1f44;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .extra-links a:hover { color: #f7b731; text-decoration: underline; }
 
     footer {
       background: #0a1f44;
@@ -83,33 +148,10 @@
     .footer-links a { color: #b0c4de; text-decoration: none; transition: 0.3s; }
     .footer-links a:hover { color: #f7e05e; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
-
-    .extra-links {
-      background: #f8f9fa;
-      padding: 10px 0;
-      border-bottom: 1px solid #e9ecef;
-      text-align: center;
-    }
-    .extra-links a {
-      color: #0a1f44;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: 500;
-      transition: 0.3s;
-      font-size: 0.95rem;
-    }
-    .extra-links a:hover {
-      color: #f7b731;
-      text-decoration: underline;
-    }
-    @media (max-width: 768px) {
-      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
-    }
   </style>
 </head>
 <body>
 
-  <!-- ===== شريط التنقل ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
@@ -125,29 +167,13 @@
           <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
           <li class="nav-item"><a class="nav-link" href="booking.html">📝 الحجز</a></li>
           <li class="nav-item"><a class="nav-link" href="games.html">🎮 الألعاب</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html">📝 إنشاء حساب</a></li>
           <li class="nav-item"><a class="nav-link active" href="login.html">🔑 تسجيل الدخول</a></li>
-          
-          <li class="nav-item" id="registerLink">
-            <a class="nav-link" href="register.html">📝 إنشاء حساب</a>
-          </li>
-          
-          <li class="nav-item" id="logoutLink" style="display:none;">
-            <a class="nav-link" href="#" onclick="logoutUser()">🚪 تسجيل الخروج</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
-              <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
-            </ul>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- ===== الروابط الإضافية ===== -->
   <div class="extra-links">
     <div class="container">
       <a href="about.html">🌟 من نحن</a>
@@ -156,48 +182,57 @@
     </div>
   </div>
 
-  <!-- ===== محتوى تسجيل الدخول ===== -->
   <section class="container">
     <div class="login-container">
-      <h2 class="text-center fw-bold mb-4">تسجيل الدخول</h2>
+      <h2 class="text-center"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</h2>
+      <p class="subtitle text-center">أدخل بياناتك للوصول إلى حسابك</p>
       
-      <div id="loginStatus" class="text-center mb-3"></div>
-      
+      <div id="loginStatus" class="mb-3"></div>
+
       <form id="loginForm">
         <div class="mb-3">
           <label class="form-label fw-bold">البريد الإلكتروني</label>
-          <input type="email" class="form-control" id="loginEmail" required placeholder="example@email.com" />
+          <input type="email" class="form-control" id="loginEmail" required placeholder="example@email.com" autocomplete="email" />
         </div>
         <div class="mb-3">
           <label class="form-label fw-bold">كلمة المرور</label>
-          <input type="password" class="form-control" id="loginPassword" required placeholder="••••••••" />
+          <div style="position: relative;">
+            <input type="password" class="form-control" id="loginPassword" required placeholder="••••••••" autocomplete="current-password" />
+            <button type="button" onclick="togglePassword()" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #666; cursor: pointer;">
+              <i class="fas fa-eye" id="eyeIcon"></i>
+            </button>
+          </div>
         </div>
+
+        <div class="text-end mb-3">
+          <a href="#" onclick="forgotPassword()" style="color: #0a1f44; text-decoration: none; font-size: 0.9rem;">
+            نسيت كلمة المرور؟
+          </a>
+        </div>
+
         <button type="submit" class="btn-login" id="loginBtn">
-          <i class="fas fa-sign-in-alt" aria-hidden="true"></i> تسجيل الدخول
+          <i class="fas fa-sign-in-alt"></i> دخول
         </button>
-        <p class="text-center mt-3">
-          ليس لديك حساب؟ <a href="register.html">إنشاء حساب</a>
-        </p>
-        <p class="text-center mt-2">
-          <a href="#" onclick="resetPassword()">نسيت كلمة المرور؟</a>
+
+        <p class="text-center mt-4 mb-0">
+          ليس لديك حساب؟ <a href="register.html" class="link-register">إنشاء حساب جديد</a>
         </p>
       </form>
     </div>
   </section>
 
-  <!-- ===== الفوتير ===== -->
   <footer class="footer">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
           <h5>أكاديمية مستر ياسر نوفل</h5>
-          <p>تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
+          <p>تعلم الإنجليزية من الصفر حتى الاحتراف.</p>
           <div class="social-icons">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
         <div class="col-md-4">
@@ -206,15 +241,12 @@
             <li><a href="levels.html">المستويات</a></li>
             <li><a href="booking.html">الحجز</a></li>
             <li><a href="about.html">من نحن</a></li>
-            <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
-            <li><a href="terms.html">الشروط والأحكام</a></li>
           </ul>
         </div>
         <div class="col-md-4">
           <h5>اتصل بنا</h5>
-          <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
-          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
-          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
+          <p><i class="fas fa-phone"></i> 01203145717</p>
+          <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -224,22 +256,20 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <script type="module">
-    // ===== استيراد Firebase (روابط كاملة) =====
-    import { auth, database } from './firebase-config.js';
-    import { signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-    import { ref, get } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-    import { redirectToCorrectDashboard } from './role-manager.js';
 
-    // ===== إذا كان المستخدم مسجل بالفعل، نوجهه =====
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
+    import { ref, get } from "firebase/database";
+
+    // ===== إذا كان المستخدم مسجلاً بالفعل، نوجهه =====
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
           const userSnap = await get(ref(database, `users/${user.uid}`));
           if (userSnap.exists()) {
             const role = userSnap.val().role;
-            redirectToCorrectDashboard(role);
+            redirectToDashboard(role);
           }
         } catch (e) {
           console.error('خطأ:', e);
@@ -247,7 +277,56 @@
       }
     });
 
-    // ===== معالجة نموذج تسجيل الدخول =====
+    // ===== توجيه المستخدم حسب دوره =====
+    function redirectToDashboard(role) {
+      switch (role) {
+        case 'admin':
+          window.location.href = 'admin-dashboard.html';
+          break;
+        case 'parent':
+          window.location.href = 'parent-dashboard.html';
+          break;
+        case 'student':
+        default:
+          window.location.href = 'student-dashboard.html';
+      }
+    }
+
+    // ===== إظهار/إخفاء كلمة المرور =====
+    window.togglePassword = function() {
+      const input = document.getElementById('loginPassword');
+      const icon = document.getElementById('eyeIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    };
+
+    // ===== نسيان كلمة المرور =====
+    window.forgotPassword = async function() {
+      const email = document.getElementById('loginEmail').value.trim();
+      if (!email) {
+        document.getElementById('loginStatus').innerHTML = 
+          '<div class="alert alert-warning">⚠️ الرجاء إدخال بريدك الإلكتروني أولاً</div>';
+        return;
+      }
+      
+      try {
+        await sendPasswordResetEmail(auth, email);
+        document.getElementById('loginStatus').innerHTML = 
+          '<div class="alert alert-success">✅ تم إرسال رابط استعادة كلمة المرور إلى بريدك</div>';
+      } catch (error) {
+        document.getElementById('loginStatus').innerHTML = 
+          `<div class="alert alert-danger">❌ خطأ: ${error.message}</div>`;
+      }
+    };
+
+    // ===== معالجة تسجيل الدخول =====
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       
@@ -255,11 +334,6 @@
       const password = document.getElementById('loginPassword').value;
       const status = document.getElementById('loginStatus');
       const btn = document.getElementById('loginBtn');
-      
-      if (!email || !password) {
-        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء إدخال البريد وكلمة المرور</div>';
-        return;
-      }
 
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...';
@@ -268,71 +342,41 @@
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        console.log('✅ تم تسجيل الدخول:', user.email);
-        
-        // جلب الدور من قاعدة البيانات
+
+        // جلب دور المستخدم
         const userSnap = await get(ref(database, `users/${user.uid}`));
         
-        if (userSnap.exists()) {
-          const userData = userSnap.val();
-          const role = userData.role || 'student';
-          
-          status.innerHTML = '<div class="alert alert-success">✅ تم تسجيل الدخول بنجاح! جاري التوجيه...</div>';
-          
-          setTimeout(() => {
-            redirectToCorrectDashboard(role);
-          }, 1000);
-        } else {
-          // لو مفيش بيانات، نعتبره طالب
-          status.innerHTML = '<div class="alert alert-success">✅ تم تسجيل الدخول!</div>';
-          setTimeout(() => {
-            window.location.href = 'student-dashboard.html';
-          }, 1000);
+        if (!userSnap.exists()) {
+          status.innerHTML = '<div class="alert alert-danger">❌ لا توجد بيانات لهذا الحساب</div>';
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> دخول';
+          return;
         }
-        
+
+        const userData = userSnap.val();
+        const role = userData.role || 'student';
+
+        status.innerHTML = `<div class="alert alert-success">✅ مرحباً ${userData.name || ''}! جاري التحويل...</div>`;
+
+        setTimeout(() => {
+          redirectToDashboard(role);
+        }, 800);
+
       } catch (error) {
-        console.error('❌ خطأ:', error);
         let message = '❌ فشل تسجيل الدخول. ';
-        if (error.code === 'auth/user-not-found') message += 'الحساب غير موجود.';
-        else if (error.code === 'auth/wrong-password') message += 'كلمة المرور غير صحيحة.';
-        else if (error.code === 'auth/invalid-email') message += 'البريد الإلكتروني غير صحيح.';
-        else if (error.code === 'auth/invalid-credential') message += 'البريد أو كلمة المرور غير صحيحة.';
-        else if (error.code === 'auth/too-many-requests') message += 'محاولات كثيرة، جرب لاحقاً.';
+        if (error.code === 'auth/user-not-found') message += 'البريد الإلكتروني غير مسجل.';
+        else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') message += 'كلمة المرور غير صحيحة.';
+        else if (error.code === 'auth/invalid-email') message += 'صيغة البريد الإلكتروني غير صحيحة.';
+        else if (error.code === 'auth/too-many-requests') message += 'تم تجاوز عدد المحاولات. جرب لاحقاً.';
         else message += error.message;
         
         status.innerHTML = `<div class="alert alert-danger">${message}</div>`;
         btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> تسجيل الدخول';
+        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> دخول';
       }
     });
 
-    // ===== إعادة تعيين كلمة المرور =====
-    window.resetPassword = function() {
-      const email = document.getElementById('loginEmail').value.trim();
-      const status = document.getElementById('loginStatus');
-      
-      if (!email) {
-        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء إدخال البريد الإلكتروني أولاً</div>';
-        return;
-      }
-      
-      sendPasswordResetEmail(auth, email).then(() => {
-        status.innerHTML = '<div class="alert alert-success">✅ تم إرسال رابط إعادة التعيين إلى بريدك</div>';
-      }).catch((error) => {
-        status.innerHTML = `<div class="alert alert-danger">❌ خطأ: ${error.message}</div>`;
-      });
-    };
-
-    // ===== تسجيل الخروج =====
-    window.logoutUser = function() {
-      signOut(auth).then(() => {
-        window.location.href = 'index.html';
-      }).catch((error) => {
-        alert('خطأ: ' + error.message);
-      });
-    };
-
-    console.log('✅ Login page loaded');
+    console.log('✅ Login page loaded with role-based redirect');
   </script>
 
 </body>
