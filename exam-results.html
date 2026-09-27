@@ -132,11 +132,16 @@
       font-weight: 700;
       margin-bottom: 10px;
     }
+
+    /* ✅ إصلاح اتجاه نص السؤال والإجابات */
     .review-item .q-text {
       font-size: 1.1rem;
       font-weight: 700;
       color: #0a1f44;
       margin-bottom: 15px;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: embed;
     }
     .review-item .answer-row {
       display: flex;
@@ -153,6 +158,9 @@
     }
     .review-item .answer-row .val {
       font-weight: 700;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: embed;
     }
     .review-item .explanation {
       background: #fff;
@@ -162,6 +170,9 @@
       font-size: 0.9rem;
       color: #555;
       border-right: 3px solid #f7b731;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: embed;
     }
 
     .action-buttons {
@@ -195,13 +206,11 @@
 
   <div class="container" style="max-width: 900px;">
 
-    <!-- شاشة التحميل -->
     <div id="loadingScreen" class="loading-screen">
       <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
       <p class="mt-3">جاري تحميل النتيجة...</p>
     </div>
 
-    <!-- شاشة الخطأ -->
     <div id="errorScreen" style="display: none; text-align: center; padding: 60px 20px;">
       <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: #dc3545;"></i>
       <h3 class="mt-3">حدث خطأ</h3>
@@ -209,10 +218,8 @@
       <a href="exams.html" class="btn-action btn-primary-custom mt-3">العودة للامتحانات</a>
     </div>
 
-    <!-- محتوى النتيجة -->
     <div id="resultContent" style="display: none;">
 
-      <!-- الهيدر -->
       <div class="result-header">
         <h1 id="examTitle">نتيجة الامتحان</h1>
         <div class="score-circle">
@@ -222,7 +229,6 @@
         <div class="grade-badge" id="gradeBadge">—</div>
       </div>
 
-      <!-- الإحصائيات -->
       <div class="stats-grid">
         <div class="stat-box">
           <div class="num correct-color" id="correctCount">0</div>
@@ -242,13 +248,11 @@
         </div>
       </div>
 
-      <!-- المراجعة -->
       <div class="review-section">
         <h3><i class="fas fa-list-check"></i> مراجعة الإجابات</h3>
         <div id="reviewContainer"></div>
       </div>
 
-      <!-- الأزرار -->
       <div class="action-buttons">
         <a href="exams.html" class="btn-action btn-primary-custom">
           <i class="fas fa-list"></i> العودة للامتحانات
@@ -285,10 +289,8 @@
 
     async function loadResult(uid) {
       try {
-        // جرب تجيب النتيجة من Firebase الأول
         let result = await getExamResult(uid, examId);
         
-        // لو مش موجودة، جرب من localStorage
         if (!result) {
           const localResult = localStorage.getItem(`exam_result_${examId}`);
           if (localResult) result = JSON.parse(localResult);
@@ -299,7 +301,6 @@
           return;
         }
 
-        // جلب بيانات الامتحان
         const exam = await getExam(examId);
         
         renderResult(result, exam);
@@ -314,43 +315,35 @@
       document.getElementById('loadingScreen').style.display = 'none';
       document.getElementById('resultContent').style.display = 'block';
 
-      // العنوان
       document.getElementById('examTitle').textContent = exam?.title || result.examTitle || 'نتيجة الامتحان';
 
-      // النسبة
       const percentage = result.percentage || 0;
       const percentageEl = document.getElementById('percentage');
       percentageEl.textContent = percentage + '%';
       
-      // لون النسبة
       let color = '#dc3545';
       if (percentage >= 80) color = '#28a745';
       else if (percentage >= 50) color = '#ffb347';
       percentageEl.style.color = color;
 
-      // النص
       document.getElementById('scoreText').textContent = 
         `${result.correct} / ${result.total}`;
 
-      // التقدير
       const gradeBadge = document.getElementById('gradeBadge');
       gradeBadge.textContent = result.grade || '—';
       gradeBadge.style.background = color;
       gradeBadge.style.color = '#fff';
 
-      // الإحصائيات
       document.getElementById('correctCount').textContent = result.correct || 0;
       document.getElementById('wrongCount').textContent = result.wrong || 0;
       document.getElementById('unansweredCount').textContent = result.unanswered || 0;
       
-      // الوقت
       const timeSpent = result.timeSpent || 0;
       const mins = Math.floor(timeSpent / 60);
       const secs = timeSpent % 60;
       document.getElementById('timeSpent').textContent = 
         `${mins}:${String(secs).padStart(2, '0')}`;
 
-      // المراجعة
       const reviewContainer = document.getElementById('reviewContainer');
       reviewContainer.innerHTML = '';
 
@@ -367,7 +360,6 @@
             item.classList.add('wrong');
           }
 
-          // تنسيق الإجابات
           const studentAns = formatAnswer(detail.studentAnswer, exam, idx);
           const correctAns = formatAnswer(detail.correctAnswer, exam, idx);
 
@@ -407,9 +399,8 @@
     function formatAnswer(answer, exam, qIdx) {
       if (answer === undefined || answer === null || answer === '') return '';
       
-      // لو الرقم ده index في الخيارات
       if (typeof answer === 'number' && exam?.questions) {
-        return String(answer); // ممكن نحسنها لاحقاً
+        return String(answer);
       }
       
       return String(answer);
