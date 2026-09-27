@@ -14,19 +14,19 @@ export const QUESTION_TYPES = {
 // ===== حالة الامتحان =====
 export class ExamEngine {
   constructor(exam, questions, options = {}) {
-    this.exam = exam;                    // بيانات الامتحان (العنوان، المدة، إلخ)
-    this.questions = questions;          // قائمة الأسئلة
-    this.answers = {};                   // إجابات الطالب
-    this.currentIndex = 0;               // السؤال الحالي
-    this.startTime = null;               // وقت البدء
-    this.endTime = null;                 // وقت الانتهاء
-    this.timerInterval = null;           // مؤقت العد التنازلي
-    this.timeRemaining = (exam.duration || 30) * 60; // بالثواني
+    this.exam = exam;
+    this.questions = questions;
+    this.answers = {};
+    this.currentIndex = 0;
+    this.startTime = null;
+    this.endTime = null;
+    this.timerInterval = null;
+    this.timeRemaining = (exam.duration || 30) * 60;
     this.shuffleQuestions = options.shuffleQuestions !== false;
     this.shuffleOptions = options.shuffleOptions !== false;
-    this.onTick = options.onTick || (() => {});      // كل ثانية
-    this.onFinish = options.onFinish || (() => {});  // عند الانتهاء
-    this.onAnswer = options.onAnswer || (() => {});  // عند الإجابة
+    this.onTick = options.onTick || (() => {});
+    this.onFinish = options.onFinish || (() => {});
+    this.onAnswer = options.onAnswer || (() => {});
   }
 
   // ===== بدء الامتحان =====
@@ -38,11 +38,32 @@ export class ExamEngine {
       this.questions = this.shuffleArray([...this.questions]);
     }
     
-    // خلط الإجابات
+    // ✅ خلط الإجابات مع تحديث correctAnswer
     if (this.shuffleOptions) {
       this.questions = this.questions.map(q => {
-        if (q.type === QUESTION_TYPES.MCQ && q.options) {
-          return { ...q, options: this.shuffleArray([...q.options]) };
+        if (q.type === QUESTION_TYPES.MCQ && q.options && Array.isArray(q.options)) {
+          // نعمل مصفوفة من {option, originalIndex}
+          const optionsWithIndex = q.options.map((opt, idx) => ({
+            option: opt,
+            originalIndex: idx
+          }));
+          
+          // نخلط
+          const shuffled = this.shuffleArray([...optionsWithIndex]);
+          
+          // نستخرج الخيارات الجديدة
+          const newOptions = shuffled.map(o => o.option);
+          
+          // ✅ نلاقي مكان الإجابة الصحيحة الجديد
+          const newCorrectIndex = shuffled.findIndex(
+            o => o.originalIndex === Number(q.correctAnswer)
+          );
+          
+          return {
+            ...q,
+            options: newOptions,
+            correctAnswer: newCorrectIndex
+          };
         }
         return q;
       });
@@ -64,7 +85,6 @@ export class ExamEngine {
       }
     }, 1000);
     
-    // استدعاء أولي عشان يعرض الوقت فوراً
     this.onTick(this.timeRemaining);
   }
 
@@ -172,25 +192,24 @@ export class ExamEngine {
 
   // ===== التحقق من صحة الإجابة =====
   checkAnswer(question, answer) {
-    if (answer === undefined || answer === null) return false;
+    if (answer === undefined || answer === null || answer === '') return false;
     
     switch (question.type) {
       case QUESTION_TYPES.MCQ:
       case QUESTION_TYPES.TRUE_FALSE:
-        return String(answer) === String(question.correctAnswer);
+        // ✅ مقارنة رقمية دقيقة
+        return Number(answer) === Number(question.correctAnswer);
       
       case QUESTION_TYPES.FILL_BLANK:
-        // مقارنة بدون حساسية لحالة الأحرف
         return String(answer).trim().toLowerCase() === 
                String(question.correctAnswer).trim().toLowerCase();
       
       case QUESTION_TYPES.TRANSLATION:
-        // مقارنة تقريبية
         return String(answer).trim().toLowerCase() === 
                String(question.correctAnswer).trim().toLowerCase();
       
       default:
-        return String(answer) === String(question.correctAnswer);
+        return Number(answer) === Number(question.correctAnswer);
     }
   }
 
@@ -214,7 +233,7 @@ export class ExamEngine {
     return shuffled;
   }
 
-  // ===== تنسيق الوقت (MM:SS) =====
+  // ===== تنسيق الوقت =====
   formatTime(seconds) {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
