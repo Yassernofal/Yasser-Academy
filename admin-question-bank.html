@@ -135,6 +135,10 @@
       font-weight: 700;
       color: #0a1f44;
       margin-bottom: 12px;
+      /* إصلاح اتجاه النص الإنجليزي */
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: embed;
     }
     .question-card .q-options {
       display: flex;
@@ -142,6 +146,10 @@
       gap: 6px;
       font-size: 0.9rem;
       color: #555;
+      /* إصلاح اتجاه النص الإنجليزي */
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: embed;
     }
     .question-card .q-options .opt { padding: 6px 10px; border-radius: 8px; background: #f8f9fa; }
     .question-card .q-options .opt.correct {
@@ -205,6 +213,7 @@
       display: flex;
       gap: 10px;
       align-items: center;
+      direction: ltr;
     }
     .option-input-row input[type="radio"] {
       width: 20px;
@@ -212,7 +221,13 @@
       cursor: pointer;
       flex-shrink: 0;
     }
-    .option-input-row input[type="text"] { flex: 1; }
+    .option-input-row input[type="text"] { flex: 1; text-align: left; direction: ltr; }
+
+    /* إصلاح حقول الإدخال الإنجليزية */
+    #qText, #fillAnswer, #opt0, #opt1, #opt2, #opt3 {
+      direction: ltr;
+      text-align: left;
+    }
 
     @media (max-width: 768px) {
       .page-header { flex-direction: column; text-align: center; }
@@ -423,7 +438,7 @@
       
       <div class="alert alert-info">
         <strong>صيغة الملف:</strong>
-        <code style="display: block; margin-top: 8px; font-size: 0.85rem;">
+        <code style="display: block; margin-top: 8px; font-size: 0.85rem; direction: ltr; text-align: left;">
           question,option1,option2,option3,option4,correct_index,grade,topic,difficulty,explanation
         </code>
         <small>correct_index = 0 للأول، 1 للتاني، إلخ</small>
@@ -675,7 +690,7 @@
       let successCount = 0;
       let errorCount = 0;
 
-      for (let i = 1; i < lines.length; i++) { // نتخطى السطر الأول (العناوين)
+      for (let i = 1; i < lines.length; i++) {
         try {
           const parts = lines[i].split(',').map(p => p.trim().replace(/^"|"$/g, ''));
           if (parts.length < 7) continue;
