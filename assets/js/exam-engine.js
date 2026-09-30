@@ -1,7 +1,6 @@
 // ===== assets/js/exam-engine.js =====
 // محرك الامتحانات — يدير الأسئلة، الوقت، التصحيح
 
-// ===== أنواع الأسئلة المدعومة =====
 export const QUESTION_TYPES = {
   MCQ: 'mcq',
   TRUE_FALSE: 'true_false',
@@ -11,11 +10,26 @@ export const QUESTION_TYPES = {
   TRANSLATION: 'translation'
 };
 
-// ===== حالة الامتحان =====
+// ===== دالة اختيار أسئلة عشوائية =====
+export function pickRandomQuestions(bank, count) {
+  const shuffled = [...bank];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled.slice(0, count);
+}
+
 export class ExamEngine {
   constructor(exam, questions, options = {}) {
     this.exam = exam;
-    this.questions = questions;
+    // ✅ لو عدد الأسئلة أقل من عدد الأسئلة المطلوبة، نستخدم كل اللي متاح
+    const requestedCount = exam.questionCount || questions.length;
+    const actualCount = Math.min(requestedCount, questions.length);
+    
+    // ✅ اختيار عشوائي
+    this.questions = pickRandomQuestions(questions, actualCount);
+    
     this.answers = {};
     this.currentIndex = 0;
     this.startTime = null;
@@ -29,32 +43,26 @@ export class ExamEngine {
     this.onAnswer = options.onAnswer || (() => {});
   }
 
-  // ===== بدء الامتحان =====
   start() {
     this.startTime = new Date();
     
-    // خلط الأسئلة
+    // خلط الأسئلة (لو مش مختلطة بالفعل)
     if (this.shuffleQuestions) {
       this.questions = this.shuffleArray([...this.questions]);
     }
     
-    // ✅ خلط الإجابات مع تحديث correctAnswer
+    // خلط الإجابات مع تحديث correctAnswer
     if (this.shuffleOptions) {
       this.questions = this.questions.map(q => {
         if (q.type === QUESTION_TYPES.MCQ && q.options && Array.isArray(q.options)) {
-          // نعمل مصفوفة من {option, originalIndex}
           const optionsWithIndex = q.options.map((opt, idx) => ({
             option: opt,
             originalIndex: idx
           }));
           
-          // نخلط
           const shuffled = this.shuffleArray([...optionsWithIndex]);
-          
-          // نستخرج الخيارات الجديدة
           const newOptions = shuffled.map(o => o.option);
           
-          // ✅ نلاقي مكان الإجابة الصحيحة الجديد
           const newCorrectIndex = shuffled.findIndex(
             o => o.originalIndex === Number(q.correctAnswer)
           );
@@ -69,12 +77,10 @@ export class ExamEngine {
       });
     }
     
-    // بدء المؤقت
     this.startTimer();
-    console.log('✅ بدأ الامتحان:', this.exam.title);
+    console.log('✅ بدأ الامتحان:', this.exam.title, '| عدد الأسئلة:', this.questions.length);
   }
 
-  // ===== بدء المؤقت =====
   startTimer() {
     this.timerInterval = setInterval(() => {
       this.timeRemaining--;
@@ -88,7 +94,6 @@ export class ExamEngine {
     this.onTick(this.timeRemaining);
   }
 
-  // ===== إيقاف المؤقت =====
   stopTimer() {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
@@ -96,14 +101,11 @@ export class ExamEngine {
     }
   }
 
-  // ===== تسجيل إجابة =====
   answer(questionId, answer) {
     this.answers[questionId] = answer;
     this.onAnswer(questionId, answer);
-    console.log('✅ تم تسجيل الإجابة:', questionId, answer);
   }
 
-  // ===== الانتقال للسؤال التالي =====
   next() {
     if (this.currentIndex < this.questions.length - 1) {
       this.currentIndex++;
@@ -112,7 +114,6 @@ export class ExamEngine {
     return false;
   }
 
-  // ===== الرجوع للسؤال السابق =====
   prev() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
@@ -121,7 +122,6 @@ export class ExamEngine {
     return false;
   }
 
-  // ===== الانتقال لسؤال محدد =====
   goTo(index) {
     if (index >= 0 && index < this.questions.length) {
       this.currentIndex = index;
@@ -130,7 +130,6 @@ export class ExamEngine {
     return false;
   }
 
-  // ===== إنهاء الامتحان =====
   finish(reason = 'manual') {
     this.stopTimer();
     this.endTime = new Date();
@@ -147,7 +146,6 @@ export class ExamEngine {
     return result;
   }
 
-  // ===== حساب النتيجة =====
   calculateScore() {
     let correct = 0;
     let wrong = 0;
@@ -190,14 +188,12 @@ export class ExamEngine {
     };
   }
 
-  // ===== التحقق من صحة الإجابة =====
   checkAnswer(question, answer) {
     if (answer === undefined || answer === null || answer === '') return false;
     
     switch (question.type) {
       case QUESTION_TYPES.MCQ:
       case QUESTION_TYPES.TRUE_FALSE:
-        // ✅ مقارنة رقمية دقيقة
         return Number(answer) === Number(question.correctAnswer);
       
       case QUESTION_TYPES.FILL_BLANK:
@@ -213,7 +209,6 @@ export class ExamEngine {
     }
   }
 
-  // ===== تحديد التقدير =====
   getGrade(percentage) {
     if (percentage >= 90) return 'ممتاز';
     if (percentage >= 80) return 'جيد جداً';
@@ -223,7 +218,6 @@ export class ExamEngine {
     return 'راسب';
   }
 
-  // ===== خلط مصفوفة =====
   shuffleArray(arr) {
     const shuffled = [...arr];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -233,24 +227,20 @@ export class ExamEngine {
     return shuffled;
   }
 
-  // ===== تنسيق الوقت =====
   formatTime(seconds) {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   }
 
-  // ===== الحصول على السؤال الحالي =====
   getCurrentQuestion() {
     return this.questions[this.currentIndex];
   }
 
-  // ===== الحصول على كل الأسئلة =====
   getAllQuestions() {
     return this.questions;
   }
 
-  // ===== الحصول على التقدم =====
   getProgress() {
     const answered = Object.keys(this.answers).length;
     return {
@@ -260,11 +250,9 @@ export class ExamEngine {
     };
   }
 
-  // ===== تنظيف =====
   destroy() {
     this.stopTimer();
-    console.log('✅ تم تنظيف محرك الامتحان');
   }
 }
 
-console.log('✅ Exam Engine loaded');
+console.log('✅ Exam Engine loaded with random selection');
