@@ -96,6 +96,7 @@
     .badge-unit { background: #e3f2fd; color: #1565c0; }
     .badge-comprehensive { background: #fff3e0; color: #ef6c00; }
     .badge-level { background: #f3e5f5; color: #6a1b9a; }
+    .badge-practice { background: #e8f5e9; color: #2e7d32; }
 
     .exam-card h5 { color: #0a1f44; font-weight: 700; margin-bottom: 15px; }
 
@@ -108,6 +109,17 @@
       font-size: 0.9rem;
     }
     .exam-info span { display: flex; align-items: center; gap: 5px; }
+
+    .random-badge {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
 
     .btn-start-exam {
       background: #0a1f44;
@@ -177,6 +189,7 @@
       <button class="filter-tab" onclick="filterExams('unit', this)">امتحانات الوحدات</button>
       <button class="filter-tab" onclick="filterExams('comprehensive', this)">امتحانات شاملة</button>
       <button class="filter-tab" onclick="filterExams('level', this)">امتحانات المستوى</button>
+      <button class="filter-tab" onclick="filterExams('practice', this)">امتحانات تدريبية</button>
     </div>
 
     <div id="examsContainer" class="row g-4"></div>
@@ -257,13 +270,28 @@
         return;
       }
 
-      const typeLabels = { unit: 'امتحان وحدة', comprehensive: 'امتحان شامل', level: 'امتحان مستوى' };
+      const typeLabels = { 
+        unit: 'امتحان وحدة', 
+        comprehensive: 'امتحان شامل', 
+        level: 'امتحان مستوى',
+        practice: 'امتحان تدريبي'
+      };
 
       exams.forEach(exam => {
         const result = studentResults[exam.id];
         const isDone = !!result;
         const typeBadge = exam.type || 'comprehensive';
-        const qCount = exam.questions ? exam.questions.length : 0;
+        
+        // ✅ إصلاح عدد الأسئلة - يدعم النظام العشوائي
+        let qCount = 0;
+        if (exam.isRandom) {
+          qCount = exam.questionCount || 0;
+        } else if (exam.questions && Array.isArray(exam.questions)) {
+          qCount = exam.questions.length;
+        } else if (exam.questionCount) {
+          qCount = exam.questionCount;
+        }
+        
         const duration = exam.duration || 30;
 
         const card = document.createElement('div');
@@ -271,6 +299,7 @@
         card.innerHTML = `
           <div class="exam-card">
             <span class="exam-type-badge badge-${typeBadge}">${typeLabels[typeBadge] || 'امتحان'}</span>
+            ${exam.isRandom ? '<span class="random-badge"><i class="fas fa-random"></i> أسئلة عشوائية</span>' : ''}
             <h5>${exam.title || 'امتحان بدون عنوان'}</h5>
             
             ${isDone ? `<div class="score-badge"><i class="fas fa-check-circle" style="color: #28a745;"></i> نتيجتك: ${result.percentage}% — ${result.grade}</div>` : ''}
@@ -297,7 +326,7 @@
       renderExams(filtered);
     };
 
-    console.log('✅ Exams page loaded');
+    console.log('✅ Exams page loaded with random support');
   </script>
 
 </body>
