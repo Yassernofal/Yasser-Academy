@@ -127,9 +127,25 @@
     .badge-grade { background: #f3e5f5; color: #6a1b9a; }
     .badge-unit { background: #e8eaf6; color: #3949ab; }
     .badge-topic { background: #fff8e1; color: #b8860b; }
+    .badge-passage { background: #fce4ec; color: #c2185b; }
     .badge-diff-easy { background: #e8f5e9; color: #2e7d32; }
     .badge-diff-medium { background: #fff3e0; color: #ef6c00; }
     .badge-diff-hard { background: #ffebee; color: #c62828; }
+
+    .question-card .q-passage {
+      background: #f8f9fa;
+      border-right: 4px solid #f7b731;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: #555;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: embed;
+      max-height: 100px;
+      overflow-y: auto;
+    }
 
     .question-card .q-text {
       font-size: 1.1rem;
@@ -170,13 +186,8 @@
     }
     .btn-delete-q:hover { transform: scale(1.15); }
 
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: #666;
-    }
+    .empty-state { text-align: center; padding: 60px 20px; color: #666; }
     .empty-state i { font-size: 4rem; color: #ccc; margin-bottom: 20px; }
-
     .loading-screen { text-align: center; padding: 80px 20px; }
 
     .modal-overlay {
@@ -221,7 +232,7 @@
     }
     .option-input-row input[type="text"] { flex: 1; text-align: left; direction: ltr; }
 
-    #qText, #fillAnswer, #opt0, #opt1, #opt2, #opt3 {
+    #qText, #fillAnswer, #opt0, #opt1, #opt2, #opt3, #qPassage {
       direction: ltr;
       text-align: left;
     }
@@ -280,7 +291,6 @@
         </div>
       </div>
 
-      <!-- الفلاتر -->
       <div class="filters-bar">
         <div class="filter-group">
           <label>الصف</label>
@@ -321,7 +331,6 @@
         </div>
       </div>
 
-      <!-- قائمة الأسئلة -->
       <div id="questionsContainer"></div>
 
       <div id="emptyState" class="empty-state" style="display: none;">
@@ -337,6 +346,12 @@
   <div class="modal-overlay" id="addModal">
     <div class="modal-content-custom">
       <h3><i class="fas fa-plus-circle"></i> إضافة سؤال جديد</h3>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">النص / Passage (اختياري - للأسئلة القراءة)</label>
+        <textarea class="form-control" id="qPassage" rows="4" placeholder="الصق النص هنا (اختياري)..."></textarea>
+        <small class="text-muted">اتركه فاضي لو السؤال مش محتاج نص</small>
+      </div>
       
       <div class="mb-3">
         <label class="form-label fw-bold">نص السؤال</label>
@@ -398,7 +413,6 @@
         </select>
       </div>
 
-      <!-- MCQ Options -->
       <div id="mcqSection">
         <label class="form-label fw-bold">الخيارات (اختر الإجابة الصحيحة)</label>
         <div class="options-list">
@@ -421,7 +435,6 @@
         </div>
       </div>
 
-      <!-- True/False -->
       <div id="tfSection" style="display: none;">
         <label class="form-label fw-bold">الإجابة الصحيحة</label>
         <select class="form-select" id="tfAnswer">
@@ -430,7 +443,6 @@
         </select>
       </div>
 
-      <!-- Fill in blank -->
       <div id="fillSection" style="display: none;">
         <label class="form-label fw-bold">الإجابة الصحيحة</label>
         <input type="text" class="form-control" id="fillAnswer" placeholder="الإجابة..." />
@@ -454,15 +466,18 @@
 
   <!-- Modal: استيراد CSV -->
   <div class="modal-overlay" id="importModal">
-    <div class="modal-content-custom" style="max-width: 600px;">
+    <div class="modal-content-custom" style="max-width: 700px;">
       <h3><i class="fas fa-file-import"></i> استيراد أسئلة من CSV</h3>
       
       <div class="alert alert-info">
         <strong>صيغة الملف:</strong>
-        <code style="display: block; margin-top: 8px; font-size: 0.8rem; direction: ltr; text-align: left;">
-          question,option1,option2,option3,option4,correct_index,grade,unit,topic,difficulty,explanation
+        <code style="display: block; margin-top: 8px; font-size: 0.75rem; direction: ltr; text-align: left; padding: 8px; background: #fff; border-radius: 8px;">
+          passage,question,option1,option2,option3,option4,correct_index,grade,unit,topic,difficulty,explanation
         </code>
-        <small>correct_index = 0 للأول، 1 للتاني، إلخ</small>
+        <small class="d-block mt-2">
+          <strong>passage</strong>: اتركه فاضي "" لو السؤال مش محتاج نص<br>
+          <strong>correct_index</strong>: 0 للأول، 1 للتاني، إلخ
+        </small>
       </div>
 
       <div class="mb-3">
@@ -494,7 +509,6 @@
       signOut(auth).then(() => window.location.href = 'index.html');
     };
 
-    // ===== التحقق من صلاحيات المدير =====
     onAuthStateChanged(auth, async (user) => {
       if (!user) {
         window.location.href = 'login.html';
@@ -517,7 +531,6 @@
       }
     });
 
-    // ===== تحميل الأسئلة =====
     window.loadQuestions = async function() {
       try {
         const grade = document.getElementById('filterGrade').value;
@@ -547,7 +560,6 @@
       }
     };
 
-    // ===== عرض الأسئلة =====
     function renderQuestions() {
       const container = document.getElementById('questionsContainer');
       container.innerHTML = '';
@@ -595,6 +607,14 @@
           optionsHtml = `<div class="q-options"><div class="opt correct">الإجابة: ${q.correctAnswer} ✅</div></div>`;
         }
 
+        const passageHtml = q.passage && q.passage.trim() 
+          ? `<div class="q-passage"><strong>📖 النص:</strong><br>${q.passage}</div>` 
+          : '';
+
+        const passageBadge = q.passage && q.passage.trim()
+          ? `<span class="q-badge badge-passage">📖 به نص</span>`
+          : '';
+
         card.innerHTML = `
           <button class="btn-delete-q" onclick="deleteQuestion('${q.id}')" title="حذف">
             <i class="fas fa-trash"></i>
@@ -605,7 +625,9 @@
             <span class="q-badge badge-unit">${unitLabels[q.unit] || q.unit || '—'}</span>
             <span class="q-badge badge-topic">${topicLabels[q.topic] || q.topic || '—'}</span>
             <span class="q-badge badge-diff-${q.difficulty || 'medium'}">${diffLabels[q.difficulty] || 'متوسط'}</span>
+            ${passageBadge}
           </div>
+          ${passageHtml}
           <div class="q-text">${q.text}</div>
           ${optionsHtml}
         `;
@@ -613,13 +635,11 @@
       });
     }
 
-    // ===== Modal إضافة سؤال =====
     window.openAddModal = () => document.getElementById('addModal').classList.add('active');
     window.closeAddModal = () => document.getElementById('addModal').classList.remove('active');
     window.openImportModal = () => document.getElementById('importModal').classList.add('active');
     window.closeImportModal = () => document.getElementById('importModal').classList.remove('active');
 
-    // ===== تغيير نوع السؤال =====
     window.onTypeChange = function() {
       const type = document.getElementById('qType').value;
       document.getElementById('mcqSection').style.display = type === 'mcq' ? 'block' : 'none';
@@ -627,8 +647,8 @@
       document.getElementById('fillSection').style.display = type === 'fill_blank' ? 'block' : 'none';
     };
 
-    // ===== حفظ سؤال =====
     window.saveQuestion = async function() {
+      const passage = document.getElementById('qPassage').value.trim();
       const text = document.getElementById('qText').value.trim();
       const grade = document.getElementById('qGrade').value;
       const unit = document.getElementById('qUnit').value;
@@ -642,7 +662,7 @@
         return;
       }
 
-      let questionData = { text, grade, unit, type, topic, difficulty, explanation };
+      let questionData = { text, passage, grade, unit, type, topic, difficulty, explanation };
 
       if (type === 'mcq') {
         const options = [];
@@ -680,6 +700,7 @@
     };
 
     function resetForm() {
+      document.getElementById('qPassage').value = '';
       document.getElementById('qText').value = '';
       document.getElementById('qExplanation').value = '';
       for (let i = 0; i < 4; i++) document.getElementById(`opt${i}`).value = '';
@@ -687,7 +708,6 @@
       document.getElementById('fillAnswer').value = '';
     }
 
-    // ===== حذف سؤال =====
     window.deleteQuestion = async function(id) {
       if (!confirm('هل أنت متأكد من حذف هذا السؤال؟')) return;
       try {
@@ -699,7 +719,7 @@
       }
     };
 
-    // ===== استيراد CSV (مع دعم عمود unit) =====
+    // ===== استيراد CSV مع دعم passage =====
     window.importCSV = async function() {
       const fileInput = document.getElementById('csvFile');
       if (!fileInput.files.length) {
@@ -721,19 +741,19 @@
 
       for (let i = 1; i < lines.length; i++) {
         try {
-          // تقسيم مع دعم علامات التنصيص
           const parts = parseCSVLine(lines[i]);
-          if (parts.length < 7) continue;
+          if (parts.length < 8) continue;
           
           const questionData = {
-            text: parts[0],
-            options: [parts[1], parts[2], parts[3], parts[4]],
-            correctAnswer: parseInt(parts[5]),
-            grade: parts[6],
-            unit: parts[7] || 'unit1',
-            topic: parts[8] || 'grammar',
-            difficulty: parts[9] || 'medium',
-            explanation: parts[10] || '',
+            passage: parts[0] || '',
+            text: parts[1],
+            options: [parts[2], parts[3], parts[4], parts[5]],
+            correctAnswer: parseInt(parts[6]),
+            grade: parts[7],
+            unit: parts[8] || 'unit1',
+            topic: parts[9] || 'grammar',
+            difficulty: parts[10] || 'medium',
+            explanation: parts[11] || '',
             type: 'mcq',
             createdAt: new Date().toISOString()
           };
@@ -753,7 +773,6 @@
       await loadQuestions();
     };
 
-    // ===== دالة تقسيم CSV تدعم علامات التنصيص =====
     function parseCSVLine(line) {
       const result = [];
       let current = '';
@@ -776,7 +795,7 @@
       return result;
     }
 
-    console.log('✅ Admin Question Bank loaded with unit support');
+    console.log('✅ Admin Question Bank loaded with passage support');
   </script>
 
 </body>

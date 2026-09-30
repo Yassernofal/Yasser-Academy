@@ -102,13 +102,50 @@
       min-height: 400px;
     }
 
+    /* ✅ صندوق النص (Passage) */
+    .passage-box {
+      background: #f8f9fa;
+      border-right: 5px solid #f7b731;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #333;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: embed;
+      max-height: 350px;
+      overflow-y: auto;
+    }
+
+    .passage-box::-webkit-scrollbar {
+      width: 8px;
+    }
+    .passage-box::-webkit-scrollbar-track {
+      background: #e9ecef;
+      border-radius: 10px;
+    }
+    .passage-box::-webkit-scrollbar-thumb {
+      background: #f7b731;
+      border-radius: 10px;
+    }
+
+    .passage-title {
+      font-weight: 700;
+      color: #0a1f44;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      direction: rtl;
+      text-align: right;
+    }
+
     .question-number {
       color: #666;
       font-size: 0.9rem;
       margin-bottom: 10px;
     }
 
-    /* ✅ إصلاح اتجاه نص السؤال الإنجليزي */
     .question-text {
       font-size: 1.4rem;
       font-weight: 700;
@@ -120,7 +157,6 @@
       unicode-bidi: embed;
     }
 
-    /* ✅ إصلاح اتجاه الخيارات */
     .option-item {
       background: #f8f9fa;
       border: 2px solid #e0e0e0;
@@ -291,6 +327,7 @@
       .question-container { padding: 20px; }
       .nav-buttons { flex-direction: column; }
       .btn-nav { width: 100%; }
+      .passage-box { font-size: 0.9rem; max-height: 250px; }
     }
   </style>
 </head>
@@ -330,6 +367,13 @@
 
       <div class="question-container">
         <div class="question-number" id="questionNumber">السؤال 1 من 5</div>
+
+        <!-- ✅ صندوق النص (Passage) -->
+        <div id="passageContainer" style="display: none;">
+          <div class="passage-title"><i class="fas fa-book-open"></i> اقرأ النص التالي ثم أجب:</div>
+          <div class="passage-box" id="passageText"></div>
+        </div>
+
         <div class="question-text" id="questionText">جاري التحميل...</div>
         <div id="optionsContainer"></div>
 
@@ -443,6 +487,17 @@
 
       document.getElementById('questionNumber').textContent = 
         `السؤال ${engine.currentIndex + 1} من ${engine.questions.length}`;
+
+      // ✅ عرض النص لو موجود
+      const passageContainer = document.getElementById('passageContainer');
+      const passageText = document.getElementById('passageText');
+      
+      if (q.passage && q.passage.trim()) {
+        passageText.textContent = q.passage;
+        passageContainer.style.display = 'block';
+      } else {
+        passageContainer.style.display = 'none';
+      }
 
       document.getElementById('questionText').textContent = q.text;
 
@@ -605,7 +660,7 @@
       }
     });
 
-    console.log('✅ Exam page loaded');
+    console.log('✅ Exam page loaded with passage support');
   </script>
 
 </body>

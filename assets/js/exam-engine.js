@@ -23,11 +23,9 @@ export function pickRandomQuestions(bank, count) {
 export class ExamEngine {
   constructor(exam, questions, options = {}) {
     this.exam = exam;
-    // ✅ لو عدد الأسئلة أقل من عدد الأسئلة المطلوبة، نستخدم كل اللي متاح
     const requestedCount = exam.questionCount || questions.length;
     const actualCount = Math.min(requestedCount, questions.length);
     
-    // ✅ اختيار عشوائي
     this.questions = pickRandomQuestions(questions, actualCount);
     
     this.answers = {};
@@ -46,12 +44,10 @@ export class ExamEngine {
   start() {
     this.startTime = new Date();
     
-    // خلط الأسئلة (لو مش مختلطة بالفعل)
     if (this.shuffleQuestions) {
       this.questions = this.shuffleArray([...this.questions]);
     }
     
-    // خلط الإجابات مع تحديث correctAnswer
     if (this.shuffleOptions) {
       this.questions = this.questions.map(q => {
         if (q.type === QUESTION_TYPES.MCQ && q.options && Array.isArray(q.options)) {
@@ -167,6 +163,7 @@ export class ExamEngine {
       details.push({
         questionId: q.id,
         questionText: q.text,
+        passage: q.passage || '',
         studentAnswer,
         correctAnswer: q.correctAnswer,
         isCorrect,
@@ -255,4 +252,4 @@ export class ExamEngine {
   }
 }
 
-console.log('✅ Exam Engine loaded with random selection');
+console.log('✅ Exam Engine loaded with random selection & passage support');
