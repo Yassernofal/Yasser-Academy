@@ -2,7 +2,7 @@
 // إدارة حفظ وقراءة بيانات الامتحانات من Firebase
 
 import { database } from '../../firebase-config.js';
-import { ref, get, set, update, push, query, orderByChild, equalTo } from "firebase/database";
+import { ref, get, set, update, push } from "firebase/database";
 
 // ===== جلب امتحان واحد بالمعرف =====
 export async function getExam(examId) {
@@ -25,24 +25,68 @@ export async function getExam(examId) {
 export async function getExamQuestions(examId) {
   try {
     const exam = await getExam(examId);
-    if (!exam || !exam.questions) {
-      console.warn('⚠️ الامتحان ليس به أسئلة');
+    if (!exam) {
+      console.warn('⚠️ الامتحان غير موجود');
+      return [];
+    }
+
+    // ✅ الحالة 1: امتحان عشوائي (نظام الوحدات الجديد)
+    if (exam.isRandom) {
+      console.log('🎲 امتحان عشوائي - جلب أسئلة من بنك الوحدة');
+      return await getQuestionsFromBank(exam.grade, exam.unit);
+    }
+
+    // ✅ الحالة 2: امتحان ثابت (نظام الأسئلة المحددة)
+    if (exam.questions && Array.isArray(exam.questions) && exam.questions.length > 0) {
+      console.log('📋 امتحان ثابت - جلب الأسئلة المحددة');
+      const questions = [];
+      for (const qId of exam.questions) {
+        const qRef = ref(database, `questionBank/${qId}`);
+        const qSnapshot = await get(qRef);
+        
+        if (qSnapshot.exists()) {
+          questions.push({ id: qId, ...qSnapshot.val() });
+        }
+      }
+      return questions;
+    }
+
+    console.warn('⚠️ الامتحان ليس به أسئلة');
+    return [];
+  } catch (error) {
+    console.error('❌ خطأ في جلب أسئلة الامتحان:', error);
+    return [];
+  }
+}
+
+// ===== جلب الأسئلة من بنك الأسئلة حسب الصف والوحدة =====
+export async function getQuestionsFromBank(grade, unit) {
+  try {
+    const qbRef = ref(database, 'questionBank');
+    const snapshot = await get(qbRef);
+    
+    if (!snapshot.exists()) {
+      console.warn('⚠️ بنك الأسئلة فارغ');
       return [];
     }
 
     const questions = [];
-    for (const qId of exam.questions) {
-      const qRef = ref(database, `questionBank/${qId}`);
-      const qSnapshot = await get(qRef);
+    snapshot.forEach(child => {
+      const q = { id: child.key, ...child.val() };
       
-      if (qSnapshot.exists()) {
-        questions.push({ id: qId, ...qSnapshot.val() });
-      }
-    }
-    
+      // فلترة حسب الصف
+      if (grade && q.grade !== grade) return;
+      
+      // فلترة حسب الوحدة (إلا لو شامل)
+      if (unit && unit !== 'comprehensive' && q.unit !== unit) return;
+      
+      questions.push(q);
+    });
+
+    console.log(`✅ تم جلب ${questions.length} سؤال من البنك (${grade} - ${unit})`);
     return questions;
   } catch (error) {
-    console.error('❌ خطأ في جلب أسئلة الامتحان:', error);
+    console.error('❌ خطأ في جلب الأسئلة من البنك:', error);
     return [];
   }
 }
@@ -188,31 +232,6 @@ export async function saveQuestion(questionData) {
   }
 }
 
-// ===== جلب بنك الأسئلة حسب الصف = (للمدير) =====
-export async function getQuestionBank(grade, topic = null) {
-  try {
-    const qbRef = ref(database, 'questionBank');
-    const snapshot = await get(qbRef);
-    
-    if (!snapshot.exists()) return [];
-    
-    const questions = [];
-    snapshot.forEach(child => {
-      const q = { id: child.key, ...child.val() };
-      if (q.grade === grade) {
-        if (!topic || q.topic === topic) {
-          questions.push(q);
-        }
-      }
-    });
-    
-    return questions;
-  } catch (error) {
-    console.error('❌ خطأ في جلب بنك الأسئلة:', error);
-    return [];
-  }
-}
-
 // ===== حذف امتحان (للمدير) =====
 export async function deleteExam(examId) {
   try {
@@ -274,4 +293,4 @@ export async function getExamStats(examId) {
   }
 }
 
-console.log('✅ Exam Storage loaded');
+console.log('✅ Exam Storage loaded with bank support');
