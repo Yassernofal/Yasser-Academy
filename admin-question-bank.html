@@ -125,6 +125,7 @@
     .badge-tf { background: #e8f5e9; color: #2e7d32; }
     .badge-fill { background: #fff3e0; color: #ef6c00; }
     .badge-grade { background: #f3e5f5; color: #6a1b9a; }
+    .badge-unit { background: #e8eaf6; color: #3949ab; }
     .badge-topic { background: #fff8e1; color: #b8860b; }
     .badge-diff-easy { background: #e8f5e9; color: #2e7d32; }
     .badge-diff-medium { background: #fff3e0; color: #ef6c00; }
@@ -135,7 +136,6 @@
       font-weight: 700;
       color: #0a1f44;
       margin-bottom: 12px;
-      /* إصلاح اتجاه النص الإنجليزي */
       direction: ltr;
       text-align: left;
       unicode-bidi: embed;
@@ -146,7 +146,6 @@
       gap: 6px;
       font-size: 0.9rem;
       color: #555;
-      /* إصلاح اتجاه النص الإنجليزي */
       direction: ltr;
       text-align: left;
       unicode-bidi: embed;
@@ -180,7 +179,6 @@
 
     .loading-screen { text-align: center; padding: 80px 20px; }
 
-    /* Modal */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -223,7 +221,6 @@
     }
     .option-input-row input[type="text"] { flex: 1; text-align: left; direction: ltr; }
 
-    /* إصلاح حقول الإدخال الإنجليزية */
     #qText, #fillAnswer, #opt0, #opt1, #opt2, #opt3 {
       direction: ltr;
       text-align: left;
@@ -298,6 +295,18 @@
           </select>
         </div>
         <div class="filter-group">
+          <label>الوحدة</label>
+          <select class="form-select" id="filterUnit" onchange="loadQuestions()">
+            <option value="">كل الوحدات</option>
+            <option value="unit1">الوحدة الأولى</option>
+            <option value="unit2">الوحدة الثانية</option>
+            <option value="unit3">الوحدة الثالثة</option>
+            <option value="unit4">الوحدة الرابعة</option>
+            <option value="unit5">الوحدة الخامسة</option>
+            <option value="unit6">الوحدة السادسة</option>
+          </select>
+        </div>
+        <div class="filter-group">
           <label>نوع السؤال</label>
           <select class="form-select" id="filterType" onchange="loadQuestions()">
             <option value="">كل الأنواع</option>
@@ -347,6 +356,20 @@
           </select>
         </div>
         <div class="col-md-6">
+          <label class="form-label fw-bold">الوحدة</label>
+          <select class="form-select" id="qUnit">
+            <option value="unit1">الوحدة الأولى</option>
+            <option value="unit2">الوحدة الثانية</option>
+            <option value="unit3">الوحدة الثالثة</option>
+            <option value="unit4">الوحدة الرابعة</option>
+            <option value="unit5">الوحدة الخامسة</option>
+            <option value="unit6">الوحدة السادسة</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
           <label class="form-label fw-bold">نوع السؤال</label>
           <select class="form-select" id="qType" onchange="onTypeChange()">
             <option value="mcq">اختيار من متعدد</option>
@@ -354,9 +377,6 @@
             <option value="fill_blank">إكمال الفراغ</option>
           </select>
         </div>
-      </div>
-
-      <div class="row g-3 mb-3">
         <div class="col-md-6">
           <label class="form-label fw-bold">الموضوع</label>
           <select class="form-select" id="qTopic">
@@ -367,14 +387,15 @@
             <option value="translation">ترجمة</option>
           </select>
         </div>
-        <div class="col-md-6">
-          <label class="form-label fw-bold">مستوى الصعوبة</label>
-          <select class="form-select" id="qDifficulty">
-            <option value="easy">سهل</option>
-            <option value="medium">متوسط</option>
-            <option value="hard">صعب</option>
-          </select>
-        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">مستوى الصعوبة</label>
+        <select class="form-select" id="qDifficulty">
+          <option value="easy">سهل</option>
+          <option value="medium">متوسط</option>
+          <option value="hard">صعب</option>
+        </select>
       </div>
 
       <!-- MCQ Options -->
@@ -438,8 +459,8 @@
       
       <div class="alert alert-info">
         <strong>صيغة الملف:</strong>
-        <code style="display: block; margin-top: 8px; font-size: 0.85rem; direction: ltr; text-align: left;">
-          question,option1,option2,option3,option4,correct_index,grade,topic,difficulty,explanation
+        <code style="display: block; margin-top: 8px; font-size: 0.8rem; direction: ltr; text-align: left;">
+          question,option1,option2,option3,option4,correct_index,grade,unit,topic,difficulty,explanation
         </code>
         <small>correct_index = 0 للأول، 1 للتاني، إلخ</small>
       </div>
@@ -500,6 +521,7 @@
     window.loadQuestions = async function() {
       try {
         const grade = document.getElementById('filterGrade').value;
+        const unit = document.getElementById('filterUnit').value;
         const type = document.getElementById('filterType').value;
 
         const qbRef = ref(database, 'questionBank');
@@ -511,6 +533,7 @@
           snapshot.forEach(child => {
             const q = { id: child.key, ...child.val() };
             if (grade && q.grade !== grade) return;
+            if (unit && q.unit !== unit) return;
             if (type && q.type !== type) return;
             currentQuestions.push(q);
           });
@@ -538,6 +561,10 @@
       const gradeLabels = {
         prep1: 'الأول الإعدادي', prep2: 'الثاني الإعدادي', prep3: 'الثالث الإعدادي',
         sec1: 'الأول الثانوي', sec2: 'الثاني الثانوي', sec3: 'الثالث الثانوي'
+      };
+      const unitLabels = {
+        unit1: 'الوحدة الأولى', unit2: 'الوحدة الثانية', unit3: 'الوحدة الثالثة',
+        unit4: 'الوحدة الرابعة', unit5: 'الوحدة الخامسة', unit6: 'الوحدة السادسة'
       };
       const topicLabels = {
         grammar: 'قواعد', vocabulary: 'مفردات', reading: 'قراءة',
@@ -575,6 +602,7 @@
           <div class="q-meta">
             <span class="q-badge badge-mcq">${typeLabels[q.type] || q.type}</span>
             <span class="q-badge badge-grade">${gradeLabels[q.grade] || q.grade}</span>
+            <span class="q-badge badge-unit">${unitLabels[q.unit] || q.unit || '—'}</span>
             <span class="q-badge badge-topic">${topicLabels[q.topic] || q.topic || '—'}</span>
             <span class="q-badge badge-diff-${q.difficulty || 'medium'}">${diffLabels[q.difficulty] || 'متوسط'}</span>
           </div>
@@ -603,6 +631,7 @@
     window.saveQuestion = async function() {
       const text = document.getElementById('qText').value.trim();
       const grade = document.getElementById('qGrade').value;
+      const unit = document.getElementById('qUnit').value;
       const type = document.getElementById('qType').value;
       const topic = document.getElementById('qTopic').value;
       const difficulty = document.getElementById('qDifficulty').value;
@@ -613,7 +642,7 @@
         return;
       }
 
-      let questionData = { text, grade, type, topic, difficulty, explanation };
+      let questionData = { text, grade, unit, type, topic, difficulty, explanation };
 
       if (type === 'mcq') {
         const options = [];
@@ -670,7 +699,7 @@
       }
     };
 
-    // ===== استيراد CSV =====
+    // ===== استيراد CSV (مع دعم عمود unit) =====
     window.importCSV = async function() {
       const fileInput = document.getElementById('csvFile');
       if (!fileInput.files.length) {
@@ -692,7 +721,8 @@
 
       for (let i = 1; i < lines.length; i++) {
         try {
-          const parts = lines[i].split(',').map(p => p.trim().replace(/^"|"$/g, ''));
+          // تقسيم مع دعم علامات التنصيص
+          const parts = parseCSVLine(lines[i]);
           if (parts.length < 7) continue;
           
           const questionData = {
@@ -700,10 +730,11 @@
             options: [parts[1], parts[2], parts[3], parts[4]],
             correctAnswer: parseInt(parts[5]),
             grade: parts[6],
+            unit: parts[7] || 'unit1',
+            topic: parts[8] || 'grammar',
+            difficulty: parts[9] || 'medium',
+            explanation: parts[10] || '',
             type: 'mcq',
-            topic: parts[7] || 'grammar',
-            difficulty: parts[8] || 'medium',
-            explanation: parts[9] || '',
             createdAt: new Date().toISOString()
           };
           
@@ -712,6 +743,7 @@
           await set(newRef, questionData);
           successCount++;
         } catch (e) {
+          console.error('خطأ في السطر', i, e);
           errorCount++;
         }
       }
@@ -721,7 +753,30 @@
       await loadQuestions();
     };
 
-    console.log('✅ Admin Question Bank loaded');
+    // ===== دالة تقسيم CSV تدعم علامات التنصيص =====
+    function parseCSVLine(line) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      result.push(current.trim());
+      
+      return result;
+    }
+
+    console.log('✅ Admin Question Bank loaded with unit support');
   </script>
 
 </body>
