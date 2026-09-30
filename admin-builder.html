@@ -65,63 +65,6 @@
       border-bottom: 2px solid #f7e05e;
     }
 
-    .selection-summary {
-      background: #f8f9fa;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
-    }
-
-    .question-item {
-      background: #f8f9fa;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-right: 4px solid #e0e0e0;
-      transition: 0.2s;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .question-item:hover { background: #eef2f7; }
-    .question-item.selected {
-      border-right-color: #28a745;
-      background: #f1f8f4;
-    }
-
-    .q-checkbox {
-      width: 22px;
-      height: 22px;
-      cursor: pointer;
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-    .q-content { flex: 1; }
-    .q-text-small {
-      font-weight: 700;
-      color: #0a1f44;
-      margin-bottom: 6px;
-      font-size: 0.95rem;
-    }
-    .q-meta-small {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      font-size: 0.75rem;
-    }
-    .q-tag {
-      padding: 2px 10px;
-      border-radius: 50px;
-      font-weight: 700;
-      background: #e3f2fd;
-      color: #1565c0;
-    }
-
-    .sticky-summary {
-      position: sticky;
-      top: 20px;
-    }
-
     .summary-box {
       background: #0a1f44;
       color: #fff;
@@ -157,22 +100,34 @@
     .btn-save:hover:not(:disabled) { background: #218838; transform: scale(1.02); }
     .btn-save:disabled { background: #ccc; cursor: not-allowed; }
 
-    .filter-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    .filter-row > div { flex: 1; min-width: 150px; }
-
-    .empty-state {
-      text-align: center;
-      padding: 40px 20px;
-      color: #666;
-    }
-    .empty-state i { font-size: 3rem; color: #ccc; margin-bottom: 15px; }
+    .sticky-summary { position: sticky; top: 20px; }
 
     .loading-screen { text-align: center; padding: 80px 20px; }
+
+    .bank-stat {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      border-right: 4px solid #f7e05e;
+    }
+    .bank-stat .num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0a1f44;
+    }
+    .bank-stat .lbl {
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    .alert-info-custom {
+      background: #e3f2fd;
+      border-right: 4px solid #1565c0;
+      border-radius: 12px;
+      padding: 15px;
+      color: #1565c0;
+    }
 
     @media (max-width: 992px) {
       .sticky-summary { position: static; }
@@ -214,12 +169,12 @@
 
       <div class="page-header">
         <h1><i class="fas fa-hammer"></i> بناء امتحان جديد</h1>
-        <p>اتبع الخطوات لإنشاء امتحان احترافي</p>
+        <p>نظام عشوائي — كل طالب ياخد أسئلة مختلفة</p>
       </div>
 
       <div class="row g-4">
         
-        <!-- العمود الأيسر: الإعدادات واختيار الأسئلة -->
+        <!-- العمود الأيسر: الإعدادات -->
         <div class="col-lg-8">
 
           <!-- بيانات الامتحان -->
@@ -237,7 +192,7 @@
               </div>
               <div class="col-md-4">
                 <label class="form-label fw-bold">الصف *</label>
-                <select class="form-select" id="examGrade" onchange="loadQuestions()">
+                <select class="form-select" id="examGrade" onchange="loadBankStats()">
                   <option value="">— اختر —</option>
                   <option value="prep1">الأول الإعدادي</option>
                   <option value="prep2">الثاني الإعدادي</option>
@@ -248,81 +203,105 @@
                 </select>
               </div>
               <div class="col-md-4">
+                <label class="form-label fw-bold">الوحدة *</label>
+                <select class="form-select" id="examUnit" onchange="loadBankStats()">
+                  <option value="">— اختر —</option>
+                  <option value="unit1">الوحدة الأولى</option>
+                  <option value="unit2">الوحدة الثانية</option>
+                  <option value="unit3">الوحدة الثالثة</option>
+                  <option value="unit4">الوحدة الرابعة</option>
+                  <option value="unit5">الوحدة الخامسة</option>
+                  <option value="unit6">الوحدة السادسة</option>
+                  <option value="comprehensive">شامل (كل الوحدات)</option>
+                </select>
+              </div>
+              <div class="col-md-4">
                 <label class="form-label fw-bold">نوع الامتحان *</label>
                 <select class="form-select" id="examType">
                   <option value="unit">امتحان وحدة</option>
                   <option value="comprehensive">امتحان شامل</option>
                   <option value="level">امتحان مستوى</option>
+                  <option value="practice">امتحان تدريبي</option>
                 </select>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
+                <label class="form-label fw-bold">عدد الأسئلة *</label>
+                <input type="number" class="form-control" id="examQuestionCount" value="30" min="5" max="100" onchange="updateSummary()" />
+                <small class="text-muted">النظام سيختار عشوائياً لكل طالب</small>
+              </div>
+              <div class="col-md-6">
                 <label class="form-label fw-bold">المدة (دقيقة) *</label>
-                <input type="number" class="form-control" id="examDuration" value="30" min="5" max="180" />
+                <input type="number" class="form-control" id="examDuration" value="30" min="5" max="180" onchange="updateSummary()" />
               </div>
             </div>
           </div>
 
-          <!-- اختيار الأسئلة -->
+          <!-- إحصائيات بنك الأسئلة -->
           <div class="builder-card">
-            <h4><i class="fas fa-list-check"></i> اختيار الأسئلة</h4>
-
-            <div class="alert alert-info">
+            <h4><i class="fas fa-chart-bar"></i> بنك الأسئلة المتاح</h4>
+            
+            <div class="alert-info-custom mb-3">
               <i class="fas fa-info-circle"></i>
-              اختر الصف أولاً لعرض الأسئلة المتاحة
+              <strong>ملاحظة:</strong> النظام سيختار أسئلة عشوائية من البنك لكل طالب، حسب الصف والوحدة المحددين.
             </div>
 
-            <div id="questionsLoading" style="display: none; text-align: center; padding: 30px;">
-              <div class="spinner-border text-primary"></div>
-            </div>
-
-            <div id="questionsWrapper" style="display: none;">
-              <div class="filter-row">
-                <div>
-                  <label class="form-label fw-bold">نوع السؤال</label>
-                  <select class="form-select form-select-sm" id="filterQType" onchange="renderQuestions()">
-                    <option value="">الكل</option>
-                    <option value="mcq">اختيار من متعدد</option>
-                    <option value="true_false">صح / خطأ</option>
-                    <option value="fill_blank">إكمال الفراغ</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="form-label fw-bold">الموضوع</label>
-                  <select class="form-select form-select-sm" id="filterQTopic" onchange="renderQuestions()">
-                    <option value="">الكل</option>
-                    <option value="grammar">قواعد</option>
-                    <option value="vocabulary">مفردات</option>
-                    <option value="reading">قراءة</option>
-                    <option value="writing">كتابة</option>
-                    <option value="translation">ترجمة</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="form-label fw-bold">إجراء</label>
-                  <button class="btn btn-sm btn-outline-primary w-100" onclick="selectAll()">
-                    <i class="fas fa-check-double"></i> تحديد الكل
-                  </button>
-                </div>
-                <div>
-                  <label class="form-label fw-bold">—</label>
-                  <button class="btn btn-sm btn-outline-secondary w-100" onclick="clearAll()">
-                    <i class="fas fa-times"></i> إلغاء الكل
-                  </button>
+            <div class="row g-3">
+              <div class="col-md-3 col-6">
+                <div class="bank-stat">
+                  <div class="num" id="bankTotal">0</div>
+                  <div class="lbl">إجمالي الأسئلة</div>
                 </div>
               </div>
-
-              <div id="questionsList"></div>
+              <div class="col-md-3 col-6">
+                <div class="bank-stat">
+                  <div class="num" id="bankVocab">0</div>
+                  <div class="lbl">مفردات</div>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="bank-stat">
+                  <div class="num" id="bankGrammar">0</div>
+                  <div class="lbl">قواعد</div>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="bank-stat">
+                  <div class="num" id="bankReading">0</div>
+                  <div class="lbl">قراءة</div>
+                </div>
+              </div>
             </div>
 
-            <div id="questionsEmpty" class="empty-state" style="display: none;">
-              <i class="fas fa-inbox"></i>
-              <p>لا توجد أسئلة لهذا الصف. أضف أسئلة أولاً من بنك الأسئلة.</p>
-              <a href="admin-question-bank.html" class="btn btn-primary" style="border-radius: 50px;">
-                <i class="fas fa-plus"></i> إضافة أسئلة
-              </a>
+            <div id="bankWarning" class="alert alert-warning mt-3" style="display: none;">
+              <i class="fas fa-exclamation-triangle"></i>
+              <strong>تحذير:</strong> عدد الأسئلة في البنك أقل من عدد الأسئلة المطلوبة للامتحان.
             </div>
-
           </div>
+
+          <!-- خيارات متقدمة -->
+          <div class="builder-card">
+            <h4><i class="fas fa-cog"></i> خيارات متقدمة</h4>
+            
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="optShuffleQuestions" checked />
+              <label class="form-check-label" for="optShuffleQuestions">
+                خلط ترتيب الأسئلة
+              </label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="optShuffleOptions" checked />
+              <label class="form-check-label" for="optShuffleOptions">
+                خلط ترتيب الإجابات
+              </label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="optShowResults" checked />
+              <label class="form-check-label" for="optShowResults">
+                عرض النتيجة للطالب مباشرة
+              </label>
+            </div>
+          </div>
+
         </div>
 
         <!-- العمود الأيمن: الملخص -->
@@ -340,16 +319,20 @@
                 <span class="value" id="sumGrade">—</span>
               </div>
               <div class="summary-row">
+                <span class="label">الوحدة</span>
+                <span class="value" id="sumUnit">—</span>
+              </div>
+              <div class="summary-row">
                 <span class="label">المدة</span>
                 <span class="value" id="sumDuration">—</span>
               </div>
               <div class="summary-row">
                 <span class="label">عدد الأسئلة</span>
-                <span class="value" id="sumQuestions">0</span>
+                <span class="value" id="sumQuestions">—</span>
               </div>
             </div>
 
-            <button class="btn-save" id="saveBtn" onclick="saveExam()" disabled>
+            <button class="btn-save" id="saveBtn" onclick="saveExam()">
               <i class="fas fa-save"></i> حفظ الامتحان
             </button>
 
@@ -371,7 +354,7 @@
     import { ref, get, set, push } from "firebase/database";
 
     let allQuestions = [];
-    let selectedQuestionIds = new Set();
+    let filteredQuestions = [];
 
     window.logoutUser = function() {
       signOut(auth).then(() => window.location.href = 'index.html');
@@ -391,6 +374,7 @@
         
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('mainContent').style.display = 'block';
+        await loadAllQuestions();
         setupListeners();
       } catch (error) {
         console.error('❌', error);
@@ -401,24 +385,13 @@
     function setupListeners() {
       document.getElementById('examTitle').addEventListener('input', updateSummary);
       document.getElementById('examGrade').addEventListener('change', updateSummary);
+      document.getElementById('examUnit').addEventListener('change', updateSummary);
+      document.getElementById('examQuestionCount').addEventListener('input', updateSummary);
       document.getElementById('examDuration').addEventListener('input', updateSummary);
-      document.getElementById('examType').addEventListener('change', updateSummary);
     }
 
-    // ===== تحميل الأسئلة =====
-    window.loadQuestions = async function() {
-      const grade = document.getElementById('examGrade').value;
-      
-      if (!grade) {
-        document.getElementById('questionsWrapper').style.display = 'none';
-        document.getElementById('questionsEmpty').style.display = 'none';
-        return;
-      }
-
-      document.getElementById('questionsWrapper').style.display = 'none';
-      document.getElementById('questionsEmpty').style.display = 'none';
-      document.getElementById('questionsLoading').style.display = 'block';
-
+    // ===== تحميل كل الأسئلة =====
+    async function loadAllQuestions() {
       try {
         const qbRef = ref(database, 'questionBank');
         const snapshot = await get(qbRef);
@@ -426,97 +399,42 @@
         allQuestions = [];
         if (snapshot.exists()) {
           snapshot.forEach(child => {
-            const q = { id: child.key, ...child.val() };
-            if (q.grade === grade) allQuestions.push(q);
+            allQuestions.push({ id: child.key, ...child.val() });
           });
         }
-
-        document.getElementById('questionsLoading').style.display = 'none';
-
-        if (allQuestions.length === 0) {
-          document.getElementById('questionsEmpty').style.display = 'block';
-        } else {
-          document.getElementById('questionsWrapper').style.display = 'block';
-          renderQuestions();
-        }
         
-        updateSummary();
-
+        console.log('✅ تم تحميل', allQuestions.length, 'سؤال');
       } catch (error) {
-        console.error('❌', error);
-        document.getElementById('questionsLoading').style.display = 'none';
+        console.error('❌ خطأ في تحميل الأسئلة:', error);
       }
-    };
+    }
 
-    // ===== عرض الأسئلة =====
-    window.renderQuestions = function() {
-      const container = document.getElementById('questionsList');
-      const typeFilter = document.getElementById('filterQType').value;
-      const topicFilter = document.getElementById('filterQTopic').value;
+    // ===== تحميل إحصائيات البنك =====
+    window.loadBankStats = function() {
+      const grade = document.getElementById('examGrade').value;
+      const unit = document.getElementById('examUnit').value;
 
-      container.innerHTML = '';
-
-      const filtered = allQuestions.filter(q => {
-        if (typeFilter && q.type !== typeFilter) return false;
-        if (topicFilter && q.topic !== topicFilter) return false;
+      filteredQuestions = allQuestions.filter(q => {
+        if (grade && q.grade !== grade) return false;
+        if (unit && unit !== 'comprehensive' && q.unit !== unit) return false;
         return true;
       });
 
-      if (filtered.length === 0) {
-        container.innerHTML = '<p class="text-center text-muted">لا توجد أسئلة مطابقة للفلتر</p>';
-        return;
+      document.getElementById('bankTotal').textContent = filteredQuestions.length;
+      document.getElementById('bankVocab').textContent = filteredQuestions.filter(q => q.topic === 'vocabulary').length;
+      document.getElementById('bankGrammar').textContent = filteredQuestions.filter(q => q.topic === 'grammar').length;
+      document.getElementById('bankReading').textContent = filteredQuestions.filter(q => q.topic === 'reading').length;
+
+      const requestedCount = parseInt(document.getElementById('examQuestionCount').value) || 0;
+      const warning = document.getElementById('bankWarning');
+      
+      if (filteredQuestions.length < requestedCount) {
+        warning.style.display = 'block';
+        warning.innerHTML = `<i class="fas fa-exclamation-triangle"></i> <strong>تحذير:</strong> عدد الأسئلة في البنك (${filteredQuestions.length}) أقل من المطلوب (${requestedCount}).`;
+      } else {
+        warning.style.display = 'none';
       }
 
-      const typeLabels = {
-        mcq: 'اختيار متعدد', true_false: 'صح/خطأ', fill_blank: 'إكمال الفراغ'
-      };
-
-      filtered.forEach(q => {
-        const isSelected = selectedQuestionIds.has(q.id);
-        const item = document.createElement('div');
-        item.className = `question-item ${isSelected ? 'selected' : ''}`;
-        item.innerHTML = `
-          <input type="checkbox" class="q-checkbox" ${isSelected ? 'checked' : ''} 
-                 onchange="toggleQuestion('${q.id}', this.checked)" />
-          <div class="q-content">
-            <div class="q-text-small">${q.text}</div>
-            <div class="q-meta-small">
-              <span class="q-tag">${typeLabels[q.type] || q.type}</span>
-              ${q.topic ? `<span class="q-tag">${q.topic}</span>` : ''}
-            </div>
-          </div>
-        `;
-        container.appendChild(item);
-      });
-    };
-
-    // ===== اختيار/إلغاء سؤال =====
-    window.toggleQuestion = function(id, checked) {
-      if (checked) selectedQuestionIds.add(id);
-      else selectedQuestionIds.delete(id);
-      renderQuestions();
-      updateSummary();
-    };
-
-    // ===== تحديد الكل =====
-    window.selectAll = function() {
-      const typeFilter = document.getElementById('filterQType').value;
-      const topicFilter = document.getElementById('filterQTopic').value;
-      
-      allQuestions.forEach(q => {
-        if (typeFilter && q.type !== typeFilter) return;
-        if (topicFilter && q.topic !== topicFilter) return;
-        selectedQuestionIds.add(q.id);
-      });
-      
-      renderQuestions();
-      updateSummary();
-    };
-
-    // ===== إلغاء الكل =====
-    window.clearAll = function() {
-      selectedQuestionIds.clear();
-      renderQuestions();
       updateSummary();
     };
 
@@ -524,21 +442,25 @@
     function updateSummary() {
       const title = document.getElementById('examTitle').value.trim();
       const grade = document.getElementById('examGrade').value;
+      const unit = document.getElementById('examUnit').value;
       const duration = document.getElementById('examDuration').value;
+      const count = document.getElementById('examQuestionCount').value;
 
       const gradeLabels = {
         prep1: 'الأول الإعدادي', prep2: 'الثاني الإعدادي', prep3: 'الثالث الإعدادي',
         sec1: 'الأول الثانوي', sec2: 'الثاني الثانوي', sec3: 'الثالث الثانوي'
       };
+      const unitLabels = {
+        unit1: 'الوحدة الأولى', unit2: 'الوحدة الثانية', unit3: 'الوحدة الثالثة',
+        unit4: 'الوحدة الرابعة', unit5: 'الوحدة الخامسة', unit6: 'الوحدة السادسة',
+        comprehensive: 'شامل'
+      };
 
       document.getElementById('sumTitle').textContent = title || '—';
       document.getElementById('sumGrade').textContent = gradeLabels[grade] || '—';
+      document.getElementById('sumUnit').textContent = unitLabels[unit] || '—';
       document.getElementById('sumDuration').textContent = duration ? `${duration} دقيقة` : '—';
-      document.getElementById('sumQuestions').textContent = selectedQuestionIds.size;
-
-      // تفعيل/تعطيل زر الحفظ
-      const canSave = title && grade && duration && selectedQuestionIds.size > 0;
-      document.getElementById('saveBtn').disabled = !canSave;
+      document.getElementById('sumQuestions').textContent = count || '—';
     }
 
     // ===== حفظ الامتحان =====
@@ -546,11 +468,21 @@
       const title = document.getElementById('examTitle').value.trim();
       const description = document.getElementById('examDesc').value.trim();
       const grade = document.getElementById('examGrade').value;
+      const unit = document.getElementById('examUnit').value;
       const type = document.getElementById('examType').value;
       const duration = parseInt(document.getElementById('examDuration').value);
+      const questionCount = parseInt(document.getElementById('examQuestionCount').value);
 
-      if (!title || !grade || !duration || selectedQuestionIds.size === 0) {
-        alert('⚠️ الرجاء ملء كل البيانات المطلوبة واختيار سؤال واحد على الأقل');
+      // التحقق
+      if (!title) { alert('⚠️ الرجاء إدخال عنوان الامتحان'); return; }
+      if (!grade) { alert('⚠️ الرجاء اختيار الصف'); return; }
+      if (!unit) { alert('⚠️ الرجاء اختيار الوحدة'); return; }
+      if (!duration || duration < 5) { alert('⚠️ الرجاء إدخال مدة صحيحة'); return; }
+      if (!questionCount || questionCount < 1) { alert('⚠️ الرجاء إدخال عدد أسئلة صحيح'); return; }
+
+      // تأكد من وجود أسئلة كافية
+      if (filteredQuestions.length < questionCount) {
+        alert(`⚠️ عدد الأسئلة المتاحة (${filteredQuestions.length}) أقل من المطلوب (${questionCount})\n\nأضف المزيد من الأسئلة أو قلل العدد.`);
         return;
       }
 
@@ -563,9 +495,14 @@
           title,
           description,
           grade,
+          unit,
           type,
           duration,
-          questions: Array.from(selectedQuestionIds),
+          questionCount,
+          isRandom: true,
+          shuffleQuestions: document.getElementById('optShuffleQuestions').checked,
+          shuffleOptions: document.getElementById('optShuffleOptions').checked,
+          showResults: document.getElementById('optShowResults').checked,
           createdBy: auth.currentUser.uid,
           createdAt: new Date().toISOString(),
           active: true
@@ -575,7 +512,7 @@
         const newRef = push(examsRef);
         await set(newRef, examData);
 
-        alert('✅ تم إنشاء الامتحان بنجاح');
+        alert('✅ تم إنشاء الامتحان بنجاح!\n\nالنظام سيختار أسئلة عشوائية لكل طالب.');
         window.location.href = 'admin-exams.html';
 
       } catch (error) {
@@ -586,7 +523,7 @@
       }
     };
 
-    console.log('✅ Admin Builder loaded');
+    console.log('✅ Admin Builder loaded with random selection');
   </script>
 
 </body>
