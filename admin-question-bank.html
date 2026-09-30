@@ -143,7 +143,7 @@
       direction: ltr;
       text-align: left;
       unicode-bidi: embed;
-      max-height: 100px;
+      max-height: 120px;
       overflow-y: auto;
     }
 
@@ -348,7 +348,7 @@
       <h3><i class="fas fa-plus-circle"></i> إضافة سؤال جديد</h3>
 
       <div class="mb-3">
-        <label class="form-label fw-bold">النص / Passage (اختياري - للأسئلة القراءة)</label>
+        <label class="form-label fw-bold">النص / Passage (اختياري - للأسئلة Reading)</label>
         <textarea class="form-control" id="qPassage" rows="4" placeholder="الصق النص هنا (اختياري)..."></textarea>
         <small class="text-muted">اتركه فاضي لو السؤال مش محتاج نص</small>
       </div>
@@ -470,8 +470,8 @@
       <h3><i class="fas fa-file-import"></i> استيراد أسئلة من CSV</h3>
       
       <div class="alert alert-info">
-        <strong>صيغة الملف:</strong>
-        <code style="display: block; margin-top: 8px; font-size: 0.75rem; direction: ltr; text-align: left; padding: 8px; background: #fff; border-radius: 8px;">
+        <strong>الصيغة الجديدة (مع passage):</strong>
+        <code style="display: block; margin-top: 8px; font-size: 0.7rem; direction: ltr; text-align: left; padding: 8px; background: #fff; border-radius: 8px;">
           passage,question,option1,option2,option3,option4,correct_index,grade,unit,topic,difficulty,explanation
         </code>
         <small class="d-block mt-2">
@@ -719,7 +719,7 @@
       }
     };
 
-    // ===== استيراد CSV مع دعم passage =====
+    // ===== استيراد CSV مع دعم الصيغتين (القديمة والجديدة) =====
     window.importCSV = async function() {
       const fileInput = document.getElementById('csvFile');
       if (!fileInput.files.length) {
@@ -739,24 +739,50 @@
       let successCount = 0;
       let errorCount = 0;
 
+      // ✅ نتحقق من عدد الأعمدة في السطر الأول
+      const headerParts = parseCSVLine(lines[0]);
+      const isNewFormat = headerParts.length >= 12;
+      console.log('📋 صيغة الملف:', isNewFormat ? 'الجديدة (مع passage)' : 'القديمة');
+
       for (let i = 1; i < lines.length; i++) {
         try {
           const parts = parseCSVLine(lines[i]);
-          if (parts.length < 8) continue;
           
-          const questionData = {
-            passage: parts[0] || '',
-            text: parts[1],
-            options: [parts[2], parts[3], parts[4], parts[5]],
-            correctAnswer: parseInt(parts[6]),
-            grade: parts[7],
-            unit: parts[8] || 'unit1',
-            topic: parts[9] || 'grammar',
-            difficulty: parts[10] || 'medium',
-            explanation: parts[11] || '',
-            type: 'mcq',
-            createdAt: new Date().toISOString()
-          };
+          let questionData;
+          
+          if (isNewFormat) {
+            // ✅ الصيغة الجديدة: passage,question,option1...
+            if (parts.length < 8) continue;
+            questionData = {
+              passage: parts[0] || '',
+              text: parts[1],
+              options: [parts[2], parts[3], parts[4], parts[5]],
+              correctAnswer: parseInt(parts[6]),
+              grade: parts[7],
+              unit: parts[8] || 'unit1',
+              topic: parts[9] || 'grammar',
+              difficulty: parts[10] || 'medium',
+              explanation: parts[11] || '',
+              type: 'mcq',
+              createdAt: new Date().toISOString()
+            };
+          } else {
+            // ✅ الصيغة القديمة: question,option1...
+            if (parts.length < 7) continue;
+            questionData = {
+              passage: '',
+              text: parts[0],
+              options: [parts[1], parts[2], parts[3], parts[4]],
+              correctAnswer: parseInt(parts[5]),
+              grade: parts[6],
+              unit: parts[7] || 'unit1',
+              topic: parts[8] || 'grammar',
+              difficulty: parts[9] || 'medium',
+              explanation: parts[10] || '',
+              type: 'mcq',
+              createdAt: new Date().toISOString()
+            };
+          }
           
           const qbRef = ref(database, 'questionBank');
           const newRef = push(qbRef);
@@ -768,11 +794,12 @@
         }
       }
 
-      alert(`✅ تم استيراد ${successCount} سؤال\n${errorCount > 0 ? `❌ فشل ${errorCount} سؤال` : ''}`);
+      alert(`✅ تم استيراد ${successCount} سؤال\n${errorCount > 0 ? `❌ فشل ${errorCount} سؤال` : ''}\n\n📋 الصيغة: ${isNewFormat ? 'الجديدة (مع passage)' : 'القديمة'}`);
       closeImportModal();
       await loadQuestions();
     };
 
+    // ===== دالة تقسيم CSV تدعم علامات التنصيص =====
     function parseCSVLine(line) {
       const result = [];
       let current = '';
@@ -795,7 +822,7 @@
       return result;
     }
 
-    console.log('✅ Admin Question Bank loaded with passage support');
+    console.log('✅ Admin Question Bank loaded with dual-format support');
   </script>
 
 </body>
