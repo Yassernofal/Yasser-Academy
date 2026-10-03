@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إدارة الدروس - أكاديمية مستر ياسر نوفل</title>
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/admin-lessons.html" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding: 20px 0 40px; }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.95) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+    }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    .page-header {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #fff;
+      padding: 35px 30px;
+      border-radius: 24px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      box-shadow: 0 10px 30px rgba(10, 31, 68, 0.3);
+    }
+    .page-header h1 { color: #f7e05e; font-weight: 700; margin: 0; }
+    .page-header p { color: #b0c4de; margin: 5px 0 0; }
+
+    .btn-add {
+      background: #f7e05e;
+      color: #0a1f44;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .btn-add:hover { background: #f7b731; transform: scale(1.05); }
+
+    .filters-bar {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .filter-group { flex: 1; min-width: 180px; }
+    .filter-group label {
+      font-weight: 700;
+      color: #0a1f44;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .lesson-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border-right: 5px solid #f7b731;
+      transition: 0.2s;
+    }
+    .lesson-card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+
+    .lesson-card .lesson-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .badge-grade {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+    .badge-unit {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #f3e5f5;
+      color: #6a1b9a;
+    }
+    .badge-type {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #fff3e0;
+      color: #ef6c00;
+    }
+
+    .lesson-card h5 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .lesson-card .description {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .lesson-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-action {
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 600;
+    }
+    .btn-edit { background: #0d6efd; color: #fff; }
+    .btn-delete { background: #dc3545; color: #fff; }
+    .btn-action:hover { transform: scale(1.05); }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+      background: #fff;
+      border-radius: 20px;
+    }
+    .empty-state i { font-size: 4rem; color: #ccc; margin-bottom: 20px; }
+
+    .loading-screen { text-align: center; padding: 80px 20px; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-content-custom {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-content-custom h3 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .page-header { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="admin-dashboard.html">
+        <span class="brand-name">Admin Panel</span>
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">📊 اللوحة</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-students.html">👨‍🎓 الطلاب</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-exams.html">📝 الامتحانات</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-question-bank.html">📚 بنك الأسئلة</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin-lessons.html">📖 الدروس</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="logoutUser()">🚪 خروج</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 1100px;">
+
+    <div id="loadingScreen" class="loading-screen">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+      <p class="mt-3">جاري التحميل...</p>
+    </div>
+
+    <div id="deniedScreen" style="display: none; text-align: center; padding: 80px 20px;">
+      <i class="fas fa-lock" style="font-size: 5rem; color: #dc3545;"></i>
+      <h3 class="mt-3">وصول مرفوض</h3>
+      <p style="color: #666;">هذه الصفحة مخصصة للمدير فقط.</p>
+      <a href="index.html" class="btn btn-primary mt-3" style="border-radius: 50px;">العودة للرئيسية</a>
+    </div>
+
+    <div id="mainContent" style="display: none;">
+
+      <div class="page-header">
+        <div>
+          <h1><i class="fas fa-book-open"></i> إدارة الدروس</h1>
+          <p>إضافة وتعديل وحذف الدروس</p>
+        </div>
+        <button class="btn btn-add" onclick="openAddModal()">
+          <i class="fas fa-plus"></i> درس جديد
+        </button>
+      </div>
+
+      <!-- الفلاتر -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>الصف</label>
+          <select class="form-select" id="filterGrade" onchange="loadLessons()">
+            <option value="">كل الصفوف</option>
+            <option value="prep1">الأول الإعدادي</option>
+            <option value="prep2">الثاني الإعدادي</option>
+            <option value="prep3">الثالث الإعدادي</option>
+            <option value="sec1">الأول الثانوي</option>
+            <option value="sec2">الثاني الثانوي</option>
+            <option value="sec3">الثالث الثانوي</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>الوحدة</label>
+          <select class="form-select" id="filterUnit" onchange="loadLessons()">
+            <option value="">كل الوحدات</option>
+            <option value="unit1">الوحدة الأولى</option>
+            <option value="unit2">الوحدة الثانية</option>
+            <option value="unit3">الوحدة الثالثة</option>
+            <option value="unit4">الوحدة الرابعة</option>
+            <option value="unit5">الوحدة الخامسة</option>
+            <option value="unit6">الوحدة السادسة</option>
+            <option value="review1">Review 1</option>
+            <option value="review2">Review 2</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>عدد الدروس</label>
+          <div class="form-control" style="background: #f8f9fa; font-weight: 700;" id="lessonCount">0</div>
+        </div>
+      </div>
+
+      <!-- قائمة الدروس -->
+      <div id="lessonsContainer"></div>
+
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <i class="fas fa-book"></i>
+        <h4>لا توجد دروس بعد</h4>
+        <p>ابدأ بإضافة درس جديد</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal: إضافة/تعديل درس -->
+  <div class="modal-overlay" id="lessonModal">
+    <div class="modal-content-custom">
+      <h3 id="modalTitle"><i class="fas fa-plus-circle"></i> إضافة درس جديد</h3>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">عنوان الدرس *</label>
+        <input type="text" class="form-control" id="lessonTitle" placeholder="مثال: A Day in My Digital Life" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">الوصف (اختياري)</label>
+        <textarea class="form-control" id="lessonDescription" rows="2" placeholder="وصف مختصر للدرس..."></textarea>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label class="form-label fw-bold">الصف *</label>
+          <select class="form-select" id="lessonGrade">
+            <option value="">— اختر —</option>
+            <option value="prep1">الأول الإعدادي</option>
+            <option value="prep2">الثاني الإعدادي</option>
+            <option value="prep3">الثالث الإعدادي</option>
+            <option value="sec1">الأول الثانوي</option>
+            <option value="sec2">الثاني الثانوي</option>
+            <option value="sec3">الثالث الثانوي</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">الوحدة *</label>
+          <select class="form-select" id="lessonUnit">
+            <option value="">— اختر —</option>
+            <option value="unit1">الوحدة الأولى</option>
+            <option value="unit2">الوحدة الثانية</option>
+            <option value="unit3">الوحدة الثالثة</option>
+            <option value="unit4">الوحدة الرابعة</option>
+            <option value="unit5">الوحدة الخامسة</option>
+            <option value="unit6">الوحدة السادسة</option>
+            <option value="review1">Review 1</option>
+            <option value="review2">Review 2</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">نوع المحتوى *</label>
+          <select class="form-select" id="lessonType">
+            <option value="text">شرح نصي</option>
+            <option value="video">فيديو</option>
+            <option value="pdf">ملف PDF</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">رابط المحتوى (فيديو/PDF - اختياري)</label>
+        <input type="url" class="form-control" id="lessonUrl" placeholder="https://..." style="direction:ltr;text-align:left;" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">المحتوى النصي / الشرح</label>
+        <textarea class="form-control" id="lessonContent" rows="6" placeholder="اكتب الشرح هنا..." style="direction:ltr;text-align:left;"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">ترتيب الدرس</label>
+        <input type="number" class="form-control" id="lessonOrder" value="1" min="1" />
+        <small class="text-muted">رقم يحدد ترتيب الدرس في الوحدة</small>
+      </div>
+
+      <div class="d-flex gap-2 justify-content-end mt-4">
+        <button class="btn btn-secondary" onclick="closeLessonModal()" style="border-radius: 50px; padding: 10px 25px;">
+          إلغاء
+        </button>
+        <button class="btn btn-success" onclick="saveLesson()" style="border-radius: 50px; padding: 10px 25px;">
+          <i class="fas fa-save"></i> حفظ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "firebase/auth";
+    import { ref, get, set, push, remove, update } from "firebase/database";
+
+    let currentLessons = [];
+    let editingLessonId = null;
+
+    const gradeNames = {
+      prep1: 'الأول الإعدادي', prep2: 'الثاني الإعدادي', prep3: 'الثالث الإعدادي',
+      sec1: 'الأول الثانوي', sec2: 'الثاني الثانوي', sec3: 'الثالث الثانوي'
+    };
+    const unitNames = {
+      unit1: 'الوحدة الأولى', unit2: 'الوحدة الثانية', unit3: 'الوحدة الثالثة',
+      unit4: 'الوحدة الرابعة', unit5: 'الوحدة الخامسة', unit6: 'الوحدة السادسة',
+      review1: 'Review 1', review2: 'Review 2'
+    };
+    const typeNames = { text: 'شرح نصي', video: 'فيديو', pdf: 'ملف PDF' };
+
+    window.logoutUser = function() {
+      signOut(auth).then(() => window.location.href = 'index.html');
+    };
+
+    // ===== التحقق من صلاحيات المدير =====
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      try {
+        const userSnap = await get(ref(database, `users/${user.uid}`));
+        if (!userSnap.exists() || userSnap.val().role !== 'admin') {
+          document.getElementById('loadingScreen').style.display = 'none';
+          document.getElementById('deniedScreen').style.display = 'block';
+          return;
+        }
+
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        await loadLessons();
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+      }
+    });
+
+    // ===== تحميل الدروس =====
+    window.loadLessons = async function() {
+      try {
+        const grade = document.getElementById('filterGrade').value;
+        const unit = document.getElementById('filterUnit').value;
+
+        const lessonsRef = ref(database, 'lessons');
+        const snapshot = await get(lessonsRef);
+
+        currentLessons = [];
+        if (snapshot.exists()) {
+          snapshot.forEach(child => {
+            const lesson = { id: child.key, ...child.val() };
+            if (grade && lesson.grade !== grade) return;
+            if (unit && lesson.unit !== unit) return;
+            currentLessons.push(lesson);
+          });
+        }
+
+        // ترتيب حسب الصف ثم الوحدة ثم الترتيب
+        currentLessons.sort((a, b) => {
+          if (a.grade !== b.grade) return (a.grade || '').localeCompare(b.grade || '');
+          if (a.unit !== b.unit) return (a.unit || '').localeCompare(b.unit || '');
+          return (a.order || 0) - (b.order || 0);
+        });
+
+        renderLessons();
+        document.getElementById('lessonCount').textContent = currentLessons.length;
+
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+      }
+    };
+
+    // ===== عرض الدروس =====
+    function renderLessons() {
+      const container = document.getElementById('lessonsContainer');
+      const emptyState = document.getElementById('emptyState');
+
+      if (currentLessons.length === 0) {
+        container.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      container.innerHTML = '';
+
+      currentLessons.forEach(lesson => {
+        const card = document.createElement('div');
+        card.className = 'lesson-card';
+        card.innerHTML = `
+          <div class="lesson-meta">
+            <span class="badge-grade">${gradeNames[lesson.grade] || lesson.grade || '—'}</span>
+            <span class="badge-unit">${unitNames[lesson.unit] || lesson.unit || '—'}</span>
+            <span class="badge-type">${typeNames[lesson.type] || lesson.type || '—'}</span>
+          </div>
+          <h5>${lesson.title || 'بدون عنوان'}</h5>
+          ${lesson.description ? `<p class="description">${lesson.description}</p>` : ''}
+          <div class="lesson-actions">
+            <button class="btn-action btn-edit" onclick="editLesson('${lesson.id}')">
+              <i class="fas fa-edit"></i> تعديل
+            </button>
+            <button class="btn-action btn-delete" onclick="deleteLesson('${lesson.id}', '${(lesson.title || '').replace(/'/g, "\\'")}')">
+              <i class="fas fa-trash"></i> حذف
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ===== فتح Modal إضافة =====
+    window.openAddModal = function() {
+      editingLessonId = null;
+      document.getElementById('modalTitle').innerHTML = '<i class="fas fa-plus-circle"></i> إضافة درس جديد';
+      document.getElementById('lessonTitle').value = '';
+      document.getElementById('lessonDescription').value = '';
+      document.getElementById('lessonGrade').value = '';
+      document.getElementById('lessonUnit').value = '';
+      document.getElementById('lessonType').value = 'text';
+      document.getElementById('lessonUrl').value = '';
+      document.getElementById('lessonContent').value = '';
+      document.getElementById('lessonOrder').value = '1';
+      document.getElementById('lessonModal').classList.add('active');
+    };
+
+    // ===== فتح Modal تعديل =====
+    window.editLesson = function(id) {
+      const lesson = currentLessons.find(l => l.id === id);
+      if (!lesson) return;
+
+      editingLessonId = id;
+      document.getElementById('modalTitle').innerHTML = '<i class="fas fa-edit"></i> تعديل الدرس';
+      document.getElementById('lessonTitle').value = lesson.title || '';
+      document.getElementById('lessonDescription').value = lesson.description || '';
+      document.getElementById('lessonGrade').value = lesson.grade || '';
+      document.getElementById('lessonUnit').value = lesson.unit || '';
+      document.getElementById('lessonType').value = lesson.type || 'text';
+      document.getElementById('lessonUrl').value = lesson.url || '';
+      document.getElementById('lessonContent').value = lesson.content || '';
+      document.getElementById('lessonOrder').value = lesson.order || 1;
+      document.getElementById('lessonModal').classList.add('active');
+    };
+
+    window.closeLessonModal = function() {
+      document.getElementById('lessonModal').classList.remove('active');
+    };
+
+    // ===== حفظ درس =====
+    window.saveLesson = async function() {
+      const title = document.getElementById('lessonTitle').value.trim();
+      const description = document.getElementById('lessonDescription').value.trim();
+      const grade = document.getElementById('lessonGrade').value;
+      const unit = document.getElementById('lessonUnit').value;
+      const type = document.getElementById('lessonType').value;
+      const url = document.getElementById('lessonUrl').value.trim();
+      const content = document.getElementById('lessonContent').value.trim();
+      const order = parseInt(document.getElementById('lessonOrder').value) || 1;
+
+      if (!title) { alert('⚠️ الرجاء إدخال عنوان الدرس'); return; }
+      if (!grade) { alert('⚠️ الرجاء اختيار الصف'); return; }
+      if (!unit) { alert('⚠️ الرجاء اختيار الوحدة'); return; }
+
+      const lessonData = {
+        title, description, grade, unit, type, url, content, order,
+        updatedAt: new Date().toISOString()
+      };
+
+      try {
+        if (editingLessonId) {
+          // تعديل
+          await update(ref(database, `lessons/${editingLessonId}`), lessonData);
+          alert('✅ تم تعديل الدرس بنجاح');
+        } else {
+          // إضافة
+          lessonData.createdAt = new Date().toISOString();
+          const lessonsRef = ref(database, 'lessons');
+          const newRef = push(lessonsRef);
+          await set(newRef, lessonData);
+          alert('✅ تم إضافة الدرس بنجاح');
+        }
+
+        closeLessonModal();
+        await loadLessons();
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+        alert('❌ خطأ في الحفظ: ' + error.message);
+      }
+    };
+
+    // ===== حذف درس =====
+    window.deleteLesson = async function(id, title) {
+      if (!confirm(`هل أنت متأكد من حذف الدرس "${title}"؟`)) return;
+
+      try {
+        await remove(ref(database, `lessons/${id}`));
+        alert('✅ تم حذف الدرس بنجاح');
+        await loadLessons();
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+        alert('❌ خطأ في الحذف: ' + error.message);
+      }
+    };
+
+    console.log('✅ Admin Lessons page loaded');
+  </script>
+
+</body>
+</html>
