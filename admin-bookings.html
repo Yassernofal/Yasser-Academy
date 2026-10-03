@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إدارة الحجوزات - أكاديمية مستر ياسر نوفل</title>
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/admin-bookings.html" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding: 20px 0 40px; }
+
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.95) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+    }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    .page-header {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #fff;
+      padding: 35px 30px;
+      border-radius: 24px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      box-shadow: 0 10px 30px rgba(10, 31, 68, 0.3);
+    }
+    .page-header h1 { color: #f7e05e; font-weight: 700; margin: 0; }
+    .page-header p { color: #b0c4de; margin: 5px 0 0; }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border-bottom: 4px solid #f7e05e;
+    }
+    .stat-card .num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0a1f44;
+    }
+    .stat-card .lbl { color: #666; font-size: 0.9rem; }
+    .stat-card.pending { border-bottom-color: #ffb347; }
+    .stat-card.confirmed { border-bottom-color: #28a745; }
+    .stat-card.completed { border-bottom-color: #0d6efd; }
+    .stat-card.cancelled { border-bottom-color: #dc3545; }
+
+    .filters-bar {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .filter-group { flex: 1; min-width: 180px; }
+    .filter-group label {
+      font-weight: 700;
+      color: #0a1f44;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .bookings-table-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    table.bookings-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 8px;
+    }
+    table.bookings-table thead th {
+      background: #0a1f44;
+      color: #f7e05e;
+      padding: 14px 12px;
+      font-weight: 700;
+      text-align: right;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    table.bookings-table thead th:first-child { border-radius: 0 12px 12px 0; }
+    table.bookings-table thead th:last-child { border-radius: 12px 0 0 12px; }
+
+    table.bookings-table tbody tr {
+      background: #f8f9fa;
+      transition: 0.2s;
+    }
+    table.bookings-table tbody tr:hover { background: #eef2f7; }
+    table.bookings-table tbody td {
+      padding: 14px 12px;
+      font-size: 0.9rem;
+      border-top: 1px solid #e9ecef;
+      border-bottom: 1px solid #e9ecef;
+      vertical-align: middle;
+    }
+    table.bookings-table tbody td:first-child {
+      border-right: 1px solid #e9ecef;
+      border-radius: 0 12px 12px 0;
+    }
+    table.bookings-table tbody td:last-child {
+      border-left: 1px solid #e9ecef;
+      border-radius: 12px 0 0 12px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-confirmed { background: #d4edda; color: #155724; }
+    .status-completed { background: #cce5ff; color: #004085; }
+    .status-cancelled { background: #f8d7da; color: #721c24; }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin: 2px;
+    }
+    .action-btn.confirm { background: #28a745; }
+    .action-btn.complete { background: #0d6efd; }
+    .action-btn.cancel { background: #dc3545; }
+    .action-btn.view { background: #6c757d; }
+    .action-btn:hover { transform: scale(1.05); opacity: 0.9; }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+    }
+    .empty-state i { font-size: 4rem; color: #ccc; margin-bottom: 20px; }
+
+    .loading-screen { text-align: center; padding: 80px 20px; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-content-custom {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-content-custom h3 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row .label { color: #666; font-weight: 600; }
+    .info-row .value { color: #0a1f44; font-weight: 700; }
+
+    @media (max-width: 768px) {
+      .page-header { flex-direction: column; text-align: center; }
+      table.bookings-table { font-size: 0.8rem; }
+      .hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="admin-dashboard.html">
+        <span class="brand-name">Admin Panel</span>
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">📊 اللوحة</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-students.html">👨‍🎓 الطلاب</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin-bookings.html">📅 الحجوزات</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-exams.html">📝 الامتحانات</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-question-bank.html">📚 بنك الأسئلة</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin-lessons.html">📖 الدروس</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="logoutUser()">🚪 خروج</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 1300px;">
+
+    <div id="loadingScreen" class="loading-screen">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+      <p class="mt-3">جاري التحميل...</p>
+    </div>
+
+    <div id="deniedScreen" style="display: none; text-align: center; padding: 80px 20px;">
+      <i class="fas fa-lock" style="font-size: 5rem; color: #dc3545;"></i>
+      <h3 class="mt-3">وصول مرفوض</h3>
+      <p style="color: #666;">هذه الصفحة مخصصة للمدير فقط.</p>
+      <a href="index.html" class="btn btn-primary mt-3" style="border-radius: 50px;">العودة للرئيسية</a>
+    </div>
+
+    <div id="mainContent" style="display: none;">
+
+      <div class="page-header">
+        <div>
+          <h1><i class="fas fa-calendar-alt"></i> إدارة الحجوزات</h1>
+          <p>عرض وتأكيد وإدارة حجوزات الطلاب</p>
+        </div>
+        <button class="btn btn-warning" onclick="loadBookings()" style="border-radius: 50px; font-weight: 700; padding: 12px 25px;">
+          <i class="fas fa-sync-alt"></i> تحديث
+        </button>
+      </div>
+
+      <!-- الإحصائيات -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="num" id="totalBookings">0</div>
+          <div class="lbl">إجمالي الحجوزات</div>
+        </div>
+        <div class="stat-card pending">
+          <div class="num" id="pendingCount">0</div>
+          <div class="lbl">معلقة</div>
+        </div>
+        <div class="stat-card confirmed">
+          <div class="num" id="confirmedCount">0</div>
+          <div class="lbl">مؤكدة</div>
+        </div>
+        <div class="stat-card completed">
+          <div class="num" id="completedCount">0</div>
+          <div class="lbl">مكتملة</div>
+        </div>
+        <div class="stat-card cancelled">
+          <div class="num" id="cancelledCount">0</div>
+          <div class="lbl">ملغية</div>
+        </div>
+      </div>
+
+      <!-- الفلاتر -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>الحالة</label>
+          <select class="form-select" id="filterStatus" onchange="applyFilters()">
+            <option value="">كل الحالات</option>
+            <option value="pending">معلقة</option>
+            <option value="confirmed">مؤكدة</option>
+            <option value="completed">مكتملة</option>
+            <option value="cancelled">ملغية</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>البحث</label>
+          <input type="text" class="form-control" id="searchInput" placeholder="ابحث بالاسم أو الهاتف..." oninput="applyFilters()" />
+        </div>
+      </div>
+
+      <!-- جدول الحجوزات -->
+      <div class="bookings-table-card">
+        <div id="emptyState" class="empty-state" style="display: none;">
+          <i class="fas fa-calendar-times"></i>
+          <h4>لا توجد حجوزات</h4>
+          <p>لم يتم العثور على حجوزات مطابقة</p>
+        </div>
+
+        <div class="table-responsive" id="tableWrapper">
+          <table class="bookings-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>الاسم</th>
+                <th class="hide-mobile">الهاتف</th>
+                <th class="hide-mobile">المستوى</th>
+                <th class="hide-mobile">المبلغ</th>
+                <th>الحالة</th>
+                <th class="hide-mobile">التاريخ</th>
+                <th>إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal: تفاصيل الحجز -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-content-custom">
+      <h3><i class="fas fa-info-circle"></i> تفاصيل الحجز</h3>
+      <div id="bookingDetails"></div>
+      <div class="d-flex gap-2 justify-content-end mt-4">
+        <button class="btn btn-secondary" onclick="closeModal()" style="border-radius: 50px; padding: 10px 25px;">
+          إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "firebase/auth";
+    import { ref, get, update, remove } from "firebase/database";
+
+    let allBookings = [];
+    let filteredBookings = [];
+
+    const statusNames = {
+      pending: '⏳ معلق',
+      confirmed: '✅ مؤكد',
+      completed: '📌 مكتمل',
+      cancelled: '❌ ملغي'
+    };
+
+    window.logoutUser = function() {
+      signOut(auth).then(() => window.location.href = 'index.html');
+    };
+
+    // ===== التحقق من صلاحيات المدير =====
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      try {
+        const userSnap = await get(ref(database, `users/${user.uid}`));
+        if (!userSnap.exists() || userSnap.val().role !== 'admin') {
+          document.getElementById('loadingScreen').style.display = 'none';
+          document.getElementById('deniedScreen').style.display = 'block';
+          return;
+        }
+
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        await loadBookings();
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+      }
+    });
+
+    // ===== تحميل الحجوزات =====
+    window.loadBookings = async function() {
+      try {
+        const bookingsRef = ref(database, 'bookings');
+        const snapshot = await get(bookingsRef);
+
+        allBookings = [];
+        if (snapshot.exists()) {
+          snapshot.forEach(child => {
+            allBookings.push({ id: child.key, ...child.val() });
+          });
+        }
+
+        // ترتيب حسب التاريخ (الأحدث أولاً)
+        allBookings.sort((a, b) => {
+          const dateA = new Date(a.createdAt || a.date || 0);
+          const dateB = new Date(b.createdAt || b.date || 0);
+          return dateB - dateA;
+        });
+
+        console.log('✅ تم تحميل', allBookings.length, 'حجز');
+
+        updateStats();
+        applyFilters();
+
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+      }
+    };
+
+    // ===== تحديث الإحصائيات =====
+    function updateStats() {
+      document.getElementById('totalBookings').textContent = allBookings.length;
+
+      const counts = { pending: 0, confirmed: 0, completed: 0, cancelled: 0 };
+      allBookings.forEach(b => {
+        if (b.status && counts[b.status] !== undefined) {
+          counts[b.status]++;
+        }
+      });
+
+      document.getElementById('pendingCount').textContent = counts.pending;
+      document.getElementById('confirmedCount').textContent = counts.confirmed;
+      document.getElementById('completedCount').textContent = counts.completed;
+      document.getElementById('cancelledCount').textContent = counts.cancelled;
+    }
+
+    // ===== تطبيق الفلاتر =====
+    function applyFilters() {
+      const status = document.getElementById('filterStatus').value;
+      const search = document.getElementById('searchInput').value.trim().toLowerCase();
+
+      filteredBookings = allBookings.filter(b => {
+        if (status && b.status !== status) return false;
+        if (search) {
+          const name = (b.student || b.name || '').toLowerCase();
+          const phone = (b.phone || '').toLowerCase();
+          if (!name.includes(search) && !phone.includes(search)) return false;
+        }
+        return true;
+      });
+
+      renderBookings();
+    }
+
+    // ===== عرض الحجوزات =====
+    function renderBookings() {
+      const tbody = document.getElementById('bookingsBody');
+      const emptyState = document.getElementById('emptyState');
+      const tableWrapper = document.getElementById('tableWrapper');
+
+      if (filteredBookings.length === 0) {
+        tbody.innerHTML = '';
+        emptyState.style.display = 'block';
+        tableWrapper.style.display = 'none';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      tableWrapper.style.display = 'block';
+      tbody.innerHTML = '';
+
+      filteredBookings.forEach((booking, idx) => {
+        const statusClass = `status-${booking.status || 'pending'}`;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${idx + 1}</td>
+          <td><strong>${booking.student || booking.name || '—'}</strong></td>
+          <td class="hide-mobile" style="direction:ltr;text-align:left;">${booking.phone || '—'}</td>
+          <td class="hide-mobile">${booking.grade || booking.level || '—'}</td>
+          <td class="hide-mobile">${booking.amount || '0'} ج.م</td>
+          <td><span class="status-badge ${statusClass}">${statusNames[booking.status] || booking.status}</span></td>
+          <td class="hide-mobile">${booking.date || (booking.createdAt ? booking.createdAt.split('T')[0] : '--')}</td>
+          <td>
+            ${booking.status === 'pending' ? `
+              <button class="action-btn confirm" onclick="updateBookingStatus('${booking.id}', 'confirmed')">
+                <i class="fas fa-check"></i> تأكيد
+              </button>
+              <button class="action-btn cancel" onclick="updateBookingStatus('${booking.id}', 'cancelled')">
+                <i class="fas fa-times"></i> إلغاء
+              </button>
+            ` : ''}
+            ${booking.status === 'confirmed' ? `
+              <button class="action-btn complete" onclick="updateBookingStatus('${booking.id}', 'completed')">
+                <i class="fas fa-flag-checkered"></i> إكمال
+              </button>
+            ` : ''}
+            ${(booking.status === 'completed' || booking.status === 'cancelled') ? `
+              <button class="action-btn view" onclick="viewBooking('${booking.id}')">
+                <i class="fas fa-eye"></i> عرض
+              </button>
+            ` : ''}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // ===== تحديث حالة الحجز =====
+    window.updateBookingStatus = async function(id, newStatus) {
+      const statusText = statusNames[newStatus] || newStatus;
+      if (!confirm(`هل أنت متأكد من تغيير حالة الحجز إلى "${statusText}"؟`)) return;
+
+      try {
+        await update(ref(database, `bookings/${id}`), {
+          status: newStatus,
+          updatedAt: new Date().toISOString()
+        });
+        alert(`✅ تم تحديث الحالة إلى "${statusText}"`);
+        await loadBookings();
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+        alert('❌ خطأ في التحديث: ' + error.message);
+      }
+    };
+
+    // ===== عرض تفاصيل الحجز =====
+    window.viewBooking = function(id) {
+      const booking = allBookings.find(b => b.id === id);
+      if (!booking) return;
+
+      const detailsHtml = `
+        <div class="info-row">
+          <span class="label">اسم الطالب:</span>
+          <span class="value">${booking.student || booking.name || '—'}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">الهاتف:</span>
+          <span class="value" style="direction:ltr;">${booking.phone || '—'}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">المستوى:</span>
+          <span class="value">${booking.grade || booking.level || '—'}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">المبلغ:</span>
+          <span class="value">${booking.amount || '0'} ج.م</span>
+        </div>
+        <div class="info-row">
+          <span class="label">الحالة:</span>
+          <span class="value">${statusNames[booking.status] || booking.status}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">التاريخ:</span>
+          <span class="value">${booking.date || (booking.createdAt ? booking.createdAt.split('T')[0] : '--')}</span>
+        </div>
+        ${booking.notes ? `
+          <div class="info-row">
+            <span class="label">ملاحظات:</span>
+            <span class="value">${booking.notes}</span>
+          </div>
+        ` : ''}
+      `;
+
+      document.getElementById('bookingDetails').innerHTML = detailsHtml;
+      document.getElementById('bookingModal').classList.add('active');
+    };
+
+    window.closeModal = function() {
+      document.getElementById('bookingModal').classList.remove('active');
+    };
+
+    console.log('✅ Admin Bookings page loaded');
+  </script>
+
+</body>
+</html>
