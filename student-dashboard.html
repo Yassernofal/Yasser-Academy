@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Firebase Import Map -->
   <script type="importmap">
   {
     "imports": {
@@ -31,12 +30,10 @@
   </script>
   
   <style>
-    /* ===== General Styles ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; transition: background 0.3s, color 0.3s; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
 
-    /* ===== Navbar ===== */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
       backdrop-filter: blur(18px);
@@ -61,7 +58,6 @@
     .nav-link:hover { color: #f7e05e !important; }
     .nav-link.active { color: #f7e05e !important; }
 
-    /* ===== Dashboard Container ===== */
     .dashboard-container {
       max-width: 800px;
       margin: 30px auto;
@@ -72,7 +68,6 @@
       transition: background 0.3s, color 0.3s, box-shadow 0.3s;
     }
 
-    /* ===== Stat Cards ===== */
     .stat-card {
       background: #f8f9fa;
       border-radius: 16px;
@@ -85,7 +80,6 @@
     .stat-card .number { font-size: 2.5rem; font-weight: 800; color: #0a1f44; }
     .stat-card .label { color: #666; }
 
-    /* ===== Buttons ===== */
     .btn-logout {
       background: #dc3545;
       color: #fff;
@@ -97,6 +91,7 @@
     }
     .btn-logout:hover { background: #b02a37; transform: scale(1.02); }
 
+    /* زر الذهاب للامتحانات */
     .btn-go-exams {
       background: #0a1f44;
       color: #f7e05e;
@@ -117,6 +112,27 @@
       text-decoration: none;
     }
 
+    /* ✅ زر الذهاب للشرح */
+    .btn-go-lessons {
+      background: #f7e05e;
+      color: #0a1f44;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: 0.3s;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .btn-go-lessons:hover {
+      background: #f7b731;
+      color: #0a1f44;
+      transform: scale(1.02);
+      text-decoration: none;
+    }
+
     .btn-dark-mode {
       background: transparent;
       border: 1px solid #e0e8f0;
@@ -131,7 +147,6 @@
       border-color: #f7e05e;
     }
 
-    /* ===== Loading Skeleton ===== */
     .skeleton {
       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
       background-size: 200% 100%;
@@ -143,7 +158,6 @@
       100% { background-position: 200% 0; }
     }
 
-    /* ===== Progress Bar ===== */
     .progress-custom {
       height: 10px;
       border-radius: 10px;
@@ -155,7 +169,6 @@
       transition: width 0.8s ease;
     }
 
-    /* ===== Toast Notification ===== */
     #toastNotification {
       position: fixed;
       bottom: 30px;
@@ -170,7 +183,6 @@
       padding: 12px 20px;
     }
 
-    /* ===== Extra Links ===== */
     .extra-links {
       background: #f8f9fa;
       padding: 10px 0;
@@ -194,7 +206,6 @@
       .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
     }
 
-    /* ===== Footer ===== */
     footer {
       background: #0a1f44;
       color: #b0c4de;
@@ -275,8 +286,14 @@
     body.dark-mode .btn-go-exams:hover {
       background: #f7b731;
     }
+    body.dark-mode .btn-go-lessons {
+      background: #0a1f44;
+      color: #f7e05e;
+    }
+    body.dark-mode .btn-go-lessons:hover {
+      background: #1e3a8a;
+    }
 
-    /* ===== Fix for Navbar Buttons ===== */
     #loginLink, #registerLink, #logoutLink {
       display: block !important;
     }
@@ -301,6 +318,7 @@
           <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav-booking">📝 Booking</a></li>
           <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav-games">🎮 Games</a></li>
           <li class="nav-item"><a class="nav-link active" href="student-dashboard.html" data-i18n="nav-student">👨‍🎓 Student</a></li>
+          <li class="nav-item"><a class="nav-link" href="lessons.html" data-i18n="nav-lessons">📚 Lessons</a></li>
           <li class="nav-item"><a class="nav-link" href="exams.html" data-i18n="nav-exams">📝 Exams</a></li>
           
           <li class="nav-item" id="loginLink">
@@ -314,14 +332,12 @@
             <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav-logout">🚪 Logout</a>
           </li>
 
-          <!-- Dark Mode Toggle -->
           <li class="nav-item">
             <button class="btn btn-dark-mode btn-sm" id="darkModeToggle" onclick="toggleDarkMode()">
               🌙
             </button>
           </li>
 
-          <!-- Language Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -334,7 +350,6 @@
     </div>
   </nav>
 
-  <!-- ===== الروابط الإضافية ===== -->
   <div class="extra-links">
     <div class="container">
       <a href="about.html" data-i18n="about-link">🌟 About Us</a>
@@ -343,12 +358,10 @@
     </div>
   </div>
 
-  <!-- ===== لوحة الطالب ===== -->
   <section class="container">
     <div class="dashboard-container">
       <h2 class="text-center fw-bold mb-4" data-i18n="dashboard-title">Student Dashboard</h2>
       
-      <!-- ===== Skeleton Loading ===== -->
       <div id="loadingScreen">
         <div class="row g-4">
           <div class="col-6 col-md-3"><div class="skeleton" style="height:120px;"></div></div>
@@ -360,11 +373,9 @@
         <div class="skeleton" style="height:60px; margin-top:25px;"></div>
       </div>
 
-      <!-- ===== Dashboard Content ===== -->
       <div id="dashboardContent" style="display: none;">
         <p class="text-center text-muted" id="welcomeMessage" data-i18n="welcome">مرحباً، الطالب!</p>
 
-        <!-- Progress Bar -->
         <div class="mt-3 mb-4">
           <div class="d-flex justify-content-between">
             <span data-i18n="progress-label">نسبة التقدم</span>
@@ -375,7 +386,6 @@
           </div>
         </div>
 
-        <!-- Stats Cards -->
         <div class="row g-4 mb-4">
           <div class="col-md-3 col-6">
             <div class="stat-card">
@@ -403,7 +413,6 @@
           </div>
         </div>
 
-        <!-- ===== قسم الاختبارات الأخيرة ===== -->
         <div class="mb-4">
           <h5 class="fw-bold"><i class="fas fa-history text-primary" aria-hidden="true"></i> <span data-i18n="recent-tests">آخر الاختبارات</span></h5>
           <div id="recentTests" class="table-responsive">
@@ -424,6 +433,11 @@
           </div>
         </div>
 
+        <!-- ✅ زر الذهاب للشرح -->
+        <a href="lessons.html" class="btn-go-lessons">
+          <i class="fas fa-book-reader"></i> <span data-i18n="go-to-lessons">📚 ابدأ الشرح</span>
+        </a>
+
         <!-- زر الذهاب للامتحانات -->
         <a href="exams.html" class="btn-go-exams">
           <i class="fas fa-file-alt"></i> <span data-i18n="go-to-exams">الذهاب للامتحانات</span>
@@ -436,7 +450,6 @@
     </div>
   </section>
 
-  <!-- ===== Toast Notification ===== -->
   <div id="toastNotification" style="display: none;">
     <div class="toast align-items-center text-white border-0 toast-custom" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
@@ -448,7 +461,6 @@
     </div>
   </div>
 
-  <!-- ===== الفوتير ===== -->
   <footer class="footer">
     <div class="container">
       <div class="row g-4">
@@ -489,13 +501,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
   <script type="module">
-    // ===== استيراد Firebase =====
     import { auth, database } from './firebase-config.js';
     import { onAuthStateChanged, signOut } from "firebase/auth";
     import { ref, get, set } from "firebase/database";
     import { protectPage, ROLES, redirectToCorrectDashboard } from './role-manager.js';
 
-    // ===== الترجمة المدمجة =====
     const translations = {
       ar: {
         'nav-home': '🏠 الرئيسية',
@@ -503,6 +513,7 @@
         'nav-booking': '📝 الحجز',
         'nav-games': '🎮 الألعاب',
         'nav-student': '👨‍🎓 الطالب',
+        'nav-lessons': '📚 الشرح',
         'nav-exams': '📝 الامتحانات',
         'nav-login': '🔑 تسجيل الدخول',
         'nav-register': '📝 إنشاء حساب',
@@ -520,6 +531,7 @@
         'date-col': 'التاريخ',
         'no-tests': 'لا توجد اختبارات سابقة',
         'logout-btn': 'تسجيل الخروج',
+        'go-to-lessons': '📚 ابدأ الشرح',
         'go-to-exams': 'الذهاب للامتحانات',
         'loading-text': 'جاري تحميل بياناتك...',
         'about-link': '🌟 من نحن',
@@ -539,6 +551,7 @@
         'nav-booking': '📝 Booking',
         'nav-games': '🎮 Games',
         'nav-student': '👨‍🎓 Student',
+        'nav-lessons': '📚 Lessons',
         'nav-exams': '📝 Exams',
         'nav-login': '🔑 Login',
         'nav-register': '📝 Register',
@@ -556,6 +569,7 @@
         'date-col': 'Date',
         'no-tests': 'No previous tests',
         'logout-btn': 'Logout',
+        'go-to-lessons': '📚 Start Learning',
         'go-to-exams': 'Go to Exams',
         'loading-text': 'Loading your data...',
         'about-link': '🌟 About Us',
@@ -571,7 +585,6 @@
       }
     };
 
-    // ===== دوال الترجمة =====
     window.switchLanguage = function(lang) {
       localStorage.setItem('preferredLanguage', lang);
       applyLanguage(lang);
@@ -597,7 +610,6 @@
     document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = savedLang;
 
-    // ===== عناصر الصفحة =====
     const loadingScreen = document.getElementById('loadingScreen');
     const dashboardContent = document.getElementById('dashboardContent');
     const welcomeMsg = document.getElementById('welcomeMessage');
@@ -609,7 +621,6 @@
     const lessonsEl = document.getElementById('studentLessons');
     const testsBody = document.getElementById('testsBody');
 
-    // ===== التحكم في أزرار القائمة =====
     function updateNavbar(user) {
       const loginLink = document.getElementById('loginLink');
       const registerLink = document.getElementById('registerLink');
@@ -628,7 +639,6 @@
       }
     }
 
-    // ===== دوال الإشعارات =====
     window.showToast = function(message, type = 'success') {
       const toast = document.getElementById('toastNotification');
       const toastMsg = document.getElementById('toastMessage');
@@ -654,7 +664,6 @@
       document.getElementById('toastNotification').style.display = 'none';
     };
 
-    // ===== الوضع الليلي =====
     window.toggleDarkMode = function() {
       const body = document.body;
       body.classList.toggle('dark-mode');
@@ -674,7 +683,6 @@
       }
     }
 
-    // ===== تحميل بيانات الطالب =====
     async function loadStudentData(uid) {
       try {
         const studentRef = ref(database, `students/${uid}`);
@@ -742,7 +750,6 @@
       dashboardContent.style.display = 'block';
     }
 
-    // ===== تسجيل الخروج =====
     window.logoutUser = function() {
       signOut(auth).then(() => {
         console.log('✅ تم تسجيل الخروج');
@@ -756,14 +763,10 @@
       });
     };
 
-    // ===== حماية الصفحة + تشغيل =====
     document.addEventListener('DOMContentLoaded', () => {
       applySavedDarkMode();
-      
-      // حماية الصفحة: الطلاب فقط
       protectPage([ROLES.STUDENT]);
       
-      // الاستماع لحدث جاهزية المستخدم
       window.addEventListener('userReady', async (e) => {
         const { user, role } = e.detail;
         console.log('✅ الطالب جاهز:', user.email, '| الدور:', role);
@@ -772,7 +775,7 @@
       });
     });
 
-    console.log('✅ Student Dashboard page loaded with all fixes');
+    console.log('✅ Student Dashboard page loaded with lessons link');
   </script>
 
 </body>
