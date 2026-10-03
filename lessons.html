@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شرح المنهج - أكاديمية مستر ياسر نوفل</title>
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/lessons.html" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Lateef:wght@400;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'El Messiri', 'Lateef', serif;
+      background: linear-gradient(135deg, #f0f4fa 0%, #e8eef7 100%);
+      padding-top: 78px;
+      padding-bottom: 40px;
+      color: #1a1a2e;
+    }
+
+    /* ===== Navbar ===== */
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.95) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      z-index: 1050;
+    }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+    }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .nav-link.active { color: #f7e05e !important; }
+
+    /* ===== Hero Header ===== */
+    .hero-header {
+      background: linear-gradient(135deg, #0a1f44 0%, #1e3a8a 50%, #2563eb 100%);
+      color: #fff;
+      padding: 50px 30px;
+      border-radius: 28px;
+      margin-bottom: 35px;
+      box-shadow: 0 20px 60px rgba(10, 31, 68, 0.4);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(247, 224, 94, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #f7e05e;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-header p {
+      font-size: 1.15rem;
+      color: #93c5fd;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Grade Tabs ===== */
+    .grade-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+    .grade-tab {
+      padding: 14px 30px;
+      border-radius: 50px;
+      background: #fff;
+      border: 2px solid #e5e7eb;
+      color: #0a1f44;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .grade-tab:hover {
+      border-color: #f7b731;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(247, 183, 49, 0.2);
+    }
+    .grade-tab.active {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #f7e05e;
+      border-color: #0a1f44;
+      box-shadow: 0 8px 25px rgba(10, 31, 68, 0.3);
+    }
+    .grade-tab i { font-size: 1.1rem; }
+
+    /* ===== Unit Cards ===== */
+    .units-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .unit-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+      transition: all 0.3s;
+      border-right: 6px solid #f7b731;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .unit-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    }
+    .unit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, rgba(247, 224, 94, 0.1), transparent);
+      border-radius: 0 0 0 100%;
+    }
+
+    .unit-number {
+      display: inline-block;
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #f7e05e;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+      align-self: flex-start;
+    }
+
+    .unit-card h3 {
+      color: #0a1f44;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .unit-card .arabic-title {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .unit-features {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .unit-features span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #555;
+      font-size: 0.9rem;
+    }
+    .unit-features i { color: #f7b731; }
+
+    .unit-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-unit {
+      flex: 1;
+      padding: 12px 15px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-explain {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #f7e05e;
+    }
+    .btn-explain:hover {
+      transform: scale(1.05);
+      color: #f7e05e;
+    }
+    .btn-exam-small {
+      background: #f7e05e;
+      color: #0a1f44;
+    }
+    .btn-exam-small:hover {
+      background: #f7b731;
+      transform: scale(1.05);
+      color: #0a1f44;
+    }
+
+    /* ===== Empty State ===== */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    }
+    .empty-state i {
+      font-size: 4rem;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+    .empty-state h4 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .empty-state p { color: #666; }
+
+    /* ===== Loading ===== */
+    .loading-container {
+      text-align: center;
+      padding: 60px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero-header h1 { font-size: 1.7rem; }
+      .hero-header p { font-size: 1rem; }
+      .grade-tab { padding: 10px 20px; font-size: 0.9rem; }
+      .unit-card { padding: 22px; }
+      .units-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-name">Mr. Yasser Nofal</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link active" href="lessons.html">📚 الشرح</a></li>
+          <li class="nav-item"><a class="nav-link" href="exams.html">📝 الامتحانات</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👨‍🎓 لوحتي</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 1200px;">
+
+    <!-- Hero Header -->
+    <div class="hero-header">
+      <h1>📚 شرح المنهج</h1>
+      <p>اختر الصف والوحدة للبدء في الشرح</p>
+    </div>
+
+    <!-- Grade Tabs -->
+    <div class="grade-tabs">
+      <button class="grade-tab active" data-grade="prep1" onclick="switchGrade('prep1', this)">
+        <i class="fas fa-graduation-cap"></i>
+        <span>الأول الإعدادي</span>
+      </button>
+      <button class="grade-tab" data-grade="sec1" onclick="switchGrade('sec1', this)">
+        <i class="fas fa-user-graduate"></i>
+        <span>الأول الثانوي</span>
+      </button>
+    </div>
+
+    <!-- Units Grid -->
+    <div id="unitsGrid" class="units-grid">
+      <!-- تُعرض الوحدات هنا -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <i class="fas fa-folder-open"></i>
+      <h4>لا توجد وحدات متاحة حالياً</h4>
+      <p>سيتم إضافة شرح الوحدات قريباً</p>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ===== بيانات الوحدات =====
+    // هنضيف الوحدات هنا واحدة واحدة بعد ما نجهزها
+    const lessonsData = {
+      prep1: [
+        {
+          id: 'unit1',
+          number: 'Unit 1',
+          title: 'Life in a Digital World',
+          titleAr: 'الحياة في عالم رقمي',
+          lessons: 6,
+          questions: 179,
+          url: 'unit1-prep1.html'
+        }
+        // هنضيف Unit 2, Unit 3, Review 1 هنا بعدين
+      ],
+      sec1: [
+        {
+          id: 'unit1',
+          number: 'Unit 1',
+          title: "Egypt's Heritage",
+          titleAr: 'تراث مصر',
+          lessons: 6,
+          questions: 160,
+          url: 'unit1-sec1.html'
+        }
+        // هنضيف Unit 2, Unit 3, Review 1 هنا بعدين
+      ]
+    };
+
+    // ===== تبديل الصف =====
+    function switchGrade(grade, btn) {
+      // تحديث الـ tabs
+      document.querySelectorAll('.grade-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+
+      // عرض الوحدات
+      renderUnits(grade);
+    }
+
+    // ===== عرض الوحدات =====
+    function renderUnits(grade) {
+      const grid = document.getElementById('unitsGrid');
+      const emptyState = document.getElementById('emptyState');
+      const units = lessonsData[grade] || [];
+
+      if (units.length === 0) {
+        grid.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      grid.innerHTML = '';
+
+      units.forEach(unit => {
+        const card = document.createElement('div');
+        card.className = 'unit-card';
+        card.innerHTML = `
+          <span class="unit-number">${unit.number}</span>
+          <h3>${unit.title}</h3>
+          <p class="arabic-title">${unit.titleAr}</p>
+          <div class="unit-features">
+            <span><i class="fas fa-book-open"></i> ${unit.lessons} دروس</span>
+            <span><i class="fas fa-question-circle"></i> ${unit.questions} سؤال</span>
+          </div>
+          <div class="unit-actions">
+            <a href="${unit.url}" class="btn-unit btn-explain">
+              <i class="fas fa-book-reader"></i> الشرح
+            </a>
+            <a href="exams.html" class="btn-unit btn-exam-small">
+              <i class="fas fa-play"></i> امتحان
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ===== تشغيل تلقائي =====
+    document.addEventListener('DOMContentLoaded', () => {
+      renderUnits('prep1');
+    });
+  </script>
+
+</body>
+</html>
