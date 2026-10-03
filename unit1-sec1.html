@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شرح الوحدة الأولى - Egypt's Heritage | أكاديمية مستر ياسر نوفل</title>
+  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/unit1-sec1.html" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Lateef:wght@400;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'El Messiri', 'Lateef', serif;
+      background: linear-gradient(135deg, #f0f4fa 0%, #e8eef7 100%);
+      padding-top: 78px;
+      padding-bottom: 40px;
+      color: #1a1a2e;
+    }
+
+    /* ===== Navbar ===== */
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.95) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      z-index: 1050;
+    }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+    }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
+
+    /* ===== Hero Header ===== */
+    .hero-header {
+      background: linear-gradient(135deg, #0a1f44 0%, #1e3a8a 50%, #2563eb 100%);
+      color: #fff;
+      padding: 50px 30px;
+      border-radius: 28px;
+      margin-bottom: 30px;
+      box-shadow: 0 20px 60px rgba(10, 31, 68, 0.4);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(247, 224, 94, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-header .badge-unit {
+      display: inline-block;
+      background: rgba(247, 224, 94, 0.2);
+      color: #f7e05e;
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      border: 1px solid rgba(247, 224, 94, 0.3);
+    }
+    .hero-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #f7e05e;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+      direction: ltr;
+    }
+    .hero-header h2 {
+      font-size: 1.4rem;
+      color: #93c5fd;
+      font-weight: 500;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-stats .stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e0e8f0;
+      font-size: 0.95rem;
+    }
+    .hero-stats .stat i { color: #f7e05e; }
+
+    /* ===== Tabs ===== */
+    .tabs-container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .tabs-nav {
+      display: flex;
+      background: #f8f9fa;
+      border-bottom: 3px solid #e9ecef;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 140px;
+      padding: 18px 15px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: 'El Messiri', serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #666;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+    .tab-btn i { font-size: 1.3rem; }
+    .tab-btn:hover { background: #eef2f7; color: #0a1f44; }
+    .tab-btn.active { background: #fff; color: #0a1f44; }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; right: 0; left: 0;
+      height: 3px;
+      background: #f7e05e;
+    }
+
+    .tab-panel {
+      display: none;
+      padding: 40px 35px;
+      animation: fadeIn 0.4s ease;
+    }
+    .tab-panel.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Content Sections ===== */
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #f7e05e;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title i { color: #f7b731; }
+
+    .content-card {
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-right: 5px solid #f7b731;
+      transition: 0.3s;
+    }
+    .content-card:hover {
+      transform: translateX(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .content-card h4 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 1.15rem;
+    }
+
+    .content-card p {
+      line-height: 1.9;
+      color: #444;
+      margin-bottom: 12px;
+    }
+
+    /* ✅ النص الإنجليزي - من الشمال لليمين */
+    .english-text {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: embed;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #2563eb;
+      line-height: 2;
+      font-size: 1rem;
+      color: #1a1a2e;
+      margin-bottom: 15px;
+    }
+
+    /* ✅ الترجمة العربية - من اليمين لليسار */
+    .arabic-translation {
+      background: #fef3c7;
+      padding: 18px;
+      border-radius: 12px;
+      border-right: 4px solid #f59e0b;
+      line-height: 2;
+      color: #78350f;
+      margin-bottom: 15px;
+      direction: rtl;
+      text-align: right;
+    }
+    .arabic-translation .label {
+      display: inline-block;
+      background: #f59e0b;
+      color: #fff;
+      padding: 3px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    /* ===== Vocabulary Table ===== */
+    .vocab-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .vocab-table thead {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #f7e05e;
+    }
+    .vocab-table th {
+      padding: 14px 15px;
+      text-align: right;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .vocab-table td {
+      padding: 14px 15px;
+      border-bottom: 1px solid #e9ecef;
+      background: #fff;
+      color: #333;
+    }
+    .vocab-table tr:hover td { background: #f8fafc; }
+    .vocab-table .word {
+      font-weight: 700;
+      color: #0a1f44;
+      direction: ltr;
+      text-align: left;
+      font-family: 'Courier New', monospace;
+    }
+    .vocab-table .meaning {
+      color: #059669;
+      font-weight: 600;
+    }
+    .vocab-table .example-cell {
+      direction: ltr;
+      text-align: left;
+    }
+
+    /* ===== Grammar Box ===== */
+    .grammar-box {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border: 2px solid #bfdbfe;
+    }
+    .grammar-box h4 {
+      color: #1e40af;
+      font-weight: 700;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .grammar-box .rule {
+      background: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border-right: 4px solid #2563eb;
+    }
+    .grammar-box .rule p {
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .grammar-box .example {
+      background: #f0fdf4;
+      padding: 12px 18px;
+      border-radius: 10px;
+      margin: 8px 0;
+      border-left: 4px solid #16a34a;
+      direction: ltr;
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      color: #14532d;
+    }
+    .grammar-box .example-ar {
+      color: #059669;
+      font-size: 0.85rem;
+      margin-top: 4px;
+      direction: rtl;
+      text-align: right;
+      font-family: 'El Messiri', serif;
+    }
+
+    /* ===== Writing Box ===== */
+    .writing-box {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border: 2px solid #fcd34d;
+    }
+    .writing-box h4 {
+      color: #92400e;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .writing-box .tip-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      line-height: 1.7;
+    }
+    .writing-box .tip-line i {
+      color: #f59e0b;
+      margin-top: 5px;
+    }
+
+    /* ===== Tips Box ===== */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .tip-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border-top: 5px solid #f7e05e;
+      transition: 0.3s;
+    }
+    .tip-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .tip-card i {
+      font-size: 2rem;
+      color: #f7b731;
+      margin-bottom: 12px;
+    }
+    .tip-card h5 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .tip-card p { color: #555; line-height: 1.7; font-size: 0.95rem; }
+
+    /* ===== Buttons ===== */
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .btn-action {
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-exam {
+      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
+      color: #f7e05e;
+      box-shadow: 0 8px 25px rgba(10, 31, 68, 0.3);
+    }
+    .btn-exam:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(10, 31, 68, 0.4);
+      color: #f7e05e;
+    }
+    .btn-back {
+      background: #fff;
+      color: #0a1f44;
+      border: 2px solid #e5e7eb;
+    }
+    .btn-back:hover {
+      background: #f3f4f6;
+      border-color: #0a1f44;
+      color: #0a1f44;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero-header h1 { font-size: 1.7rem; }
+      .hero-header h2 { font-size: 1.05rem; }
+      .tab-btn { min-width: 100px; font-size: 0.8rem; padding: 14px 8px; }
+      .tab-btn i { font-size: 1.1rem; }
+      .tab-panel { padding: 25px 18px; }
+      .section-title { font-size: 1.2rem; }
+      .vocab-table th, .vocab-table td { padding: 10px 8px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-name">Mr. Yasser Nofal</span>
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="lessons.html">📚 الوحدات</a></li>
+          <li class="nav-item"><a class="nav-link" href="exams.html">📝 الامتحانات</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👨‍🎓 لوحتي</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 1100px;">
+
+    <!-- Hero Header -->
+    <div class="hero-header">
+      <span class="badge-unit"><i class="fas fa-graduation-cap"></i> الصف الأول الثانوي</span>
+      <h1>Unit 1: Egypt's Heritage</h1>
+      <h2>تراث مصر</h2>
+      <div class="hero-stats">
+        <span class="stat"><i class="fas fa-book-open"></i> 6 دروس</span>
+        <span class="stat"><i class="fas fa-question-circle"></i> 160 سؤال امتحان</span>
+        <span class="stat"><i class="fas fa-clock"></i> دراسة 60 دقيقة</span>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-container">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="openTab(event, 'objectives')">
+          <i class="fas fa-bullseye"></i>
+          <span>الأهداف</span>
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'reading')">
+          <i class="fas fa-book-open"></i>
+          <span>القراءة</span>
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'vocabulary')">
+          <i class="fas fa-spell-check"></i>
+          <span>المفردات</span>
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'grammar')">
+          <i class="fas fa-cog"></i>
+          <span>القواعد</span>
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'writing')">
+          <i class="fas fa-pen-fancy"></i>
+          <span>الكتابة</span>
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'tips')">
+          <i class="fas fa-lightbulb"></i>
+          <span>نصائح</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Objectives -->
+      <div id="objectives" class="tab-panel active">
+        <h3 class="section-title"><i class="fas fa-bullseye"></i> أهداف الوحدة (Learning Outcomes)</h3>
+
+        <div class="content-card">
+          <h4><i class="fas fa-book-open" style="color: #2563eb;"></i> القراءة (Reading)</h4>
+          <p>✅ تحديد الفكرة الرئيسية لنص عن تراث مصر.</p>
+          <p>✅ التعرف على تفاصيل محددة في نص عن تراث مصر.</p>
+        </div>
+
+        <div class="content-card">
+          <h4><i class="fas fa-headphones" style="color: #7c3aed;"></i> الاستماع (Listening)</h4>
+          <p>✅ تحديد الأفكار الرئيسية من النصوص الصوتية حول التراث الثقافي والحفاظ عليه.</p>
+        </div>
+
+        <div class="content-card">
+          <h4><i class="fas fa-cog" style="color: #dc2626;"></i> القواعد (Language)</h4>
+          <p>✅ استخدام المضارع البسيط (Past Simple) للإجراءات المكتملة في الماضي.</p>
+          <p>✅ استخدام الماضي المستمر (Past Continuous) للتعبير عن فعل كان في تقدم.</p>
+        </div>
+
+        <div class="content-card">
+          <h4><i class="fas fa-pen-fancy" style="color: #f59e0b;"></i> الكتابة (Writing)</h4>
+          <p>✅ كتابة فقرة سردية قصيرة عن "يوم غريب في حياتي" باستخدام الماضي البسيط والمستمر.</p>
+        </div>
+
+        <div class="content-card">
+          <h4><i class="fas fa-comments" style="color: #059669;"></i> التحدث (Speaking)</h4>
+          <p>✅ وصف إجراء طويل في الماضي باستخدام Past Continuous، وإجراء قصير باستخدام Past Simple.</p>
+        </div>
+      </div>
+
+      <!-- Tab 2: Reading -->
+      <div id="reading" class="tab-panel">
+        <h3 class="section-title"><i class="fas fa-book-open"></i> القراءة: Taking Pride in Our Beloved Egypt</h3>
+
+        <div class="content-card">
+          <h4><i class="fas fa-scroll"></i> النص الأصلي</h4>
+          <div class="english-text">
+            Egypt is a land with a heart that has been beating for thousands of years. We are proud to call it our home. It is a place where the past and the present meet in harmony. Egypt has always played an important role in the world. Our ancestors built one of the greatest civilizations in history. They gave the world knowledge in writing, mathematics, and medicine. The hieroglyphs carved into temple walls were not just beautiful art; they were a way to record history. The Library of Alexandria once gathered knowledge from all over the world, making Egypt a center of learning.<br><br>
+            Egypt was also a crossroads for trade. Merchants traveled along the Nile and across the deserts, carrying goods such as gold, spices, papyrus, and grain. Our land was a bridge where people met and exchanged ideas, making Egypt a source of inspiration for many civilizations.<br><br>
+            Today, Egypt continues to grow. Our cities rise with modern buildings, while our historical monuments still stand with pride. We are building new roads, bridges, and neighborhoods that show the world our determination to progress. From the Pyramids of Giza to the Grand Egyptian Museum, we continue to honor our history while shaping our future.<br><br>
+            We take pride in our country, not only for its beauty, but also because we understand the sacrifices of our ancestors. We work hard to make it greater for generations to come. Every citizen has a role to play – protecting our heritage, contributing to our economy, and sharing our culture with the world.
+          </div>
+
+          <div class="arabic-translation">
+            <span class="label">🇸🇦 الترجمة</span>
+            <p>مصر أرض بقلب ينبض منذ آلاف السنين. نحن فخورون بأن نسميها وطننا. إنها مكان يلتقي فيه الماضي والحاضر في انسجام. لعبت مصر دائماً دوراً مهماً في العالم. بنى أسلافنا واحدة من أعظم الحضارات في التاريخ. أعطوا العالم المعرفة في الكتابة والرياضيات والطب. لم تكن الهيروغليفية المنقوشة على جدران المعابد مجرد فن جميل؛ بل كانت وسيلة لتسجيل التاريخ. جمعت مكتبة الإسكندرية ذات مرة المعرفة من جميع أنحاء العالم، مما جعل مصر مركزاً للتعلم.</p>
+            <p>كانت مصر أيضاً ملتقى للتجارة. سافر التجار على طول النيل وعبر الصحاري، حاملين سلعاً مثل الذهب والتوابل والبردي والحبوب. كانت أرضنا جسراً يلتقي فيه الناس ويتبادلون الأفكار، مما جعل مصر مصدر إلهام للعديد من الحضارات.</p>
+            <p>اليوم، تواصل مصر النمو. ترتفع مدننا بالمباني الحديثة، بينما تقف آثارنا التاريخية بفخر. نبني طرقاً وجسوراً وأحياءً جديدة تظهر للعالم تصميمنا على التقدم. من أهرامات الجيزة إلى المتحف المصري الكبير، نواصل تكريم تاريخنا مع تشكيل مستقبلنا.</p>
+            <p>نحن فخورون ببلدنا، ليس فقط لجماله، بل لأننا نفهم تضحيات أسلافنا. نعمل بجد لجعله أعظم للأجيال القادمة. كل مواطن له دور يلعبه – حماية تراثنا، والمساهمة في اقتصادنا، ومشاركة ثقافتنا مع العالم.</p>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <h4><i class="fas fa-star"></i> Reading Comprehension — أسئلة الفهم</h4>
+          <p><strong>Q1:</strong> What is the main idea of the passage?</p>
+          <p style="color: #059669;"><strong>Answer:</strong> The proud link between Egypt's ancient past and its modern progress.</p>
+          <p><strong>Q2:</strong> What did Ancient Egyptians contribute?</p>
+          <p style="color: #059669;"><strong>Answer:</strong> Knowledge in writing, mathematics, and medicine.</p>
+          <p><strong>Q3:</strong> What does the word 'determination' mean?</p>
+          <p style="color: #059669;"><strong>Answer:</strong> A strong will to succeed or achieve a goal.</p>
+        </div>
+      </div>
+
+      <!-- Tab 3: Vocabulary -->
+      <div id="vocabulary" class="tab-panel">
+        <h3 class="section-title"><i class="fas fa-spell-check"></i> المفردات (Vocabulary)</h3>
+
+        <div class="content-card">
+          <h4><i class="fas fa-list"></i> كلمات أساسية في الوحدة</h4>
+          <table class="vocab-table">
+            <thead>
+              <tr>
+                <th>الكلمة</th>
+                <th>المعنى بالعربي</th>
+                <th>مثال</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="word">heritage</td>
+                <td class="meaning">تراث</td>
+                <td class="example-cell">Egypt's heritage is famous worldwide.</td>
+              </tr>
+              <tr>
+                <td class="word">civilization</td>
+                <td class="meaning">حضارة</td>
+                <td class="example-cell">Ancient Egypt was a great civilization.</td>
+              </tr>
+              <tr>
+                <td class="word">ancestors</td>
+                <td class="meaning">أسلاف</td>
+                <td class="example-cell">Our ancestors built the pyramids.</td>
+              </tr>
+              <tr>
+                <td class="word">hieroglyphs</td>
+                <td class="meaning">هيروغليفية</td>
+                <td class="example-cell">Hieroglyphs were carved into temple walls.</td>
+              </tr>
+              <tr>
+                <td class="word">monuments</td>
+                <td class="meaning">آثار</td>
+                <td class="example-cell">The monuments still stand with pride.</td>
+              </tr>
+              <tr>
+                <td class="word">crossroads</td>
+                <td class="meaning">ملتقى</td>
+                <td class="example-cell">Egypt was a crossroads for trade.</td>
+              </tr>
+              <tr>
+                <td class="word">merchants</td>
+                <td class="meaning">تجار</td>
+                <td class="example-cell">Merchants traveled along the Nile.</td>
+              </tr>
+              <tr>
+                <td class="word">papyrus</td>
+                <td class="meaning">ورق البردي</td>
+                <td class="example-cell">Papyrus was used as paper.</td>
+              </tr>
+              <tr>
+                <td class="word">inspiration</td>
+                <td class="meaning">إلهام</td>
+                <td class="example-cell">Egypt was a source of inspiration.</td>
+              </tr>
+              <tr>
+                <td class="word">determination</td>
+                <td class="meaning">إصرار</td>
+                <td class="example-cell">We show determination to progress.</td>
+              </tr>
+              <tr>
+                <td class="word">sacrifices</td>
+                <td class="meaning">تضحيات</td>
+                <td class="example-cell">We understand the sacrifices of our ancestors.</td>
+              </tr>
+              <tr>
+                <td class="word">generations</td>
+                <td class="meaning">أجيال</td>
+                <td class="example-cell">We work hard for generations to come.</td>
+              </tr>
+              <tr>
+                <td class="word">contribute</td>
+                <td class="meaning">يُساهم</td>
+                <td class="example-cell">Everyone should contribute to the economy.</td>
+              </tr>
+              <tr>
+                <td class="word">preserve</td>
+                <td class="meaning">يحافظ على</td>
+                <td class="example-cell">We must preserve our culture.</td>
+              </tr>
+              <tr>
+                <td class="word">harmony</td>
+                <td class="meaning">انسجام</td>
+                <td class="example-cell">Past and present meet in harmony.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content-card">
+          <h4><i class="fas fa-lightbulb"></i> ملاحظات مهمة</h4>
+          <p><strong>كلمة "heritage"</strong> تعني تراث (كل ما ورثناه من الأجداد).</p>
+          <p><strong>كلمة "civilization"</strong> تعني حضارة (مجتمع له ثقافته الخاصة).</p>
+          <p><strong>"wolves in sheep's clothing"</strong> تعبير مجازي يعني: شخص خطير يبدو لطيفاً.</p>
+        </div>
+      </div>
+
+      <!-- Tab 4: Grammar -->
+      <div id="grammar" class="tab-panel">
+        <h3 class="section-title"><i class="fas fa-cog"></i> القواعد (Grammar)</h3>
+
+        <!-- Past Simple -->
+        <div class="grammar-box">
+          <h4><i class="fas fa-history"></i> الماضي البسيط (Past Simple)</h4>
+          <p><strong>الاستخدام:</strong> للتعبير عن إجراء مكتمل في الماضي.</p>
+          <div class="rule">
+            <p><strong>القاعدة:</strong></p>
+            <p>✅ الأفعال المنتظمة: <strong>فعل + ed</strong> (visited, played, worked)</p>
+            <p>✅ الأفعال الشاذة: <strong>شكل خاص</strong> (went, saw, ate, wrote, built)</p>
+            <p>✅ النفي: <strong>didn't + فعل أساسي</strong></p>
+            <p>✅ السؤال: <strong>Did + فاعل + فعل أساسي؟</strong></p>
+          </div>
+          <div class="example">
+            The Egyptians <strong>taught</strong> the world what civilization was.
+            <div class="example-ar">علّم المصريون العالم ما هي الحضارة.</div>
+          </div>
+          <div class="example">
+            She <strong>visited</strong> her grandmother two days ago.
+            <div class="example-ar">زارت جدتها منذ يومين.</div>
+          </div>
+        </div>
+
+        <!-- Past Continuous -->
+        <div class="grammar-box">
+          <h4><i class="fas fa-hourglass-half"></i> الماضي المستمر (Past Continuous)</h4>
+          <p><strong>الاستخدام:</strong> للتعبير عن فعل كان في تقدم في وقت معين في الماضي.</p>
+          <div class="rule">
+            <p><strong>القاعدة:</strong></p>
+            <p>✅ <strong>was/were + فعل + ing</strong></p>
+            <p>✅ مع I/He/She/It: <strong>was + verb-ing</strong></p>
+            <p>✅ مع We/You/They: <strong>were + verb-ing</strong></p>
+          </div>
+          <div class="example">
+            At 2 o'clock, Sama <strong>was returning</strong> home.
+            <div class="example-ar">في الساعة الثانية، كانت سامه في طريق عودتها للمنزل.</div>
+          </div>
+          <div class="example">
+            They <strong>were playing</strong> football when it started to rain.
+            <div class="example-ar">كانوا يلعبون كرة القدم عندما بدأت تمطر.</div>
+          </div>
+        </div>
+
+        <!-- Past Continuous + Past Simple -->
+        <div class="grammar-box">
+          <h4><i class="fas fa-link"></i> الدمج بين الماضي المستمر والماضي البسيط</h4>
+          <p><strong>الاستخدام:</strong> للتعبير عن فعل قصير حدث أثناء فعل طويل في الماضي.</p>
+          <div class="rule">
+            <p>✅ <strong>While / As / Just as</strong> + Past Continuous, Past Simple</p>
+            <p>✅ <strong>When</strong> + Past Simple, Past Continuous</p>
+          </div>
+          <div class="example">
+            <strong>While</strong> Rodayna <strong>was going</strong> home, she <strong>met</strong> her friends.
+            <div class="example-ar">بينما كانت رودينا في طريقها للمنزل، التقت بأصدقائها.</div>
+          </div>
+          <div class="example">
+            <strong>When</strong> Ahmed <strong>arrived</strong> home, mother <strong>was serving</strong> lunch.
+            <div class="example-ar">عندما وصل أحمد للمنزل، كانت الأم تقدم الغداء.</div>
+          </div>
+        </div>
+
+        <!-- Stative Verbs -->
+        <div class="grammar-box">
+          <h4><i class="fas fa-exclamation-circle"></i> أفعال لا تُستخدم في المستمر</h4>
+          <p><strong>ملاحظة:</strong> بعض الأفعال لا تُستخدم في الـ Continuous، مثل:</p>
+          <p style="direction: ltr; text-align: left; font-family: monospace; background: #fff; padding: 10px; border-radius: 8px;">be, love, like, want, (look = seem), (have = possess)</p>
+          <div class="example">
+            ❌ I am loving this book.
+            <div class="example-ar">✅ I love this book.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 5: Writing -->
+      <div id="writing" class="tab-panel">
+        <h3 class="section-title"><i class="fas fa-pen-fancy"></i> الكتابة (Writing)</h3>
+
+        <div class="writing-box">
+          <h4><i class="fas fa-envelope"></i> نموذج: A Strange Day in My Life</h4>
+          <div class="english-text">
+            "Last Friday was a day I'll never forget. I was walking to school when I saw a cat sitting on top of a car. Suddenly, it jumped and landed right in front of me. I was so surprised that I dropped my bag. While I was picking up my things, a kind man helped me. After that, I continued walking to school. When I arrived, I realized that I had forgotten my homework at home. It was truly a strange day!"
+          </div>
+        </div>
+
+        <div class="writing-box">
+          <h4><i class="fas fa-lightbulb"></i> نصائح للكتابة</h4>
+          <div class="tip-line">
+            <i class="fas fa-check-circle"></i>
+            <span>ابدأ بجملة جاذبة (مثل: "Last Friday was a day I'll never forget.").</span>
+          </div>
+          <div class="tip-line">
+            <i class="fas fa-check-circle"></i>
+            <span>استخدم <strong>Past Simple</strong> للإجراءات المكتملة.</span>
+          </div>
+          <div class="tip-line">
+            <i class="fas fa-check-circle"></i>
+            <span>استخدم <strong>Past Continuous</strong> للإجراءات المستمرة.</span>
+          </div>
+          <div class="tip-line">
+            <i class="fas fa-check-circle"></i>
+            <span>استخدم كلمات مثل: <strong>while, when, during, suddenly</strong>.</span>
+          </div>
+          <div class="tip-line">
+            <i class="fas fa-check-circle"></i>
+            <span>اكتب 120-150 كلمة.</span>
+          </div>
+          <div class="tip-line">
+            <i class="fas fa-check-circle"></i>
+            <span>راجع الإملاء والترقيم قبل التسليم.</span>
+          </div>
+        </div>
+
+        <div class="writing-box">
+          <h4><i class="fas fa-quote-right"></i> Useful Expressions — تعبيرات مفيدة</h4>
+          <div class="english-text">
+            ✅ Last [day], I was ...<br>
+            ✅ While I was ..., I saw ...<br>
+            ✅ Suddenly, ...<br>
+            ✅ It was a day I'll never forget.<br>
+            ✅ In the end, ...
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 6: Tips -->
+      <div id="tips" class="tab-panel">
+        <h3 class="section-title"><i class="fas fa-lightbulb"></i> نصائح للحفظ والمراجعة</h3>
+
+        <div class="tips-grid">
+          <div class="tip-card">
+            <i class="fas fa-brain"></i>
+            <h5>اربط الكلمات بالصور</h5>
+            <p>لما تشوف كلمة زي <strong>hieroglyphs</strong>، افتكر الصورة بتاعتها. الدماغ بتحفظ الصور أسرع من الكلمات.</p>
+          </div>
+          <div class="tip-card">
+            <i class="fas fa-repeat"></i>
+            <h5>كرر بصوت عالي</h5>
+            <p>اقرأ الكلمة والجملة بصوت عالي 3 مرات. النطق يساعد على التذكر.</p>
+          </div>
+          <div class="tip-card">
+            <i class="fas fa-pen"></i>
+            <h5>اكتب جمل من عندك</h5>
+            <p>متكتفيش بحفظ الأمثلة. اكتب جمل جديدة باستخدام الكلمات الجديدة.</p>
+          </div>
+          <div class="tip-card">
+            <i class="fas fa-users"></i>
+            <h5>ذاكر مع صاحبك</h5>
+            <p>اسأل صاحبك عن معاني الكلمات، واسألك. التعاون يخلي المذاكرة ممتعة.</p>
+          </div>
+          <div class="tip-card">
+            <i class="fas fa-clock"></i>
+            <h5>خصص 30 دقيقة يومياً</h5>
+            <p>أفضل من 3 ساعات مرة واحدة. الدماغ بيحفظ أحسن مع المراجعة اليومية.</p>
+          </div>
+          <div class="tip-card">
+            <i class="fas fa-video"></i>
+            <h5>شوف فيديوهات عن مصر القديمة</h5>
+            <p>المشاهدة بالإنجليزي هتحسن مهارات الاستماع، وهتخليك فاهم الموضوع أعمق.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <a href="exams.html" class="btn-action btn-exam">
+        <i class="fas fa-play-circle"></i> ابدأ امتحان الوحدة
+      </a>
+      <a href="lessons.html" class="btn-action btn-back">
+        <i class="fas fa-arrow-right"></i> رجوع للوحدات
+      </a>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function openTab(event, tabName) {
+      const panels = document.querySelectorAll('.tab-panel');
+      panels.forEach(p => p.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+
+      document.getElementById(tabName).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
