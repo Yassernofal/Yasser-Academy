@@ -1,0 +1,11 @@
+passage,question,option1,option2,option3,option4,correct_index,grade,unit,topic,difficulty,explanation
+"","Rewrite: He always tells the truth. (lies)","He never tells lies.","He always tells lies.","He tells lies always.","Lies he always tells.",0,sec1,unit3,rewrite,medium,"He never tells lies."
+"","Rewrite: It is still raining. (stopped)","It hasn't stopped raining.","It has stopped raining.","It stops raining.","It stopped raining.",0,sec1,unit3,rewrite,medium,"Hasn't stopped."
+"","Rewrite: He arrived late so he didn't catch the train. (because)","He didn't catch the train because he arrived late.","He arrived late because he didn't catch the train.","Because he arrived, he caught the train.","He caught the train because he arrived late.",0,sec1,unit3,rewrite,medium,"Because he arrived late."
+"","Rewrite: I don't believe his story. (doubt)","I doubt his story.","I believe his story.","I trust his story.","I confirm his story.",0,sec1,unit3,rewrite,medium,"I doubt."
+"","Rewrite: She is very honest. (honesty)","She is known for her honesty.","She is honest known.","Honest she is known.","Her honesty is known false.",0,sec1,unit3,rewrite,medium,"Known for her honesty."
+"","Rewrite: The story might not be true. (doubtful)","The story is doubtful.","The story is true.","The story is confirmed.","The story is verified.",0,sec1,unit3,rewrite,medium,"Doubtful."
+"","Rewrite: He tricked me. (deceived)","I was deceived by him.","I deceived him.","He was deceived by me.","Deceived him I was.",0,sec1,unit3,rewrite,medium,"I was deceived."
+"","Rewrite: People should check the facts. (verify)","People should verify the facts.","People should ignore the facts.","People should believe the facts.","People should spread the facts.",0,sec1,unit3,rewrite,medium,"Verify = check."
+"","Rewrite: The news might be fake. (misleading)","The news might be misleading.","The news is true.","The news is verified.","The news is honest.",0,sec1,unit3,rewrite,medium,"Misleading = fake."
+"","Rewrite: She was tricked into a bad situation. (trap)","She was caught in a trap.","She escaped a trap.","She set a trap.","She avoided a trap.",0,sec1,unit3,rewrite,medium,"Caught in a trap."
