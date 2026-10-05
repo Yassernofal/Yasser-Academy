@@ -17,7 +17,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Firebase Import Map -->
   <script type="importmap">
@@ -85,6 +85,23 @@
       box-shadow: 0 0 0 0.2rem rgba(247, 183, 49, 0.15);
     }
 
+    .password-wrapper {
+      position: relative;
+    }
+    .password-toggle {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 5px;
+    }
+    .password-toggle:hover { color: #f7b731; }
+
     .btn-login {
       background: #0a1f44;
       color: #f7e05e;
@@ -115,7 +132,66 @@
     }
     .link-register:hover { color: #f7b731; text-decoration: underline; }
 
+    .forgot-link {
+      color: #0a1f44;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    .forgot-link:hover { color: #f7b731; text-decoration: underline; }
+
     .alert { border-radius: 12px; }
+
+    /* قسم تأكيد الإيميل */
+    .verify-section {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      animation: slideDown 0.3s ease-out;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .verify-section .verify-icon {
+      font-size: 3rem;
+      color: #ffc107;
+      margin-bottom: 10px;
+    }
+    .verify-section h5 {
+      color: #856404;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .verify-section p {
+      color: #856404;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .btn-resend {
+      background: #ffc107;
+      color: #0a1f44;
+      font-weight: 700;
+      border-radius: 50px;
+      padding: 10px 25px;
+      border: none;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .btn-resend:hover:not(:disabled) {
+      background: #ffb300;
+      transform: scale(1.02);
+    }
+    .btn-resend:disabled {
+      background: #ccc;
+      color: #666;
+      cursor: not-allowed;
+    }
 
     .extra-links {
       background: #f8f9fa;
@@ -148,6 +224,11 @@
     .footer-links a { color: #b0c4de; text-decoration: none; transition: 0.3s; }
     .footer-links a:hover { color: #f7e05e; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
+
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
+      .login-container { padding: 30px 20px; margin: 30px 15px; }
+    }
   </style>
 </head>
 <body>
@@ -189,23 +270,54 @@
       
       <div id="loginStatus" class="mb-3"></div>
 
+      <!-- قسم تحذير تأكيد الإيميل -->
+      <div id="verifySection" class="verify-section" style="display: none;">
+        <div class="verify-icon">
+          <i class="fas fa-envelope-open-text"></i>
+        </div>
+        <h5>⚠️ تأكيد الإيميل مطلوب</h5>
+        <p>
+          إيميلك مش متأكد بعد. افتح إيميلك واضغط على رابط التأكيد.
+          <br>
+          <strong id="verifyEmailDisplay"></strong>
+        </p>
+        <button type="button" class="btn-resend" id="resendBtn">
+          <i class="fas fa-paper-plane"></i> إعادة إرسال رابط التأكيد
+        </button>
+      </div>
+
       <form id="loginForm">
         <div class="mb-3">
           <label class="form-label fw-bold">البريد الإلكتروني</label>
-          <input type="email" class="form-control" id="loginEmail" required placeholder="example@email.com" autocomplete="email" />
+          <input 
+            type="email" 
+            class="form-control" 
+            id="loginEmail" 
+            required 
+            placeholder="example@email.com" 
+            autocomplete="email" 
+          />
         </div>
+        
         <div class="mb-3">
           <label class="form-label fw-bold">كلمة المرور</label>
-          <div style="position: relative;">
-            <input type="password" class="form-control" id="loginPassword" required placeholder="••••••••" autocomplete="current-password" />
-            <button type="button" onclick="togglePassword()" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #666; cursor: pointer;">
+          <div class="password-wrapper">
+            <input 
+              type="password" 
+              class="form-control" 
+              id="loginPassword" 
+              required 
+              placeholder="••••••••" 
+              autocomplete="current-password" 
+            />
+            <button type="button" class="password-toggle" id="togglePasswordBtn" title="إظهار كلمة المرور">
               <i class="fas fa-eye" id="eyeIcon"></i>
             </button>
           </div>
         </div>
 
         <div class="text-end mb-3">
-          <a href="#" onclick="forgotPassword()" style="color: #0a1f44; text-decoration: none; font-size: 0.9rem;">
+          <a href="#" class="forgot-link" id="forgotPasswordLink">
             نسيت كلمة المرور؟
           </a>
         </div>
@@ -241,12 +353,15 @@
             <li><a href="levels.html">المستويات</a></li>
             <li><a href="booking.html">الحجز</a></li>
             <li><a href="about.html">من نحن</a></li>
+            <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
+            <li><a href="terms.html">الشروط والأحكام</a></li>
           </ul>
         </div>
         <div class="col-md-4">
           <h5>اتصل بنا</h5>
           <p><i class="fas fa-phone"></i> 01203145717</p>
           <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
+          <p><i class="fab fa-whatsapp"></i> 01001297414</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -259,23 +374,17 @@
 
   <script type="module">
     import { auth, database } from './firebase-config.js';
-    import { signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
+    import { 
+      signInWithEmailAndPassword, 
+      onAuthStateChanged, 
+      sendPasswordResetEmail,
+      sendEmailVerification,
+      signOut
+    } from "firebase/auth";
     import { ref, get } from "firebase/database";
 
-    // ===== إذا كان المستخدم مسجلاً بالفعل، نوجهه =====
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        try {
-          const userSnap = await get(ref(database, `users/${user.uid}`));
-          if (userSnap.exists()) {
-            const role = userSnap.val().role;
-            redirectToDashboard(role);
-          }
-        } catch (e) {
-          console.error('خطأ:', e);
-        }
-      }
-    });
+    // متغير لتخزين إيميل المستخدم المعلق
+    let pendingUserEmail = '';
 
     // ===== توجيه المستخدم حسب دوره =====
     function redirectToDashboard(role) {
@@ -292,8 +401,23 @@
       }
     }
 
+    // ===== إذا كان المستخدم مسجلاً بالفعل، نوجهه =====
+    onAuthStateChanged(auth, async (user) => {
+      if (user && user.emailVerified) {
+        try {
+          const userSnap = await get(ref(database, `users/${user.uid}`));
+          if (userSnap.exists()) {
+            const role = userSnap.val().role;
+            redirectToDashboard(role);
+          }
+        } catch (e) {
+          console.error('خطأ:', e);
+        }
+      }
+    });
+
     // ===== إظهار/إخفاء كلمة المرور =====
-    window.togglePassword = function() {
+    document.getElementById('togglePasswordBtn').addEventListener('click', () => {
       const input = document.getElementById('loginPassword');
       const icon = document.getElementById('eyeIcon');
       if (input.type === 'password') {
@@ -305,26 +429,33 @@
         icon.classList.remove('fa-eye-slash');
         icon.classList.add('fa-eye');
       }
-    };
+    });
 
     // ===== نسيان كلمة المرور =====
-    window.forgotPassword = async function() {
+    document.getElementById('forgotPasswordLink').addEventListener('click', async (e) => {
+      e.preventDefault();
+      
       const email = document.getElementById('loginEmail').value.trim();
+      const status = document.getElementById('loginStatus');
+
       if (!email) {
-        document.getElementById('loginStatus').innerHTML = 
-          '<div class="alert alert-warning">⚠️ الرجاء إدخال بريدك الإلكتروني أولاً</div>';
+        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء إدخال بريدك الإلكتروني أولاً</div>';
+        document.getElementById('loginEmail').focus();
         return;
       }
-      
+
       try {
         await sendPasswordResetEmail(auth, email);
-        document.getElementById('loginStatus').innerHTML = 
-          '<div class="alert alert-success">✅ تم إرسال رابط استعادة كلمة المرور إلى بريدك</div>';
+        status.innerHTML = '<div class="alert alert-success">✅ تم إرسال رابط استعادة كلمة المرور إلى بريدك</div>';
       } catch (error) {
-        document.getElementById('loginStatus').innerHTML = 
-          `<div class="alert alert-danger">❌ خطأ: ${error.message}</div>`;
+        let msg = '❌ فشل الإرسال. ';
+        if (error.code === 'auth/user-not-found') msg = '❌ لا يوجد حساب بهذا الإيميل.';
+        else if (error.code === 'auth/invalid-email') msg = '❌ صيغة الإيميل غير صحيحة.';
+        else msg += error.message;
+        
+        status.innerHTML = `<div class="alert alert-danger">${msg}</div>`;
       }
-    };
+    });
 
     // ===== معالجة تسجيل الدخول =====
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
@@ -334,6 +465,15 @@
       const password = document.getElementById('loginPassword').value;
       const status = document.getElementById('loginStatus');
       const btn = document.getElementById('loginBtn');
+      const verifySection = document.getElementById('verifySection');
+
+      // إخفاء تحذير التأكيد القديم
+      verifySection.style.display = 'none';
+
+      if (!email || !password) {
+        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء ملء جميع الحقول</div>';
+        return;
+      }
 
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...';
@@ -343,11 +483,31 @@
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // جلب دور المستخدم
+        // ===== التحقق من تأكيد الإيميل =====
+        if (!user.emailVerified) {
+          // إيميل مش متأكد
+          await signOut(auth);
+          
+          pendingUserEmail = email;
+          document.getElementById('verifyEmailDisplay').textContent = email;
+          verifySection.style.display = 'block';
+          
+          status.innerHTML = '';
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> دخول';
+          
+          // Scroll للتحذير
+          verifySection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          console.log('⚠️ الإيميل مش متأكد:', email);
+          return;
+        }
+
+        // ===== جلب دور المستخدم =====
         const userSnap = await get(ref(database, `users/${user.uid}`));
         
         if (!userSnap.exists()) {
-          status.innerHTML = '<div class="alert alert-danger">❌ لا توجد بيانات لهذا الحساب</div>';
+          status.innerHTML = '<div class="alert alert-danger">❌ لا توجد بيانات لهذا الحساب. تواصل مع الدعم.</div>';
           btn.disabled = false;
           btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> دخول';
           return;
@@ -356,7 +516,9 @@
         const userData = userSnap.val();
         const role = userData.role || 'student';
 
+        // ===== نجاح - توجيه =====
         status.innerHTML = `<div class="alert alert-success">✅ مرحباً ${userData.name || ''}! جاري التحويل...</div>`;
+        console.log('✅ تسجيل دخول ناجح:', email, '-', role);
 
         setTimeout(() => {
           redirectToDashboard(role);
@@ -364,10 +526,10 @@
 
       } catch (error) {
         let message = '❌ فشل تسجيل الدخول. ';
-        if (error.code === 'auth/user-not-found') message += 'البريد الإلكتروني غير مسجل.';
-        else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') message += 'كلمة المرور غير صحيحة.';
-        else if (error.code === 'auth/invalid-email') message += 'صيغة البريد الإلكتروني غير صحيحة.';
-        else if (error.code === 'auth/too-many-requests') message += 'تم تجاوز عدد المحاولات. جرب لاحقاً.';
+        if (error.code === 'auth/user-not-found') message = '❌ البريد الإلكتروني غير مسجل.';
+        else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') message = '❌ كلمة المرور غير صحيحة.';
+        else if (error.code === 'auth/invalid-email') message = '❌ صيغة البريد الإلكتروني غير صحيحة.';
+        else if (error.code === 'auth/too-many-requests') message = '❌ تم تجاوز عدد المحاولات. جرب لاحقاً.';
         else message += error.message;
         
         status.innerHTML = `<div class="alert alert-danger">${message}</div>`;
@@ -376,7 +538,58 @@
       }
     });
 
-    console.log('✅ Login page loaded with role-based redirect');
+    // ===== إعادة إرسال رابط التأكيد =====
+    document.getElementById('resendBtn').addEventListener('click', async () => {
+      const email = pendingUserEmail || document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const btn = document.getElementById('resendBtn');
+      const status = document.getElementById('loginStatus');
+
+      if (!email || !password) {
+        status.innerHTML = '<div class="alert alert-warning">⚠️ لازم تدخل الإيميل وكلمة المرور الأول</div>';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+
+      try {
+        // تسجيل دخول مؤقت لإرسال الإيميل
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        await sendEmailVerification(userCredential.user);
+        await signOut(auth);
+
+        status.innerHTML = '<div class="alert alert-success">✅ تم إرسال رابط التأكيد! افتح إيميلك.</div>';
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> إعادة إرسال رابط التأكيد';
+
+        // عد تنازلي 60 ثانية
+        let countdown = 60;
+        const interval = setInterval(() => {
+          countdown--;
+          btn.innerHTML = `<i class="fas fa-clock"></i> إعادة الإرسال (${countdown})`;
+          if (countdown <= 0) {
+            clearInterval(interval);
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> إعادة إرسال رابط التأكيد';
+            btn.disabled = false;
+          }
+        }, 1000);
+        btn.disabled = true;
+
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+        let msg = '❌ فشل الإرسال. ';
+        if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') msg = '❌ كلمة المرور غير صحيحة.';
+        else if (error.code === 'auth/too-many-requests') msg = '❌ محاولات كثيرة. حاول لاحقاً.';
+        else msg += error.message;
+
+        status.innerHTML = `<div class="alert alert-danger">${msg}</div>`;
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> إعادة إرسال رابط التأكيد';
+      }
+    });
+
+    console.log('✅ Login page loaded with email verification');
   </script>
 
 </body>
