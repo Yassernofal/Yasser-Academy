@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>امتحان الوحدة 1: Living Well in a Complex World | أكاديمية ياسر نوفل</title>
+  <link rel="stylesheet" href="../css/interactive.css">
+</head>
+<body>
+
+<div class="exam-container">
+  <div class="exam-header" id="examHeader"></div>
+  <div id="examContainer"></div>
+  <div id="examNav"></div>
+</div>
+
+<script src="../data/questions-unit1.js"></script>
+<script src="../js/interactive-engine.js"></script>
+<script>
+  // اختيار 20 سؤال عشوائي من بنك الأسئلة
+  function getRandomQuestions(allQuestions, count) {
+    const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
+  }
+
+  const examQuestions = getRandomQuestions(window.unit1Questions, 20);
+
+  new ExamEngine({
+    questions: examQuestions,
+    duration: 30
+  });
+</script>
+
+</body>
+</html>
