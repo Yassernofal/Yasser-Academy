@@ -78,18 +78,6 @@
     .btn-register:hover { background: #f7b731; transform: scale(1.02); }
     .btn-register:disabled { background: #ccc; cursor: not-allowed; }
 
-    .btn-verify {
-      background: #0a1f44;
-      color: #f7e05e;
-      font-weight: 700;
-      border-radius: 50px;
-      padding: 10px 20px;
-      border: none;
-      transition: 0.3s;
-    }
-    .btn-verify:hover { background: #1e3a8a; }
-    .btn-verify:disabled { background: #ccc; cursor: not-allowed; color: #666; }
-
     .role-card {
       border: 2px solid #e0e0e0;
       border-radius: 16px;
@@ -125,38 +113,33 @@
       margin: 0;
     }
 
-    .phone-input-group {
-      display: flex;
-      gap: 8px;
-      direction: ltr;
-    }
-    .phone-input-group .country-code {
-      background: #f0f4fa;
-      border: 1px solid #dee2e6;
-      border-radius: 10px;
-      padding: 10px 15px;
-      font-weight: 700;
-      color: #0a1f44;
-      display: flex;
-      align-items: center;
-    }
-    .phone-input-group input {
-      flex: 1;
-      direction: ltr;
-      text-align: left;
-    }
-
-    .otp-input {
-      letter-spacing: 12px;
-      font-size: 1.5rem;
+    .success-message {
       text-align: center;
-      font-weight: 700;
-      direction: ltr;
-      font-family: 'Courier New', monospace;
+      padding: 30px;
     }
-
-    #recaptcha-container {
-      margin: 10px 0;
+    .success-message .icon {
+      font-size: 4rem;
+      color: #28a745;
+      margin-bottom: 20px;
+    }
+    .success-message h3 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .success-message p {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .email-highlight {
+      background: #fffbf0;
+      color: #0a1f44;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 700;
+      display: inline-block;
+      direction: ltr;
     }
 
     footer {
@@ -229,108 +212,116 @@
 
   <section class="container">
     <div class="register-container">
-      <h2 class="text-center fw-bold mb-2">إنشاء حساب جديد</h2>
-      <p class="text-center text-muted mb-4">اختر نوع الحساب ثم أكمل البيانات</p>
       
-      <div id="registerStatus" class="mb-3"></div>
-      
-      <div class="mb-4">
-        <label class="form-label fw-bold mb-3">نوع الحساب</label>
-        <div class="row g-3">
-          <div class="col-6">
-            <div class="role-card" data-role="student" id="roleStudent">
-              <i class="fas fa-user-graduate"></i>
-              <h5>طالب</h5>
-              <p>للتعلم ومشاهدة الدروس</p>
+      <!-- نموذج التسجيل -->
+      <div id="registerSection">
+        <h2 class="text-center fw-bold mb-2">إنشاء حساب جديد</h2>
+        <p class="text-center text-muted mb-4">اختر نوع الحساب ثم أكمل البيانات</p>
+        
+        <div id="registerStatus" class="mb-3"></div>
+        
+        <div class="mb-4">
+          <label class="form-label fw-bold mb-3">نوع الحساب</label>
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="role-card" data-role="student" id="roleStudent">
+                <i class="fas fa-user-graduate"></i>
+                <h5>طالب</h5>
+                <p>للتعلم ومشاهدة الدروس</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="role-card" data-role="parent" id="roleParent">
+                <i class="fas fa-users"></i>
+                <h5>ولي أمر</h5>
+                <p>لمتابعة تقدم الأبناء</p>
+              </div>
             </div>
           </div>
-          <div class="col-6">
-            <div class="role-card" data-role="parent" id="roleParent">
-              <i class="fas fa-users"></i>
-              <h5>ولي أمر</h5>
-              <p>لمتابعة تقدم الأبناء</p>
-            </div>
-          </div>
+          <input type="hidden" id="selectedRole" value="" />
         </div>
-        <input type="hidden" id="selectedRole" value="" />
+
+        <form id="registerForm">
+          <div class="mb-3">
+            <label class="form-label fw-bold">الاسم الكامل</label>
+            <input type="text" class="form-control" id="registerName" required placeholder="أحمد محمد" />
+          </div>
+
+          <!-- اختيار الصف (يظهر للطلاب فقط) -->
+          <div class="mb-3" id="gradeField" style="display: none;">
+            <label class="form-label fw-bold">الصف الدراسي *</label>
+            <select class="form-select" id="registerGrade">
+              <option value="">— اختر الصف —</option>
+              <option value="prep1">الأول الإعدادي</option>
+              <option value="prep2">الثاني الإعدادي</option>
+              <option value="prep3">الثالث الإعدادي</option>
+              <option value="sec1">الأول الثانوي</option>
+              <option value="sec2">الثاني الثانوي</option>
+              <option value="sec3">الثالث الثانوي</option>
+              <option value="bac">بكالوريا - الثاني الثانوي</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">البريد الإلكتروني</label>
+            <input type="email" class="form-control" id="registerEmail" required placeholder="example@email.com" />
+            <small class="text-muted">هنبعتلك رابط تأكيد على الإيميل ده</small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">كلمة المرور</label>
+            <input type="password" class="form-control" id="registerPassword" required placeholder="••••••••" />
+            <small class="text-muted">6 أحرف على الأقل</small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">تأكيد كلمة المرور</label>
+            <input type="password" class="form-control" id="registerConfirm" required placeholder="••••••••" />
+          </div>
+
+          <!-- حقل ولي الأمر -->
+          <div class="mb-3" id="childEmailField" style="display: none;">
+            <label class="form-label fw-bold">البريد الإلكتروني لابنك/ابنتك</label>
+            <input type="email" class="form-control" id="childEmail" placeholder="child@email.com" />
+            <small class="text-muted">سيتم ربط حسابك بحساب ابنك تلقائياً</small>
+          </div>
+
+          <button type="submit" class="btn-register" id="registerBtn">
+            <i class="fas fa-user-plus" aria-hidden="true"></i> إنشاء الحساب
+          </button>
+          <p class="text-center mt-3">
+            لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+          </p>
+        </form>
       </div>
 
-      <form id="registerForm">
-        <div class="mb-3">
-          <label class="form-label fw-bold">الاسم الكامل</label>
-          <input type="text" class="form-control" id="registerName" required placeholder="أحمد محمد" />
+      <!-- رسالة نجاح (تظهر بعد التسجيل) -->
+      <div id="successSection" class="success-message" style="display: none;">
+        <div class="icon">
+          <i class="fas fa-envelope-circle-check"></i>
         </div>
-
-        <!-- اختيار الصف (يظهر للطلاب فقط) -->
-        <div class="mb-3" id="gradeField" style="display: none;">
-          <label class="form-label fw-bold">الصف الدراسي *</label>
-          <select class="form-select" id="registerGrade">
-            <option value="">— اختر الصف —</option>
-            <option value="prep1">الأول الإعدادي</option>
-            <option value="prep2">الثاني الإعدادي</option>
-            <option value="prep3">الثالث الإعدادي</option>
-            <option value="sec1">الأول الثانوي</option>
-            <option value="sec2">الثاني الثانوي</option>
-            <option value="sec3">الثالث الثانوي</option>
-            <option value="bac">بكالوريا - الثاني الثانوي</option>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label fw-bold">البريد الإلكتروني</label>
-          <input type="email" class="form-control" id="registerEmail" required placeholder="example@email.com" />
-        </div>
-        <div class="mb-3">
-          <label class="form-label fw-bold">كلمة المرور</label>
-          <input type="password" class="form-control" id="registerPassword" required placeholder="••••••••" />
-          <small class="text-muted">6 أحرف على الأقل</small>
-        </div>
-        <div class="mb-3">
-          <label class="form-label fw-bold">تأكيد كلمة المرور</label>
-          <input type="password" class="form-control" id="registerConfirm" required placeholder="••••••••" />
-        </div>
-
-        <!-- 📱 رقم الموبايل + كود التحقق -->
-        <div class="mb-3">
-          <label class="form-label fw-bold">📱 رقم الموبايل *</label>
-          <div class="phone-input-group">
-            <span class="country-code">🇪🇬 +20</span>
-            <input type="tel" class="form-control" id="registerPhone" 
-                   placeholder="10XXXXXXXX" maxlength="10" required />
-          </div>
-          <small class="text-muted">مثال: 1001234567</small>
-        </div>
-
-        <div class="mb-3">
-          <button type="button" class="btn-verify" id="sendOtpBtn" style="width:100%;">
-            <i class="fas fa-paper-plane"></i> إرسال كود التحقق
-          </button>
-          <div id="recaptcha-container"></div>
-        </div>
-
-        <!-- كود التحقق (يظهر بعد الإرسال) -->
-        <div class="mb-3" id="otpField" style="display: none;">
-          <label class="form-label fw-bold">🔐 كود التحقق (6 أرقام)</label>
-          <input type="text" class="form-control otp-input" id="registerOtp" 
-                 placeholder="______" maxlength="6" />
-          <small class="text-muted">تم إرسال الكود إلى رقمك</small>
-          <div id="otpStatus" class="mt-2"></div>
-        </div>
-
-        <!-- حقل ولي الأمر -->
-        <div class="mb-3" id="childEmailField" style="display: none;">
-          <label class="form-label fw-bold">البريد الإلكتروني لابنك/ابنتك</label>
-          <input type="email" class="form-control" id="childEmail" placeholder="child@email.com" />
-          <small class="text-muted">سيتم ربط حسابك بحساب ابنك تلقائياً</small>
-        </div>
-
-        <button type="submit" class="btn-register" id="registerBtn" disabled>
-          <i class="fas fa-user-plus" aria-hidden="true"></i> إنشاء الحساب
-        </button>
-        <p class="text-center mt-3">
-          لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+        <h3>✅ تم إنشاء حسابك بنجاح!</h3>
+        <p>بعتنالك رابط تأكيد على الإيميل:</p>
+        <p><span class="email-highlight" id="sentEmail"></span></p>
+        <hr style="margin: 25px 0;">
+        <p style="font-size: 1rem;">
+          <i class="fas fa-info-circle" style="color: #0a1f44;"></i>
+          <strong>خطوات التأكيد:</strong>
         </p>
-      </form>
+        <ol style="text-align: right; max-width: 350px; margin: 15px auto; color: #666; font-size: 0.95rem;">
+          <li>افتح إيميلك</li>
+          <li>دور على رسالة من Firebase</li>
+          <li>دوس على "Verify email"</li>
+          <li>ارجع للموقع وسجل دخول</li>
+        </ol>
+        <hr style="margin: 25px 0;">
+        <p style="font-size: 0.9rem; color: #999;">
+          <i class="fas fa-exclamation-triangle"></i>
+          لو مفيش رسالة، شوف الـ Spam أو Junk folder
+        </p>
+        <a href="login.html" class="btn btn-register mt-3" style="text-decoration:none; display:inline-block; width:auto; padding: 12px 40px;">
+          <i class="fas fa-sign-in-alt"></i> الذهاب لتسجيل الدخول
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -375,22 +366,24 @@
 
   <script type="module">
     import { auth, database } from './firebase-config.js';
-    import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+    import { 
+      createUserWithEmailAndPassword, 
+      sendEmailVerification,
+      onAuthStateChanged, 
+      signOut 
+    } from "firebase/auth";
     import { ref, set, get, update } from "firebase/database";
 
-    let confirmationResult = null;
-    let recaptchaVerifier = null;
-    let phoneVerified = false;
-    let verifiedPhoneNumber = '';
-
-    // ===== إذا كان المستخدم مسجلاً بالفعل، نوجهه =====
+    // ===== إذا كان المستخدم مسجلاً بالفعل =====
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
           const userSnap = await get(ref(database, `users/${user.uid}`));
           if (userSnap.exists()) {
             const role = userSnap.val().role;
-            redirectToDashboard(role);
+            if (user.emailVerified) {
+              redirectToDashboard(role);
+            }
           }
         } catch (e) {
           console.error('خطأ:', e);
@@ -439,118 +432,6 @@
       signOut(auth).then(() => window.location.href = 'index.html');
     };
 
-    // ===== إعداد reCAPTCHA =====
-    function setupRecaptcha() {
-      if (recaptchaVerifier) return; // موجود بالفعل
-      
-      recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        size: 'invisible',
-        callback: (response) => {
-          console.log('✅ reCAPTCHA تم');
-        },
-        'expired-callback': () => {
-          console.log('⚠️ reCAPTCHA انتهت');
-          recaptchaVerifier = null;
-        }
-      });
-    }
-
-    // ===== إرسال كود التحقق =====
-    document.getElementById('sendOtpBtn').addEventListener('click', async () => {
-      const phone = document.getElementById('registerPhone').value.trim();
-      const otpStatus = document.getElementById('otpStatus');
-      const sendBtn = document.getElementById('sendOtpBtn');
-
-      // التحقق من الرقم
-      if (!phone || phone.length !== 10 || !phone.startsWith('1')) {
-        otpStatus.innerHTML = '<div class="alert alert-warning mt-2">⚠️ الرجاء إدخال رقم صحيح (10 أرقام يبدأ بـ 1)</div>';
-        return;
-      }
-
-      const fullPhone = '+20' + phone;
-      
-      sendBtn.disabled = true;
-      sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
-      otpStatus.innerHTML = '';
-
-      try {
-        setupRecaptcha();
-        
-        confirmationResult = await signInWithPhoneNumber(auth, fullPhone, recaptchaVerifier);
-        
-        verifiedPhoneNumber = fullPhone;
-        
-        document.getElementById('otpField').style.display = 'block';
-        document.getElementById('registerOtp').focus();
-        
-        otpStatus.innerHTML = '<div class="alert alert-success mt-2">✅ تم إرسال الكود! تحقق من رسائل SMS</div>';
-        
-        sendBtn.innerHTML = '<i class="fas fa-redo"></i> إعادة الإرسال';
-        sendBtn.disabled = false;
-
-        // تشغيل عداد 60 ثانية
-        let countdown = 60;
-        const countdownInterval = setInterval(() => {
-          countdown--;
-          sendBtn.innerHTML = `<i class="fas fa-clock"></i> إعادة الإرسال (${countdown})`;
-          if (countdown <= 0) {
-            clearInterval(countdownInterval);
-            sendBtn.innerHTML = '<i class="fas fa-redo"></i> إعادة الإرسال';
-            sendBtn.disabled = false;
-          }
-        }, 1000);
-        sendBtn.disabled = true;
-
-        console.log('✅ تم إرسال كود SMS إلى:', fullPhone);
-
-      } catch (error) {
-        console.error('❌ خطأ:', error);
-        let msg = '❌ فشل إرسال الكود. ';
-        if (error.code === 'auth/invalid-phone-number') msg += 'رقم الموبايل غير صحيح.';
-        else if (error.code === 'auth/too-many-requests') msg += 'محاولات كثيرة. حاول بعد قليل.';
-        else if (error.code === 'auth/quota-exceeded') msg += 'تم تجاوز الحد اليومي.';
-        else msg += error.message;
-        
-        otpStatus.innerHTML = `<div class="alert alert-danger mt-2">${msg}</div>`;
-        sendBtn.disabled = false;
-        sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال كود التحقق';
-        recaptchaVerifier = null;
-      }
-    });
-
-    // ===== التحقق من الكود =====
-    document.getElementById('registerOtp').addEventListener('input', async (e) => {
-      const otp = e.target.value.trim();
-      
-      if (otp.length === 6 && confirmationResult) {
-        const otpStatus = document.getElementById('otpStatus');
-        otpStatus.innerHTML = '<div class="text-info mt-2"><i class="fas fa-spinner fa-spin"></i> جاري التحقق...</div>';
-
-        try {
-          await confirmationResult.confirm(otp);
-          
-          phoneVerified = true;
-          
-          otpStatus.innerHTML = '<div class="alert alert-success mt-2">✅ تم التحقق من رقمك بنجاح!</div>';
-          
-          // تفعيل زر التسجيل
-          document.getElementById('registerBtn').disabled = false;
-          
-          // قفل حقل الكود
-          e.target.disabled = true;
-          document.getElementById('sendOtpBtn').disabled = true;
-          
-          console.log('✅ تم التحقق من الموبايل');
-
-        } catch (error) {
-          console.error('❌ خطأ:', error);
-          otpStatus.innerHTML = '<div class="alert alert-danger mt-2">❌ كود غير صحيح. حاول مرة أخرى.</div>';
-          e.target.value = '';
-          e.target.focus();
-        }
-      }
-    });
-
     // ===== معالجة نموذج التسجيل =====
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -590,10 +471,6 @@
         status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء إدخال بريد ابنك الإلكتروني</div>';
         return;
       }
-      if (!phoneVerified) {
-        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء تأكيد رقم الموبايل أولاً</div>';
-        return;
-      }
 
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري إنشاء الحساب...';
@@ -604,23 +481,25 @@
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // 2. حفظ بيانات المستخدم
+        // 2. إرسال إيميل التأكيد
+        await sendEmailVerification(user);
+        console.log('✅ تم إرسال إيميل التأكيد إلى:', email);
+
+        // 3. حفظ بيانات المستخدم
         await set(ref(database, `users/${user.uid}`), {
           name: name,
           email: email,
           role: role,
-          phone: verifiedPhoneNumber,
-          phoneVerified: true,
+          emailVerified: false,
           createdAt: new Date().toISOString()
         });
 
-        // 3. إذا كان طالباً
+        // 4. إذا كان طالباً
         if (role === 'student') {
           await set(ref(database, `students/${user.uid}`), {
             name: name,
             email: email,
             grade: grade,
-            phone: verifiedPhoneNumber,
             level: '1',
             progress: '0',
             grade_percentage: '0%',
@@ -631,7 +510,7 @@
           });
         }
 
-        // 4. إذا كان ولي أمر
+        // 5. إذا كان ولي أمر
         if (role === 'parent' && childEmail) {
           const usersRef = ref(database, 'users');
           const snapshot = await get(usersRef);
@@ -653,12 +532,12 @@
           }
         }
 
-        // 5. رسالة نجاح
-        status.innerHTML = '<div class="alert alert-success">✅ تم إنشاء الحساب بنجاح! جاري التوجيه...</div>';
-        
-        setTimeout(() => {
-          redirectToDashboard(role);
-        }, 1500);
+        // 6. عرض رسالة النجاح
+        document.getElementById('sentEmail').textContent = email;
+        document.getElementById('registerSection').style.display = 'none';
+        document.getElementById('successSection').style.display = 'block';
+
+        console.log('✅ تم التسجيل بنجاح، في انتظار تأكيد الإيميل');
 
       } catch (error) {
         let message = '❌ فشل التسجيل. ';
@@ -673,7 +552,7 @@
       }
     });
 
-    console.log('✅ Register page loaded with phone verification');
+    console.log('✅ Register page loaded with email verification');
   </script>
 
 </body>
