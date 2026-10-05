@@ -73,6 +73,26 @@
     .level-card i { font-size: 2.5rem; color: #f7b731; margin-bottom: 10px; }
     .level-card h5 { font-family: 'Cinzel', serif; color: #0a1f44; }
     .level-card p { color: #666; font-size: 0.9rem; }
+    
+    /* كارت البكالوريا الجديد */
+    .level-card.baccalaureate {
+      border-bottom-color: #f7b731;
+      background: linear-gradient(135deg, #fff9e6, #f8f9fa);
+      position: relative;
+    }
+    .level-card.baccalaureate::before {
+      content: "جديد";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #f7b731;
+      color: #0a1f44;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .level-card.baccalaureate i { color: #0a1f44; }
 
     footer {
       background: #0a1f44;
@@ -183,6 +203,9 @@
         <div class="col-md-3 col-6"><div class="level-card"><i class="fas fa-university" aria-hidden="true"></i><h5>University</h5><p>Advanced language skills</p></div></div>
         <div class="col-md-3 col-6"><div class="level-card"><i class="fas fa-briefcase" aria-hidden="true"></i><h5>Postgraduate</h5><p>Master the language for work and travel</p></div></div>
         <div class="col-md-3 col-6"><div class="level-card"><i class="fas fa-microphone-alt" aria-hidden="true"></i><h5>Phonics & Conversation</h5><p>Improve pronunciation and conversation</p></div></div>
+        
+        <!-- 🎓 البكالوريا الجديدة -->
+        <div class="col-md-3 col-6"><div class="level-card baccalaureate" onclick="window.location.href='unit1-living-well.html'"><i class="fas fa-graduation-cap" aria-hidden="true"></i><h5>Baccalaureate</h5><p>الصف الثاني الثانوي - بكالوريا</p></div></div>
       </div>
     </div>
   </section>
@@ -282,12 +305,10 @@
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      // المستخدم مسجل الدخول - اظهر محتوى الصفحة
       console.log("مرحباً " + user.email);
-      document.getElementById('user-email').textContent = user.email;
     } else {
       // المستخدم غير مسجل - خذه لصفحة التسجيل
-      window.location.href = 'login.html';
+      // window.location.href = 'login.html'; // (معطل مؤقتاً)
     }
   });
 </script>
