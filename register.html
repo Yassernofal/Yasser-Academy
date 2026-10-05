@@ -78,6 +78,18 @@
     .btn-register:hover { background: #f7b731; transform: scale(1.02); }
     .btn-register:disabled { background: #ccc; cursor: not-allowed; }
 
+    .btn-verify {
+      background: #0a1f44;
+      color: #f7e05e;
+      font-weight: 700;
+      border-radius: 50px;
+      padding: 10px 20px;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-verify:hover { background: #1e3a8a; }
+    .btn-verify:disabled { background: #ccc; cursor: not-allowed; color: #666; }
+
     .role-card {
       border: 2px solid #e0e0e0;
       border-radius: 16px;
@@ -111,6 +123,40 @@
       font-size: 0.85rem;
       color: #666;
       margin: 0;
+    }
+
+    .phone-input-group {
+      display: flex;
+      gap: 8px;
+      direction: ltr;
+    }
+    .phone-input-group .country-code {
+      background: #f0f4fa;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-weight: 700;
+      color: #0a1f44;
+      display: flex;
+      align-items: center;
+    }
+    .phone-input-group input {
+      flex: 1;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .otp-input {
+      letter-spacing: 12px;
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: 700;
+      direction: ltr;
+      font-family: 'Courier New', monospace;
+    }
+
+    #recaptcha-container {
+      margin: 10px 0;
     }
 
     footer {
@@ -226,6 +272,7 @@
             <option value="sec1">الأول الثانوي</option>
             <option value="sec2">الثاني الثانوي</option>
             <option value="sec3">الثالث الثانوي</option>
+            <option value="bac">بكالوريا - الثاني الثانوي</option>
           </select>
         </div>
 
@@ -243,6 +290,33 @@
           <input type="password" class="form-control" id="registerConfirm" required placeholder="••••••••" />
         </div>
 
+        <!-- 📱 رقم الموبايل + كود التحقق -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">📱 رقم الموبايل *</label>
+          <div class="phone-input-group">
+            <span class="country-code">🇪🇬 +20</span>
+            <input type="tel" class="form-control" id="registerPhone" 
+                   placeholder="10XXXXXXXX" maxlength="10" required />
+          </div>
+          <small class="text-muted">مثال: 1001234567</small>
+        </div>
+
+        <div class="mb-3">
+          <button type="button" class="btn-verify" id="sendOtpBtn" style="width:100%;">
+            <i class="fas fa-paper-plane"></i> إرسال كود التحقق
+          </button>
+          <div id="recaptcha-container"></div>
+        </div>
+
+        <!-- كود التحقق (يظهر بعد الإرسال) -->
+        <div class="mb-3" id="otpField" style="display: none;">
+          <label class="form-label fw-bold">🔐 كود التحقق (6 أرقام)</label>
+          <input type="text" class="form-control otp-input" id="registerOtp" 
+                 placeholder="______" maxlength="6" />
+          <small class="text-muted">تم إرسال الكود إلى رقمك</small>
+          <div id="otpStatus" class="mt-2"></div>
+        </div>
+
         <!-- حقل ولي الأمر -->
         <div class="mb-3" id="childEmailField" style="display: none;">
           <label class="form-label fw-bold">البريد الإلكتروني لابنك/ابنتك</label>
@@ -250,7 +324,7 @@
           <small class="text-muted">سيتم ربط حسابك بحساب ابنك تلقائياً</small>
         </div>
 
-        <button type="submit" class="btn-register" id="registerBtn">
+        <button type="submit" class="btn-register" id="registerBtn" disabled>
           <i class="fas fa-user-plus" aria-hidden="true"></i> إنشاء الحساب
         </button>
         <p class="text-center mt-3">
@@ -301,8 +375,13 @@
 
   <script type="module">
     import { auth, database } from './firebase-config.js';
-    import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+    import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
     import { ref, set, get, update } from "firebase/database";
+
+    let confirmationResult = null;
+    let recaptchaVerifier = null;
+    let phoneVerified = false;
+    let verifiedPhoneNumber = '';
 
     // ===== إذا كان المستخدم مسجلاً بالفعل، نوجهه =====
     onAuthStateChanged(auth, async (user) => {
@@ -343,18 +422,15 @@
       });
       document.getElementById('selectedRole').value = role;
       
-      // إظهار/إخفاء حقل ولي الأمر
       document.getElementById('childEmailField').style.display = 
         role === 'parent' ? 'block' : 'none';
       
-      // إظهار/إخفاء حقل الصف (للطلاب فقط)
       document.getElementById('gradeField').style.display = 
         role === 'student' ? 'block' : 'none';
       
       console.log('✅ تم اختيار الدور:', role);
     }
 
-    // ربط الأزرار
     document.getElementById('roleStudent').addEventListener('click', () => selectRole('student'));
     document.getElementById('roleParent').addEventListener('click', () => selectRole('parent'));
 
@@ -362,6 +438,118 @@
     window.logoutUser = function() {
       signOut(auth).then(() => window.location.href = 'index.html');
     };
+
+    // ===== إعداد reCAPTCHA =====
+    function setupRecaptcha() {
+      if (recaptchaVerifier) return; // موجود بالفعل
+      
+      recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        size: 'invisible',
+        callback: (response) => {
+          console.log('✅ reCAPTCHA تم');
+        },
+        'expired-callback': () => {
+          console.log('⚠️ reCAPTCHA انتهت');
+          recaptchaVerifier = null;
+        }
+      });
+    }
+
+    // ===== إرسال كود التحقق =====
+    document.getElementById('sendOtpBtn').addEventListener('click', async () => {
+      const phone = document.getElementById('registerPhone').value.trim();
+      const otpStatus = document.getElementById('otpStatus');
+      const sendBtn = document.getElementById('sendOtpBtn');
+
+      // التحقق من الرقم
+      if (!phone || phone.length !== 10 || !phone.startsWith('1')) {
+        otpStatus.innerHTML = '<div class="alert alert-warning mt-2">⚠️ الرجاء إدخال رقم صحيح (10 أرقام يبدأ بـ 1)</div>';
+        return;
+      }
+
+      const fullPhone = '+20' + phone;
+      
+      sendBtn.disabled = true;
+      sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+      otpStatus.innerHTML = '';
+
+      try {
+        setupRecaptcha();
+        
+        confirmationResult = await signInWithPhoneNumber(auth, fullPhone, recaptchaVerifier);
+        
+        verifiedPhoneNumber = fullPhone;
+        
+        document.getElementById('otpField').style.display = 'block';
+        document.getElementById('registerOtp').focus();
+        
+        otpStatus.innerHTML = '<div class="alert alert-success mt-2">✅ تم إرسال الكود! تحقق من رسائل SMS</div>';
+        
+        sendBtn.innerHTML = '<i class="fas fa-redo"></i> إعادة الإرسال';
+        sendBtn.disabled = false;
+
+        // تشغيل عداد 60 ثانية
+        let countdown = 60;
+        const countdownInterval = setInterval(() => {
+          countdown--;
+          sendBtn.innerHTML = `<i class="fas fa-clock"></i> إعادة الإرسال (${countdown})`;
+          if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            sendBtn.innerHTML = '<i class="fas fa-redo"></i> إعادة الإرسال';
+            sendBtn.disabled = false;
+          }
+        }, 1000);
+        sendBtn.disabled = true;
+
+        console.log('✅ تم إرسال كود SMS إلى:', fullPhone);
+
+      } catch (error) {
+        console.error('❌ خطأ:', error);
+        let msg = '❌ فشل إرسال الكود. ';
+        if (error.code === 'auth/invalid-phone-number') msg += 'رقم الموبايل غير صحيح.';
+        else if (error.code === 'auth/too-many-requests') msg += 'محاولات كثيرة. حاول بعد قليل.';
+        else if (error.code === 'auth/quota-exceeded') msg += 'تم تجاوز الحد اليومي.';
+        else msg += error.message;
+        
+        otpStatus.innerHTML = `<div class="alert alert-danger mt-2">${msg}</div>`;
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال كود التحقق';
+        recaptchaVerifier = null;
+      }
+    });
+
+    // ===== التحقق من الكود =====
+    document.getElementById('registerOtp').addEventListener('input', async (e) => {
+      const otp = e.target.value.trim();
+      
+      if (otp.length === 6 && confirmationResult) {
+        const otpStatus = document.getElementById('otpStatus');
+        otpStatus.innerHTML = '<div class="text-info mt-2"><i class="fas fa-spinner fa-spin"></i> جاري التحقق...</div>';
+
+        try {
+          await confirmationResult.confirm(otp);
+          
+          phoneVerified = true;
+          
+          otpStatus.innerHTML = '<div class="alert alert-success mt-2">✅ تم التحقق من رقمك بنجاح!</div>';
+          
+          // تفعيل زر التسجيل
+          document.getElementById('registerBtn').disabled = false;
+          
+          // قفل حقل الكود
+          e.target.disabled = true;
+          document.getElementById('sendOtpBtn').disabled = true;
+          
+          console.log('✅ تم التحقق من الموبايل');
+
+        } catch (error) {
+          console.error('❌ خطأ:', error);
+          otpStatus.innerHTML = '<div class="alert alert-danger mt-2">❌ كود غير صحيح. حاول مرة أخرى.</div>';
+          e.target.value = '';
+          e.target.focus();
+        }
+      }
+    });
 
     // ===== معالجة نموذج التسجيل =====
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
@@ -377,7 +565,7 @@
       const status = document.getElementById('registerStatus');
       const btn = document.getElementById('registerBtn');
 
-      // ===== التحقق =====
+      // التحقق
       if (!role) {
         status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء اختيار نوع الحساب</div>';
         return;
@@ -402,6 +590,10 @@
         status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء إدخال بريد ابنك الإلكتروني</div>';
         return;
       }
+      if (!phoneVerified) {
+        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء تأكيد رقم الموبايل أولاً</div>';
+        return;
+      }
 
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري إنشاء الحساب...';
@@ -417,6 +609,8 @@
           name: name,
           email: email,
           role: role,
+          phone: verifiedPhoneNumber,
+          phoneVerified: true,
           createdAt: new Date().toISOString()
         });
 
@@ -425,7 +619,8 @@
           await set(ref(database, `students/${user.uid}`), {
             name: name,
             email: email,
-            grade: grade,     // ← الصف اللي اختاره
+            grade: grade,
+            phone: verifiedPhoneNumber,
             level: '1',
             progress: '0',
             grade_percentage: '0%',
@@ -478,7 +673,7 @@
       }
     });
 
-    console.log('✅ Register page loaded with grade selection');
+    console.log('✅ Register page loaded with phone verification');
   </script>
 
 </body>
