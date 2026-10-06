@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>قصة The Magic Classroom - الفصول كاملة | أكاديمية مستر ياسر نوفل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Tajawal:wght@400;500;700;800&family=Poppins:wght@400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Tajawal', sans-serif; background: #f0f4fa; padding-top: 78px; line-height: 1.8; }
+
+    .navbar-custom { background: rgba(10, 31, 68, 0.95) !important; backdrop-filter: blur(18px); padding: 14px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); z-index: 1050; }
+    .navbar-brand { direction: ltr; }
+    .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover, .nav-link.active { color: #f7e05e !important; }
+
+    /* Hero */
+    .story-hero {
+      background: linear-gradient(135deg, #0a1f44 0%, #1e3a8a 50%, #2563eb 100%);
+      color: #fff;
+      padding: 60px 30px;
+      border-radius: 0 0 60px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    .story-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -10%;
+      width: 400px; height: 400px;
+      background: rgba(247, 224, 94, 0.15);
+      border-radius: 50%;
+    }
+    .story-hero .badge-story { display: inline-block; background: rgba(247, 224, 94, 0.2); color: #f7e05e; padding: 8px 22px; border-radius: 50px; font-weight: 700; margin-bottom: 20px; border: 1px solid rgba(247, 224, 94, 0.3); position: relative; z-index: 1; }
+    .story-hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: #f7e05e; margin-bottom: 12px; direction: ltr; text-align: center; position: relative; z-index: 1; }
+    .story-hero .arabic-title { font-size: 1.6rem; color: #93c5fd; margin-bottom: 20px; font-weight: 500; position: relative; z-index: 1; }
+    .story-hero .story-stats { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 25px; position: relative; z-index: 1; }
+    .story-hero .story-stats span { color: #dce8f5; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+    .story-hero .story-stats i { color: #f7e05e; }
+
+    /* Container */
+    .story-container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
+
+    /* Chapter */
+    .chapter {
+      background: #fff;
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+      border-right: 5px solid #f7e05e;
+      position: relative;
+      overflow: hidden;
+    }
+    .chapter::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #f7e05e, #0a1f44, #f7e05e); }
+    
+    .chapter-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px dashed #f7e05e; }
+    .chapter-header .chapter-num { display: inline-block; background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; padding: 8px 24px; border-radius: 50px; font-family: 'Cinzel', serif; font-weight: 700; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 2px; }
+    .chapter-header h2 { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 2rem; direction: ltr; text-align: center; margin-bottom: 10px; }
+    .chapter-header .arabic-sub { color: #1f4b8a; font-weight: 700; font-size: 1.15rem; }
+
+    /* Scene */
+    .scene {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 25px;
+      border: 2px solid #f7e05e;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+    @media (max-width: 768px) { .scene { grid-template-columns: 1fr; } }
+
+    .scene-illustration {
+      background: linear-gradient(135deg, #e3f2fd, #fff3e0);
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+    }
+    .scene-emoji-group { display: flex; gap: 15px; font-size: 3rem; margin-bottom: 20px; }
+    .scene-emoji { animation: float 3s ease-in-out infinite; }
+    .scene-emoji:nth-child(2) { animation-delay: 0.5s; }
+    .scene-emoji:nth-child(3) { animation-delay: 1s; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .scene-caption { font-family: 'Tajawal', sans-serif; color: #0a1f44; font-weight: 700; font-size: 1rem; text-align: center; background: rgba(255,255,255,0.9); padding: 8px 16px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+    .scene-text { padding: 30px; background: #fff; display: flex; flex-direction: column; justify-content: center; }
+    .scene-num { display: inline-block; background: #f7e05e; color: #0a1f44; width: 40px; height: 40px; border-radius: 50%; line-height: 40px; text-align: center; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; box-shadow: 0 4px 12px rgba(247, 224, 94, 0.4); }
+    .scene-text .scene-en { font-family: 'Amiri', 'Poppins', serif; direction: ltr; text-align: left; font-size: 1.1rem; line-height: 1.9; color: #333; margin-bottom: 12px; }
+    .scene-text .scene-ar { direction: rtl; text-align: right; font-family: 'Amiri', serif; color: #666; font-size: 1rem; line-height: 1.8; padding-top: 12px; border-top: 1px dashed #e9ecef; margin-top: 12px; font-style: italic; }
+
+    .vocab-hl { background: linear-gradient(180deg, transparent 60%, #f7e05e 60%); padding: 0 2px; font-weight: 700; color: #0a1f44; }
+
+    /* Characters */
+    .characters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 25px; }
+    .character-card { background: #fff; border-radius: 16px; padding: 20px 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: 0.3s; border: 2px solid transparent; }
+    .character-card:hover { transform: translateY(-5px); border-color: #f7e05e; box-shadow: 0 10px 25px rgba(247, 224, 94, 0.25); }
+    .character-avatar { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 12px; }
+    .character-name { font-family: 'Cinzel', serif; color: #0a1f44; font-weight: 700; margin-bottom: 5px; direction: ltr; }
+    .character-role { color: #666; font-size: 0.9rem; }
+
+    /* Moral Box */
+    .moral-box { background: linear-gradient(135deg, #e8f5e9, #d4edda); border-radius: 16px; padding: 25px; border-right: 5px solid #28a745; margin-top: 25px; }
+    .moral-box h4 { color: #14532d; font-weight: 700; margin-bottom: 15px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .moral-box p { color: #14532d; font-size: 1.05rem; margin-bottom: 10px; text-align: right; }
+
+    /* Story Summary */
+    .summary-box { background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 20px; padding: 30px; margin-bottom: 25px; border: 2px solid #fcd34d; }
+    .summary-box h3 { color: #92400e; font-weight: 700; margin-bottom: 20px; text-align: center; font-family: 'Playfair Display', serif; direction: ltr; }
+    .summary-box ul { padding-right: 25px; }
+    .summary-box li { color: #78350f; margin-bottom: 10px; line-height: 1.7; }
+
+    /* CTA */
+    .cta-exam { background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #fff; padding: 50px 40px; border-radius: 28px; text-align: center; margin: 40px 0; position: relative; overflow: hidden; }
+    .cta-exam::before { content: ''; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: rgba(247, 224, 94, 0.1); border-radius: 50%; }
+    .cta-exam h3 { color: #f7e05e; font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 15px; position: relative; z-index: 1; direction: ltr; text-align: center; }
+    .cta-exam p { color: #dce8f5; font-size: 1.1rem; margin-bottom: 25px; position: relative; z-index: 1; text-align: center; }
+    .cta-exam .btn-group-custom { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn-action { padding: 16px 40px; border-radius: 50px; font-weight: 700; font-size: 1.05rem; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; border: none; cursor: pointer; font-family: 'Tajawal', sans-serif; }
+    .btn-gold { background: linear-gradient(135deg, #f7e05e, #f7b731); color: #0a1f44; box-shadow: 0 8px 25px rgba(247, 224, 94, 0.4); }
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(247, 224, 94, 0.5); color: #0a1f44; }
+    .btn-outline-gold { background: transparent; color: #f7e05e; border: 2px solid #f7e05e; }
+    .btn-outline-gold:hover { background: #f7e05e; color: #0a1f44; }
+
+    /* Quiz Section */
+    .quiz-section { background: #fff; border-radius: 24px; padding: 40px; margin-bottom: 30px; box-shadow: 0 6px 25px rgba(0,0,0,0.06); border-right: 5px solid #dc2626; }
+    .quiz-section h3 { font-family: 'Playfair Display', serif; color: #991b1b; font-size: 1.6rem; margin-bottom: 25px; text-align: center; direction: ltr; }
+    
+    .quiz-question { background: #fef2f2; padding: 20px; border-radius: 14px; margin-bottom: 18px; border-right: 4px solid #dc2626; }
+    .quiz-question .q-text { font-family: 'Poppins', sans-serif; direction: ltr; text-align: left; font-weight: 600; color: #0a1f44; margin-bottom: 15px; font-size: 1rem; line-height: 1.6; }
+    .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+    .quiz-option { background: #fff; padding: 12px 18px; border-radius: 10px; border: 2px solid #e9ecef; cursor: pointer; transition: 0.2s; font-family: 'Poppins', sans-serif; direction: ltr; text-align: left; font-size: 0.95rem; }
+    .quiz-option:hover { border-color: #dc2626; background: #fff5f5; }
+    .quiz-option.correct { background: #d4edda; border-color: #28a745; font-weight: 700; }
+    .quiz-option.wrong { background: #f8d7da; border-color: #dc3545; }
+    .quiz-feedback { margin-top: 12px; padding: 12px 16px; border-radius: 10px; font-weight: 600; display: none; font-family: 'Tajawal', sans-serif; direction: rtl; text-align: right; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.success { background: #d4edda; color: #155724; }
+    .quiz-feedback.error { background: #f8d7da; color: #721c24; }
+
+    /* Footer */
+    footer { background: #0a1f44; color: #b0c4de; padding: 30px 0; border-radius: 40px 40px 0 0; margin-top: 50px; text-align: center; font-family: 'Tajawal', sans-serif; }
+
+    @media (max-width: 768px) {
+      .story-hero h1 { font-size: 2rem; }
+      .story-hero .arabic-title { font-size: 1.2rem; }
+      .chapter { padding: 25px 20px; }
+      .chapter-header h2 { font-size: 1.4rem; }
+      .scene-text { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-name">Mr. <span>Yasser</span> Nofal</span></a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="review-1-prep1.html">📚 المراجعة</a></li>
+          <li class="nav-item"><a class="nav-link active" href="story-magic-classroom.html">📖 القصة</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👨‍🎓 لوحتي</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="story-hero">
+    <span class="badge-story">📖 STORY TIME</span>
+    <h1>The Magic Classroom</h1>
+    <p class="arabic-title">الفصل السحري — القصة الكاملة</p>
+    <div class="story-stats">
+      <span><i class="fas fa-book"></i> 3 فصول</span>
+      <span><i class="fas fa-users"></i> 4 شخصيات</span>
+      <span><i class="fas fa-question-circle"></i> 10 أسئلة</span>
+      <span><i class="fas fa-star"></i> قيم تربوية</span>
+    </div>
+  </div>
+
+  <div class="story-container">
+
+    <!-- ========== Chapter 1 ========== -->
+    <div class="chapter">
+      <div class="chapter-header">
+        <div class="chapter-num">CHAPTER 1</div>
+        <h2>The First Challenge</h2>
+        <p class="arabic-sub">التحدي الأول</p>
+      </div>
+
+      <div class="scene">
+        <div class="scene-illustration">
+          <div class="scene-emoji-group"><span class="scene-emoji">🏫</span><span class="scene-emoji">👨‍🏫</span><span class="scene-emoji">📢</span></div>
+          <div class="scene-caption">The Village School</div>
+        </div>
+        <div class="scene-text">
+          <span class="scene-num">1</span>
+          <div class="scene-en">In a <span class="vocab-hl">cheerful</span> village school, the children loved discovering new things. One day, their teacher, Mr. Adam, made an exciting announcement. "Next week, we will enter the Magic Classroom," he said. "To succeed, you need to show <span class="vocab-hl">responsibility</span> and work together."</div>
+          <div class="scene-ar">في مدرسة قرية سعيدة، أحب الأطفال اكتشاف أشياء جديدة. في يوم من الأيام، أعلن معلمهم السيد آدم خبراً مثيراً: "الأسبوع القادم، سندخل الفصل السحري. لكي تنجحوا، يجب أن تتحلوا بالمسؤولية والعمل معاً."</div>
+        </div>
+      </div>
+
+      <div class="scene" style="direction: ltr;">
+        <div class="scene-text" style="order: 2;">
+          <span class="scene-num">2</span>
+          <div class="scene-en">The children were <span class="vocab-hl">curious</span> and excited. When the day came, they walked through a glowing door and found themselves in a room filled with floating puzzles, shining books, and magical clues. On the wall, a message read: "Only those who <span class="vocab-hl">collaborate</span> and stay curious can unlock the mysteries."</div>
+          <div class="scene-ar">كان الأطفال فضوليين ومتحمسين. عندما جاء اليوم، دخلوا من باب متوهج ووجدوا أنفسهم في غرفة مليئة بالألغاز العائمة والكتب المضيئة والأدلة السحرية. على الحائط، كانت هناك رسالة: "فقط من يتعاون ويبقى فضولياً يمكنه فتح الأسرار."</div>
+        </div>
+        <div class="scene-illustration" style="order: 1;">
+          <div class="scene-emoji-group"><span class="scene-emoji">🚪</span><span class="scene-emoji">✨</span><span class="scene-emoji">🧩</span></div>
+          <div class="scene-caption">The Magic Door</div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-illustration">
+          <div class="scene-emoji-group"><span class="scene-emoji">👧</span><span class="scene-emoji">👦</span><span class="scene-emoji">💡</span></div>
+          <div class="scene-caption">Working Together</div>
+        </div>
+        <div class="scene-text">
+          <span class="scene-num">3</span>
+          <div class="scene-en">Sara, who was always eager to learn, said, "Let's think carefully and help each other." Omar, who sometimes felt shy, looked nervous. Sam, calm and kind, encouraged him, "We'll do it together." Their first challenge was a locked box. They shared ideas and solved the challenge by working as a team. As the box clicked open, a bright light appeared, and a new challenge was waiting.</div>
+          <div class="scene-ar">قالت سارة، التي كانت دائماً متحمسة للتعلم: "لنفكر بعناية ونساعد بعضنا." بدا عمر، الذي كان خجولاً أحياناً، متوتراً. شجعه سام، الهادئ والطيب: "سنفعلها معاً." كان التحدي الأول صندوقاً مغلقاً. تبادلوا الأفكار وحلوا التحدي بالعمل كفريق. عندما فُتح الصندوق، ظهر ضوء ساطع، وكان تحدٍ جديد ينتظرهم.</div>
+        </div>
+      </div>
+
+      <div class="moral-box">
+        <h4><i class="fas fa-star"></i> Moral of Chapter 1</h4>
+        <p>🤝 <strong>Teamwork</strong> is the key to success — العمل الجماعي هو مفتاح النجاح.</p>
+        <p>💪 <strong>Responsibility</strong> means doing your part — المسؤولية تعني القيام بدورك.</p>
+      </div>
+    </div>
+
+    <!-- ========== Chapter 2 ========== -->
+    <div class="chapter">
+      <div class="chapter-header">
+        <div class="chapter-num">CHAPTER 2</div>
+        <h2>The Power of Unity</h2>
+        <p class="arabic-sub">قوة الوحدة</p>
+      </div>
+
+      <div class="scene">
+        <div class="scene-illustration">
+          <div class="scene-emoji-group"><span class="scene-emoji">🌉</span><span class="scene-emoji">✨</span><span class="scene-emoji">📜</span></div>
+          <div class="scene-caption">The Invisible Bridge</div>
+        </div>
+        <div class="scene-text">
+          <span class="scene-num">1</span>
+          <div class="scene-en">The next time the students entered, the Magic Classroom was more difficult. In front of the children was an <span class="vocab-hl">invisible</span> bridge. A glowing sign read: "Only those with <span class="vocab-hl">respect</span>, <span class="vocab-hl">ambition</span>, and <span class="vocab-hl">courage</span> can cross."</div>
+          <div class="scene-ar">في المرة التالية، كان الفصل السحري أكثر صعوبة. أمام الأطفال كان جسر غير مرئي. لافتة مضيئة تقول: "فقط من لديهم الاحترام والطموح والشجاعة يمكنهم العبور."</div>
+        </div>
+      </div>
+
+      <div class="scene" style="direction: ltr;">
+        <div class="scene-text" style="order: 2;">
+          <span class="scene-num">2</span>
+          <div class="scene-en">Sara thought for a moment. "Respect means we listen and care for each other." Zain added, "Ambition means we believe in our success." Omar took a deep breath, "Courage means we try even when we are scared."</div>
+          <div class="scene-ar">فكرت سارة لحظة: "الاحترام يعني أن نستمع ونهتم ببعضنا." أضاف زين: "الطموح يعني أن نؤمن بنجاحنا." أخذ عمر نفساً عميقاً: "الشجاعة تعني أن نحاول حتى عندما نكون خائفين."</div>
+        </div>
+        <div class="scene-illustration" style="order: 1;">
+          <div class="scene-emoji-group"><span class="scene-emoji">👧</span><span class="scene-emoji">👦</span><span class="scene-emoji">💭</span></div>
+          <div class="scene-caption">Team Discussion</div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-illustration">
+          <div class="scene-emoji-group"><span class="scene-emoji">🤝</span><span class="scene-emoji">🌈</span><span class="scene-emoji">👣</span></div>
+          <div class="scene-caption">Crossing Together</div>
+        </div>
+        <div class="scene-text">
+          <span class="scene-num">3</span>
+          <div class="scene-en">They stepped onto the invisible bridge, holding hands and encouraging one another. Every kind word they spoke and every brave step they took made the bridge appear slowly beneath their feet. When Omar hesitated, his friends cheered him on, reminding him he wasn't alone. At the end of the bridge, a golden door appeared with a message: "Perseverance opens every door. Never give up."</div>
+          <div class="scene-ar">خطوا على الجسر غير المرئي، ممسكين بأيدي بعضهم ويشجعون بعضهم. كل كلمة طيبة قالوها وكل خطوة شجاعة خطوها جعلت الجسر يظهر ببطء تحت أقدامهم. عندما تردد عمر، شجعه أصدقاؤه، مذكرينه أنه ليس وحيداً. في نهاية الجسر، ظهر باب ذهبي برسالة: "المثابرة تفتح كل الأبواب. لا تستسلم أبداً."</div>
+        </div>
+      </div>
+
+      <div class="scene" style="direction: ltr;">
+        <div class="scene-text" style="order: 2;">
+          <span class="scene-num">4</span>
+          <div class="scene-en">The team tried many ideas but nothing worked. Hours passed. They refused to quit. Finally, Omar whispered, "Let's sing together. Maybe unity is the key." They sang, and slowly, the golden door opened. They clapped and laughed, proud of their teamwork.</div>
+          <div class="scene-ar">جرب الفريق أفكاراً كثيرة لكن لم ينجح شيء. مضت ساعات. رفضوا الاستسلام. أخيراً همس عمر: "لنغني معاً. ربما الوحدة هي المفتاح." غنوا، وببطء، فُتح الباب الذهبي. صفقوا وضحكوا، فخورين بعملهم الجماعي.</div>
+        </div>
+        <div class="scene-illustration" style="order: 1;">
+          <div class="scene-emoji-group"><span class="scene-emoji">🚪</span><span class="scene-emoji">🎵</span><span class="scene-emoji">✨</span></div>
+          <div class="scene-caption">The Golden Door</div>
+        </div>
+      </div>
+
+      <div class="moral-box">
+        <h4><i class="fas fa-star"></i> Moral of Chapter 2</h4>
+        <p>🤝 <strong>Unity is power</strong> — الوحدة قوة.</p>
+        <p>💪 <strong>Perseverance opens every door</strong> — المثابرة تفتح كل الأبواب.</p>
+        <p>🎯 <strong>Respect, Ambition, and Courage</strong> are the keys to success — الاحترام والطموح والشجاعة مفاتيح النجاح.</p>
+      </div>
+    </div>
+
+    <!-- ========== Chapter 3 ========== -->
+    <div class="chapter">
+      <div class="chapter-header">
+        <div class="chapter-num">CHAPTER 3</div>
+        <h2>The Greatest Lessons</h2>
+        <p class="arabic-sub">أعظم الدروس</p>
+      </div>
+
+      <div class="scene">
+        <div class="scene-illustration">
+          <div class="scene-emoji-group"><span class="scene-emoji">📖</span><span class="scene-emoji">💎</span><span class="scene-emoji">✨</span></div>
+          <div class="scene-caption">The Glowing Book</div>
+        </div>
+        <div class="scene-text">
+          <span class="scene-num">1</span>
+          <div class="scene-en">Inside the final room, the children found a glowing book on a crystal stand. Mr. Adam appeared with a warm smile. "You have completed the Magic Classroom," he said. "But remember, the real magic is not in the puzzles, it is in the values you showed."</div>
+          <div class="scene-ar">في الغرفة الأخيرة، وجد الأطفال كتاباً متوهجاً على حامل كريستالي. ظهر السيد آدم بابتسامة دافئة. قال: "لقد أكملتم الفصل السحري. لكن تذكروا، السحر الحقيقي ليس في الألغاز، بل في القيم التي أظهرتموها."</div>
+        </div>
+      </div>
+
+      <div class="scene" style="direction: ltr;">
+        <div class="scene-text" style="order: 2;">
+          <span class="scene-num">2</span>
+          <div class="scene-en">He opened the magical book, and glowing words appeared: "Responsibility, Curiosity, Teamwork, Respect, Perseverance, Courage." Sara smiled, "We solved every problem by working together." Zain added, "We respected each other and stayed curious." Omar grinned, "I had courage because my friends believed in me."</div>
+          <div class="scene-ar">فتح الكتاب السحري، وظهرت كلمات متوهجة: "المسؤولية، الفضول، العمل الجماعي، الاحترام، المثابرة، الشجاعة." ابتسمت سارة: "حللنا كل مشكلة بالعمل معاً." أضاف زين: "احترمنا بعضنا وبقينا فضوليين." ابتسم عمر: "كان لدي شجاعة لأن أصدقائي آمنوا بي."</div>
+        </div>
+        <div class="scene-illustration" style="order: 1;">
+          <div class="scene-emoji-group"><span class="scene-emoji">👧</span><span class="scene-emoji">👦</span><span class="scene-emoji">🌟</span></div>
+          <div class="scene-caption">Sharing Values</div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-illustration">
+          <div class="scene-emoji-group"><span class="scene-emoji">🏫</span><span class="scene-emoji">💛</span><span class="scene-emoji">🤝</span></div>
+          <div class="scene-caption">Back to School</div>
+        </div>
+        <div class="scene-text">
+          <span class="scene-num">3</span>
+          <div class="scene-en">Mr. Adam nodded, "You also showed integrity — doing the right thing even when no one was watching." The children returned to their classroom, their hearts full of pride and happiness. From that day on, they promised to use these values in everything they did — at school, at home, and online.</div>
+          <div class="scene-ar">أومأ السيد آدم: "أظهرتم أيضاً النزاهة — فعل الصواب حتى عندما لا يراقبكم أحد." عاد الأطفال إلى فصلهم، وقلوبهم مليئة بالفخر والسعادة. من ذلك اليوم، وعدوا باستخدام هذه القيم في كل ما يفعلونه — في المدرسة، في المنزل، وعلى الإنترنت.</div>
+        </div>
+      </div>
+
+      <div class="moral-box">
+        <h4><i class="fas fa-star"></i> Moral of Chapter 3</h4>
+        <p>🎯 <strong>The real magic is in values, not in puzzles</strong> — السحر الحقيقي في القيم، ليس في الألغاز.</p>
+        <p>💛 <strong>Integrity</strong> means doing the right thing even when no one is watching — النزاهة تعني فعل الصواب حتى عندما لا يراقبك أحد.</p>
+        <p>🌟 <strong>The greatest lessons</strong> are about kindness, respect, and never giving up — أعظم الدروس عن اللطف والاحترام وعدم الاستسلام.</p>
+      </div>
+    </div>
+
+    <!-- ========== Characters ========== -->
+    <div class="chapter">
+      <div class="chapter-header">
+        <div class="chapter-num">CHARACTERS</div>
+        <h2>Story Characters</h2>
+        <p class="arabic-sub">شخصيات القصة</p>
+      </div>
+
+      <div class="characters-grid">
+        <div class="character-card">
+          <div class="character-avatar" style="background: #ffe8a1;">👧</div>
+          <div class="character-name">Sara</div>
+          <div class="character-role">Wise &amp; Kind — حكيمة وطيبة</div>
+        </div>
+        <div class="character-card">
+          <div class="character-avatar" style="background: #d1ecf1;">👦</div>
+          <div class="character-name">Omar</div>
+          <div class="character-role">Brave &amp; Creative — شجاع ومبدع</div>
+        </div>
+        <div class="character-card">
+          <div class="character-avatar" style="background: #d4edda;">🧒</div>
+          <div class="character-name">Sam</div>
+          <div class="character-role">Calm &amp; Kind — هادئ وطيب</div>
+        </div>
+        <div class="character-card">
+          <div class="character-avatar" style="background: #f8d7da;">👨‍🏫</div>
+          <div class="character-name">Mr. Adam</div>
+          <div class="character-role">The Teacher — المعلم</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== Summary ========== -->
+    <div class="chapter">
+      <div class="chapter-header">
+        <div class="chapter-num">SUMMARY</div>
+        <h2>Story Summary</h2>
+        <p class="arabic-sub">ملخص القصة</p>
+      </div>
+
+      <div class="summary-box">
+        <h3>📖 The Magic Classroom — Complete Story</h3>
+        <ul>
+          <li><strong>Chapter 1:</strong> Children enter the Magic Classroom for the first time. Mr. Adam tells them to show responsibility and work together. They solve their first challenge (a locked box) by sharing ideas.</li>
+          <li><strong>Chapter 2:</strong> The children face an invisible bridge. They cross it by showing respect, ambition, and courage. At the end, they open a golden door by singing together.</li>
+          <li><strong>Chapter 3:</strong> In the final room, they find a glowing book with the values they've learned: responsibility, curiosity, teamwork, respect, perseverance, and courage. Mr. Adam teaches them about integrity.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ========== Quiz ========== -->
+    <div class="quiz-section">
+      <h3>📝 Story Quiz — اختبار على القصة</h3>
+
+      <div class="quiz-question" data-answer="1">
+        <div class="q-text">1. What is the name of the teacher in the story?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">Sara</div>
+          <div class="quiz-option" data-value="1">Mr. Adam</div>
+          <div class="quiz-option" data-value="2">Omar</div>
+          <div class="quiz-option" data-value="3">Zain</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-question" data-answer="2">
+        <div class="q-text">2. What was the first challenge in the Magic Classroom?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">An invisible bridge</div>
+          <div class="quiz-option" data-value="1">A golden door</div>
+          <div class="quiz-option" data-value="2">A locked box</div>
+          <div class="quiz-option" data-value="3">A glowing book</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-question" data-answer="1">
+        <div class="q-text">3. What does "respect" mean according to Sara?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">We win every game</div>
+          <div class="quiz-option" data-value="1">We listen and care for each other</div>
+          <div class="quiz-option" data-value="2">We work alone</div>
+          <div class="quiz-option" data-value="3">We are the best</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-question" data-answer="0">
+        <div class="q-text">4. What does "ambition" mean according to Zain?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">We believe in our success</div>
+          <div class="quiz-option" data-value="1">We give up</div>
+          <div class="quiz-option" data-value="2">We are lazy</div>
+          <div class="quiz-option" data-value="3">We sleep</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-question" data-answer="2">
+        <div class="q-text">5. What does "courage" mean according to Omar?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">We run away</div>
+          <div class="quiz-option" data-value="1">We hide</div>
+          <div class="quiz-option" data-value="2">We try even when we are scared</div>
+          <div class="quiz-option" data-value="3">We stay silent</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-question" data-answer="1">
+        <div class="q-text">6. What made the golden door open?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">Running away</div>
+          <div class="quiz-option" data-value="1">Singing together (unity)</div>
+          <div class="quiz-option" data-value="2">Giving up</div>
+          <div class="quiz-option" data-value="3">Sleeping</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-question" data-answer="3">
+        <div class="q-text">7. What did the children find in the final room?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">A treasure chest</div>
+          <div class="quiz-option" data-value="1">A golden door</div>
+          <div class="quiz-option" data-value="2">A bridge</div>
+          <div class="quiz-option" data-value="3">A glowing book</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-question" data-answer="0">
+        <div class="q-text">8. What did Mr. Adam say about the real magic?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">It is in the values you showed</div>
+          <div class="quiz-option" data-value="1">It is in the puzzles</div>
+          <div class="quiz-option" data-value="2">It is in the room</div>
+          <div class="quiz-option" data-value="3">It is in the book</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-question" data-answer="2">
+        <div class="q-text">9. What does "integrity" mean?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">Doing things for money</div>
+          <div class="quiz-option" data-value="1">Being famous</div>
+          <div class="quiz-option" data-value="2">Doing the right thing even when no one is watching</div>
+          <div class="quiz-option" data-value="3">Being lazy</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-question" data-answer="1">
+        <div class="q-text">10. Why did Omar have courage?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="0">Because he was alone</div>
+          <div class="quiz-option" data-value="1">Because his friends believed in him</div>
+          <div class="quiz-option" data-value="2">Because he was scared</div>
+          <div class="quiz-option" data-value="3">Because he was strong</div>
+        </div>
+        <div class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-exam">
+      <h3>📥 حمّل القصة PDF</h3>
+      <p>نسخة PDF جاهزة للقراءة أو الطباعة — بلوجو الأكاديمية</p>
+      <div class="btn-group-custom">
+        <a href="story-magic-classroom-print.html" class="btn-action btn-gold">
+          <i class="fas fa-file-pdf"></i> تحميل PDF
+        </a>
+        <a href="review-1-prep1.html" class="btn-action btn-outline-gold">
+          <i class="fas fa-book"></i> العودة للمراجعة
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container"><p>© 2026 أكاديمية مستر ياسر نوفل — جميع الحقوق محفوظة</p></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelectorAll('.quiz-question').forEach(question => {
+      const correctAnswer = question.dataset.answer;
+      const feedback = question.querySelector('.quiz-feedback');
+      const options = question.querySelectorAll('.quiz-option');
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          if (option.classList.contains('correct') || option.classList.contains('wrong')) return;
+          const selected = option.dataset.value;
+          options.forEach(o => o.style.pointerEvents = 'none');
+          if (selected === correctAnswer) {
+            option.classList.add('correct');
+            feedback.textContent = '✅ إجابة صحيحة! أحسنت!';
+            feedback.className = 'quiz-feedback show success';
+          } else {
+            option.classList.add('wrong');
+            options.forEach(o => { if (o.dataset.value === correctAnswer) o.classList.add('correct'); });
+            feedback.textContent = '❌ إجابة خاطئة. الإجابة الصحيحة موضحة بالأخضر.';
+            feedback.className = 'quiz-feedback show error';
+          }
+        });
+      });
+    });
+    console.log('✅ Story Page Loaded');
+  </script>
+</body>
+</html>

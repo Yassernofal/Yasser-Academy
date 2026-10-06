@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Magic Classroom - Printable Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Tajawal:wght@500;700;800&family=Poppins:wght@400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', 'Tajawal', sans-serif; background: #e8eef7; padding: 20px; direction: ltr; }
+    .print-controls { max-width: 800px; margin: 0 auto 20px; text-align: center; padding: 15px; background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    .print-controls button { background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; border: none; padding: 14px 35px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: 'Poppins', sans-serif; margin: 5px; }
+    .print-controls .hint { color: #666; font-size: 0.9rem; margin-top: 10px; }
+    .page { width: 210mm; min-height: 297mm; padding: 15mm; margin: 0 auto 20px; background: #fff; box-shadow: 0 8px 30px rgba(0,0,0,0.1); page-break-after: always; position: relative; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 3px solid #0a1f44; margin-bottom: 25px; }
+    .brand { display: flex; align-items: center; gap: 15px; }
+    .brand-logo { width: 75px; height: 75px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .brand-text h1 { font-family: 'Cinzel', serif; color: #0a1f44; font-size: 1.15rem; margin-bottom: 2px; letter-spacing: 1px; }
+    .brand-text p { color: #1f4b8a; font-size: 0.75rem; font-family: 'Tajawal', sans-serif; font-weight: 600; }
+    .story-title { text-align: right; }
+    .story-title h2 { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 1.3rem; direction: ltr; }
+    .story-title .arabic-title { color: #1f4b8a; font-size: 0.95rem; font-family: 'Tajawal', sans-serif; font-weight: 700; }
+    .story-intro { background: linear-gradient(135deg, #f0f4fa, #e8eef7); padding: 18px 22px; border-radius: 12px; border-right: 4px solid #f7e05e; margin-bottom: 25px; text-align: center; }
+    .story-intro h3 { font-family: 'Cinzel', serif; color: #0a1f44; font-size: 1.2rem; direction: ltr; margin-bottom: 5px; }
+    .story-intro p { color: #1f4b8a; font-family: 'Tajawal', sans-serif; font-weight: 700; }
+    .chapter-title { background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; padding: 15px 25px; border-radius: 12px; margin: 25px 0 20px; text-align: center; box-shadow: 0 4px 15px rgba(10, 31, 68, 0.2); }
+    .chapter-title .chapter-num { font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 5px; display: block; }
+    .chapter-title h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; direction: ltr; margin-bottom: 5px; }
+    .chapter-title .arabic-sub { color: #93c5fd; font-size: 1rem; font-family: 'Tajawal', sans-serif; font-weight: 700; }
+    .scene-block { background: #fafbfc; border-radius: 12px; padding: 18px 22px; margin-bottom: 15px; border-right: 4px solid #f7e05e; page-break-inside: avoid; }
+    .scene-num { display: inline-block; background: #f7e05e; color: #0a1f44; width: 30px; height: 30px; border-radius: 50%; line-height: 30px; text-align: center; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 10px; box-shadow: 0 3px 10px rgba(247, 224, 94, 0.4); font-size: 0.85rem; }
+    .scene-en { font-family: 'Amiri', 'Poppins', serif; direction: ltr; text-align: left; font-size: 1rem; line-height: 1.9; color: #333; margin-bottom: 10px; }
+    .scene-ar { direction: rtl; text-align: right; font-family: 'Amiri', serif; color: #666; font-size: 0.95rem; line-height: 1.8; padding-top: 10px; border-top: 1px dashed #cbd5e1; margin-top: 10px; font-style: italic; }
+    .moral-box { background: linear-gradient(135deg, #e8f5e9, #d4edda); border-radius: 12px; padding: 18px 22px; border-right: 4px solid #28a745; margin: 18px 0 25px; page-break-inside: avoid; }
+    .moral-box h4 { color: #14532d; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 1rem; }
+    .moral-box p { color: #14532d; font-size: 0.95rem; margin-bottom: 6px; }
+    .characters-section { background: #fff; border: 2px solid #f7e05e; border-radius: 12px; padding: 20px; margin: 25px 0; }
+    .characters-section h3 { font-family: 'Cinzel', serif; color: #0a1f44; text-align: center; margin-bottom: 15px; direction: ltr; font-size: 1.1rem; }
+    .characters-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media (max-width: 768px) { .characters-grid { grid-template-columns: repeat(2, 1fr); } }
+    .character-card { text-align: center; padding: 12px 8px; background: #fafbfc; border-radius: 10px; border: 2px solid transparent; transition: 0.3s; }
+    .character-avatar { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; margin: 0 auto 8px; }
+    .character-name { font-family: 'Cinzel', serif; color: #0a1f44; font-weight: 700; font-size: 0.9rem; direction: ltr; }
+    .character-role { color: #666; font-size: 0.8rem; }
+    .page-footer { position: absolute; bottom: 10mm; left: 15mm; right: 15mm; display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 2px solid #e8eef7; font-size: 0.75rem; color: #666; font-family: 'Tajawal', sans-serif; }
+    .page-footer .brand-mini { font-family: 'Cinzel', serif; color: #0a1f44; font-weight: 700; }
+    .page-footer .page-num { background: #0a1f44; color: #f7e05e; padding: 3px 12px; border-radius: 20px; font-weight: 700; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .print-controls { display: none; }
+      .page { width: 100%; min-height: auto; margin: 0; padding: 12mm; box-shadow: none; page-break-after: always; }
+      @page { size: A4; margin: 10mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-controls">
+    <button onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+    <button onclick="history.back()">← رجوع</button>
+    <p class="hint">💡 اضغط "طباعة" ثم اختر "Save as PDF" لحفظ القصة على جهازك</p>
+  </div>
+
+  <!-- Page 1: Chapter 1 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="brand">
+        <div class="brand-logo"><img src="assets/images/logo.png" alt="Logo" /></div>
+        <div class="brand-text"><h1>MR. YASSER NOFAL</h1><p>ACADEMY • أكاديمية مستر ياسر نوفل</p></div>
+      </div>
+      <div class="story-title"><h2>The Magic Classroom</h2><div class="arabic-title">الفصل السحري</div></div>
+    </div>
+
+    <div class="story-intro">
+      <h3>📖 Complete Story - القصة الكاملة</h3>
+      <p>3 Chapters • 4 Characters • Values &amp; Lessons</p>
+    </div>
+
+    <div class="chapter-title">
+      <span class="chapter-num">CHAPTER 1</span>
+      <h3>The First Challenge</h3>
+      <p class="arabic-sub">التحدي الأول</p>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">1</span>
+      <div class="scene-en">In a cheerful village school, the children loved discovering new things. One day, their teacher, Mr. Adam, made an exciting announcement. "Next week, we will enter the Magic Classroom," he said. "To succeed, you need to show responsibility and work together."</div>
+      <div class="scene-ar">في مدرسة قرية سعيدة، أحب الأطفال اكتشاف أشياء جديدة. في يوم من الأيام، أعلن معلمهم السيد آدم خبراً مثيراً: "الأسبوع القادم، سندخل الفصل السحري. لكي تنجحوا، يجب أن تتحلوا بالمسؤولية والعمل معاً."</div>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">2</span>
+      <div class="scene-en">The children were curious and excited. When the day came, they walked through a glowing door and found themselves in a room filled with floating puzzles, shining books, and magical clues. On the wall, a message read: "Only those who collaborate and stay curious can unlock the mysteries."</div>
+      <div class="scene-ar">كان الأطفال فضوليين ومتحمسين. عندما جاء اليوم، دخلوا من باب متوهج ووجدوا أنفسهم في غرفة مليئة بالألغاز العائمة والكتب المضيئة والأدلة السحرية. على الحائط، كانت هناك رسالة: "فقط من يتعاون ويبقى فضولياً يمكنه فتح الأسرار."</div>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">3</span>
+      <div class="scene-en">Sara, who was always eager to learn, said, "Let's think carefully and help each other." Omar, who sometimes felt shy, looked nervous. Sam, calm and kind, encouraged him, "We'll do it together." Their first challenge was a locked box. They shared ideas and solved the challenge by working as a team. As the box clicked open, a bright light appeared, and a new challenge was waiting.</div>
+      <div class="scene-ar">قالت سارة، التي كانت دائماً متحمسة للتعلم: "لنفكر بعناية ونساعد بعضنا." بدا عمر، الذي كان خجولاً أحياناً، متوتراً. شجعه سام، الهادئ والطيب: "سنفعلها معاً." كان التحدي الأول صندوقاً مغلقاً. تبادلوا الأفكار وحلوا التحدي بالعمل كفريق. عندما فُتح الصندوق، ظهر ضوء ساطع، وكان تحدٍ جديد ينتظرهم.</div>
+    </div>
+
+    <div class="moral-box">
+      <h4>⭐ Moral of Chapter 1</h4>
+      <p>🤝 <strong>Teamwork</strong> is the key to success — العمل الجماعي هو مفتاح النجاح.</p>
+      <p>💪 <strong>Responsibility</strong> means doing your part — المسؤولية تعني القيام بدورك.</p>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">1 / 3</span>
+    </div>
+  </div>
+
+  <!-- Page 2: Chapter 2 -->
+  <div class="page">
+    <div class="chapter-title">
+      <span class="chapter-num">CHAPTER 2</span>
+      <h3>The Power of Unity</h3>
+      <p class="arabic-sub">قوة الوحدة</p>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">1</span>
+      <div class="scene-en">The next time the students entered, the Magic Classroom was more difficult. In front of the children was an invisible bridge. A glowing sign read: "Only those with respect, ambition, and courage can cross."</div>
+      <div class="scene-ar">في المرة التالية، كان الفصل السحري أكثر صعوبة. أمام الأطفال كان جسر غير مرئي. لافتة مضيئة تقول: "فقط من لديهم الاحترام والطموح والشجاعة يمكنهم العبور."</div>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">2</span>
+      <div class="scene-en">Sara thought for a moment. "Respect means we listen and care for each other." Zain added, "Ambition means we believe in our success." Omar took a deep breath, "Courage means we try even when we are scared."</div>
+      <div class="scene-ar">فكرت سارة لحظة: "الاحترام يعني أن نستمع ونهتم ببعضنا." أضاف زين: "الطموح يعني أن نؤمن بنجاحنا." أخذ عمر نفساً عميقاً: "الشجاعة تعني أن نحاول حتى عندما نكون خائفين."</div>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">3</span>
+      <div class="scene-en">They stepped onto the invisible bridge, holding hands and encouraging one another. Every kind word they spoke and every brave step they took made the bridge appear slowly beneath their feet. When Omar hesitated, his friends cheered him on, reminding him he wasn't alone. At the end of the bridge, a golden door appeared with a message: "Perseverance opens every door. Never give up."</div>
+      <div class="scene-ar">خطوا على الجسر غير المرئي، ممسكين بأيدي بعضهم ويشجعون بعضهم. كل كلمة طيبة قالوها وكل خطوة شجاعة خطوها جعلت الجسر يظهر ببطء تحت أقدامهم. عندما تردد عمر، شجعه أصدقاؤه، مذكرينه أنه ليس وحيداً. في نهاية الجسر، ظهر باب ذهبي برسالة: "المثابرة تفتح كل الأبواب. لا تستسلم أبداً."</div>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">4</span>
+      <div class="scene-en">The team tried many ideas but nothing worked. Hours passed. They refused to quit. Finally, Omar whispered, "Let's sing together. Maybe unity is the key." They sang, and slowly, the golden door opened. They clapped and laughed, proud of their teamwork.</div>
+      <div class="scene-ar">جرب الفريق أفكاراً كثيرة لكن لم ينجح شيء. مضت ساعات. رفضوا الاستسلام. أخيراً همس عمر: "لنغني معاً. ربما الوحدة هي المفتاح." غنوا، وببطء، فُتح الباب الذهبي. صفقوا وضحكوا، فخورين بعملهم الجماعي.</div>
+    </div>
+
+    <div class="moral-box">
+      <h4>⭐ Moral of Chapter 2</h4>
+      <p>🤝 <strong>Unity is power</strong> — الوحدة قوة.</p>
+      <p>💪 <strong>Perseverance opens every door</strong> — المثابرة تفتح كل الأبواب.</p>
+      <p>🎯 <strong>Respect, Ambition, and Courage</strong> are the keys to success — الاحترام والطموح والشجاعة مفاتيح النجاح.</p>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">2 / 3</span>
+    </div>
+  </div>
+
+  <!-- Page 3: Chapter 3 -->
+  <div class="page">
+    <div class="chapter-title">
+      <span class="chapter-num">CHAPTER 3</span>
+      <h3>The Greatest Lessons</h3>
+      <p class="arabic-sub">أعظم الدروس</p>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">1</span>
+      <div class="scene-en">Inside the final room, the children found a glowing book on a crystal stand. Mr. Adam appeared with a warm smile. "You have completed the Magic Classroom," he said. "But remember, the real magic is not in the puzzles, it is in the values you showed."</div>
+      <div class="scene-ar">في الغرفة الأخيرة، وجد الأطفال كتاباً متوهجاً على حامل كريستالي. ظهر السيد آدم بابتسامة دافئة. قال: "لقد أكملتم الفصل السحري. لكن تذكروا، السحر الحقيقي ليس في الألغاز، بل في القيم التي أظهرتموها."</div>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">2</span>
+      <div class="scene-en">He opened the magical book, and glowing words appeared: "Responsibility, Curiosity, Teamwork, Respect, Perseverance, Courage." Sara smiled, "We solved every problem by working together." Zain added, "We respected each other and stayed curious." Omar grinned, "I had courage because my friends believed in me."</div>
+      <div class="scene-ar">فتح الكتاب السحري، وظهرت كلمات متوهجة: "المسؤولية، الفضول، العمل الجماعي، الاحترام، المثابرة، الشجاعة." ابتسمت سارة: "حللنا كل مشكلة بالعمل معاً." أضاف زين: "احترمنا بعضنا وبقينا فضوليين." ابتسم عمر: "كان لدي شجاعة لأن أصدقائي آمنوا بي."</div>
+    </div>
+
+    <div class="scene-block">
+      <span class="scene-num">3</span>
+      <div class="scene-en">Mr. Adam nodded, "You also showed integrity — doing the right thing even when no one was watching." The children returned to their classroom, their hearts full of pride and happiness. From that day on, they promised to use these values in everything they did — at school, at home, and online.</div>
+      <div class="scene-ar">أومأ السيد آدم: "أظهرتم أيضاً النزاهة — فعل الصواب حتى عندما لا يراقبكم أحد." عاد الأطفال إلى فصلهم، وقلوبهم مليئة بالفخر والسعادة. من ذلك اليوم، وعدوا باستخدام هذه القيم في كل ما يفعلونه — في المدرسة، في المنزل، وعلى الإنترنت.</div>
+    </div>
+
+    <div class="moral-box">
+      <h4>⭐ Moral of Chapter 3</h4>
+      <p>🎯 <strong>The real magic is in values, not in puzzles</strong> — السحر الحقيقي في القيم، ليس في الألغاز.</p>
+      <p>💛 <strong>Integrity</strong> means doing the right thing even when no one is watching — النزاهة تعني فعل الصواب حتى عندما لا يراقبك أحد.</p>
+      <p>🌟 <strong>The greatest lessons</strong> are about kindness, respect, and never giving up — أعظم الدروس عن اللطف والاحترام وعدم الاستسلام.</p>
+    </div>
+
+    <div class="characters-section">
+      <h3>👥 Story Characters — شخصيات القصة</h3>
+      <div class="characters-grid">
+        <div class="character-card"><div class="character-avatar" style="background: #ffe8a1;">👧</div><div class="character-name">Sara</div><div class="character-role">Wise &amp; Kind</div></div>
+        <div class="character-card"><div class="character-avatar" style="background: #d1ecf1;">👦</div><div class="character-name">Omar</div><div class="character-role">Brave &amp; Creative</div></div>
+        <div class="character-card"><div class="character-avatar" style="background: #d4edda;">🧒</div><div class="character-name">Sam</div><div class="character-role">Calm &amp; Kind</div></div>
+        <div class="character-card"><div class="character-avatar" style="background: #f8d7da;">👨‍🏫</div><div class="character-name">Mr. Adam</div><div class="character-role">The Teacher</div></div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">3 / 3</span>
+    </div>
+  </div>
+</body>
+</html>
