@@ -67,6 +67,7 @@
       margin-bottom: 20px;
       font-family: 'Cinzel', serif;
       letter-spacing: 1px;
+      text-align: center;
     }
     .page-header h1 {
       font-family: 'Playfair Display', serif;
@@ -75,6 +76,7 @@
       margin-bottom: 12px;
       font-weight: 700;
       direction: ltr;
+      text-align: center;
       letter-spacing: 1px;
     }
     .page-header .arabic-title {
@@ -83,11 +85,13 @@
       color: #fff;
       margin-bottom: 15px;
       font-weight: 700;
+      text-align: center;
     }
     .page-header .subtitle {
       color: #dce8f5;
       font-size: 1.05rem;
       font-family: 'Tajawal', sans-serif;
+      text-align: center;
     }
 
     /* ============ CONTAINER ============ */
@@ -121,16 +125,18 @@
     }
 
     .lesson-number {
-      display: inline-block;
+      display: block;
+      width: fit-content;
+      margin: 0 auto 20px auto;
       background: linear-gradient(135deg, #0a1f44, #1f4b8a);
       color: #f7e05e;
-      padding: 6px 18px;
+      padding: 6px 20px;
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 700;
       font-family: 'Cinzel', serif;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      text-align: center;
     }
 
     .lesson-section h2 {
@@ -141,8 +147,10 @@
       margin-bottom: 25px;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 12px;
       direction: ltr;
+      text-align: center;
     }
     .lesson-section h2 i { color: #f7b731; }
 
@@ -154,6 +162,7 @@
       padding-bottom: 10px;
       border-bottom: 2px dashed #f7e05e;
       font-family: 'Tajawal', sans-serif;
+      text-align: center;
     }
 
     .lesson-section h4 {
@@ -162,6 +171,7 @@
       font-weight: 700;
       margin: 22px 0 12px;
       font-family: 'Tajawal', sans-serif;
+      text-align: center;
     }
 
     .lesson-section p {
@@ -187,6 +197,7 @@
       gap: 8px;
       font-family: 'Tajawal', sans-serif;
       font-weight: 800;
+      text-align: right;
     }
     .info-box.tip {
       background: linear-gradient(135deg, #e8f5e9, #d4edda);
@@ -248,7 +259,7 @@
     /* ============ READING TEXT ============ */
     .reading-text {
       background: linear-gradient(135deg, #f8f9fa, #fff);
-      padding: 30px;
+      padding: 35px 30px;
       border-radius: 18px;
       border: 2px solid #e9ecef;
       margin: 20px 0;
@@ -263,7 +274,8 @@
       content: '📖';
       position: absolute;
       top: -15px;
-      left: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       background: #f7e05e;
       width: 45px;
       height: 45px;
@@ -277,10 +289,11 @@
     .reading-text h5 {
       color: #0a1f44;
       font-family: 'Playfair Display', serif;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       font-size: 1.3rem;
       font-weight: 700;
-      padding-right: 35px;
+      text-align: center;
+      direction: ltr;
     }
     .reading-text strong {
       color: #0a1f44;
@@ -302,9 +315,12 @@
       font-family: 'Playfair Display', serif;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       font-size: 1.3rem;
       direction: ltr;
+      text-align: center;
+      margin-bottom: 15px;
     }
     .grammar-formula {
       background: #0a1f44;
@@ -340,7 +356,7 @@
       margin-top: 6px;
     }
 
-    /* ============ STORY SECTION - الكتاب المصور ============ */
+    /* ============ STORY SECTION ============ */
     .story-book {
       background: linear-gradient(135deg, #fef9e7, #fffbf0, #fef9e7);
       border-radius: 24px;
@@ -367,7 +383,9 @@
       padding: 25px 30px;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 15px;
+      flex-wrap: wrap;
     }
     .story-header .story-icon {
       font-size: 2.5rem;
@@ -380,6 +398,9 @@
       justify-content: center;
       box-shadow: 0 4px 15px rgba(247, 224, 94, 0.4);
     }
+    .story-header-text {
+      text-align: center;
+    }
     .story-header h3 {
       color: #f7e05e;
       font-family: 'Playfair Display', serif;
@@ -388,15 +409,16 @@
       direction: ltr;
       border: none;
       padding: 0;
+      text-align: center;
     }
     .story-header p {
       color: #dce8f5;
       font-family: 'Tajawal', sans-serif;
       margin: 5px 0 0;
       font-size: 0.95rem;
+      text-align: center;
     }
 
-    /* Story Scene - مشهد مصور */
     .story-scene {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -434,16 +456,6 @@
       width: 60px; height: 60px;
       background: rgba(31, 75, 138, 0.1);
       border-radius: 50%;
-    }
-
-    /* SVG Illustration Style */
-    .scene-svg {
-      width: 100%;
-      max-width: 280px;
-      height: auto;
-      position: relative;
-      z-index: 2;
-      filter: drop-shadow(0 10px 25px rgba(0,0,0,0.15));
     }
 
     .scene-emoji-group {
@@ -522,7 +534,6 @@
       font-style: italic;
     }
 
-    /* Story Vocabulary Highlight */
     .story-vocab-highlight {
       background: linear-gradient(180deg, transparent 60%, #f7e05e 60%);
       padding: 0 2px;
@@ -530,7 +541,6 @@
       color: #0a1f44;
     }
 
-    /* Story Character Cards */
     .story-characters {
       display: flex;
       flex-wrap: wrap;
@@ -574,12 +584,16 @@
       margin: 0 0 3px;
       font-size: 1rem;
       font-weight: 700;
+      direction: ltr;
+      text-align: left;
     }
     .character-info p {
       font-family: 'Tajawal', sans-serif;
       color: #666;
       margin: 0;
       font-size: 0.85rem;
+      direction: ltr;
+      text-align: left;
     }
 
     /* ============ EXERCISES ============ */
@@ -640,6 +654,7 @@
       font-family: 'Tajawal', sans-serif;
       display: none;
       font-size: 1.05rem;
+      text-align: right;
     }
     .exercise .feedback.show { display: block; }
     .exercise .feedback.success { background: #d4edda; color: #155724; }
@@ -672,6 +687,8 @@
       font-weight: 700;
       position: relative;
       z-index: 2;
+      direction: ltr;
+      text-align: center;
     }
     .cta-section p {
       color: #dce8f5;
@@ -680,6 +697,7 @@
       font-family: 'Tajawal', sans-serif;
       position: relative;
       z-index: 2;
+      text-align: center;
     }
     .cta-section .btn-group-custom {
       display: flex;
@@ -1021,7 +1039,7 @@
       <div class="story-book">
         <div class="story-header">
           <div class="story-icon">📚</div>
-          <div>
+          <div class="story-header-text">
             <h3>Chapter One: The First Challenge</h3>
             <p>الفصل الأول: التحدي الأول</p>
           </div>
