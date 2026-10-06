@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المراجعة الشاملة - Units 1, 2, 3 | أكاديمية مستر ياسر نوفل</title>
+  <meta name="description" content="المراجعة الشاملة على الوحدات 1-3 - الصف الأول الإعدادي" />
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Tajawal:wght@400;500;700;800&family=Poppins:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Tajawal', sans-serif; background: #f0f4fa; padding-top: 78px; line-height: 1.8; }
+    
+    /* Navbar */
+    .navbar-custom {
+      background: rgba(10, 31, 68, 0.95) !important;
+      backdrop-filter: blur(18px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      z-index: 1050;
+    }
+    .navbar-brand { direction: ltr; }
+    .navbar-brand .brand-name {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: #f7e05e;
+    }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
+
+    /* Hero */
+    .hero-review {
+      background: linear-gradient(135deg, #0a1f44 0%, #1e3a8a 50%, #2563eb 100%);
+      color: #fff;
+      padding: 60px 30px;
+      border-radius: 28px;
+      margin: 30px auto;
+      max-width: 1100px;
+      box-shadow: 0 20px 60px rgba(10, 31, 68, 0.4);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-review::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(247, 224, 94, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-review::after {
+      content: '';
+      position: absolute;
+      bottom: -30%; left: -10%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(247, 224, 94, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-review .badge-unit {
+      display: inline-block;
+      background: rgba(247, 224, 94, 0.2);
+      color: #f7e05e;
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      border: 1px solid rgba(247, 224, 94, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-review h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #f7e05e;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+      direction: ltr;
+      text-align: center;
+    }
+    .hero-review .arabic-title {
+      font-size: 1.5rem;
+      color: #93c5fd;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+    }
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      max-width: 700px;
+      margin: 30px auto 0;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-stat-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(247, 224, 94, 0.3);
+      border-radius: 16px;
+      padding: 20px 15px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .hero-stat-card:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+    }
+    .hero-stat-card .stat-icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .hero-stat-card .stat-num {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #f7e05e;
+      direction: ltr;
+    }
+    .hero-stat-card .stat-lbl {
+      color: #dce8f5;
+      font-size: 0.9rem;
+    }
+
+    /* Container */
+    .review-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Tabs */
+    .tabs-container {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    .tabs-nav {
+      display: flex;
+      background: #f8f9fa;
+      border-bottom: 3px solid #e9ecef;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex: 1;
+      min-width: 140px;
+      padding: 20px 15px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #666;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+    .tab-btn i { font-size: 1.5rem; }
+    .tab-btn:hover { background: #eef2f7; color: #0a1f44; }
+    .tab-btn.active { background: #fff; color: #0a1f44; }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; right: 0; left: 0;
+      height: 3px;
+      background: #f7e05e;
+    }
+    .tab-panel { display: none; padding: 40px 35px; }
+    .tab-panel.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #f7e05e;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      direction: ltr;
+      text-align: center;
+      justify-content: center;
+    }
+    .section-title i { color: #f7b731; }
+
+    .subsection-title {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.2rem;
+      color: #1f4b8a;
+      font-weight: 700;
+      margin: 25px 0 15px;
+      padding-right: 15px;
+      border-right: 4px solid #f7e05e;
+    }
+
+    /* Vocab cards */
+    .vocab-category {
+      background: linear-gradient(135deg, #f8f9fa, #fff);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-right: 5px solid #f7b731;
+    }
+    .vocab-category h4 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-family: 'Tajawal', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .vocab-category .cat-badge {
+      background: #0a1f44;
+      color: #f7e05e;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-family: 'Cinzel', serif;
+    }
+
+    .word-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .word-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 18px;
+      border: 2px solid #e9ecef;
+      transition: 0.3s;
+      cursor: default;
+    }
+    .word-item:hover {
+      border-color: #f7e05e;
+      transform: translateX(-5px);
+      box-shadow: 0 4px 15px rgba(247, 224, 94, 0.2);
+    }
+    .word-item .word-en {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: #0a1f44;
+      font-size: 1.05rem;
+      direction: ltr;
+      text-align: left;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .word-item .word-ar {
+      color: #059669;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Grammar cards */
+    .grammar-card {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+      border: 2px solid #bfdbfe;
+    }
+    .grammar-card h4 {
+      color: #1e40af;
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.3rem;
+      direction: ltr;
+    }
+    .rule-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 14px;
+      margin-bottom: 15px;
+      border-right: 4px solid #2563eb;
+    }
+    .rule-box .formula {
+      background: #0a1f44;
+      color: #f7e05e;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-family: 'Poppins', monospace;
+      direction: ltr;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 12px 0;
+    }
+    .rule-box .note {
+      color: #666;
+      font-style: italic;
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+
+    .example-list { margin-top: 15px; }
+    .example-item {
+      background: #f0fdf4;
+      padding: 14px 18px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      border-left: 4px solid #16a34a;
+    }
+    .example-item .en {
+      font-family: 'Poppins', sans-serif;
+      direction: ltr;
+      text-align: left;
+      color: #14532d;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .example-item .ar {
+      color: #059669;
+      direction: rtl;
+      text-align: right;
+      font-size: 0.9rem;
+      margin-top: 6px;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    /* Writing template */
+    .writing-box {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+      border: 2px solid #fcd34d;
+    }
+    .writing-box h4 {
+      color: #92400e;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.3rem;
+    }
+    .writing-box .template {
+      background: #fff;
+      padding: 20px;
+      border-radius: 14px;
+      font-family: 'Poppins', sans-serif;
+      direction: ltr;
+      text-align: left;
+      line-height: 1.9;
+      color: #333;
+      font-size: 1rem;
+    }
+    .writing-box .template strong { color: #92400e; background: #fef3c7; padding: 0 3px; }
+
+    /* Practice Section */
+    .practice-section {
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-right: 5px solid #f7b731;
+    }
+    .practice-section h4 {
+      color: #0a1f44;
+      font-weight: 700;
+      margin-bottom: 18px;
+      font-size: 1.1rem;
+    }
+
+    .exercise {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border: 2px solid #e9ecef;
+    }
+    .exercise .question {
+      font-family: 'Poppins', sans-serif;
+      direction: ltr;
+      text-align: left;
+      font-weight: 600;
+      color: #0a1f44;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .option {
+      background: #f8f9fa;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 2px solid #e9ecef;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: 'Poppins', sans-serif;
+      direction: ltr;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .option:hover { border-color: #f7b731; background: #fffbf0; }
+    .option.correct { background: #d4edda; border-color: #28a745; font-weight: 600; }
+    .option.wrong { background: #f8d7da; border-color: #dc3545; }
+    .feedback {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      display: none;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .feedback.show { display: block; }
+    .feedback.success { background: #d4edda; color: #155724; }
+    .feedback.error { background: #f8d7da; color: #721c24; }
+
+    /* CTA */
+    .cta-exam {
+      background: linear-gradient(135deg, #0a1f44, #1f4b8a);
+      color: #fff;
+      padding: 50px 40px;
+      border-radius: 28px;
+      text-align: center;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-exam::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 300px; height: 300px;
+      background: rgba(247, 224, 94, 0.1);
+      border-radius: 50%;
+    }
+    .cta-exam h3 {
+      color: #f7e05e;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-exam p {
+      color: #dce8f5;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-exam .btn-group-custom {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-action {
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #f7e05e, #f7b731);
+      color: #0a1f44;
+      box-shadow: 0 8px 25px rgba(247, 224, 94, 0.4);
+    }
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(247, 224, 94, 0.5);
+      color: #0a1f44;
+    }
+    .btn-outline-gold {
+      background: transparent;
+      color: #f7e05e;
+      border: 2px solid #f7e05e;
+    }
+    .btn-outline-gold:hover {
+      background: #f7e05e;
+      color: #0a1f44;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a1f44;
+      color: #b0c4de;
+      padding: 30px 0;
+      border-radius: 40px 40px 0 0;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero-review { padding: 40px 20px; }
+      .hero-review h1 { font-size: 1.8rem; }
+      .hero-review .arabic-title { font-size: 1.1rem; }
+      .tab-btn { min-width: 110px; font-size: 0.85rem; padding: 15px 8px; }
+      .tab-btn i { font-size: 1.2rem; }
+      .tab-panel { padding: 25px 18px; }
+      .section-title { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link active" href="student-dashboard.html">👨‍🎓 لوحتي</a></li>
+          <li class="nav-item"><a class="nav-link" href="exams.html">📝 الامتحانات</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero-review">
+    <span class="badge-unit"><i class="fas fa-graduation-cap"></i> PREP 1 — TERM 1</span>
+    <h1>Comprehensive Review</h1>
+    <p class="arabic-title">🎯 المراجعة الشاملة — Units 1, 2, 3</p>
+    <p style="color: #dce8f5; font-size: 1rem; position: relative; z-index: 1;">📖 الصف الأول الإعدادي — الترم الأول</p>
+    
+    <div class="hero-stats-grid">
+      <div class="hero-stat-card">
+        <div class="stat-icon">📚</div>
+        <div class="stat-num">150</div>
+        <div class="stat-lbl">كلمة أساسية</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="stat-icon">📐</div>
+        <div class="stat-num">3</div>
+        <div class="stat-lbl">قواعد رئيسية</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="stat-icon">📖</div>
+        <div class="stat-num">3</div>
+        <div class="stat-lbl">وحدات كاملة</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-num">∞</div>
+        <div class="stat-lbl">امتحانات</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="review-container">
+
+    <!-- Tabs -->
+    <div class="tabs-container">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="openTab(event, 'vocab')">
+          <i class="fas fa-spell-check"></i>
+          <span>المفردات</span>
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'grammar')">
+          <i class="fas fa-cog"></i>
+          <span>القواعد</span>
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'reading')">
+          <i class="fas fa-book-open"></i>
+          <span>القراءة</span>
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'writing')">
+          <i class="fas fa-pen-fancy"></i>
+          <span>الكتابة</span>
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'practice')">
+          <i class="fas fa-tasks"></i>
+          <span>تدريبات</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Vocabulary -->
+      <div id="vocab" class="tab-panel active">
+        <h3 class="section-title"><i class="fas fa-spell-check"></i> Vocabulary Review — مراجعة المفردات</h3>
+
+        <div class="subsection-title">📘 Unit 1 — Life in a Digital World</div>
+        <div class="vocab-category">
+          <h4><span class="cat-badge">UNIT 1</span> Technology Words</h4>
+          <div class="word-grid">
+            <div class="word-item"><span class="word-en">digital</span><span class="word-ar">رقمي</span></div>
+            <div class="word-item"><span class="word-en">screen</span><span class="word-ar">شاشة</span></div>
+            <div class="word-item"><span class="word-en">tablet</span><span class="word-ar">جهاز لوحي</span></div>
+            <div class="word-item"><span class="word-en">smartboard</span><span class="word-ar">سبورة ذكية</span></div>
+            <div class="word-item"><span class="word-en">laptop</span><span class="word-ar">حاسوب محمول</span></div>
+            <div class="word-item"><span class="word-en">website</span><span class="word-ar">موقع إلكتروني</span></div>
+            <div class="word-item"><span class="word-en">ebooks</span><span class="word-ar">كتب إلكترونية</span></div>
+            <div class="word-item"><span class="word-en">night mode</span><span class="word-ar">الوضع الليلي</span></div>
+            <div class="word-item"><span class="word-en">messages</span><span class="word-ar">رسائل</span></div>
+            <div class="word-item"><span class="word-en">online</span><span class="word-ar">عبر الإنترنت</span></div>
+          </div>
+        </div>
+
+        <div class="subsection-title">📗 Unit 2 — Learning to Learn</div>
+        <div class="vocab-category">
+          <h4><span class="cat-badge">UNIT 2</span> Learning Styles & Skills</h4>
+          <div class="word-grid">
+            <div class="word-item"><span class="word-en">visual</span><span class="word-ar">بصري</span></div>
+            <div class="word-item"><span class="word-en">auditory</span><span class="word-ar">سمعي</span></div>
+            <div class="word-item"><span class="word-en">kinesthetic</span><span class="word-ar">حركي</span></div>
+            <div class="word-item"><span class="word-en">mind map</span><span class="word-ar">خريطة ذهنية</span></div>
+            <div class="word-item"><span class="word-en">organize</span><span class="word-ar">ينظم</span></div>
+            <div class="word-item"><span class="word-en">improve</span><span class="word-ar">يحسّن</span></div>
+            <div class="word-item"><span class="word-en">practice</span><span class="word-ar">يتدرب</span></div>
+            <div class="word-item"><span class="word-en">goal</span><span class="word-ar">هدف</span></div>
+            <div class="word-item"><span class="word-en">progress</span><span class="word-ar">تقدم</span></div>
+            <div class="word-item"><span class="word-en">challenge</span><span class="word-ar">تحدٍ</span></div>
+            <div class="word-item"><span class="word-en">collaborate</span><span class="word-ar">يتعاون</span></div>
+            <div class="word-item"><span class="word-en">communicate</span><span class="word-ar">يتواصل</span></div>
+            <div class="word-item"><span class="word-en">confidence</span><span class="word-ar">ثقة</span></div>
+            <div class="word-item"><span class="word-en">teamwork</span><span class="word-ar">عمل جماعي</span></div>
+          </div>
+        </div>
+
+        <div class="subsection-title">📙 Unit 3 — Role Models</div>
+        <div class="vocab-category">
+          <h4><span class="cat-badge">UNIT 3</span> Hero Qualities</h4>
+          <div class="word-grid">
+            <div class="word-item"><span class="word-en">hero</span><span class="word-ar">بطل</span></div>
+            <div class="word-item"><span class="word-en">inspire</span><span class="word-ar">يلهم</span></div>
+            <div class="word-item"><span class="word-en">courageous</span><span class="word-ar">شجاع</span></div>
+            <div class="word-item"><span class="word-en">determined</span><span class="word-ar">مصمم</span></div>
+            <div class="word-item"><span class="word-en">passionate</span><span class="word-ar">شغوف</span></div>
+            <div class="word-item"><span class="word-en">achievement</span><span class="word-ar">إنجاز</span></div>
+            <div class="word-item"><span class="word-en">community</span><span class="word-ar">مجتمع</span></div>
+            <div class="word-item"><span class="word-en">role model</span><span class="word-ar">قدوة</span></div>
+            <div class="word-item"><span class="word-en">qualities</span><span class="word-ar">صفات</span></div>
+            <div class="word-item"><span class="word-en">integrity</span><span class="word-ar">نزاهة</span></div>
+            <div class="word-item"><span class="word-en">ambition</span><span class="word-ar">طموح</span></div>
+            <div class="word-item"><span class="word-en">leader</span><span class="word-ar">قائد</span></div>
+            <div class="word-item"><span class="word-en">perseverance</span><span class="word-ar">مثابرة</span></div>
+            <div class="word-item"><span class="word-en">responsibility</span><span class="word-ar">مسؤولية</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Grammar -->
+      <div id="grammar" class="tab-panel">
+        <h3 class="section-title"><i class="fas fa-cog"></i> Grammar Review — مراجعة القواعد</h3>
+
+        <!-- Present Simple -->
+        <div class="grammar-card">
+          <h4><i class="fas fa-star"></i> 1. Present Simple</h4>
+          <div class="rule-box">
+            <p><strong>الاستخدام:</strong> للتعبير عن العادات والحقائق اليومية.</p>
+            <div class="formula">Subject + Verb (base) + Object</div>
+            <div class="formula">He/She/It + Verb + s</div>
+          </div>
+          <div class="example-list">
+            <div class="example-item">
+              <div class="en">I <strong>check</strong> my phone every morning.</div>
+              <div class="ar">أنا أتفقد هاتفي كل صباح.</div>
+            </div>
+            <div class="example-item">
+              <div class="en">She <strong>reads</strong> ebooks before bedtime.</div>
+              <div class="ar">هي تقرأ كتباً إلكترونية قبل النوم.</div>
+            </div>
+            <div class="example-item">
+              <div class="en">They <strong>don't play</strong> online games.</div>
+              <div class="ar">هم لا يلعبون ألعاباً عبر الإنترنت.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Adverbs of Frequency -->
+        <div class="grammar-card">
+          <h4><i class="fas fa-clock"></i> 2. Adverbs of Frequency</h4>
+          <div class="rule-box">
+            <p><strong>الاستخدام:</strong> لوصف معدل تكرار الفعل.</p>
+            <p style="margin: 15px 0;"><strong>always (100%) → usually (90%) → often (70%) → sometimes (50%) → rarely (10%) → never (0%)</strong></p>
+            <div class="formula">Subject + Adverb + Verb</div>
+            <div class="note">⚠️ يأتي بعد verb to be: He <strong>is always</strong> busy.</div>
+          </div>
+          <div class="example-list">
+            <div class="example-item">
+              <div class="en">I <strong>always</strong> check my phone.</div>
+              <div class="ar">أنا دائماً أتفقد هاتفي.</div>
+            </div>
+            <div class="example-item">
+              <div class="en">She <strong>never</strong> eats without looking at screens.</div>
+              <div class="ar">هي أبداً لا تأكل بدون النظر إلى الشاشات.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Present Continuous -->
+        <div class="grammar-card">
+          <h4><i class="fas fa-hourglass-half"></i> 3. Present Continuous</h4>
+          <div class="rule-box">
+            <p><strong>الاستخدام:</strong> للتعبير عن حدث يحدث الآن.</p>
+            <div class="formula">Subject + am/is/are + Verb + ing</div>
+            <div class="note">🔑 كلمات دالة: now, at the moment, right now, currently</div>
+          </div>
+          <div class="example-list">
+            <div class="example-item">
+              <div class="en">I <strong>am learning</strong> English now.</div>
+              <div class="ar">أتعلم الإنجليزية الآن.</div>
+            </div>
+            <div class="example-item">
+              <div class="en">She <strong>is studying</strong> for her test.</div>
+              <div class="ar">تدرس لاختبارها.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Can -->
+        <div class="grammar-card">
+          <h4><i class="fas fa-hand-paper"></i> 4. Can for Ability</h4>
+          <div class="rule-box">
+            <p><strong>الاستخدام:</strong> للتعبير عن القدرة.</p>
+            <div class="formula">Subject + can + Verb (base) + Object</div>
+            <div class="formula">Negative: Subject + can't + Verb (base)</div>
+          </div>
+          <div class="example-list">
+            <div class="example-item">
+              <div class="en">I <strong>can speak</strong> English well.</div>
+              <div class="ar">أستطيع التحدث بالإنجليزية جيداً.</div>
+            </div>
+            <div class="example-item">
+              <div class="en">She <strong>can't swim</strong> very fast.</div>
+              <div class="ar">لا تستطيع السباحة بسرعة.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Past Simple -->
+        <div class="grammar-card">
+          <h4><i class="fas fa-history"></i> 5. Past Simple</h4>
+          <div class="rule-box">
+            <p><strong>الاستخدام:</strong> للتعبير عن حدث بدأ وانتهى في الماضي.</p>
+            <div class="formula">Regular: Verb + ed</div>
+            <div class="formula">Irregular: go → went, have → had, be → was/were</div>
+            <div class="formula">Negative: didn't + Verb (base)</div>
+          </div>
+          <div class="example-list">
+            <div class="example-item">
+              <div class="en">She <strong>worked</strong> hard in research.</div>
+              <div class="ar">عملت بجد في البحث.</div>
+            </div>
+            <div class="example-item">
+              <div class="en">She <strong>was born</strong> in Egypt in 1917.</div>
+              <div class="ar">وُلدت في مصر عام 1917.</div>
+            </div>
+            <div class="example-item">
+              <div class="en">He <strong>didn't go</strong> to school yesterday.</div>
+              <div class="ar">لم يذهب إلى المدرسة أمس.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Reading -->
+      <div id="reading" class="tab-panel">
+        <h3 class="section-title"><i class="fas fa-book-open"></i> Reading Comprehension — فهم المقروء</h3>
+
+        <div class="practice-section">
+          <h4><i class="fas fa-file-alt"></i> Passage 1: My Digital Day</h4>
+          <div style="background: #fff; padding: 20px; border-radius: 12px; font-family: 'Poppins', sans-serif; direction: ltr; text-align: left; line-height: 1.9; margin-bottom: 20px;">
+            Hi everyone! My name is <strong>Tarek</strong>, and I want to share my digital day with you. I always start my morning by checking my phone. I usually read three or four messages from my school friends. At breakfast, I often use my tablet to search for news. My favorite website gives me interesting facts about animals and space. I never eat without looking at my screen — I know it's not a good habit!<br><br>
+            At school, we sometimes use the smartboard in our science class. After school, I always do my homework first. In the evening, I sometimes play online games with my friends. Before bedtime, I often read ebooks on my tablet. But I always use the "night mode" so the screen doesn't hurt my eyes.
+          </div>
+
+          <div class="exercise" data-answer="0">
+            <div class="question">1. What does Tarek do first in the morning?</div>
+            <div class="options">
+              <div class="option" data-value="0">He checks his phone</div>
+              <div class="option" data-value="1">He eats breakfast</div>
+              <div class="option" data-value="2">He plays games</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise" data-answer="2">
+            <div class="question">2. Why does Tarek use night mode?</div>
+            <div class="options">
+              <div class="option" data-value="0">To save battery</div>
+              <div class="option" data-value="1">To read faster</div>
+              <div class="option" data-value="2">To protect his eyes</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+
+        <div class="practice-section">
+          <h4><i class="fas fa-file-alt"></i> Passage 2: Dr. Samira Moussa</h4>
+          <div style="background: #fff; padding: 20px; border-radius: 12px; font-family: 'Poppins', sans-serif; direction: ltr; text-align: left; line-height: 1.9; margin-bottom: 20px;">
+            Dr. Samira Moussa was a true hero who continues to inspire people today. She was born in Egypt in 1917 and showed a passionate love for science from a young age. She was determined to study physics and became one of the first Egyptian women to get a Ph.D. in atomic radiation.<br><br>
+            Samira was kind and always wanted to help her community. She believed that science should be used for peace. Her achievement in science and her courageous spirit made her a symbol of hope for many Egyptian girls.
+          </div>
+
+          <div class="exercise" data-answer="1">
+            <div class="question">3. When was Dr. Samira Moussa born?</div>
+            <div class="options">
+              <div class="option" data-value="0">In 1907</div>
+              <div class="option" data-value="1">In 1917</div>
+              <div class="option" data-value="2">In 1927</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise" data-answer="0">
+            <div class="question">4. What was Dr. Samira passionate about?</div>
+            <div class="options">
+              <div class="option" data-value="0">Science</div>
+              <div class="option" data-value="1">Art</div>
+              <div class="option" data-value="2">Music</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Writing -->
+      <div id="writing" class="tab-panel">
+        <h3 class="section-title"><i class="fas fa-pen-fancy"></i> Writing Templates — نماذج الكتابة</h3>
+
+        <div class="writing-box">
+          <h4><i class="fas fa-envelope"></i> 1. Email to a Friend (Unit 1)</h4>
+          <div class="template">
+            <strong>To:</strong> friend@email.com<br>
+            <strong>From:</strong> me@email.com<br>
+            <strong>Subject:</strong> My Digital Day<br><br>
+            Hi <strong>[Name]</strong>,<br><br>
+            How are you? I want to tell you about my <strong>digital</strong> day. When I get up, I <strong>always</strong> check my <strong>phone</strong>. I read <strong>messages</strong> from my friends and reply to them.<br><br>
+            Then, I have breakfast while I use my <strong>tablet</strong> to search for the latest news. At school, teachers usually use a <strong>smartboard</strong> to help us learn well.<br><br>
+            What about you? Can you write back and tell me about your digital day?<br><br>
+            Yours,<br>
+            <strong>[Your Name]</strong>
+          </div>
+        </div>
+
+        <div class="writing-box">
+          <h4><i class="fas fa-user-graduate"></i> 2. My Learning Plan (Unit 2)</h4>
+          <div class="template">
+            My name is <strong>[Name]</strong>, and I am a <strong>[visual/auditory/kinesthetic]</strong> learner. I learn best by <strong>[seeing/hearing/moving]</strong>.<br><br>
+            I like to use <strong>[colorful notes/mind maps]</strong> to organize my ideas. My goal is to improve my English this year. I am practicing every day.<br><br>
+            I <strong>can</strong> speak English well, but I want to be more fluent. I am learning new words by reading stories. Let's improve our English together!
+          </div>
+        </div>
+
+        <div class="writing-box">
+          <h4><i class="fas fa-star"></i> 3. My Role Model (Unit 3)</h4>
+          <div class="template">
+            <strong>[Name]</strong> is my role model. <strong>[He/She]</strong> was born in <strong>[place]</strong> in <strong>[year]</strong>. <strong>[He/She]</strong> was a <strong>[job]</strong> who loved <strong>[field]</strong>.<br><br>
+            <strong>[He/She]</strong> was <strong>[courageous/kind/determined]</strong> and always helped <strong>[his/her]</strong> community. <strong>[He/She]</strong> worked hard and achieved many <strong>[achievements]</strong>.<br><br>
+            I admire <strong>[him/her]</strong> because <strong>[he/she]</strong> inspires me to <strong>[action]</strong>. <strong>[He/She]</strong> teaches us that true heroes help people.
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 5: Practice -->
+      <div id="practice" class="tab-panel">
+        <h3 class="section-title"><i class="fas fa-tasks"></i> Interactive Practice — تدريبات تفاعلية</h3>
+
+        <div class="practice-section">
+          <h4><i class="fas fa-spell-check"></i> Vocabulary Practice</h4>
+
+          <div class="exercise" data-answer="1">
+            <div class="question">1. The ______ is a darker screen setting to protect your eyes.</div>
+            <div class="options">
+              <div class="option" data-value="0">day mode</div>
+              <div class="option" data-value="1">night mode</div>
+              <div class="option" data-value="2">evening mode</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise" data-answer="0">
+            <div class="question">2. ______ learners like to see pictures and charts.</div>
+            <div class="options">
+              <div class="option" data-value="0">Visual</div>
+              <div class="option" data-value="1">Auditory</div>
+              <div class="option" data-value="2">Kinesthetic</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise" data-answer="2">
+            <div class="question">3. A ______ is someone you admire and try to be like.</div>
+            <div class="options">
+              <div class="option" data-value="0">friend</div>
+              <div class="option" data-value="1">teacher</div>
+              <div class="option" data-value="2">role model</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+
+        <div class="practice-section">
+          <h4><i class="fas fa-cog"></i> Grammar Practice</h4>
+
+          <div class="exercise" data-answer="1">
+            <div class="question">4. She ______ ebooks before bedtime.</div>
+            <div class="options">
+              <div class="option" data-value="0">read</div>
+              <div class="option" data-value="1">reads</div>
+              <div class="option" data-value="2">reading</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise" data-answer="0">
+            <div class="question">5. I ______ learning English right now.</div>
+            <div class="options">
+              <div class="option" data-value="0">am</div>
+              <div class="option" data-value="1">is</div>
+              <div class="option" data-value="2">are</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise" data-answer="2">
+            <div class="question">6. She ______ born in Egypt in 1917.</div>
+            <div class="options">
+              <div class="option" data-value="0">were</div>
+              <div class="option" data-value="1">is</div>
+              <div class="option" data-value="2">was</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise" data-answer="1">
+            <div class="question">7. I ______ swim very fast when I was young.</div>
+            <div class="options">
+              <div class="option" data-value="0">can</div>
+              <div class="option" data-value="1">could</div>
+              <div class="option" data-value="2">can to</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+
+        <div class="practice-section">
+          <h4><i class="fas fa-history"></i> Past Simple Practice</h4>
+
+          <div class="exercise" data-answer="0">
+            <div class="question">8. She ______ hard in research.</div>
+            <div class="options">
+              <div class="option" data-value="0">worked</div>
+              <div class="option" data-value="1">works</div>
+              <div class="option" data-value="2">working</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise" data-answer="2">
+            <div class="question">9. He ______ to the United States last year.</div>
+            <div class="options">
+              <div class="option" data-value="0">go</div>
+              <div class="option" data-value="1">goes</div>
+              <div class="option" data-value="2">went</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+
+          <div class="exercise" data-answer="1">
+            <div class="question">10. They ______ football yesterday.</div>
+            <div class="options">
+              <div class="option" data-value="0">don't play</div>
+              <div class="option" data-value="1">didn't play</div>
+              <div class="option" data-value="2">doesn't play</div>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-exam">
+      <h3>🎯 جاهز للامتحان الشامل؟</h3>
+      <p>30 سؤال عشوائي من 200 — يغطي الوحدات 1-3 كاملة</p>
+      <div class="btn-group-custom">
+        <a href="exam-review1-prep1.html" class="btn-action btn-gold">
+          <i class="fas fa-play-circle"></i> ابدأ الامتحان الشامل
+        </a>
+        <a href="student-dashboard.html" class="btn-action btn-outline-gold">
+          <i class="fas fa-arrow-right"></i> العودة للوحة
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 أكاديمية مستر ياسر نوفل — جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function openTab(event, tabName) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Interactive Exercises
+    document.querySelectorAll('.exercise').forEach(exercise => {
+      const correctAnswer = exercise.dataset.answer;
+      const feedback = exercise.querySelector('.feedback');
+      const options = exercise.querySelectorAll('.option');
+      
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          if (option.classList.contains('correct') || option.classList.contains('wrong')) return;
+          
+          const selected = option.dataset.value;
+          options.forEach(o => o.style.pointerEvents = 'none');
+          
+          if (selected === correctAnswer) {
+            option.classList.add('correct');
+            feedback.textContent = '✅ إجابة صحيحة! أحسنت!';
+            feedback.className = 'feedback show success';
+          } else {
+            option.classList.add('wrong');
+            options.forEach(o => {
+              if (o.dataset.value === correctAnswer) o.classList.add('correct');
+            });
+            feedback.textContent = '❌ إجابة خاطئة. الإجابة الصحيحة موضحة بالأخضر.';
+            feedback.className = 'feedback show error';
+          }
+        });
+      });
+    });
+
+    console.log('✅ Review Page Loaded');
+  </script>
+</body>
+</html>

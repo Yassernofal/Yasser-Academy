@@ -4,16 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>لوحة الطالب – أكاديمية مستر ياسر نوفل</title>
-  <meta name="description" content="لوحة تحكم الطالب في أكاديمية مستر ياسر نوفل." />
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/student-dashboard.html" />
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-N3R3KFEO8');
-  </script>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -31,382 +22,83 @@
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; transition: background 0.3s, color 0.3s; }
+    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
-
-    .navbar-custom {
-      background: rgba(10, 31, 68, 0.85) !important;
-      backdrop-filter: blur(18px);
-      padding: 14px 0;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
-      z-index: 1050;
-    }
+    .navbar-custom { background: rgba(10, 31, 68, 0.85) !important; backdrop-filter: blur(18px); padding: 14px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); z-index: 1050; }
     .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
     .navbar-brand img { height: 40px; width: auto; }
-    .navbar-brand .brand-name {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: #f7e05e;
-      letter-spacing: 1px;
-    }
+    .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; letter-spacing: 1px; }
     .navbar-brand .brand-name span { color: #ffb347; }
     .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
     .nav-link:hover { color: #f7e05e !important; }
     .nav-link.active { color: #f7e05e !important; }
 
-    .dashboard-container {
-      max-width: 1000px;
-      margin: 30px auto;
-      background: #fff;
-      border-radius: 28px;
-      padding: 35px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-    }
-
-    .stat-card {
-      background: #f8f9fa;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      height: 100%;
-      transition: 0.3s;
-    }
+    .dashboard-container { max-width: 1000px; margin: 30px auto; background: #fff; border-radius: 28px; padding: 35px; box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .stat-card { background: #f8f9fa; border-radius: 16px; padding: 20px; text-align: center; height: 100%; transition: 0.3s; }
     .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
     .stat-card .number { font-size: 2.5rem; font-weight: 800; color: #0a1f44; }
     .stat-card .label { color: #666; }
-
-    .btn-logout {
-      background: #dc3545;
-      color: #fff;
-      border: none;
-      padding: 10px 30px;
-      border-radius: 50px;
-      font-weight: 700;
-      transition: 0.3s;
-    }
+    .btn-logout { background: #dc3545; color: #fff; border: none; padding: 10px 30px; border-radius: 50px; font-weight: 700; transition: 0.3s; }
     .btn-logout:hover { background: #b02a37; transform: scale(1.02); }
-
-    .btn-go-exams {
-      background: #0a1f44;
-      color: #f7e05e;
-      border: none;
-      padding: 14px 30px;
-      border-radius: 50px;
-      font-weight: 700;
-      transition: 0.3s;
-      text-decoration: none;
-      display: block;
-      text-align: center;
-      margin-bottom: 15px;
-    }
+    .btn-go-exams { background: #0a1f44; color: #f7e05e; border: none; padding: 14px 30px; border-radius: 50px; font-weight: 700; transition: 0.3s; text-decoration: none; display: block; text-align: center; margin-bottom: 15px; }
     .btn-go-exams:hover { background: #f7b731; color: #0a1f44; transform: scale(1.02); text-decoration: none; }
-
-    .btn-go-lessons {
-      background: #f7e05e;
-      color: #0a1f44;
-      border: none;
-      padding: 14px 30px;
-      border-radius: 50px;
-      font-weight: 700;
-      transition: 0.3s;
-      text-decoration: none;
-      display: block;
-      text-align: center;
-      margin-bottom: 15px;
-    }
+    .btn-go-lessons { background: #f7e05e; color: #0a1f44; border: none; padding: 14px 30px; border-radius: 50px; font-weight: 700; transition: 0.3s; text-decoration: none; display: block; text-align: center; margin-bottom: 15px; }
     .btn-go-lessons:hover { background: #f7b731; color: #0a1f44; transform: scale(1.02); text-decoration: none; }
-
-    .btn-dark-mode {
-      background: transparent;
-      border: 1px solid #e0e8f0;
-      color: #e0e8f0;
-      border-radius: 50px;
-      padding: 5px 15px;
-      transition: 0.3s;
-    }
+    .btn-dark-mode { background: transparent; border: 1px solid #e0e8f0; color: #e0e8f0; border-radius: 50px; padding: 5px 15px; transition: 0.3s; }
     .btn-dark-mode:hover { background: #f7e05e; color: #0a1f44; border-color: #f7e05e; }
+    .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 12px; }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    .progress-custom { height: 10px; border-radius: 10px; background: #e9ecef; overflow: hidden; }
+    .progress-custom .progress-bar { background: #28a745; transition: width 0.8s ease; }
 
-    .skeleton {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-      border-radius: 12px;
-    }
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-
-    .progress-custom {
-      height: 10px;
-      border-radius: 10px;
-      background: #e9ecef;
-      overflow: hidden;
-    }
-    .progress-custom .progress-bar {
-      background: #28a745;
-      transition: width 0.8s ease;
-    }
-
-    /* ========== كروت الوحدات ========== */
-    .unit-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 22px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      border-right: 5px solid #f7e05e;
-      transition: 0.3s;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-    .unit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-      border-right-color: #f7b731;
-    }
+    .unit-card { background: #fff; border-radius: 20px; padding: 22px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #f7e05e; transition: 0.3s; height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .unit-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); border-right-color: #f7b731; }
     .unit-card.completed { border-right-color: #28a745; }
     .unit-card.locked { border-right-color: #ccc; opacity: 0.75; }
-
-    .unit-header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-
-    .unit-icon {
-      font-size: 2.5rem;
-      line-height: 1;
-    }
-
-    .unit-number {
-      display: inline-block;
-      background: #0a1f44;
-      color: #f7e05e;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      font-family: 'Cinzel', serif;
-    }
-
-    .unit-title-en {
-      color: #0a1f44;
-      font-weight: 800;
-      font-size: 0.95rem;
-      margin-bottom: 4px;
-      font-family: 'Cinzel', serif;
-      letter-spacing: 0.5px;
-      direction: ltr;
-      text-align: left;
-    }
-
-    .unit-subtitle-en {
-      color: #0a1f44;
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 12px;
-      font-family: 'Playfair Display', serif;
-      line-height: 1.35;
-      font-style: italic;
-      direction: ltr;
-      text-align: left;
-    }
-
-    .unit-divider {
-      height: 2px;
-      background: linear-gradient(90deg, #f7e05e, transparent);
-      margin: 12px 0;
-      border-radius: 2px;
-    }
-
-    .unit-title-ar {
-      color: #555;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 4px;
-      direction: rtl;
-      text-align: right;
-    }
-
-    .unit-subtitle-ar {
-      color: #888;
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-      line-height: 1.5;
-      flex-grow: 1;
-      direction: rtl;
-      text-align: right;
-    }
-
-    .unit-status {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      align-self: flex-start;
-    }
+    .unit-card.review { border-right-color: #dc2626; background: linear-gradient(135deg, #fef9e7, #fffbf0); }
+    .unit-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .unit-icon { font-size: 2.5rem; line-height: 1; }
+    .unit-number { display: inline-block; background: #0a1f44; color: #f7e05e; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; font-family: 'Cinzel', serif; }
+    .unit-title-en { color: #0a1f44; font-weight: 800; font-size: 0.95rem; margin-bottom: 4px; font-family: 'Cinzel', serif; letter-spacing: 0.5px; direction: ltr; text-align: left; }
+    .unit-subtitle-en { color: #0a1f44; font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; font-family: 'Playfair Display', serif; line-height: 1.35; font-style: italic; direction: ltr; text-align: left; }
+    .unit-divider { height: 2px; background: linear-gradient(90deg, #f7e05e, transparent); margin: 12px 0; border-radius: 2px; }
+    .unit-title-ar { color: #555; font-weight: 700; font-size: 1rem; margin-bottom: 4px; direction: rtl; text-align: right; }
+    .unit-subtitle-ar { color: #888; font-size: 0.9rem; margin-bottom: 15px; line-height: 1.5; flex-grow: 1; direction: rtl; text-align: right; }
+    .unit-status { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 15px; align-self: flex-start; }
     .status-completed { background: #d4edda; color: #155724; }
     .status-available { background: #fff3cd; color: #856404; }
     .status-locked { background: #f8f9fa; color: #6c757d; }
     .status-new { background: #d1ecf1; color: #0c5460; }
+    .status-review { background: #fee2e2; color: #991b1b; }
+    .unit-btn { background: #0a1f44; color: #f7e05e; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.95rem; }
+    .unit-btn:hover { background: #f7b731; color: #0a1f44; text-decoration: none; transform: scale(1.02); }
+    .unit-btn.disabled { background: #ccc; color: #666; cursor: not-allowed; pointer-events: none; }
+    .unit-btn.review-btn { background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; }
+    .unit-btn.review-btn:hover { background: #b91c1c; }
 
-    .unit-btn {
-      background: #0a1f44;
-      color: #f7e05e;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      text-align: center;
-      transition: 0.3s;
-      display: block;
-      font-size: 0.95rem;
-    }
-    .unit-btn:hover {
-      background: #f7b731;
-      color: #0a1f44;
-      text-decoration: none;
-      transform: scale(1.02);
-    }
-    .unit-btn.disabled {
-      background: #ccc;
-      color: #666;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    /* ========== كروت الامتحانات ========== */
-    .exam-card {
-      background: linear-gradient(135deg, #f8f9fa, #fff);
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      border-right: 5px solid #0a1f44;
-      transition: 0.3s;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    .exam-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-    }
-    .exam-badge {
-      display: inline-block;
-      background: #e3f2fd;
-      color: #1565c0;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      align-self: flex-start;
-    }
-    .exam-title {
-      color: #0a1f44;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
-    .exam-info {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      color: #666;
-      font-size: 0.85rem;
-      margin-bottom: 15px;
-      flex-grow: 1;
-    }
+    .exam-card { background: linear-gradient(135deg, #f8f9fa, #fff); border-radius: 20px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #0a1f44; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
+    .exam-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+    .exam-card.comprehensive { border-right-color: #dc2626; background: linear-gradient(135deg, #fef2f2, #fff); }
+    .exam-badge { display: inline-block; background: #e3f2fd; color: #1565c0; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px; align-self: flex-start; }
+    .exam-badge.comprehensive { background: #fee2e2; color: #991b1b; }
+    .exam-title { color: #0a1f44; font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; }
+    .exam-info { display: flex; gap: 15px; flex-wrap: wrap; color: #666; font-size: 0.85rem; margin-bottom: 15px; flex-grow: 1; }
     .exam-info span { display: flex; align-items: center; gap: 5px; }
+    .exam-btn { background: #0a1f44; color: #f7e05e; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.95rem; }
+    .exam-btn:hover { background: #f7b731; color: #0a1f44; text-decoration: none; }
+    .exam-btn.comprehensive-btn { background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; }
+    .exam-btn.comprehensive-btn:hover { background: #b91c1c; }
 
-    .exam-btn {
-      background: #0a1f44;
-      color: #f7e05e;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      text-align: center;
-      transition: 0.3s;
-      display: block;
-      font-size: 0.95rem;
-    }
-    .exam-btn:hover {
-      background: #f7b731;
-      color: #0a1f44;
-      text-decoration: none;
-    }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 3px solid #f7e05e; }
+    .section-header h4 { color: #0a1f44; font-weight: 800; margin: 0; font-size: 1.4rem; }
+    .section-header .badge-grade { background: #0a1f44; color: #f7e05e; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
 
-    /* عنوان القسم */
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 3px solid #f7e05e;
-    }
-    .section-header h4 {
-      color: #0a1f44;
-      font-weight: 800;
-      margin: 0;
-      font-size: 1.4rem;
-    }
-    .section-header .badge-grade {
-      background: #0a1f44;
-      color: #f7e05e;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-
-    #toastNotification {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 9999;
-      min-width: 280px;
-    }
-    .toast-custom {
-      border-radius: 16px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-      padding: 12px 20px;
-    }
-
-    .extra-links {
-      background: #f8f9fa;
-      padding: 10px 0;
-      border-bottom: 1px solid #e9ecef;
-      text-align: center;
-    }
-    .extra-links a {
-      color: #0a1f44;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: 500;
-      transition: 0.3s;
-      font-size: 0.95rem;
-    }
+    #toastNotification { position: fixed; bottom: 30px; right: 30px; z-index: 9999; min-width: 280px; }
+    .toast-custom { border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); padding: 12px 20px; }
+    .extra-links { background: #f8f9fa; padding: 10px 0; border-bottom: 1px solid #e9ecef; text-align: center; }
+    .extra-links a { color: #0a1f44; text-decoration: none; margin: 0 12px; font-weight: 500; transition: 0.3s; font-size: 0.95rem; }
     .extra-links a:hover { color: #f7b731; text-decoration: underline; }
-
-    footer {
-      background: #0a1f44;
-      color: #b0c4de;
-      padding: 35px 0;
-      border-radius: 40px 40px 0 0;
-      margin-top: 50px;
-      text-align: center;
-    }
+    footer { background: #0a1f44; color: #b0c4de; padding: 35px 0; border-radius: 40px 40px 0 0; margin-top: 50px; text-align: center; }
     .social-icons a { color: #b0c4de; margin: 0 8px; font-size: 1.2rem; transition: 0.3s; }
     .social-icons a:hover { color: #f7e05e; }
     .footer-links { list-style: none; padding: 0; }
@@ -415,7 +107,6 @@
     .footer-links a:hover { color: #f7e05e; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
 
-    /* Dark Mode */
     body.dark-mode { background: #121212; color: #e0e0e0; }
     body.dark-mode .navbar-custom { background: rgba(0,0,0,0.95) !important; }
     body.dark-mode .dashboard-container { background: #1e1e2f; }
@@ -464,12 +155,8 @@
           <li class="nav-item"><a class="nav-link" href="games.html">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link" href="lessons.html">📖 الشرح</a></li>
           <li class="nav-item"><a class="nav-link" href="exams.html">📝 الامتحانات</a></li>
-          <li class="nav-item" id="logoutLink">
-            <a class="nav-link" href="#" onclick="logoutUser()">🚪 تسجيل الخروج</a>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-dark-mode btn-sm" id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
-          </li>
+          <li class="nav-item" id="logoutLink"><a class="nav-link" href="#" onclick="logoutUser()">🚪 تسجيل الخروج</a></li>
+          <li class="nav-item"><button class="btn btn-dark-mode btn-sm" id="darkModeToggle" onclick="toggleDarkMode()">🌙</button></li>
         </ul>
       </div>
     </div>
@@ -497,7 +184,6 @@
       </div>
 
       <div id="dashboardContent" style="display: none;">
-        
         <h2 class="text-center fw-bold mb-2">لوحة تحكم الطالب</h2>
         <p class="text-center text-muted mb-4" id="welcomeMessage">مرحباً!</p>
 
@@ -512,30 +198,10 @@
         </div>
 
         <div class="row g-4 mb-5">
-          <div class="col-md-3 col-6">
-            <div class="stat-card">
-              <div class="number" id="studentLevel">-</div>
-              <div class="label">المستوى الحالي</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-card">
-              <div class="number" id="studentGrade">-</div>
-              <div class="label">الدرجة الكلية</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-card">
-              <div class="number" id="studentCertificates">-</div>
-              <div class="label">الشهادات</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="stat-card">
-              <div class="number" id="studentLessons">-</div>
-              <div class="label">الدروس المكتملة</div>
-            </div>
-          </div>
+          <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentLevel">-</div><div class="label">المستوى الحالي</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentGrade">-</div><div class="label">الدرجة الكلية</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentCertificates">-</div><div class="label">الشهادات</div></div></div>
+          <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentLessons">-</div><div class="label">الدروس المكتملة</div></div></div>
         </div>
 
         <div class="mb-5">
@@ -559,11 +225,7 @@
           <div class="table-responsive">
             <table class="table table-hover">
               <thead>
-                <tr>
-                  <th>الاختبار</th>
-                  <th>الدرجة</th>
-                  <th>التاريخ</th>
-                </tr>
+                <tr><th>الاختبار</th><th>الدرجة</th><th>التاريخ</th></tr>
               </thead>
               <tbody id="testsBody">
                 <tr><td colspan="3" class="text-center text-muted">لا توجد اختبارات سابقة</td></tr>
@@ -572,15 +234,9 @@
           </div>
         </div>
 
-        <a href="lessons.html" class="btn-go-lessons">
-          <i class="fas fa-book-reader"></i> ابدأ الشرح
-        </a>
-        <a href="exams.html" class="btn-go-exams">
-          <i class="fas fa-file-alt"></i> الذهاب للامتحانات
-        </a>
-        <button class="btn-logout w-100" onclick="logoutUser()">
-          <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-        </button>
+        <a href="lessons.html" class="btn-go-lessons"><i class="fas fa-book-reader"></i> ابدأ الشرح</a>
+        <a href="exams.html" class="btn-go-exams"><i class="fas fa-file-alt"></i> الذهاب للامتحانات</a>
+        <button class="btn-logout w-100" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
       </div>
     </div>
   </section>
@@ -622,9 +278,7 @@
           <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p>
-      </div>
+      <div class="footer-bottom"><p>© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p></div>
     </div>
   </footer>
 
@@ -635,71 +289,15 @@
     import { onAuthStateChanged, signOut } from "firebase/auth";
     import { ref, get, set } from "firebase/database";
 
-    // ==========================================
-    // 📚 بيانات الوحدات
-    // ==========================================
     const UNITS_DATA = {
       "prep1": [
-        { 
-          number: 1, 
-          titleEn: "Unit 1", 
-          titleAr: "الوحدة الأولى", 
-          subtitleEn: "Life in a Digital World", 
-          subtitleAr: "الحياة في عالم رقمي", 
-          url: "unit1-digital-world.html", 
-          icon: "🌐", 
-          status: "new" 
-        },
-        { 
-          number: 2, 
-          titleEn: "Unit 2", 
-          titleAr: "الوحدة الثانية", 
-          subtitleEn: "Learning to Learn", 
-          subtitleAr: "تعلم كيف تتعلم", 
-          url: "unit2-prep1.html", 
-          icon: "📚", 
-          status: "new" 
-        },
-        { 
-          number: 3, 
-          titleEn: "Unit 3", 
-          titleAr: "الوحدة الثالثة", 
-          subtitleEn: "Role Models", 
-          subtitleAr: "قدوة حسنة", 
-          url: "unit3-prep1.html", 
-          icon: "🌟", 
-          status: "new" 
-        },
-        { 
-          number: 4, 
-          titleEn: "Unit 4", 
-          titleAr: "الوحدة الرابعة", 
-          subtitleEn: "Smart Choices", 
-          subtitleAr: "خيارات ذكية", 
-          url: "unit4-prep1.html", 
-          icon: "🎯", 
-          status: "locked" 
-        },
-        { 
-          number: 5, 
-          titleEn: "Unit 5", 
-          titleAr: "الوحدة الخامسة", 
-          subtitleEn: "Future Dreams", 
-          subtitleAr: "أحلام المستقبل", 
-          url: "unit5-prep1.html", 
-          icon: "🚀", 
-          status: "locked" 
-        },
-        { 
-          number: 6, 
-          titleEn: "Unit 6", 
-          titleAr: "الوحدة السادسة", 
-          subtitleEn: "Global Citizens", 
-          subtitleAr: "مواطنون عالميون", 
-          url: "unit6-prep1.html", 
-          icon: "🌍", 
-          status: "locked" 
-        }
+        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Life in a Digital World", subtitleAr: "الحياة في عالم رقمي", url: "unit1-digital-world.html", icon: "🌐", status: "new" },
+        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Learning to Learn", subtitleAr: "تعلم كيف تتعلم", url: "unit2-prep1.html", icon: "📚", status: "new" },
+        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Role Models", subtitleAr: "قدوة حسنة", url: "unit3-prep1.html", icon: "🌟", status: "new" },
+        { number: "R1", titleEn: "Review", titleAr: "المراجعة الشاملة", subtitleEn: "Units 1, 2, 3", subtitleAr: "الوحدات 1-3", url: "review-1-prep1.html", icon: "🎯", status: "review" },
+        { number: 4, titleEn: "Unit 4", titleAr: "الوحدة الرابعة", subtitleEn: "Smart Choices", subtitleAr: "خيارات ذكية", url: "unit4-prep1.html", icon: "🎪", status: "locked" },
+        { number: 5, titleEn: "Unit 5", titleAr: "الوحدة الخامسة", subtitleEn: "Future Dreams", subtitleAr: "أحلام المستقبل", url: "unit5-prep1.html", icon: "🚀", status: "locked" },
+        { number: 6, titleEn: "Unit 6", titleAr: "الوحدة السادسة", subtitleEn: "Global Citizens", subtitleAr: "مواطنون عالميون", url: "unit6-prep1.html", icon: "🌍", status: "locked" }
       ],
       "sec1": [
         { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Grammar", subtitleAr: "قواعد", url: "sec1-unit1.html", icon: "📘", status: "available" },
@@ -715,32 +313,12 @@
       ]
     };
 
-    // ==========================================
-    // 📝 بيانات الامتحانات
-    // ==========================================
     const EXAMS_DATA = {
       "prep1": [
-        { 
-          title: "امتحان Unit 1 - Life in a Digital World", 
-          type: "unit", 
-          questions: 20, 
-          duration: 30, 
-          url: "exam-unit1-prep1.html" 
-        },
-        { 
-          title: "امتحان Unit 2 - Learning to Learn", 
-          type: "unit", 
-          questions: 20, 
-          duration: 30, 
-          url: "exam-unit2-prep1.html" 
-        },
-        { 
-          title: "امتحان Unit 3 - Role Models", 
-          type: "unit", 
-          questions: 20, 
-          duration: 30, 
-          url: "exam-unit3-prep1.html" 
-        }
+        { title: "امتحان Unit 1 - Life in a Digital World", type: "unit", questions: 20, duration: 30, url: "exam-unit1-prep1.html" },
+        { title: "امتحان Unit 2 - Learning to Learn", type: "unit", questions: 20, duration: 30, url: "exam-unit2-prep1.html" },
+        { title: "امتحان Unit 3 - Role Models", type: "unit", questions: 20, duration: 30, url: "exam-unit3-prep1.html" },
+        { title: "امتحان المراجعة الشاملة - Units 1, 2, 3", type: "comprehensive", questions: 30, duration: 45, url: "exam-review1-prep1.html" }
       ],
       "sec1": [
         { title: "امتحان Unit 1", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-sec1" }
@@ -782,69 +360,46 @@
       toast.style.display = 'block';
       setTimeout(() => toast.style.display = 'none', 4000);
     };
-    window.hideToast = function() {
-      document.getElementById('toastNotification').style.display = 'none';
-    };
+    window.hideToast = function() { document.getElementById('toastNotification').style.display = 'none'; };
 
     window.logoutUser = function() {
       signOut(auth).then(() => {
         showToast('تم تسجيل الخروج بنجاح 👋', 'info');
         setTimeout(() => window.location.href = 'index.html', 500);
-      }).catch(err => {
-        showToast('خطأ: ' + err.message, 'danger');
-      });
+      }).catch(err => showToast('خطأ: ' + err.message, 'danger'));
     };
 
     function renderUnits(grade) {
       const container = document.getElementById('unitsContainer');
       const units = UNITS_DATA[grade] || [];
-      const gradeBadge = document.getElementById('gradeBadge');
-      
-      gradeBadge.textContent = GRADE_NAMES[grade] || grade;
+      document.getElementById('gradeBadge').textContent = GRADE_NAMES[grade] || grade;
 
       if (units.length === 0) {
-        container.innerHTML = `
-          <div class="col-12 text-center text-muted py-5">
-            <i class="fas fa-inbox" style="font-size: 3rem; opacity: 0.5;"></i>
-            <p class="mt-3">لا توجد وحدات متاحة لصفك حالياً</p>
-          </div>
-        `;
+        container.innerHTML = `<div class="col-12 text-center text-muted py-5"><i class="fas fa-inbox" style="font-size: 3rem; opacity: 0.5;"></i><p class="mt-3">لا توجد وحدات متاحة</p></div>`;
         return;
       }
 
       container.innerHTML = units.map(unit => {
-        const statusClass = unit.status === 'completed' ? 'status-completed' : 
-                           unit.status === 'locked' ? 'status-locked' : 
-                           unit.status === 'new' ? 'status-new' : 'status-available';
-        const statusText = unit.status === 'completed' ? '✅ مكتمل' : 
-                          unit.status === 'locked' ? '🔒 مقفل' : 
-                          unit.status === 'new' ? '✨ جديد' : '📖 متاح';
-        const btnClass = unit.status === 'locked' ? 'unit-btn disabled' : 'unit-btn';
-        const btnText = unit.status === 'locked' ? '🔒 مقفل' : 
-                       unit.status === 'completed' ? 'مراجعة' : 'ابدأ الآن';
-        
+        const statusClass = unit.status === 'completed' ? 'status-completed' : unit.status === 'locked' ? 'status-locked' : unit.status === 'new' ? 'status-new' : unit.status === 'review' ? 'status-review' : 'status-available';
+        const statusText = unit.status === 'completed' ? '✅ مكتمل' : unit.status === 'locked' ? '🔒 مقفل' : unit.status === 'new' ? '✨ جديد' : unit.status === 'review' ? '🎯 مراجعة' : '📖 متاح';
+        const btnClass = unit.status === 'locked' ? 'unit-btn disabled' : unit.status === 'review' ? 'unit-btn review-btn' : 'unit-btn';
+        const btnText = unit.status === 'locked' ? '🔒 مقفل' : unit.status === 'completed' ? 'مراجعة' : unit.status === 'review' ? '🎯 ابدأ المراجعة' : 'ابدأ الآن';
+        const numDisplay = unit.number === 'R1' ? 'REVIEW' : `UNIT ${unit.number}`;
+
         return `
           <div class="col-md-6 col-lg-4">
-            <div class="unit-card ${unit.status === 'completed' ? 'completed' : unit.status === 'locked' ? 'locked' : ''}">
-              
+            <div class="unit-card ${unit.status === 'completed' ? 'completed' : unit.status === 'locked' ? 'locked' : unit.status === 'review' ? 'review' : ''}">
               <div class="unit-header-row">
                 <span class="unit-icon">${unit.icon}</span>
-                <span class="unit-number">UNIT ${unit.number}</span>
+                <span class="unit-number">${numDisplay}</span>
               </div>
-              
               <h5 class="unit-title-en" dir="ltr">${unit.titleEn}</h5>
               <h6 class="unit-subtitle-en" dir="ltr">${unit.subtitleEn}</h6>
-              
               <div class="unit-divider"></div>
-              
               <h6 class="unit-title-ar" dir="rtl">${unit.titleAr}</h6>
               <p class="unit-subtitle-ar" dir="rtl">${unit.subtitleAr}</p>
-              
               <span class="unit-status ${statusClass}">${statusText}</span>
-              
-              <a href="${unit.status === 'locked' ? '#' : unit.url}" class="${btnClass}">
-                ${btnText}
-              </a>
+              <a href="${unit.status === 'locked' ? '#' : unit.url}" class="${btnClass}">${btnText}</a>
             </div>
           </div>
         `;
@@ -856,27 +411,25 @@
       const exams = EXAMS_DATA[grade] || [];
 
       if (exams.length === 0) {
-        container.innerHTML = `
-          <div class="col-12 text-center text-muted py-5">
-            <i class="fas fa-file-alt" style="font-size: 3rem; opacity: 0.5;"></i>
-            <p class="mt-3">لا توجد امتحانات متاحة لصفك حالياً</p>
-          </div>
-        `;
+        container.innerHTML = `<div class="col-12 text-center text-muted py-5"><i class="fas fa-file-alt" style="font-size: 3rem; opacity: 0.5;"></i><p class="mt-3">لا توجد امتحانات</p></div>`;
         return;
       }
 
       container.innerHTML = exams.map(exam => {
-        const typeText = exam.type === 'comprehensive' ? 'شامل' : 'وحدة';
+        const typeText = exam.type === 'comprehensive' ? '🎯 شامل' : 'وحدة';
+        const cardClass = exam.type === 'comprehensive' ? 'exam-card comprehensive' : 'exam-card';
+        const badgeClass = exam.type === 'comprehensive' ? 'exam-badge comprehensive' : 'exam-badge';
+        const btnClass = exam.type === 'comprehensive' ? 'exam-btn comprehensive-btn' : 'exam-btn';
         return `
           <div class="col-md-6">
-            <div class="exam-card">
-              <span class="exam-badge">${typeText}</span>
+            <div class="${cardClass}">
+              <span class="${badgeClass}">${typeText}</span>
               <h5 class="exam-title">${exam.title}</h5>
               <div class="exam-info">
                 <span><i class="fas fa-question-circle"></i> ${exam.questions} سؤال</span>
                 <span><i class="fas fa-clock"></i> ${exam.duration} دقيقة</span>
               </div>
-              <a href="${exam.url}" class="exam-btn">🚀 ابدأ الامتحان</a>
+              <a href="${exam.url}" class="${btnClass}">🚀 ابدأ الامتحان</a>
             </div>
           </div>
         `;
@@ -891,15 +444,11 @@
 
         if (snapshot.exists()) {
           const data = snapshot.val();
-          console.log('✅ بيانات الطالب:', data);
-
           document.getElementById('welcomeMessage').textContent = `مرحباً، ${data.name || 'طالب'}! 👋`;
           document.getElementById('studentLevel').textContent = data.level || '1';
-          
           const progressValue = parseInt(data.progress) || 0;
           document.getElementById('progressBar').style.width = progressValue + '%';
           document.getElementById('progressPercentage').textContent = progressValue + '%';
-          
           document.getElementById('studentGrade').textContent = data.grade_percentage || '0%';
           document.getElementById('studentCertificates').textContent = data.certificates || '0';
           document.getElementById('studentLessons').textContent = data.lessonsCompleted || '0';
@@ -908,69 +457,37 @@
             const testsBody = document.getElementById('testsBody');
             testsBody.innerHTML = '';
             data.tests.slice(-5).reverse().forEach(test => {
-              testsBody.innerHTML += `
-                <tr>
-                  <td>${test.name || 'اختبار'}</td>
-                  <td>${test.score || '0%'}</td>
-                  <td>${test.date || '--'}</td>
-                </tr>
-              `;
+              testsBody.innerHTML += `<tr><td>${test.name || 'اختبار'}</td><td>${test.score || '0%'}</td><td>${test.date || '--'}</td></tr>`;
             });
           }
 
           const grade = data.grade || 'sec1';
           renderUnits(grade);
           renderExams(grade);
-
           showToast(`مرحباً بعودتك ${data.name || 'طالب'}! 👋`, 'success');
-
         } else {
-          const defaultData = {
-            name: 'طالب جديد',
-            grade: 'sec1',
-            level: '1',
-            progress: '0',
-            grade_percentage: '0%',
-            certificates: '0',
-            lessonsCompleted: '0',
-            tests: []
-          };
+          const defaultData = { name: 'طالب جديد', grade: 'sec1', level: '1', progress: '0', grade_percentage: '0%', certificates: '0', lessonsCompleted: '0', tests: [] };
           await set(ref(database, `students/${uid}`), defaultData);
           await loadStudentData(uid);
           return;
         }
-        
         loadingScreen.style.display = 'none';
         dashboardContent.style.display = 'block';
-
       } catch (error) {
-        console.error('❌ خطأ:', error);
-        document.getElementById('loadingScreen').innerHTML = `
-          <div class="alert alert-danger text-center">
-            خطأ في تحميل البيانات: ${error.message}
-          </div>
-        `;
+        document.getElementById('loadingScreen').innerHTML = `<div class="alert alert-danger text-center">خطأ: ${error.message}</div>`;
       }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       applySavedDarkMode();
-
       onAuthStateChanged(auth, async (user) => {
-        if (!user) {
-          window.location.href = 'login.html';
-          return;
-        }
-        if (!user.emailVerified) {
-          showToast('⚠️ لازم تأكد إيميلك أولاً', 'warning');
-          setTimeout(() => window.location.href = 'login.html', 2000);
-          return;
-        }
+        if (!user) { window.location.href = 'login.html'; return; }
+        if (!user.emailVerified) { showToast('⚠️ أكد إيميلك أولاً', 'warning'); setTimeout(() => window.location.href = 'login.html', 2000); return; }
         await loadStudentData(user.uid);
       });
     });
 
-    console.log('✅ Student Dashboard loaded with Unit 1 + Unit 2 + Unit 3');
+    console.log('✅ Student Dashboard loaded');
   </script>
 
 </body>
