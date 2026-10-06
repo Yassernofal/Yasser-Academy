@@ -17,7 +17,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
 
   <script type="importmap">
   {
@@ -201,6 +201,8 @@
       margin-bottom: 4px;
       font-family: 'Cinzel', serif;
       letter-spacing: 0.5px;
+      direction: ltr;
+      text-align: left;
     }
 
     .unit-subtitle-en {
@@ -211,6 +213,8 @@
       font-family: 'Playfair Display', serif;
       line-height: 1.35;
       font-style: italic;
+      direction: ltr;
+      text-align: left;
     }
 
     .unit-divider {
@@ -225,6 +229,8 @@
       font-weight: 700;
       font-size: 1rem;
       margin-bottom: 4px;
+      direction: rtl;
+      text-align: right;
     }
 
     .unit-subtitle-ar {
@@ -233,6 +239,8 @@
       margin-bottom: 15px;
       line-height: 1.5;
       flex-grow: 1;
+      direction: rtl;
+      text-align: right;
     }
 
     .unit-status {
@@ -632,9 +640,36 @@
     // ==========================================
     const UNITS_DATA = {
       "prep1": [
-        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Basics", subtitleAr: "أساسيات اللغة", url: "unit1-prep1.html", icon: "📖", status: "available" },
-        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Grammar & Vocabulary", subtitleAr: "قواعد ومفردات", url: "unit2-prep1.html", icon: "📝", status: "locked" },
-        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Reading", subtitleAr: "قراءة وكتابة", url: "unit3-prep1.html", icon: "📚", status: "locked" }
+        { 
+          number: 1, 
+          titleEn: "Unit 1", 
+          titleAr: "الوحدة الأولى", 
+          subtitleEn: "Life in a Digital World", 
+          subtitleAr: "الحياة في عالم رقمي", 
+          url: "unit1-digital-world.html", 
+          icon: "🌐", 
+          status: "new" 
+        },
+        { 
+          number: 2, 
+          titleEn: "Unit 2", 
+          titleAr: "الوحدة الثانية", 
+          subtitleEn: "Learning to Learn", 
+          subtitleAr: "تعلم كيف تتعلم", 
+          url: "unit2-prep1.html", 
+          icon: "📚", 
+          status: "locked" 
+        },
+        { 
+          number: 3, 
+          titleEn: "Unit 3", 
+          titleAr: "الوحدة الثالثة", 
+          subtitleEn: "Role Models", 
+          subtitleAr: "قدوة حسنة", 
+          url: "unit3-prep1.html", 
+          icon: "🌟", 
+          status: "locked" 
+        }
       ],
       "sec1": [
         { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Grammar", subtitleAr: "قواعد", url: "sec1-unit1.html", icon: "📘", status: "available" },
@@ -655,7 +690,13 @@
     // ==========================================
     const EXAMS_DATA = {
       "prep1": [
-        { title: "امتحان Unit 1", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-prep1" }
+        { 
+          title: "امتحان Unit 1 - Life in a Digital World", 
+          type: "unit", 
+          questions: 20, 
+          duration: 30, 
+          url: "exam-unit1-prep1.html" 
+        }
       ],
       "sec1": [
         { title: "امتحان Unit 1", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-sec1" }
@@ -885,8 +926,8 @@
       });
     });
 
-    console.log('✅ Student Dashboard loaded');
+    console.log('✅ Student Dashboard loaded with Unit 1 (Digital World)');
   </script>
 
 </body>
-</html>س
+</html>
