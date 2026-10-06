@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
 
+  <!-- مكتبات تحميل PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <script type="importmap">
   {
     "imports": {
@@ -19,7 +23,7 @@
     }
   }
   </script>
-  
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
@@ -92,12 +96,19 @@
     .exam-title { color: #0a1f44; font-weight: 700; font-size: 1.05rem; margin-bottom: 10px; }
     .exam-info { display: flex; gap: 15px; flex-wrap: wrap; color: #666; font-size: 0.85rem; margin-bottom: 15px; flex-grow: 1; }
     .exam-info span { display: flex; align-items: center; gap: 5px; }
-    .exam-btn { background: #0a1f44; color: #f7e05e; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.95rem; }
+
+    .exam-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; }
+    .exam-buttons.single { grid-template-columns: 1fr; }
+
+    .exam-btn { background: #0a1f44; color: #f7e05e; border: none; padding: 10px 15px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.9rem; }
     .exam-btn:hover { background: #f7b731; color: #0a1f44; text-decoration: none; }
     .exam-btn.comprehensive-btn { background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; }
     .exam-btn.comprehensive-btn:hover { background: #b91c1c; }
     .exam-btn.official-btn { background: linear-gradient(135deg, #f7b731, #f59e0b); color: #0a1f44; }
     .exam-btn.official-btn:hover { background: #f59e0b; }
+
+    .pdf-btn { background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; padding: 10px 15px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.9rem; }
+    .pdf-btn:hover { background: #059669; color: #fff; text-decoration: none; transform: scale(1.02); }
 
     .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 3px solid #f7e05e; }
     .section-header h4 { color: #0a1f44; font-weight: 800; margin: 0; font-size: 1.4rem; }
@@ -117,9 +128,47 @@
     .footer-links a:hover { color: #f7e05e; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
 
+    /* أزرار التقرير */
+    .report-actions {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 25px; padding: 18px;
+      background: linear-gradient(135deg, #f8f9fa, #fff);
+      border-radius: 18px; border: 1px dashed #d0d7e2;
+    }
+    .report-actions .label { width: 100%; text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 5px; }
+    .btn-report {
+      background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e;
+      border: none; padding: 12px 28px; border-radius: 50px; font-weight: 700;
+      transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem;
+    }
+    .btn-report:hover { background: #f7b731; color: #0a1f44; transform: scale(1.03); }
+    .btn-report-outline {
+      background: transparent; color: #0a1f44; border: 2px solid #0a1f44;
+      padding: 10px 26px; border-radius: 50px; font-weight: 700; transition: 0.3s;
+      display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem;
+    }
+    .btn-report-outline:hover { background: #0a1f44; color: #f7e05e; }
+    #reportLoading { display: none; text-align: center; padding: 20px; color: #0a1f44; font-weight: 700; }
+    #reportLoading .spinner-border { color: #f7b731; }
+
     @media (max-width: 768px) {
       .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
       .dashboard-container { padding: 20px 15px; margin: 20px 10px; }
+      .exam-buttons { grid-template-columns: 1fr; }
+    }
+
+    /* تنسيقات الطباعة */
+    @media print {
+      body { background: #fff !important; padding-top: 0 !important; }
+      .navbar, .extra-links, footer, .report-actions,
+      .btn-logout, .btn-go-lessons, .btn-go-exams,
+      #toastNotification, .btn-dark-mode, #darkModeToggle { display: none !important; }
+      .dashboard-container { box-shadow: none !important; margin: 0 !important; padding: 20px !important; max-width: 100% !important; }
+      .stat-card { border: 1px solid #ddd; page-break-inside: avoid; }
+      .unit-card, .exam-card { page-break-inside: avoid; box-shadow: none !important; border: 1px solid #ddd; }
+      .section-header { page-break-after: avoid; }
+      a[href]::after { content: "" !important; }
+      .table { font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -159,7 +208,7 @@
 
   <section class="container">
     <div class="dashboard-container">
-      
+
       <div id="loadingScreen">
         <div class="row g-4">
           <div class="col-6 col-md-3"><div class="skeleton" style="height:120px;"></div></div>
@@ -171,53 +220,73 @@
       </div>
 
       <div id="dashboardContent" style="display: none;">
-        <h2 class="text-center fw-bold mb-2">لوحة تحكم الطالب</h2>
-        <p class="text-center text-muted mb-4" id="welcomeMessage">مرحباً!</p>
 
-        <div class="mt-3 mb-4">
-          <div class="d-flex justify-content-between">
-            <span>نسبة التقدم</span>
-            <span id="progressPercentage">0%</span>
-          </div>
-          <div class="progress-custom">
-            <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
-          </div>
+        <!-- أزرار التقرير -->
+        <div class="report-actions">
+          <span class="label">📄 احصل على نسخة من تقريرك الدراسي</span>
+          <button class="btn-report" onclick="downloadReportPDF()">
+            <i class="fas fa-file-pdf"></i> تحميل PDF
+          </button>
+          <button class="btn-report-outline" onclick="printReport()">
+            <i class="fas fa-print"></i> طباعة التقرير
+          </button>
         </div>
 
-        <div class="row g-4 mb-5">
-          <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentLevel">-</div><div class="label">المستوى الحالي</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentGrade">-</div><div class="label">الدرجة الكلية</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentCertificates">-</div><div class="label">الشهادات</div></div></div>
-          <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentLessons">-</div><div class="label">الدروس المكتملة</div></div></div>
+        <div id="reportLoading">
+          <div class="spinner-border" role="status"></div>
+          <p class="mt-2">جاري تجهيز التقرير... ⏳</p>
         </div>
 
-        <div class="mb-5">
-          <div class="section-header">
-            <h4>📚 وحداتي</h4>
-            <span class="badge-grade" id="gradeBadge">-</span>
+        <!-- محتوى التقرير -->
+        <div id="reportContent">
+          <h2 class="text-center fw-bold mb-2">لوحة تحكم الطالب</h2>
+          <p class="text-center text-muted mb-4" id="welcomeMessage">مرحباً!</p>
+
+          <div class="mt-3 mb-4">
+            <div class="d-flex justify-content-between">
+              <span>نسبة التقدم</span>
+              <span id="progressPercentage">0%</span>
+            </div>
+            <div class="progress-custom">
+              <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+            </div>
           </div>
-          <div class="row g-4" id="unitsContainer"></div>
-        </div>
 
-        <div class="mb-5">
-          <div class="section-header">
-            <h4>📝 امتحاناتي</h4>
-            <span class="badge-grade">متاح الآن</span>
+          <div class="row g-4 mb-5">
+            <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentLevel">-</div><div class="label">المستوى الحالي</div></div></div>
+            <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentGrade">-</div><div class="label">الدرجة الكلية</div></div></div>
+            <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentCertificates">-</div><div class="label">الشهادات</div></div></div>
+            <div class="col-md-3 col-6"><div class="stat-card"><div class="number" id="studentLessons">-</div><div class="label">الدروس المكتملة</div></div></div>
           </div>
-          <div class="row g-4" id="examsContainer"></div>
-        </div>
 
-        <div class="mb-4">
-          <h5 class="fw-bold mb-3"><i class="fas fa-history text-primary"></i> آخر الاختبارات</h5>
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr><th>الاختبار</th><th>الدرجة</th><th>التاريخ</th></tr>
-              </thead>
-              <tbody id="testsBody">
-                <tr><td colspan="3" class="text-center text-muted">لا توجد اختبارات سابقة</td></tr>
-              </tbody>
-            </table>
+          <div class="mb-5">
+            <div class="section-header">
+              <h4>📚 وحداتي</h4>
+              <span class="badge-grade" id="gradeBadge">-</span>
+            </div>
+            <div class="row g-4" id="unitsContainer"></div>
+          </div>
+
+          <div class="mb-5">
+            <div class="section-header">
+              <h4>📝 امتحاناتي</h4>
+              <span class="badge-grade">متاح الآن</span>
+            </div>
+            <div class="row g-4" id="examsContainer"></div>
+          </div>
+
+          <div class="mb-4">
+            <h5 class="fw-bold mb-3"><i class="fas fa-history text-primary"></i> آخر الاختبارات</h5>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr><th>الاختبار</th><th>الدرجة</th><th>التاريخ</th></tr>
+                </thead>
+                <tbody id="testsBody">
+                  <tr><td colspan="3" class="text-center text-muted">لا توجد اختبارات سابقة</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
@@ -272,7 +341,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
+
   <script type="module">
     import { auth, database } from './firebase-config.js';
     import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -307,7 +376,7 @@
     };
 
     // ==========================================
-    // 📝 بيانات الامتحانات
+    // 📝 بيانات الامتحانات (مع روابط PDF)
     // ==========================================
     const EXAMS_DATA = {
       "prep1": [
@@ -315,10 +384,10 @@
         { title: "امتحان Unit 2 - Learning to Learn", type: "unit", questions: 20, duration: 30, url: "exam-unit2-prep1.html" },
         { title: "امتحان Unit 3 - Role Models", type: "unit", questions: 20, duration: 30, url: "exam-unit3-prep1.html" },
         { title: "امتحان المراجعة الشاملة - Units 1, 2, 3", type: "comprehensive", questions: 30, duration: 45, url: "exam-review1-prep1.html" },
-        { title: "Weekly Assessment 1 - Unit 1", type: "official", questions: 20, duration: 30, url: "assessment-1-prep1.html" },
-        { title: "Weekly Assessment 2 - Unit 2", type: "official", questions: 20, duration: 30, url: "assessment-2-prep1.html" },
-        { title: "Weekly Assessment 3 - Unit 3", type: "official", questions: 20, duration: 30, url: "assessment-3-prep1.html" },
-        { title: "Monthly Assessment - Units 1, 2, 3", type: "official", questions: 30, duration: 45, url: "assessment-monthly.html" }
+        { title: "Weekly Assessment 1 - Unit 1", type: "official", questions: 20, duration: 30, url: "assessment-1-prep1.html", pdf: "assessment-1-print.html" },
+        { title: "Weekly Assessment 2 - Unit 2", type: "official", questions: 20, duration: 30, url: "assessment-2-prep1.html", pdf: "assessment-2-print.html" },
+        { title: "Weekly Assessment 3 - Unit 3", type: "official", questions: 20, duration: 30, url: "assessment-3-prep1.html", pdf: "assessment-3-print.html" },
+        { title: "Monthly Assessment - Units 1, 2, 3", type: "official", questions: 30, duration: 45, url: "assessment-monthly.html", pdf: "assessment-monthly-print.html" }
       ],
       "sec1": [
         { title: "امتحان Unit 1", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-sec1" }
@@ -434,6 +503,18 @@
           btnClass = 'exam-btn official-btn';
         }
 
+        const hasPDF = exam.pdf ? true : false;
+        const buttonsHTML = hasPDF ? `
+          <div class="exam-buttons">
+            <a href="${exam.url}" class="${btnClass}">🚀 ابدأ</a>
+            <a href="${exam.pdf}" class="pdf-btn" target="_blank" download>📥 تحميل PDF</a>
+          </div>
+        ` : `
+          <div class="exam-buttons single">
+            <a href="${exam.url}" class="${btnClass}">🚀 ابدأ الامتحان</a>
+          </div>
+        `;
+
         return `
           <div class="col-md-6">
             <div class="${cardClass}">
@@ -443,7 +524,7 @@
                 <span><i class="fas fa-question-circle"></i> ${exam.questions} سؤال</span>
                 <span><i class="fas fa-clock"></i> ${exam.duration} دقيقة</span>
               </div>
-              <a href="${exam.url}" class="${btnClass}">🚀 ابدأ الامتحان</a>
+              ${buttonsHTML}
             </div>
           </div>
         `;
@@ -492,6 +573,69 @@
       }
     }
 
+    // ==========================================
+    // 📄 تحميل التقرير PDF
+    // ==========================================
+    window.downloadReportPDF = async function() {
+      const element = document.getElementById('reportContent');
+      const loading = document.getElementById('reportLoading');
+      const actions = document.querySelector('.report-actions');
+
+      if (!element) { showToast('⚠️ لا يوجد محتوى للتحميل', 'warning'); return; }
+
+      try {
+        loading.style.display = 'block';
+        actions.style.opacity = '0.5';
+        actions.style.pointerEvents = 'none';
+
+        const { jsPDF } = window.jspdf;
+        const canvas = await html2canvas(element, {
+          scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const imgWidth = pdfWidth - 10;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        let heightLeft = imgHeight;
+        let position = 5;
+
+        pdf.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
+        heightLeft -= (pdfHeight - 10);
+
+        while (heightLeft > 0) {
+          position = heightLeft - imgHeight + 5;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
+          heightLeft -= (pdfHeight - 10);
+        }
+
+        const studentName = document.getElementById('welcomeMessage')?.textContent?.replace('مرحباً، ', '')?.replace('! 👋', '')?.trim() || 'student';
+        const date = new Date().toISOString().split('T')[0];
+        pdf.save(`تقرير-${studentName}-${date}.pdf`);
+
+        showToast('✅ تم تحميل التقرير بنجاح', 'success');
+      } catch (err) {
+        console.error('PDF Error:', err);
+        showToast('❌ حدث خطأ أثناء إنشاء التقرير', 'danger');
+      } finally {
+        loading.style.display = 'none';
+        actions.style.opacity = '1';
+        actions.style.pointerEvents = 'auto';
+      }
+    };
+
+    // ==========================================
+    // 🖨️ طباعة التقرير
+    // ==========================================
+    window.printReport = function() {
+      showToast('🖨️ جاري تجهيز الطباعة...', 'info');
+      setTimeout(() => { window.print(); }, 300);
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
       applySavedDarkMode();
       onAuthStateChanged(auth, async (user) => {
@@ -501,7 +645,7 @@
       });
     });
 
-    console.log('✅ Student Dashboard loaded with Story + Review + Assessments');
+    console.log('✅ Student Dashboard loaded with PDF report + Assessment PDF buttons');
   </script>
 
 </body>
