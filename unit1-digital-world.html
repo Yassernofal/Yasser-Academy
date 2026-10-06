@@ -8,18 +8,18 @@
   
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=El+Messiri:wght@500;700&family=Tajawal:wght@500;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&family=Lateef:wght@400;700&family=Poppins:wght@400;600;700&family=Fredoka:wght@500;700&display=swap" rel="stylesheet" />
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { 
-      font-family: 'El Messiri', 'Lateef', serif; 
+      font-family: 'Tajawal', 'El Messiri', serif; 
       background: #f0f4fa; 
       padding-top: 78px;
       line-height: 1.8;
     }
     
-    /* Navbar */
+    /* ============ NAVBAR ============ */
     .navbar-custom {
       background: rgba(10, 31, 68, 0.95) !important;
       padding: 14px 0;
@@ -34,16 +34,16 @@
       color: #f7e05e;
     }
     .navbar-brand .brand-name span { color: #ffb347; }
-    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; font-family: 'Tajawal', sans-serif; }
     .nav-link:hover, .nav-link.active { color: #f7e05e !important; }
 
-    /* Page Header */
+    /* ============ PAGE HEADER ============ */
     .page-header {
       background: linear-gradient(135deg, #0a1f44 0%, #1f4b8a 50%, #2e6ab0 100%);
       color: #fff;
-      padding: 50px 30px;
+      padding: 60px 30px;
       border-radius: 0 0 60px 60px;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -64,36 +64,57 @@
       border-radius: 50px;
       font-weight: 700;
       font-size: 0.95rem;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
     }
     .page-header h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
       color: #f7e05e;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-weight: 700;
+      direction: ltr;
+      letter-spacing: 1px;
+    }
+    .page-header .arabic-title {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 15px;
+      font-weight: 700;
     }
     .page-header .subtitle {
       color: #dce8f5;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      font-family: 'Tajawal', sans-serif;
     }
 
-    /* Container */
+    /* ============ CONTAINER ============ */
     .lesson-container {
-      max-width: 950px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 0 15px;
     }
 
-    /* Lesson Sections */
+    /* ============ LESSON SECTIONS ============ */
     .lesson-section {
       background: #fff;
       border-radius: 24px;
-      padding: 35px;
-      margin-bottom: 25px;
+      padding: 40px;
+      margin-bottom: 30px;
       box-shadow: 0 6px 25px rgba(0,0,0,0.06);
       border-right: 5px solid #f7e05e;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .lesson-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: linear-gradient(90deg, #f7e05e, #0a1f44, #f7e05e);
     }
     .lesson-section:hover {
       box-shadow: 0 12px 35px rgba(0,0,0,0.1);
@@ -109,49 +130,54 @@
       font-weight: 700;
       font-family: 'Cinzel', serif;
       margin-bottom: 15px;
+      letter-spacing: 1px;
     }
 
     .lesson-section h2 {
-      font-family: 'Cinzel', serif;
+      font-family: 'Playfair Display', serif;
       color: #0a1f44;
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       display: flex;
       align-items: center;
       gap: 12px;
+      direction: ltr;
     }
     .lesson-section h2 i { color: #f7b731; }
 
     .lesson-section h3 {
       color: #0a1f44;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      margin: 25px 0 15px;
-      padding-bottom: 8px;
+      margin: 30px 0 18px;
+      padding-bottom: 10px;
       border-bottom: 2px dashed #f7e05e;
+      font-family: 'Tajawal', sans-serif;
     }
 
     .lesson-section h4 {
       color: #1f4b8a;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      margin: 20px 0 10px;
+      margin: 22px 0 12px;
+      font-family: 'Tajawal', sans-serif;
     }
 
     .lesson-section p {
       color: #333;
       font-size: 1.05rem;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      font-family: 'Tajawal', sans-serif;
     }
 
-    /* Info Boxes */
+    /* ============ INFO BOXES ============ */
     .info-box {
       background: linear-gradient(135deg, #fffbf0, #fef9e7);
       border-right: 5px solid #f7b731;
-      padding: 18px 22px;
-      border-radius: 12px;
-      margin: 18px 0;
+      padding: 20px 25px;
+      border-radius: 14px;
+      margin: 20px 0;
     }
     .info-box h4 {
       color: #0a1f44;
@@ -159,6 +185,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 800;
     }
     .info-box.tip {
       background: linear-gradient(135deg, #e8f5e9, #d4edda);
@@ -173,29 +201,30 @@
       border-right-color: #17a2b8;
     }
 
-    /* Vocabulary Table */
+    /* ============ VOCABULARY TABLE ============ */
     .vocab-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 18px 0;
-      border-radius: 12px;
+      margin: 20px 0;
+      border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     }
     .vocab-table th {
       background: #0a1f44;
       color: #f7e05e;
-      padding: 14px;
+      padding: 16px;
       text-align: right;
       font-weight: 700;
-      font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1rem;
     }
     .vocab-table td {
-      padding: 14px;
+      padding: 16px;
       border-bottom: 1px solid #e9ecef;
       font-size: 1rem;
       vertical-align: top;
+      font-family: 'Tajawal', sans-serif;
     }
     .vocab-table tr:nth-child(even) { background: #f8f9fa; }
     .vocab-table tr:hover { background: #fffbf0; }
@@ -205,6 +234,7 @@
       text-align: left;
       font-weight: 700;
       color: #0a1f44;
+      font-size: 1.05rem;
     }
     .vocab-table .en-sentence {
       font-family: 'Poppins', sans-serif;
@@ -212,40 +242,87 @@
       text-align: left;
       color: #666;
       font-size: 0.9rem;
+      font-style: italic;
     }
 
-    /* Grammar Cards */
+    /* ============ READING TEXT ============ */
+    .reading-text {
+      background: linear-gradient(135deg, #f8f9fa, #fff);
+      padding: 30px;
+      border-radius: 18px;
+      border: 2px solid #e9ecef;
+      margin: 20px 0;
+      font-family: 'Poppins', sans-serif;
+      direction: ltr;
+      text-align: left;
+      line-height: 2;
+      font-size: 1.05rem;
+      position: relative;
+    }
+    .reading-text::before {
+      content: '📖';
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      background: #f7e05e;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 15px rgba(247, 224, 94, 0.4);
+    }
+    .reading-text h5 {
+      color: #0a1f44;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 18px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      padding-right: 35px;
+    }
+    .reading-text strong {
+      color: #0a1f44;
+      background: linear-gradient(180deg, transparent 60%, #f7e05e 60%);
+      padding: 0 3px;
+    }
+
+    /* ============ GRAMMAR CARDS ============ */
     .grammar-card {
       background: linear-gradient(135deg, #f0f4fa, #e3ecf7);
-      border-radius: 16px;
-      padding: 22px;
-      margin: 18px 0;
+      border-radius: 18px;
+      padding: 25px;
+      margin: 20px 0;
       border: 2px solid #d1e0f0;
     }
     .grammar-card h4 {
       color: #0a1f44;
       margin-top: 0;
-      font-family: 'Cinzel', serif;
+      font-family: 'Playfair Display', serif;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-size: 1.3rem;
+      direction: ltr;
     }
     .grammar-formula {
       background: #0a1f44;
       color: #f7e05e;
-      padding: 14px 20px;
-      border-radius: 10px;
+      padding: 16px 22px;
+      border-radius: 12px;
       font-family: 'Poppins', monospace;
       direction: ltr;
       text-align: center;
       font-weight: 700;
       font-size: 1rem;
-      margin: 15px 0;
+      margin: 18px 0;
       letter-spacing: 0.5px;
+      box-shadow: 0 6px 20px rgba(10, 31, 68, 0.2);
     }
     .grammar-example {
       background: #fff;
-      padding: 12px 18px;
+      padding: 14px 20px;
       border-radius: 10px;
       margin: 10px 0;
       border-right: 4px solid #f7b731;
@@ -256,137 +333,263 @@
     .grammar-example .en { color: #0a1f44; font-weight: 600; }
     .grammar-example .ar { 
       color: #666; 
-      font-size: 0.9rem; 
+      font-size: 0.95rem; 
       direction: rtl; 
       text-align: right;
-      font-family: 'El Messiri', serif;
-      margin-top: 5px;
+      font-family: 'Tajawal', sans-serif;
+      margin-top: 6px;
     }
 
-    /* Reading Text */
-    .reading-text {
-      background: #fff;
-      padding: 25px;
-      border-radius: 16px;
-      border: 2px solid #e9ecef;
-      margin: 18px 0;
-      font-family: 'Poppins', sans-serif;
-      direction: ltr;
-      text-align: left;
-      line-height: 1.9;
-      font-size: 1.05rem;
+    /* ============ STORY SECTION - الكتاب المصور ============ */
+    .story-book {
+      background: linear-gradient(135deg, #fef9e7, #fffbf0, #fef9e7);
+      border-radius: 24px;
+      padding: 0;
+      margin: 30px 0;
+      border: 3px solid #f7e05e;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(247, 183, 49, 0.2);
+      position: relative;
     }
-    .reading-text h5 {
-      color: #0a1f44;
-      font-family: 'Cinzel', serif;
-      margin-bottom: 15px;
-      font-size: 1.2rem;
-    }
-
-    /* Buttons */
-    .btn-primary-custom {
-      background: linear-gradient(135deg, #0a1f44, #1f4b8a);
-      color: #f7e05e;
-      border: none;
-      padding: 14px 35px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-    .btn-primary-custom:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(10, 31, 68, 0.3);
-      color: #f7e05e;
-    }
-    .btn-gold {
-      background: linear-gradient(135deg, #f7e05e, #f7b731);
-      color: #0a1f44;
-      border: none;
-      padding: 14px 35px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-    .btn-gold:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(247, 224, 94, 0.4);
-      color: #0a1f44;
+    
+    .story-book::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #f7e05e, #f7b731, #f7e05e);
     }
 
-    /* CTA Section */
-    .cta-section {
+    .story-header {
       background: linear-gradient(135deg, #0a1f44, #1f4b8a);
       color: #fff;
-      padding: 40px;
-      border-radius: 24px;
-      text-align: center;
-      margin: 30px 0;
+      padding: 25px 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
-    .cta-section h3 {
+    .story-header .story-icon {
+      font-size: 2.5rem;
+      background: #f7e05e;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(247, 224, 94, 0.4);
+    }
+    .story-header h3 {
       color: #f7e05e;
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      margin-bottom: 15px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin: 0;
+      direction: ltr;
+      border: none;
+      padding: 0;
     }
-    .cta-section p {
+    .story-header p {
       color: #dce8f5;
-      margin-bottom: 25px;
-      font-size: 1.1rem;
+      font-family: 'Tajawal', sans-serif;
+      margin: 5px 0 0;
+      font-size: 0.95rem;
     }
-    .cta-section .btn-group-custom {
+
+    /* Story Scene - مشهد مصور */
+    .story-scene {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: #fff;
+      min-height: 350px;
+    }
+    @media (max-width: 768px) {
+      .story-scene { grid-template-columns: 1fr; }
+    }
+
+    .scene-illustration {
+      background: linear-gradient(135deg, #e3f2fd, #fff3e0);
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 350px;
+    }
+    .scene-illustration::before {
+      content: '';
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 80px; height: 80px;
+      background: rgba(247, 224, 94, 0.3);
+      border-radius: 50%;
+    }
+    .scene-illustration::after {
+      content: '';
+      position: absolute;
+      bottom: 20px; left: 20px;
+      width: 60px; height: 60px;
+      background: rgba(31, 75, 138, 0.1);
+      border-radius: 50%;
+    }
+
+    /* SVG Illustration Style */
+    .scene-svg {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,0.15));
+    }
+
+    .scene-emoji-group {
       display: flex;
       gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .scene-emoji {
+      animation: float 3s ease-in-out infinite;
+    }
+    .scene-emoji:nth-child(2) { animation-delay: 0.5s; }
+    .scene-emoji:nth-child(3) { animation-delay: 1s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    /* Accordion */
-    .accordion-item {
-      border: 2px solid #e9ecef;
-      border-radius: 16px !important;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
-    .accordion-button {
-      background: #f8f9fa;
+    .scene-caption {
+      font-family: 'Tajawal', sans-serif;
       color: #0a1f44;
       font-weight: 700;
-      font-family: 'Cinzel', serif;
       font-size: 1.05rem;
-      padding: 18px 22px;
-    }
-    .accordion-button:not(.collapsed) {
-      background: linear-gradient(135deg, #0a1f44, #1f4b8a);
-      color: #f7e05e;
-    }
-    .accordion-button:focus {
-      box-shadow: none;
-      border-color: #f7e05e;
-    }
-    .accordion-body {
-      padding: 25px;
-      background: #fff;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.9);
+      padding: 8px 16px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    /* Interactive Exercise */
-    .exercise {
+    .scene-text {
+      padding: 35px 30px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .scene-text .scene-number {
+      display: inline-block;
+      background: #f7e05e;
+      color: #0a1f44;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      line-height: 40px;
+      text-align: center;
+      font-weight: 800;
+      font-family: 'Cinzel', serif;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(247, 224, 94, 0.4);
+    }
+    .scene-text p {
+      font-family: 'Amiri', 'Poppins', serif;
+      direction: ltr;
+      text-align: left;
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #333;
+      margin-bottom: 12px;
+    }
+    .scene-text .arabic-translation {
+      direction: rtl;
+      text-align: right;
+      font-family: 'Amiri', serif;
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.8;
+      padding-top: 12px;
+      border-top: 1px dashed #e9ecef;
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* Story Vocabulary Highlight */
+    .story-vocab-highlight {
+      background: linear-gradient(180deg, transparent 60%, #f7e05e 60%);
+      padding: 0 2px;
+      font-weight: 700;
+      color: #0a1f44;
+    }
+
+    /* Story Character Cards */
+    .story-characters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 25px 30px;
       background: #f8f9fa;
-      padding: 20px;
-      border-radius: 12px;
-      margin: 15px 0;
-      border-right: 4px solid #f7b731;
+      border-top: 2px dashed #f7e05e;
+      justify-content: center;
+    }
+    .character-card {
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      flex: 1 1 200px;
+      max-width: 250px;
+    }
+    .character-card:hover {
+      transform: translateY(-5px);
+      border-color: #f7e05e;
+      box-shadow: 0 8px 20px rgba(247, 224, 94, 0.25);
+    }
+    .character-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+    .character-info h5 {
+      font-family: 'Cinzel', serif;
+      color: #0a1f44;
+      margin: 0 0 3px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .character-info p {
+      font-family: 'Tajawal', sans-serif;
+      color: #666;
+      margin: 0;
+      font-size: 0.85rem;
+    }
+
+    /* ============ EXERCISES ============ */
+    .exercise {
+      background: linear-gradient(135deg, #f8f9fa, #fff);
+      padding: 25px;
+      border-radius: 16px;
+      margin: 18px 0;
+      border-right: 5px solid #f7b731;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
     }
     .exercise .question {
       font-family: 'Poppins', sans-serif;
@@ -394,94 +597,168 @@
       text-align: left;
       font-weight: 600;
       color: #0a1f44;
-      margin-bottom: 15px;
-      font-size: 1.05rem;
+      margin-bottom: 18px;
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
     .exercise .options {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
     .exercise .option {
       background: #fff;
-      padding: 12px 18px;
-      border-radius: 10px;
+      padding: 14px 20px;
+      border-radius: 12px;
       border: 2px solid #e9ecef;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s;
       font-family: 'Poppins', sans-serif;
       direction: ltr;
       text-align: left;
+      font-size: 1rem;
     }
     .exercise .option:hover {
       border-color: #f7b731;
       background: #fffbf0;
+      transform: translateX(5px);
     }
     .exercise .option.correct {
       background: #d4edda;
       border-color: #28a745;
+      font-weight: 700;
     }
     .exercise .option.wrong {
       background: #f8d7da;
       border-color: #dc3545;
     }
     .exercise .feedback {
-      margin-top: 12px;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-weight: 600;
+      margin-top: 15px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-family: 'Tajawal', sans-serif;
       display: none;
+      font-size: 1.05rem;
     }
     .exercise .feedback.show { display: block; }
     .exercise .feedback.success { background: #d4edda; color: #155724; }
     .exercise .feedback.error { background: #f8d7da; color: #721c24; }
 
-    /* Story Box */
-    .story-box {
-      background: linear-gradient(135deg, #fef9e7, #fffbf0);
-      padding: 25px;
-      border-radius: 16px;
-      border: 2px solid #f7e05e;
-      margin: 20px 0;
-      font-family: 'Poppins', sans-serif;
-      direction: ltr;
-      text-align: left;
-      line-height: 1.9;
+    /* ============ CTA SECTION ============ */
+    .cta-section {
+      background: linear-gradient(135deg, #0a1f44, #1f4b8a);
+      color: #fff;
+      padding: 50px 40px;
+      border-radius: 28px;
+      text-align: center;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
     }
-    .story-box h5 {
-      color: #0a1f44;
-      font-family: 'Cinzel', serif;
-      margin-bottom: 15px;
-      font-size: 1.2rem;
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 300px; height: 300px;
+      background: rgba(247, 224, 94, 0.1);
+      border-radius: 50%;
     }
-    .story-box .story-ar {
-      direction: rtl;
-      text-align: right;
-      font-family: 'El Messiri', serif;
-      color: #666;
-      font-size: 0.95rem;
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px dashed #f7e05e;
+    .cta-section h3 {
+      color: #f7e05e;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-section p {
+      color: #dce8f5;
+      margin-bottom: 30px;
+      font-size: 1.15rem;
+      font-family: 'Tajawal', sans-serif;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-section .btn-group-custom {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
     }
 
-    /* Footer */
+    /* ============ BUTTONS ============ */
+    .btn-primary-custom {
+      background: linear-gradient(135deg, #0a1f44, #1f4b8a);
+      color: #f7e05e;
+      border: 2px solid #0a1f44;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .btn-primary-custom:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(10, 31, 68, 0.4);
+      color: #f7e05e;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #f7e05e, #f7b731);
+      color: #0a1f44;
+      border: 2px solid #f7e05e;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .btn-gold:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(247, 224, 94, 0.5);
+      color: #0a1f44;
+    }
+
+    /* ============ FOOTER ============ */
     footer {
       background: #0a1f44;
       color: #b0c4de;
-      padding: 35px 0;
+      padding: 40px 0;
       border-radius: 40px 40px 0 0;
-      margin-top: 50px;
+      margin-top: 60px;
       text-align: center;
+      font-family: 'Tajawal', sans-serif;
     }
-    footer p { margin: 5px 0; }
+    footer p { margin: 6px 0; }
     footer a { color: #f7e05e; text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
+    /* ============ RESPONSIVE ============ */
     @media (max-width: 768px) {
-      .page-header h1 { font-size: 1.8rem; }
-      .lesson-section { padding: 22px 18px; }
+      .page-header h1 { font-size: 2rem; }
+      .page-header .arabic-title { font-size: 1.2rem; }
+      .lesson-section { padding: 25px 20px; }
       .lesson-section h2 { font-size: 1.4rem; }
+      .story-book { border-radius: 18px; }
+      .story-header h3 { font-size: 1.2rem; }
+      .story-header .story-icon { width: 45px; height: 45px; font-size: 1.8rem; }
+      .scene-text { padding: 25px 20px; }
+      .cta-section h3 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -512,30 +789,28 @@
     <div class="container">
       <span class="unit-badge">UNIT 1 - PREP 1</span>
       <h1>Life in a Digital World</h1>
-      <p class="subtitle">🌐 الحياة في عالم رقمي | الصف الأول الإعدادي - الترم الأول</p>
-      <p class="subtitle" style="margin-top:10px; font-size:0.95rem;">📖 الشرح الشامل + التدريبات التفاعلية</p>
+      <p class="arabic-title">🌐 الحياة في عالم رقمي</p>
+      <p class="subtitle">📖 الصف الأول الإعدادي — الترم الأول | الشرح الشامل + التدريبات التفاعلية</p>
     </div>
   </div>
 
   <div class="lesson-container">
 
-    <!-- Lesson 1: Reading -->
+    <!-- ========== LESSON 1: READING ========== -->
     <section class="lesson-section" id="lesson1">
       <span class="lesson-number">LESSON 1</span>
       <h2><i class="fas fa-book-open"></i> A Day in My Digital Life</h2>
       <p>في هذا الدرس، سنقرأ مدونة (Blog) للطالب <strong>Tarek</strong> الذي يشاركنا يومه الرقمي. سنتعلم كيف نتحدث عن استخدامنا للتقنية في حياتنا اليومية.</p>
 
-      <!-- Reading Text -->
       <h3>📖 Reading Text</h3>
       <div class="reading-text">
-        <h5>📱 A Day in My Digital Life</h5>
+        <h5>A Day in My Digital Life</h5>
         <p>Hi everyone! My name is <strong>Tarek</strong>, and I want to share my digital day with you.</p>
         <p>I <strong>always</strong> start my morning by checking my phone. I <strong>usually</strong> read three or four messages from my school friends. Sometimes, my cousin from Alexandria sends me funny pictures. At breakfast, I <strong>often</strong> use my tablet to search for news. My favorite website gives me interesting facts about animals and space. I <strong>never</strong> eat without looking at my screen — I know it's not a good habit!</p>
-        <p>At school, we <strong>sometimes</strong> use the smartboard in our science class. Our teacher shows us amazing videos about planets and animals. I love watching them! We also use computers in our computer class twice a week. I'm learning to type faster — I can type 25 words per minute now!</p>
+        <p>At school, we <strong>sometimes</strong> use the smartboard in our science class. Our teacher shows us amazing videos about planets and animals. I love watching them! We also use computers in our computer class twice a week.</p>
         <p>After school, I <strong>always</strong> do my homework first. I <strong>usually</strong> search for information on my laptop when I need help with my projects.</p>
         <p>In the evening, I <strong>sometimes</strong> play online games with my friends. We usually play for one hour, then we stop. My parents always remind me to take breaks from the screen.</p>
-        <p>Before bedtime, I <strong>often</strong> read ebooks on my tablet. I love adventure stories. But I <strong>always</strong> use the "night mode" so the screen doesn't hurt my eyes.</p>
-        <p>I think technology is amazing, but I'm learning to use it wisely. What about you? How do you use technology in your day?</p>
+        <p>Before bedtime, I <strong>often</strong> read ebooks on my tablet. But I <strong>always</strong> use the "night mode" so the screen doesn't hurt my eyes.</p>
       </div>
 
       <div class="info-box">
@@ -544,72 +819,30 @@
         <p><strong>الفكرة الرئيسية:</strong> كيف يستخدم طارق التقنية في حياته اليومية.</p>
       </div>
 
-      <!-- Vocabulary -->
-      <h3>📚 Vocabulary — المفردات</h3>
+      <h3>📚 Vocabulary</h3>
       <table class="vocab-table">
         <thead>
           <tr>
-            <th style="width: 30%;">الكلمة</th>
-            <th style="width: 25%;">المعنى</th>
+            <th style="width: 28%;">الكلمة</th>
+            <th style="width: 22%;">المعنى</th>
             <th>مثال</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="en-word">digital</td>
-            <td>رقمي</td>
-            <td class="en-sentence">We live in a digital world.</td>
-          </tr>
-          <tr>
-            <td class="en-word">screen</td>
-            <td>شاشة</td>
-            <td class="en-sentence">Don't look at the screen for a long time.</td>
-          </tr>
-          <tr>
-            <td class="en-word">tablet</td>
-            <td>جهاز لوحي</td>
-            <td class="en-sentence">I read ebooks on my tablet.</td>
-          </tr>
-          <tr>
-            <td class="en-word">smartboard</td>
-            <td>سبورة ذكية</td>
-            <td class="en-sentence">The teacher uses a smartboard in class.</td>
-          </tr>
-          <tr>
-            <td class="en-word">laptop</td>
-            <td>حاسوب محمول</td>
-            <td class="en-sentence">I do my homework on my laptop.</td>
-          </tr>
-          <tr>
-            <td class="en-word">website</td>
-            <td>موقع إلكتروني</td>
-            <td class="en-sentence">My favorite website has fun facts.</td>
-          </tr>
-          <tr>
-            <td class="en-word">ebooks</td>
-            <td>كتب إلكترونية</td>
-            <td class="en-sentence">I read ebooks before bedtime.</td>
-          </tr>
-          <tr>
-            <td class="en-word">night mode</td>
-            <td>الوضع الليلي</td>
-            <td class="en-sentence">I use night mode to protect my eyes.</td>
-          </tr>
-          <tr>
-            <td class="en-word">messages</td>
-            <td>رسائل</td>
-            <td class="en-sentence">I read messages from my friends.</td>
-          </tr>
-          <tr>
-            <td class="en-word">online</td>
-            <td>عبر الإنترنت</td>
-            <td class="en-sentence">We play online games.</td>
-          </tr>
+          <tr><td class="en-word">digital</td><td>رقمي</td><td class="en-sentence">We live in a digital world.</td></tr>
+          <tr><td class="en-word">screen</td><td>شاشة</td><td class="en-sentence">Don't look at the screen for a long time.</td></tr>
+          <tr><td class="en-word">tablet</td><td>جهاز لوحي</td><td class="en-sentence">I read ebooks on my tablet.</td></tr>
+          <tr><td class="en-word">smartboard</td><td>سبورة ذكية</td><td class="en-sentence">The teacher uses a smartboard in class.</td></tr>
+          <tr><td class="en-word">laptop</td><td>حاسوب محمول</td><td class="en-sentence">I do my homework on my laptop.</td></tr>
+          <tr><td class="en-word">website</td><td>موقع إلكتروني</td><td class="en-sentence">My favorite website has fun facts.</td></tr>
+          <tr><td class="en-word">ebooks</td><td>كتب إلكترونية</td><td class="en-sentence">I read ebooks before bedtime.</td></tr>
+          <tr><td class="en-word">night mode</td><td>الوضع الليلي</td><td class="en-sentence">I use night mode to protect my eyes.</td></tr>
+          <tr><td class="en-word">messages</td><td>رسائل</td><td class="en-sentence">I read messages from my friends.</td></tr>
+          <tr><td class="en-word">online</td><td>عبر الإنترنت</td><td class="en-sentence">We play online games.</td></tr>
         </tbody>
       </table>
 
-      <!-- Practice -->
-      <h3>✏️ Practice — تدريب</h3>
+      <h3>✏️ Practice</h3>
       <div class="exercise" data-answer="1">
         <div class="question">1. Where does Tarek read messages from his friends?</div>
         <div class="options">
@@ -625,33 +858,32 @@
         <div class="options">
           <div class="option" data-value="0">to save battery</div>
           <div class="option" data-value="1">to read faster</div>
-          <div class="option" value="2">so the screen doesn't hurt his eyes</div>
+          <div class="option" data-value="2">so the screen doesn't hurt his eyes</div>
         </div>
         <div class="feedback"></div>
       </div>
     </section>
 
-    <!-- Lesson 2: Grammar -->
+    <!-- ========== LESSON 2: GRAMMAR ========== -->
     <section class="lesson-section" id="lesson2">
       <span class="lesson-number">LESSON 2</span>
-      <h2><i class="fas fa-graduation-cap"></i> Grammar — Present Simple & Adverbs of Frequency</h2>
+      <h2><i class="fas fa-graduation-cap"></i> Present Simple & Adverbs of Frequency</h2>
       <p>في هذا الدرس، سنتعلم <strong>المضارع البسيط</strong> و<strong>ظروف التكرار</strong> للتحدث عن عاداتنا اليومية.</p>
 
-      <!-- Present Simple -->
       <div class="grammar-card">
-        <h4><i class="fas fa-star"></i> 1. Present Simple — المضارع البسيط</h4>
+        <h4><i class="fas fa-star"></i> Present Simple</h4>
         <p>نستخدم المضارع البسيط للتحدث عن:</p>
-        <ul style="padding-right: 25px; margin: 10px 0;">
-          <li>✅ <strong>العادات اليومية</strong> (habits): I <strong>always</strong> check my phone.</li>
-          <li>✅ <strong>الحقائق العامة</strong> (facts): The sun <strong>rises</strong> in the east.</li>
-          <li>✅ <strong>الجدول الزمني</strong> (timetables): School <strong>starts</strong> at 7 AM.</li>
+        <ul style="padding-right: 25px; margin: 12px 0;">
+          <li>✅ <strong>العادات اليومية</strong> (habits)</li>
+          <li>✅ <strong>الحقائق العامة</strong> (facts)</li>
+          <li>✅ <strong>الجدول الزمني</strong> (timetables)</li>
         </ul>
 
         <div class="grammar-formula">
           Subject + Verb (base) + Object
         </div>
 
-        <h4 style="margin-top: 20px;">📝 القاعدة:</h4>
+        <h4>📝 القاعدة:</h4>
         <div class="grammar-example">
           <div class="en">✅ I <strong>play</strong> online games.</div>
           <div class="ar">أنا ألعب ألعاب أونلاين.</div>
@@ -661,7 +893,7 @@
           <div class="ar">هو يلعب ألعاب أونلاين.</div>
         </div>
         <div class="grammar-example">
-          <div class="en">✅ They <strong>don't play</strong> online games.</div>
+          <div class="en">❌ They <strong>don't play</strong> online games.</div>
           <div class="ar">هم لا يلعبون ألعاب أونلاين.</div>
         </div>
         <div class="grammar-example">
@@ -676,9 +908,8 @@
         </div>
       </div>
 
-      <!-- Adverbs of Frequency -->
       <div class="grammar-card">
-        <h4><i class="fas fa-clock"></i> 2. Adverbs of Frequency — ظروف التكرار</h4>
+        <h4><i class="fas fa-clock"></i> Adverbs of Frequency</h4>
         <p>تستخدم لوصف <strong>معدل تكرار</strong> الفعل:</p>
 
         <table class="vocab-table" style="margin-top: 15px;">
@@ -699,8 +930,7 @@
           </tbody>
         </table>
 
-        <h4 style="margin-top: 20px;">📝 مكان الظرف في الجملة:</h4>
-        <div class="grammar-formula">
+        <div class="grammar-formula" style="margin-top: 20px;">
           Subject + Adverb + Verb
         </div>
         <div class="grammar-example">
@@ -723,8 +953,7 @@
         </div>
       </div>
 
-      <!-- Practice -->
-      <h3>✏️ Practice — تدريب</h3>
+      <h3>✏️ Practice</h3>
       <div class="exercise" data-answer="0">
         <div class="question">1. He ___ plays football on Fridays.</div>
         <div class="options">
@@ -744,26 +973,16 @@
         </div>
         <div class="feedback"></div>
       </div>
-
-      <div class="exercise" data-answer="2">
-        <div class="question">3. They ___ eat fast food. (0%)</div>
-        <div class="options">
-          <div class="option" data-value="0">always</div>
-          <div class="option" data-value="1">sometimes</div>
-          <div class="option" data-value="2">never</div>
-        </div>
-        <div class="feedback"></div>
-      </div>
     </section>
 
-    <!-- Lesson 3: Parts of Speech -->
+    <!-- ========== LESSON 3: PARTS OF SPEECH ========== -->
     <section class="lesson-section" id="lesson3">
       <span class="lesson-number">LESSON 3</span>
-      <h2><i class="fas fa-puzzle-piece"></i> Parts of Speech — أقسام الكلام</h2>
+      <h2><i class="fas fa-puzzle-piece"></i> Parts of Speech</h2>
       <p>في اللغة الإنجليزية، كل كلمة تنتمي إلى <strong>قسم من أقسام الكلام</strong>. سنتعلم 3 أقسام أساسية:</p>
 
       <div class="grammar-card">
-        <h4><i class="fas fa-cube"></i> 1. Noun — الاسم</h4>
+        <h4><i class="fas fa-cube"></i> Noun</h4>
         <p>يدل على <strong>شخص، مكان، شيء، أو فكرة</strong>.</p>
         <div class="grammar-example">
           <div class="en">✅ <strong>Tarek</strong> uses a <strong>tablet</strong>.</div>
@@ -773,7 +992,7 @@
       </div>
 
       <div class="grammar-card">
-        <h4><i class="fas fa-running"></i> 2. Verb — الفعل</h4>
+        <h4><i class="fas fa-running"></i> Verb</h4>
         <p>يدل على <strong>حدث أو حالة</strong>.</p>
         <div class="grammar-example">
           <div class="en">✅ Tarek <strong>checks</strong> his phone.</div>
@@ -783,7 +1002,7 @@
       </div>
 
       <div class="grammar-card">
-        <h4><i class="fas fa-paint-brush"></i> 3. Adjective — الصفة</h4>
+        <h4><i class="fas fa-paint-brush"></i> Adjective</h4>
         <p>تصف <strong>اسماً</strong>.</p>
         <div class="grammar-example">
           <div class="en">✅ I love <strong>adventure</strong> stories.</div>
@@ -791,42 +1010,129 @@
         </div>
         <p style="margin-top: 10px;"><strong>أمثلة:</strong> digital, funny, amazing, favorite, good</p>
       </div>
-
-      <h3>✏️ Practice — صنّف الكلمات</h3>
-      <table class="vocab-table">
-        <thead>
-          <tr>
-            <th>الكلمة</th>
-            <th>Noun</th>
-            <th>Verb</th>
-            <th>Adjective</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="en-word">digital</td><td>—</td><td>—</td><td>✅</td></tr>
-          <tr><td class="en-word">screen</td><td>✅</td><td>—</td><td>—</td></tr>
-          <tr><td class="en-word">play</td><td>—</td><td>✅</td><td>—</td></tr>
-          <tr><td class="en-word">website</td><td>✅</td><td>—</td><td>—</td></tr>
-          <tr><td class="en-word">funny</td><td>—</td><td>—</td><td>✅</td></tr>
-        </tbody>
-      </table>
     </section>
 
-    <!-- Lesson 4: Story -->
+    <!-- ========== LESSON 4: STORY ========== -->
     <section class="lesson-section" id="lesson4">
       <span class="lesson-number">LESSON 4</span>
       <h2><i class="fas fa-book"></i> Story Time — The Magic Classroom</h2>
-      <p>نبدأ في قراءة قصة <strong>"The Magic Classroom"</strong> التي سنتابعها في كل وحدة.</p>
+      <p>نبدأ في قراءة قصة <strong>"The Magic Classroom"</strong> التي سنتابعها في كل وحدة. استمتع بالصور والأحداث المثيرة!</p>
 
-      <div class="story-box">
-        <h5>📖 Chapter One: The First Challenge</h5>
-        <p>In a cheerful village school, the children loved discovering new things. One day, their teacher, Mr. Adam, made an exciting announcement. "Next week, we will enter the Magic Classroom," he said. "To succeed, you need to show responsibility and work together."</p>
-        <p>The children were curious and excited. When the day came, they walked through a glowing door and found themselves in a room filled with floating puzzles, shining books, and magical clues. On the wall, a message read: "Only those who collaborate and stay curious can unlock the mysteries."</p>
-        <p>Sara, who was always eager to learn, said, "Let's think carefully and help each other." Omar, who sometimes felt shy, looked nervous. Sam, calm and kind, encouraged him, "We'll do it together."</p>
-        <p>Their first challenge was a locked box. They shared ideas and solved the challenge by working as a team. As the box clicked open, a bright light appeared, and a new challenge was waiting. They smiled, ready for whatever came next.</p>
-        
-        <div class="story-ar">
-          <strong>ملخص بالعربي:</strong> في قرية مدرسية سعيدة، أحب الأطفال اكتشاف أشياء جديدة. في يوم من الأيام، أعلن معلمهم السيد آدم خبراً مثيراً: "الأسبوع القادم، سندخل الفصل السحري." دخل الأطفال غرفة مليئة بالألغاز الطائرة والكتب المتلألئة. واجهوا تحدياً أولاً: صندوق مغلق. تعاونوا وحلوه معاً، وظهر ضوء ساطع، وتحدٍ جديد ينتظرهم.
+      <div class="story-book">
+        <div class="story-header">
+          <div class="story-icon">📚</div>
+          <div>
+            <h3>Chapter One: The First Challenge</h3>
+            <p>الفصل الأول: التحدي الأول</p>
+          </div>
+        </div>
+
+        <!-- Scene 1 -->
+        <div class="story-scene">
+          <div class="scene-illustration">
+            <div class="scene-emoji-group">
+              <span class="scene-emoji">🏫</span>
+              <span class="scene-emoji">👨‍🏫</span>
+              <span class="scene-emoji">📢</span>
+            </div>
+            <div class="scene-caption">The Village School</div>
+          </div>
+          <div class="scene-text">
+            <span class="scene-number">1</span>
+            <p>In a <span class="story-vocab-highlight">cheerful</span> village school, the children loved discovering new things. One day, their teacher, Mr. Adam, made an exciting announcement. "Next week, we will enter the Magic Classroom," he said. "To succeed, you need to show <span class="story-vocab-highlight">responsibility</span> and work together."</p>
+            <div class="arabic-translation">
+              في مدرسة قرية سعيدة، أحب الأطفال اكتشاف أشياء جديدة. في يوم من الأيام، أعلن معلمهم السيد آدم خبراً مثيراً: "الأسبوع القادم، سندخل الفصل السحري."
+            </div>
+          </div>
+        </div>
+
+        <!-- Scene 2 -->
+        <div class="story-scene" style="direction: ltr;">
+          <div class="scene-text" style="order: 2;">
+            <span class="scene-number">2</span>
+            <p>The children were <span class="story-vocab-highlight">curious</span> and excited. When the day came, they walked through a glowing door and found themselves in a room filled with floating puzzles, shining books, and magical clues. On the wall, a message read: "Only those who <span class="story-vocab-highlight">collaborate</span> and stay curious can unlock the mysteries."</p>
+            <div class="arabic-translation">
+              كان الأطفال فضوليين ومتحمسين. دخلوا غرفة مليئة بالألغاز الطائرة والكتب المتلألئة. على الحائط، كانت رسالة: "فقط الذين يتعاونون يفتحون الأسرار."
+            </div>
+          </div>
+          <div class="scene-illustration" style="order: 1;">
+            <div class="scene-emoji-group">
+              <span class="scene-emoji">🚪</span>
+              <span class="scene-emoji">✨</span>
+              <span class="scene-emoji">🧩</span>
+            </div>
+            <div class="scene-caption">The Magic Door</div>
+          </div>
+        </div>
+
+        <!-- Scene 3 -->
+        <div class="story-scene">
+          <div class="scene-illustration">
+            <div class="scene-emoji-group">
+              <span class="scene-emoji">👧</span>
+              <span class="scene-emoji">👦</span>
+              <span class="scene-emoji">💡</span>
+            </div>
+            <div class="scene-caption">Working Together</div>
+          </div>
+          <div class="scene-text">
+            <span class="scene-number">3</span>
+            <p>Sara, who was always eager to learn, said, "Let's think carefully and help each other." Omar, who sometimes felt shy, looked nervous. Sam, calm and kind, encouraged him, "We'll do it together."</p>
+            <div class="arabic-translation">
+              قالت سارة: "لنفكر بعناية ونساعد بعضنا." كان عمر خجولاً ومتوتراً. شجعه سام: "سنفعلها معاً."
+            </div>
+          </div>
+        </div>
+
+        <!-- Scene 4 -->
+        <div class="story-scene" style="direction: ltr;">
+          <div class="scene-text" style="order: 2;">
+            <span class="scene-number">4</span>
+            <p>Their first challenge was a locked box. They shared ideas and solved the challenge by working as a team. As the box clicked open, a bright light appeared, and a new challenge was waiting. They smiled, ready for whatever came next.</p>
+            <div class="arabic-translation">
+              كان التحدي الأول صندوقاً مغلقاً. تبادلوا الأفكار وحلوه معاً. عندما فُتح الصندوق، ظهر ضوء ساطع وتحدٍ جديد. ابتسموا، مستعدين لما هو قادم.
+            </div>
+          </div>
+          <div class="scene-illustration" style="order: 1;">
+            <div class="scene-emoji-group">
+              <span class="scene-emoji">📦</span>
+              <span class="scene-emoji">💫</span>
+              <span class="scene-emoji">🎉</span>
+            </div>
+            <div class="scene-caption">The Box Opens!</div>
+          </div>
+        </div>
+
+        <!-- Characters -->
+        <div class="story-characters">
+          <div class="character-card">
+            <div class="character-avatar" style="background: #ffe8a1;">👧</div>
+            <div class="character-info">
+              <h5>Sara</h5>
+              <p>Eager to learn</p>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="character-avatar" style="background: #d1ecf1;">👦</div>
+            <div class="character-info">
+              <h5>Omar</h5>
+              <p>Shy but brave</p>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="character-avatar" style="background: #d4edda;">🧒</div>
+            <div class="character-info">
+              <h5>Sam</h5>
+              <p>Calm and kind</p>
+            </div>
+          </div>
+          <div class="character-card">
+            <div class="character-avatar" style="background: #f8d7da;">👨‍🏫</div>
+            <div class="character-info">
+              <h5>Mr. Adam</h5>
+              <p>The teacher</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -850,9 +1156,19 @@
         </div>
         <div class="feedback"></div>
       </div>
+
+      <div class="exercise" data-answer="0">
+        <div class="question">3. What does the word "collaborate" mean?</div>
+        <div class="options">
+          <div class="option" data-value="0">to work together</div>
+          <div class="option" data-value="1">to work alone</div>
+          <div class="option" data-value="2">to give up</div>
+        </div>
+        <div class="feedback"></div>
+      </div>
     </section>
 
-    <!-- Lesson 5: Writing -->
+    <!-- ========== LESSON 5: WRITING ========== -->
     <section class="lesson-section" id="lesson5">
       <span class="lesson-number">LESSON 5</span>
       <h2><i class="fas fa-pen"></i> Writing — An Email to a Friend</h2>
@@ -900,7 +1216,7 @@
       </div>
     </section>
 
-    <!-- Lesson 6: Word Building -->
+    <!-- ========== LESSON 6: WORD BUILDING ========== -->
     <section class="lesson-section" id="lesson6">
       <span class="lesson-number">LESSON 6</span>
       <h2><i class="fas fa-sitemap"></i> Word Building — Word Families</h2>
@@ -909,8 +1225,8 @@
       <h3>📚 أمثلة:</h3>
 
       <div class="grammar-card">
-        <h4>🔤 عائلة كلمة "board":</h4>
-        <ul style="padding-right: 25px; margin-top: 10px;">
+        <h4>🔤 عائلة كلمة "board"</h4>
+        <ul style="padding-right: 25px; margin-top: 12px;">
           <li><strong>keyboard</strong> — لوحة مفاتيح</li>
           <li><strong>smartboard</strong> — سبورة ذكية</li>
           <li><strong>noticeboard</strong> — لوحة إعلانات</li>
@@ -919,8 +1235,8 @@
       </div>
 
       <div class="grammar-card">
-        <h4>🔤 عائلة كلمة "work":</h4>
-        <ul style="padding-right: 25px; margin-top: 10px;">
+        <h4>🔤 عائلة كلمة "work"</h4>
+        <ul style="padding-right: 25px; margin-top: 12px;">
           <li><strong>worker</strong> — عامل</li>
           <li><strong>homework</strong> — واجب منزلي</li>
           <li><strong>workbook</strong> — كتاب تدريبات</li>
@@ -935,7 +1251,7 @@
       </div>
     </section>
 
-    <!-- Lesson 7: Punctuation -->
+    <!-- ========== LESSON 7: PUNCTUATION ========== -->
     <section class="lesson-section" id="lesson7">
       <span class="lesson-number">LESSON 7</span>
       <h2><i class="fas fa-spell-check"></i> Punctuation — Capital Letters</h2>
@@ -943,7 +1259,7 @@
 
       <div class="grammar-card">
         <h4>✅ استخدامات الحرف الكبير:</h4>
-        <ol style="padding-right: 25px; margin-top: 10px;">
+        <ol style="padding-right: 25px; margin-top: 12px;">
           <li><strong>أول الكلمة في الجملة:</strong> <em>The sun rises early.</em></li>
           <li><strong>الأسماء الخاصة:</strong> <em>Ahmed, Cairo, Egypt</em></li>
           <li><strong>الأيام والشهور:</strong> <em>Monday, January</em></li>
@@ -956,15 +1272,15 @@
       <h3>✏️ Practice</h3>
       <div class="info-box example">
         <h4>🖊️ صحح الجمل التالية:</h4>
-        <p>1. i went to alexandria last june.</p>
-        <p style="color: #28a745;"><strong>✅ I went to Alexandria last June.</strong></p>
+        <p style="direction: ltr; text-align: left; font-family: 'Poppins', sans-serif;">1. i went to alexandria last june.</p>
+        <p style="color: #28a745; direction: ltr; text-align: left; font-family: 'Poppins', sans-serif;"><strong>✅ I went to Alexandria last June.</strong></p>
         <br>
-        <p>2. my friend ahmed lives on nahas street.</p>
-        <p style="color: #28a745;"><strong>✅ My friend Ahmed lives on Nahas Street.</strong></p>
+        <p style="direction: ltr; text-align: left; font-family: 'Poppins', sans-serif;">2. my friend ahmed lives on nahas street.</p>
+        <p style="color: #28a745; direction: ltr; text-align: left; font-family: 'Poppins', sans-serif;"><strong>✅ My friend Ahmed lives on Nahas Street.</strong></p>
       </div>
     </section>
 
-    <!-- CTA: الامتحان -->
+    <!-- ========== CTA SECTION ========== -->
     <section class="cta-section">
       <h3>🎯 جاهز للامتحان؟</h3>
       <p>اختبر نفسك في الوحدة الأولى بامتحان عشوائي، مماثل لامتحانات الوزارة.</p>
@@ -991,7 +1307,7 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Interactive Exercises
+    // ===== Interactive Exercises =====
     document.querySelectorAll('.exercise').forEach(exercise => {
       const correctAnswer = exercise.dataset.answer;
       const feedback = exercise.querySelector('.feedback');
@@ -1015,19 +1331,10 @@
                 o.classList.add('correct');
               }
             });
-            feedback.textContent = '❌ إجابة خاطئة. الإجابة الصحيحة: ' + options[correctAnswer]?.textContent;
+            feedback.textContent = '❌ إجابة خاطئة. الإجابة الصحيحة موضحة بالأخضر.';
             feedback.className = 'feedback show error';
           }
         });
-      });
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
