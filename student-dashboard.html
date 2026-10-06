@@ -28,6 +28,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
     @media (max-width: 991.98px) { body { padding-top: 72px; } }
+
     .navbar-custom { background: rgba(10, 31, 68, 0.85) !important; backdrop-filter: blur(18px); padding: 14px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); z-index: 1050; }
     .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
     .navbar-brand img { height: 40px; width: auto; }
@@ -86,6 +87,104 @@
     .unit-btn.story-btn { background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #fff; }
     .unit-btn.story-btn:hover { background: #6d28d9; }
 
+    /* شريط تقدم الوحدة */
+    .unit-progress-wrapper {
+      margin: 12px 0 10px;
+    }
+    .unit-progress-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.75rem; color: #666; margin-bottom: 5px; font-weight: 600;
+    }
+    .unit-progress-bar {
+      height: 8px; background: #e9ecef; border-radius: 10px;
+      overflow: hidden;
+    }
+    .unit-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #28a745, #20c997);
+      border-radius: 10px;
+      transition: width 0.8s ease;
+    }
+    .unit-card.review .unit-progress-fill { background: linear-gradient(90deg, #dc2626, #f87171); }
+    .unit-card.story .unit-progress-fill { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+
+    /* Badge متحرك */
+    .badge-pulse {
+      display: inline-block;
+      animation: pulse-gold 2s infinite;
+    }
+    @keyframes pulse-gold {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(247, 183, 49, 0.7); }
+      50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(247, 183, 49, 0); }
+    }
+    .badge-new {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: linear-gradient(135deg, #f7b731, #f59e0b);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      z-index: 2;
+      animation: pulse-gold 2s infinite;
+    }
+
+    /* زر متابعة */
+    .continue-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #0a1f44, #1a3a6e);
+      color: #f7e05e;
+      padding: 15px 25px;
+      border-radius: 18px;
+      text-decoration: none;
+      font-weight: 700;
+      margin-bottom: 25px;
+      transition: 0.3s;
+      box-shadow: 0 6px 20px rgba(10, 31, 68, 0.2);
+    }
+    .continue-btn:hover {
+      background: linear-gradient(135deg, #1a3a6e, #2a4a8e);
+      color: #f7e05e;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(10, 31, 68, 0.3);
+      text-decoration: none;
+    }
+    .continue-btn .left { display: flex; align-items: center; gap: 12px; }
+    .continue-btn .icon { font-size: 1.5rem; }
+    .continue-btn .text .title { font-size: 0.85rem; color: #b0c4de; font-weight: 500; margin-bottom: 3px; }
+    .continue-btn .text .name { font-size: 1rem; color: #f7e05e; }
+    .continue-btn .arrow { font-size: 1.2rem; }
+
+    /* عدّاد تنازلي */
+    .countdown-box {
+      background: linear-gradient(135deg, #fef3c7, #fffbf0);
+      border: 2px solid #f7b731;
+      border-radius: 18px;
+      padding: 18px 25px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .countdown-box .info { display: flex; align-items: center; gap: 12px; }
+    .countdown-box .info i { font-size: 1.8rem; color: #f59e0b; }
+    .countdown-box .info .label { font-size: 0.8rem; color: #92400e; font-weight: 600; }
+    .countdown-box .info .exam-name { font-size: 1rem; color: #0a1f44; font-weight: 700; }
+    .countdown-timer { display: flex; gap: 10px; }
+    .countdown-timer .time-unit {
+      background: #0a1f44; color: #f7e05e;
+      border-radius: 12px; padding: 8px 12px;
+      text-align: center; min-width: 60px;
+    }
+    .countdown-timer .time-unit .num { font-size: 1.4rem; font-weight: 800; line-height: 1; }
+    .countdown-timer .time-unit .lbl { font-size: 0.65rem; color: #b0c4de; margin-top: 3px; }
+
     .exam-card { background: linear-gradient(135deg, #f8f9fa, #fff); border-radius: 20px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #0a1f44; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
     .exam-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
     .exam-card.comprehensive { border-right-color: #dc2626; background: linear-gradient(135deg, #fef2f2, #fff); }
@@ -114,8 +213,10 @@
     .section-header h4 { color: #0a1f44; font-weight: 800; margin: 0; font-size: 1.4rem; }
     .section-header .badge-grade { background: #0a1f44; color: #f7e05e; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
 
-    #toastNotification { position: fixed; bottom: 30px; right: 30px; z-index: 9999; min-width: 280px; }
-    .toast-custom { border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); padding: 12px 20px; }
+    #toastNotification { position: fixed; bottom: 30px; right: 30px; z-index: 9999; min-width: 300px; }
+    .toast-custom { border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); padding: 12px 20px; display: flex; align-items: center; gap: 10px; }
+    .toast-icon { font-size: 1.5rem; }
+
     .extra-links { background: #f8f9fa; padding: 10px 0; border-bottom: 1px solid #e9ecef; text-align: center; }
     .extra-links a { color: #0a1f44; text-decoration: none; margin: 0 12px; font-weight: 500; transition: 0.3s; font-size: 0.95rem; }
     .extra-links a:hover { color: #f7b731; text-decoration: underline; }
@@ -155,6 +256,9 @@
       .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
       .dashboard-container { padding: 20px 15px; margin: 20px 10px; }
       .exam-buttons { grid-template-columns: 1fr; }
+      .continue-btn { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .countdown-box { flex-direction: column; align-items: flex-start; }
+      .countdown-timer { width: 100%; justify-content: center; }
     }
 
     /* تنسيقات الطباعة */
@@ -162,7 +266,8 @@
       body { background: #fff !important; padding-top: 0 !important; }
       .navbar, .extra-links, footer, .report-actions,
       .btn-logout, .btn-go-lessons, .btn-go-exams,
-      #toastNotification, .btn-dark-mode, #darkModeToggle { display: none !important; }
+      #toastNotification, .btn-dark-mode, #darkModeToggle,
+      .continue-btn, .countdown-box { display: none !important; }
       .dashboard-container { box-shadow: none !important; margin: 0 !important; padding: 20px !important; max-width: 100% !important; }
       .stat-card { border: 1px solid #ddd; page-break-inside: avoid; }
       .unit-card, .exam-card { page-break-inside: avoid; box-shadow: none !important; border: 1px solid #ddd; }
@@ -232,6 +337,35 @@
           </button>
         </div>
 
+        <!-- زر متابعة من حيث توقفت -->
+        <a href="#" id="continueBtn" class="continue-btn" style="display: none;">
+          <div class="left">
+            <span class="icon">▶️</span>
+            <div class="text">
+              <div class="title">متابعة من حيث توقفت</div>
+              <div class="name" id="lastLessonName">آخر درس</div>
+            </div>
+          </div>
+          <span class="arrow">←</span>
+        </a>
+
+        <!-- عدّاد تنازلي -->
+        <div class="countdown-box" id="countdownBox" style="display: none;">
+          <div class="info">
+            <i class="fas fa-hourglass-half"></i>
+            <div>
+              <div class="label">⏰ الامتحان القادم</div>
+              <div class="exam-name" id="nextExamName">-</div>
+            </div>
+          </div>
+          <div class="countdown-timer" id="countdownTimer">
+            <div class="time-unit"><div class="num" id="cdDays">00</div><div class="lbl">يوم</div></div>
+            <div class="time-unit"><div class="num" id="cdHours">00</div><div class="lbl">ساعة</div></div>
+            <div class="time-unit"><div class="num" id="cdMins">00</div><div class="lbl">دقيقة</div></div>
+            <div class="time-unit"><div class="num" id="cdSecs">00</div><div class="lbl">ثانية</div></div>
+          </div>
+        </div>
+
         <div id="reportLoading">
           <div class="spinner-border" role="status"></div>
           <p class="mt-2">جاري تجهيز التقرير... ⏳</p>
@@ -299,9 +433,10 @@
 
   <div id="toastNotification" style="display: none;">
     <div class="toast align-items-center text-white border-0 toast-custom" role="alert">
-      <div class="d-flex">
-        <div class="toast-body" id="toastMessage">✅</div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" onclick="hideToast()"></button>
+      <div class="d-flex align-items-center w-100">
+        <span class="toast-icon" id="toastIcon">✅</span>
+        <div class="toast-body flex-grow-1" id="toastMessage">تم بنجاح</div>
+        <button type="button" class="btn-close btn-close-white ms-2" onclick="hideToast()"></button>
       </div>
     </div>
   </div>
@@ -345,7 +480,7 @@
   <script type="module">
     import { auth, database } from './firebase-config.js';
     import { onAuthStateChanged, signOut } from "firebase/auth";
-    import { ref, get, set } from "firebase/database";
+    import { ref, get, set, update } from "firebase/database";
 
     // ==========================================
     // 📚 بيانات الوحدات
@@ -376,7 +511,7 @@
     };
 
     // ==========================================
-    // 📝 بيانات الامتحانات (مع روابط PDF)
+    // 📝 بيانات الامتحانات
     // ==========================================
     const EXAMS_DATA = {
       "prep1": [
@@ -407,6 +542,9 @@
       "sec3": "تالتة ثانوي"
     };
 
+    // ==========================================
+    // 🎨 دوال مساعدة
+    // ==========================================
     function applySavedDarkMode() {
       if (localStorage.getItem('darkMode') === 'enabled') {
         document.body.classList.add('dark-mode');
@@ -421,13 +559,28 @@
       document.getElementById('darkModeToggle').textContent = isDark ? '☀️' : '🌙';
     };
 
+    // إشعار محسّن بأيقونات
     window.showToast = function(message, type = 'success') {
       const toast = document.getElementById('toastNotification');
-      document.getElementById('toastMessage').textContent = message;
       const toastDiv = toast.querySelector('.toast');
-      toastDiv.className = `toast align-items-center text-white border-0 toast-custom bg-${type === 'success' ? 'success' : type === 'danger' ? 'danger' : 'info'}`;
+      const icon = document.getElementById('toastIcon');
+
+      const icons = {
+        success: '✅',
+        danger: '❌',
+        info: 'ℹ️',
+        warning: '⚠️'
+      };
+
+      document.getElementById('toastMessage').textContent = message;
+      icon.textContent = icons[type] || '✅';
+
+      const bgColor = type === 'success' ? 'success' : type === 'danger' ? 'danger' : type === 'warning' ? 'warning' : 'info';
+      toastDiv.className = `toast align-items-center text-white border-0 toast-custom bg-${bgColor}`;
       toast.style.display = 'block';
-      setTimeout(() => toast.style.display = 'none', 4000);
+
+      clearTimeout(window._toastTimeout);
+      window._toastTimeout = setTimeout(() => toast.style.display = 'none', 4000);
     };
     window.hideToast = function() { document.getElementById('toastNotification').style.display = 'none'; };
 
@@ -438,7 +591,10 @@
       }).catch(err => showToast('خطأ: ' + err.message, 'danger'));
     };
 
-    function renderUnits(grade) {
+    // ==========================================
+    // 📚 عرض الوحدات
+    // ==========================================
+    function renderUnits(grade, unitProgress = {}) {
       const container = document.getElementById('unitsContainer');
       const units = UNITS_DATA[grade] || [];
       document.getElementById('gradeBadge').textContent = GRADE_NAMES[grade] || grade;
@@ -456,9 +612,28 @@
         const numDisplay = unit.number === 'R1' ? 'REVIEW' : unit.number === 'S' ? 'STORY' : `UNIT ${unit.number}`;
         const cardExtraClass = unit.status === 'review' ? 'review' : unit.status === 'story' ? 'story' : '';
 
+        // شريط تقدم الوحدة
+        const unitKey = String(unit.number);
+        const progress = unitProgress[unitKey] || 0;
+        const progressHTML = unit.status !== 'locked' ? `
+          <div class="unit-progress-wrapper">
+            <div class="unit-progress-label">
+              <span>التقدم</span>
+              <span>${progress}%</span>
+            </div>
+            <div class="unit-progress-bar">
+              <div class="unit-progress-fill" style="width: ${progress}%;"></div>
+            </div>
+          </div>
+        ` : '';
+
+        // Badge "جديد" متحرك
+        const newBadge = unit.status === 'new' ? '<span class="badge-new">✨ جديد</span>' : '';
+
         return `
           <div class="col-md-6 col-lg-4">
             <div class="unit-card ${unit.status === 'completed' ? 'completed' : unit.status === 'locked' ? 'locked' : cardExtraClass}">
+              ${newBadge}
               <div class="unit-header-row">
                 <span class="unit-icon">${unit.icon}</span>
                 <span class="unit-number">${numDisplay}</span>
@@ -468,14 +643,18 @@
               <div class="unit-divider"></div>
               <h6 class="unit-title-ar" dir="rtl">${unit.titleAr}</h6>
               <p class="unit-subtitle-ar" dir="rtl">${unit.subtitleAr}</p>
+              ${progressHTML}
               <span class="unit-status ${statusClass}">${statusText}</span>
-              <a href="${unit.status === 'locked' ? '#' : unit.url}" class="${btnClass}">${btnText}</a>
+              <a href="${unit.status === 'locked' ? '#' : unit.url}" class="${btnClass}" onclick="markLessonOpened('${unit.url}', '${unit.titleAr}')">${btnText}</a>
             </div>
           </div>
         `;
       }).join('');
     }
 
+    // ==========================================
+    // 📝 عرض الامتحانات
+    // ==========================================
     function renderExams(grade) {
       const container = document.getElementById('examsContainer');
       const exams = EXAMS_DATA[grade] || [];
@@ -531,6 +710,66 @@
       }).join('');
     }
 
+    // ==========================================
+    // 🎯 تسجيل آخر درس فتحه الطالب
+    // ==========================================
+    window.markLessonOpened = async function(url, name) {
+      const user = auth.currentUser;
+      if (!user) return;
+      try {
+        await update(ref(database, `students/${user.uid}`), {
+          lastLessonUrl: url,
+          lastLessonName: name,
+          lastLessonDate: new Date().toISOString()
+        });
+      } catch (err) {
+        console.warn('Could not save last lesson:', err);
+      }
+    };
+
+    // ==========================================
+    // ⏰ العدّاد التنازلي
+    // ==========================================
+    let countdownInterval = null;
+
+    function startCountdown(targetDate, examName) {
+      const box = document.getElementById('countdownBox');
+      document.getElementById('nextExamName').textContent = examName;
+      box.style.display = 'flex';
+
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      function update() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          document.getElementById('cdDays').textContent = '00';
+          document.getElementById('cdHours').textContent = '00';
+          document.getElementById('cdMins').textContent = '00';
+          document.getElementById('cdSecs').textContent = '00';
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
+        document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
+        document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
+      }
+
+      update();
+      countdownInterval = setInterval(update, 1000);
+    }
+
+    // ==========================================
+    // 📊 تحميل بيانات الطالب
+    // ==========================================
     async function loadStudentData(uid) {
       try {
         const snapshot = await get(ref(database, `students/${uid}`));
@@ -548,6 +787,7 @@
           document.getElementById('studentCertificates').textContent = data.certificates || '0';
           document.getElementById('studentLessons').textContent = data.lessonsCompleted || '0';
 
+          // آخر الاختبارات
           if (data.tests && Array.isArray(data.tests) && data.tests.length > 0) {
             const testsBody = document.getElementById('testsBody');
             testsBody.innerHTML = '';
@@ -556,12 +796,39 @@
             });
           }
 
+          // زر متابعة من حيث توقفت
+          if (data.lastLessonUrl && data.lastLessonName) {
+            const btn = document.getElementById('continueBtn');
+            btn.href = data.lastLessonUrl;
+            document.getElementById('lastLessonName').textContent = data.lastLessonName;
+            btn.style.display = 'flex';
+          }
+
+          // العدّاد التنازلي (لو فيه امتحان قادم محدد)
+          if (data.nextExamDate && data.nextExamName) {
+            const targetDate = new Date(data.nextExamDate).getTime();
+            if (targetDate > Date.now()) {
+              startCountdown(targetDate, data.nextExamName);
+            }
+          }
+
           const grade = data.grade || 'sec1';
-          renderUnits(grade);
+          const unitProgress = data.unitProgress || {};
+          renderUnits(grade, unitProgress);
           renderExams(grade);
           showToast(`مرحباً بعودتك ${data.name || 'طالب'}! 👋`, 'success');
         } else {
-          const defaultData = { name: 'طالب جديد', grade: 'sec1', level: '1', progress: '0', grade_percentage: '0%', certificates: '0', lessonsCompleted: '0', tests: [] };
+          const defaultData = {
+            name: 'طالب جديد',
+            grade: 'sec1',
+            level: '1',
+            progress: '0',
+            grade_percentage: '0%',
+            certificates: '0',
+            lessonsCompleted: '0',
+            tests: [],
+            unitProgress: {}
+          };
           await set(ref(database, `students/${uid}`), defaultData);
           await loadStudentData(uid);
           return;
@@ -617,10 +884,10 @@
         const date = new Date().toISOString().split('T')[0];
         pdf.save(`تقرير-${studentName}-${date}.pdf`);
 
-        showToast('✅ تم تحميل التقرير بنجاح', 'success');
+        showToast('تم تحميل التقرير بنجاح', 'success');
       } catch (err) {
         console.error('PDF Error:', err);
-        showToast('❌ حدث خطأ أثناء إنشاء التقرير', 'danger');
+        showToast('حدث خطأ أثناء إنشاء التقرير', 'danger');
       } finally {
         loading.style.display = 'none';
         actions.style.opacity = '1';
@@ -632,20 +899,23 @@
     // 🖨️ طباعة التقرير
     // ==========================================
     window.printReport = function() {
-      showToast('🖨️ جاري تجهيز الطباعة...', 'info');
+      showToast('جاري تجهيز الطباعة...', 'info');
       setTimeout(() => { window.print(); }, 300);
     };
 
+    // ==========================================
+    // 🚀 التشغيل عند فتح الصفحة
+    // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
       applySavedDarkMode();
       onAuthStateChanged(auth, async (user) => {
         if (!user) { window.location.href = 'login.html'; return; }
-        if (!user.emailVerified) { showToast('⚠️ أكد إيميلك أولاً', 'warning'); setTimeout(() => window.location.href = 'login.html', 2000); return; }
+        if (!user.emailVerified) { showToast('أكد إيميلك أولاً', 'warning'); setTimeout(() => window.location.href = 'login.html', 2000); return; }
         await loadStudentData(user.uid);
       });
     });
 
-    console.log('✅ Student Dashboard loaded with PDF report + Assessment PDF buttons');
+    console.log('✅ Student Dashboard v2.0 — Progress + Countdown + Continue + Enhanced Toasts');
   </script>
 
 </body>
