@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Assessment 3 - Unit 3 | أكاديمية مستر ياسر نوفل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:wght@600;700&family=Tajawal:wght@500;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Tajawal', sans-serif; background: #f0f4fa; padding-top: 78px; line-height: 1.7; }
+    .navbar-custom { background: rgba(10, 31, 68, 0.95) !important; backdrop-filter: blur(18px); padding: 14px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); z-index: 1050; }
+    .navbar-brand { direction: ltr; }
+    .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
+    .navbar-brand .brand-name span { color: #ffb347; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
+    .exam-container { max-width: 900px; margin: 30px auto; padding: 0 15px; }
+    .start-screen { background: #fff; border-radius: 28px; padding: 45px 35px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
+    .start-screen::before { content: ''; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(247,224,94,0.15), transparent 70%); border-radius: 50%; }
+    .exam-icon { font-size: 4.5rem; margin-bottom: 15px; position: relative; z-index: 1; }
+    h1.main-title { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 2rem; margin-bottom: 10px; direction: ltr; text-align: center; position: relative; z-index: 1; }
+    .arabic-subtitle { color: #1f4b8a; font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; text-align: center; position: relative; z-index: 1; }
+    .source-badge { display: inline-block; background: #fef3c7; color: #92400e; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; position: relative; z-index: 1; }
+    .exam-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 25px 0; position: relative; z-index: 1; }
+    .info-card { background: linear-gradient(135deg, #f8f9fa, #fff); border: 2px solid #e9ecef; border-radius: 14px; padding: 18px 12px; }
+    .info-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .info-value { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 700; color: #0a1f44; direction: ltr; }
+    .info-label { color: #666; font-size: 0.85rem; }
+    .rules { background: #fffbf0; border-right: 5px solid #f7b731; padding: 18px 22px; border-radius: 14px; margin: 22px 0; text-align: right; position: relative; z-index: 1; }
+    .rules h4 { color: #0a1f44; margin-bottom: 12px; font-size: 1.05rem; }
+    .rules ul { padding-right: 22px; color: #555; font-size: 0.95rem; }
+    .rules li { margin-bottom: 6px; }
+    .btn-start { background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; border: none; padding: 16px 45px; border-radius: 50px; font-weight: 700; font-size: 1.1rem; transition: all 0.3s; cursor: pointer; display: inline-flex; align-items: center; gap: 12px; font-family: 'Tajawal', sans-serif; margin: 8px; position: relative; z-index: 1; }
+    .btn-start:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 30px rgba(10, 31, 68, 0.3); color: #f7e05e; }
+    .btn-back { background: transparent; color: #0a1f44; border: 2px solid #0a1f44; padding: 13px 30px; border-radius: 50px; font-weight: 700; font-size: 1rem; transition: all 0.3s; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-family: 'Tajawal', sans-serif; margin: 8px; position: relative; z-index: 1; }
+    .btn-back:hover { background: #0a1f44; color: #f7e05e; }
+    .exam-header { background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #fff; padding: 18px 25px; border-radius: 20px; margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 6px 20px rgba(10, 31, 68, 0.2); }
+    .question-counter { background: rgba(247, 224, 94, 0.15); border: 2px solid #f7e05e; color: #f7e05e; padding: 8px 18px; border-radius: 20px; font-weight: 700; font-family: 'Cinzel', serif; font-size: 0.95rem; direction: ltr; }
+    .exam-timer { background: rgba(255,255,255,0.1); border: 2px solid #f7e05e; padding: 10px 20px; border-radius: 20px; font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.3rem; color: #f7e05e; direction: ltr; }
+    .exam-timer.warning { background: #f7b731; color: #0a1f44; animation: pulse 1s infinite; }
+    .exam-timer.danger { background: #dc3545; color: #fff; animation: pulse 0.6s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .progress-custom { width: 100%; height: 10px; background: #e9ecef; border-radius: 10px; overflow: hidden; margin-bottom: 22px; }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #f7e05e, #f7b731); border-radius: 10px; transition: width 0.4s ease; }
+    .question-card { background: #fff; border-radius: 22px; padding: 30px; box-shadow: 0 6px 25px rgba(0,0,0,0.06); margin-bottom: 18px; text-align: center; }
+    .q-badge { display: block; width: fit-content; margin: 0 auto 12px auto; background: #f7e05e; color: #0a1f44; padding: 5px 16px; border-radius: 20px; font-weight: 700; font-family: 'Cinzel', serif; font-size: 0.8rem; direction: ltr; }
+    .passage { background: #f8f9fa; border-right: 4px solid #1f4b8a; padding: 16px 20px; border-radius: 12px; margin-bottom: 18px; font-family: 'Poppins', sans-serif; direction: ltr; text-align: left; line-height: 1.8; font-size: 0.95rem; color: #333; }
+    .question-text { font-size: 1.1rem; font-weight: 700; color: #0a1f44; margin-bottom: 20px; font-family: 'Poppins', sans-serif; direction: ltr; text-align: left; line-height: 1.6; white-space: pre-line; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option { background: #fff; padding: 14px 20px; border-radius: 12px; border: 2px solid #e9ecef; cursor: pointer; transition: all 0.2s; font-family: 'Poppins', sans-serif; direction: ltr; text-align: left; font-size: 1rem; display: flex; align-items: center; gap: 12px; }
+    .option:hover { border-color: #f7b731; background: #fffbf0; transform: translateX(4px); }
+    .option.selected { border-color: #1f4b8a; background: #e3f2fd; font-weight: 600; }
+    .option-letter { background: #0a1f44; color: #f7e05e; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Cinzel', serif; flex-shrink: 0; font-size: 0.85rem; }
+    .option.selected .option-letter { background: #f7b731; color: #0a1f44; }
+    .nav-buttons { display: flex; justify-content: space-between; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+    .nav-buttons button { flex: 1; min-width: 130px; padding: 13px 22px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; font-family: 'Tajawal', sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-prev { background: transparent; color: #0a1f44; border: 2px solid #0a1f44; }
+    .btn-prev:hover:not(:disabled) { background: #0a1f44; color: #f7e05e; }
+    .btn-prev:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-next, .btn-finish { background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; border: none; }
+    .btn-next:hover, .btn-finish:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10, 31, 68, 0.3); }
+    .btn-finish { background: linear-gradient(135deg, #28a745, #20c997); color: #fff; }
+    .question-nav { background: #fff; border-radius: 18px; padding: 20px; margin-top: 22px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .question-nav h5 { color: #0a1f44; font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; text-align: center; }
+    .question-nav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(38px, 1fr)); gap: 7px; max-width: 500px; margin: 0 auto; }
+    .q-nav-btn { aspect-ratio: 1; border-radius: 10px; border: 2px solid #e9ecef; background: #fff; color: #0a1f44; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Cinzel', serif; font-size: 0.85rem; }
+    .q-nav-btn.current { background: #f7e05e; border-color: #f7b731; }
+    .q-nav-btn.answered { background: #28a745; border-color: #28a745; color: #fff; }
+    .q-nav-btn.current.answered { background: #f7e05e; color: #0a1f44; border-color: #f7b731; }
+    .results-screen { background: #fff; border-radius: 28px; padding: 45px 35px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+    .result-emoji { font-size: 4.5rem; margin-bottom: 15px; }
+    .score-display { font-family: 'Cinzel', serif; font-size: 4rem; font-weight: 900; background: linear-gradient(135deg, #0a1f44, #f7b731); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin: 15px 0; direction: ltr; }
+    .result-message { font-size: 1.3rem; font-weight: 700; margin-bottom: 22px; }
+    .result-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 25px 0; }
+    .result-stat { background: #f8f9fa; padding: 20px 12px; border-radius: 14px; border: 2px solid #e9ecef; }
+    .stat-num { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 5px; direction: ltr; }
+    .stat-label { color: #666; font-size: 0.85rem; }
+    .result-stat.correct .stat-num { color: #28a745; }
+    .result-stat.wrong .stat-num { color: #dc3545; }
+    .result-stat.skipped .stat-num { color: #6c757d; }
+    .loading-screen { background: #fff; border-radius: 28px; padding: 70px 35px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+    .spinner-border { width: 55px; height: 55px; color: #0a1f44; }
+    footer { background: #0a1f44; color: #b0c4de; padding: 25px 0; border-radius: 40px 40px 0 0; margin-top: 50px; text-align: center; font-family: 'Tajawal', sans-serif; }
+    @media (max-width: 768px) {
+      .start-screen, .results-screen { padding: 30px 20px; }
+      .question-card { padding: 22px 18px; }
+      h1.main-title { font-size: 1.5rem; }
+      .exam-timer { font-size: 1rem; padding: 8px 14px; }
+      .score-display { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-name">Mr. <span>Yasser</span> Nofal</span></a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="review-1-prep1.html">📚 المراجعة</a></li>
+          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👨‍🎓 لوحتي</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="exam-container">
+    <div id="loadingScreen" class="loading-screen">
+      <div class="spinner-border" role="status"></div>
+      <p style="margin-top: 20px; color: #666;">جاري التحضير...</p>
+    </div>
+
+    <div id="startScreen" class="start-screen" style="display: none;">
+      <div class="exam-icon">📝</div>
+      <h1 class="main-title">Weekly Assessment 3</h1>
+      <p class="arabic-subtitle">الامتحان الأسبوعي الثالث — Unit 3: Role Models</p>
+      <span class="source-badge">📖 من كتاب التقيمات الوزاري — ص 32-34</span>
+      <div class="exam-info-grid">
+        <div class="info-card"><div class="info-icon">❓</div><div class="info-value">20</div><div class="info-label">سؤال</div></div>
+        <div class="info-card"><div class="info-icon">⏱️</div><div class="info-value">30</div><div class="info-label">دقيقة</div></div>
+        <div class="info-card"><div class="info-icon">🎯</div><div class="info-value">30</div><div class="info-label">درجة</div></div>
+        <div class="info-card"><div class="info-icon">📚</div><div class="info-value">Unit 3</div><div class="info-label">الوحدة</div></div>
+      </div>
+      <div class="rules">
+        <h4>📋 قواعد الامتحان:</h4>
+        <ul>
+          <li>20 سؤال — من <strong>كتاب التقيمات الوزاري</strong> (ص 32-34)</li>
+          <li>المدة: 30 دقيقة</li>
+          <li>التصحيح فوري + تفسير كل إجابة</li>
+        </ul>
+      </div>
+      <button class="btn-start" onclick="startExam()"><i class="fas fa-play"></i> ابدأ الامتحان</button>
+      <a href="review-1-prep1.html" class="btn-back"><i class="fas fa-arrow-right"></i> العودة للمراجعة</a>
+    </div>
+
+    <div id="examScreen" style="display: none;">
+      <div class="exam-header">
+        <span class="question-counter" id="questionCounter">Question 1 / 20</span>
+        <div class="exam-timer" id="timer">30:00</div>
+      </div>
+      <div class="progress-custom"><div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div></div>
+      <div class="question-card" id="questionCard"></div>
+      <div class="nav-buttons">
+        <button class="btn-prev" id="prevBtn" onclick="prevQuestion()" disabled><i class="fas fa-arrow-right"></i> السابق</button>
+        <button class="btn-next" id="nextBtn" onclick="nextQuestion()">التالي <i class="fas fa-arrow-left"></i></button>
+      </div>
+      <div class="question-nav">
+        <h5>🎯 التنقل السريع</h5>
+        <div class="question-nav-grid" id="questionNavGrid"></div>
+      </div>
+    </div>
+
+    <div id="resultsScreen" class="results-screen" style="display: none;">
+      <div class="result-emoji" id="resultEmoji">🏆</div>
+      <div class="score-display" id="scoreDisplay">0%</div>
+      <div class="result-message" id="resultMessage">أداء رائع!</div>
+      <div class="result-stats">
+        <div class="result-stat correct"><div class="stat-num" id="correctCount">0</div><div class="stat-label">✅ صحيحة</div></div>
+        <div class="result-stat wrong"><div class="stat-num" id="wrongCount">0</div><div class="stat-label">❌ خاطئة</div></div>
+        <div class="result-stat skipped"><div class="stat-num" id="skippedCount">0</div><div class="stat-label">⏭️ لم تُجب</div></div>
+      </div>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 25px;">
+        <button class="btn-start" onclick="location.reload()"><i class="fas fa-redo"></i> إعادة الامتحان</button>
+        <a href="review-1-prep1.html" class="btn-back"><i class="fas fa-arrow-right"></i> العودة للمراجعة</a>
+      </div>
+      <div id="reviewSection" style="margin-top: 35px; text-align: right;"></div>
+    </div>
+  </div>
+
+  <footer><div class="container"><p>© 2026 أكاديمية مستر ياسر نوفل</p></div></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const EXAM_QUESTIONS = [
+      { type: "listening", passage: "The monorail will improve the daily life of Egyptian citizen in many ways. First, it will reduce travel time. Second, it will help reduce pollution because it uses electricity instead of fuel.", question: "The monorail will increase pollution as it uses electricity instead of fuel.", options: ["True", "False"], correct: 1, explanation: "The audio says: 'help reduce pollution because it uses electricity instead of fuel.'" },
+      { type: "listening", passage: "The monorail will reduce travel time, making it faster for people to move between different parts of the city.", question: "The monorail will reduce travel time.", options: ["True", "False"], correct: 0, explanation: "The audio confirms: 'reduce travel time.'" },
+      { type: "listening", passage: "Unlike traditional trains or buses, the monorail runs above the ground on a single rail.", question: "The monorail runs above the ground on a _______ rail.", options: ["double", "triple", "single", "wide"], correct: 2, explanation: "The audio says: 'single rail.'" },
+      { type: "listening", passage: "It uses electricity instead of fuel.", question: "The monorail uses _______ instead of fuel.", options: ["water", "electricity", "steam", "gas"], correct: 1, explanation: "The audio says: 'uses electricity instead of fuel.'" },
+      { type: "listening", passage: "Unlike traditional trains or buses, the monorail runs above the ground on a single rail, so it doesn't get stuck in traffic.", question: "The monorail doesn't get _______ in traffic.", options: ["lost", "stuck", "slow", "late"], correct: 1, explanation: "The audio says: 'doesn't get stuck in traffic.'" },
+
+      { type: "reading-vocab", question: "A/An _______ is success in reaching a goal.", options: ["achievement", "difficulty", "creativity", "slowness"], correct: 0, explanation: "Achievement = إنجاز" },
+      { type: "reading-vocab", question: "Great Egyptians such as Dr Samira Mousa continue to _______ people today.", options: ["neglect", "inspire", "fight", "discourage"], correct: 1, explanation: "Inspire = يلهم" },
+      { type: "reading-vocab", question: "Dr Gamal Hemdan _______ the State Appreciation Award in 1986.", options: ["lost", "wasted", "won", "solved"], correct: 2, explanation: "Won = فاز بـ" },
+      { type: "reading-vocab", question: "The prefix _______ gives the opposite of the word 'afraid'.", options: ["in", "un", "il", "dis"], correct: 1, explanation: "un + afraid = unafraid" },
+
+      { type: "reading-complete", passage: "Dr. Gamal Hemdan was a famous Egyptian geographer and writer. He was born in Egypt in 1928. He studied _______(1)_______ at Cairo university and later got his PHD from a university in _______(2)_______. He wasn't only a scientist, but also a deep _______(3)_______. He combined geography, history, and _______(4)_______ to explain why Egypt is a very special country.", question: "Blank (1): He studied _______ at Cairo university", options: ["geography", "history", "math", "science"], correct: 0, explanation: "The text says he studied geography at Cairo university." },
+      { type: "reading-complete", passage: "He later got his PHD from a university in _______(2)_______.", question: "Blank (2): got his PHD from a university in _______", options: ["England", "Egypt", "France", "USA"], correct: 0, explanation: "The text says: 'from a university in England.'" },
+      { type: "reading-complete", passage: "He wasn't only a scientist, but also a deep _______(3)_______.", question: "Blank (3): but also a deep _______", options: ["thinker", "artist", "singer", "painter"], correct: 0, explanation: "The text says: 'a deep thinker.'" },
+      { type: "reading-complete", passage: "He combined geography, history, and _______(4)_______ to explain why Egypt is a very special country.", question: "Blank (4): combined geography, history, and _______", options: ["politics", "music", "art", "sports"], correct: 0, explanation: "The text says: 'combined geography, history, and politics.'" },
+
+      { type: "reading", passage: "People use many devices every day to help them with different tasks. One of the most important devices is the computer. Computers are used for work, school, and entertainment. Tablets are easy to carry and great for reading books, watching movies, and going online. Headphones allow us to listen to music, watch videos, and make calls. These devices make our lives more comfortable and enjoyable.", question: "Tablets are useful for _______.", options: ["listening to music", "reading", "watching movies", "b & c"], correct: 3, explanation: "Tablets are useful for reading AND watching movies." },
+      { type: "reading", passage: "Computers are used for work, school, and entertainment. They help us write documents, search the internet, and play games.", question: "Computers are used to _______.", options: ["play outdoors", "make phone calls", "search the internet", "watch television"], correct: 2, explanation: "Computers are used to search the internet." },
+      { type: "reading", passage: "Computers are used for work, school, and entertainment.", question: "How do computers help us in daily life?", options: ["For work, school, and entertainment", "Only for games", "Only for work", "Only for entertainment"], correct: 0, explanation: "For work, school, and entertainment." },
+      { type: "reading", passage: "Headphones allow us to listen to music, watch videos, and make calls.", question: "What do we use headphones for?", options: ["Listening to music, watching videos, and making calls", "Writing documents", "Cooking", "Driving"], correct: 0, explanation: "Listen to music, watch videos, and make calls." },
+      { type: "reading", passage: "Tablets are easy to carry and great for reading books, watching movies, and going online.", question: "In what ways are tablets useful devices?", options: ["Easy to carry and useful for reading, watching, and going online", "Only for games", "Only for calls", "Heavy and difficult"], correct: 0, explanation: "Easy to carry and useful for reading, watching, going online." },
+
+      { type: "story", passage: "In 'The Magic Classroom' story, the children found a glowing book on a crystal stand.", question: "The children found a glowing book on a crystal stand.", options: ["True", "False"], correct: 0, explanation: "The story confirms: found a glowing book on a crystal stand." },
+      { type: "story", passage: "In the story, Omar had courage because his friends believed in him.", question: "Omar had courage because his friends believed in him.", options: ["True", "False"], correct: 0, explanation: "The story says Omar had courage because his friends believed in him." },
+      { type: "story", passage: "In the Magic Classroom story, important values were taught: responsibility, curiosity, teamwork, respect, perseverance, and courage.", question: "What values did you learn from The Magic Classroom?", options: ["Responsibility, teamwork, respect, courage", "Sports, games, food", "Money, fame, power", "Nothing important"], correct: 0, explanation: "Responsibility, teamwork, respect, courage." }
+    ];
+
+    const EXAM_CONFIG = { totalQuestions: 20, durationMinutes: 30 };
+    let examQuestions = [], currentQuestionIndex = 0, answers = {}, startTime = null, timerInterval = null, remainingSeconds = EXAM_CONFIG.durationMinutes * 60, isFinished = false;
+
+    function startExam() {
+      examQuestions = [...EXAM_QUESTIONS].sort(() => Math.random() - 0.5).slice(0, EXAM_CONFIG.totalQuestions);
+      currentQuestionIndex = 0; answers = {}; isFinished = false; remainingSeconds = EXAM_CONFIG.durationMinutes * 60;
+      document.getElementById('startScreen').style.display = 'none';
+      document.getElementById('examScreen').style.display = 'block';
+      document.getElementById('loadingScreen').style.display = 'none';
+      renderQuestion(); renderQuestionNav(); startTimer(); startTime = Date.now();
+    }
+
+    function renderQuestion() {
+      const q = examQuestions[currentQuestionIndex];
+      const selectedAnswer = answers[currentQuestionIndex];
+      const letters = ['A', 'B', 'C', 'D'];
+      let passageHTML = q.passage ? `<div class="passage">${q.passage}</div>` : '';
+      let optionsHTML = '';
+      q.options.forEach((opt, i) => {
+        optionsHTML += `<div class="option ${selectedAnswer === i ? 'selected' : ''}" onclick="selectAnswer(${i})"><span class="option-letter">${letters[i]}</span><span>${opt}</span></div>`;
+      });
+      document.getElementById('questionCard').innerHTML = `<span class="q-badge">${getTypeLabel(q.type)}</span>${passageHTML}<div class="question-text">${q.question}</div><div class="options">${optionsHTML}</div>`;
+      document.getElementById('questionCounter').textContent = `Question ${currentQuestionIndex + 1} / ${examQuestions.length}`;
+      document.getElementById('progressBar').style.width = ((currentQuestionIndex + 1) / examQuestions.length * 100) + '%';
+      document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+      const nextBtn = document.getElementById('nextBtn');
+      if (currentQuestionIndex === examQuestions.length - 1) { nextBtn.innerHTML = '<i class="fas fa-check"></i> إنهاء'; nextBtn.className = 'btn-finish'; nextBtn.onclick = finishExam; }
+      else { nextBtn.innerHTML = 'التالي <i class="fas fa-arrow-left"></i>'; nextBtn.className = 'btn-next'; nextBtn.onclick = nextQuestion; }
+      updateQuestionNav();
+    }
+
+    function getTypeLabel(type) {
+      return { 'listening': '🎧 LISTENING', 'reading-vocab': '📖 READING', 'reading-complete': '📖 READING', 'reading': '📖 READING', 'story': '📚 STORY' }[type] || '📝';
+    }
+
+    function selectAnswer(index) { if (isFinished) return; answers[currentQuestionIndex] = index; renderQuestion(); }
+    function prevQuestion() { if (currentQuestionIndex > 0) { currentQuestionIndex--; renderQuestion(); } }
+    function nextQuestion() { if (currentQuestionIndex < examQuestions.length - 1) { currentQuestionIndex++; renderQuestion(); } }
+    function goToQuestion(index) { currentQuestionIndex = index; renderQuestion(); }
+
+    function renderQuestionNav() {
+      const grid = document.getElementById('questionNavGrid'); grid.innerHTML = '';
+      examQuestions.forEach((_, i) => { const btn = document.createElement('button'); btn.className = 'q-nav-btn'; btn.textContent = i + 1; btn.onclick = () => goToQuestion(i); grid.appendChild(btn); });
+      updateQuestionNav();
+    }
+
+    function updateQuestionNav() {
+      document.querySelectorAll('.q-nav-btn').forEach((btn, i) => {
+        btn.classList.remove('current', 'answered');
+        if (i === currentQuestionIndex) btn.classList.add('current');
+        if (answers[i] !== undefined) btn.classList.add('answered');
+      });
+    }
+
+    function startTimer() { updateTimerDisplay(); timerInterval = setInterval(() => { remainingSeconds--; updateTimerDisplay(); if (remainingSeconds <= 0) { clearInterval(timerInterval); finishExam(); } }, 1000); }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(remainingSeconds / 60), secs = remainingSeconds % 60;
+      const timerEl = document.getElementById('timer');
+      timerEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      timerEl.classList.remove('warning', 'danger');
+      if (remainingSeconds <= 60) timerEl.classList.add('danger');
+      else if (remainingSeconds <= 300) timerEl.classList.add('warning');
+    }
+
+    function finishExam() {
+      if (isFinished) return;
+      const unanswered = examQuestions.length - Object.keys(answers).length;
+      if (unanswered > 0 && remainingSeconds > 0 && !confirm(`⚠️ فيه ${unanswered} سؤال لم تُجب عليه. متأكد؟`)) return;
+      isFinished = true; clearInterval(timerInterval);
+      let correct = 0, wrong = 0, skipped = 0;
+      examQuestions.forEach((q, i) => { if (answers[i] === undefined) skipped++; else if (answers[i] === q.correct) correct++; else wrong++; });
+      const total = examQuestions.length, percentage = Math.round((correct / total) * 100);
+      let emoji, message;
+      if (percentage >= 90) { emoji = '🏆'; message = 'ممتاز!'; }
+      else if (percentage >= 75) { emoji = '🌟'; message = 'جيد جداً!'; }
+      else if (percentage >= 60) { emoji = '👍'; message = 'جيد!'; }
+      else if (percentage >= 50) { emoji = '📚'; message = 'مقبول!'; }
+      else { emoji = '💪'; message = 'يحتاج مراجعة.'; }
+      document.getElementById('resultEmoji').textContent = emoji;
+      document.getElementById('scoreDisplay').textContent = percentage + '%';
+      document.getElementById('resultMessage').textContent = message;
+      document.getElementById('correctCount').textContent = correct;
+      document.getElementById('wrongCount').textContent = wrong;
+      document.getElementById('skippedCount').textContent = skipped;
+      renderReview();
+      document.getElementById('examScreen').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderReview() {
+      const letters = ['A', 'B', 'C', 'D'];
+      let html = '<h3 style="font-family: Playfair Display, serif; color: #0a1f44; margin-bottom: 20px; text-align: center;">📋 مراجعة الإجابات</h3>';
+      examQuestions.forEach((q, i) => {
+        const userAnswer = answers[i];
+        const isCorrect = userAnswer === q.correct;
+        const isSkipped = userAnswer === undefined;
+        let statusColor = isSkipped ? '#6c757d' : (isCorrect ? '#28a745' : '#dc3545');
+        let statusBg = isSkipped ? '#f8f9fa' : (isCorrect ? '#f0f9f4' : '#fdf2f3');
+        html += `<div style="background: ${statusBg}; border-right: 5px solid ${statusColor}; border-radius: 14px; padding: 18px; margin-bottom: 12px;">`;
+        html += `<span style="display: inline-block; background: #0a1f44; color: #f7e05e; padding: 3px 12px; border-radius: 15px; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px;">Q${i + 1} - ${getTypeLabel(q.type)}</span>`;
+        if (q.passage) html += `<div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 10px; font-size: 0.9rem;">${q.passage}</div>`;
+        html += `<div style="font-family: Poppins, sans-serif; direction: ltr; text-align: left; font-weight: 600; color: #333; margin-bottom: 10px;">${q.question}</div>`;
+        if (isSkipped) html += `<div style="background: #d4edda; color: #155724; padding: 8px 12px; border-radius: 8px; margin: 4px 0; font-size: 0.9rem; direction: ltr; text-align: left;">✅ Correct: ${letters[q.correct]}. ${q.options[q.correct]}</div>`;
+        else if (isCorrect) html += `<div style="background: #d4edda; color: #155724; padding: 8px 12px; border-radius: 8px; margin: 4px 0; font-size: 0.9rem; direction: ltr; text-align: left;">✅ Your answer: ${letters[userAnswer]}. ${q.options[userAnswer]}</div>`;
+        else { html += `<div style="background: #f8d7da; color: #721c24; padding: 8px 12px; border-radius: 8px; margin: 4px 0; font-size: 0.9rem; direction: ltr; text-align: left;">❌ Your answer: ${letters[userAnswer]}. ${q.options[userAnswer]}</div>`; html += `<div style="background: #d4edda; color: #155724; padding: 8px 12px; border-radius: 8px; margin: 4px 0; font-size: 0.9rem; direction: ltr; text-align: left;">✅ Correct: ${letters[q.correct]}. ${q.options[q.correct]}</div>`; }
+        html += `<div style="background: #fff3cd; color: #856404; padding: 10px 14px; border-radius: 10px; margin-top: 8px; font-size: 0.9rem;">💡 ${q.explanation}</div></div>`;
+      });
+      document.getElementById('reviewSection').innerHTML = html;
+    }
+
+    window.addEventListener('load', () => { setTimeout(() => { document.getElementById('loadingScreen').style.display = 'none'; document.getElementById('startScreen').style.display = 'block'; }, 700); });
+    console.log('✅ Weekly Assessment 3 Loaded');
+  </script>
+</body>
+</html>
