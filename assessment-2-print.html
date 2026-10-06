@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assessment 2 - Printable</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:wght@600;700&family=Tajawal:wght@500;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', 'Tajawal', sans-serif; background: #e8eef7; padding: 20px; direction: ltr; }
+    .print-controls { max-width: 800px; margin: 0 auto 20px; text-align: center; padding: 15px; background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    .print-controls button { background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; border: none; padding: 14px 35px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: 'Poppins', sans-serif; margin: 5px; }
+    .print-controls button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(10, 31, 68, 0.3); }
+    .print-controls .hint { color: #666; font-size: 0.9rem; margin-top: 10px; }
+    .page { width: 210mm; min-height: 297mm; padding: 15mm; margin: 0 auto 20px; background: #fff; box-shadow: 0 8px 30px rgba(0,0,0,0.1); page-break-after: always; position: relative; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 3px solid #0a1f44; margin-bottom: 20px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-logo { width: 55px; height: 55px; border-radius: 50%; background: linear-gradient(135deg, #0a1f44, #1f4b8a); display: flex; align-items: center; justify-content: center; color: #f7e05e; font-family: 'Cinzel', serif; font-weight: 900; font-size: 1.5rem; box-shadow: 0 4px 12px rgba(10, 31, 68, 0.3); }
+    .brand-text h1 { font-family: 'Cinzel', serif; color: #0a1f44; font-size: 1.1rem; margin-bottom: 2px; }
+    .brand-text p { color: #1f4b8a; font-size: 0.75rem; font-family: 'Tajawal', sans-serif; font-weight: 600; }
+    .exam-title { text-align: right; }
+    .exam-title h2 { font-family: 'Cinzel', serif; color: #0a1f44; font-size: 1.3rem; }
+    .exam-title .arabic-title { color: #1f4b8a; font-size: 0.95rem; font-family: 'Tajawal', sans-serif; font-weight: 700; }
+    .info-bar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 12px 18px; background: linear-gradient(135deg, #f0f4fa, #e8eef7); border-radius: 10px; margin-bottom: 20px; border-right: 4px solid #f7e05e; font-family: 'Tajawal', sans-serif; direction: rtl; }
+    .info-bar span { color: #0a1f44; font-size: 0.9rem; font-weight: 600; }
+    .info-bar strong { color: #1f4b8a; font-weight: 700; }
+    .section-header { background: linear-gradient(135deg, #0a1f44, #1f4b8a); color: #f7e05e; padding: 10px 18px; border-radius: 8px; margin: 18px 0 12px; font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; }
+    .section-header .marks { background: #f7e05e; color: #0a1f44; padding: 3px 12px; border-radius: 20px; font-size: 0.75rem; font-family: 'Tajawal', sans-serif; }
+    .question { margin-bottom: 14px; padding: 12px 15px; background: #fafbfc; border-radius: 8px; border-right: 3px solid #f7e05e; page-break-inside: avoid; }
+    .question-text { color: #0a1f44; font-size: 0.92rem; font-weight: 600; margin-bottom: 8px; direction: ltr; text-align: left; }
+    .question-text .num { display: inline-block; background: #0a1f44; color: #f7e05e; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 0.75rem; font-weight: 700; margin-right: 8px; font-family: 'Cinzel', serif; }
+    .passage { background: #f0f4fa; padding: 10px 14px; border-radius: 6px; font-size: 0.85rem; color: #333; line-height: 1.6; margin-bottom: 10px; direction: ltr; text-align: left; border-left: 3px solid #1f4b8a; }
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-right: 32px; }
+    .option { color: #333; font-size: 0.85rem; padding: 5px 10px; direction: ltr; text-align: left; }
+    .option .letter { display: inline-block; background: #e8eef7; color: #0a1f44; width: 20px; height: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 0.7rem; font-weight: 700; margin-right: 6px; }
+    .writing-box { border: 2px dashed #1f4b8a; border-radius: 10px; padding: 15px; background: #fafbfc; min-height: 120px; }
+    .writing-box .lines { background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 24px, #cbd5e1 25px); min-height: 100px; }
+    .page-footer { position: absolute; bottom: 10mm; left: 15mm; right: 15mm; display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 2px solid #e8eef7; font-size: 0.75rem; color: #666; font-family: 'Tajawal', sans-serif; }
+    .page-footer .brand-mini { font-family: 'Cinzel', serif; color: #0a1f44; font-weight: 700; }
+    .page-footer .page-num { background: #0a1f44; color: #f7e05e; padding: 3px 12px; border-radius: 20px; font-weight: 700; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .print-controls { display: none; }
+      .page { width: 100%; min-height: auto; margin: 0; padding: 12mm; box-shadow: none; page-break-after: always; }
+      @page { size: A4; margin: 10mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-controls">
+    <button onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+    <button onclick="history.back()">← رجوع</button>
+    <p class="hint">💡 اضغط "طباعة" ثم اختر "Save as PDF"</p>
+  </div>
+
+  <div class="page">
+    <div class="page-header">
+      <div class="brand">
+        <div class="brand-logo">YN</div>
+        <div class="brand-text">
+          <h1>MR. YASSER NOFAL</h1>
+          <p>ACADEMY • أكاديمية مستر ياسر نوفل</p>
+        </div>
+      </div>
+      <div class="exam-title">
+        <h2>ASSESSMENT 2</h2>
+        <div class="arabic-title">الامتحان الأسبوعي الثاني</div>
+      </div>
+    </div>
+
+    <div class="info-bar">
+      <span>📝 <strong>Unit 2:</strong> Learning to Learn</span>
+      <span>📅 <strong>Week 2</strong></span>
+      <span>🎓 <strong>Prep 1</strong> - Term 1</span>
+      <span>⏱️ <strong>Time:</strong> 30 minutes</span>
+      <span>🎯 <strong>Total:</strong> 30 marks</span>
+    </div>
+
+    <div class="info-bar" style="direction: ltr; text-align: left;">
+      <span>👤 <strong>Name:</strong> ________________________________</span>
+      <span>🏫 <strong>Class:</strong> ______________</span>
+      <span>📊 <strong>Score:</strong> ______ / 30</span>
+    </div>
+
+    <div class="section-header"><span>A. LISTENING</span><span class="marks">3 Marks</span></div>
+
+    <div class="passage">
+      <strong>Listen and answer:</strong><br>
+      "To improve my English, I use learning styles at home and at school. In English class, I try to sit at the front to see the board clearly. To practice writing, I write 3-5 sentences each day about what I did. I can learn better when I listen and see at the same time. I always speak to my friends in English."
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">1</span>I use learning styles to improve my math.</div>
+      <div class="options"><div class="option"><span class="letter">T</span>True</div><div class="option"><span class="letter">F</span>False</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">2</span>I try to sit at the front to see the board clearly.</div>
+      <div class="options"><div class="option"><span class="letter">T</span>True</div><div class="option"><span class="letter">F</span>False</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">3</span>To practice _______, I write 3-5 sentences each day.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>speaking</div>
+        <div class="option"><span class="letter">b</span>writing</div>
+        <div class="option"><span class="letter">c</span>reading</div>
+        <div class="option"><span class="letter">d</span>listening</div>
+      </div>
+    </div>
+
+    <div class="section-header"><span>B. READING</span><span class="marks">16 Marks</span></div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">4</span>Teamwork is important as it helps students to be _______.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>easy</div>
+        <div class="option"><span class="letter">b</span>difficult</div>
+        <div class="option"><span class="letter">c</span>creative</div>
+        <div class="option"><span class="letter">d</span>slow</div>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">5</span>To be confident, students need to _______ their skills.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>neglect</div>
+        <div class="option"><span class="letter">b</span>develop</div>
+        <div class="option"><span class="letter">c</span>try</div>
+        <div class="option"><span class="letter">d</span>make</div>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">6</span>We need to share opinions and discuss problems to find _______.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>difficulties</div>
+        <div class="option"><span class="letter">b</span>tablets</div>
+        <div class="option"><span class="letter">c</span>gamers</div>
+        <div class="option"><span class="letter">d</span>solutions</div>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">7</span>Respect means we listen and care _______ each other.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>in</div>
+        <div class="option"><span class="letter">b</span>for</div>
+        <div class="option"><span class="letter">c</span>to</div>
+        <div class="option"><span class="letter">d</span>at</div>
+      </div>
+    </div>
+
+    <div class="passage">
+      <strong>Read and complete with:</strong> (creative - make - solving - devices)
+    </div>
+    <div class="passage">
+      Teamwork teaches students cooperation and leadership; it also helps them to be _______(8)_______ thinkers. Learning with others helps students to _______(9)_______ new friends because they spend much time together doing projects, _______(10)_______ problems, and doing experiments. Modern technology makes group learning very enjoyable. Students can use apps and websites on the internet to find information about their work. Using digital _______(11)_______ creates powerful learning experiences.
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">8</span>Blank (8):</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>creative</div>
+        <div class="option"><span class="letter">b</span>lazy</div>
+        <div class="option"><span class="letter">c</span>slow</div>
+        <div class="option"><span class="letter">d</span>sad</div>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">9</span>Blank (9):</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>lose</div>
+        <div class="option"><span class="letter">b</span>make</div>
+        <div class="option"><span class="letter">c</span>ignore</div>
+        <div class="option"><span class="letter">d</span>forget</div>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">10</span>Blank (10):</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>solving</div>
+        <div class="option"><span class="letter">b</span>making</div>
+        <div class="option"><span class="letter">c</span>creating</div>
+        <div class="option"><span class="letter">d</span>ignoring</div>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">11</span>Blank (11):</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>books</div>
+        <div class="option"><span class="letter">b</span>devices</div>
+        <div class="option"><span class="letter">c</span>games</div>
+        <div class="option"><span class="letter">d</span>toys</div>
+      </div>
+    </div>
+
+    <div class="section-header"><span>B. READING TEXT</span><span class="marks">Comprehension</span></div>
+
+    <div class="passage">
+      <strong>Read the text, then answer:</strong><br><br>
+      Ahmed is a university student who loves planting trees. One day, he hears that a park near his house needs some trees. The city doesn't have enough money to plant more, and Ahmed wants to help. He decides to use social media to raise money for planting trees in the park.
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">12</span>The park needs more _______.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>workers</div>
+        <div class="option"><span class="letter">b</span>trees</div>
+        <div class="option"><span class="letter">c</span>soil</div>
+        <div class="option"><span class="letter">d</span>wood</div>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">13</span>The underlined word "raise" has the same meaning as "_______".</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>collect</div>
+        <div class="option"><span class="letter">b</span>connect</div>
+        <div class="option"><span class="letter">c</span>damage</div>
+        <div class="option"><span class="letter">d</span>spoil</div>
+      </div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">14</span>What does the underlined word "He" refer to?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">15</span>Why does Ahmed decide to use social media?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">16</span>Do you think Ahmed is helpful? Why?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">1 / 3</span>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="section-header"><span>C. STORY</span><span class="marks">4 Marks</span></div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">17</span>The students stepped onto the invisible bridge, holding hands, and encouraging each other.</div>
+      <div class="options"><div class="option"><span class="letter">T</span>True</div><div class="option"><span class="letter">F</span>False</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">18</span>Courage means we try even when we feel safe.</div>
+      <div class="options"><div class="option"><span class="letter">T</span>True</div><div class="option"><span class="letter">F</span>False</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">19</span>What did the glowing sign read?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">20</span>Why do you think respect is important in teamwork?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+
+    <div class="section-header"><span>D. WRITING</span><span class="marks">7 Marks</span></div>
+
+    <div class="question">
+      <div class="question-text">
+        <span class="num">21</span>Write a paragraph of about <strong>90 words</strong> about:
+        <div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 8px; color: #92400e; font-weight: 700;">
+          ✍️ "My Learning Plan"
+        </div>
+      </div>
+      <div class="writing-box" style="min-height: 200px;"><div class="lines" style="min-height: 180px;"></div></div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">2 / 3</span>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="section-header" style="background: linear-gradient(135deg, #28a745, #20c997); color: #fff;">
+      <span>✅ ANSWER KEY - مفتاح الإجابات</span>
+      <span class="marks" style="background: #fff; color: #28a745;">للمدرس فقط</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; color: #0a1f44; margin-bottom: 10px;">A. Listening</h3>
+        <p style="font-size: 0.9rem; line-height: 2;">
+          <strong>1.</strong> False (English, not math)<br>
+          <strong>2.</strong> True<br>
+          <strong>3.</strong> b (writing)
+        </p>
+      </div>
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; color: #0a1f44; margin-bottom: 10px;">B. Reading</h3>
+        <p style="font-size: 0.9rem; line-height: 2;">
+          <strong>4.</strong> c (creative)<br>
+          <strong>5.</strong> b (develop)<br>
+          <strong>6.</strong> d (solutions)<br>
+          <strong>7.</strong> b (for)<br>
+          <strong>8.</strong> a (creative)<br>
+          <strong>9.</strong> b (make)<br>
+          <strong>10.</strong> a (solving)<br>
+          <strong>11.</strong> b (devices)<br>
+          <strong>12.</strong> b (trees)<br>
+          <strong>13.</strong> a (collect)
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <h3 style="font-family: 'Cinzel', serif; color: #0a1f44; margin-bottom: 10px;">C. Story</h3>
+      <p style="font-size: 0.9rem; line-height: 2;">
+        <strong>17.</strong> True<br>
+        <strong>18.</strong> False (courage = trying when SCARED)<br>
+        <strong>19.</strong> "Only those with respect, ambition, and courage can cross."<br>
+        <strong>20.</strong> Respect builds trust and cooperation.
+      </p>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <h3 style="font-family: 'Cinzel', serif; color: #0a1f44; margin-bottom: 10px;">D. Writing (Sample Answer)</h3>
+      <div class="passage">
+        My name is Ahmed, and I am a visual learner. I learn best by seeing information. I like to use colorful notes and mind maps to organize my ideas. My goal is to improve my English this year. I am practicing every day. I can speak English well, but I want to be more fluent. I am learning new words by reading stories. Let's improve our English together!
+      </div>
+    </div>
+
+    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 12px; text-align: center;">
+      <p style="color: #92400e; font-weight: 700; font-size: 1rem;">
+        🎓 Good luck to all our students!<br>
+        <span style="font-family: 'Tajawal', sans-serif;">بالتوفيق لجميع طلابنا الأعزاء</span>
+      </p>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">3 / 3</span>
+    </div>
+  </div>
+</body>
+</html>
