@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assessment 1 - Printable Version</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:wght@600;700&family=Tajawal:wght@500;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', 'Tajawal', sans-serif;
+      background: #e8eef7;
+      padding: 20px;
+      direction: ltr;
+    }
+    
+    .print-controls {
+      max-width: 800px;
+      margin: 0 auto 20px;
+      text-align: center;
+      padding: 15px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    
+    .print-controls button {
+      background: linear-gradient(135deg, #0a1f44, #1f4b8a);
+      color: #f7e05e;
+      border: none;
+      padding: 14px 35px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      margin: 5px;
+      transition: 0.3s;
+    }
+    
+    .print-controls button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(10, 31, 68, 0.3);
+    }
+    
+    .print-controls .hint {
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+    
+    /* Page A4 */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 15mm 15mm;
+      margin: 0 auto 20px;
+      background: #fff;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      page-break-after: always;
+      position: relative;
+    }
+    
+    /* Header */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #0a1f44;
+      margin-bottom: 20px;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .brand-logo {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a1f44, #1f4b8a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f7e05e;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(10, 31, 68, 0.3);
+    }
+    
+    .brand-text h1 {
+      font-family: 'Cinzel', serif;
+      color: #0a1f44;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+    
+    .brand-text p {
+      color: #1f4b8a;
+      font-size: 0.75rem;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 600;
+    }
+    
+    .exam-title {
+      text-align: right;
+    }
+    
+    .exam-title h2 {
+      font-family: 'Cinzel', serif;
+      color: #0a1f44;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+    }
+    
+    .exam-title .arabic-title {
+      color: #1f4b8a;
+      font-size: 0.95rem;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+    }
+    
+    /* Info Bar */
+    .info-bar {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 18px;
+      background: linear-gradient(135deg, #f0f4fa, #e8eef7);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border-right: 4px solid #f7e05e;
+      font-family: 'Tajawal', sans-serif;
+      direction: rtl;
+    }
+    
+    .info-bar span {
+      color: #0a1f44;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    .info-bar strong {
+      color: #1f4b8a;
+      font-weight: 700;
+    }
+    
+    /* Section Header */
+    .section-header {
+      background: linear-gradient(135deg, #0a1f44, #1f4b8a);
+      color: #f7e05e;
+      padding: 10px 18px;
+      border-radius: 8px;
+      margin: 18px 0 12px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .section-header .marks {
+      background: #f7e05e;
+      color: #0a1f44;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    /* Question */
+    .question {
+      margin-bottom: 14px;
+      padding: 12px 15px;
+      background: #fafbfc;
+      border-radius: 8px;
+      border-right: 3px solid #f7e05e;
+      page-break-inside: avoid;
+    }
+    
+    .question-text {
+      color: #0a1f44;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      direction: ltr;
+      text-align: left;
+    }
+    
+    .question-text .num {
+      display: inline-block;
+      background: #0a1f44;
+      color: #f7e05e;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 24px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-right: 8px;
+      font-family: 'Cinzel', serif;
+    }
+    
+    .passage {
+      background: #f0f4fa;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 10px;
+      direction: ltr;
+      text-align: left;
+      border-left: 3px solid #1f4b8a;
+    }
+    
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-right: 32px;
+    }
+    
+    .option {
+      color: #333;
+      font-size: 0.85rem;
+      padding: 5px 10px;
+      direction: ltr;
+      text-align: left;
+    }
+    
+    .option .letter {
+      display: inline-block;
+      background: #e8eef7;
+      color: #0a1f44;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+    
+    /* Writing Box */
+    .writing-box {
+      border: 2px dashed #1f4b8a;
+      border-radius: 10px;
+      padding: 15px;
+      background: #fafbfc;
+      min-height: 120px;
+    }
+    
+    .writing-box .lines {
+      background-image: repeating-linear-gradient(transparent, transparent 24px, #cbd5e1 24px, #cbd5e1 25px);
+      min-height: 100px;
+    }
+    
+    /* Footer */
+    .page-footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 15mm;
+      right: 15mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 2px solid #e8eef7;
+      font-size: 0.75rem;
+      color: #666;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    .page-footer .brand-mini {
+      font-family: 'Cinzel', serif;
+      color: #0a1f44;
+      font-weight: 700;
+    }
+    
+    .page-footer .page-num {
+      background: #0a1f44;
+      color: #f7e05e;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+    
+    /* Print Styles */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .print-controls { display: none; }
+      .page {
+        width: 100%;
+        min-height: auto;
+        margin: 0;
+        padding: 12mm;
+        box-shadow: none;
+        page-break-after: always;
+      }
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-controls">
+    <button onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+    <button onclick="history.back()">← رجوع</button>
+    <p class="hint">💡 اضغط "طباعة" ثم اختر "Save as PDF" لحفظ الملف على جهازك</p>
+  </div>
+
+  <!-- Page 1 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="brand">
+        <div class="brand-logo">YN</div>
+        <div class="brand-text">
+          <h1>MR. YASSER NOFAL</h1>
+          <p>ACADEMY • أكاديمية مستر ياسر نوفل</p>
+        </div>
+      </div>
+      <div class="exam-title">
+        <h2>ASSESSMENT 1</h2>
+        <div class="arabic-title">الامتحان الأسبوعي الأول</div>
+      </div>
+    </div>
+
+    <div class="info-bar">
+      <span>📝 <strong>Unit 1:</strong> Life in a Digital World</span>
+      <span>📅 <strong>Week 1</strong></span>
+      <span>🎓 <strong>Prep 1</strong> - Term 1</span>
+      <span>⏱️ <strong>Time:</strong> 30 minutes</span>
+      <span>🎯 <strong>Total:</strong> 30 marks</span>
+    </div>
+
+    <div class="info-bar" style="direction: ltr; text-align: left;">
+      <span>👤 <strong>Name:</strong> ________________________________</span>
+      <span>🏫 <strong>Class:</strong> ______________</span>
+      <span>📊 <strong>Score:</strong> ______ / 30</span>
+    </div>
+
+    <!-- Section A: Listening -->
+    <div class="section-header">
+      <span>A. LISTENING</span>
+      <span class="marks">3 Marks</span>
+    </div>
+
+    <div class="passage">
+      <strong>Listen to the text and complete:</strong><br>
+      "Hi everyone! My name is Tarek, and I want to share my digital day with you. I always start my morning by checking my phone. I usually have three or four messages from my school friends. At breakfast, I often use my tablet to search for news. My favorite app shows me interesting facts about animals and space. I never eat without looking at something on my screen – I know it's not a good habit!"
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">1</span>Tarek starts his day by checking his _______.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>books</div>
+        <div class="option"><span class="letter">b</span>phone</div>
+        <div class="option"><span class="letter">c</span>tablet</div>
+        <div class="option"><span class="letter">d</span>TV</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">2</span>Tarek uses his _______ to search for news at breakfast.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>phone</div>
+        <div class="option"><span class="letter">b</span>laptop</div>
+        <div class="option"><span class="letter">c</span>tablet</div>
+        <div class="option"><span class="letter">d</span>smartboard</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">3</span>Tarek's favorite app shows him facts about animals and _______.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>sports</div>
+        <div class="option"><span class="letter">b</span>food</div>
+        <div class="option"><span class="letter">c</span>space</div>
+        <div class="option"><span class="letter">d</span>music</div>
+      </div>
+    </div>
+
+    <!-- Section B: Reading -->
+    <div class="section-header">
+      <span>B. READING</span>
+      <span class="marks">16 Marks</span>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">4</span>At school, we're learning to use technology _______.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>wisely</div>
+        <div class="option"><span class="letter">b</span>carelessly</div>
+        <div class="option"><span class="letter">c</span>quickly</div>
+        <div class="option"><span class="letter">d</span>fast</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">5</span>I usually use my laptop to _______ for information for my project.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>pay</div>
+        <div class="option"><span class="letter">b</span>search</div>
+        <div class="option"><span class="letter">c</span>play</div>
+        <div class="option"><span class="letter">d</span>take</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">6</span>My father allows me to play online _______ on weekends.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>pages</div>
+        <div class="option"><span class="letter">b</span>tablets</div>
+        <div class="option"><span class="letter">c</span>games</div>
+        <div class="option"><span class="letter">d</span>books</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">7</span>Students should _______ the time they spend online.</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>improve</div>
+        <div class="option"><span class="letter">b</span>increase</div>
+        <div class="option"><span class="letter">c</span>deduce</div>
+        <div class="option"><span class="letter">d</span>reduce</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">1 / 4</span>
+    </div>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page">
+    <div class="section-header">
+      <span>B. READING (Continued)</span>
+      <span class="marks">Reading Text</span>
+    </div>
+
+    <div class="passage">
+      <strong>Read and complete the text with the words in the list:</strong><br>
+      (projects - plants - per - class - decorations)
+    </div>
+
+    <div class="passage">
+      At school, we sometimes use the smartboard in our science class. Our teacher shows us amazing videos about _______(8)_______ and animals. I love watching them! We also use computers in our computer _______(9)_______ twice a week. I'm learning to type faster - I can type 25 words _______(10)_______ minute now! After school, I always do my homework first. I usually search for information on my laptop when I need help with my _______(11)_______.
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">8</span>Blank (8):</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>plants</div>
+        <div class="option"><span class="letter">b</span>planets</div>
+        <div class="option"><span class="letter">c</span>projects</div>
+        <div class="option"><span class="letter">d</span>pens</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">9</span>Blank (9):</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>class</div>
+        <div class="option"><span class="letter">b</span>club</div>
+        <div class="option"><span class="letter">c</span>center</div>
+        <div class="option"><span class="letter">d</span>corner</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">10</span>Blank (10):</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>in</div>
+        <div class="option"><span class="letter">b</span>at</div>
+        <div class="option"><span class="letter">c</span>per</div>
+        <div class="option"><span class="letter">d</span>on</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">11</span>Blank (11):</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>projects</div>
+        <div class="option"><span class="letter">b</span>parents</div>
+        <div class="option"><span class="letter">c</span>plants</div>
+        <div class="option"><span class="letter">d</span>pencils</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <span>B. READING - Text</span>
+      <span class="marks">Comprehension</span>
+    </div>
+
+    <div class="passage">
+      <strong>Read the following text, then answer the questions:</strong><br><br>
+      Everyone has dreams and hopes for the future. Some people want to become doctors, engineers, or artists. Others dream of starting a business or helping their community. To discover your future, you need to think about your talents and what you enjoy doing. It's also important to set a clear goal and make a good plan. When you work hard and believe in yourself, you can achieve it well. Your future begins today - so take the first step and start building the life you want!
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">12</span>The underlined pronoun "it" refers to "_______".</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>building</div>
+        <div class="option"><span class="letter">b</span>community</div>
+        <div class="option"><span class="letter">c</span>goal</div>
+        <div class="option"><span class="letter">d</span>step</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">13</span>The underlined word "clear" has the same meaning as "_______".</div>
+      <div class="options">
+        <div class="option"><span class="letter">a</span>obvious</div>
+        <div class="option"><span class="letter">b</span>unclear</div>
+        <div class="option"><span class="letter">c</span>confusing</div>
+        <div class="option"><span class="letter">d</span>uncertain</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">14</span>What do some people want to become in the future?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;">
+        <div class="lines" style="min-height: 35px;"></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">15</span>Why do you think it's important to have clear goals before starting your future plans?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;">
+        <div class="lines" style="min-height: 35px;"></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">16</span>How can you discover your future?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;">
+        <div class="lines" style="min-height: 35px;"></div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">2 / 4</span>
+    </div>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page">
+    <div class="section-header">
+      <span>C. STORY</span>
+      <span class="marks">4 Marks</span>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">17</span>The students shared ideas and solved the challenge by working as a team.</div>
+      <div class="options">
+        <div class="option"><span class="letter">T</span>True</div>
+        <div class="option"><span class="letter">F</span>False</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">18</span>Adam said they need to show unkindness to succeed.</div>
+      <div class="options">
+        <div class="option"><span class="letter">T</span>True</div>
+        <div class="option"><span class="letter">F</span>False</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">19</span>What did Sara suggest?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;">
+        <div class="lines" style="min-height: 35px;"></div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">20</span>Why do you think working as a team is useful?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;">
+        <div class="lines" style="min-height: 35px;"></div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <span>D. WRITING</span>
+      <span class="marks">7 Marks</span>
+    </div>
+
+    <div class="question">
+      <div class="question-text">
+        <span class="num">21</span>Write an email of about <strong>90 words</strong> to your friend about:
+        <div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 8px; color: #92400e; font-weight: 700;">
+          ✍️ "My Daily Routine"
+        </div>
+      </div>
+      <div class="writing-box" style="min-height: 200px;">
+        <div class="lines" style="min-height: 180px;"></div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">3 / 4</span>
+    </div>
+  </div>
+
+  <!-- Page 4: Answer Key -->
+  <div class="page">
+    <div class="section-header" style="background: linear-gradient(135deg, #28a745, #20c997); color: #fff;">
+      <span>✅ ANSWER KEY - مفتاح الإجابات</span>
+      <span class="marks" style="background: #fff; color: #28a745;">للمدرس فقط</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; color: #0a1f44; margin-bottom: 10px;">A. Listening</h3>
+        <p style="font-size: 0.9rem; line-height: 2;">
+          <strong>1.</strong> b (phone)<br>
+          <strong>2.</strong> c (tablet)<br>
+          <strong>3.</strong> c (space)
+        </p>
+      </div>
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; color: #0a1f44; margin-bottom: 10px;">B. Reading</h3>
+        <p style="font-size: 0.9rem; line-height: 2;">
+          <strong>4.</strong> a (wisely)<br>
+          <strong>5.</strong> b (search)<br>
+          <strong>6.</strong> c (games)<br>
+          <strong>7.</strong> d (reduce)<br>
+          <strong>8.</strong> b (planets)<br>
+          <strong>9.</strong> a (class)<br>
+          <strong>10.</strong> c (per)<br>
+          <strong>11.</strong> a (projects)<br>
+          <strong>12.</strong> c (goal)<br>
+          <strong>13.</strong> a (obvious)
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <h3 style="font-family: 'Cinzel', serif; color: #0a1f44; margin-bottom: 10px;">C. Story</h3>
+      <p style="font-size: 0.9rem; line-height: 2;">
+        <strong>17.</strong> True<br>
+        <strong>18.</strong> False (Mr. Adam said 'responsibility and work together')<br>
+        <strong>19.</strong> She suggested: "Let's think carefully and help each other."<br>
+        <strong>20.</strong> Teamwork helps solve problems faster and builds confidence.
+      </p>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <h3 style="font-family: 'Cinzel', serif; color: #0a1f44; margin-bottom: 10px;">D. Writing (Sample Answer)</h3>
+      <div class="passage">
+        Hi Ayman,<br><br>
+        How are you? I want to tell you about my daily routine. I always wake up at 7 AM and check my phone. Then, I have breakfast while using my tablet to search for news. At school, we sometimes use the smartboard in our science class. After school, I always do my homework first. In the evening, I sometimes play online games with my friends for one hour. Before bed, I often read ebooks using night mode. What about you? Write back soon!<br><br>
+        Yours,<br>
+        Ahmed
+      </div>
+    </div>
+
+    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 12px; text-align: center;">
+      <p style="color: #92400e; font-weight: 700; font-size: 1rem;">
+        🎓 Good luck to all our students!<br>
+        <span style="font-family: 'Tajawal', sans-serif;">بالتوفيق لجميع طلابنا الأعزاء</span>
+      </p>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">4 / 4</span>
+    </div>
+  </div>
+
+</body>
+</html>
