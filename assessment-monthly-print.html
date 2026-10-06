@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monthly Assessment - Printable</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:wght@600;700&family=Tajawal:wght@500;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', 'Tajawal', sans-serif; background: #e8eef7; padding: 20px; direction: ltr; }
+    .print-controls { max-width: 800px; margin: 0 auto 20px; text-align: center; padding: 15px; background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+    .print-controls button { background: linear-gradient(135deg, #991b1b, #dc2626); color: #fff; border: none; padding: 14px 35px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; font-family: 'Poppins', sans-serif; margin: 5px; }
+    .print-controls .hint { color: #666; font-size: 0.9rem; margin-top: 10px; }
+    .page { width: 210mm; min-height: 297mm; padding: 15mm; margin: 0 auto 20px; background: #fff; box-shadow: 0 8px 30px rgba(0,0,0,0.1); page-break-after: always; position: relative; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 3px solid #991b1b; margin-bottom: 20px; }
+    .brand { display: flex; align-items: center; gap: 15px; }
+    .brand-logo { width: 75px; height: 75px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .brand-text h1 { font-family: 'Cinzel', serif; color: #0a1f44; font-size: 1.15rem; margin-bottom: 2px; letter-spacing: 1px; }
+    .brand-text p { color: #991b1b; font-size: 0.75rem; font-family: 'Tajawal', sans-serif; font-weight: 600; }
+    .exam-title { text-align: right; }
+    .exam-title h2 { font-family: 'Cinzel', serif; color: #991b1b; font-size: 1.3rem; letter-spacing: 1px; }
+    .exam-title .arabic-title { color: #991b1b; font-size: 0.95rem; font-family: 'Tajawal', sans-serif; font-weight: 700; }
+    .info-bar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 12px 18px; background: linear-gradient(135deg, #fef2f2, #fee2e2); border-radius: 10px; margin-bottom: 20px; border-right: 4px solid #dc2626; font-family: 'Tajawal', sans-serif; direction: rtl; }
+    .info-bar span { color: #0a1f44; font-size: 0.9rem; font-weight: 600; }
+    .info-bar strong { color: #991b1b; font-weight: 700; }
+    .section-header { background: linear-gradient(135deg, #991b1b, #dc2626); color: #fff; padding: 10px 18px; border-radius: 8px; margin: 18px 0 12px; font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; }
+    .section-header .marks { background: #fff; color: #991b1b; padding: 3px 12px; border-radius: 20px; font-size: 0.75rem; font-family: 'Tajawal', sans-serif; }
+    .question { margin-bottom: 14px; padding: 12px 15px; background: #fef2f2; border-radius: 8px; border-right: 3px solid #dc2626; page-break-inside: avoid; }
+    .question-text { color: #0a1f44; font-size: 0.92rem; font-weight: 600; margin-bottom: 8px; direction: ltr; text-align: left; }
+    .question-text .num { display: inline-block; background: #991b1b; color: #fff; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 0.75rem; font-weight: 700; margin-right: 8px; font-family: 'Cinzel', serif; }
+    .passage { background: #fef2f2; padding: 10px 14px; border-radius: 6px; font-size: 0.85rem; color: #333; line-height: 1.6; margin-bottom: 10px; direction: ltr; text-align: left; border-left: 3px solid #991b1b; }
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-right: 32px; }
+    .option { color: #333; font-size: 0.85rem; padding: 5px 10px; direction: ltr; text-align: left; }
+    .option .letter { display: inline-block; background: #fee2e2; color: #991b1b; width: 20px; height: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 0.7rem; font-weight: 700; margin-right: 6px; }
+    .writing-box { border: 2px dashed #991b1b; border-radius: 10px; padding: 15px; background: #fef2f2; min-height: 120px; }
+    .writing-box .lines { background-image: repeating-linear-gradient(transparent, transparent 24px, #fca5a5 24px, #fca5a5 25px); min-height: 100px; }
+    .page-footer { position: absolute; bottom: 10mm; left: 15mm; right: 15mm; display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 2px solid #fee2e2; font-size: 0.75rem; color: #666; font-family: 'Tajawal', sans-serif; }
+    .page-footer .brand-mini { font-family: 'Cinzel', serif; color: #991b1b; font-weight: 700; }
+    .page-footer .page-num { background: #991b1b; color: #fff; padding: 3px 12px; border-radius: 20px; font-weight: 700; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .print-controls { display: none; }
+      .page { width: 100%; min-height: auto; margin: 0; padding: 12mm; box-shadow: none; page-break-after: always; }
+      @page { size: A4; margin: 10mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-controls">
+    <button onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+    <button onclick="history.back()">← رجوع</button>
+    <p class="hint">💡 اضغط "طباعة" ثم اختر "Save as PDF"</p>
+  </div>
+
+  <div class="page">
+    <div class="page-header">
+      <div class="brand">
+        <div class="brand-logo"><img src="assets/images/logo.png" alt="Logo" /></div>
+        <div class="brand-text"><h1>MR. YASSER NOFAL</h1><p>ACADEMY • أكاديمية مستر ياسر نوفل</p></div>
+      </div>
+      <div class="exam-title"><h2>MONTHLY ASSESSMENT</h2><div class="arabic-title">الامتحان الشهري الشامل</div></div>
+    </div>
+
+    <div class="info-bar">
+      <span>📝 <strong>Units 1, 2, 3</strong></span>
+      <span>📅 <strong>Month 1</strong></span>
+      <span>🎓 <strong>Prep 1</strong> - Term 1</span>
+      <span>⏱️ <strong>Time:</strong> 45 minutes</span>
+      <span>🎯 <strong>Total:</strong> 30 marks</span>
+    </div>
+
+    <div class="info-bar" style="direction: ltr; text-align: left;">
+      <span>👤 <strong>Name:</strong> ________________________</span>
+      <span>🏫 <strong>Class:</strong> __________</span>
+      <span>📊 <strong>Score:</strong> _____ / 30</span>
+    </div>
+
+    <div class="section-header"><span>A. LISTENING</span><span class="marks">5 Marks</span></div>
+
+    <div class="passage"><strong>Listen and answer:</strong><br>"Every day, we make many decisions. Some are small, like choosing clothes. Others are big, and can affect our future. Making smart choices is important because all choices have consequences. To make smart choices, consider all your options. Then, you should think about the possible consequences of each option. Also, try to focus on what is most important for your future."</div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">1</span>Big decisions can affect our future.</div>
+      <div class="options"><div class="option"><span class="letter">T</span>True</div><div class="option"><span class="letter">F</span>False</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">2</span>A poor decision can lead to good decisions.</div>
+      <div class="options"><div class="option"><span class="letter">T</span>True</div><div class="option"><span class="letter">F</span>False</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">3</span>Making smart choices is important as all choices have _______.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>rewards</div><div class="option"><span class="letter">b</span>consequences</div><div class="option"><span class="letter">c</span>friends</div><div class="option"><span class="letter">d</span>money</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">4</span>To make _______ choices, consider all your options.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>bad</div><div class="option"><span class="letter">b</span>smart</div><div class="option"><span class="letter">c</span>quick</div><div class="option"><span class="letter">d</span>slow</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">5</span>Focus on what is important for your _______.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>past</div><div class="option"><span class="letter">b</span>future</div><div class="option"><span class="letter">c</span>friends</div><div class="option"><span class="letter">d</span>family</div></div>
+    </div>
+
+    <div class="section-header"><span>B. READING</span><span class="marks">16 Marks</span></div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">6</span>_______ means to act with care and think of others.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>Achievement</div><div class="option"><span class="letter">b</span>Difficult</div><div class="option"><span class="letter">c</span>Responsible</div><div class="option"><span class="letter">d</span>Slow</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">7</span>The synonym of the word "decision" is _______.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>risk</div><div class="option"><span class="letter">b</span>choice</div><div class="option"><span class="letter">c</span>cause</div><div class="option"><span class="letter">d</span>question</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">8</span>To stop doing something is to _______ up.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>lose</div><div class="option"><span class="letter">b</span>waste</div><div class="option"><span class="letter">c</span>win</div><div class="option"><span class="letter">d</span>give</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">9</span>Climbing a mountain without preparation is a big _______.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>win</div><div class="option"><span class="letter">b</span>run</div><div class="option"><span class="letter">c</span>risk</div><div class="option"><span class="letter">d</span>benefit</div></div>
+    </div>
+
+    <div class="passage"><strong>Read and complete with:</strong> (make - take - impact - injury)</div>
+    <div class="passage">Last holiday, I had to _______(10)_______ a big decision. I wanted to _______(11)_______ part in a competition. I asked my mother's advice which had a great _______(12)_______ on my decision. Before I started training, I had a bad _______(13)_______. I couldn't take a risk and play but I got a rest, which helped me to recover.</div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">10</span>Blank (10):</div>
+      <div class="options"><div class="option"><span class="letter">a</span>make</div><div class="option"><span class="letter">b</span>take</div><div class="option"><span class="letter">c</span>do</div><div class="option"><span class="letter">d</span>have</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">11</span>Blank (11):</div>
+      <div class="options"><div class="option"><span class="letter">a</span>make</div><div class="option"><span class="letter">b</span>take</div><div class="option"><span class="letter">c</span>do</div><div class="option"><span class="letter">d</span>have</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">12</span>Blank (12):</div>
+      <div class="options"><div class="option"><span class="letter">a</span>impact</div><div class="option"><span class="letter">b</span>problem</div><div class="option"><span class="letter">c</span>difficulty</div><div class="option"><span class="letter">d</span>trouble</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">13</span>Blank (13):</div>
+      <div class="options"><div class="option"><span class="letter">a</span>injury</div><div class="option"><span class="letter">b</span>meal</div><div class="option"><span class="letter">c</span>day</div><div class="option"><span class="letter">d</span>grade</div></div>
+    </div>
+
+    <div class="section-header"><span>B. READING TEXT</span><span class="marks">Comprehension</span></div>
+
+    <div class="passage"><strong>Read the text, then answer:</strong><br><br>Bassim is a doctor. He works in a small hospital in a village. He has a small house where he lives with his family. Dr Bassim is helpful and friendly. All his patients like him. In the evening, he enjoys a good time with his family.</div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">14</span>Bassim works for a small _______.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>hospital</div><div class="option"><span class="letter">b</span>school</div><div class="option"><span class="letter">c</span>theater</div><div class="option"><span class="letter">d</span>company</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">15</span>The underlined word "friendly" means _______.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>kind</div><div class="option"><span class="letter">b</span>bad</div><div class="option"><span class="letter">c</span>cruel</div><div class="option"><span class="letter">d</span>angry</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">16</span>Why do you think all patients like Dr Bassim?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">17</span>How does Dr Bassim spend his evening?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">18</span>What does the underlined pronoun "He" refer to?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">1 / 3</span>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="section-header"><span>C. STORY</span><span class="marks">4 Marks</span></div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">19</span>The children decided to build an electricity-saving machine.</div>
+      <div class="options"><div class="option"><span class="letter">T</span>True</div><div class="option"><span class="letter">F</span>False</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">20</span>The team agreed to respect each other and give everyone a chance to speak.</div>
+      <div class="options"><div class="option"><span class="letter">T</span>True</div><div class="option"><span class="letter">F</span>False</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">21</span>What did all children agree to do at the end?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">22</span>Why do you think we should have honesty?</div>
+      <div class="writing-box" style="min-height: 50px; padding: 8px;"><div class="lines" style="min-height: 35px;"></div></div>
+    </div>
+
+    <div class="section-header"><span>D. LANGUAGE</span><span class="marks">5 Marks</span></div>
+
+    <div class="question">
+      <div class="question-text"><span class="num">23</span>It's important to wash your hands before meals. (Rewrite with "should")</div>
+      <div class="options"><div class="option"><span class="letter">a</span>You should wash your hands before meals.</div><div class="option"><span class="letter">b</span>You should washing your hands.</div><div class="option"><span class="letter">c</span>You should to wash your hands.</div><div class="option"><span class="letter">d</span>You should washes your hands.</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">24</span>Eat healthy food to feel strong. (Rewrite with "If")</div>
+      <div class="options"><div class="option"><span class="letter">a</span>If you eat healthy food, you will feel strong.</div><div class="option"><span class="letter">b</span>If you eating healthy food, you feel strong.</div><div class="option"><span class="letter">c</span>If you ate healthy food, you feel strong.</div><div class="option"><span class="letter">d</span>If you eats healthy food, you will feel strong.</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">25</span>I advise you not to waste your time. (Rewrite with "shouldn't")</div>
+      <div class="options"><div class="option"><span class="letter">a</span>You shouldn't waste your time.</div><div class="option"><span class="letter">b</span>You shouldn't wasting your time.</div><div class="option"><span class="letter">c</span>You shouldn't to waste your time.</div><div class="option"><span class="letter">d</span>You shouldn't wastes your time.</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">26</span>We _______ in a hotel last summer.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>stayed</div><div class="option"><span class="letter">b</span>stay</div><div class="option"><span class="letter">c</span>stays</div><div class="option"><span class="letter">d</span>staying</div></div>
+    </div>
+    <div class="question">
+      <div class="question-text"><span class="num">27</span>Did you enjoy your time there? Yes, we _______.</div>
+      <div class="options"><div class="option"><span class="letter">a</span>did</div><div class="option"><span class="letter">b</span>do</div><div class="option"><span class="letter">c</span>does</div><div class="option"><span class="letter">d</span>are</div></div>
+    </div>
+
+    <div class="section-header"><span>E. WRITING</span><span class="marks">4 Marks</span></div>
+
+    <div class="question">
+      <div class="question-text">
+        <span class="num">28</span>Write a blog post of about <strong>90 words</strong> about:
+        <div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 8px; color: #92400e; font-weight: 700;">✍️ "How to Keep Healthy"</div>
+      </div>
+      <div class="writing-box" style="min-height: 200px;"><div class="lines" style="min-height: 180px;"></div></div>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">2 / 3</span>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="section-header" style="background: linear-gradient(135deg, #28a745, #20c997); color: #fff;">
+      <span>✅ ANSWER KEY</span>
+      <span class="marks" style="background: #fff; color: #28a745;">للمدرس فقط</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; color: #991b1b; margin-bottom: 10px;">A. Listening</h3>
+        <p style="font-size: 0.9rem; line-height: 2;"><strong>1.</strong> True<br><strong>2.</strong> False<br><strong>3.</strong> b (consequences)<br><strong>4.</strong> b (smart)<br><strong>5.</strong> b (future)</p>
+      </div>
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; color: #991b1b; margin-bottom: 10px;">B. Reading</h3>
+        <p style="font-size: 0.9rem; line-height: 2;"><strong>6.</strong> c<br><strong>7.</strong> b<br><strong>8.</strong> d<br><strong>9.</strong> c<br><strong>10.</strong> a<br><strong>11.</strong> b<br><strong>12.</strong> a<br><strong>13.</strong> a<br><strong>14.</strong> a<br><strong>15.</strong> a</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <h3 style="font-family: 'Cinzel', serif; color: #991b1b; margin-bottom: 10px;">C. Story</h3>
+      <p style="font-size: 0.9rem; line-height: 2;"><strong>19.</strong> False (Water-Saving Machine)<br><strong>20.</strong> True<br><strong>21.</strong> Respect each other and give everyone a chance to speak.<br><strong>22.</strong> Because it builds trust and integrity.</p>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <h3 style="font-family: 'Cinzel', serif; color: #991b1b; margin-bottom: 10px;">D. Language</h3>
+      <p style="font-size: 0.9rem; line-height: 2;"><strong>23.</strong> a<br><strong>24.</strong> a<br><strong>25.</strong> a<br><strong>26.</strong> a<br><strong>27.</strong> a</p>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <h3 style="font-family: 'Cinzel', serif; color: #991b1b; margin-bottom: 10px;">E. Writing (Sample)</h3>
+      <div class="passage">
+        Keeping healthy is very important for a happy life. First, we should eat healthy food like fruits, vegetables, and whole grains. We should also drink plenty of water. Second, we should exercise regularly. Exercise releases endorphins that reduce stress and improve mood. Third, we need to get enough sleep – about 8-10 hours every night. Finally, we must take care of our mental health by spending time with family and friends. Remember: a healthy body means a healthy mind!
+      </div>
+    </div>
+
+    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 12px; text-align: center;">
+      <p style="color: #92400e; font-weight: 700;">🎓 Good luck! • بالتوفيق</p>
+    </div>
+
+    <div class="page-footer">
+      <span class="brand-mini">MR. YASSER NOFAL ACADEMY</span>
+      <span>📞 01203145717</span>
+      <span class="page-num">3 / 3</span>
+    </div>
+  </div>
+</body>
+</html>
