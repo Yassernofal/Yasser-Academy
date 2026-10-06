@@ -37,12 +37,9 @@
     .navbar-custom {
       background: rgba(10, 31, 68, 0.85) !important;
       backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
       padding: 14px 0;
       box-shadow: 0 4px 30px rgba(0,0,0,0.15);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
       z-index: 1050;
-      transition: background 0.3s;
     }
     .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
     .navbar-brand img { height: 40px; width: auto; }
@@ -59,13 +56,12 @@
     .nav-link.active { color: #f7e05e !important; }
 
     .dashboard-container {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 30px auto;
       background: #fff;
       border-radius: 28px;
       padding: 35px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
     }
 
     .stat-card {
@@ -80,6 +76,7 @@
     .stat-card .number { font-size: 2.5rem; font-weight: 800; color: #0a1f44; }
     .stat-card .label { color: #666; }
 
+    /* أزرار رئيسية */
     .btn-logout {
       background: #dc3545;
       color: #fff;
@@ -91,7 +88,6 @@
     }
     .btn-logout:hover { background: #b02a37; transform: scale(1.02); }
 
-    /* زر الذهاب للامتحانات */
     .btn-go-exams {
       background: #0a1f44;
       color: #f7e05e;
@@ -105,14 +101,8 @@
       text-align: center;
       margin-bottom: 15px;
     }
-    .btn-go-exams:hover {
-      background: #f7b731;
-      color: #0a1f44;
-      transform: scale(1.02);
-      text-decoration: none;
-    }
+    .btn-go-exams:hover { background: #f7b731; color: #0a1f44; transform: scale(1.02); text-decoration: none; }
 
-    /* ✅ زر الذهاب للشرح */
     .btn-go-lessons {
       background: #f7e05e;
       color: #0a1f44;
@@ -126,12 +116,7 @@
       text-align: center;
       margin-bottom: 15px;
     }
-    .btn-go-lessons:hover {
-      background: #f7b731;
-      color: #0a1f44;
-      transform: scale(1.02);
-      text-decoration: none;
-    }
+    .btn-go-lessons:hover { background: #f7b731; color: #0a1f44; transform: scale(1.02); text-decoration: none; }
 
     .btn-dark-mode {
       background: transparent;
@@ -141,11 +126,7 @@
       padding: 5px 15px;
       transition: 0.3s;
     }
-    .btn-dark-mode:hover {
-      background: #f7e05e;
-      color: #0a1f44;
-      border-color: #f7e05e;
-    }
+    .btn-dark-mode:hover { background: #f7e05e; color: #0a1f44; border-color: #f7e05e; }
 
     .skeleton {
       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -169,6 +150,181 @@
       transition: width 0.8s ease;
     }
 
+    /* كروت الوحدات */
+    .unit-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      border-right: 5px solid #f7e05e;
+      transition: 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .unit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      border-right-color: #f7b731;
+    }
+    .unit-card.completed { border-right-color: #28a745; }
+    .unit-card.locked { border-right-color: #ccc; opacity: 0.7; }
+
+    .unit-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    .unit-number {
+      display: inline-block;
+      background: #0a1f44;
+      color: #f7e05e;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .unit-title {
+      color: #0a1f44;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .unit-desc {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    .unit-status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .status-completed { background: #d4edda; color: #155724; }
+    .status-available { background: #fff3cd; color: #856404; }
+    .status-locked { background: #f8f9fa; color: #6c757d; }
+    .status-new { background: #d1ecf1; color: #0c5460; }
+
+    .unit-btn {
+      background: #0a1f44;
+      color: #f7e05e;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: 0.3s;
+      display: block;
+      font-size: 0.95rem;
+    }
+    .unit-btn:hover {
+      background: #f7b731;
+      color: #0a1f44;
+      text-decoration: none;
+      transform: scale(1.02);
+    }
+    .unit-btn.disabled {
+      background: #ccc;
+      color: #666;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* كروت الامتحانات */
+    .exam-card {
+      background: linear-gradient(135deg, #f8f9fa, #fff);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      border-right: 5px solid #0a1f44;
+      transition: 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .exam-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+    .exam-badge {
+      display: inline-block;
+      background: #e3f2fd;
+      color: #1565c0;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      align-self: flex-start;
+    }
+    .exam-title {
+      color: #0a1f44;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .exam-info {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      color: #666;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+    .exam-info span { display: flex; align-items: center; gap: 5px; }
+
+    .exam-btn {
+      background: #0a1f44;
+      color: #f7e05e;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: 0.3s;
+      display: block;
+      font-size: 0.95rem;
+    }
+    .exam-btn:hover {
+      background: #f7b731;
+      color: #0a1f44;
+      text-decoration: none;
+    }
+
+    /* عنوان القسم */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #f7e05e;
+    }
+    .section-header h4 {
+      color: #0a1f44;
+      font-weight: 800;
+      margin: 0;
+      font-size: 1.4rem;
+    }
+    .section-header .badge-grade {
+      background: #0a1f44;
+      color: #f7e05e;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
     #toastNotification {
       position: fixed;
       bottom: 30px;
@@ -179,7 +335,6 @@
     .toast-custom {
       border-radius: 16px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-      backdrop-filter: blur(10px);
       padding: 12px 20px;
     }
 
@@ -188,7 +343,6 @@
       padding: 10px 0;
       border-bottom: 1px solid #e9ecef;
       text-align: center;
-      transition: background 0.3s;
     }
     .extra-links a {
       color: #0a1f44;
@@ -198,13 +352,7 @@
       transition: 0.3s;
       font-size: 0.95rem;
     }
-    .extra-links a:hover {
-      color: #f7b731;
-      text-decoration: underline;
-    }
-    @media (max-width: 768px) {
-      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
-    }
+    .extra-links a:hover { color: #f7b731; text-decoration: underline; }
 
     footer {
       background: #0a1f44;
@@ -213,14 +361,8 @@
       border-radius: 40px 40px 0 0;
       margin-top: 50px;
       text-align: center;
-      transition: background 0.3s;
     }
-    .social-icons a {
-      color: #b0c4de;
-      margin: 0 8px;
-      font-size: 1.2rem;
-      transition: 0.3s;
-    }
+    .social-icons a { color: #b0c4de; margin: 0 8px; font-size: 1.2rem; transition: 0.3s; }
     .social-icons a:hover { color: #f7e05e; }
     .footer-links { list-style: none; padding: 0; }
     .footer-links li { margin: 5px 0; }
@@ -228,80 +370,36 @@
     .footer-links a:hover { color: #f7e05e; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
 
-    /* ===== Dark Mode ===== */
-    body.dark-mode {
-      background: #121212;
-      color: #e0e0e0;
-    }
-    body.dark-mode .navbar-custom {
-      background: rgba(0, 0, 0, 0.95) !important;
-    }
-    body.dark-mode .dashboard-container {
-      background: #1e1e2f;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    }
-    body.dark-mode .stat-card {
-      background: #2a2a40;
-    }
-    body.dark-mode .stat-card .number {
-      color: #f7e05e;
-    }
-    body.dark-mode .stat-card .label {
-      color: #b0b0c0;
-    }
-    body.dark-mode .extra-links {
-      background: #1a1a2e;
-    }
-    body.dark-mode .extra-links a {
-      color: #b0c4de;
-    }
-    body.dark-mode .extra-links a:hover {
-      color: #f7e05e;
-    }
-    body.dark-mode .btn-dark-mode {
-      border-color: #f7e05e;
-      color: #f7e05e;
-    }
-    body.dark-mode .btn-dark-mode:hover {
-      background: #f7e05e;
-      color: #0a1f44;
-    }
-    body.dark-mode .progress-custom {
-      background: #2a2a40;
-    }
-    body.dark-mode .skeleton {
-      background: linear-gradient(90deg, #2a2a40 25%, #3a3a50 50%, #2a2a40 75%);
-    }
-    body.dark-mode footer {
-      background: #0a0a1a;
-    }
-    body.dark-mode .toast-custom {
-      background: #1e1e2f;
-      color: #e0e0e0;
-    }
-    body.dark-mode .btn-go-exams {
-      background: #f7e05e;
-      color: #0a1f44;
-    }
-    body.dark-mode .btn-go-exams:hover {
-      background: #f7b731;
-    }
-    body.dark-mode .btn-go-lessons {
-      background: #0a1f44;
-      color: #f7e05e;
-    }
-    body.dark-mode .btn-go-lessons:hover {
-      background: #1e3a8a;
-    }
+    /* Dark Mode */
+    body.dark-mode { background: #121212; color: #e0e0e0; }
+    body.dark-mode .navbar-custom { background: rgba(0,0,0,0.95) !important; }
+    body.dark-mode .dashboard-container { background: #1e1e2f; }
+    body.dark-mode .stat-card { background: #2a2a40; }
+    body.dark-mode .stat-card .number { color: #f7e05e; }
+    body.dark-mode .stat-card .label { color: #b0b0c0; }
+    body.dark-mode .unit-card { background: #2a2a40; }
+    body.dark-mode .unit-title { color: #f7e05e; }
+    body.dark-mode .unit-desc { color: #b0b0c0; }
+    body.dark-mode .exam-card { background: #2a2a40; }
+    body.dark-mode .exam-title { color: #f7e05e; }
+    body.dark-mode .extra-links { background: #1a1a2e; }
+    body.dark-mode .extra-links a { color: #b0c4de; }
+    body.dark-mode .section-header h4 { color: #f7e05e; }
+    body.dark-mode .btn-dark-mode { border-color: #f7e05e; color: #f7e05e; }
+    body.dark-mode footer { background: #0a0a1a; }
+    body.dark-mode .skeleton { background: linear-gradient(90deg, #2a2a40 25%, #3a3a50 50%, #2a2a40 75%); }
+    body.dark-mode .progress-custom { background: #2a2a40; }
+    body.dark-mode .btn-go-exams { background: #f7e05e; color: #0a1f44; }
+    body.dark-mode .btn-go-lessons { background: #0a1f44; color: #f7e05e; }
 
-    #loginLink, #registerLink, #logoutLink {
-      display: block !important;
+    @media (max-width: 768px) {
+      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
+      .dashboard-container { padding: 20px 15px; margin: 20px 10px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== شريط التنقل ===== -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
@@ -313,37 +411,17 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav-home">🏠 Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html" data-i18n="nav-levels">📚 Levels</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html" data-i18n="nav-booking">📝 Booking</a></li>
-          <li class="nav-item"><a class="nav-link" href="games.html" data-i18n="nav-games">🎮 Games</a></li>
-          <li class="nav-item"><a class="nav-link active" href="student-dashboard.html" data-i18n="nav-student">👨‍🎓 Student</a></li>
-          <li class="nav-item"><a class="nav-link" href="lessons.html" data-i18n="nav-lessons">📚 Lessons</a></li>
-          <li class="nav-item"><a class="nav-link" href="exams.html" data-i18n="nav-exams">📝 Exams</a></li>
-          
-          <li class="nav-item" id="loginLink">
-            <a class="nav-link" href="login.html" data-i18n="nav-login">🔑 Login</a>
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
+          <li class="nav-item"><a class="nav-link" href="booking.html">📝 الحجز</a></li>
+          <li class="nav-item"><a class="nav-link" href="games.html">🎮 الألعاب</a></li>
+          <li class="nav-item"><a class="nav-link" href="lessons.html">📖 الشرح</a></li>
+          <li class="nav-item"><a class="nav-link" href="exams.html">📝 الامتحانات</a></li>
+          <li class="nav-item" id="logoutLink">
+            <a class="nav-link" href="#" onclick="logoutUser()">🚪 تسجيل الخروج</a>
           </li>
-          <li class="nav-item" id="registerLink">
-            <a class="nav-link" href="register.html" data-i18n="nav-register">📝 Register</a>
-          </li>
-          
-          <li class="nav-item" id="logoutLink" style="display:none;">
-            <a class="nav-link" href="#" onclick="logoutUser()" data-i18n="nav-logout">🚪 Logout</a>
-          </li>
-
           <li class="nav-item">
-            <button class="btn btn-dark-mode btn-sm" id="darkModeToggle" onclick="toggleDarkMode()">
-              🌙
-            </button>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">🌐</a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><button class="dropdown-item lang-btn" data-lang="ar" onclick="switchLanguage('ar')">🇸🇦 العربية</button></li>
-              <li><button class="dropdown-item lang-btn" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button></li>
-            </ul>
+            <button class="btn btn-dark-mode btn-sm" id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
           </li>
         </ul>
       </div>
@@ -352,16 +430,16 @@
 
   <div class="extra-links">
     <div class="container">
-      <a href="about.html" data-i18n="about-link">🌟 About Us</a>
-      <a href="privacy-policy.html" data-i18n="privacy-link">🔒 Privacy Policy</a>
-      <a href="terms.html" data-i18n="terms-link">📜 Terms of Use</a>
+      <a href="about.html">🌟 من نحن</a>
+      <a href="privacy-policy.html">🔒 سياسة الخصوصية</a>
+      <a href="terms.html">📜 شروط الاستخدام</a>
     </div>
   </div>
 
   <section class="container">
     <div class="dashboard-container">
-      <h2 class="text-center fw-bold mb-4" data-i18n="dashboard-title">Student Dashboard</h2>
       
+      <!-- Loading -->
       <div id="loadingScreen">
         <div class="row g-4">
           <div class="col-6 col-md-3"><div class="skeleton" style="height:120px;"></div></div>
@@ -370,92 +448,113 @@
           <div class="col-6 col-md-3"><div class="skeleton" style="height:120px;"></div></div>
         </div>
         <div class="skeleton" style="height:250px; margin-top:25px;"></div>
-        <div class="skeleton" style="height:60px; margin-top:25px;"></div>
       </div>
 
+      <!-- Dashboard Content -->
       <div id="dashboardContent" style="display: none;">
-        <p class="text-center text-muted" id="welcomeMessage" data-i18n="welcome">مرحباً، الطالب!</p>
+        
+        <!-- العنوان -->
+        <h2 class="text-center fw-bold mb-2">لوحة تحكم الطالب</h2>
+        <p class="text-center text-muted mb-4" id="welcomeMessage">مرحباً!</p>
 
+        <!-- شريط التقدم -->
         <div class="mt-3 mb-4">
           <div class="d-flex justify-content-between">
-            <span data-i18n="progress-label">نسبة التقدم</span>
+            <span>نسبة التقدم</span>
             <span id="progressPercentage">0%</span>
           </div>
           <div class="progress-custom">
-            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
           </div>
         </div>
 
-        <div class="row g-4 mb-4">
+        <!-- الإحصائيات -->
+        <div class="row g-4 mb-5">
           <div class="col-md-3 col-6">
             <div class="stat-card">
               <div class="number" id="studentLevel">-</div>
-              <div class="label" data-i18n="level-label">المستوى الحالي</div>
+              <div class="label">المستوى الحالي</div>
             </div>
           </div>
           <div class="col-md-3 col-6">
             <div class="stat-card">
               <div class="number" id="studentGrade">-</div>
-              <div class="label" data-i18n="grade-label">الدرجة الكلية</div>
+              <div class="label">الدرجة الكلية</div>
             </div>
           </div>
           <div class="col-md-3 col-6">
             <div class="stat-card">
               <div class="number" id="studentCertificates">-</div>
-              <div class="label" data-i18n="certs-label">الشهادات</div>
+              <div class="label">الشهادات</div>
             </div>
           </div>
           <div class="col-md-3 col-6">
             <div class="stat-card">
               <div class="number" id="studentLessons">-</div>
-              <div class="label" data-i18n="lessons-label">الدروس المكتملة</div>
+              <div class="label">الدروس المكتملة</div>
             </div>
           </div>
         </div>
 
+        <!-- ========== قسم وحداتي ========== -->
+        <div class="mb-5">
+          <div class="section-header">
+            <h4>📚 وحداتي</h4>
+            <span class="badge-grade" id="gradeBadge">-</span>
+          </div>
+          <div class="row g-4" id="unitsContainer">
+            <!-- كروت الوحدات -->
+          </div>
+        </div>
+
+        <!-- ========== قسم امتحاناتي ========== -->
+        <div class="mb-5">
+          <div class="section-header">
+            <h4>📝 امتحاناتي</h4>
+            <span class="badge-grade">متاح الآن</span>
+          </div>
+          <div class="row g-4" id="examsContainer">
+            <!-- كروت الامتحانات -->
+          </div>
+        </div>
+
+        <!-- آخر الاختبارات -->
         <div class="mb-4">
-          <h5 class="fw-bold"><i class="fas fa-history text-primary" aria-hidden="true"></i> <span data-i18n="recent-tests">آخر الاختبارات</span></h5>
-          <div id="recentTests" class="table-responsive">
+          <h5 class="fw-bold mb-3"><i class="fas fa-history text-primary"></i> آخر الاختبارات</h5>
+          <div class="table-responsive">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th data-i18n="test-col">الاختبار</th>
-                  <th data-i18n="score-col">الدرجة</th>
-                  <th data-i18n="date-col">التاريخ</th>
+                  <th>الاختبار</th>
+                  <th>الدرجة</th>
+                  <th>التاريخ</th>
                 </tr>
               </thead>
               <tbody id="testsBody">
-                <tr>
-                  <td colspan="3" class="text-center text-muted" data-i18n="no-tests">لا توجد اختبارات سابقة</td>
-                </tr>
+                <tr><td colspan="3" class="text-center text-muted">لا توجد اختبارات سابقة</td></tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- ✅ زر الذهاب للشرح -->
+        <!-- أزرار -->
         <a href="lessons.html" class="btn-go-lessons">
-          <i class="fas fa-book-reader"></i> <span data-i18n="go-to-lessons">📚 ابدأ الشرح</span>
+          <i class="fas fa-book-reader"></i> ابدأ الشرح
         </a>
-
-        <!-- زر الذهاب للامتحانات -->
         <a href="exams.html" class="btn-go-exams">
-          <i class="fas fa-file-alt"></i> <span data-i18n="go-to-exams">الذهاب للامتحانات</span>
+          <i class="fas fa-file-alt"></i> الذهاب للامتحانات
         </a>
-
-        <button class="btn-logout w-100" onclick="logoutUser()" data-i18n="logout-btn">
-          <i class="fas fa-sign-out-alt" aria-hidden="true"></i> تسجيل الخروج
+        <button class="btn-logout w-100" onclick="logoutUser()">
+          <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
         </button>
       </div>
     </div>
   </section>
 
   <div id="toastNotification" style="display: none;">
-    <div class="toast align-items-center text-white border-0 toast-custom" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast align-items-center text-white border-0 toast-custom" role="alert">
       <div class="d-flex">
-        <div class="toast-body" id="toastMessage">
-          ✅ تم الإجراء بنجاح!
-        </div>
+        <div class="toast-body" id="toastMessage">✅</div>
         <button type="button" class="btn-close btn-close-white me-2 m-auto" onclick="hideToast()"></button>
       </div>
     </div>
@@ -465,35 +564,32 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
-          <h5 data-i18n="footer-title">Mr. Yasser Nofal Academy</h5>
-          <p data-i18n="footer-desc">تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
+          <h5>أكاديمية مستر ياسر نوفل</h5>
+          <p>تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
           <div class="social-icons">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="quick-links">روابط سريعة</h5>
+          <h5>روابط سريعة</h5>
           <ul class="footer-links">
-            <li><a href="levels.html" data-i18n="levels-link">المستويات</a></li>
-            <li><a href="booking.html" data-i18n="booking-link">الحجز</a></li>
-            <li><a href="about.html" data-i18n="about-link">من نحن</a></li>
-            <li><a href="privacy-policy.html" data-i18n="privacy-link">سياسة الخصوصية</a></li>
-            <li><a href="terms.html" data-i18n="terms-link">الشروط والأحكام</a></li>
+            <li><a href="levels.html">المستويات</a></li>
+            <li><a href="booking.html">الحجز</a></li>
+            <li><a href="about.html">من نحن</a></li>
           </ul>
         </div>
         <div class="col-md-4">
-          <h5 data-i18n="contact-title">اتصل بنا</h5>
-          <p><i class="fas fa-phone" aria-hidden="true"></i> 01203145717</p>
-          <p><i class="fas fa-envelope" aria-hidden="true"></i> info@yassernofalacademy.com</p>
-          <p><i class="fab fa-whatsapp" aria-hidden="true"></i> 01001297414</p>
+          <h5>اتصل بنا</h5>
+          <p><i class="fas fa-phone"></i> 01203145717</p>
+          <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p data-i18n="copyright">© 2026 Mr. Yasser Nofal Academy – جميع الحقوق محفوظة</p>
+        <p>© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p>
       </div>
     </div>
   </footer>
@@ -504,207 +600,213 @@
     import { auth, database } from './firebase-config.js';
     import { onAuthStateChanged, signOut } from "firebase/auth";
     import { ref, get, set } from "firebase/database";
-    import { protectPage, ROLES, redirectToCorrectDashboard } from './role-manager.js';
 
-    const translations = {
-      ar: {
-        'nav-home': '🏠 الرئيسية',
-        'nav-levels': '📚 المستويات',
-        'nav-booking': '📝 الحجز',
-        'nav-games': '🎮 الألعاب',
-        'nav-student': '👨‍🎓 الطالب',
-        'nav-lessons': '📚 الشرح',
-        'nav-exams': '📝 الامتحانات',
-        'nav-login': '🔑 تسجيل الدخول',
-        'nav-register': '📝 إنشاء حساب',
-        'nav-logout': '🚪 تسجيل الخروج',
-        'welcome': 'مرحباً، أيها الطالب!',
-        'dashboard-title': 'لوحة تحكم الطالب',
-        'level-label': 'المستوى الحالي',
-        'progress-label': 'نسبة التقدم',
-        'grade-label': 'الدرجة الكلية',
-        'certs-label': 'الشهادات',
-        'lessons-label': 'الدروس المكتملة',
-        'recent-tests': 'آخر الاختبارات',
-        'test-col': 'الاختبار',
-        'score-col': 'الدرجة',
-        'date-col': 'التاريخ',
-        'no-tests': 'لا توجد اختبارات سابقة',
-        'logout-btn': 'تسجيل الخروج',
-        'go-to-lessons': '📚 ابدأ الشرح',
-        'go-to-exams': 'الذهاب للامتحانات',
-        'loading-text': 'جاري تحميل بياناتك...',
-        'about-link': '🌟 من نحن',
-        'privacy-link': '🔒 سياسة الخصوصية',
-        'terms-link': '📜 شروط الاستخدام',
-        'footer-title': 'أكاديمية مستر ياسر نوفل',
-        'footer-desc': 'تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.',
-        'quick-links': 'روابط سريعة',
-        'levels-link': 'المستويات',
-        'booking-link': 'الحجز',
-        'contact-title': 'اتصل بنا',
-        'copyright': '© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة'
-      },
-      en: {
-        'nav-home': '🏠 Home',
-        'nav-levels': '📚 Levels',
-        'nav-booking': '📝 Booking',
-        'nav-games': '🎮 Games',
-        'nav-student': '👨‍🎓 Student',
-        'nav-lessons': '📚 Lessons',
-        'nav-exams': '📝 Exams',
-        'nav-login': '🔑 Login',
-        'nav-register': '📝 Register',
-        'nav-logout': '🚪 Logout',
-        'welcome': 'Welcome, Student!',
-        'dashboard-title': 'Student Dashboard',
-        'level-label': 'Current Level',
-        'progress-label': 'Progress',
-        'grade-label': 'Total Grade',
-        'certs-label': 'Certificates',
-        'lessons-label': 'Lessons Completed',
-        'recent-tests': 'Recent Tests',
-        'test-col': 'Test',
-        'score-col': 'Score',
-        'date-col': 'Date',
-        'no-tests': 'No previous tests',
-        'logout-btn': 'Logout',
-        'go-to-lessons': '📚 Start Learning',
-        'go-to-exams': 'Go to Exams',
-        'loading-text': 'Loading your data...',
-        'about-link': '🌟 About Us',
-        'privacy-link': '🔒 Privacy Policy',
-        'terms-link': '📜 Terms of Use',
-        'footer-title': 'Mr. Yasser Nofal Academy',
-        'footer-desc': 'Learn English from scratch to professionalism with the best trainers.',
-        'quick-links': 'Quick Links',
-        'levels-link': 'Levels',
-        'booking-link': 'Booking',
-        'contact-title': 'Contact Us',
-        'copyright': '© 2026 Mr. Yasser Nofal Academy – All Rights Reserved'
-      }
+    // ==========================================
+    // 📚 بيانات الوحدات (مكتوبة هنا مباشرة)
+    // ==========================================
+    const UNITS_DATA = {
+      // أولى إعدادي
+      "prep1": [
+        { number: 1, title: "Unit 1", titleAr: "الوحدة الأولى", url: "unit1-prep1.html", icon: "📖", status: "available", desc: "أساسيات اللغة الإنجليزية" },
+        { number: 2, title: "Unit 2", titleAr: "الوحدة الثانية", url: "unit2-prep1.html", icon: "📖", status: "locked", desc: "قواعد ومفردات" },
+        { number: 3, title: "Unit 3", titleAr: "الوحدة الثالثة", url: "unit3-prep1.html", icon: "📖", status: "locked", desc: "قراءة وكتابة" }
+      ],
+      // أولى ثانوي
+      "sec1": [
+        { number: 1, title: "Unit 1", titleAr: "الوحدة الأولى", url: "sec1-unit1.html", icon: "📖", status: "available", desc: "قواعد ومفردات" },
+        { number: 2, title: "Unit 2", titleAr: "الوحدة الثانية", url: "sec1-unit2.html", icon: "📖", status: "available", desc: "قراءة وتحليل" },
+        { number: 3, title: "Unit 3", titleAr: "الوحدة الثالثة", url: "sec1-unit3.html", icon: "📖", status: "available", desc: "كتابة ومحادثة" }
+      ],
+      // بكالوريا (تانية ثانوي)
+      "sec2": [
+        { number: 1, title: "Unit 1", titleAr: "Living Well in a Complex World", url: "unit1-living-well.html", icon: "🌟", status: "new", desc: "Well-being | الصحة النفسية" },
+        { number: 2, title: "Unit 2", titleAr: "Leisure Time", url: "unit2-leisure-time.html", icon: "🎨", status: "available", desc: "Experiences | وقت الفراغ" },
+        { number: 3, title: "Unit 3", titleAr: "Echoes of the Past", url: "unit3-echoes-past.html", icon: "🏛️", status: "locked", desc: "Identity | الهوية" },
+        { number: 4, title: "Unit 4", titleAr: "The Power of Choice", url: "unit4-power-choice.html", icon: "🛒", status: "locked", desc: "Consumption | الاختيار" },
+        { number: 5, title: "Unit 5", titleAr: "The Greenhouse Effect", url: "unit5-greenhouse-effect.html", icon: "🌍", status: "locked", desc: "Sharing the Planet | البيئة" }
+      ]
     };
 
-    window.switchLanguage = function(lang) {
-      localStorage.setItem('preferredLanguage', lang);
-      applyLanguage(lang);
-      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-      document.documentElement.lang = lang;
-      showToast(lang === 'ar' ? 'تم التبديل إلى العربية 🇸🇦' : 'Switched to English 🇬🇧', 'info');
+    // ==========================================
+    // 📝 بيانات الامتحانات
+    // ==========================================
+    const EXAMS_DATA = {
+      "prep1": [
+        { title: "امتحان Unit 1", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-prep1" }
+      ],
+      "sec1": [
+        { title: "امتحان Unit 1", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-sec1" }
+      ],
+      "sec2": [
+        { title: "امتحان Unit 1 - Living Well", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-bac" },
+        { title: "امتحان شامل Units 1-3", type: "comprehensive", questions: 30, duration: 45, url: "exam.html?id=comprehensive-bac" }
+      ]
     };
 
-    function applyLanguage(lang) {
-      const t = translations[lang] || translations.en;
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (t[key]) {
-          const iconMatch = el.innerHTML.match(/^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[\u{1F300}-\u{1F5FF}]|\p{Emoji})\s*/u);
-          const icon = iconMatch ? iconMatch[0] : '';
-          el.innerHTML = icon + t[key];
-        }
-      });
-    }
+    // أسماء الصفوف بالعربي
+    const GRADE_NAMES = {
+      "prep1": "أولى إعدادي",
+      "prep2": "تانية إعدادي",
+      "prep3": "تالتة إعدادي",
+      "sec1": "أولى ثانوي",
+      "sec2": "تانية ثانوي - بكالوريا",
+      "sec3": "تالتة ثانوي"
+    };
 
-    const savedLang = localStorage.getItem('preferredLanguage') || 'ar';
-    applyLanguage(savedLang);
-    document.documentElement.dir = savedLang === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = savedLang;
-
-    const loadingScreen = document.getElementById('loadingScreen');
-    const dashboardContent = document.getElementById('dashboardContent');
-    const welcomeMsg = document.getElementById('welcomeMessage');
-    const levelEl = document.getElementById('studentLevel');
-    const progressBar = document.getElementById('progressBar');
-    const progressPercentage = document.getElementById('progressPercentage');
-    const gradeEl = document.getElementById('studentGrade');
-    const certsEl = document.getElementById('studentCertificates');
-    const lessonsEl = document.getElementById('studentLessons');
-    const testsBody = document.getElementById('testsBody');
-
-    function updateNavbar(user) {
-      const loginLink = document.getElementById('loginLink');
-      const registerLink = document.getElementById('registerLink');
-      const logoutLink = document.getElementById('logoutLink');
-
-      if (!loginLink || !registerLink || !logoutLink) return;
-
-      if (user) {
-        loginLink.style.display = 'none';
-        registerLink.style.display = 'none';
-        logoutLink.style.display = 'block';
-      } else {
-        loginLink.style.display = 'block';
-        registerLink.style.display = 'block';
-        logoutLink.style.display = 'none';
+    // ==========================================
+    // تطبيق الوضع الليلي
+    // ==========================================
+    function applySavedDarkMode() {
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('darkModeToggle').textContent = '☀️';
       }
     }
 
+    window.toggleDarkMode = function() {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+      document.getElementById('darkModeToggle').textContent = isDark ? '☀️' : '🌙';
+    };
+
+    // ==========================================
+    // Toast
+    // ==========================================
     window.showToast = function(message, type = 'success') {
       const toast = document.getElementById('toastNotification');
-      const toastMsg = document.getElementById('toastMessage');
-      toastMsg.textContent = message;
-      
+      document.getElementById('toastMessage').textContent = message;
       const toastDiv = toast.querySelector('.toast');
-      const bgColor = {
-        success: 'bg-success',
-        danger: 'bg-danger',
-        warning: 'bg-warning',
-        info: 'bg-info'
-      }[type] || 'bg-success';
-      
-      toastDiv.className = `toast align-items-center text-white border-0 toast-custom ${bgColor}`;
-      
+      toastDiv.className = `toast align-items-center text-white border-0 toast-custom bg-${type === 'success' ? 'success' : type === 'danger' ? 'danger' : 'info'}`;
       toast.style.display = 'block';
-      setTimeout(() => {
-        toast.style.display = 'none';
-      }, 4000);
+      setTimeout(() => toast.style.display = 'none', 4000);
     };
-
     window.hideToast = function() {
       document.getElementById('toastNotification').style.display = 'none';
     };
 
-    window.toggleDarkMode = function() {
-      const body = document.body;
-      body.classList.toggle('dark-mode');
-      const isDark = body.classList.contains('dark-mode');
-      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-      document.getElementById('darkModeToggle').textContent = isDark ? '☀️' : '🌙';
-      showToast(isDark ? 'تم تفعيل الوضع الليلي 🌙' : 'تم تفعيل الوضع النهاري ☀️', 'info');
+    // ==========================================
+    // تسجيل الخروج
+    // ==========================================
+    window.logoutUser = function() {
+      signOut(auth).then(() => {
+        showToast('تم تسجيل الخروج بنجاح 👋', 'info');
+        setTimeout(() => window.location.href = 'index.html', 500);
+      }).catch(err => {
+        showToast('خطأ: ' + err.message, 'danger');
+      });
     };
 
-    function applySavedDarkMode() {
-      const darkMode = localStorage.getItem('darkMode');
-      if (darkMode === 'enabled') {
-        document.body.classList.add('dark-mode');
-        document.getElementById('darkModeToggle').textContent = '☀️';
-      } else {
-        document.getElementById('darkModeToggle').textContent = '🌙';
+    // ==========================================
+    // عرض كروت الوحدات
+    // ==========================================
+    function renderUnits(grade) {
+      const container = document.getElementById('unitsContainer');
+      const units = UNITS_DATA[grade] || [];
+      const gradeBadge = document.getElementById('gradeBadge');
+      
+      gradeBadge.textContent = GRADE_NAMES[grade] || grade;
+
+      if (units.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center text-muted py-5">
+            <i class="fas fa-inbox" style="font-size: 3rem; opacity: 0.5;"></i>
+            <p class="mt-3">لا توجد وحدات متاحة لصفك حالياً</p>
+          </div>
+        `;
+        return;
       }
+
+      container.innerHTML = units.map(unit => {
+        const statusClass = unit.status === 'completed' ? 'status-completed' : 
+                           unit.status === 'locked' ? 'status-locked' : 
+                           unit.status === 'new' ? 'status-new' : 'status-available';
+        const statusText = unit.status === 'completed' ? '✅ مكتمل' : 
+                          unit.status === 'locked' ? '🔒 مقفل' : 
+                          unit.status === 'new' ? '✨ جديد' : '📖 متاح';
+        const btnClass = unit.status === 'locked' ? 'unit-btn disabled' : 'unit-btn';
+        const btnText = unit.status === 'locked' ? '🔒 مقفل' : 
+                       unit.status === 'completed' ? 'مراجعة' : 'ابدأ';
+        
+        return `
+          <div class="col-md-6 col-lg-4">
+            <div class="unit-card ${unit.status === 'completed' ? 'completed' : unit.status === 'locked' ? 'locked' : ''}">
+              <div class="unit-icon">${unit.icon}</div>
+              <span class="unit-number">UNIT ${unit.number}</span>
+              <h5 class="unit-title">${unit.title}</h5>
+              <p class="unit-desc">${unit.titleAr} - ${unit.desc}</p>
+              <span class="unit-status ${statusClass}">${statusText}</span>
+              <a href="${unit.status === 'locked' ? '#' : unit.url}" class="${btnClass}">
+                ${btnText}
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
+    // ==========================================
+    // عرض كروت الامتحانات
+    // ==========================================
+    function renderExams(grade) {
+      const container = document.getElementById('examsContainer');
+      const exams = EXAMS_DATA[grade] || [];
+
+      if (exams.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center text-muted py-5">
+            <i class="fas fa-file-alt" style="font-size: 3rem; opacity: 0.5;"></i>
+            <p class="mt-3">لا توجد امتحانات متاحة لصفك حالياً</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = exams.map(exam => {
+        const typeText = exam.type === 'comprehensive' ? 'شامل' : 'وحدة';
+        return `
+          <div class="col-md-6">
+            <div class="exam-card">
+              <span class="exam-badge">${typeText}</span>
+              <h5 class="exam-title">${exam.title}</h5>
+              <div class="exam-info">
+                <span><i class="fas fa-question-circle"></i> ${exam.questions} سؤال</span>
+                <span><i class="fas fa-clock"></i> ${exam.duration} دقيقة</span>
+              </div>
+              <a href="${exam.url}" class="exam-btn">🚀 ابدأ الامتحان</a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ==========================================
+    // تحميل بيانات الطالب
+    // ==========================================
     async function loadStudentData(uid) {
       try {
-        const studentRef = ref(database, `students/${uid}`);
-        const snapshot = await get(studentRef);
-        
+        const snapshot = await get(ref(database, `students/${uid}`));
+        const loadingScreen = document.getElementById('loadingScreen');
+        const dashboardContent = document.getElementById('dashboardContent');
+
         if (snapshot.exists()) {
           const data = snapshot.val();
           console.log('✅ بيانات الطالب:', data);
-          
-          welcomeMsg.textContent = `مرحباً، ${data.name || 'طالب'}!`;
-          levelEl.textContent = data.level || '1';
+
+          document.getElementById('welcomeMessage').textContent = `مرحباً، ${data.name || 'طالب'}! 👋`;
+          document.getElementById('studentLevel').textContent = data.level || '1';
           
           const progressValue = parseInt(data.progress) || 0;
-          progressBar.style.width = progressValue + '%';
-          progressBar.setAttribute('aria-valuenow', progressValue);
-          progressPercentage.textContent = progressValue + '%';
+          document.getElementById('progressBar').style.width = progressValue + '%';
+          document.getElementById('progressPercentage').textContent = progressValue + '%';
           
-          gradeEl.textContent = data.grade || '0%';
-          certsEl.textContent = data.certificates || '0';
-          lessonsEl.textContent = data.lessonsCompleted || '0';
+          document.getElementById('studentGrade').textContent = data.grade_percentage || '0%';
+          document.getElementById('studentCertificates').textContent = data.certificates || '0';
+          document.getElementById('studentLessons').textContent = data.lessonsCompleted || '0';
 
+          // آخر الاختبارات
           if (data.tests && Array.isArray(data.tests) && data.tests.length > 0) {
+            const testsBody = document.getElementById('testsBody');
             testsBody.innerHTML = '';
             data.tests.slice(-5).reverse().forEach(test => {
               testsBody.innerHTML += `
@@ -715,18 +817,23 @@
                 </tr>
               `;
             });
-          } else {
-            testsBody.innerHTML = `<tr><td colspan="3" class="text-center text-muted" data-i18n="no-tests">لا توجد اختبارات سابقة</td></tr>`;
           }
+
+          // ✅ عرض الوحدات والامتحانات حسب صف الطالب
+          const grade = data.grade || 'sec1';
+          renderUnits(grade);
+          renderExams(grade);
 
           showToast(`مرحباً بعودتك ${data.name || 'طالب'}! 👋`, 'success');
 
         } else {
+          // لو مش فيه بيانات، نعمل افتراضية
           const defaultData = {
             name: 'طالب جديد',
+            grade: 'sec1',
             level: '1',
             progress: '0',
-            grade: '0%',
+            grade_percentage: '0%',
             certificates: '0',
             lessonsCompleted: '0',
             tests: []
@@ -735,47 +842,41 @@
           await loadStudentData(uid);
           return;
         }
+        
+        loadingScreen.style.display = 'none';
+        dashboardContent.style.display = 'block';
+
       } catch (error) {
-        console.error('❌ خطأ في تحميل البيانات:', error);
-        loadingScreen.innerHTML = `
+        console.error('❌ خطأ:', error);
+        document.getElementById('loadingScreen').innerHTML = `
           <div class="alert alert-danger text-center">
-            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
             خطأ في تحميل البيانات: ${error.message}
           </div>
         `;
-        return;
       }
-      
-      loadingScreen.style.display = 'none';
-      dashboardContent.style.display = 'block';
     }
 
-    window.logoutUser = function() {
-      signOut(auth).then(() => {
-        console.log('✅ تم تسجيل الخروج');
-        showToast('تم تسجيل الخروج بنجاح 👋', 'warning');
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 500);
-      }).catch((error) => {
-        console.error('❌ خطأ في تسجيل الخروج:', error);
-        showToast('حدث خطأ أثناء تسجيل الخروج: ' + error.message, 'danger');
-      });
-    };
-
+    // ==========================================
+    // تهيئة الصفحة
+    // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
       applySavedDarkMode();
-      protectPage([ROLES.STUDENT]);
-      
-      window.addEventListener('userReady', async (e) => {
-        const { user, role } = e.detail;
-        console.log('✅ الطالب جاهز:', user.email, '| الدور:', role);
-        updateNavbar(user);
-        loadStudentData(user.uid);
+
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+          window.location.href = 'login.html';
+          return;
+        }
+        if (!user.emailVerified) {
+          showToast('⚠️ لازم تأكد إيميلك أولاً', 'warning');
+          setTimeout(() => window.location.href = 'login.html', 2000);
+          return;
+        }
+        await loadStudentData(user.uid);
       });
     });
 
-    console.log('✅ Student Dashboard page loaded with lessons link');
+    console.log('✅ Student Dashboard loaded with units & exams');
   </script>
 
 </body>
