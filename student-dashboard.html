@@ -17,7 +17,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
 
   <script type="importmap">
   {
@@ -76,7 +76,6 @@
     .stat-card .number { font-size: 2.5rem; font-weight: 800; color: #0a1f44; }
     .stat-card .label { color: #666; }
 
-    /* أزرار رئيسية */
     .btn-logout {
       background: #dc3545;
       color: #fff;
@@ -150,11 +149,11 @@
       transition: width 0.8s ease;
     }
 
-    /* كروت الوحدات */
+    /* ========== كروت الوحدات ========== */
     .unit-card {
       background: #fff;
       border-radius: 20px;
-      padding: 25px;
+      padding: 22px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.06);
       border-right: 5px solid #f7e05e;
       transition: 0.3s;
@@ -170,12 +169,20 @@
       border-right-color: #f7b731;
     }
     .unit-card.completed { border-right-color: #28a745; }
-    .unit-card.locked { border-right-color: #ccc; opacity: 0.7; }
+    .unit-card.locked { border-right-color: #ccc; opacity: 0.75; }
+
+    .unit-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
 
     .unit-icon {
       font-size: 2.5rem;
-      margin-bottom: 12px;
+      line-height: 1;
     }
+
     .unit-number {
       display: inline-block;
       background: #0a1f44;
@@ -184,21 +191,50 @@
       border-radius: 20px;
       font-size: 0.75rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      font-family: 'Cinzel', serif;
     }
-    .unit-title {
+
+    .unit-title-en {
+      color: #0a1f44;
+      font-weight: 800;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.5px;
+    }
+
+    .unit-subtitle-en {
       color: #0a1f44;
       font-weight: 700;
-      font-size: 1.15rem;
-      margin-bottom: 6px;
-      line-height: 1.4;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      font-family: 'Playfair Display', serif;
+      line-height: 1.35;
+      font-style: italic;
     }
-    .unit-desc {
-      color: #666;
+
+    .unit-divider {
+      height: 2px;
+      background: linear-gradient(90deg, #f7e05e, transparent);
+      margin: 12px 0;
+      border-radius: 2px;
+    }
+
+    .unit-title-ar {
+      color: #555;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .unit-subtitle-ar {
+      color: #888;
       font-size: 0.9rem;
       margin-bottom: 15px;
+      line-height: 1.5;
       flex-grow: 1;
     }
+
     .unit-status {
       display: inline-block;
       padding: 4px 12px;
@@ -206,6 +242,7 @@
       font-size: 0.8rem;
       font-weight: 700;
       margin-bottom: 15px;
+      align-self: flex-start;
     }
     .status-completed { background: #d4edda; color: #155724; }
     .status-available { background: #fff3cd; color: #856404; }
@@ -238,7 +275,7 @@
       pointer-events: none;
     }
 
-    /* كروت الامتحانات */
+    /* ========== كروت الامتحانات ========== */
     .exam-card {
       background: linear-gradient(135deg, #f8f9fa, #fff);
       border-radius: 20px;
@@ -378,8 +415,10 @@
     body.dark-mode .stat-card .number { color: #f7e05e; }
     body.dark-mode .stat-card .label { color: #b0b0c0; }
     body.dark-mode .unit-card { background: #2a2a40; }
-    body.dark-mode .unit-title { color: #f7e05e; }
-    body.dark-mode .unit-desc { color: #b0b0c0; }
+    body.dark-mode .unit-title-en { color: #f7e05e; }
+    body.dark-mode .unit-subtitle-en { color: #f7e05e; }
+    body.dark-mode .unit-title-ar { color: #b0b0c0; }
+    body.dark-mode .unit-subtitle-ar { color: #888; }
     body.dark-mode .exam-card { background: #2a2a40; }
     body.dark-mode .exam-title { color: #f7e05e; }
     body.dark-mode .extra-links { background: #1a1a2e; }
@@ -439,7 +478,6 @@
   <section class="container">
     <div class="dashboard-container">
       
-      <!-- Loading -->
       <div id="loadingScreen">
         <div class="row g-4">
           <div class="col-6 col-md-3"><div class="skeleton" style="height:120px;"></div></div>
@@ -450,14 +488,11 @@
         <div class="skeleton" style="height:250px; margin-top:25px;"></div>
       </div>
 
-      <!-- Dashboard Content -->
       <div id="dashboardContent" style="display: none;">
         
-        <!-- العنوان -->
         <h2 class="text-center fw-bold mb-2">لوحة تحكم الطالب</h2>
         <p class="text-center text-muted mb-4" id="welcomeMessage">مرحباً!</p>
 
-        <!-- شريط التقدم -->
         <div class="mt-3 mb-4">
           <div class="d-flex justify-content-between">
             <span>نسبة التقدم</span>
@@ -468,7 +503,6 @@
           </div>
         </div>
 
-        <!-- الإحصائيات -->
         <div class="row g-4 mb-5">
           <div class="col-md-3 col-6">
             <div class="stat-card">
@@ -496,29 +530,22 @@
           </div>
         </div>
 
-        <!-- ========== قسم وحداتي ========== -->
         <div class="mb-5">
           <div class="section-header">
             <h4>📚 وحداتي</h4>
             <span class="badge-grade" id="gradeBadge">-</span>
           </div>
-          <div class="row g-4" id="unitsContainer">
-            <!-- كروت الوحدات -->
-          </div>
+          <div class="row g-4" id="unitsContainer"></div>
         </div>
 
-        <!-- ========== قسم امتحاناتي ========== -->
         <div class="mb-5">
           <div class="section-header">
             <h4>📝 امتحاناتي</h4>
             <span class="badge-grade">متاح الآن</span>
           </div>
-          <div class="row g-4" id="examsContainer">
-            <!-- كروت الامتحانات -->
-          </div>
+          <div class="row g-4" id="examsContainer"></div>
         </div>
 
-        <!-- آخر الاختبارات -->
         <div class="mb-4">
           <h5 class="fw-bold mb-3"><i class="fas fa-history text-primary"></i> آخر الاختبارات</h5>
           <div class="table-responsive">
@@ -537,7 +564,6 @@
           </div>
         </div>
 
-        <!-- أزرار -->
         <a href="lessons.html" class="btn-go-lessons">
           <i class="fas fa-book-reader"></i> ابدأ الشرح
         </a>
@@ -602,28 +628,25 @@
     import { ref, get, set } from "firebase/database";
 
     // ==========================================
-    // 📚 بيانات الوحدات (مكتوبة هنا مباشرة)
+    // 📚 بيانات الوحدات
     // ==========================================
     const UNITS_DATA = {
-      // أولى إعدادي
       "prep1": [
-        { number: 1, title: "Unit 1", titleAr: "الوحدة الأولى", url: "unit1-prep1.html", icon: "📖", status: "available", desc: "أساسيات اللغة الإنجليزية" },
-        { number: 2, title: "Unit 2", titleAr: "الوحدة الثانية", url: "unit2-prep1.html", icon: "📖", status: "locked", desc: "قواعد ومفردات" },
-        { number: 3, title: "Unit 3", titleAr: "الوحدة الثالثة", url: "unit3-prep1.html", icon: "📖", status: "locked", desc: "قراءة وكتابة" }
+        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Basics", subtitleAr: "أساسيات اللغة", url: "unit1-prep1.html", icon: "📖", status: "available" },
+        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Grammar & Vocabulary", subtitleAr: "قواعد ومفردات", url: "unit2-prep1.html", icon: "📝", status: "locked" },
+        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Reading", subtitleAr: "قراءة وكتابة", url: "unit3-prep1.html", icon: "📚", status: "locked" }
       ],
-      // أولى ثانوي
       "sec1": [
-        { number: 1, title: "Unit 1", titleAr: "الوحدة الأولى", url: "sec1-unit1.html", icon: "📖", status: "available", desc: "قواعد ومفردات" },
-        { number: 2, title: "Unit 2", titleAr: "الوحدة الثانية", url: "sec1-unit2.html", icon: "📖", status: "available", desc: "قراءة وتحليل" },
-        { number: 3, title: "Unit 3", titleAr: "الوحدة الثالثة", url: "sec1-unit3.html", icon: "📖", status: "available", desc: "كتابة ومحادثة" }
+        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Grammar", subtitleAr: "قواعد", url: "sec1-unit1.html", icon: "📘", status: "available" },
+        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Reading", subtitleAr: "قراءة", url: "sec1-unit2.html", icon: "📗", status: "available" },
+        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Writing", subtitleAr: "كتابة", url: "sec1-unit3.html", icon: "📙", status: "available" }
       ],
-      // بكالوريا (تانية ثانوي)
       "sec2": [
-        { number: 1, title: "Unit 1", titleAr: "Living Well in a Complex World", url: "unit1-living-well.html", icon: "🌟", status: "new", desc: "Well-being | الصحة النفسية" },
-        { number: 2, title: "Unit 2", titleAr: "Leisure Time", url: "unit2-leisure-time.html", icon: "🎨", status: "available", desc: "Experiences | وقت الفراغ" },
-        { number: 3, title: "Unit 3", titleAr: "Echoes of the Past", url: "unit3-echoes-past.html", icon: "🏛️", status: "locked", desc: "Identity | الهوية" },
-        { number: 4, title: "Unit 4", titleAr: "The Power of Choice", url: "unit4-power-choice.html", icon: "🛒", status: "locked", desc: "Consumption | الاختيار" },
-        { number: 5, title: "Unit 5", titleAr: "The Greenhouse Effect", url: "unit5-greenhouse-effect.html", icon: "🌍", status: "locked", desc: "Sharing the Planet | البيئة" }
+        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Living Well in a Complex World", subtitleAr: "العيش الجيد في عالم معقد", url: "unit1-living-well.html", icon: "🌟", status: "new" },
+        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Leisure Time", subtitleAr: "وقت الفراغ", url: "unit2-leisure-time.html", icon: "🎨", status: "available" },
+        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Echoes of the Past", subtitleAr: "أصداء الماضي", url: "unit3-echoes-past.html", icon: "🏛️", status: "locked" },
+        { number: 4, titleEn: "Unit 4", titleAr: "الوحدة الرابعة", subtitleEn: "The Power of Choice", subtitleAr: "قوة الاختيار", url: "unit4-power-choice.html", icon: "🛒", status: "locked" },
+        { number: 5, titleEn: "Unit 5", titleAr: "الوحدة الخامسة", subtitleEn: "The Greenhouse Effect", subtitleAr: "ظاهرة الاحتباس الحراري", url: "unit5-greenhouse-effect.html", icon: "🌍", status: "locked" }
       ]
     };
 
@@ -643,7 +666,6 @@
       ]
     };
 
-    // أسماء الصفوف بالعربي
     const GRADE_NAMES = {
       "prep1": "أولى إعدادي",
       "prep2": "تانية إعدادي",
@@ -653,9 +675,6 @@
       "sec3": "تالتة ثانوي"
     };
 
-    // ==========================================
-    // تطبيق الوضع الليلي
-    // ==========================================
     function applySavedDarkMode() {
       if (localStorage.getItem('darkMode') === 'enabled') {
         document.body.classList.add('dark-mode');
@@ -670,9 +689,6 @@
       document.getElementById('darkModeToggle').textContent = isDark ? '☀️' : '🌙';
     };
 
-    // ==========================================
-    // Toast
-    // ==========================================
     window.showToast = function(message, type = 'success') {
       const toast = document.getElementById('toastNotification');
       document.getElementById('toastMessage').textContent = message;
@@ -685,9 +701,6 @@
       document.getElementById('toastNotification').style.display = 'none';
     };
 
-    // ==========================================
-    // تسجيل الخروج
-    // ==========================================
     window.logoutUser = function() {
       signOut(auth).then(() => {
         showToast('تم تسجيل الخروج بنجاح 👋', 'info');
@@ -697,9 +710,6 @@
       });
     };
 
-    // ==========================================
-    // عرض كروت الوحدات
-    // ==========================================
     function renderUnits(grade) {
       const container = document.getElementById('unitsContainer');
       const units = UNITS_DATA[grade] || [];
@@ -726,16 +736,27 @@
                           unit.status === 'new' ? '✨ جديد' : '📖 متاح';
         const btnClass = unit.status === 'locked' ? 'unit-btn disabled' : 'unit-btn';
         const btnText = unit.status === 'locked' ? '🔒 مقفل' : 
-                       unit.status === 'completed' ? 'مراجعة' : 'ابدأ';
+                       unit.status === 'completed' ? 'مراجعة' : 'ابدأ الآن';
         
         return `
           <div class="col-md-6 col-lg-4">
             <div class="unit-card ${unit.status === 'completed' ? 'completed' : unit.status === 'locked' ? 'locked' : ''}">
-              <div class="unit-icon">${unit.icon}</div>
-              <span class="unit-number">UNIT ${unit.number}</span>
-              <h5 class="unit-title">${unit.title}</h5>
-              <p class="unit-desc">${unit.titleAr} - ${unit.desc}</p>
+              
+              <div class="unit-header-row">
+                <span class="unit-icon">${unit.icon}</span>
+                <span class="unit-number">UNIT ${unit.number}</span>
+              </div>
+              
+              <h5 class="unit-title-en" dir="ltr">${unit.titleEn}</h5>
+              <h6 class="unit-subtitle-en" dir="ltr">${unit.subtitleEn}</h6>
+              
+              <div class="unit-divider"></div>
+              
+              <h6 class="unit-title-ar" dir="rtl">${unit.titleAr}</h6>
+              <p class="unit-subtitle-ar" dir="rtl">${unit.subtitleAr}</p>
+              
               <span class="unit-status ${statusClass}">${statusText}</span>
+              
               <a href="${unit.status === 'locked' ? '#' : unit.url}" class="${btnClass}">
                 ${btnText}
               </a>
@@ -745,9 +766,6 @@
       }).join('');
     }
 
-    // ==========================================
-    // عرض كروت الامتحانات
-    // ==========================================
     function renderExams(grade) {
       const container = document.getElementById('examsContainer');
       const exams = EXAMS_DATA[grade] || [];
@@ -780,9 +798,6 @@
       }).join('');
     }
 
-    // ==========================================
-    // تحميل بيانات الطالب
-    // ==========================================
     async function loadStudentData(uid) {
       try {
         const snapshot = await get(ref(database, `students/${uid}`));
@@ -804,7 +819,6 @@
           document.getElementById('studentCertificates').textContent = data.certificates || '0';
           document.getElementById('studentLessons').textContent = data.lessonsCompleted || '0';
 
-          // آخر الاختبارات
           if (data.tests && Array.isArray(data.tests) && data.tests.length > 0) {
             const testsBody = document.getElementById('testsBody');
             testsBody.innerHTML = '';
@@ -819,7 +833,6 @@
             });
           }
 
-          // ✅ عرض الوحدات والامتحانات حسب صف الطالب
           const grade = data.grade || 'sec1';
           renderUnits(grade);
           renderExams(grade);
@@ -827,7 +840,6 @@
           showToast(`مرحباً بعودتك ${data.name || 'طالب'}! 👋`, 'success');
 
         } else {
-          // لو مش فيه بيانات، نعمل افتراضية
           const defaultData = {
             name: 'طالب جديد',
             grade: 'sec1',
@@ -856,9 +868,6 @@
       }
     }
 
-    // ==========================================
-    // تهيئة الصفحة
-    // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
       applySavedDarkMode();
 
@@ -876,8 +885,8 @@
       });
     });
 
-    console.log('✅ Student Dashboard loaded with units & exams');
+    console.log('✅ Student Dashboard loaded');
   </script>
 
 </body>
-</html>
+</html>س
