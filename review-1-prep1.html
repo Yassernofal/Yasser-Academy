@@ -186,7 +186,7 @@
     .tab-panel.active { display: block; animation: fadeIn 0.4s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Section Title */
+    /* Section Title (EN - CENTERED) */
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
@@ -204,7 +204,7 @@
     }
     .section-title i { color: #f7b731; }
 
-    /* Subsection Title (RTL) */
+    /* Subsection Title (AR - RIGHT) */
     .subsection-title {
       font-family: 'Tajawal', sans-serif;
       font-size: 1.2rem;
@@ -219,7 +219,7 @@
       text-align: right;
     }
 
-    /* Vocab Category Header (CENTERED) */
+    /* Vocab Category Header (EN - CENTERED) */
     .vocab-category {
       background: linear-gradient(135deg, #f8f9fa, #fff);
       border-radius: 16px;
@@ -290,7 +290,7 @@
       display: block;
     }
 
-    /* Grammar cards */
+    /* Grammar Cards */
     .grammar-card {
       background: linear-gradient(135deg, #eff6ff, #dbeafe);
       border-radius: 20px;
@@ -365,7 +365,7 @@
       font-family: 'Tajawal', sans-serif;
     }
 
-    /* Writing template */
+    /* Writing Template */
     .writing-box {
       background: linear-gradient(135deg, #fef3c7, #fde68a);
       border-radius: 20px;
@@ -398,7 +398,7 @@
     }
     .writing-box .template strong { color: #92400e; background: #fef3c7; padding: 0 3px; }
 
-    /* Practice Section */
+    /* Practice Section (EN title - CENTERED) */
     .practice-section {
       background: #f8f9fa;
       border-radius: 16px;
@@ -409,12 +409,19 @@
     .practice-section h4 {
       color: #0a1f44;
       font-weight: 700;
-      margin-bottom: 18px;
-      font-size: 1.1rem;
-      direction: rtl;
-      text-align: right;
+      margin-bottom: 20px;
+      font-size: 1.15rem;
+      direction: ltr;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: 'Poppins', sans-serif;
     }
+    .practice-section h4 i { color: #f7b731; }
 
+    /* Exercise */
     .exercise {
       background: #fff;
       padding: 20px;
@@ -583,7 +590,6 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
@@ -603,7 +609,6 @@
     </div>
   </nav>
 
-  <!-- Hero -->
   <div class="hero-review">
     <span class="badge-unit"><i class="fas fa-graduation-cap"></i> PREP 1 — TERM 1</span>
     <h1>Comprehensive Review</h1>
@@ -611,57 +616,24 @@
     <p style="color: #dce8f5; font-size: 1rem; position: relative; z-index: 1;">📖 الصف الأول الإعدادي — الترم الأول</p>
     
     <div class="hero-stats-grid">
-      <div class="hero-stat-card">
-        <div class="stat-icon">📚</div>
-        <div class="stat-num">150</div>
-        <div class="stat-lbl">كلمة أساسية</div>
-      </div>
-      <div class="hero-stat-card">
-        <div class="stat-icon">📐</div>
-        <div class="stat-num">3</div>
-        <div class="stat-lbl">قواعد رئيسية</div>
-      </div>
-      <div class="hero-stat-card">
-        <div class="stat-icon">📖</div>
-        <div class="stat-num">3</div>
-        <div class="stat-lbl">وحدات كاملة</div>
-      </div>
-      <div class="hero-stat-card">
-        <div class="stat-icon">🎯</div>
-        <div class="stat-num">∞</div>
-        <div class="stat-lbl">امتحانات</div>
-      </div>
+      <div class="hero-stat-card"><div class="stat-icon">📚</div><div class="stat-num">150</div><div class="stat-lbl">كلمة أساسية</div></div>
+      <div class="hero-stat-card"><div class="stat-icon">📐</div><div class="stat-num">3</div><div class="stat-lbl">قواعد رئيسية</div></div>
+      <div class="hero-stat-card"><div class="stat-icon">📖</div><div class="stat-num">3</div><div class="stat-lbl">وحدات كاملة</div></div>
+      <div class="hero-stat-card"><div class="stat-icon">🎯</div><div class="stat-num">∞</div><div class="stat-lbl">امتحانات</div></div>
     </div>
   </div>
 
   <div class="review-container">
-
-    <!-- Tabs -->
     <div class="tabs-container">
       <div class="tabs-nav">
-        <button class="tab-btn active" onclick="openTab(event, 'vocab')">
-          <i class="fas fa-spell-check"></i>
-          <span>المفردات</span>
-        </button>
-        <button class="tab-btn" onclick="openTab(event, 'grammar')">
-          <i class="fas fa-cog"></i>
-          <span>القواعد</span>
-        </button>
-        <button class="tab-btn" onclick="openTab(event, 'reading')">
-          <i class="fas fa-book-open"></i>
-          <span>القراءة</span>
-        </button>
-        <button class="tab-btn" onclick="openTab(event, 'writing')">
-          <i class="fas fa-pen-fancy"></i>
-          <span>الكتابة</span>
-        </button>
-        <button class="tab-btn" onclick="openTab(event, 'practice')">
-          <i class="fas fa-tasks"></i>
-          <span>تدريبات</span>
-        </button>
+        <button class="tab-btn active" onclick="openTab(event, 'vocab')"><i class="fas fa-spell-check"></i><span>المفردات</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'grammar')"><i class="fas fa-cog"></i><span>القواعد</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'reading')"><i class="fas fa-book-open"></i><span>القراءة</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'writing')"><i class="fas fa-pen-fancy"></i><span>الكتابة</span></button>
+        <button class="tab-btn" onclick="openTab(event, 'practice')"><i class="fas fa-tasks"></i><span>تدريبات</span></button>
       </div>
 
-      <!-- Tab 1: Vocabulary -->
+      <!-- Vocab Tab -->
       <div id="vocab" class="tab-panel active">
         <h3 class="section-title"><i class="fas fa-spell-check"></i> Vocabulary Review — مراجعة المفردات</h3>
 
@@ -725,7 +697,7 @@
         </div>
       </div>
 
-      <!-- Tab 2: Grammar -->
+      <!-- Grammar Tab -->
       <div id="grammar" class="tab-panel">
         <h3 class="section-title"><i class="fas fa-cog"></i> Grammar Review — مراجعة القواعد</h3>
 
@@ -737,18 +709,9 @@
             <div class="formula">He/She/It + Verb + s</div>
           </div>
           <div class="example-list">
-            <div class="example-item">
-              <div class="en">I <strong>check</strong> my phone every morning.</div>
-              <div class="ar">أنا أتفقد هاتفي كل صباح.</div>
-            </div>
-            <div class="example-item">
-              <div class="en">She <strong>reads</strong> ebooks before bedtime.</div>
-              <div class="ar">هي تقرأ كتباً إلكترونية قبل النوم.</div>
-            </div>
-            <div class="example-item">
-              <div class="en">They <strong>don't play</strong> online games.</div>
-              <div class="ar">هم لا يلعبون ألعاباً عبر الإنترنت.</div>
-            </div>
+            <div class="example-item"><div class="en">I <strong>check</strong> my phone every morning.</div><div class="ar">أنا أتفقد هاتفي كل صباح.</div></div>
+            <div class="example-item"><div class="en">She <strong>reads</strong> ebooks before bedtime.</div><div class="ar">هي تقرأ كتباً إلكترونية قبل النوم.</div></div>
+            <div class="example-item"><div class="en">They <strong>don't play</strong> online games.</div><div class="ar">هم لا يلعبون ألعاباً عبر الإنترنت.</div></div>
           </div>
         </div>
 
@@ -761,14 +724,8 @@
             <div class="note">⚠️ يأتي بعد verb to be: He <strong>is always</strong> busy.</div>
           </div>
           <div class="example-list">
-            <div class="example-item">
-              <div class="en">I <strong>always</strong> check my phone.</div>
-              <div class="ar">أنا دائماً أتفقد هاتفي.</div>
-            </div>
-            <div class="example-item">
-              <div class="en">She <strong>never</strong> eats without looking at screens.</div>
-              <div class="ar">هي أبداً لا تأكل بدون النظر إلى الشاشات.</div>
-            </div>
+            <div class="example-item"><div class="en">I <strong>always</strong> check my phone.</div><div class="ar">أنا دائماً أتفقد هاتفي.</div></div>
+            <div class="example-item"><div class="en">She <strong>never</strong> eats without looking at screens.</div><div class="ar">هي أبداً لا تأكل بدون النظر إلى الشاشات.</div></div>
           </div>
         </div>
 
@@ -780,14 +737,8 @@
             <div class="note">🔑 كلمات دالة: now, at the moment, right now, currently</div>
           </div>
           <div class="example-list">
-            <div class="example-item">
-              <div class="en">I <strong>am learning</strong> English now.</div>
-              <div class="ar">أتعلم الإنجليزية الآن.</div>
-            </div>
-            <div class="example-item">
-              <div class="en">She <strong>is studying</strong> for her test.</div>
-              <div class="ar">تدرس لاختبارها.</div>
-            </div>
+            <div class="example-item"><div class="en">I <strong>am learning</strong> English now.</div><div class="ar">أتعلم الإنجليزية الآن.</div></div>
+            <div class="example-item"><div class="en">She <strong>is studying</strong> for her test.</div><div class="ar">تدرس لاختبارها.</div></div>
           </div>
         </div>
 
@@ -799,14 +750,8 @@
             <div class="formula">Negative: Subject + can't + Verb (base)</div>
           </div>
           <div class="example-list">
-            <div class="example-item">
-              <div class="en">I <strong>can speak</strong> English well.</div>
-              <div class="ar">أستطيع التحدث بالإنجليزية جيداً.</div>
-            </div>
-            <div class="example-item">
-              <div class="en">She <strong>can't swim</strong> very fast.</div>
-              <div class="ar">لا تستطيع السباحة بسرعة.</div>
-            </div>
+            <div class="example-item"><div class="en">I <strong>can speak</strong> English well.</div><div class="ar">أستطيع التحدث بالإنجليزية جيداً.</div></div>
+            <div class="example-item"><div class="en">She <strong>can't swim</strong> very fast.</div><div class="ar">لا تستطيع السباحة بسرعة.</div></div>
           </div>
         </div>
 
@@ -819,23 +764,14 @@
             <div class="formula">Negative: didn't + Verb (base)</div>
           </div>
           <div class="example-list">
-            <div class="example-item">
-              <div class="en">She <strong>worked</strong> hard in research.</div>
-              <div class="ar">عملت بجد في البحث.</div>
-            </div>
-            <div class="example-item">
-              <div class="en">She <strong>was born</strong> in Egypt in 1917.</div>
-              <div class="ar">وُلدت في مصر عام 1917.</div>
-            </div>
-            <div class="example-item">
-              <div class="en">He <strong>didn't go</strong> to school yesterday.</div>
-              <div class="ar">لم يذهب إلى المدرسة أمس.</div>
-            </div>
+            <div class="example-item"><div class="en">She <strong>worked</strong> hard in research.</div><div class="ar">عملت بجد في البحث.</div></div>
+            <div class="example-item"><div class="en">She <strong>was born</strong> in Egypt in 1917.</div><div class="ar">وُلدت في مصر عام 1917.</div></div>
+            <div class="example-item"><div class="en">He <strong>didn't go</strong> to school yesterday.</div><div class="ar">لم يذهب إلى المدرسة أمس.</div></div>
           </div>
         </div>
       </div>
 
-      <!-- Tab 3: Reading -->
+      <!-- Reading Tab -->
       <div id="reading" class="tab-panel">
         <h3 class="section-title"><i class="fas fa-book-open"></i> Reading Comprehension</h3>
 
@@ -845,24 +781,14 @@
             Hi everyone! My name is <strong>Tarek</strong>, and I want to share my digital day with you. I always start my morning by checking my phone. I usually read three or four messages from my school friends. At breakfast, I often use my tablet to search for news. My favorite website gives me interesting facts about animals and space. I never eat without looking at my screen — I know it's not a good habit!<br><br>
             At school, we sometimes use the smartboard in our science class. After school, I always do my homework first. In the evening, I sometimes play online games with my friends. Before bedtime, I often read ebooks on my tablet. But I always use the "night mode" so the screen doesn't hurt my eyes.
           </div>
-
           <div class="exercise" data-answer="0">
             <div class="question">1. What does Tarek do first in the morning?</div>
-            <div class="options">
-              <div class="option" data-value="0">He checks his phone</div>
-              <div class="option" data-value="1">He eats breakfast</div>
-              <div class="option" data-value="2">He plays games</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">He checks his phone</div><div class="option" data-value="1">He eats breakfast</div><div class="option" data-value="2">He plays games</div></div>
             <div class="feedback"></div>
           </div>
-
           <div class="exercise" data-answer="2">
             <div class="question">2. Why does Tarek use night mode?</div>
-            <div class="options">
-              <div class="option" data-value="0">To save battery</div>
-              <div class="option" data-value="1">To read faster</div>
-              <div class="option" data-value="2">To protect his eyes</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">To save battery</div><div class="option" data-value="1">To read faster</div><div class="option" data-value="2">To protect his eyes</div></div>
             <div class="feedback"></div>
           </div>
         </div>
@@ -873,30 +799,20 @@
             Dr. Samira Moussa was a true hero who continues to inspire people today. She was born in Egypt in 1917 and showed a passionate love for science from a young age. She was determined to study physics and became one of the first Egyptian women to get a Ph.D. in atomic radiation.<br><br>
             Samira was kind and always wanted to help her community. She believed that science should be used for peace. Her achievement in science and her courageous spirit made her a symbol of hope for many Egyptian girls.
           </div>
-
           <div class="exercise" data-answer="1">
             <div class="question">3. When was Dr. Samira Moussa born?</div>
-            <div class="options">
-              <div class="option" data-value="0">In 1907</div>
-              <div class="option" data-value="1">In 1917</div>
-              <div class="option" data-value="2">In 1927</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">In 1907</div><div class="option" data-value="1">In 1917</div><div class="option" data-value="2">In 1927</div></div>
             <div class="feedback"></div>
           </div>
-
           <div class="exercise" data-answer="0">
             <div class="question">4. What was Dr. Samira passionate about?</div>
-            <div class="options">
-              <div class="option" data-value="0">Science</div>
-              <div class="option" data-value="1">Art</div>
-              <div class="option" data-value="2">Music</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">Science</div><div class="option" data-value="1">Art</div><div class="option" data-value="2">Music</div></div>
             <div class="feedback"></div>
           </div>
         </div>
       </div>
 
-      <!-- Tab 4: Writing -->
+      <!-- Writing Tab -->
       <div id="writing" class="tab-panel">
         <h3 class="section-title"><i class="fas fa-pen-fancy"></i> Writing Templates</h3>
 
@@ -934,7 +850,7 @@
         </div>
       </div>
 
-      <!-- Tab 5: Practice -->
+      <!-- Practice Tab -->
       <div id="practice" class="tab-panel">
         <h3 class="section-title"><i class="fas fa-tasks"></i> Interactive Practice</h3>
 
@@ -943,31 +859,17 @@
 
           <div class="exercise" data-answer="1">
             <div class="question">1. The ______ is a darker screen setting to protect your eyes.</div>
-            <div class="options">
-              <div class="option" data-value="0">day mode</div>
-              <div class="option" data-value="1">night mode</div>
-              <div class="option" data-value="2">evening mode</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">day mode</div><div class="option" data-value="1">night mode</div><div class="option" data-value="2">evening mode</div></div>
             <div class="feedback"></div>
           </div>
-
           <div class="exercise" data-answer="0">
             <div class="question">2. ______ learners like to see pictures and charts.</div>
-            <div class="options">
-              <div class="option" data-value="0">Visual</div>
-              <div class="option" data-value="1">Auditory</div>
-              <div class="option" data-value="2">Kinesthetic</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">Visual</div><div class="option" data-value="1">Auditory</div><div class="option" data-value="2">Kinesthetic</div></div>
             <div class="feedback"></div>
           </div>
-
           <div class="exercise" data-answer="2">
             <div class="question">3. A ______ is someone you admire and try to be like.</div>
-            <div class="options">
-              <div class="option" data-value="0">friend</div>
-              <div class="option" data-value="1">teacher</div>
-              <div class="option" data-value="2">role model</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">friend</div><div class="option" data-value="1">teacher</div><div class="option" data-value="2">role model</div></div>
             <div class="feedback"></div>
           </div>
         </div>
@@ -977,41 +879,22 @@
 
           <div class="exercise" data-answer="1">
             <div class="question">4. She ______ ebooks before bedtime.</div>
-            <div class="options">
-              <div class="option" data-value="0">read</div>
-              <div class="option" data-value="1">reads</div>
-              <div class="option" data-value="2">reading</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">read</div><div class="option" data-value="1">reads</div><div class="option" data-value="2">reading</div></div>
             <div class="feedback"></div>
           </div>
-
           <div class="exercise" data-answer="0">
             <div class="question">5. I ______ learning English right now.</div>
-            <div class="options">
-              <div class="option" data-value="0">am</div>
-              <div class="option" data-value="1">is</div>
-              <div class="option" data-value="2">are</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">am</div><div class="option" data-value="1">is</div><div class="option" data-value="2">are</div></div>
             <div class="feedback"></div>
           </div>
-
           <div class="exercise" data-answer="2">
             <div class="question">6. She ______ born in Egypt in 1917.</div>
-            <div class="options">
-              <div class="option" data-value="0">were</div>
-              <div class="option" data-value="1">is</div>
-              <div class="option" data-value="2">was</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">were</div><div class="option" data-value="1">is</div><div class="option" data-value="2">was</div></div>
             <div class="feedback"></div>
           </div>
-
           <div class="exercise" data-answer="1">
             <div class="question">7. I ______ swim very fast when I was young.</div>
-            <div class="options">
-              <div class="option" data-value="0">can</div>
-              <div class="option" data-value="1">could</div>
-              <div class="option" data-value="2">can to</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">can</div><div class="option" data-value="1">could</div><div class="option" data-value="2">can to</div></div>
             <div class="feedback"></div>
           </div>
         </div>
@@ -1021,58 +904,34 @@
 
           <div class="exercise" data-answer="0">
             <div class="question">8. She ______ hard in research.</div>
-            <div class="options">
-              <div class="option" data-value="0">worked</div>
-              <div class="option" data-value="1">works</div>
-              <div class="option" data-value="2">working</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">worked</div><div class="option" data-value="1">works</div><div class="option" data-value="2">working</div></div>
             <div class="feedback"></div>
           </div>
-
           <div class="exercise" data-answer="2">
             <div class="question">9. He ______ to the United States last year.</div>
-            <div class="options">
-              <div class="option" data-value="0">go</div>
-              <div class="option" data-value="1">goes</div>
-              <div class="option" data-value="2">went</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">go</div><div class="option" data-value="1">goes</div><div class="option" data-value="2">went</div></div>
             <div class="feedback"></div>
           </div>
-
           <div class="exercise" data-answer="1">
             <div class="question">10. They ______ football yesterday.</div>
-            <div class="options">
-              <div class="option" data-value="0">don't play</div>
-              <div class="option" data-value="1">didn't play</div>
-              <div class="option" data-value="2">doesn't play</div>
-            </div>
+            <div class="options"><div class="option" data-value="0">don't play</div><div class="option" data-value="1">didn't play</div><div class="option" data-value="2">doesn't play</div></div>
             <div class="feedback"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- CTA -->
     <div class="cta-exam">
       <h3>🎯 جاهز للامتحان الشامل؟</h3>
       <p>30 سؤال عشوائي من 200 — يغطي الوحدات 1-3 كاملة</p>
       <div class="btn-group-custom">
-        <a href="exam-review1-prep1.html" class="btn-action btn-gold">
-          <i class="fas fa-play-circle"></i> ابدأ الامتحان الشامل
-        </a>
-        <a href="student-dashboard.html" class="btn-action btn-outline-gold">
-          <i class="fas fa-arrow-right"></i> العودة للوحة
-        </a>
+        <a href="exam-review1-prep1.html" class="btn-action btn-gold"><i class="fas fa-play-circle"></i> ابدأ الامتحان الشامل</a>
+        <a href="student-dashboard.html" class="btn-action btn-outline-gold"><i class="fas fa-arrow-right"></i> العودة للوحة</a>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>© 2026 أكاديمية مستر ياسر نوفل — جميع الحقوق محفوظة</p>
-    </div>
-  </footer>
+  <footer><div class="container"><p>© 2026 أكاديمية مستر ياسر نوفل — جميع الحقوق محفوظة</p></div></footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
@@ -1087,31 +946,24 @@
       const correctAnswer = exercise.dataset.answer;
       const feedback = exercise.querySelector('.feedback');
       const options = exercise.querySelectorAll('.option');
-      
       options.forEach(option => {
         option.addEventListener('click', () => {
           if (option.classList.contains('correct') || option.classList.contains('wrong')) return;
-          
           const selected = option.dataset.value;
           options.forEach(o => o.style.pointerEvents = 'none');
-          
           if (selected === correctAnswer) {
             option.classList.add('correct');
             feedback.textContent = '✅ إجابة صحيحة! أحسنت!';
             feedback.className = 'feedback show success';
           } else {
             option.classList.add('wrong');
-            options.forEach(o => {
-              if (o.dataset.value === correctAnswer) o.classList.add('correct');
-            });
+            options.forEach(o => { if (o.dataset.value === correctAnswer) o.classList.add('correct'); });
             feedback.textContent = '❌ إجابة خاطئة. الإجابة الصحيحة موضحة بالأخضر.';
             feedback.className = 'feedback show error';
           }
         });
       });
     });
-
-    console.log('✅ Review Page Loaded');
   </script>
 </body>
 </html>
