@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
 
-  <!-- مكتبات تحميل PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -87,101 +86,35 @@
     .unit-btn.story-btn { background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #fff; }
     .unit-btn.story-btn:hover { background: #6d28d9; }
 
-    /* شريط تقدم الوحدة */
-    .unit-progress-wrapper {
-      margin: 12px 0 10px;
-    }
-    .unit-progress-label {
-      display: flex; justify-content: space-between;
-      font-size: 0.75rem; color: #666; margin-bottom: 5px; font-weight: 600;
-    }
-    .unit-progress-bar {
-      height: 8px; background: #e9ecef; border-radius: 10px;
-      overflow: hidden;
-    }
-    .unit-progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #28a745, #20c997);
-      border-radius: 10px;
-      transition: width 0.8s ease;
-    }
+    .unit-progress-wrapper { margin: 12px 0 10px; }
+    .unit-progress-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: #666; margin-bottom: 5px; font-weight: 600; }
+    .unit-progress-bar { height: 8px; background: #e9ecef; border-radius: 10px; overflow: hidden; }
+    .unit-progress-fill { height: 100%; background: linear-gradient(90deg, #28a745, #20c997); border-radius: 10px; transition: width 0.8s ease; }
     .unit-card.review .unit-progress-fill { background: linear-gradient(90deg, #dc2626, #f87171); }
     .unit-card.story .unit-progress-fill { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
 
-    /* Badge متحرك */
-    .badge-pulse {
-      display: inline-block;
-      animation: pulse-gold 2s infinite;
-    }
+    .badge-pulse { display: inline-block; animation: pulse-gold 2s infinite; }
     @keyframes pulse-gold {
       0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(247, 183, 49, 0.7); }
       50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(247, 183, 49, 0); }
     }
-    .badge-new {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: linear-gradient(135deg, #f7b731, #f59e0b);
-      color: #fff;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 800;
-      z-index: 2;
-      animation: pulse-gold 2s infinite;
-    }
+    .badge-new { position: absolute; top: 15px; left: 15px; background: linear-gradient(135deg, #f7b731, #f59e0b); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; z-index: 2; animation: pulse-gold 2s infinite; }
 
-    /* زر متابعة */
-    .continue-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(135deg, #0a1f44, #1a3a6e);
-      color: #f7e05e;
-      padding: 15px 25px;
-      border-radius: 18px;
-      text-decoration: none;
-      font-weight: 700;
-      margin-bottom: 25px;
-      transition: 0.3s;
-      box-shadow: 0 6px 20px rgba(10, 31, 68, 0.2);
-    }
-    .continue-btn:hover {
-      background: linear-gradient(135deg, #1a3a6e, #2a4a8e);
-      color: #f7e05e;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(10, 31, 68, 0.3);
-      text-decoration: none;
-    }
+    .continue-btn { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; padding: 15px 25px; border-radius: 18px; text-decoration: none; font-weight: 700; margin-bottom: 25px; transition: 0.3s; box-shadow: 0 6px 20px rgba(10, 31, 68, 0.2); }
+    .continue-btn:hover { background: linear-gradient(135deg, #1a3a6e, #2a4a8e); color: #f7e05e; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(10, 31, 68, 0.3); text-decoration: none; }
     .continue-btn .left { display: flex; align-items: center; gap: 12px; }
     .continue-btn .icon { font-size: 1.5rem; }
     .continue-btn .text .title { font-size: 0.85rem; color: #b0c4de; font-weight: 500; margin-bottom: 3px; }
     .continue-btn .text .name { font-size: 1rem; color: #f7e05e; }
     .continue-btn .arrow { font-size: 1.2rem; }
 
-    /* عدّاد تنازلي */
-    .countdown-box {
-      background: linear-gradient(135deg, #fef3c7, #fffbf0);
-      border: 2px solid #f7b731;
-      border-radius: 18px;
-      padding: 18px 25px;
-      margin-bottom: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
+    .countdown-box { background: linear-gradient(135deg, #fef3c7, #fffbf0); border: 2px solid #f7b731; border-radius: 18px; padding: 18px 25px; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
     .countdown-box .info { display: flex; align-items: center; gap: 12px; }
     .countdown-box .info i { font-size: 1.8rem; color: #f59e0b; }
     .countdown-box .info .label { font-size: 0.8rem; color: #92400e; font-weight: 600; }
     .countdown-box .info .exam-name { font-size: 1rem; color: #0a1f44; font-weight: 700; }
     .countdown-timer { display: flex; gap: 10px; }
-    .countdown-timer .time-unit {
-      background: #0a1f44; color: #f7e05e;
-      border-radius: 12px; padding: 8px 12px;
-      text-align: center; min-width: 60px;
-    }
+    .countdown-timer .time-unit { background: #0a1f44; color: #f7e05e; border-radius: 12px; padding: 8px 12px; text-align: center; min-width: 60px; }
     .countdown-timer .time-unit .num { font-size: 1.4rem; font-weight: 800; line-height: 1; }
     .countdown-timer .time-unit .lbl { font-size: 0.65rem; color: #b0c4de; margin-top: 3px; }
 
@@ -229,25 +162,11 @@
     .footer-links a:hover { color: #f7e05e; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
 
-    /* أزرار التقرير */
-    .report-actions {
-      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-      margin-bottom: 25px; padding: 18px;
-      background: linear-gradient(135deg, #f8f9fa, #fff);
-      border-radius: 18px; border: 1px dashed #d0d7e2;
-    }
+    .report-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; padding: 18px; background: linear-gradient(135deg, #f8f9fa, #fff); border-radius: 18px; border: 1px dashed #d0d7e2; }
     .report-actions .label { width: 100%; text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 5px; }
-    .btn-report {
-      background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e;
-      border: none; padding: 12px 28px; border-radius: 50px; font-weight: 700;
-      transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem;
-    }
+    .btn-report { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; border: none; padding: 12px 28px; border-radius: 50px; font-weight: 700; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
     .btn-report:hover { background: #f7b731; color: #0a1f44; transform: scale(1.03); }
-    .btn-report-outline {
-      background: transparent; color: #0a1f44; border: 2px solid #0a1f44;
-      padding: 10px 26px; border-radius: 50px; font-weight: 700; transition: 0.3s;
-      display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem;
-    }
+    .btn-report-outline { background: transparent; color: #0a1f44; border: 2px solid #0a1f44; padding: 10px 26px; border-radius: 50px; font-weight: 700; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
     .btn-report-outline:hover { background: #0a1f44; color: #f7e05e; }
     #reportLoading { display: none; text-align: center; padding: 20px; color: #0a1f44; font-weight: 700; }
     #reportLoading .spinner-border { color: #f7b731; }
@@ -261,7 +180,6 @@
       .countdown-timer { width: 100%; justify-content: center; }
     }
 
-    /* تنسيقات الطباعة */
     @media print {
       body { background: #fff !important; padding-top: 0 !important; }
       .navbar, .extra-links, footer, .report-actions,
@@ -326,7 +244,6 @@
 
       <div id="dashboardContent" style="display: none;">
 
-        <!-- أزرار التقرير -->
         <div class="report-actions">
           <span class="label">📄 احصل على نسخة من تقريرك الدراسي</span>
           <button class="btn-report" onclick="downloadReportPDF()">
@@ -337,7 +254,6 @@
           </button>
         </div>
 
-        <!-- زر متابعة من حيث توقفت -->
         <a href="#" id="continueBtn" class="continue-btn" style="display: none;">
           <div class="left">
             <span class="icon">▶️</span>
@@ -349,7 +265,6 @@
           <span class="arrow">←</span>
         </a>
 
-        <!-- عدّاد تنازلي -->
         <div class="countdown-box" id="countdownBox" style="display: none;">
           <div class="info">
             <i class="fas fa-hourglass-half"></i>
@@ -371,7 +286,6 @@
           <p class="mt-2">جاري تجهيز التقرير... ⏳</p>
         </div>
 
-        <!-- محتوى التقرير -->
         <div id="reportContent">
           <h2 class="text-center fw-bold mb-2">لوحة تحكم الطالب</h2>
           <p class="text-center text-muted mb-4" id="welcomeMessage">مرحباً!</p>
@@ -497,9 +411,15 @@
         { number: 6, titleEn: "Unit 6", titleAr: "الوحدة السادسة", subtitleEn: "Global Citizens", subtitleAr: "مواطنون عالميون", url: "unit6-prep1.html", icon: "🌍", status: "locked" }
       ],
       "sec1": [
-        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Grammar", subtitleAr: "قواعد", url: "sec1-unit1.html", icon: "📘", status: "available" },
-        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Reading", subtitleAr: "قراءة", url: "sec1-unit2.html", icon: "📗", status: "available" },
-        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Writing", subtitleAr: "كتابة", url: "sec1-unit3.html", icon: "📙", status: "available" }
+        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Egypt's Heritage", subtitleAr: "تراث مصر", url: "sec1-unit1.html", icon: "🏛️", status: "new" },
+        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Hands Help, Hearts Care", subtitleAr: "أيادٍ تساعد وقلوبٌ ترعى", url: "sec1-unit2.html", icon: "🤝", status: "new" },
+        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Truth vs. Lies", subtitleAr: "الحقيقة ضد الكذب", url: "sec1-unit3.html", icon: "⚖️", status: "new" },
+        { number: "R1", titleEn: "Review 1", titleAr: "المراجعة الشاملة 1", subtitleEn: "Units 1, 2, 3", subtitleAr: "الوحدات 1-3", url: "sec1-review1.html", icon: "🎯", status: "review" },
+        { number: 4, titleEn: "Unit 4", titleAr: "الوحدة الرابعة", subtitleEn: "Save and Shine", subtitleAr: "وفّر وتألّق", url: "sec1-unit4.html", icon: "🌱", status: "new" },
+        { number: 5, titleEn: "Unit 5", titleAr: "الوحدة الخامسة", subtitleEn: "Using Technology at Schools", subtitleAr: "استخدام التكنولوجيا في المدارس", url: "sec1-unit5.html", icon: "💻", status: "new" },
+        { number: 6, titleEn: "Unit 6", titleAr: "الوحدة السادسة", subtitleEn: "Job Hunting", subtitleAr: "البحث عن عمل", url: "sec1-unit6.html", icon: "💼", status: "new" },
+        { number: "R2", titleEn: "Review 2", titleAr: "المراجعة الشاملة 2", subtitleEn: "Units 4, 5, 6", subtitleAr: "الوحدات 4-6", url: "sec1-review2.html", icon: "🎯", status: "review" },
+        { number: "S", titleEn: "Story", titleAr: "القصة", subtitleEn: "The Old Man and the Sea", subtitleAr: "العجوز والبحر", url: "sec1-story-old-man-sea.html", icon: "📖", status: "story" }
       ],
       "sec2": [
         { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Living Well in a Complex World", subtitleAr: "العيش الجيد في عالم معقد", url: "unit1-living-well.html", icon: "🌟", status: "new" },
@@ -525,7 +445,19 @@
         { title: "Monthly Assessment - Units 1, 2, 3", type: "official", questions: 30, duration: 45, url: "assessment-monthly.html", pdf: "assessment-monthly-print.html" }
       ],
       "sec1": [
-        { title: "امتحان Unit 1", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-sec1" }
+        { title: "امتحان Unit 1 - Egypt's Heritage", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit1.html" },
+        { title: "امتحان Unit 2 - Hands Help, Hearts Care", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit2.html" },
+        { title: "امتحان Unit 3 - Truth vs. Lies", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit3.html" },
+        { title: "امتحان المراجعة الشاملة 1", type: "comprehensive", questions: 30, duration: 45, url: "sec1-exam-review1.html" },
+        { title: "امتحان Unit 4 - Save and Shine", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit4.html" },
+        { title: "امتحان Unit 5 - Using Technology", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit5.html" },
+        { title: "امتحان Unit 6 - Job Hunting", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit6.html" },
+        { title: "امتحان المراجعة الشاملة 2", type: "comprehensive", questions: 30, duration: 45, url: "sec1-exam-review2.html" },
+        { title: "Assessment 1 - Unit 1", type: "official", questions: 20, duration: 30, url: "sec1-assessment-1.html", pdf: "sec1-assessment-1-print.html" },
+        { title: "Assessment 2 - Unit 2", type: "official", questions: 20, duration: 30, url: "sec1-assessment-2.html", pdf: "sec1-assessment-2-print.html" },
+        { title: "Assessment 3 - Unit 3", type: "official", questions: 20, duration: 30, url: "sec1-assessment-3.html", pdf: "sec1-assessment-3-print.html" },
+        { title: "Monthly Assessment - Units 1-3", type: "official", questions: 30, duration: 45, url: "sec1-assessment-monthly.html", pdf: "sec1-assessment-monthly-print.html" },
+        { title: "امتحان القصة - The Old Man and the Sea", type: "story", questions: 20, duration: 30, url: "sec1-exam-story.html" }
       ],
       "sec2": [
         { title: "امتحان Unit 1 - Living Well", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-bac" },
@@ -542,9 +474,6 @@
       "sec3": "تالتة ثانوي"
     };
 
-    // ==========================================
-    // 🎨 دوال مساعدة
-    // ==========================================
     function applySavedDarkMode() {
       if (localStorage.getItem('darkMode') === 'enabled') {
         document.body.classList.add('dark-mode');
@@ -559,7 +488,6 @@
       document.getElementById('darkModeToggle').textContent = isDark ? '☀️' : '🌙';
     };
 
-    // إشعار محسّن بأيقونات
     window.showToast = function(message, type = 'success') {
       const toast = document.getElementById('toastNotification');
       const toastDiv = toast.querySelector('.toast');
@@ -591,9 +519,6 @@
       }).catch(err => showToast('خطأ: ' + err.message, 'danger'));
     };
 
-    // ==========================================
-    // 📚 عرض الوحدات
-    // ==========================================
     function renderUnits(grade, unitProgress = {}) {
       const container = document.getElementById('unitsContainer');
       const units = UNITS_DATA[grade] || [];
@@ -612,7 +537,6 @@
         const numDisplay = unit.number === 'R1' ? 'REVIEW' : unit.number === 'S' ? 'STORY' : `UNIT ${unit.number}`;
         const cardExtraClass = unit.status === 'review' ? 'review' : unit.status === 'story' ? 'story' : '';
 
-        // شريط تقدم الوحدة
         const unitKey = String(unit.number);
         const progress = unitProgress[unitKey] || 0;
         const progressHTML = unit.status !== 'locked' ? `
@@ -627,7 +551,6 @@
           </div>
         ` : '';
 
-        // Badge "جديد" متحرك
         const newBadge = unit.status === 'new' ? '<span class="badge-new">✨ جديد</span>' : '';
 
         return `
@@ -652,9 +575,6 @@
       }).join('');
     }
 
-    // ==========================================
-    // 📝 عرض الامتحانات
-    // ==========================================
     function renderExams(grade) {
       const container = document.getElementById('examsContainer');
       const exams = EXAMS_DATA[grade] || [];
@@ -680,6 +600,11 @@
           cardClass = 'exam-card official';
           badgeClass = 'exam-badge official';
           btnClass = 'exam-btn official-btn';
+        } else if (exam.type === 'story') {
+          typeText = '📖 القصة';
+          cardClass = 'exam-card';
+          badgeClass = 'exam-badge';
+          btnClass = 'exam-btn';
         }
 
         const hasPDF = exam.pdf ? true : false;
@@ -710,9 +635,6 @@
       }).join('');
     }
 
-    // ==========================================
-    // 🎯 تسجيل آخر درس فتحه الطالب
-    // ==========================================
     window.markLessonOpened = async function(url, name) {
       const user = auth.currentUser;
       if (!user) return;
@@ -727,9 +649,6 @@
       }
     };
 
-    // ==========================================
-    // ⏰ العدّاد التنازلي
-    // ==========================================
     let countdownInterval = null;
 
     function startCountdown(targetDate, examName) {
@@ -767,9 +686,6 @@
       countdownInterval = setInterval(update, 1000);
     }
 
-    // ==========================================
-    // 📊 تحميل بيانات الطالب
-    // ==========================================
     async function loadStudentData(uid) {
       try {
         const snapshot = await get(ref(database, `students/${uid}`));
@@ -787,7 +703,6 @@
           document.getElementById('studentCertificates').textContent = data.certificates || '0';
           document.getElementById('studentLessons').textContent = data.lessonsCompleted || '0';
 
-          // آخر الاختبارات
           if (data.tests && Array.isArray(data.tests) && data.tests.length > 0) {
             const testsBody = document.getElementById('testsBody');
             testsBody.innerHTML = '';
@@ -796,7 +711,6 @@
             });
           }
 
-          // زر متابعة من حيث توقفت
           if (data.lastLessonUrl && data.lastLessonName) {
             const btn = document.getElementById('continueBtn');
             btn.href = data.lastLessonUrl;
@@ -804,7 +718,6 @@
             btn.style.display = 'flex';
           }
 
-          // العدّاد التنازلي (لو فيه امتحان قادم محدد)
           if (data.nextExamDate && data.nextExamName) {
             const targetDate = new Date(data.nextExamDate).getTime();
             if (targetDate > Date.now()) {
@@ -840,9 +753,6 @@
       }
     }
 
-    // ==========================================
-    // 📄 تحميل التقرير PDF
-    // ==========================================
     window.downloadReportPDF = async function() {
       const element = document.getElementById('reportContent');
       const loading = document.getElementById('reportLoading');
@@ -895,17 +805,11 @@
       }
     };
 
-    // ==========================================
-    // 🖨️ طباعة التقرير
-    // ==========================================
     window.printReport = function() {
       showToast('جاري تجهيز الطباعة...', 'info');
       setTimeout(() => { window.print(); }, 300);
     };
 
-    // ==========================================
-    // 🚀 التشغيل عند فتح الصفحة
-    // ==========================================
     document.addEventListener('DOMContentLoaded', () => {
       applySavedDarkMode();
       onAuthStateChanged(auth, async (user) => {
@@ -915,7 +819,7 @@
       });
     });
 
-    console.log('✅ Student Dashboard v2.0 — Progress + Countdown + Continue + Enhanced Toasts');
+    console.log('✅ Student Dashboard v3.0 — Prep1 + Sec1 + Sec2 with all features');
   </script>
 
 </body>
