@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Unit 2 - Printable - Hands Help, Hearts Care</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Times New Roman', serif; background: #fff; padding: 20px; }
+    .print-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #0a1f44; }
+    .print-header h1 { color: #0a1f44; font-size: 1.8rem; font-style: italic; margin-bottom: 8px; direction: ltr; }
+    .print-header p { color: #666; font-size: 1rem; }
+    .print-header .meta { margin-top: 12px; font-size: 0.9rem; color: #888; }
+
+    .section-title { color: #0a1f44; font-size: 1.3rem; margin: 25px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #f7e05e; direction: ltr; text-align: left; }
+    .question { margin-bottom: 18px; page-break-inside: avoid; direction: ltr; text-align: left; }
+    .question .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 8px; }
+    .question .options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-left: 20px; }
+    .question .options span { color: #333; }
+
+    .answer-key { margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px; page-break-before: always; }
+    .answer-key h3 { color: #0a1f44; margin-bottom: 15px; direction: ltr; text-align: left; }
+    .answer-key .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; direction: ltr; }
+    .answer-key .grid span { padding: 8px; background: #fff; border-radius: 6px; text-align: center; font-weight: 600; }
+
+    @media print {
+      body { padding: 0; }
+      .no-print { display: none; }
+      .question { page-break-inside: avoid; }
+    }
+
+    .print-btn { background: #0a1f44; color: #f7e05e; padding: 12px 30px; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; display: block; margin: 0 auto 20px; }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn no-print" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+
+  <div class="print-header">
+    <h1>Unit 2: Hands Help, Hearts Care</h1>
+    <p>أولى ثانوي - Term 1</p>
+    <div class="meta">
+      <span>30 سؤال | 30 درجة | 30 دقيقة</span>
+    </div>
+  </div>
+
+  <div id="questionsPrint"></div>
+
+  <div class="answer-key">
+    <h3>Answer Key</h3>
+    <div class="grid" id="answerGrid"></div>
+  </div>
+
+  <script src="sec1-unit2-questions.js"></script>
+  <script>
+    const ALL_QUESTIONS = [
+      ...UNIT2_QUESTIONS.vocabulary,
+      ...UNIT2_QUESTIONS.reading,
+      ...UNIT2_QUESTIONS.grammar,
+      ...UNIT2_QUESTIONS.writing
+    ];
+
+    document.getElementById('questionsPrint').innerHTML = ALL_QUESTIONS.map((q, idx) => `
+      <div class="question">
+        <p class="q-text">${idx + 1}. ${q.question}</p>
+        <div class="options">
+          ${q.options.map((opt, oidx) => `<span>${String.fromCharCode(65 + oidx)}) ${opt}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    document.getElementById('answerGrid').innerHTML = ALL_QUESTIONS.map((q, idx) =>
+      `<span>${idx + 1}. ${String.fromCharCode(65 + q.correct)}</span>`
+    ).join('');
+  </script>
+
+</body>
+</html>
