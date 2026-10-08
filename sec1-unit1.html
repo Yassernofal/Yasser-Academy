@@ -10,253 +10,74 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; }
-    .navbar-custom { background: rgba(10, 31, 68, 0.95) !important; padding: 14px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); z-index: 1050; }
-    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+    .navbar-custom { background: rgba(10, 31, 68, 0.95) !important; padding: 14px 0; z-index: 1050; }
     .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
     .navbar-brand .brand-name span { color: #ffb347; }
-    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
-    .nav-link:hover { color: #f7e05e !important; }
-    
-    .hero-unit {
-      background: linear-gradient(135deg, #0a1f44, #1a3a6e);
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-      border-radius: 0 0 40px 40px;
-      margin-bottom: 40px;
-    }
-    .hero-unit .unit-badge {
-      display: inline-block;
-      background: #f7e05e;
-      color: #0a1f44;
-      padding: 6px 18px;
-      border-radius: 20px;
-      font-weight: 800;
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-    }
-    .hero-unit h1 {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      direction: ltr;
-    }
-    .hero-unit .arabic-title {
-      font-size: 1.2rem;
-      color: #b0c4de;
-      direction: rtl;
-    }
-    
-    .lesson-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      border-right: 5px solid #f7e05e;
-      transition: 0.3s;
-    }
-    .lesson-card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
-    .lesson-header {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 3px solid #f7e05e;
-    }
-    .lesson-number {
-      background: #0a1f44;
-      color: #f7e05e;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .lesson-header h2 {
-      font-family: 'Playfair Display', serif;
-      color: #0a1f44;
-      font-size: 1.6rem;
-      margin: 0;
-      direction: ltr;
-      text-align: left;
-    }
-    
-    .section-title {
-      color: #0a1f44;
-      font-weight: 800;
-      font-size: 1.2rem;
-      margin: 25px 0 15px;
-      padding-right: 12px;
-      border-right: 4px solid #f7e05e;
-    }
-    
-    .reading-passage {
-      background: #f8f9fa;
-      border-radius: 15px;
-      padding: 25px;
-      direction: ltr;
-      text-align: left;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: #333;
-      border-left: 4px solid #0a1f44;
-    }
+
+    /* ==========================================
+       ✅ القاعدة الذهبية:
+       - Hero Title + Arabic Title → وسط
+       - كل العناوين التانية → يسار (LTR)
+       - النصوص الإنجليزية → يسار (LTR)
+       - النصوص العربية → يمين (RTL)
+       ========================================== */
+
+    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; }
+    .hero-unit .unit-badge { display: inline-block; background: #f7e05e; color: #0a1f44; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; }
+    .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; margin-bottom: 10px; direction: ltr; text-align: center; }
+    .hero-unit .arabic-title { font-size: 1.2rem; color: #b0c4de; direction: rtl; text-align: center; }
+
+    .layout-wrapper { display: grid; grid-template-columns: 280px 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+    @media (max-width: 992px) { .layout-wrapper { grid-template-columns: 1fr; } }
+
+    .sidebar { position: sticky; top: 100px; height: fit-content; background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    .sidebar h3 { color: #0a1f44; font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f7e05e; direction: rtl; text-align: right; }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar li { margin-bottom: 8px; }
+    .sidebar a { display: flex; align-items: center; gap: 10px; padding: 10px 15px; border-radius: 12px; color: #555; text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.9rem; direction: ltr; text-align: left; }
+    .sidebar a:hover, .sidebar a.active { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; }
+
+    .lesson-card { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #f7e05e; transition: 0.3s; }
+    .lesson-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid #f7e05e; cursor: pointer; }
+    .lesson-number { background: #0a1f44; color: #f7e05e; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Cinzel', serif; font-size: 1.2rem; flex-shrink: 0; }
+    .lesson-header h2 { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 1.4rem; margin: 0; flex-grow: 1; direction: ltr; text-align: left; }
+    .lesson-header .toggle-icon { color: #f7b731; font-size: 1.3rem; transition: 0.3s; }
+    .lesson-body.collapsed { display: none; }
+
+    .section-title { color: #0a1f44; font-weight: 800; font-size: 1.2rem; margin: 25px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #f7e05e; direction: ltr; text-align: left; }
+
+    .reading-passage { background: #f8f9fa; border-radius: 15px; padding: 25px; font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.8; color: #333; border-left: 4px solid #0a1f44; direction: ltr; text-align: left; }
     .reading-passage p { margin-bottom: 15px; }
-    
-    .vocab-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-      direction: ltr;
-    }
-    .vocab-table th {
-      background: #0a1f44;
-      color: #f7e05e;
-      padding: 12px;
-      text-align: left;
-      font-family: 'Cinzel', serif;
-    }
-    .vocab-table td {
-      padding: 12px;
-      border-bottom: 1px solid #e9ecef;
-    }
+
+    .vocab-table { width: 100%; border-collapse: collapse; margin-top: 15px; direction: ltr; }
+    .vocab-table th { background: #0a1f44; color: #f7e05e; padding: 12px; text-align: left; font-family: 'Cinzel', serif; }
+    .vocab-table td { padding: 12px; border-bottom: 1px solid #e9ecef; }
     .vocab-table tr:nth-child(even) { background: #f8f9fa; }
-    .vocab-table .word {
-      font-weight: 800;
-      color: #0a1f44;
-      direction: ltr;
-    }
-    .vocab-table .meaning {
-      color: #555;
-      direction: rtl;
-      text-align: right;
-    }
-    
-    .grammar-box {
-      background: linear-gradient(135deg, #fef9e7, #fffbf0);
-      border: 2px solid #f7e05e;
-      border-radius: 15px;
-      padding: 25px;
-      margin: 20px 0;
-    }
-    .grammar-box h4 {
-      color: #0a1f44;
-      font-weight: 800;
-      margin-bottom: 15px;
-      direction: ltr;
-      text-align: left;
-    }
-    .grammar-box .example {
-      background: #fff;
-      border-radius: 10px;
-      padding: 12px 18px;
-      margin: 10px 0;
-      direction: ltr;
-      text-align: left;
-      font-family: 'Playfair Display', serif;
-      color: #0a1f44;
-      border-left: 3px solid #f7b731;
-    }
-    .grammar-box .rule {
-      color: #333;
-      margin: 10px 0;
-      direction: ltr;
-      text-align: left;
-      line-height: 1.7;
-    }
-    
-    .question-box {
-      background: #fff;
-      border-radius: 15px;
-      padding: 20px;
-      margin: 15px 0;
-      border: 2px solid #e9ecef;
-    }
-    .question-box .q-text {
-      font-weight: 700;
-      color: #0a1f44;
-      margin-bottom: 12px;
-      direction: ltr;
-      text-align: left;
-    }
-    .question-box .options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      direction: ltr;
-    }
-    .question-box .option {
-      background: #f8f9fa;
-      border-radius: 10px;
-      padding: 10px 15px;
-      cursor: pointer;
-      transition: 0.3s;
-      border: 2px solid transparent;
-      direction: ltr;
-      text-align: left;
-    }
-    .question-box .option:hover {
-      background: #e9ecef;
-      border-color: #f7b731;
-    }
-    .question-box .option.correct {
-      background: #d4edda;
-      border-color: #28a745;
-      color: #155724;
-    }
-    .question-box .option.wrong {
-      background: #f8d7da;
-      border-color: #dc3545;
-      color: #721c24;
-    }
-    
-    .btn-lesson {
-      background: #0a1f44;
-      color: #f7e05e;
-      padding: 12px 30px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-block;
-      transition: 0.3s;
-      border: none;
-      margin: 5px;
-    }
-    .btn-lesson:hover {
-      background: #f7b731;
-      color: #0a1f44;
-      text-decoration: none;
-      transform: scale(1.02);
-    }
-    .btn-lesson.gold {
-      background: #f7e05e;
-      color: #0a1f44;
-    }
-    .btn-lesson.gold:hover {
-      background: #f7b731;
-    }
-    
-    .nav-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 40px;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-    
+    .vocab-table .word { font-weight: 800; color: #0a1f44; direction: ltr; text-align: left; }
+    .vocab-table .meaning { color: #555; direction: rtl; text-align: right; }
+
+    .grammar-box { background: linear-gradient(135deg, #fef9e7, #fffbf0); border: 2px solid #f7e05e; border-radius: 15px; padding: 25px; margin: 20px 0; }
+    .grammar-box h4 { color: #0a1f44; font-weight: 800; margin-bottom: 15px; direction: ltr; text-align: left; }
+    .grammar-box .example { background: #fff; border-radius: 10px; padding: 12px 18px; margin: 10px 0; font-family: 'Playfair Display', serif; color: #0a1f44; border-left: 3px solid #f7b731; direction: ltr; text-align: left; }
+    .grammar-box .rule { color: #333; margin: 10px 0; line-height: 1.7; direction: ltr; text-align: left; }
+
+    .question-box { background: #fff; border-radius: 15px; padding: 20px; margin: 15px 0; border: 2px solid #e9ecef; }
+    .question-box .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 12px; direction: ltr; text-align: left; }
+    .question-box .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: ltr; }
+    .question-box .option { background: #f8f9fa; border-radius: 10px; padding: 10px 15px; cursor: pointer; transition: 0.3s; border: 2px solid transparent; direction: ltr; text-align: left; }
+    .question-box .option:hover { background: #e9ecef; border-color: #f7b731; }
+    .question-box .option.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+    .question-box .option.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+
+    .btn-lesson { background: #0a1f44; color: #f7e05e; padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; margin: 5px; }
+    .btn-lesson:hover { background: #f7b731; color: #0a1f44; text-decoration: none; }
+    .btn-lesson.gold { background: #f7e05e; color: #0a1f44; }
+
+    .nav-buttons { display: flex; justify-content: space-between; margin-top: 40px; flex-wrap: wrap; gap: 15px; }
+
     @media (max-width: 768px) {
       .hero-unit h1 { font-size: 1.8rem; }
-      .lesson-header h2 { font-size: 1.2rem; }
+      .lesson-header h2 { font-size: 1.1rem; }
       .question-box .options { grid-template-columns: 1fr; }
     }
   </style>
@@ -268,15 +89,8 @@
       <a class="navbar-brand" href="index.html">
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">🏠 لوحة الطالب</a></li>
-          <li class="nav-item"><a class="nav-link" href="lessons.html">📖 الشرح</a></li>
-          <li class="nav-item"><a class="nav-link" href="exams.html">📝 الامتحانات</a></li>
-        </ul>
+      <div class="ms-auto">
+        <a href="student-dashboard.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← لوحة الطالب</a>
       </div>
     </div>
   </nav>
@@ -287,216 +101,200 @@
     <p class="arabic-title">تراث مصر</p>
   </div>
 
-  <div class="container">
+  <div class="layout-wrapper">
 
-    <!-- Lesson 1 -->
-    <div class="lesson-card">
-      <div class="lesson-header">
-        <div class="lesson-number">1</div>
-        <h2>Taking Pride in Our Beloved Egypt</h2>
-      </div>
+    <aside class="sidebar">
+      <h3>📚 محتويات الوحدة</h3>
+      <ul>
+        <li><a href="#lesson1" class="active"><i class="fas fa-book"></i> Lesson 1: Taking Pride in Our Beloved Egypt</a></li>
+        <li><a href="#lesson2"><i class="fas fa-headphones"></i> Lesson 2: Moments That Shaped Us</a></li>
+        <li><a href="#lesson3"><i class="fas fa-language"></i> Lesson 3: Now Starts Long Ago</a></li>
+        <li><a href="#lesson4"><i class="fas fa-landmark"></i> Lesson 4: Where Pride Begins</a></li>
+        <li><a href="#lesson5"><i class="fas fa-pen-fancy"></i> Lesson 5: An Essay about Technology</a></li>
+      </ul>
+    </aside>
 
-      <h3 class="section-title">📖 Reading</h3>
-      <div class="reading-passage">
-        <p>Egypt is a land with a heart that has been beating for thousands of years. We are proud to call it our home. It is a place where the past and the present meet in harmony.</p>
-        <p>Egypt has always played an important role in the world. Our ancestors built one of the greatest civilizations in history. They gave the world knowledge in writing, mathematics, and medicine. The hieroglyphs carved into temple walls were not just beautiful art; they were a way to record history. The Library of Alexandria once gathered knowledge from all over the world, making Egypt a center of learning.</p>
-        <p>Egypt was also a crossroads for trade. Merchants traveled along the Nile and across the deserts, carrying goods such as gold, spices, papyrus, and grain. Our land was a bridge where people met and exchanged ideas, making Egypt a source of inspiration for many civilizations.</p>
-        <p>Today, Egypt continues to grow. Our cities rise with modern buildings, while our historical monuments still stand with pride. We are building new roads, bridges, and neighborhoods that show the world our determination to progress. From the Pyramids of Giza to the Grand Egyptian Museum, we continue to honor our history while shaping our future.</p>
-        <p>We take pride in our country, not only for its beauty, but also because we understand the sacrifices of our ancestors. We work hard to make it greater for generations to come. Every citizen has a role to play - protecting our heritage, contributing to our economy, and sharing our culture with the world.</p>
-      </div>
+    <main>
 
-      <h3 class="section-title">💡 Vocabulary</h3>
-      <table class="vocab-table">
-        <thead>
-          <tr><th>Word</th><th>Meaning</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="word">Heritage</td><td class="meaning">تراث</td></tr>
-          <tr><td class="word">Civilization</td><td class="meaning">حضارة</td></tr>
-          <tr><td class="word">Hieroglyphs</td><td class="meaning">الهيروغليفية (الكتابة المصرية القديمة)</td></tr>
-          <tr><td class="word">Merchants</td><td class="meaning">تجار</td></tr>
-          <tr><td class="word">Crossroads</td><td class="meaning">ملتقى طرق</td></tr>
-          <tr><td class="word">Monuments</td><td class="meaning">آثار / معالم</td></tr>
-          <tr><td class="word">Determination</td><td class="meaning">تصميم / إصرار</td></tr>
-          <tr><td class="word">Sacrifices</td><td class="meaning">تضحيات</td></tr>
-          <tr><td class="word">Ancestors</td><td class="meaning">أسلاف</td></tr>
-          <tr><td class="word">Prosperity</td><td class="meaning">ازدهار</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <!-- Lesson 1 -->
+      <div class="lesson-card" id="lesson1">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-number">1</div>
+          <h2>Taking Pride in Our Beloved Egypt</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body">
+          <h3 class="section-title">📖 Reading</h3>
+          <div class="reading-passage">
+            <p>Egypt is a land with a heart that has been beating for thousands of years. We are proud to call it our home. It is a place where the past and the present meet in harmony.</p>
+            <p>Egypt has always played an important role in the world. Our ancestors built one of the greatest civilizations in history. They gave the world knowledge in writing, mathematics, and medicine. The hieroglyphs carved into temple walls were not just beautiful art; they were a way to record history. The Library of Alexandria once gathered knowledge from all over the world, making Egypt a center of learning.</p>
+            <p>Egypt was also a crossroads for trade. Merchants traveled along the Nile and across the deserts, carrying goods such as gold, spices, papyrus, and grain. Our land was a bridge where people met and exchanged ideas, making Egypt a source of inspiration for many civilizations.</p>
+            <p>Today, Egypt continues to grow. Our cities rise with modern buildings, while our historical monuments still stand with pride. We are building new roads, bridges, and neighborhoods that show the world our determination to progress. From the Pyramids of Giza to the Grand Egyptian Museum, we continue to honor our history while shaping our future.</p>
+            <p>We take pride in our country, not only for its beauty, but also because we understand the sacrifices of our ancestors. We work hard to make it greater for generations to come. Every citizen has a role to play - protecting our heritage, contributing to our economy, and sharing our culture with the world.</p>
+          </div>
 
-    <!-- Lesson 2 -->
-    <div class="lesson-card">
-      <div class="lesson-header">
-        <div class="lesson-number">2</div>
-        <h2>Moments That Shaped Us</h2>
-      </div>
-
-      <h3 class="section-title">🎧 Listening</h3>
-      <p style="direction: rtl; text-align: right; color: #555;">استمع للتسجيل الصوتي ثم أجب على الأسئلة.</p>
-
-      <h3 class="section-title">💡 Vocabulary in Context</h3>
-      <table class="vocab-table">
-        <thead>
-          <tr><th>Word</th><th>Meaning</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="word">Preserves</td><td class="meaning">يحافظ على</td></tr>
-          <tr><td class="word">Identity</td><td class="meaning">هوية</td></tr>
-          <tr><td class="word">Restoring</td><td class="meaning">ترميم</td></tr>
-          <tr><td class="word">Pride</td><td class="meaning">فخر</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Lesson 3 -->
-    <div class="lesson-card">
-      <div class="lesson-header">
-        <div class="lesson-number">3</div>
-        <h2>Now Starts Long Ago</h2>
-      </div>
-
-      <h3 class="section-title">📚 Grammar: Past Simple & Past Continuous</h3>
-
-      <div class="grammar-box">
-        <h4>Past Simple</h4>
-        <p class="rule">Use the past simple for <strong>completed past actions</strong>.</p>
-        <div class="example">The Egyptians taught the world what civilization was.</div>
-        <div class="example">She visited Luxor last year.</div>
-      </div>
-
-      <div class="grammar-box">
-        <h4>Past Continuous</h4>
-        <p class="rule">Use the past continuous <strong>(was/were + v-ing)</strong> to show an action in progress at a certain time in the past.</p>
-        <div class="example">At 2 o'clock, Sama was returning home.</div>
-        <div class="example">They were playing football at 5 PM.</div>
-      </div>
-
-      <div class="grammar-box">
-        <h4>Past Continuous + Past Simple</h4>
-        <p class="rule">Use past continuous with past simple to show a <strong>shorter action</strong> happened while a <strong>longer action</strong> was in progress.</p>
-        <div class="example">Mr. Ramy was calling his wife when he dropped his mobile.</div>
-        <div class="example">While I was walking home, I saw a shooting star.</div>
-      </div>
-
-      <div class="grammar-box">
-        <h4>Key Words</h4>
-        <p class="rule"><strong>While / As / Just as</strong> + past continuous</p>
-        <p class="rule"><strong>When</strong> + past simple</p>
-        <p class="rule"><strong>During</strong> + noun</p>
-        <div class="example">While watching a movie, I fell asleep.</div>
-        <div class="example">During the match, the player fell and broke his leg.</div>
-      </div>
-
-      <h3 class="section-title">✍️ Practice</h3>
-
-      <div class="question-box">
-        <p class="q-text">1. I ___ a book when the doorbell ___ .</p>
-        <div class="options">
-          <div class="option" onclick="checkAnswer(this, false)">was reading / rings</div>
-          <div class="option" onclick="checkAnswer(this, true)">was reading / rang</div>
-          <div class="option" onclick="checkAnswer(this, false)">read / rang</div>
-          <div class="option" onclick="checkAnswer(this, false)">read / was ringing</div>
+          <h3 class="section-title">💡 Vocabulary</h3>
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Word</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="word">Heritage</td><td class="meaning">تراث</td></tr>
+              <tr><td class="word">Civilization</td><td class="meaning">حضارة</td></tr>
+              <tr><td class="word">Hieroglyphs</td><td class="meaning">الهيروغليفية</td></tr>
+              <tr><td class="word">Merchants</td><td class="meaning">تجار</td></tr>
+              <tr><td class="word">Crossroads</td><td class="meaning">ملتقى طرق</td></tr>
+              <tr><td class="word">Monuments</td><td class="meaning">آثار / معالم</td></tr>
+              <tr><td class="word">Determination</td><td class="meaning">تصميم / إصرار</td></tr>
+              <tr><td class="word">Sacrifices</td><td class="meaning">تضحيات</td></tr>
+              <tr><td class="word">Ancestors</td><td class="meaning">أسلاف</td></tr>
+              <tr><td class="word">Prosperity</td><td class="meaning">ازدهار</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <div class="question-box">
-        <p class="q-text">2. They ___ football when it ___ to rain.</p>
-        <div class="options">
-          <div class="option" onclick="checkAnswer(this, false)">played / started</div>
-          <div class="option" onclick="checkAnswer(this, true)">were playing / started</div>
-          <div class="option" onclick="checkAnswer(this, false)">were playing / was starting</div>
-          <div class="option" onclick="checkAnswer(this, false)">play / start</div>
+      <!-- Lesson 2 -->
+      <div class="lesson-card" id="lesson2">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-number">2</div>
+          <h2>Moments That Shaped Us</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body collapsed">
+          <h3 class="section-title">🎧 Listening</h3>
+          <p style="direction: rtl; text-align: right; color: #555;">استمع للتسجيل الصوتي ثم أجب على الأسئلة.</p>
+
+          <h3 class="section-title">💡 Vocabulary in Context</h3>
+          <table class="vocab-table">
+            <thead>
+              <tr><th>Word</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="word">Preserves</td><td class="meaning">يحافظ على</td></tr>
+              <tr><td class="word">Identity</td><td class="meaning">هوية</td></tr>
+              <tr><td class="word">Restoring</td><td class="meaning">ترميم</td></tr>
+              <tr><td class="word">Pride</td><td class="meaning">فخر</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <div class="question-box">
-        <p class="q-text">3. She was writing a poem when her pen ___ .</p>
-        <div class="options">
-          <div class="option" onclick="checkAnswer(this, true)">broke</div>
-          <div class="option" onclick="checkAnswer(this, false)">was breaking</div>
-          <div class="option" onclick="checkAnswer(this, false)">breaks</div>
-          <div class="option" onclick="checkAnswer(this, false)">break</div>
+      <!-- Lesson 3 -->
+      <div class="lesson-card" id="lesson3">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-number">3</div>
+          <h2>Now Starts Long Ago</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body collapsed">
+          <h3 class="section-title">📚 Grammar: Past Simple & Past Continuous</h3>
+
+          <div class="grammar-box">
+            <h4>Past Simple</h4>
+            <p class="rule">Use the past simple for <strong>completed past actions</strong>.</p>
+            <div class="example">The Egyptians taught the world what civilization was.</div>
+            <div class="example">She visited Luxor last year.</div>
+          </div>
+
+          <div class="grammar-box">
+            <h4>Past Continuous</h4>
+            <p class="rule">Use the past continuous <strong>(was/were + v-ing)</strong> to show an action in progress at a certain time in the past.</p>
+            <div class="example">At 2 o'clock, Sama was returning home.</div>
+            <div class="example">They were playing football at 5 PM.</div>
+          </div>
+
+          <div class="grammar-box">
+            <h4>Past Continuous + Past Simple</h4>
+            <p class="rule">Use past continuous with past simple to show a <strong>shorter action</strong> happened while a <strong>longer action</strong> was in progress.</p>
+            <div class="example">Mr. Ramy was calling his wife when he dropped his mobile.</div>
+            <div class="example">While I was walking home, I saw a shooting star.</div>
+          </div>
+
+          <div class="grammar-box">
+            <h4>Key Words</h4>
+            <p class="rule"><strong>While / As / Just as</strong> + past continuous</p>
+            <p class="rule"><strong>When</strong> + past simple</p>
+            <p class="rule"><strong>During</strong> + noun</p>
+            <div class="example">While watching a movie, I fell asleep.</div>
+            <div class="example">During the match, the player fell and broke his leg.</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Lesson 4 -->
-    <div class="lesson-card">
-      <div class="lesson-header">
-        <div class="lesson-number">4</div>
-        <h2>Where Pride Begins</h2>
+      <!-- Lesson 4 -->
+      <div class="lesson-card" id="lesson4">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-number">4</div>
+          <h2>Where Pride Begins</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body collapsed">
+          <h3 class="section-title">📖 Reading</h3>
+          <div class="reading-passage">
+            <p>Pride is not something that appears in a single day. It grows slowly, like a tree, from strong roots of history, culture, and shared values. For Egyptians, these roots run deep and continue to give us strength. Our country is one of the oldest and greatest civilizations in the world, and its story continues to inspire not only Egyptians, but people everywhere. True pride is built through connection to the past and responsibility for the future.</p>
+            <p>In ancient times, Egypt was a leader in human progress and knowledge. Our ancestors built the mighty pyramids and the magnificent temples along the Nile - monuments that still amaze the world today. They developed writing systems, advanced mathematics, and important medical knowledge. These achievements were not only for Egypt; they became gifts to the entire world, proving the greatness and creativity of our people. Their heritage shows that Egyptians have always worked with vision and determination.</p>
+            <p>Egypt was also a center for culture and learning. Great authors, poets, and thinkers shared their ideas and recorded their knowledge in writing. Their works reflected the values, traditions, and beliefs of the Egyptian society and influenced people for generations. Through stories, wisdom, and art, Egypt became a place where culture was preserved and celebrated. This role, as a home for creativity and expression, gave our nation respect and admiration from other civilizations.</p>
+            <p>True pride begins when we understand our history, protect our culture, and work hard for the future. It is not only about what we have inherited, but also about what we create for the generations to come. When we honor our past, stay united, and build our tomorrow with determination, we stand exactly where pride begins.</p>
+          </div>
+
+          <h3 class="section-title">✍️ Writing Task</h3>
+          <p style="direction: rtl; text-align: right; color: #555;">اكتب فقرة من 120-150 كلمة عن "A Strange Day in My Life" باستخدام Past Simple و Past Continuous.</p>
+        </div>
       </div>
 
-      <h3 class="section-title">📖 Reading</h3>
-      <div class="reading-passage">
-        <p>Pride is not something that appears in a single day. It grows slowly, like a tree, from strong roots of history, culture, and shared values. For Egyptians, these roots run deep and continue to give us strength. Our country is one of the oldest and greatest civilizations in the world, and its story continues to inspire not only Egyptians, but people everywhere. True pride is built through connection to the past and responsibility for the future.</p>
-        <p>In ancient times, Egypt was a leader in human progress and knowledge. Our ancestors built the mighty pyramids and the magnificent temples along the Nile - monuments that still amaze the world today. They developed writing systems, advanced mathematics, and important medical knowledge. These achievements were not only for Egypt; they became gifts to the entire world, proving the greatness and creativity of our people. Their heritage shows that Egyptians have always worked with vision and determination.</p>
-        <p>Egypt was also a center for culture and learning. Great authors, poets, and thinkers shared their ideas and recorded their knowledge in writing. Their works reflected the values, traditions, and beliefs of the Egyptian society and influenced people for generations. Through stories, wisdom, and art, Egypt became a place where culture was preserved and celebrated. This role, as a home for creativity and expression, gave our nation respect and admiration from other civilizations.</p>
-        <p>True pride begins when we understand our history, protect our culture, and work hard for the future. It is not only about what we have inherited, but also about what we create for the generations to come. When we honor our past, stay united, and build our tomorrow with determination, we stand exactly where pride begins.</p>
+      <!-- Lesson 5 -->
+      <div class="lesson-card" id="lesson5">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-number">5</div>
+          <h2>An Essay about Technology</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body collapsed">
+          <h3 class="section-title">📝 Essay Structure</h3>
+
+          <div class="grammar-box">
+            <h4>Introduction</h4>
+            <p class="rule">Introduces the topic, grabs the reader's attention, and presents the thesis statement.</p>
+            <div class="example">"Technology is changing the way we live. From smartphones to AI, it affects our jobs, communication, and education."</div>
+          </div>
+
+          <div class="grammar-box">
+            <h4>Body Paragraphs</h4>
+            <p class="rule">Explain and support the thesis with details, examples, and evidence.</p>
+            <div class="example">"One way technology improves life is through faster communication."</div>
+          </div>
+
+          <div class="grammar-box">
+            <h4>Conclusion</h4>
+            <p class="rule">Summarize the main points, restate the thesis in new words, and give a final thought.</p>
+            <div class="example">"In conclusion, technology has made communication faster, work easier, and life more convenient."</div>
+          </div>
+        </div>
       </div>
 
-      <h3 class="section-title">✍️ Writing Task</h3>
-      <p style="direction: rtl; text-align: right; color: #555;">اكتب فقرة من 120-150 كلمة عن "A Strange Day in My Life" باستخدام Past Simple و Past Continuous.</p>
-    </div>
-
-    <!-- Lesson 5 -->
-    <div class="lesson-card">
-      <div class="lesson-header">
-        <div class="lesson-number">5</div>
-        <h2>An Essay about Technology</h2>
+      <div class="nav-buttons">
+        <a href="student-dashboard.html" class="btn-lesson gold">🏠 لوحة الطالب</a>
+        <a href="sec1-unit2.html" class="btn-lesson">الوحدة التالية →</a>
       </div>
 
-      <h3 class="section-title">📝 Essay Structure</h3>
-
-      <div class="grammar-box">
-        <h4>Introduction</h4>
-        <p class="rule">Introduces the topic, grabs the reader's attention, and presents the thesis statement.</p>
-        <div class="example">"Technology is changing the way we live. From smartphones to AI, it affects our jobs, communication, and education. This essay will discuss how technology has improved our daily lives."</div>
-      </div>
-
-      <div class="grammar-box">
-        <h4>Body Paragraphs</h4>
-        <p class="rule">Explain and support the thesis with details, examples, and evidence.</p>
-        <div class="example">"One way technology improves life is through faster communication."</div>
-      </div>
-
-      <div class="grammar-box">
-        <h4>Conclusion</h4>
-        <p class="rule">Summarize the main points, restate the thesis in new words, and give a final thought.</p>
-        <div class="example">"In conclusion, technology has made communication faster, work easier, and life more convenient. As it develops, we must use it wisely."</div>
-      </div>
-    </div>
-
-    <!-- Navigation -->
-    <div class="nav-buttons">
-      <a href="student-dashboard.html" class="btn-lesson">← العودة للوحة الطالب</a>
-      <a href="sec1-exam-unit1.html" class="btn-lesson gold">🚀 ابدأ امتحان Unit 1</a>
-      <a href="sec1-unit2.html" class="btn-lesson">الوحدة التالية →</a>
-    </div>
-
+    </main>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    function checkAnswer(element, isCorrect) {
-      const options = element.parentElement.querySelectorAll('.option');
-      options.forEach(opt => {
-        opt.style.pointerEvents = 'none';
-        opt.classList.remove('correct', 'wrong');
-      });
-      if (isCorrect) {
-        element.classList.add('correct');
-      } else {
-        element.classList.add('wrong');
-        options.forEach(opt => {
-          if (opt.getAttribute('onclick').includes('true')) {
-            opt.classList.add('correct');
-          }
-        });
-      }
+    function toggleLesson(header) {
+      const body = header.nextElementSibling;
+      const icon = header.querySelector('.toggle-icon');
+      body.classList.toggle('collapsed');
+      icon.style.transform = body.classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(180deg)';
     }
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
   </script>
-
 </body>
 </html>

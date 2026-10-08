@@ -14,15 +14,10 @@
     .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
     .navbar-brand .brand-name span { color: #ffb347; }
 
-    /* قواعد الاتجاه */
-    .question-card .q-text, .question-card .options { direction: ltr !important; text-align: left !important; }
-    .exam-header h1 { text-align: center !important; }
-    .result-box h3, .result-box p { text-align: center !important; }
-
     .exam-container { max-width: 900px; margin: 30px auto; background: #fff; border-radius: 24px; padding: 35px; box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
-    .exam-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #f7e05e; }
-    .exam-header h1 { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 1.8rem; font-style: italic; margin-bottom: 8px; }
-    .exam-header p { color: #666; }
+    .exam-header { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #f7e05e; }
+    .exam-header h1 { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 1.8rem; font-style: italic; margin-bottom: 8px; direction: ltr; text-align: center; }
+    .exam-header p { color: #666; direction: rtl; text-align: center; }
     .exam-header .meta { display: flex; justify-content: center; gap: 25px; margin-top: 15px; flex-wrap: wrap; }
     .exam-header .meta span { background: #f8f9fa; padding: 8px 16px; border-radius: 20px; color: #0a1f44; font-weight: 600; }
 
@@ -34,9 +29,9 @@
 
     .question-card { background: #f8f9fa; border-radius: 18px; padding: 25px; margin-bottom: 20px; border-right: 5px solid #f7e05e; }
     .question-card .q-num { display: inline-block; background: #0a1f44; color: #f7e05e; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; margin-bottom: 12px; font-family: 'Cinzel', serif; }
-    .question-card .q-text { font-weight: 700; color: #0a1f44; font-size: 1.1rem; margin-bottom: 15px; }
-    .question-card .options { display: grid; gap: 10px; }
-    .question-card .option { background: #fff; border-radius: 12px; padding: 14px 18px; cursor: pointer; transition: 0.3s; border: 2px solid #e9ecef; display: flex; align-items: center; gap: 12px; }
+    .question-card .q-text { font-weight: 700; color: #0a1f44; font-size: 1.1rem; margin-bottom: 15px; direction: ltr; text-align: left; }
+    .question-card .options { display: grid; gap: 10px; direction: ltr; }
+    .question-card .option { background: #fff; border-radius: 12px; padding: 14px 18px; cursor: pointer; transition: 0.3s; border: 2px solid #e9ecef; display: flex; align-items: center; gap: 12px; direction: ltr; text-align: left; }
     .question-card .option:hover { border-color: #f7b731; background: #fffbf0; }
     .question-card .option.selected { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; border-color: #0a1f44; }
     .question-card .option .letter { width: 30px; height: 30px; border-radius: 50%; background: #e9ecef; color: #0a1f44; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; }
@@ -49,11 +44,12 @@
     .btn-submit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; padding: 15px 50px; border-radius: 50px; font-weight: 800; font-size: 1.1rem; border: none; transition: 0.3s; display: block; margin: 30px auto 0; }
     .btn-submit:hover { background: #f7b731; color: #0a1f44; }
 
-    .result-box { text-align: center; padding: 40px 20px; }
+    .result-box { padding: 40px 20px; }
     .result-box .score-circle { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 25px; }
     .result-box .score-circle .score { font-size: 3rem; font-weight: 800; font-family: 'Cinzel', serif; }
     .result-box .score-circle .total { font-size: 1.2rem; color: #b0c4de; }
-    .result-box h3 { color: #0a1f44; font-weight: 800; }
+    .result-box h3 { color: #0a1f44; font-weight: 800; direction: rtl; text-align: center; }
+    .result-box p { direction: rtl; text-align: center; }
     .result-box .actions { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px; }
     .result-box .actions a, .result-box .actions button { padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; border: none; }
     .result-box .actions .btn-retry { background: #f7e05e; color: #0a1f44; }
