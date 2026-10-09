@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>لوحة الطالب – أكاديمية مستر ياسر نوفل</title>
   <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/student-dashboard.html" />
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
   <script type="importmap">
   {
     "imports": {
@@ -22,55 +19,44 @@
     }
   }
   </script>
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
-    @media (max-width: 991.98px) { body { padding-top: 72px; } }
-
+    body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; }
     .navbar-custom { background: rgba(10, 31, 68, 0.85) !important; backdrop-filter: blur(18px); padding: 14px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); z-index: 1050; }
     .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
     .navbar-brand img { height: 40px; width: auto; }
-    .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; letter-spacing: 1px; }
+    .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
     .navbar-brand .brand-name span { color: #ffb347; }
-    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
     .nav-link:hover { color: #f7e05e !important; }
-    .nav-link.active { color: #f7e05e !important; }
-
     .dashboard-container { max-width: 1000px; margin: 30px auto; background: #fff; border-radius: 28px; padding: 35px; box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
     .stat-card { background: #f8f9fa; border-radius: 16px; padding: 20px; text-align: center; height: 100%; transition: 0.3s; }
-    .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+    .stat-card:hover { transform: translateY(-5px); }
     .stat-card .number { font-size: 2.5rem; font-weight: 800; color: #0a1f44; }
     .stat-card .label { color: #666; }
     .btn-logout { background: #dc3545; color: #fff; border: none; padding: 10px 30px; border-radius: 50px; font-weight: 700; transition: 0.3s; }
-    .btn-logout:hover { background: #b02a37; transform: scale(1.02); }
-    .btn-go-exams { background: #0a1f44; color: #f7e05e; border: none; padding: 14px 30px; border-radius: 50px; font-weight: 700; transition: 0.3s; text-decoration: none; display: block; text-align: center; margin-bottom: 15px; }
-    .btn-go-exams:hover { background: #f7b731; color: #0a1f44; transform: scale(1.02); text-decoration: none; }
-    .btn-go-lessons { background: #f7e05e; color: #0a1f44; border: none; padding: 14px 30px; border-radius: 50px; font-weight: 700; transition: 0.3s; text-decoration: none; display: block; text-align: center; margin-bottom: 15px; }
-    .btn-go-lessons:hover { background: #f7b731; color: #0a1f44; transform: scale(1.02); text-decoration: none; }
-    .btn-dark-mode { background: transparent; border: 1px solid #e0e8f0; color: #e0e8f0; border-radius: 50px; padding: 5px 15px; transition: 0.3s; }
-    .btn-dark-mode:hover { background: #f7e05e; color: #0a1f44; border-color: #f7e05e; }
+    .btn-go-exams { background: #0a1f44; color: #f7e05e; padding: 14px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: block; text-align: center; margin-bottom: 15px; }
+    .btn-go-lessons { background: #f7e05e; color: #0a1f44; padding: 14px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: block; text-align: center; margin-bottom: 15px; }
     .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 12px; }
     @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
     .progress-custom { height: 10px; border-radius: 10px; background: #e9ecef; overflow: hidden; }
     .progress-custom .progress-bar { background: #28a745; transition: width 0.8s ease; }
-
     .unit-card { background: #fff; border-radius: 20px; padding: 22px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #f7e05e; transition: 0.3s; height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-    .unit-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); border-right-color: #f7b731; }
+    .unit-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
     .unit-card.completed { border-right-color: #28a745; }
     .unit-card.locked { border-right-color: #ccc; opacity: 0.75; }
     .unit-card.review { border-right-color: #dc2626; background: linear-gradient(135deg, #fef9e7, #fffbf0); }
     .unit-card.story { border-right-color: #7c3aed; background: linear-gradient(135deg, #f5f3ff, #ede9fe); }
     .unit-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-    .unit-icon { font-size: 2.5rem; line-height: 1; }
+    .unit-icon { font-size: 2.5rem; }
     .unit-number { display: inline-block; background: #0a1f44; color: #f7e05e; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; font-family: 'Cinzel', serif; }
     .unit-card.story .unit-number { background: #7c3aed; color: #fff; }
     .unit-card.review .unit-number { background: #dc2626; color: #fff; }
-    .unit-title-en { color: #0a1f44; font-weight: 800; font-size: 0.95rem; margin-bottom: 4px; font-family: 'Cinzel', serif; letter-spacing: 0.5px; direction: ltr; text-align: left; }
-    .unit-subtitle-en { color: #0a1f44; font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; font-family: 'Playfair Display', serif; line-height: 1.35; font-style: italic; direction: ltr; text-align: left; }
+    .unit-title-en { color: #0a1f44; font-weight: 800; font-size: 0.95rem; margin-bottom: 4px; font-family: 'Cinzel', serif; direction: ltr; text-align: left; }
+    .unit-subtitle-en { color: #0a1f44; font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; font-family: 'Playfair Display', serif; font-style: italic; direction: ltr; text-align: left; }
     .unit-divider { height: 2px; background: linear-gradient(90deg, #f7e05e, transparent); margin: 12px 0; border-radius: 2px; }
     .unit-title-ar { color: #555; font-weight: 700; font-size: 1rem; margin-bottom: 4px; direction: rtl; text-align: right; }
-    .unit-subtitle-ar { color: #888; font-size: 0.9rem; margin-bottom: 15px; line-height: 1.5; flex-grow: 1; direction: rtl; text-align: right; }
+    .unit-subtitle-ar { color: #888; font-size: 0.9rem; margin-bottom: 15px; flex-grow: 1; direction: rtl; text-align: right; }
     .unit-status { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 15px; align-self: flex-start; }
     .status-completed { background: #d4edda; color: #155724; }
     .status-available { background: #fff3cd; color: #856404; }
@@ -79,119 +65,59 @@
     .status-review { background: #fee2e2; color: #991b1b; }
     .status-story { background: #ede9fe; color: #5b21b6; }
     .unit-btn { background: #0a1f44; color: #f7e05e; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.95rem; }
-    .unit-btn:hover { background: #f7b731; color: #0a1f44; text-decoration: none; transform: scale(1.02); }
+    .unit-btn:hover { background: #f7b731; color: #0a1f44; text-decoration: none; }
     .unit-btn.disabled { background: #ccc; color: #666; cursor: not-allowed; pointer-events: none; }
     .unit-btn.review-btn { background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; }
-    .unit-btn.review-btn:hover { background: #b91c1c; }
     .unit-btn.story-btn { background: linear-gradient(135deg, #7c3aed, #6d28d9); color: #fff; }
-    .unit-btn.story-btn:hover { background: #6d28d9; }
-
     .unit-progress-wrapper { margin: 12px 0 10px; }
     .unit-progress-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: #666; margin-bottom: 5px; font-weight: 600; }
     .unit-progress-bar { height: 8px; background: #e9ecef; border-radius: 10px; overflow: hidden; }
     .unit-progress-fill { height: 100%; background: linear-gradient(90deg, #28a745, #20c997); border-radius: 10px; transition: width 0.8s ease; }
-    .unit-card.review .unit-progress-fill { background: linear-gradient(90deg, #dc2626, #f87171); }
-    .unit-card.story .unit-progress-fill { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
-
-    .badge-pulse { display: inline-block; animation: pulse-gold 2s infinite; }
-    @keyframes pulse-gold {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(247, 183, 49, 0.7); }
-      50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(247, 183, 49, 0); }
-    }
     .badge-new { position: absolute; top: 15px; left: 15px; background: linear-gradient(135deg, #f7b731, #f59e0b); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; z-index: 2; animation: pulse-gold 2s infinite; }
-
-    .continue-btn { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; padding: 15px 25px; border-radius: 18px; text-decoration: none; font-weight: 700; margin-bottom: 25px; transition: 0.3s; box-shadow: 0 6px 20px rgba(10, 31, 68, 0.2); }
-    .continue-btn:hover { background: linear-gradient(135deg, #1a3a6e, #2a4a8e); color: #f7e05e; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(10, 31, 68, 0.3); text-decoration: none; }
-    .continue-btn .left { display: flex; align-items: center; gap: 12px; }
-    .continue-btn .icon { font-size: 1.5rem; }
-    .continue-btn .text .title { font-size: 0.85rem; color: #b0c4de; font-weight: 500; margin-bottom: 3px; }
-    .continue-btn .text .name { font-size: 1rem; color: #f7e05e; }
-    .continue-btn .arrow { font-size: 1.2rem; }
-
-    .countdown-box { background: linear-gradient(135deg, #fef3c7, #fffbf0); border: 2px solid #f7b731; border-radius: 18px; padding: 18px 25px; margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
-    .countdown-box .info { display: flex; align-items: center; gap: 12px; }
-    .countdown-box .info i { font-size: 1.8rem; color: #f59e0b; }
-    .countdown-box .info .label { font-size: 0.8rem; color: #92400e; font-weight: 600; }
-    .countdown-box .info .exam-name { font-size: 1rem; color: #0a1f44; font-weight: 700; }
-    .countdown-timer { display: flex; gap: 10px; }
-    .countdown-timer .time-unit { background: #0a1f44; color: #f7e05e; border-radius: 12px; padding: 8px 12px; text-align: center; min-width: 60px; }
-    .countdown-timer .time-unit .num { font-size: 1.4rem; font-weight: 800; line-height: 1; }
-    .countdown-timer .time-unit .lbl { font-size: 0.65rem; color: #b0c4de; margin-top: 3px; }
-
-    .exam-card { background: linear-gradient(135deg, #f8f9fa, #fff); border-radius: 20px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #0a1f44; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
-    .exam-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+    @keyframes pulse-gold { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .exam-card { background: linear-gradient(135deg, #f8f9fa, #fff); border-radius: 20px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #0a1f44; height: 100%; display: flex; flex-direction: column; }
     .exam-card.comprehensive { border-right-color: #dc2626; background: linear-gradient(135deg, #fef2f2, #fff); }
     .exam-card.official { border-right-color: #f7b731; background: linear-gradient(135deg, #fffbf0, #fff); }
     .exam-badge { display: inline-block; background: #e3f2fd; color: #1565c0; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px; align-self: flex-start; }
     .exam-badge.comprehensive { background: #fee2e2; color: #991b1b; }
     .exam-badge.official { background: #fef3c7; color: #92400e; }
-    .exam-title { color: #0a1f44; font-weight: 700; font-size: 1.05rem; margin-bottom: 10px; }
-    .exam-info { display: flex; gap: 15px; flex-wrap: wrap; color: #666; font-size: 0.85rem; margin-bottom: 15px; flex-grow: 1; }
-    .exam-info span { display: flex; align-items: center; gap: 5px; }
-
+    .exam-title { color: #0a1f44; font-weight: 700; font-size: 1.05rem; margin-bottom: 10px; direction: ltr; text-align: left; }
+    .exam-info { display: flex; gap: 15px; flex-wrap: wrap; color: #666; font-size: 0.85rem; margin-bottom: 15px; flex-grow: 1; direction: ltr; text-align: left; }
     .exam-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto; }
     .exam-buttons.single { grid-template-columns: 1fr; }
-
-    .exam-btn { background: #0a1f44; color: #f7e05e; border: none; padding: 10px 15px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.9rem; }
+    .exam-btn { background: #0a1f44; color: #f7e05e; padding: 10px 15px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.9rem; }
     .exam-btn:hover { background: #f7b731; color: #0a1f44; text-decoration: none; }
     .exam-btn.comprehensive-btn { background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; }
-    .exam-btn.comprehensive-btn:hover { background: #b91c1c; }
     .exam-btn.official-btn { background: linear-gradient(135deg, #f7b731, #f59e0b); color: #0a1f44; }
-    .exam-btn.official-btn:hover { background: #f59e0b; }
-
-    .pdf-btn { background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; padding: 10px 15px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.9rem; }
-    .pdf-btn:hover { background: #059669; color: #fff; text-decoration: none; transform: scale(1.02); }
-
+    .pdf-btn { background: linear-gradient(135deg, #10b981, #059669); color: #fff; padding: 10px 15px; border-radius: 50px; font-weight: 700; text-decoration: none; text-align: center; transition: 0.3s; display: block; font-size: 0.9rem; }
+    .pdf-btn:hover { background: #059669; color: #fff; text-decoration: none; }
     .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 3px solid #f7e05e; }
-    .section-header h4 { color: #0a1f44; font-weight: 800; margin: 0; font-size: 1.4rem; }
+    .section-header h4 { color: #0a1f44; font-weight: 800; margin: 0; font-size: 1.4rem; direction: rtl; text-align: right; }
     .section-header .badge-grade { background: #0a1f44; color: #f7e05e; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
-
     #toastNotification { position: fixed; bottom: 30px; right: 30px; z-index: 9999; min-width: 300px; }
     .toast-custom { border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); padding: 12px 20px; display: flex; align-items: center; gap: 10px; }
     .toast-icon { font-size: 1.5rem; }
-
     .extra-links { background: #f8f9fa; padding: 10px 0; border-bottom: 1px solid #e9ecef; text-align: center; }
-    .extra-links a { color: #0a1f44; text-decoration: none; margin: 0 12px; font-weight: 500; transition: 0.3s; font-size: 0.95rem; }
-    .extra-links a:hover { color: #f7b731; text-decoration: underline; }
+    .extra-links a { color: #0a1f44; text-decoration: none; margin: 0 12px; font-weight: 500; font-size: 0.95rem; }
     footer { background: #0a1f44; color: #b0c4de; padding: 35px 0; border-radius: 40px 40px 0 0; margin-top: 50px; text-align: center; }
-    .social-icons a { color: #b0c4de; margin: 0 8px; font-size: 1.2rem; transition: 0.3s; }
-    .social-icons a:hover { color: #f7e05e; }
+    .social-icons a { color: #b0c4de; margin: 0 8px; font-size: 1.2rem; }
     .footer-links { list-style: none; padding: 0; }
-    .footer-links li { margin: 5px 0; }
-    .footer-links a { color: #b0c4de; text-decoration: none; transition: 0.3s; }
-    .footer-links a:hover { color: #f7e05e; }
+    .footer-links a { color: #b0c4de; text-decoration: none; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
-
     .report-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; padding: 18px; background: linear-gradient(135deg, #f8f9fa, #fff); border-radius: 18px; border: 1px dashed #d0d7e2; }
-    .report-actions .label { width: 100%; text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 5px; }
-    .btn-report { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; border: none; padding: 12px 28px; border-radius: 50px; font-weight: 700; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-    .btn-report:hover { background: #f7b731; color: #0a1f44; transform: scale(1.03); }
-    .btn-report-outline { background: transparent; color: #0a1f44; border: 2px solid #0a1f44; padding: 10px 26px; border-radius: 50px; font-weight: 700; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
-    .btn-report-outline:hover { background: #0a1f44; color: #f7e05e; }
+    .report-actions .label { width: 100%; text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 5px; direction: rtl; }
+    .btn-report { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; border: none; padding: 12px 28px; border-radius: 50px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+    .btn-report-outline { background: transparent; color: #0a1f44; border: 2px solid #0a1f44; padding: 10px 26px; border-radius: 50px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; }
     #reportLoading { display: none; text-align: center; padding: 20px; color: #0a1f44; font-weight: 700; }
-    #reportLoading .spinner-border { color: #f7b731; }
-
     @media (max-width: 768px) {
       .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
       .dashboard-container { padding: 20px 15px; margin: 20px 10px; }
       .exam-buttons { grid-template-columns: 1fr; }
-      .continue-btn { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .countdown-box { flex-direction: column; align-items: flex-start; }
-      .countdown-timer { width: 100%; justify-content: center; }
     }
-
     @media print {
       body { background: #fff !important; padding-top: 0 !important; }
-      .navbar, .extra-links, footer, .report-actions,
-      .btn-logout, .btn-go-lessons, .btn-go-exams,
-      #toastNotification, .btn-dark-mode, #darkModeToggle,
-      .continue-btn, .countdown-box { display: none !important; }
-      .dashboard-container { box-shadow: none !important; margin: 0 !important; padding: 20px !important; max-width: 100% !important; }
-      .stat-card { border: 1px solid #ddd; page-break-inside: avoid; }
-      .unit-card, .exam-card { page-break-inside: avoid; box-shadow: none !important; border: 1px solid #ddd; }
-      .section-header { page-break-after: avoid; }
-      a[href]::after { content: "" !important; }
-      .table { font-size: 0.85rem; }
+      .navbar, .extra-links, footer, .report-actions, .btn-logout, .btn-go-lessons, .btn-go-exams, #toastNotification, .btn-dark-mode { display: none !important; }
+      .dashboard-container { box-shadow: none !important; margin: 0 !important; }
     }
   </style>
 </head>
@@ -200,7 +126,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
+        <img src="assets/images/logo.png" alt="Logo" />
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -209,13 +135,9 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html">📝 الحجز</a></li>
-          <li class="nav-item"><a class="nav-link" href="games.html">🎮 الألعاب</a></li>
           <li class="nav-item"><a class="nav-link" href="lessons.html">📖 الشرح</a></li>
           <li class="nav-item"><a class="nav-link" href="exams.html">📝 الامتحانات</a></li>
-          <li class="nav-item" id="logoutLink"><a class="nav-link" href="#" onclick="logoutUser()">🚪 تسجيل الخروج</a></li>
-          <li class="nav-item"><button class="btn btn-dark-mode btn-sm" id="darkModeToggle" onclick="toggleDarkMode()">🌙</button></li>
+          <li class="nav-item"><a class="nav-link" href="#" onclick="logoutUser()">🚪 تسجيل الخروج</a></li>
         </ul>
       </div>
     </div>
@@ -246,39 +168,8 @@
 
         <div class="report-actions">
           <span class="label">📄 احصل على نسخة من تقريرك الدراسي</span>
-          <button class="btn-report" onclick="downloadReportPDF()">
-            <i class="fas fa-file-pdf"></i> تحميل PDF
-          </button>
-          <button class="btn-report-outline" onclick="printReport()">
-            <i class="fas fa-print"></i> طباعة التقرير
-          </button>
-        </div>
-
-        <a href="#" id="continueBtn" class="continue-btn" style="display: none;">
-          <div class="left">
-            <span class="icon">▶️</span>
-            <div class="text">
-              <div class="title">متابعة من حيث توقفت</div>
-              <div class="name" id="lastLessonName">آخر درس</div>
-            </div>
-          </div>
-          <span class="arrow">←</span>
-        </a>
-
-        <div class="countdown-box" id="countdownBox" style="display: none;">
-          <div class="info">
-            <i class="fas fa-hourglass-half"></i>
-            <div>
-              <div class="label">⏰ الامتحان القادم</div>
-              <div class="exam-name" id="nextExamName">-</div>
-            </div>
-          </div>
-          <div class="countdown-timer" id="countdownTimer">
-            <div class="time-unit"><div class="num" id="cdDays">00</div><div class="lbl">يوم</div></div>
-            <div class="time-unit"><div class="num" id="cdHours">00</div><div class="lbl">ساعة</div></div>
-            <div class="time-unit"><div class="num" id="cdMins">00</div><div class="lbl">دقيقة</div></div>
-            <div class="time-unit"><div class="num" id="cdSecs">00</div><div class="lbl">ثانية</div></div>
-          </div>
+          <button class="btn-report" onclick="downloadReportPDF()"><i class="fas fa-file-pdf"></i> تحميل PDF</button>
+          <button class="btn-report-outline" onclick="printReport()"><i class="fas fa-print"></i> طباعة</button>
         </div>
 
         <div id="reportLoading">
@@ -287,12 +178,12 @@
         </div>
 
         <div id="reportContent">
-          <h2 class="text-center fw-bold mb-2">لوحة تحكم الطالب</h2>
-          <p class="text-center text-muted mb-4" id="welcomeMessage">مرحباً!</p>
+          <h2 class="text-center fw-bold mb-2" style="direction: rtl;">لوحة تحكم الطالب</h2>
+          <p class="text-center text-muted mb-4" id="welcomeMessage" style="direction: rtl;">مرحباً!</p>
 
           <div class="mt-3 mb-4">
             <div class="d-flex justify-content-between">
-              <span>نسبة التقدم</span>
+              <span style="direction: rtl;">نسبة التقدم</span>
               <span id="progressPercentage">0%</span>
             </div>
             <div class="progress-custom">
@@ -324,12 +215,10 @@
           </div>
 
           <div class="mb-4">
-            <h5 class="fw-bold mb-3"><i class="fas fa-history text-primary"></i> آخر الاختبارات</h5>
+            <h5 class="fw-bold mb-3" style="direction: rtl;"><i class="fas fa-history text-primary"></i> آخر الاختبارات</h5>
             <div class="table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr><th>الاختبار</th><th>الدرجة</th><th>التاريخ</th></tr>
-                </thead>
+              <table class="table table-hover" style="direction: rtl;">
+                <thead><tr><th>الاختبار</th><th>الدرجة</th><th>التاريخ</th></tr></thead>
                 <tbody id="testsBody">
                   <tr><td colspan="3" class="text-center text-muted">لا توجد اختبارات سابقة</td></tr>
                 </tbody>
@@ -360,7 +249,7 @@
       <div class="row g-4">
         <div class="col-md-4">
           <h5>أكاديمية مستر ياسر نوفل</h5>
-          <p>تعلم الإنجليزية من الصفر حتى الاحتراف مع أفضل المدربين.</p>
+          <p>تعلم الإنجليزية من الصفر حتى الاحتراف</p>
           <div class="social-icons">
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
@@ -397,71 +286,59 @@
     import { ref, get, set, update } from "firebase/database";
 
     // ==========================================
-    // 📚 بيانات الوحدات
+    // 📚 بيانات الوحدات (بالروابط الجديدة)
     // ==========================================
     const UNITS_DATA = {
       "prep1": [
-        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Life in a Digital World", subtitleAr: "الحياة في عالم رقمي", url: "unit1-digital-world.html", icon: "🌐", status: "new" },
-        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Learning to Learn", subtitleAr: "تعلم كيف تتعلم", url: "unit2-prep1.html", icon: "📚", status: "new" },
-        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Role Models", subtitleAr: "قدوة حسنة", url: "unit3-prep1.html", icon: "🌟", status: "new" },
-        { number: "R1", titleEn: "Review", titleAr: "المراجعة الشاملة", subtitleEn: "Units 1, 2, 3", subtitleAr: "الوحدات 1-3", url: "review-1-prep1.html", icon: "🎯", status: "review" },
-        { number: "S", titleEn: "Story", titleAr: "القصة", subtitleEn: "The Magic Classroom", subtitleAr: "الفصل السحري", url: "story-magic-classroom.html", icon: "📖", status: "story" },
-        { number: 4, titleEn: "Unit 4", titleAr: "الوحدة الرابعة", subtitleEn: "Smart Choices", subtitleAr: "خيارات ذكية", url: "unit4-prep1.html", icon: "🎪", status: "locked" },
-        { number: 5, titleEn: "Unit 5", titleAr: "الوحدة الخامسة", subtitleEn: "Future Dreams", subtitleAr: "أحلام المستقبل", url: "unit5-prep1.html", icon: "🚀", status: "locked" },
-        { number: 6, titleEn: "Unit 6", titleAr: "الوحدة السادسة", subtitleEn: "Global Citizens", subtitleAr: "مواطنون عالميون", url: "unit6-prep1.html", icon: "🌍", status: "locked" }
+        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Life in a Digital World", subtitleAr: "الحياة في عالم رقمي", url: "lessons/prep1/unit1-digital-world.html", icon: "🌐", status: "new" },
+        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Learning to Learn", subtitleAr: "تعلم كيف تتعلم", url: "lessons/prep1/unit2-prep1.html", icon: "📚", status: "new" },
+        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Role Models", subtitleAr: "قدوة حسنة", url: "lessons/prep1/unit3-prep1.html", icon: "🌟", status: "new" },
+        { number: "R1", titleEn: "Review", titleAr: "المراجعة الشاملة", subtitleEn: "Units 1, 2, 3", subtitleAr: "الوحدات 1-3", url: "lessons/prep1/review-1-prep1.html", icon: "🎯", status: "review" },
+        { number: "S", titleEn: "Story", titleAr: "القصة", subtitleEn: "The Magic Classroom", subtitleAr: "الفصل السحري", url: "lessons/prep1/story-magic-classroom.html", icon: "📖", status: "story" },
+        { number: 4, titleEn: "Unit 4", titleAr: "الوحدة الرابعة", subtitleEn: "Smart Choices", subtitleAr: "خيارات ذكية", url: "#", icon: "🎪", status: "locked" },
+        { number: 5, titleEn: "Unit 5", titleAr: "الوحدة الخامسة", subtitleEn: "Future Dreams", subtitleAr: "أحلام المستقبل", url: "#", icon: "🚀", status: "locked" },
+        { number: 6, titleEn: "Unit 6", titleAr: "الوحدة السادسة", subtitleEn: "Global Citizens", subtitleAr: "مواطنون عالميون", url: "#", icon: "🌍", status: "locked" }
       ],
       "sec1": [
-        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Egypt's Heritage", subtitleAr: "تراث مصر", url: "sec1-unit1.html", icon: "🏛️", status: "new" },
-        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Hands Help, Hearts Care", subtitleAr: "أيادٍ تساعد وقلوبٌ ترعى", url: "sec1-unit2.html", icon: "🤝", status: "new" },
-        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Truth vs. Lies", subtitleAr: "الحقيقة ضد الكذب", url: "sec1-unit3.html", icon: "⚖️", status: "new" },
-        { number: "R1", titleEn: "Review 1", titleAr: "المراجعة الشاملة 1", subtitleEn: "Units 1, 2, 3", subtitleAr: "الوحدات 1-3", url: "sec1-review1.html", icon: "🎯", status: "review" },
-        { number: 4, titleEn: "Unit 4", titleAr: "الوحدة الرابعة", subtitleEn: "Save and Shine", subtitleAr: "وفّر وتألّق", url: "sec1-unit4.html", icon: "🌱", status: "new" },
-        { number: 5, titleEn: "Unit 5", titleAr: "الوحدة الخامسة", subtitleEn: "Using Technology at Schools", subtitleAr: "استخدام التكنولوجيا في المدارس", url: "sec1-unit5.html", icon: "💻", status: "new" },
-        { number: 6, titleEn: "Unit 6", titleAr: "الوحدة السادسة", subtitleEn: "Job Hunting", subtitleAr: "البحث عن عمل", url: "sec1-unit6.html", icon: "💼", status: "new" },
-        { number: "R2", titleEn: "Review 2", titleAr: "المراجعة الشاملة 2", subtitleEn: "Units 4, 5, 6", subtitleAr: "الوحدات 4-6", url: "sec1-review2.html", icon: "🎯", status: "review" },
-        { number: "S", titleEn: "Story", titleAr: "القصة", subtitleEn: "The Old Man and the Sea", subtitleAr: "العجوز والبحر", url: "sec1-story-old-man-sea.html", icon: "📖", status: "story" }
+        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Egypt's Heritage", subtitleAr: "تراث مصر", url: "lessons/sec1/unit1.html", icon: "🏛️", status: "new" },
+        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Hands Help, Hearts Care", subtitleAr: "أيادٍ تساعد وقلوبٌ ترعى", url: "lessons/sec1/unit2.html", icon: "🤝", status: "new" },
+        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Truth vs. Lies", subtitleAr: "الحقيقة ضد الكذب", url: "lessons/sec1/unit3.html", icon: "⚖️", status: "new" },
+        { number: "R1", titleEn: "Review 1", titleAr: "المراجعة الشاملة 1", subtitleEn: "Units 1, 2, 3", subtitleAr: "الوحدات 1-3", url: "#", icon: "🎯", status: "review" },
+        { number: 4, titleEn: "Unit 4", titleAr: "الوحدة الرابعة", subtitleEn: "Save and Shine", subtitleAr: "وفّر وتألّق", url: "#", icon: "🌱", status: "locked" },
+        { number: 5, titleEn: "Unit 5", titleAr: "الوحدة الخامسة", subtitleEn: "Using Technology at Schools", subtitleAr: "استخدام التكنولوجيا في المدارس", url: "#", icon: "💻", status: "locked" },
+        { number: 6, titleEn: "Unit 6", titleAr: "الوحدة السادسة", subtitleEn: "Job Hunting", subtitleAr: "البحث عن عمل", url: "#", icon: "💼", status: "locked" },
+        { number: "R2", titleEn: "Review 2", titleAr: "المراجعة الشاملة 2", subtitleEn: "Units 4, 5, 6", subtitleAr: "الوحدات 4-6", url: "#", icon: "🎯", status: "review" },
+        { number: "S", titleEn: "Story", titleAr: "القصة", subtitleEn: "The Old Man and the Sea", subtitleAr: "العجوز والبحر", url: "#", icon: "📖", status: "story" }
       ],
       "sec2": [
-        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Living Well in a Complex World", subtitleAr: "العيش الجيد في عالم معقد", url: "unit1-living-well.html", icon: "🌟", status: "new" },
-        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Leisure Time", subtitleAr: "وقت الفراغ", url: "unit2-leisure-time.html", icon: "🎨", status: "available" },
-        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Echoes of the Past", subtitleAr: "أصداء الماضي", url: "unit3-echoes-past.html", icon: "🏛️", status: "locked" },
-        { number: 4, titleEn: "Unit 4", titleAr: "الوحدة الرابعة", subtitleEn: "The Power of Choice", subtitleAr: "قوة الاختيار", url: "unit4-power-choice.html", icon: "🛒", status: "locked" },
-        { number: 5, titleEn: "Unit 5", titleAr: "الوحدة الخامسة", subtitleEn: "The Greenhouse Effect", subtitleAr: "ظاهرة الاحتباس الحراري", url: "unit5-greenhouse-effect.html", icon: "🌍", status: "locked" }
+        { number: 1, titleEn: "Unit 1", titleAr: "الوحدة الأولى", subtitleEn: "Living Well in a Complex World", subtitleAr: "العيش الجيد في عالم معقد", url: "lessons/sec2/unit1-living-well.html", icon: "🌟", status: "new" },
+        { number: 2, titleEn: "Unit 2", titleAr: "الوحدة الثانية", subtitleEn: "Leisure Time", subtitleAr: "وقت الفراغ", url: "#", icon: "🎨", status: "locked" },
+        { number: 3, titleEn: "Unit 3", titleAr: "الوحدة الثالثة", subtitleEn: "Echoes of the Past", subtitleAr: "أصداء الماضي", url: "#", icon: "🏛️", status: "locked" },
+        { number: 4, titleEn: "Unit 4", titleAr: "الوحدة الرابعة", subtitleEn: "The Power of Choice", subtitleAr: "قوة الاختيار", url: "#", icon: "🛒", status: "locked" },
+        { number: 5, titleEn: "Unit 5", titleAr: "الوحدة الخامسة", subtitleEn: "The Greenhouse Effect", subtitleAr: "ظاهرة الاحتباس الحراري", url: "#", icon: "🌍", status: "locked" }
       ]
     };
 
     // ==========================================
-    // 📝 بيانات الامتحانات
+    // 📝 بيانات الامتحانات (بالروابط الجديدة)
     // ==========================================
     const EXAMS_DATA = {
       "prep1": [
-        { title: "امتحان Unit 1 - Life in a Digital World", type: "unit", questions: 20, duration: 30, url: "exam-unit1-prep1.html" },
-        { title: "امتحان Unit 2 - Learning to Learn", type: "unit", questions: 20, duration: 30, url: "exam-unit2-prep1.html" },
-        { title: "امتحان Unit 3 - Role Models", type: "unit", questions: 20, duration: 30, url: "exam-unit3-prep1.html" },
-        { title: "امتحان المراجعة الشاملة - Units 1, 2, 3", type: "comprehensive", questions: 30, duration: 45, url: "exam-review1-prep1.html" },
-        { title: "Weekly Assessment 1 - Unit 1", type: "official", questions: 20, duration: 30, url: "assessment-1-prep1.html", pdf: "assessment-1-print.html" },
-        { title: "Weekly Assessment 2 - Unit 2", type: "official", questions: 20, duration: 30, url: "assessment-2-prep1.html", pdf: "assessment-2-print.html" },
-        { title: "Weekly Assessment 3 - Unit 3", type: "official", questions: 20, duration: 30, url: "assessment-3-prep1.html", pdf: "assessment-3-print.html" },
-        { title: "Monthly Assessment - Units 1, 2, 3", type: "official", questions: 30, duration: 45, url: "assessment-monthly.html", pdf: "assessment-monthly-print.html" }
+        { title: "امتحان Unit 1", type: "unit", questions: 20, duration: 30, url: "exams/prep1/unit1.html" },
+        { title: "امتحان Unit 2", type: "unit", questions: 20, duration: 30, url: "exams/prep1/unit2.html" },
+        { title: "امتحان Unit 3", type: "unit", questions: 20, duration: 30, url: "exams/prep1/unit3.html" }
       ],
       "sec1": [
-        { title: "امتحان Unit 1 - Egypt's Heritage", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit1.html" },
-        { title: "امتحان Unit 2 - Hands Help, Hearts Care", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit2.html" },
-        { title: "امتحان Unit 3 - Truth vs. Lies", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit3.html" },
-        { title: "امتحان المراجعة الشاملة 1", type: "comprehensive", questions: 30, duration: 45, url: "sec1-exam-review1.html" },
-        { title: "امتحان Unit 4 - Save and Shine", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit4.html" },
-        { title: "امتحان Unit 5 - Using Technology", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit5.html" },
-        { title: "امتحان Unit 6 - Job Hunting", type: "unit", questions: 20, duration: 30, url: "sec1-exam-unit6.html" },
-        { title: "امتحان المراجعة الشاملة 2", type: "comprehensive", questions: 30, duration: 45, url: "sec1-exam-review2.html" },
-        { title: "Assessment 1 - Unit 1", type: "official", questions: 20, duration: 30, url: "sec1-assessment-1.html", pdf: "sec1-assessment-1-print.html" },
-        { title: "Assessment 2 - Unit 2", type: "official", questions: 20, duration: 30, url: "sec1-assessment-2.html", pdf: "sec1-assessment-2-print.html" },
-        { title: "Assessment 3 - Unit 3", type: "official", questions: 20, duration: 30, url: "sec1-assessment-3.html", pdf: "sec1-assessment-3-print.html" },
-        { title: "Monthly Assessment - Units 1-3", type: "official", questions: 30, duration: 45, url: "sec1-assessment-monthly.html", pdf: "sec1-assessment-monthly-print.html" },
-        { title: "امتحان القصة - The Old Man and the Sea", type: "story", questions: 20, duration: 30, url: "sec1-exam-story.html" }
+        { title: "امتحان Unit 1 - Egypt's Heritage", type: "unit", questions: 20, duration: 30, url: "exams/sec1/unit1.html" },
+        { title: "امتحان Unit 2 - Hands Help, Hearts Care", type: "unit", questions: 30, duration: 30, url: "exams/sec1/unit2.html" },
+        { title: "امتحان Unit 3 - Truth vs. Lies", type: "unit", questions: 30, duration: 30, url: "exams/sec1/unit3.html" },
+        { title: "امتحان المراجعة الشاملة 1", type: "comprehensive", questions: 30, duration: 45, url: "exams/sec1/review1.html" },
+        { title: "Assessment 1 - Unit 1", type: "official", questions: 20, duration: 30, url: "exams/sec1/assessment1.html", pdf: "printable/sec1/assessment1-print.html" },
+        { title: "Assessment 2 - Unit 2", type: "official", questions: 20, duration: 30, url: "exams/sec1/assessment2.html", pdf: "printable/sec1/assessment2-print.html" },
+        { title: "Assessment 3 - Unit 3", type: "official", questions: 20, duration: 30, url: "exams/sec1/assessment3.html", pdf: "printable/sec1/assessment3-print.html" }
       ],
       "sec2": [
-        { title: "امتحان Unit 1 - Living Well", type: "unit", questions: 20, duration: 30, url: "exam.html?id=unit1-bac" },
-        { title: "امتحان شامل Units 1-3", type: "comprehensive", questions: 30, duration: 45, url: "exam.html?id=comprehensive-bac" }
+        { title: "امتحان Unit 1", type: "unit", questions: 20, duration: 30, url: "exams/sec2/unit1.html" }
       ]
     };
 
@@ -470,43 +347,19 @@
       "prep2": "تانية إعدادي",
       "prep3": "تالتة إعدادي",
       "sec1": "أولى ثانوي",
-      "sec2": "تانية ثانوي - بكالوريا",
+      "sec2": "تانية ثانوي",
       "sec3": "تالتة ثانوي"
-    };
-
-    function applySavedDarkMode() {
-      if (localStorage.getItem('darkMode') === 'enabled') {
-        document.body.classList.add('dark-mode');
-        document.getElementById('darkModeToggle').textContent = '☀️';
-      }
-    }
-
-    window.toggleDarkMode = function() {
-      document.body.classList.toggle('dark-mode');
-      const isDark = document.body.classList.contains('dark-mode');
-      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-      document.getElementById('darkModeToggle').textContent = isDark ? '☀️' : '🌙';
     };
 
     window.showToast = function(message, type = 'success') {
       const toast = document.getElementById('toastNotification');
       const toastDiv = toast.querySelector('.toast');
       const icon = document.getElementById('toastIcon');
-
-      const icons = {
-        success: '✅',
-        danger: '❌',
-        info: 'ℹ️',
-        warning: '⚠️'
-      };
-
+      const icons = { success: '✅', danger: '❌', info: 'ℹ️', warning: '⚠️' };
       document.getElementById('toastMessage').textContent = message;
       icon.textContent = icons[type] || '✅';
-
-      const bgColor = type === 'success' ? 'success' : type === 'danger' ? 'danger' : type === 'warning' ? 'warning' : 'info';
-      toastDiv.className = `toast align-items-center text-white border-0 toast-custom bg-${bgColor}`;
+      toastDiv.className = `toast align-items-center text-white border-0 toast-custom bg-${type}`;
       toast.style.display = 'block';
-
       clearTimeout(window._toastTimeout);
       window._toastTimeout = setTimeout(() => toast.style.display = 'none', 4000);
     };
@@ -523,102 +376,72 @@
       const container = document.getElementById('unitsContainer');
       const units = UNITS_DATA[grade] || [];
       document.getElementById('gradeBadge').textContent = GRADE_NAMES[grade] || grade;
-
       if (units.length === 0) {
-        container.innerHTML = `<div class="col-12 text-center text-muted py-5"><i class="fas fa-inbox" style="font-size: 3rem; opacity: 0.5;"></i><p class="mt-3">لا توجد وحدات متاحة</p></div>`;
+        container.innerHTML = `<div class="col-12 text-center text-muted py-5"><p>لا توجد وحدات</p></div>`;
         return;
       }
-
       container.innerHTML = units.map(unit => {
         const statusClass = unit.status === 'completed' ? 'status-completed' : unit.status === 'locked' ? 'status-locked' : unit.status === 'new' ? 'status-new' : unit.status === 'review' ? 'status-review' : unit.status === 'story' ? 'status-story' : 'status-available';
         const statusText = unit.status === 'completed' ? '✅ مكتمل' : unit.status === 'locked' ? '🔒 مقفل' : unit.status === 'new' ? '✨ جديد' : unit.status === 'review' ? '🎯 مراجعة' : unit.status === 'story' ? '📖 قصة' : '📖 متاح';
         const btnClass = unit.status === 'locked' ? 'unit-btn disabled' : unit.status === 'review' ? 'unit-btn review-btn' : unit.status === 'story' ? 'unit-btn story-btn' : 'unit-btn';
-        const btnText = unit.status === 'locked' ? '🔒 مقفل' : unit.status === 'completed' ? 'مراجعة' : unit.status === 'review' ? '🎯 ابدأ المراجعة' : unit.status === 'story' ? '📖 اقرأ القصة' : 'ابدأ الآن';
-        const numDisplay = unit.number === 'R1' ? 'REVIEW' : unit.number === 'S' ? 'STORY' : `UNIT ${unit.number}`;
+        const btnText = unit.status === 'locked' ? '🔒 قريباً' : unit.status === 'review' ? '🎯 ابدأ المراجعة' : unit.status === 'story' ? '📖 اقرأ القصة' : 'ابدأ الآن';
+        const numDisplay = unit.number === 'R1' ? 'REVIEW' : unit.number === 'R2' ? 'REVIEW' : unit.number === 'S' ? 'STORY' : `UNIT ${unit.number}`;
         const cardExtraClass = unit.status === 'review' ? 'review' : unit.status === 'story' ? 'story' : '';
-
         const unitKey = String(unit.number);
         const progress = unitProgress[unitKey] || 0;
         const progressHTML = unit.status !== 'locked' ? `
           <div class="unit-progress-wrapper">
-            <div class="unit-progress-label">
-              <span>التقدم</span>
-              <span>${progress}%</span>
-            </div>
-            <div class="unit-progress-bar">
-              <div class="unit-progress-fill" style="width: ${progress}%;"></div>
-            </div>
-          </div>
-        ` : '';
-
+            <div class="unit-progress-label"><span>التقدم</span><span>${progress}%</span></div>
+            <div class="unit-progress-bar"><div class="unit-progress-fill" style="width: ${progress}%;"></div></div>
+          </div>` : '';
         const newBadge = unit.status === 'new' ? '<span class="badge-new">✨ جديد</span>' : '';
-
         return `
           <div class="col-md-6 col-lg-4">
-            <div class="unit-card ${unit.status === 'completed' ? 'completed' : unit.status === 'locked' ? 'locked' : cardExtraClass}">
+            <div class="unit-card ${unit.status === 'locked' ? 'locked' : cardExtraClass}">
               ${newBadge}
               <div class="unit-header-row">
                 <span class="unit-icon">${unit.icon}</span>
                 <span class="unit-number">${numDisplay}</span>
               </div>
-              <h5 class="unit-title-en" dir="ltr">${unit.titleEn}</h5>
-              <h6 class="unit-subtitle-en" dir="ltr">${unit.subtitleEn}</h6>
+              <h5 class="unit-title-en">${unit.titleEn}</h5>
+              <h6 class="unit-subtitle-en">${unit.subtitleEn}</h6>
               <div class="unit-divider"></div>
-              <h6 class="unit-title-ar" dir="rtl">${unit.titleAr}</h6>
-              <p class="unit-subtitle-ar" dir="rtl">${unit.subtitleAr}</p>
+              <h6 class="unit-title-ar">${unit.titleAr}</h6>
+              <p class="unit-subtitle-ar">${unit.subtitleAr}</p>
               ${progressHTML}
               <span class="unit-status ${statusClass}">${statusText}</span>
-              <a href="${unit.status === 'locked' ? '#' : unit.url}" class="${btnClass}" onclick="markLessonOpened('${unit.url}', '${unit.titleAr}')">${btnText}</a>
+              <a href="${unit.status === 'locked' ? '#' : unit.url}" class="${btnClass}">${btnText}</a>
             </div>
-          </div>
-        `;
+          </div>`;
       }).join('');
     }
 
     function renderExams(grade) {
       const container = document.getElementById('examsContainer');
       const exams = EXAMS_DATA[grade] || [];
-
       if (exams.length === 0) {
-        container.innerHTML = `<div class="col-12 text-center text-muted py-5"><i class="fas fa-file-alt" style="font-size: 3rem; opacity: 0.5;"></i><p class="mt-3">لا توجد امتحانات</p></div>`;
+        container.innerHTML = `<div class="col-12 text-center text-muted py-5"><p>لا توجد امتحانات</p></div>`;
         return;
       }
-
       container.innerHTML = exams.map(exam => {
         let typeText = 'وحدة';
         let cardClass = 'exam-card';
         let badgeClass = 'exam-badge';
         let btnClass = 'exam-btn';
-
         if (exam.type === 'comprehensive') {
-          typeText = '🎯 شامل';
-          cardClass = 'exam-card comprehensive';
-          badgeClass = 'exam-badge comprehensive';
-          btnClass = 'exam-btn comprehensive-btn';
+          typeText = '🎯 شامل'; cardClass = 'exam-card comprehensive'; badgeClass = 'exam-badge comprehensive'; btnClass = 'exam-btn comprehensive-btn';
         } else if (exam.type === 'official') {
-          typeText = '📖 من كتاب التقيمات';
-          cardClass = 'exam-card official';
-          badgeClass = 'exam-badge official';
-          btnClass = 'exam-btn official-btn';
-        } else if (exam.type === 'story') {
-          typeText = '📖 القصة';
-          cardClass = 'exam-card';
-          badgeClass = 'exam-badge';
-          btnClass = 'exam-btn';
+          typeText = '📖 رسمي'; cardClass = 'exam-card official'; badgeClass = 'exam-badge official'; btnClass = 'exam-btn official-btn';
         }
-
         const hasPDF = exam.pdf ? true : false;
         const buttonsHTML = hasPDF ? `
           <div class="exam-buttons">
             <a href="${exam.url}" class="${btnClass}">🚀 ابدأ</a>
-            <a href="${exam.pdf}" class="pdf-btn" target="_blank" download>📥 تحميل PDF</a>
-          </div>
-        ` : `
+            <a href="${exam.pdf}" class="pdf-btn" target="_blank">📥 PDF</a>
+          </div>` : `
           <div class="exam-buttons single">
             <a href="${exam.url}" class="${btnClass}">🚀 ابدأ الامتحان</a>
-          </div>
-        `;
-
+          </div>`;
         return `
           <div class="col-md-6">
             <div class="${cardClass}">
@@ -630,60 +453,8 @@
               </div>
               ${buttonsHTML}
             </div>
-          </div>
-        `;
+          </div>`;
       }).join('');
-    }
-
-    window.markLessonOpened = async function(url, name) {
-      const user = auth.currentUser;
-      if (!user) return;
-      try {
-        await update(ref(database, `students/${user.uid}`), {
-          lastLessonUrl: url,
-          lastLessonName: name,
-          lastLessonDate: new Date().toISOString()
-        });
-      } catch (err) {
-        console.warn('Could not save last lesson:', err);
-      }
-    };
-
-    let countdownInterval = null;
-
-    function startCountdown(targetDate, examName) {
-      const box = document.getElementById('countdownBox');
-      document.getElementById('nextExamName').textContent = examName;
-      box.style.display = 'flex';
-
-      if (countdownInterval) clearInterval(countdownInterval);
-
-      function update() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        if (distance < 0) {
-          clearInterval(countdownInterval);
-          document.getElementById('cdDays').textContent = '00';
-          document.getElementById('cdHours').textContent = '00';
-          document.getElementById('cdMins').textContent = '00';
-          document.getElementById('cdSecs').textContent = '00';
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const secs = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
-        document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
-        document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
-      }
-
-      update();
-      countdownInterval = setInterval(update, 1000);
     }
 
     async function loadStudentData(uid) {
@@ -691,7 +462,6 @@
         const snapshot = await get(ref(database, `students/${uid}`));
         const loadingScreen = document.getElementById('loadingScreen');
         const dashboardContent = document.getElementById('dashboardContent');
-
         if (snapshot.exists()) {
           const data = snapshot.val();
           document.getElementById('welcomeMessage').textContent = `مرحباً، ${data.name || 'طالب'}! 👋`;
@@ -702,7 +472,6 @@
           document.getElementById('studentGrade').textContent = data.grade_percentage || '0%';
           document.getElementById('studentCertificates').textContent = data.certificates || '0';
           document.getElementById('studentLessons').textContent = data.lessonsCompleted || '0';
-
           if (data.tests && Array.isArray(data.tests) && data.tests.length > 0) {
             const testsBody = document.getElementById('testsBody');
             testsBody.innerHTML = '';
@@ -710,38 +479,12 @@
               testsBody.innerHTML += `<tr><td>${test.name || 'اختبار'}</td><td>${test.score || '0%'}</td><td>${test.date || '--'}</td></tr>`;
             });
           }
-
-          if (data.lastLessonUrl && data.lastLessonName) {
-            const btn = document.getElementById('continueBtn');
-            btn.href = data.lastLessonUrl;
-            document.getElementById('lastLessonName').textContent = data.lastLessonName;
-            btn.style.display = 'flex';
-          }
-
-          if (data.nextExamDate && data.nextExamName) {
-            const targetDate = new Date(data.nextExamDate).getTime();
-            if (targetDate > Date.now()) {
-              startCountdown(targetDate, data.nextExamName);
-            }
-          }
-
           const grade = data.grade || 'sec1';
-          const unitProgress = data.unitProgress || {};
-          renderUnits(grade, unitProgress);
+          renderUnits(grade, data.unitProgress || {});
           renderExams(grade);
           showToast(`مرحباً بعودتك ${data.name || 'طالب'}! 👋`, 'success');
         } else {
-          const defaultData = {
-            name: 'طالب جديد',
-            grade: 'sec1',
-            level: '1',
-            progress: '0',
-            grade_percentage: '0%',
-            certificates: '0',
-            lessonsCompleted: '0',
-            tests: [],
-            unitProgress: {}
-          };
+          const defaultData = { name: 'طالب جديد', grade: 'sec1', level: '1', progress: '0', grade_percentage: '0%', certificates: '0', lessonsCompleted: '0', tests: [], unitProgress: {} };
           await set(ref(database, `students/${uid}`), defaultData);
           await loadStudentData(uid);
           return;
@@ -756,62 +499,28 @@
     window.downloadReportPDF = async function() {
       const element = document.getElementById('reportContent');
       const loading = document.getElementById('reportLoading');
-      const actions = document.querySelector('.report-actions');
-
-      if (!element) { showToast('⚠️ لا يوجد محتوى للتحميل', 'warning'); return; }
-
       try {
         loading.style.display = 'block';
-        actions.style.opacity = '0.5';
-        actions.style.pointerEvents = 'none';
-
         const { jsPDF } = window.jspdf;
-        const canvas = await html2canvas(element, {
-          scale: 2, useCORS: true, backgroundColor: '#ffffff', logging: false
-        });
-
+        const canvas = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
         const imgWidth = pdfWidth - 10;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-        let heightLeft = imgHeight;
-        let position = 5;
-
-        pdf.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
-        heightLeft -= (pdfHeight - 10);
-
-        while (heightLeft > 0) {
-          position = heightLeft - imgHeight + 5;
-          pdf.addPage();
-          pdf.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
-          heightLeft -= (pdfHeight - 10);
-        }
-
-        const studentName = document.getElementById('welcomeMessage')?.textContent?.replace('مرحباً، ', '')?.replace('! 👋', '')?.trim() || 'student';
-        const date = new Date().toISOString().split('T')[0];
-        pdf.save(`تقرير-${studentName}-${date}.pdf`);
-
+        pdf.addImage(imgData, 'PNG', 5, 5, imgWidth, imgHeight);
+        pdf.save(`report-${Date.now()}.pdf`);
         showToast('تم تحميل التقرير بنجاح', 'success');
       } catch (err) {
-        console.error('PDF Error:', err);
-        showToast('حدث خطأ أثناء إنشاء التقرير', 'danger');
+        showToast('حدث خطأ', 'danger');
       } finally {
         loading.style.display = 'none';
-        actions.style.opacity = '1';
-        actions.style.pointerEvents = 'auto';
       }
     };
 
-    window.printReport = function() {
-      showToast('جاري تجهيز الطباعة...', 'info');
-      setTimeout(() => { window.print(); }, 300);
-    };
+    window.printReport = function() { window.print(); };
 
     document.addEventListener('DOMContentLoaded', () => {
-      applySavedDarkMode();
       onAuthStateChanged(auth, async (user) => {
         if (!user) { window.location.href = 'login.html'; return; }
         if (!user.emailVerified) { showToast('أكد إيميلك أولاً', 'warning'); setTimeout(() => window.location.href = 'login.html', 2000); return; }
@@ -819,7 +528,7 @@
       });
     });
 
-    console.log('✅ Student Dashboard v3.0 — Prep1 + Sec1 + Sec2 with all features');
+    console.log('✅ Dashboard v4.0 - New structure with organized paths');
   </script>
 
 </body>
