@@ -1,0 +1,30 @@
+{
+  "prep1": {
+    "gradeName": "أولى إعدادي",
+    "exams": [
+      { "title": "امتحان Unit 1", "type": "unit", "questions": 20, "duration": 30, "url": "/exams/prep1/unit1.html" },
+      { "title": "امتحان Unit 2", "type": "unit", "questions": 20, "duration": 30, "url": "/exams/prep1/unit2.html" },
+      { "title": "امتحان Unit 3", "type": "unit", "questions": 20, "duration": 30, "url": "/exams/prep1/unit3.html" },
+      { "title": "امتحان Review 1", "type": "comprehensive", "questions": 25, "duration": 45, "url": "/exams/prep1/review1.html" },
+      { "title": "Assessment 1", "type": "official", "questions": 20, "duration": 30, "url": "/exams/prep1/assessment1.html", "pdf": "/printable/prep1/assessment1.html" },
+      { "title": "Assessment 2", "type": "official", "questions": 20, "duration": 30, "url": "/exams/prep1/assessment2.html", "pdf": "/printable/prep1/assessment2.html" },
+      { "title": "Assessment 3", "type": "official", "questions": 20, "duration": 30, "url": "/exams/prep1/assessment3.html", "pdf": "/printable/prep1/assessment3.html" }
+    ]
+  },
+  "sec1": {
+    "gradeName": "أولى ثانوي",
+    "exams": [
+      { "title": "امتحان Unit 1 - Egypt's Heritage", "type": "unit", "questions": 20, "duration": 30, "url": "/exams/sec1/unit1.html" },
+      { "title": "امتحان Unit 2 - Hands Help, Hearts Care", "type": "unit", "questions": 30, "duration": 30, "url": "/exams/sec1/unit2.html" },
+      { "title": "امتحان Unit 3 - Truth vs. Lies", "type": "unit", "questions": 30, "duration": 30, "url": "/exams/sec1/unit3.html" },
+      { "title": "امتحان المراجعة الشاملة 1", "type": "comprehensive", "questions": 30, "duration": 45, "url": "/exams/sec1/review1.html" },
+      { "title": "Assessment 1 - Unit 1", "type": "official", "questions": 20, "duration": 30, "url": "/exams/sec1/assessment1.html" }
+    ]
+  },
+  "sec2": {
+    "gradeName": "تانية ثانوي",
+    "exams": [
+      { "title": "امتحان Unit 1", "type": "unit", "questions": 20, "duration": 30, "url": "/exams/sec2/unit1.html" }
+    ]
+  }
+}

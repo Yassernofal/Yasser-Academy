@@ -1,527 +1,131 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>شرح المنهج - أكاديمية مستر ياسر نوفل</title>
-  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/lessons.html" />
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Lateef:wght@400;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
-
-  <script type="importmap">
-  {
-    "imports": {
-      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
-      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
-      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
-    }
-  }
-  </script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الوحدات والدروس - أكاديمية مستر ياسر نوفل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/theme.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'El Messiri', 'Lateef', serif;
-      background: linear-gradient(135deg, #f0f4fa 0%, #e8eef7 100%);
-      padding-top: 78px;
-      padding-bottom: 40px;
-      color: #1a1a2e;
-    }
-
-    .navbar-custom {
-      background: rgba(10, 31, 68, 0.95) !important;
-      backdrop-filter: blur(18px);
-      padding: 14px 0;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
-      z-index: 1050;
-    }
-    .navbar-brand .brand-name {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: #f7e05e;
-    }
-    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
-    .nav-link:hover { color: #f7e05e !important; }
-    .nav-link.active { color: #f7e05e !important; }
-
-    .hero-header {
-      background: linear-gradient(135deg, #0a1f44 0%, #1e3a8a 50%, #2563eb 100%);
-      color: #fff;
-      padding: 50px 30px;
-      border-radius: 28px;
-      margin-bottom: 35px;
-      box-shadow: 0 20px 60px rgba(10, 31, 68, 0.4);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-header::before {
-      content: '';
-      position: absolute;
-      top: -50%; right: -10%;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(247, 224, 94, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .hero-header h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #f7e05e;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-header p {
-      font-size: 1.15rem;
-      color: #93c5fd;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-header .student-grade-badge {
-      display: inline-block;
-      background: rgba(247, 224, 94, 0.2);
-      color: #f7e05e;
-      padding: 8px 22px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 15px;
-      border: 1px solid rgba(247, 224, 94, 0.3);
-      position: relative;
-      z-index: 1;
-    }
-
-    .units-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 25px;
-    }
-
-    .unit-card {
-      background: #fff;
-      border-radius: 22px;
-      padding: 28px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-      transition: all 0.3s;
-      border-right: 6px solid #f7b731;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-    .unit-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-    }
-    .unit-card::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 120px; height: 120px;
-      background: linear-gradient(135deg, rgba(247, 224, 94, 0.1), transparent);
-      border-radius: 0 0 0 100%;
-    }
-
-    .unit-card.review-card {
-      border-right-color: #f59e0b;
-      background: linear-gradient(135deg, #fffbeb, #fff);
-    }
-    .unit-card.review-card::before {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), transparent);
-    }
-    .unit-card.review-card .unit-number {
-      background: linear-gradient(135deg, #92400e, #b45309);
-    }
-
-    .unit-number {
-      display: inline-block;
-      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
-      color: #f7e05e;
-      padding: 6px 18px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      margin-bottom: 15px;
-      position: relative;
-      z-index: 1;
-      align-self: flex-start;
-    }
-
-    .unit-card h3 {
-      color: #0a1f44;
-      font-weight: 700;
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-      position: relative;
-      z-index: 1;
-      direction: ltr;
-      text-align: left;
-    }
-
-    .unit-card .arabic-title {
-      color: #666;
-      font-size: 1rem;
-      margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .unit-features {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 1;
-    }
-    .unit-features span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #555;
-      font-size: 0.9rem;
-    }
-    .unit-features i { color: #f7b731; }
-    .unit-card.review-card .unit-features i { color: #f59e0b; }
-
-    .unit-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: auto;
-      position: relative;
-      z-index: 1;
-    }
-    .btn-unit {
-      flex: 1;
-      padding: 12px 15px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-decoration: none;
-      text-align: center;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .btn-explain {
-      background: linear-gradient(135deg, #0a1f44, #1e3a8a);
-      color: #f7e05e;
-    }
-    .btn-explain:hover {
-      transform: scale(1.05);
-      color: #f7e05e;
-    }
-    .btn-exam-small {
-      background: #f7e05e;
-      color: #0a1f44;
-    }
-    .btn-exam-small:hover {
-      background: #f7b731;
-      transform: scale(1.05);
-      color: #0a1f44;
-    }
-    .unit-card.review-card .btn-explain {
-      background: linear-gradient(135deg, #92400e, #b45309);
-      color: #fef3c7;
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-    }
-    .empty-state i {
-      font-size: 4rem;
-      color: #cbd5e1;
-      margin-bottom: 20px;
-    }
-    .empty-state h4 {
-      color: #0a1f44;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .empty-state p { color: #666; }
-
-    .loading-container {
-      text-align: center;
-      padding: 80px 20px;
-    }
-    .loading-container .spinner-border {
-      width: 3rem;
-      height: 3rem;
-      color: #0a1f44;
-    }
-
-    @media (max-width: 768px) {
-      .hero-header h1 { font-size: 1.7rem; }
-      .hero-header p { font-size: 1rem; }
-      .unit-card { padding: 22px; }
-      .units-grid { grid-template-columns: 1fr; }
-    }
+    body { background: #f0f4fa; padding-top: 78px; font-family: 'El Messiri', sans-serif; }
+    .page-header { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: white; padding: 40px 20px; border-radius: 20px; text-align: center; margin-bottom: 30px; }
+    .page-header h1 { font-weight: 800; margin: 0; }
+    .filter-btn { background: white; border: 2px solid #0a1f44; color: #0a1f44; padding: 8px 20px; border-radius: 50px; font-weight: 700; margin: 5px; transition: 0.3s; text-decoration: none; display: inline-block; }
+    .filter-btn:hover, .filter-btn.active { background: #0a1f44; color: #f7e05e; text-decoration: none; }
+    .card-unit { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; border-right: 5px solid #f7e05e; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+    .card-unit:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+    .card-unit h5 { color: #0a1f44; font-weight: 800; }
+    .card-unit p { color: #666; margin-bottom: 15px; }
+    .btn-start { background: #0a1f44; color: #f7e05e; padding: 8px 25px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .btn-start:hover { background: #f7b731; color: #0a1f44; }
   </style>
 </head>
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="/index.html">
         <span class="brand-name">Mr. Yasser Nofal</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link active" href="lessons.html">📚 الشرح</a></li>
-          <li class="nav-item"><a class="nav-link" href="exams.html">📝 الامتحانات</a></li>
-          <li class="nav-item"><a class="nav-link" href="student-dashboard.html">👨‍🎓 لوحتي</a></li>
-        </ul>
-      </div>
+      <ul class="navbar-nav ms-auto flex-row gap-3">
+        <li class="nav-item"><a class="nav-link" href="/index.html">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link" href="/exams.html">📝 الامتحانات</a></li>
+        <li class="nav-item"><a class="nav-link" href="/student-dashboard.html">👨‍🎓 لوحتي</a></li>
+      </ul>
     </div>
   </nav>
 
-  <div class="container" style="max-width: 1200px;">
+  <div class="container">
+    <div class="page-header">
+      <h1>📚 الشرح والوحدات</h1>
+      <p class="mb-0">اختر الصف الدراسي وابدأ رحلة التعلم</p>
+    </div>
 
-    <div class="hero-header">
-      <div id="gradeBadge" class="student-grade-badge" style="display:none;">
-        <i class="fas fa-graduation-cap"></i> <span id="gradeText"></span>
+    <div class="text-center mb-4">
+      <a href="#prep1" class="filter-btn">أولى إعدادي</a>
+      <a href="#sec1" class="filter-btn">أولى ثانوي</a>
+      <a href="#sec2" class="filter-btn">تانية ثانوي</a>
+    </div>
+
+    <!-- Prep 1 -->
+    <h3 id="prep1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى إعدادي (Prep 1)</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Unit 1: Life in a Digital World</h5>
+          <p>الحياة في عالم رقمي - شرح كامل وقواعد ومفردات</p>
+          <a href="/lessons/prep1/unit1-digital-world.html" class="btn-start">ابدأ الدرس</a>
+        </div>
       </div>
-      <h1>📚 شرح المنهج</h1>
-      <p>اختر الوحدة للبدء في الشرح</p>
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Review 1: المراجعة الشاملة</h5>
+          <p>مراجعة على الوحدة الأولى</p>
+          <a href="/lessons/prep1/review-1-prep1.html" class="btn-start">ابدأ المراجعة</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Story: The Magic Classroom</h5>
+          <p>قصة الفصل السحري</p>
+          <a href="/lessons/prep1/story-magic-classroom.html" class="btn-start">اقرأ القصة</a>
+        </div>
+      </div>
     </div>
 
-    <!-- Loading -->
-    <div id="loadingContainer" class="loading-container">
-      <div class="spinner-border" role="status"></div>
-      <p class="mt-3">جاري تحميل المنهج...</p>
+    <hr class="my-5">
+
+    <!-- Sec 1 -->
+    <h3 id="sec1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى ثانوي (Sec 1)</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Unit 1: Egypt's Heritage</h5>
+          <p>تراث مصر</p>
+          <a href="/lessons/sec1/unit1.html" class="btn-start">ابدأ الدرس</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Unit 2: Hands Help, Hearts Care</h5>
+          <p>أيادٍ تساعد وقلوبٌ ترعى</p>
+          <a href="/lessons/sec1/unit2.html" class="btn-start">ابدأ الدرس</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Unit 3: Truth vs. Lies</h5>
+          <p>الحقيقة ضد الكذب</p>
+          <a href="/lessons/sec1/unit3.html" class="btn-start">ابدأ الدرس</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Review 1: المراجعة الشاملة</h5>
+          <p>مراجعة على الوحدات 1-3</p>
+          <a href="/lessons/sec1/review1.html" class="btn-start">ابدأ المراجعة</a>
+        </div>
+      </div>
     </div>
 
-    <!-- Units Grid -->
-    <div id="unitsGrid" class="units-grid" style="display: none;"></div>
+    <hr class="my-5">
 
-    <!-- Empty State -->
-    <div id="emptyState" class="empty-state" style="display: none;">
-      <i class="fas fa-folder-open"></i>
-      <h4>لا توجد وحدات متاحة حالياً</h4>
-      <p>سيتم إضافة شرح الوحدات قريباً</p>
+    <!-- Sec 2 -->
+    <h3 id="sec2" class="mb-3 fw-bold" style="color: #0a1f44;">📖 تانية ثانوي (Sec 2)</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Unit 1: Living Well in a Complex World</h5>
+          <p>العيش الجيد في عالم معقد</p>
+          <a href="/lessons/sec2/unit1-living-well.html" class="btn-start">ابدأ الدرس</a>
+        </div>
+      </div>
     </div>
 
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script type="module">
-    import { auth, database } from './firebase-config.js';
-    import { onAuthStateChanged } from "firebase/auth";
-    import { ref, get } from "firebase/database";
-
-    // ===== بيانات الوحدات =====
-    const lessonsData = {
-      prep1: [
-        {
-          id: 'unit1',
-          number: 'Unit 1',
-          title: 'Life in a Digital World',
-          titleAr: 'الحياة في عالم رقمي',
-          lessons: 6,
-          questions: 179,
-          url: 'unit1-prep1.html'
-        },
-        {
-          id: 'unit2',
-          number: 'Unit 2',
-          title: 'Learning to Learn',
-          titleAr: 'تعلم كيف تتعلم',
-          lessons: 6,
-          questions: 150,
-          url: 'unit2-prep1.html'
-        },
-        {
-          id: 'unit3',
-          number: 'Unit 3',
-          title: 'Role Models',
-          titleAr: 'القدوة الحسنة',
-          lessons: 6,
-          questions: 150,
-          url: 'unit3-prep1.html'
-        },
-        {
-          id: 'review1',
-          number: 'Review 1',
-          title: 'Comprehensive Review (Units 1-3)',
-          titleAr: 'مراجعة شاملة على الوحدات 1-3',
-          lessons: 3,
-          questions: 69,
-          url: 'review1-prep1.html',
-          isReview: true
-        }
-      ],
-      sec1: [
-        {
-          id: 'unit1',
-          number: 'Unit 1',
-          title: "Egypt's Heritage",
-          titleAr: 'تراث مصر',
-          lessons: 6,
-          questions: 160,
-          url: 'unit1-sec1.html'
-        },
-        {
-          id: 'unit2',
-          number: 'Unit 2',
-          title: 'Hands Help, Hearts Care',
-          titleAr: 'أيدي تساعد، قلوب تهتم',
-          lessons: 6,
-          questions: 160,
-          url: 'unit2-sec1.html'
-        },
-        {
-          id: 'unit3',
-          number: 'Unit 3',
-          title: 'Truth Vs. Lies',
-          titleAr: 'الحقيقة مقابل الأكاذيب',
-          lessons: 6,
-          questions: 160,
-          url: 'unit3-sec1.html'
-        },
-        {
-          id: 'review1',
-          number: 'Review 1',
-          title: 'Comprehensive Review (Units 1-3)',
-          titleAr: 'مراجعة شاملة على الوحدات 1-3',
-          lessons: 3,
-          questions: 85,
-          url: 'review1-sec1.html',
-          isReview: true
-        }
-      ]
-    };
-
-    // ===== أسماء الصفوف بالعربي =====
-    const gradeNames = {
-      prep1: 'الأول الإعدادي',
-      prep2: 'الثاني الإعدادي',
-      prep3: 'الثالث الإعدادي',
-      sec1: 'الأول الثانوي',
-      sec2: 'الثاني الثانوي',
-      sec3: 'الثالث الثانوي'
-    };
-
-    // ===== عناصر الصفحة =====
-    const loadingContainer = document.getElementById('loadingContainer');
-    const unitsGrid = document.getElementById('unitsGrid');
-    const emptyState = document.getElementById('emptyState');
-    const gradeBadge = document.getElementById('gradeBadge');
-    const gradeText = document.getElementById('gradeText');
-
-    // ===== عرض الوحدات =====
-    function renderUnits(grade) {
-      const units = lessonsData[grade] || [];
-
-      loadingContainer.style.display = 'none';
-
-      if (units.length === 0) {
-        unitsGrid.style.display = 'none';
-        emptyState.style.display = 'block';
-        return;
-      }
-
-      emptyState.style.display = 'none';
-      unitsGrid.style.display = 'grid';
-      unitsGrid.innerHTML = '';
-
-      units.forEach(unit => {
-        const card = document.createElement('div');
-        card.className = 'unit-card' + (unit.isReview ? ' review-card' : '');
-        card.innerHTML = `
-          <span class="unit-number">${unit.number}</span>
-          <h3>${unit.title}</h3>
-          <p class="arabic-title">${unit.titleAr}</p>
-          <div class="unit-features">
-            <span><i class="fas fa-book-open"></i> ${unit.lessons} دروس</span>
-            <span><i class="fas fa-question-circle"></i> ${unit.questions} سؤال</span>
-          </div>
-          <div class="unit-actions">
-            <a href="${unit.url}" class="btn-unit btn-explain">
-              <i class="fas fa-book-reader"></i> الشرح
-            </a>
-            <a href="exams.html" class="btn-unit btn-exam-small">
-              <i class="fas fa-play"></i> امتحان
-            </a>
-          </div>
-        `;
-        unitsGrid.appendChild(card);
-      });
-    }
-
-    // ===== التحقق من تسجيل الدخول وصف الطالب =====
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        window.location.href = 'login.html';
-        return;
-      }
-
-      try {
-        // جلب بيانات المستخدم
-        const userSnap = await get(ref(database, `users/${user.uid}`));
-        if (!userSnap.exists()) {
-          window.location.href = 'login.html';
-          return;
-        }
-
-        const userData = userSnap.val();
-        const role = userData.role;
-
-        // لو مش طالب → يتحول للوحة الصح
-        if (role !== 'student') {
-          if (role === 'admin') window.location.href = 'admin-dashboard.html';
-          else if (role === 'parent') window.location.href = 'parent-dashboard.html';
-          return;
-        }
-
-        // جلب صف الطالب
-        const studentSnap = await get(ref(database, `students/${user.uid}`));
-        if (!studentSnap.exists()) {
-          window.location.href = 'student-dashboard.html';
-          return;
-        }
-
-        const studentData = studentSnap.val();
-        const studentGrade = studentData.grade;
-
-        if (!studentGrade) {
-          console.error('❌ لا يوجد صف للطالب');
-          window.location.href = 'student-dashboard.html';
-          return;
-        }
-
-        // ✅ عرض badge الصف
-        gradeBadge.style.display = 'inline-block';
-        gradeText.textContent = gradeNames[studentGrade] || studentGrade;
-
-        // ✅ عرض الوحدات بتاعت صفه فقط
-        console.log('✅ صف الطالب:', studentGrade);
-        renderUnits(studentGrade);
-
-      } catch (error) {
-        console.error('❌ خطأ:', error);
-        window.location.href = 'student-dashboard.html';
-      }
-    });
-
-  </script>
-
 </body>
 </html>
