@@ -1,0 +1,196 @@
+/* ==========================================
+   🎨 Theme.css - الهوية البصرية الموحدة
+   أكاديمية مستر ياسر نوفل
+   ========================================== */
+
+:root {
+  /* الألوان الأساسية */
+  --color-primary: #0a1f44;
+  --color-primary-light: #1a3a6e;
+  --color-primary-dark: #05122a;
+  
+  /* الألوان الذهبية */
+  --color-gold: #f7e05e;
+  --color-gold-light: #fdf0a3;
+  --color-gold-dark: #d4b93a;
+  
+  /* ألوان الحالات */
+  --color-orange: #f59e0b;
+  --color-purple: #7c3aed;
+  --color-red: #dc2626;
+  --color-green: #28a745;
+  --color-blue: #2563eb;
+  
+  /* ألوان محايدة */
+  --color-bg: #f0f4fa;
+  --color-card: #ffffff;
+  --color-text: #1a1a2e;
+  --color-text-muted: #666666;
+  --color-border: #e9ecef;
+  
+  /* الخطوط */
+  --font-arabic: 'El Messiri', serif;
+  --font-english: 'Cinzel', serif;
+  --font-display: 'Playfair Display', serif;
+  
+  /* تأثيرات */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --transition: all 0.3s ease;
+}
+
+/* ==========================================
+   Base Styles
+   ========================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-arabic);
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding-top: 78px;
+  line-height: 1.7;
+}
+
+a { text-decoration: none; color: inherit; }
+a:hover { text-decoration: none; }
+
+/* ==========================================
+   Navbar
+   ========================================== */
+.navbar-custom {
+  background: rgba(10, 31, 68, 0.95) !important;
+  backdrop-filter: blur(18px);
+  padding: 14px 0;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+  z-index: 1050;
+}
+.navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
+.navbar-brand .brand-name {
+  font-family: var(--font-english);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--color-gold);
+}
+.navbar-brand .brand-name span { color: #ffb347; }
+.nav-link { color: #e0e8f0 !important; font-weight: 500; transition: var(--transition); }
+.nav-link:hover { color: var(--color-gold) !important; }
+
+/* ==========================================
+   Buttons
+   ========================================== */
+.btn-primary-custom {
+  background: var(--color-primary);
+  color: var(--color-gold);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: var(--transition);
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+.btn-primary-custom:hover {
+  background: var(--color-gold);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-gold-custom {
+  background: var(--color-gold);
+  color: var(--color-primary);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: var(--transition);
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+.btn-gold-custom:hover {
+  background: var(--color-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================
+   Cards
+   ========================================== */
+.card-custom {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: 25px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+.card-custom:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+/* ==========================================
+   Section Headers
+   ========================================== */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--color-gold);
+}
+.section-header h4 {
+  color: var(--color-primary);
+  font-weight: 800;
+  margin: 0;
+  font-size: 1.4rem;
+}
+.section-header .badge-grade {
+  background: var(--color-primary);
+  color: var(--color-gold);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+footer.footer-custom {
+  background: var(--color-primary);
+  color: #b0c4de;
+  padding: 35px 0;
+  border-radius: 40px 40px 0 0;
+  margin-top: 50px;
+  text-align: center;
+}
+footer.footer-custom h5 { color: var(--color-gold); margin-bottom: 15px; }
+footer.footer-custom a { color: #b0c4de; transition: var(--transition); }
+footer.footer-custom a:hover { color: var(--color-gold); }
+footer.footer-custom .social-icons a { margin: 0 8px; font-size: 1.2rem; }
+footer.footer-custom .footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+/* ==========================================
+   Utilities
+   ========================================== */
+.text-primary-custom { color: var(--color-primary) !important; }
+.text-gold-custom { color: var(--color-gold) !important; }
+.bg-primary-custom { background: var(--color-primary) !important; }
+.bg-gold-custom { background: var(--color-gold) !important; }
+
+/* ==========================================
+   Responsive
+   ========================================== */
+@media (max-width: 768px) {
+  body { padding-top: 70px; }
+  .section-header h4 { font-size: 1.1rem; }
+}
