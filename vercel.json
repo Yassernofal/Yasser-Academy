@@ -1,9 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/lessons/(.*)", "destination": "/lessons/$1" },
-    { "source": "/exams/(.*)", "destination": "/exams/$1" },
-    { "source": "/(.*)", "destination": "/$1" }
-  ]
+  "trailingSlash": false
 }
