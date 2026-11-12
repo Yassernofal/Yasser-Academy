@@ -1,35 +1,41 @@
 {
-  "prep1": {
-    "gradeName": "أولى إعدادي",
-    "units": [
-      { "number": 1, "titleEn": "Unit 1", "titleAr": "الوحدة الأولى", "subtitleEn": "Life in a Digital World", "subtitleAr": "الحياة في عالم رقمي", "url": "/lessons/prep1/unit1-digital-world.html", "icon": "🌐", "status": "available" },
-      { "number": 2, "titleEn": "Unit 2", "titleAr": "الوحدة الثانية", "subtitleEn": "Learning to Learn", "subtitleAr": "تعلم كيف تتعلم", "url": "#", "icon": "📚", "status": "locked" },
-      { "number": 3, "titleEn": "Unit 3", "titleAr": "الوحدة الثالثة", "subtitleEn": "Role Models", "subtitleAr": "قدوة حسنة", "url": "#", "icon": "🌟", "status": "locked" },
-      { "number": "R1", "titleEn": "Review 1", "titleAr": "المراجعة الشاملة", "subtitleEn": "Units 1, 2, 3", "subtitleAr": "الوحدات 1-3", "url": "/lessons/prep1/review-1-prep1.html", "icon": "🎯", "status": "review" },
-      { "number": "S", "titleEn": "Story", "titleAr": "القصة", "subtitleEn": "The Magic Classroom", "subtitleAr": "الفصل السحري", "url": "/lessons/prep1/story-magic-classroom.html", "icon": "📖", "status": "story" }
-    ]
-  },
-  "sec1": {
-    "gradeName": "أولى ثانوي",
-    "units": [
-      { "number": 1, "titleEn": "Unit 1", "titleAr": "الوحدة الأولى", "subtitleEn": "Egypt's Heritage", "subtitleAr": "تراث مصر", "url": "/lessons/sec1/unit1.html", "icon": "🏛️", "status": "available" },
-      { "number": 2, "titleEn": "Unit 2", "titleAr": "الوحدة الثانية", "subtitleEn": "Hands Help, Hearts Care", "subtitleAr": "أيادٍ تساعد وقلوبٌ ترعى", "url": "/lessons/sec1/unit2.html", "icon": "🤝", "status": "available" },
-      { "number": 3, "titleEn": "Unit 3", "titleAr": "الوحدة الثالثة", "subtitleEn": "Truth vs. Lies", "subtitleAr": "الحقيقة ضد الكذب", "url": "/lessons/sec1/unit3.html", "icon": "⚖️", "status": "available" },
-      { "number": "R1", "titleEn": "Review 1", "titleAr": "المراجعة الشاملة 1", "subtitleEn": "Units 1, 2, 3", "subtitleAr": "الوحدات 1-3", "url": "/lessons/sec1/review1.html", "icon": "🎯", "status": "review" },
-      { "number": 4, "titleEn": "Unit 4", "titleAr": "الوحدة الرابعة", "subtitleEn": "Save and Shine", "subtitleAr": "وفّر وتألّق", "url": "#", "icon": "🌱", "status": "locked" },
-      { "number": 5, "titleEn": "Unit 5", "titleAr": "الوحدة الخامسة", "subtitleEn": "Using Technology at Schools", "subtitleAr": "استخدام التكنولوجيا في المدارس", "url": "#", "icon": "💻", "status": "locked" },
-      { "number": 6, "titleEn": "Unit 6", "titleAr": "الوحدة السادسة", "subtitleEn": "Job Hunting", "subtitleAr": "البحث عن عمل", "url": "#", "icon": "💼", "status": "locked" },
-      { "number": "S", "titleEn": "Story", "titleAr": "القصة", "subtitleEn": "The Old Man and the Sea", "subtitleAr": "العجوز والبحر", "url": "#", "icon": "📖", "status": "story" }
-    ]
-  },
-  "sec2": {
-    "gradeName": "تانية ثانوي",
-    "units": [
-      { "number": 1, "titleEn": "Unit 1", "titleAr": "الوحدة الأولى", "subtitleEn": "Living Well in a Complex World", "subtitleAr": "العيش الجيد في عالم معقد", "url": "/lessons/sec2/unit1-living-well.html", "icon": "🌟", "status": "available" },
-      { "number": 2, "titleEn": "Unit 2", "titleAr": "الوحدة الثانية", "subtitleEn": "Leisure Time", "subtitleAr": "وقت الفراغ", "url": "#", "icon": "🎨", "status": "locked" },
-      { "number": 3, "titleEn": "Unit 3", "titleAr": "الوحدة الثالثة", "subtitleEn": "Echoes of the Past", "subtitleAr": "أصداء الماضي", "url": "#", "icon": "🏛️", "status": "locked" },
-      { "number": 4, "titleEn": "Unit 4", "titleAr": "الوحدة الرابعة", "subtitleEn": "The Power of Choice", "subtitleAr": "قوة الاختيار", "url": "#", "icon": "🛒", "status": "locked" },
-      { "number": 5, "titleEn": "Unit 5", "titleAr": "الوحدة الخامسة", "subtitleEn": "The Greenhouse Effect", "subtitleAr": "ظاهرة الاحتباس الحراري", "url": "#", "icon": "🌍", "status": "locked" }
-    ]
-  }
+  "prep1": [
+    {
+      "id": "prep1-unit1",
+      "title": "Unit 1: Digital World",
+      "url": "/lessons/prep1/unit1-digital-world.html"
+    },
+    {
+      "id": "prep1-story",
+      "title": "Story: Magic Classroom",
+      "url": "/lessons/prep1/story-magic-classroom.html"
+    },
+    {
+      "id": "prep1-review",
+      "title": "Review 1",
+      "url": "/lessons/prep1/review-1-prep1.html"
+    }
+  ],
+  "sec1": [
+    {
+      "id": "sec1-unit1",
+      "title": "Unit 1",
+      "url": "/lessons/sec1/unit%201.html"
+    },
+    {
+      "id": "sec1-unit2",
+      "title": "Unit 2",
+      "url": "/lessons/sec1/unit%202.html"
+    },
+    {
+      "id": "sec1-unit3",
+      "title": "Unit 3",
+      "url": "/lessons/sec1/unit%203.html"
+    },
+    {
+      "id": "sec1-review",
+      "title": "Review 1",
+      "url": "/lessons/sec1/review1.html"
+    }
+  ]
 }
