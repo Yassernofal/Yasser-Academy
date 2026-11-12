@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة طلبات الدفع - أكاديمية مستر ياسر نوفل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/theme.css">
+  <style>
+    body { background: #f0f4fa; padding-top: 78px; font-family: 'El Messiri', sans-serif; }
+    .table-container { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .img-receipt { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; cursor: pointer; }
+    .badge-pending { background: #fff3cd; color: #856404; padding: 5px 10px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; }
+    .badge-approved { background: #d4edda; color: #155724; padding: 5px 10px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; }
+  </style>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" style="background:#0a1f44;">
+    <div class="container">
+      <a class="navbar-brand" href="./index.html"><span class="brand-name" style="color:#f7e05e;">Mr. Yasser Nofal</span></a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="table-container">
+      <h2 class="fw-bold mb-4" style="color: #0a1f44;">💳 طلبات الاشتراك</h2>
+      
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>التاريخ</th>
+              <th>الاسم</th>
+              <th>الموبايل</th>
+              <th>الباقة</th>
+              <th>الإثبات</th>
+              <th>الحالة</th>
+              <th>إجراء</th>
+            </tr>
+          </thead>
+          <tbody id="requestsTable">
+            <tr><td colspan="7" class="text-center">جاري التحميل...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged } from "firebase/auth";
+    import { ref, get, update } from "firebase/database";
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) { window.location.href = './login.html'; return; }
+      loadRequests();
+    });
+
+    async function loadRequests() {
+      const table = document.getElementById('requestsTable');
+      try {
+        const dbRef = ref(database, 'payment_requests');
+        const snapshot = await get(dbRef);
+        
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          table.innerHTML = '';
+          
+          const requests = Object.keys(data).map(key => ({ id: key, ...data[key] }))
+                            .sort((a, b) => b.timestamp - a.timestamp);
+
+          requests.forEach(req => {
+            const date = new Date(req.timestamp).toLocaleDateString('ar-EG');
+            const statusClass = req.status === 'approved' ? 'badge-approved' : 'badge-pending';
+            const statusText = req.status === 'approved' ? 'مقبول ✅' : 'قيد الانتظار ⏳';
+            
+            const actionBtn = req.status === 'pending' 
+              ? `<button class="btn btn-sm btn-success" onclick="approveRequest('${req.id}', '${req.uid}')">موافقة</button>`
+              : `<span class="text-success"><i class="fas fa-check-circle"></i> مفعل</span>`;
+
+            table.innerHTML += `
+              <tr>
+                <td>${date}</td>
+                <td>${req.name}</td>
+                <td>${req.phone}</td>
+                <td>${req.plan} (${req.price} ج.م)</td>
+                <td><a href="${req.receiptUrl}" target="_blank"><img src="${req.receiptUrl}" class="img-receipt" title="اضغط لعرض الإثبات"></a></td>
+                <td><span class="${statusClass}">${statusText}</span></td>
+                <td>${actionBtn}</td>
+              </tr>
+            `;
+          });
+        } else {
+          table.innerHTML = `<tr><td colspan="7" class="text-center text-muted">لا توجد طلبات اشتراك حتى الآن.</td></tr>`;
+        }
+      } catch (error) {
+        console.error(error);
+        table.innerHTML = `<tr><td colspan="7" class="text-center text-danger">حدث خطأ أثناء تحميل البيانات.</td></tr>`;
+      }
+    }
+
+    window.approveRequest = async function(requestId, studentUid) {
+      if (!confirm('هل أنت متأكد من تفعيل هذا الاشتراك؟')) return;
+      
+      try {
+        await update(ref(database, `payment_requests/${requestId}`), {
+          status: 'approved'
+        });
+
+        await update(ref(database, `students/${studentUid}`), {
+          subscriptionStatus: 'active'
+        });
+
+        alert('✅ تم تفعيل الاشتراك بنجاح!');
+        loadRequests();
+      } catch (error) {
+        console.error(error);
+        alert('❌ حدث خطأ أثناء التفعيل.');
+      }
+    };
+  </script>
+</body>
+</html>
