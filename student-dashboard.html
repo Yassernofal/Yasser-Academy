@@ -234,7 +234,11 @@
               <h6 class="unit-title-ar">${unit.titleAr}</h6>
               <p class="unit-subtitle-ar">${unit.subtitleAr}</p>
               <span class="unit-status ${statusClass}">${statusText}</span>
-              <a href="${unit.status === 'locked' ? '#' : unit.url}" class="${btnClass}">${btnText}</a>
+              ${(() => { 
+                let finalUrl = unit.url;
+                if (finalUrl && finalUrl !== '#' && !finalUrl.endsWith('.html')) finalUrl += '.html';
+                return `<a href="${unit.status === 'locked' ? '#' : finalUrl}" class="${btnClass}">${btnText}</a>`;
+              })()}
             </div>
           </div>`;
       }).join('');
