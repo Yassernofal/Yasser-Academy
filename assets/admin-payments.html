@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -168,4 +169,176 @@
     };
   </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة طلبات الدفع - أكاديمية مستر ياسر نوفل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/theme.css">
+  <style>
+    body { background: #f0f4fa; padding-top: 78px; font-family: 'El Messiri', sans-serif; }
+    .table-container { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .img-receipt { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; cursor: pointer; border: 2px solid #ccc; transition: 0.3s; }
+    .img-receipt:hover { transform: scale(1.1); border-color: #0a1f44; }
+    .badge-pending { background: #fff3cd; color: #856404; padding: 5px 10px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; }
+    .badge-approved { background: #d4edda; color: #155724; padding: 5px 10px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; }
+    .badge-rejected { background: #f8d7da; color: #721c24; padding: 5px 10px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; }
+  </style>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="/index.html"><span class="brand-name">Mr. Yasser Nofal</span></a>
+      <ul class="navbar-nav ms-auto flex-row gap-3">
+        <li class="nav-item"><a class="nav-link" href="/student-dashboard.html">👨‍🎓 لوحة الطالب</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="logoutUser()">🚪 خروج</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="table-container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold m-0" style="color: #0a1f44;">💳 طلبات الاشتراك</h2>
+        <button class="btn btn-outline-primary rounded-pill" onclick="loadRequests()"><i class="fas fa-sync-alt"></i> تحديث</button>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>التاريخ</th>
+              <th>الاسم / الموبايل</th>
+              <th>الباقة</th>
+              <th>الإثبات</th>
+              <th>الحالة</th>
+              <th>إجراء</th>
+            </tr>
+          </thead>
+          <tbody id="requestsTable">
+            <tr><td colspan="6" class="text-center py-4">جاري تحميل البيانات... ⏳</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "firebase/auth";
+    import { ref, get, update } from "firebase/database";
+
+    window.logoutUser = function() {
+      signOut(auth).then(() => window.location.href = '/index.html');
+    };
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) { window.location.href = '/login.html'; return; }
+      
+      // ⚠️ للأمان: ممكن بعدين نحط شرط هنا عشان نتأكد إن ده إيميل الأدمن
+      // if (user.email !== 'admin@example.com') { window.location.href = '/index.html'; return; }
+
+      loadRequests();
+    });
+
+    window.loadRequests = async function() {
+      const table = document.getElementById('requestsTable');
+      table.innerHTML = '<tr><td colspan="6" class="text-center py-4">جاري تحميل البيانات... ⏳</td></tr>';
+      
+      try {
+        const dbRef = ref(database, 'payment_requests');
+        const snapshot = await get(dbRef);
+        
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          table.innerHTML = '';
+          
+          // ترتيب الطلبات من الأحدث للأقدم
+          const requests = Object.keys(data).map(key => ({ id: key, ...data[key] }))
+                            .sort((a, b) => b.timestamp - a.timestamp);
+
+          requests.forEach(req => {
+            const date = new Date(req.timestamp).toLocaleString('ar-EG', { dateStyle: 'short', timeStyle: 'short' });
+            
+            let statusClass = 'badge-pending';
+            let statusText = 'قيد الانتظار ⏳';
+            let actionBtn = `<button class="btn btn-sm btn-success rounded-pill" onclick="approveRequest('${req.id}', '${req.uid}')">موافقة وتفعيل</button>`;
+
+            if (req.status === 'approved') {
+              statusClass = 'badge-approved';
+              statusText = 'مقبول ✅';
+              actionBtn = `<span class="text-success fw-bold"><i class="fas fa-check-circle"></i> مفعل</span>`;
+            } else if (req.status === 'rejected') {
+              statusClass = 'badge-rejected';
+              statusText = 'مرفوض ❌';
+              actionBtn = `<span class="text-danger fw-bold">مرفوض</span>`;
+            }
+
+            table.innerHTML += `
+              <tr>
+                <td style="font-size: 0.85rem;">${date}</td>
+                <td>
+                  <div class="fw-bold">${req.name}</div>
+                  <div class="text-muted" style="font-size: 0.8rem;">${req.phone}</div>
+                </td>
+                <td>${req.plan}<br><span class="text-success fw-bold">${req.price} ج.م</span></td>
+                <td>
+                  <a href="${req.receiptUrl}" target="_blank">
+                    <img src="${req.receiptUrl}" class="img-receipt" title="اضغط لعرض الإثبات">
+                  </a>
+                </td>
+                <td><span class="${statusClass}">${statusText}</span></td>
+                <td>${actionBtn}</td>
+              </tr>
+            `;
+          });
+        } else {
+          table.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-4">لا توجد طلبات اشتراك حتى الآن.</td></tr>`;
+        }
+      } catch (error) {
+        console.error(error);
+        table.innerHTML = `<tr><td colspan="6" class="text-center text-danger py-4">حدث خطأ أثناء تحميل البيانات.</td></tr>`;
+      }
+    };
+
+    // دالة تفعيل الاشتراك
+    window.approveRequest = async function(requestId, studentUid) {
+      if (!confirm('هل أنت متأكد من تفعيل هذا الاشتراك للطالب؟')) return;
+      
+      try {
+        // 1. تحديث حالة الطلب
+        await update(ref(database, `payment_requests/${requestId}`), {
+          status: 'approved'
+        });
+
+        // 2. تحديث حالة اشتراك الطالب (لتفعيل الدروس)
+        await update(ref(database, `students/${studentUid}`), {
+          subscriptionStatus: 'active'
+        });
+
+        alert('✅ تم تفعيل الاشتراك بنجاح! الطالب يمكنه الآن فتح الدروس.');
+        loadRequests(); // إعادة تحميل الجدول
+      } catch (error) {
+        console.error(error);
+        alert('❌ حدث خطأ أثناء التفعيل: ' + error.message);
+      }
+    };
+  </script>
+</body>
+>>>>>>> 73cc66f001b1032b303927841156612426bf5c33
 </html>
