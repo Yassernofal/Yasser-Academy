@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الاشتراك والدفع - أكاديمية مستر ياسر نوفل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/theme.css">
+  <style>
+    body { background: #f0f4fa; padding-top: 78px; font-family: 'El Messiri', sans-serif; }
+    .pricing-card { background: white; border-radius: 20px; padding: 30px; text-align: center; border: 2px solid #e9ecef; transition: 0.3s; height: 100%; position: relative; }
+    .pricing-card:hover { border-color: #f7e05e; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .pricing-card.popular { border-color: #0a1f44; box-shadow: 0 10px 30px rgba(10,31,68,0.15); }
+    .popular-badge { position: absolute; top: -12px; right: 50%; transform: translateX(50%); background: #0a1f44; color: #f7e05e; padding: 5px 20px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; white-space: nowrap; }
+    .price { font-size: 3rem; font-weight: 800; color: #0a1f44; margin: 15px 0; }
+    .price span { font-size: 1rem; color: #666; font-weight: 500; }
+    .payment-box { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: 40px; }
+    .payment-method { background: #f8f9fa; border: 2px dashed #ccc; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 20px; }
+    .payment-method i { font-size: 2rem; color: #0a1f44; margin-bottom: 10px; }
+    .payment-method h5 { font-weight: 800; color: #0a1f44; }
+    .payment-method .number { font-size: 1.5rem; font-weight: 800; color: #dc2626; letter-spacing: 2px; direction: ltr; }
+    .form-control { border-radius: 12px; padding: 12px; border: 2px solid #e9ecef; }
+    .form-control:focus { border-color: #0a1f44; box-shadow: none; }
+    .btn-submit { background: #0a1f44; color: #f7e05e; padding: 15px; border-radius: 12px; font-weight: 800; width: 100%; border: none; transition: 0.3s; }
+    .btn-submit:hover { background: #f7b731; color: #0a1f44; }
+  </style>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="/index.html"><span class="brand-name">Mr. Yasser Nofal</span></a>
+      <ul class="navbar-nav ms-auto flex-row gap-3">
+        <li class="nav-item"><a class="nav-link" href="/index.html">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link" href="/student-dashboard.html">👨‍🎓 لوحتي</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <h1 class="fw-bold" style="color: #0a1f44;">💎 اختر باقتك وابدأ التفوق</h1>
+      <p class="text-muted">اشترك الآن وافتح كل الدروس والامتحانات فوراً</p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="row g-4 mb-5">
+      <div class="col-md-4">
+        <div class="pricing-card">
+          <h4 class="fw-bold">شهري</h4>
+          <div class="price">100 <span>ج.م</span></div>
+          <p class="text-muted mb-3">وصول كامل لمدة 30 يوم</p>
+          <ul class="list-unstyled text-start mb-4" style="font-size: 0.9rem;">
+            <li class="mb-2"><i class="fas fa-check text-success"></i> كل دروس الصف</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> كل الامتحانات</li>
+          </ul>
+          <button class="btn-submit" onclick="selectPlan('شهري', 100)">اختر هذه الباقة</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="pricing-card popular">
+          <span class="popular-badge">⭐ الأكثر مبيعاً</span>
+          <h4 class="fw-bold">ترم كامل</h4>
+          <div class="price">250 <span>ج.م</span></div>
+          <p class="text-muted mb-3">وصول كامل لمدة 4 شهور</p>
+          <ul class="list-unstyled text-start mb-4" style="font-size: 0.9rem;">
+            <li class="mb-2"><i class="fas fa-check text-success"></i> كل مميزات الشهري</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> شهادة إتمام</li>
+          </ul>
+          <button class="btn-submit" onclick="selectPlan('ترم كامل', 250)">اختر هذه الباقة</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="pricing-card">
+          <h4 class="fw-bold">سنوي</h4>
+          <div class="price">450 <span>ج.م</span></div>
+          <p class="text-muted mb-3">وصول كامل لمدة سنة</p>
+          <ul class="list-unstyled text-start mb-4" style="font-size: 0.9rem;">
+            <li class="mb-2"><i class="fas fa-check text-success"></i> كل مميزات الترم</li>
+            <li class="mb-2"><i class="fas fa-check text-success"></i> دعم خاص</li>
+          </ul>
+          <button class="btn-submit" onclick="selectPlan('سنوي', 450)">اختر هذه الباقة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Box -->
+    <div class="payment-box" id="paymentBox" style="display: none;">
+      <h3 class="fw-bold mb-4 text-center" style="color: #0a1f44;">💳 إتمام الدفع</h3>
+      <p class="text-center text-muted mb-4">الباقة المختارة: <strong id="selectedPlanText"></strong></p>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <div class="payment-method">
+            <i class="fas fa-mobile-alt"></i>
+            <h5>فودافون كاش</h5>
+            <p class="mb-1">حول المبلغ على الرقم:</p>
+            <div class="number">01020304050</div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="payment-method">
+            <i class="fas fa-university"></i>
+            <h5>إنستاباي (InstaPay)</h5>
+            <p class="mb-1">حول المبلغ على العنوان:</p>
+            <div class="number" style="font-size: 1.1rem;">yasser@instapay</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-4">
+      <h5 class="fw-bold mb-3">📤 ارفع إثبات التحويل (Screenshot)</h5>
+      
+      <div class="alert alert-warning">
+        <i class="fas fa-info-circle"></i> <strong>مهم:</strong> بعد إتمام التحويل، احتفظ بصورة التحويل وارفعها هنا لتفعيل اشتراكك.
+      </div>
+
+      <form id="paymentForm">
+        <div class="mb-3">
+          <label class="form-label fw-bold">الاسم بالكامل</label>
+          <input type="text" class="form-control" id="studentName" required placeholder="اكتب اسمك">
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">رقم الموبايل (اللي حولت منه)</label>
+          <input type="tel" class="form-control" id="studentPhone" required placeholder="01xxxxxxxxx">
+        </div>
+        <div class="mb-4">
+          <label class="form-label fw-bold">صورة إثبات التحويل</label>
+          <input type="file" class="form-control" id="receiptImage" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">🚀 إرسال الطلب للإدارة</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged } from "firebase/auth";
+    import { ref, push, set } from "firebase/database";
+
+    // ⚠️ هنا السر: حط الـ API Key بتاعك بين علامات التنصيص (بدون أي مسافات)
+    const IMGBB_API_KEY = "a6d66ebb057c705b3fb5addda871e452";
+
+    let currentUser = null;
+    let selectedPlan = { name: '', price: 0 };
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) currentUser = user;
+    });
+
+    // اختيار الباقة
+    window.selectPlan = function(planName, price) {
+      selectedPlan = { name: planName, price: price };
+      document.getElementById('paymentBox').style.display = 'block';
+      document.getElementById('selectedPlanText').textContent = `${planName} - ${price} جنيه`;
+      document.getElementById('paymentBox').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // إرسال الطلب
+    document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!currentUser) {
+        alert('يجب تسجيل الدخول أولاً لتتمكن من الاشتراك.');
+        window.location.href = '/login.html';
+        return;
+      }
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'جاري رفع الصورة... ⏳';
+
+      try {
+        const name = document.getElementById('studentName').value;
+        const phone = document.getElementById('studentPhone').value;
+        const file = document.getElementById('receiptImage').files[0];
+
+        // 1. تحويل الصورة إلى Base64 لرفعها على ImgBB
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        
+        reader.onload = async () => {
+          const base64Image = reader.result.split(',')[1]; 
+
+          // 2. إرسال الصورة لـ ImgBB
+          const formData = new FormData();
+          formData.append('image', base64Image);
+
+          const imgbbRes = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+            method: 'POST',
+            body: formData
+          });
+
+          const imgbbData = await imgbbRes.json();
+
+          if (!imgbbData.success) {
+            throw new Error('فشل رفع الصورة، حاول مرة أخرى');
+          }
+
+          const imageUrl = imgbbData.data.url; // رابط الصورة النهائي
+
+          btn.textContent = 'جاري حفظ الطلب... ⏳';
+
+          // 3. حفظ الطلب في Firebase Realtime Database
+          const requestRef = push(ref(database, 'payment_requests'));
+          await set(requestRef, {
+            uid: currentUser.uid,
+            name: name,
+            phone: phone,
+            plan: selectedPlan.name,
+            price: selectedPlan.price,
+            receiptUrl: imageUrl,
+            status: 'pending', 
+            timestamp: Date.now()
+          });
+
+          alert('✅ تم إرسال طلبك بنجاح! الإدارة ستراجع الطلب وتفعل اشتراكك قريباً.');
+          document.getElementById('paymentForm').reset();
+          document.getElementById('paymentBox').style.display = 'none';
+          btn.disabled = false;
+          btn.textContent = '🚀 إرسال الطلب للإدارة';
+        };
+      } catch (error) {
+        console.error(error);
+        alert('❌ حدث خطأ: ' + error.message);
+        btn.disabled = false;
+        btn.textContent = '🚀 إرسال الطلب للإدارة';
+      }
+    });
+  </script>
+</body>
+</html>

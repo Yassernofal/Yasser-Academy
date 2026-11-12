@@ -141,5 +141,36 @@ export const CONFIG = {
     green: '#28a745'
   }
 };
+// ==========================================
+// 6️⃣ نظام قفل المحتوى (Paywall)
+// ==========================================
+export async function checkSubscription(database, get, ref, currentUser) {
+  if (!currentUser) {
+    window.location.href = '/login.html';
+    return false;
+  }
+
+  try {
+    const snapshot = await get(ref(database, `students/${currentUser.uid}`));
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      
+      // لو الاشتراك مش مفعل، نوديه لصفحة الدفع
+      if (data.subscriptionStatus !== 'active') {
+        window.location.href = '/subscribe.html';
+        return false;
+      }
+      // لو الاشتراك مفعل، نكمل عادي
+      return true;
+    } else {
+      // لو مفيش بيانات للطالب، نوديه لصفحة الدفع
+      window.location.href = '/subscribe.html';
+      return false;
+    }
+  } catch (error) {
+    console.error('Error checking subscription:', error);
+    return false;
+  }
+}
 
 console.log('✅ Core.js loaded successfully');
