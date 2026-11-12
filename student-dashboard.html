@@ -193,15 +193,13 @@
     import { auth, database } from './firebase-config.js';
     import { onAuthStateChanged, signOut } from "firebase/auth";
     import { ref, get, set } from "firebase/database";
-    import { loadUnits, loadExams, showToast } from './assets/js/core.js';
 
-    window.showToast = showToast;
+    window.showToast = function(msg, type) { alert(msg); };
 
     window.logoutUser = function() {
       signOut(auth).then(() => {
-        showToast('تم تسجيل الخروج بنجاح 👋', 'info');
         setTimeout(() => window.location.href = 'index.html', 500);
-      }).catch(err => showToast('خطأ: ' + err.message, 'danger'));
+      });
     };
 
     function renderUnits(grade, unitProgress = {}, gradeName = '') {
@@ -341,9 +339,8 @@
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
         pdf.addImage(imgData, 'PNG', 5, 5, imgWidth, imgHeight);
         pdf.save(`report-${Date.now()}.pdf`);
-        showToast('تم تحميل التقرير بنجاح', 'success');
       } catch (err) {
-        showToast('حدث خطأ', 'danger');
+        alert('حدث خطأ');
       } finally {
         loading.style.display = 'none';
       }
@@ -352,8 +349,14 @@
     window.printReport = function() { window.print(); };
 
     document.addEventListener('DOMContentLoaded', async () => {
-      window._unitsData = await loadUnits();
-      window._examsData = await loadExams();
+      try {
+        const resUnits = await fetch('/data/units.json');
+        window._unitsData = await resUnits.json();
+        const resExams = await fetch('/data/exams.json');
+        window._examsData = await resExams.json();
+      } catch (e) {
+        console.error('Error loading data', e);
+      }
 
       onAuthStateChanged(auth, async (user) => {
         if (!user) { window.location.href = '/login.html'; return; }
