@@ -1,5 +1,4 @@
-import { auth, database } from '/firebase-config.js'; import { onAuthStateChanged } from "firebase/auth";
-import { ref, get } from "firebase/database";
+import { auth, database } from '/firebase-config.js';import { ref, get } from "firebase/database";
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
