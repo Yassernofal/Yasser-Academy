@@ -1,4 +1,6 @@
-import { auth, database } from '/firebase-config.js';import { ref, get } from "firebase/database";
+import { auth, database } from '/firebase-config.js'; 
+import { onAuthStateChanged } from "firebase/auth";
+import { ref, get } from "firebase/database";
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
@@ -12,10 +14,12 @@ onAuthStateChanged(auth, async (user) => {
     if (snapshot.exists()) {
       const userData = snapshot.val();
       
-      // لو الحساب ولي أمر أو الطالب دفع واشتراكه مفعل -> يفتح الدرس
+      // لو الطالب مش مشترك (subscriptionStatus مش active)
       if (userData.subscriptionStatus !== 'active') {
+        // يظهر إشعار
         alert('⚠️ هذا الدرس متاح للمشتركين فقط. يرجى الاشتراك أولاً.');
-        window.location.href = '/subscribe.html';
+        // ونرجعه لصفحة الطالب
+        window.location.href = '/student-dashboard.html';
       }
     } else {
       window.location.href = '/login.html';
