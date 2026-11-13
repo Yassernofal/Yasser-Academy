@@ -4,7 +4,6 @@ import { ref, get } from "firebase/database";
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    // لو مش مسجل دخول، يروح للوجين
     window.location.href = '/login.html';
     return;
   }
@@ -14,11 +13,10 @@ onAuthStateChanged(auth, async (user) => {
     if (snapshot.exists()) {
       const userData = snapshot.val();
       
-      // لو الطالب مش مشترك (subscriptionStatus مش active)
+      // لو الطالب مش مشترك
       if (userData.subscriptionStatus !== 'active') {
-        // يظهر إشعار
-        alert('⚠️ هذا الدرس متاح للمشتركين فقط. يرجى الاشتراك أولاً.');
-        // ونرجعه لصفحة الطالب
+        alert('⚠️ هذا المحتوى متاح للمشتركين فقط. يرجى الاشتراك أولاً.');
+        // نرجعه لصفحة الطالب عشان يشوف حالته
         window.location.href = '/student-dashboard.html';
       }
     } else {
