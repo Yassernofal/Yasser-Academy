@@ -1,28 +1,30 @@
-// دالة لجلب الدروس
-async function loadLessons(grade) {
-    try {
-        // بنجيب الملف من المكان الصح
-        const response = await fetch('/data/units.json');
-        const data = await response.json();
-        
-        // بنشوف هل الصف ده موجود في الملف ولا لأ
-        if (data[grade]) {
-            return data[grade];
-        } else {
-            console.log("No lessons found for this grade");
-            return [];
-        }
-    } catch (error) {
-        console.error("Error loading lessons:", error);
-        return [];
-    }
+// دالة جلب الوحدات
+export async function loadUnits() {
+  try {
+    const response = await fetch('/data/units.json');
+    if (!response.ok) throw new Error('Failed to fetch units');
+    return await response.json();
+  } catch (error) {
+    console.error('Error loading units:', error);
+    return {};
+  }
 }
 
-// دالة عشان نفتح الدرس
-function openLesson(url) {
-    if (url) {
-        window.location.href = url;
-    } else {
-        alert("الدرس ده مش متاح حالياً");
-    }
+// دالة جلب الامتحانات
+export async function loadExams() {
+  try {
+    const response = await fetch('/data/exams.json');
+    if (!response.ok) throw new Error('Failed to fetch exams');
+    return await response.json();
+  } catch (error) {
+    console.error('Error loading exams:', error);
+    return {};
+  }
+}
+
+// دالة عرض الإشعارات (Toast)
+export function showToast(message, type = 'info') {
+  // لو عايز تعمل شكل جميل للإشعار، هنا مكانه
+  // دلوقتي هنستخدم Alert بسيط عشان نضمن إنه شغال
+  alert(message); 
 }
