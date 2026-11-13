@@ -405,9 +405,9 @@
     onAuthStateChanged(auth, async (user) => {
       if (user && user.emailVerified) {
         try {
-          const userSnap = await get(ref(database, `users/${user.uid}`));
+          const userSnap = await get(ref(database, `students/${user.uid}`));
           if (userSnap.exists()) {
-            const role = userSnap.val().role;
+            const role = userSnap.val().role || 'student';
             redirectToDashboard(role);
           }
         } catch (e) {
@@ -503,8 +503,8 @@
           return;
         }
 
-        // ===== جلب دور المستخدم =====
-        const userSnap = await get(ref(database, `users/${user.uid}`));
+        // ===== جلب دور المستخدم (من students) =====
+        const userSnap = await get(ref(database, `students/${user.uid}`));
         
         if (!userSnap.exists()) {
           status.innerHTML = '<div class="alert alert-danger">❌ لا توجد بيانات لهذا الحساب. تواصل مع الدعم.</div>';
