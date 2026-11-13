@@ -157,7 +157,8 @@
             <div class="row g-4" id="unitsContainer"><div class="col-12 text-center text-muted py-5"><p>جاري تحميل الوحدات...</p></div></div>
           </div>
 
-          <div class="mb-5">
+          <!-- قسم الامتحانات (هيتشال لو مش مشترك) -->
+          <div class="mb-5" id="examsSection">
             <div class="section-header"><h4>📝 امتحاناتي</h4><span class="badge-grade">متاح الآن</span></div>
             <div class="row g-4" id="examsContainer"><div class="col-12 text-center text-muted py-5"><p>جاري تحميل الامتحانات...</p></div></div>
           </div>
@@ -172,8 +173,12 @@
             </div>
           </div>
         </div>
+        
         <a href="/lessons.html" class="btn-gold-custom w-100 mb-3"><i class="fas fa-book-reader"></i> ابدأ الشرح</a>
-        <a href="/exams.html" class="btn-primary-custom w-100 mb-3"><i class="fas fa-file-alt"></i> الذهاب للامتحانات</a>
+        
+        <!-- زرار الامتحانات (هيتشال لو مش مشترك) -->
+        <a href="/exams.html" class="btn-primary-custom w-100 mb-3" id="goToExamsBtn"><i class="fas fa-file-alt"></i> الذهاب للامتحانات</a>
+        
         <button class="btn btn-danger w-100 rounded-pill fw-bold py-3" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
       </div>
     </div>
@@ -321,7 +326,17 @@
         const gradeName = unitsData[grade]?.gradeName || '';
         
         renderUnits(grade, data.unitProgress || {}, gradeName);
-        renderExams(grade);
+        
+        // إخفاء الامتحانات لو الطالب مش مشترك
+        const isActive = data.subscriptionStatus === 'active';
+        if (isActive) {
+          renderExams(grade);
+          document.getElementById('examsSection').style.display = 'block';
+          document.getElementById('goToExamsBtn').style.display = 'block';
+        } else {
+          document.getElementById('examsSection').style.display = 'none';
+          document.getElementById('goToExamsBtn').style.display = 'none';
+        }
 
         loadingScreen.style.display = 'none';
         dashboardContent.style.display = 'block';
