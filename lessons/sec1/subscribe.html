@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>باقات الاشتراك - أكاديمية مستر ياسر نوفل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'El Messiri', sans-serif; background: #f0f4fa; padding-top: 78px; }
+    .navbar-custom { background: rgba(10, 31, 68, 0.95) !important; padding: 14px 0; z-index: 1050; }
+    .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
+    .brand-name span { color: #ffb347; }
+    
+    .page-header { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: white; padding: 50px 20px; border-radius: 0 0 40px 40px; text-align: center; margin-bottom: 40px; }
+    .page-header h1 { font-weight: 800; font-size: 2.5rem; }
+    
+    .pricing-card { background: #fff; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; border: 2px solid transparent; height: 100%; text-align: center; position: relative; }
+    .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-color: #f7b731; }
+    .pricing-card.popular { border-color: #f7b731; }
+    .popular-badge { position: absolute; top: -15px; right: 50%; transform: translateX(50%); background: #f7b731; color: #0a1f44; padding: 5px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+    
+    .price { font-size: 3rem; font-weight: 800; color: #0a1f44; margin: 20px 0; }
+    .price span { font-size: 1rem; color: #777; font-weight: normal; }
+    
+    .features-list { list-style: none; padding: 0; margin: 20px 0; text-align: right; }
+    .features-list li { margin-bottom: 10px; color: #555; font-weight: 600; }
+    .features-list li i { color: #28a745; margin-left: 10px; }
+    
+    .btn-subscribe { background: #0a1f44; color: #f7e05e; width: 100%; padding: 12px; border-radius: 50px; font-weight: 700; border: none; transition: 0.3s; font-size: 1.1rem; }
+    .btn-subscribe:hover { background: #f7b731; color: #0a1f44; }
+    
+    .payment-info { background: #fff; border-radius: 20px; padding: 30px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-right: 5px solid #0a1f44; }
+    .payment-info h3 { color: #0a1f44; font-weight: 800; margin-bottom: 20px; }
+    .pay-method { background: #f8f9fa; border-radius: 15px; padding: 15px; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: bold; font-size: 1.2rem; }
+    .pay-method i { font-size: 2rem; color: #0a1f44; }
+    .number-highlight { color: #dc3545; font-family: 'Cinzel', serif; font-size: 1.4rem; direction: ltr; display: inline-block; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
+      </a>
+      <div class="ms-auto">
+        <a href="lessons.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← رجوع للدروس</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>🚀 اختر باقة الاشتراك</h1>
+    <p class="lead mb-0">افتح جميع الدروس والامتحانات وابدأ رحلة التفوق</p>
+  </div>
+
+  <div class="container pb-5">
+    <div class="row g-4 justify-content-center">
+      
+      <!-- باقة الشهر -->
+      <div class="col-md-4">
+        <div class="pricing-card">
+          <h3 class="fw-bold text-dark">الباقة الشهرية</h3>
+          <div class="price">150 <span>ج.م / شهر</span></div>
+          <ul class="features-list">
+            <li><i class="fas fa-check-circle"></i> فتح جميع دروس الصف</li>
+            <li><i class="fas fa-check-circle"></i> حل الامتحانات التفاعلية</li>
+            <li><i class="fas fa-check-circle"></i> متابعة دورية</li>
+          </ul>
+          <button class="btn-subscribe" onclick="subscribe('الباقة الشهرية', '150')">اشترك الآن</button>
+        </div>
+      </div>
+
+      <!-- باقة الترم -->
+      <div class="col-md-4">
+        <div class="pricing-card popular">
+          <div class="popular-badge">الأكثر طلباً 🔥</div>
+          <h3 class="fw-bold text-dark">باقة الترم</h3>
+          <div class="price">400 <span>ج.م / ترم</span></div>
+          <ul class="features-list">
+            <li><i class="fas fa-check-circle"></i> كل مميزات الباقة الشهرية</li>
+            <li><i class="fas fa-check-circle"></i> مراجعات نهائية</li>
+            <li><i class="fas fa-check-circle"></i> نماذج امتحانات الوزارة</li>
+          </ul>
+          <button class="btn-subscribe" onclick="subscribe('باقة الترم', '400')">اشترك الآن</button>
+        </div>
+      </div>
+
+      <!-- باقة السنة -->
+      <div class="col-md-4">
+        <div class="pricing-card">
+          <h3 class="fw-bold text-dark">الباقة السنوية</h3>
+          <div class="price">700 <span>ج.م / سنة</span></div>
+          <ul class="features-list">
+            <li><i class="fas fa-check-circle"></i> كل مميزات باقة الترم</li>
+            <li><i class="fas fa-check-circle"></i> خصم خاص (توفير 30%)</li>
+            <li><i class="fas fa-check-circle"></i> أولوية في الرد والدعم</li>
+          </ul>
+          <button class="btn-subscribe" onclick="subscribe('الباقة السنوية', '700')">اشترك الآن</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- طرق الدفع -->
+    <div class="payment-info">
+      <h3>💳 طرق الدفع المتاحة</h3>
+      <p>بعد اختيار الباقة، قم بتحويل المبلغ على أحد الأرقام التالية، ثم اضغط على زر الواتساب لتأكيد الاشتراك وإرسال صورة التحويل:</p>
+      
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <div class="pay-method">
+            <i class="fas fa-mobile-alt text-danger"></i>
+            <div>
+              <div>فودافون كاش</div>
+              <div class="number-highlight">01001297414</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="pay-method">
+            <i class="fas fa-university text-warning"></i>
+            <div>
+              <div>إنستاباي (InstaPay)</div>
+              <div class="number-highlight">01203145717</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="#" id="whatsappBtn" class="btn btn-success btn-lg px-5 py-3 rounded-pill fw-bold" style="font-size: 1.2rem;">
+          <i class="fab fa-whatsapp"></i> تأكيد الاشتراك عبر واتساب
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // دالة الاشتراك
+    function subscribe(planName, price) {
+      // رقم الواتساب بتاعك (الفودافون)
+      const phoneNumber = "201001297414"; 
+      
+      // نص الرسالة اللي هتتبعت
+      const message = `مرحباً أستاذ ياسر، أنا طالب في المنصة وأريد الاشتراك في (${planName}) بقيمة ${price} جنيه. برجاء تزويدي بتفاصيل تفعيل الحساب.`;
+      
+      // ترميز الرسالة عشان تتبعت في اللينك
+      const encodedMessage = encodeURIComponent(message);
+      
+      // اللينك النهائي للواتساب
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      
+      // فتح واتساب في تاب جديد
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
+</body>
+</html>

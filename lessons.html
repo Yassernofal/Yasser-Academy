@@ -7,36 +7,69 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/theme.css">
+  
   <style>
     body { background: #f0f4fa; padding-top: 78px; font-family: 'El Messiri', sans-serif; }
     .page-header { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: white; padding: 40px 20px; border-radius: 20px; text-align: center; margin-bottom: 30px; }
     .page-header h1 { font-weight: 800; margin: 0; }
+    .filter-btn { background: white; border: 2px solid #0a1f44; color: #0a1f44; padding: 8px 20px; border-radius: 50px; font-weight: 700; margin: 5px; transition: 0.3s; text-decoration: none; display: inline-block; }
+    .filter-btn:hover, .filter-btn.active { background: #0a1f44; color: #f7e05e; text-decoration: none; }
     .card-unit { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; border-right: 5px solid #f7e05e; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; }
     .card-unit:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
     .card-unit h5 { color: #0a1f44; font-weight: 800; }
     .card-unit p { color: #666; margin-bottom: 15px; }
     .btn-start { background: #0a1f44; color: #f7e05e; padding: 8px 25px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; }
     .btn-start:hover { background: #f7b731; color: #0a1f44; }
-    .btn-locked { background: #ccc; color: #666; cursor: not-allowed; }
+    /* ستايل الزرار المقفول */
+    .btn-locked { background: #dc3545; color: #fff; border: none; cursor: pointer; padding: 8px 25px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .btn-locked:hover { background: #c82333; color: #fff; }
   </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: #0a1f44;">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" style="background: rgba(10, 31, 68, 0.95);">
     <div class="container">
       <a class="navbar-brand text-warning fw-bold" href="/index.html">Mr. Yasser Nofal</a>
       <ul class="navbar-nav ms-auto flex-row gap-3">
         <li class="nav-item"><a class="nav-link text-white" href="/index.html">🏠 الرئيسية</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="/login.html">🔑 تسجيل الدخول</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="/exams.html">📝 الامتحانات</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="/student-dashboard.html">👨‍🎓 لوحتي</a></li>
       </ul>
     </div>
   </nav>
 
-  <div class="container mt-4">
+  <div class="container">
     <div class="page-header">
       <h1>📚 الشرح والوحدات</h1>
       <p class="mb-0">اختر الصف الدراسي وابدأ رحلة التعلم</p>
     </div>
+
+    <div class="text-center mb-4">
+      <a href="#prep1" class="filter-btn">أولى إعدادي</a>
+      <a href="#sec1" class="filter-btn">أولى ثانوي</a>
+      <a href="#sec2" class="filter-btn">تانية ثانوي</a>
+    </div>
+
+    <h3 id="prep1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى إعدادي (Prep 1)</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Unit 1: Life in a Digital World</h5>
+          <p>الحياة في عالم رقمي - شرح كامل وقواعد ومفردات</p>
+          <a href="/lessons/prep1/unit1-digital-world.html" class="btn-start lesson-link">ابدأ الدرس</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Review 1: المراجعة الشاملة</h5>
+          <p>مراجعة على الوحدة الأولى</p>
+          <a href="/lessons/prep1/review-1-prep1.html" class="btn-start lesson-link">ابدأ المراجعة</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5">
 
     <h3 id="sec1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى ثانوي (Sec 1)</h3>
     <div class="row">
@@ -69,8 +102,24 @@
         </div>
       </div>
     </div>
+
+    <hr class="my-5">
+
+    <h3 id="sec2" class="mb-3 fw-bold" style="color: #0a1f44;">📖 تانية ثانوي (Sec 2)</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card-unit">
+          <h5>Unit 1: Living Well in a Complex World</h5>
+          <p>العيش الجيد في عالم معقد</p>
+          <a href="/lessons/sec2/unit1-living-well.html" class="btn-start lesson-link">ابدأ الدرس</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // بنشوف هل الطالب ده مسجل دخول ولا لأ
@@ -82,15 +131,14 @@
       
       lessonLinks.forEach(link => {
         if (!isLoggedIn) {
-          // لو مش مسجل، نقفل الزرار
+          // لو مش مسجل أو مش مشترك، نقفل الزرار ونخليه يوديه للاشتراك
           link.classList.remove('btn-start');
           link.classList.add('btn-locked');
-          link.textContent = '🔒 سجل دخول أولاً';
+          link.textContent = '🔒 اشترك الآن';
           
           link.addEventListener('click', function(e) {
             e.preventDefault();
-            alert('عذراً، يجب تسجيل الدخول أولاً للوصول إلى الدروس.');
-            window.location.href = '/login.html'; // يوديه لصفحة اللوجين
+            window.location.href = '/subscribe.html'; // تحويل الطالب لصفحة الاشتراك
           });
         }
       });
