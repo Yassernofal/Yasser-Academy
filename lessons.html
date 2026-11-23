@@ -8,6 +8,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/theme.css">
+  
+  <!-- استدعاء Firebase -->
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+
   <style>
     body { background: #f0f4fa; padding-top: 78px; font-family: 'El Messiri', sans-serif; }
     .page-header { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: white; padding: 40px 20px; border-radius: 20px; text-align: center; margin-bottom: 30px; }
@@ -20,6 +32,7 @@
     .card-unit p { color: #666; margin-bottom: 15px; }
     .btn-start { background: #0a1f44; color: #f7e05e; padding: 8px 25px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; }
     .btn-start:hover { background: #f7b731; color: #0a1f44; }
+    .btn-locked { background: #ccc; color: #666; cursor: not-allowed; }
   </style>
 </head>
 <body>
@@ -49,77 +62,74 @@
       <a href="#sec2" class="filter-btn">تانية ثانوي</a>
     </div>
 
-    <!-- Prep 1 -->
     <h3 id="prep1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى إعدادي (Prep 1)</h3>
     <div class="row">
       <div class="col-md-6">
         <div class="card-unit">
           <h5>Unit 1: Life in a Digital World</h5>
           <p>الحياة في عالم رقمي - شرح كامل وقواعد ومفردات</p>
-          <a href="/lessons/prep1/unit1-digital-world.html" class="btn-start">ابدأ الدرس</a>
+          <a href="/lessons/prep1/unit1-digital-world.html" class="btn-start lesson-link">ابدأ الدرس</a>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card-unit">
           <h5>Review 1: المراجعة الشاملة</h5>
           <p>مراجعة على الوحدة الأولى</p>
-          <a href="/lessons/prep1/review-1-prep1.html" class="btn-start">ابدأ المراجعة</a>
+          <a href="/lessons/prep1/review-1-prep1.html" class="btn-start lesson-link">ابدأ المراجعة</a>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card-unit">
           <h5>Story: The Magic Classroom</h5>
           <p>قصة الفصل السحري</p>
-          <a href="/lessons/prep1/story-magic-classroom.html" class="btn-start">اقرأ القصة</a>
+          <a href="/lessons/prep1/story-magic-classroom.html" class="btn-start lesson-link">اقرأ القصة</a>
         </div>
       </div>
     </div>
 
     <hr class="my-5">
 
-    <!-- Sec 1 -->
     <h3 id="sec1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى ثانوي (Sec 1)</h3>
     <div class="row">
       <div class="col-md-6">
         <div class="card-unit">
           <h5>Unit 1: Egypt's Heritage</h5>
           <p>تراث مصر</p>
-          <a href="/lessons/sec1/unit1.html" class="btn-start">ابدأ الدرس</a>
+          <a href="/lessons/sec1/unit1.html" class="btn-start lesson-link">ابدأ الدرس</a>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card-unit">
           <h5>Unit 2: Hands Help, Hearts Care</h5>
           <p>أيادٍ تساعد وقلوبٌ ترعى</p>
-          <a href="/lessons/sec1/unit2.html" class="btn-start">ابدأ الدرس</a>
+          <a href="/lessons/sec1/unit2.html" class="btn-start lesson-link">ابدأ الدرس</a>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card-unit">
           <h5>Unit 3: Truth vs. Lies</h5>
           <p>الحقيقة ضد الكذب</p>
-          <a href="/lessons/sec1/unit3.html" class="btn-start">ابدأ الدرس</a>
+          <a href="/lessons/sec1/unit3.html" class="btn-start lesson-link">ابدأ الدرس</a>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card-unit">
           <h5>Review 1: المراجعة الشاملة</h5>
           <p>مراجعة على الوحدات 1-3</p>
-          <a href="/lessons/sec1/review1.html" class="btn-start">ابدأ المراجعة</a>
+          <a href="/lessons/sec1/review1.html" class="btn-start lesson-link">ابدأ المراجعة</a>
         </div>
       </div>
     </div>
 
     <hr class="my-5">
 
-    <!-- Sec 2 -->
     <h3 id="sec2" class="mb-3 fw-bold" style="color: #0a1f44;">📖 تانية ثانوي (Sec 2)</h3>
     <div class="row">
       <div class="col-md-6">
         <div class="card-unit">
           <h5>Unit 1: Living Well in a Complex World</h5>
           <p>العيش الجيد في عالم معقد</p>
-          <a href="/lessons/sec2/unit1-living-well.html" class="btn-start">ابدأ الدرس</a>
+          <a href="/lessons/sec2/unit1-living-well.html" class="btn-start lesson-link">ابدأ الدرس</a>
         </div>
       </div>
     </div>
@@ -127,6 +137,50 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="/assets/js/auth-guard.js"></script>
+  
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged } from "firebase/auth";
+    import { ref, get } from "firebase/database";
+
+    // 1. أول ما الصفحة تفتح، بنشوف هل في طالب مسجل دخول ولا لأ
+    onAuthStateChanged(auth, async (user) => {
+      let isSubscribed = false;
+
+      // لو في مستخدم مسجل
+      if (user) {
+        try {
+          // 2. بنجيب بياناته من قاعدة البيانات (Firebase)
+          const userSnap = await get(ref(database, `students/${user.uid}`));
+          
+          if (userSnap.exists()) {
+            const userData = userSnap.val();
+            // 3. بنشوف هل هو مشترك ولا لأ (بنفترض إن الحقل اسمه isSubscribed أو subscriptionStatus)
+            isSubscribed = userData.isSubscribed === true || userData.subscriptionStatus === 'active';
+          }
+        } catch (error) {
+          console.error("مشكلة في جلب بيانات الطالب:", error);
+        }
+      }
+
+      // 4. بنلف على كل أزرار الدروس ونقفلها لو مش مشترك
+      const lessonLinks = document.querySelectorAll('.lesson-link');
+      
+      lessonLinks.forEach(link => {
+        if (!isSubscribed) {
+          link.classList.remove('btn-start');
+          link.classList.add('btn-locked');
+          link.textContent = '🔒 يحتاج اشتراك';
+          
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('عذراً، هذا الدرس متاح للمشتركين فقط. يرجى الاشتراك أو تسجيل الدخول أولاً.');
+            // ممكن تحوله لصفحة الاشتراك
+            // window.location.href = '/subscribe.html';
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
