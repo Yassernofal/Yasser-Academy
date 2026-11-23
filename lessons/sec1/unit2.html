@@ -14,10 +14,10 @@
     .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
     .navbar-brand .brand-name span { color: #ffb347; }
 
-    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; }
+    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; text-align: center;}
     .hero-unit .unit-badge { display: inline-block; background: #f7e05e; color: #0a1f44; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; }
-    .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; margin-bottom: 10px; direction: ltr; text-align: center; }
-    .hero-unit .arabic-title { font-size: 1.2rem; color: #b0c4de; direction: rtl; text-align: center; }
+    .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; margin-bottom: 10px; direction: ltr; }
+    .hero-unit .arabic-title { font-size: 1.2rem; color: #b0c4de; }
 
     .layout-wrapper { display: grid; grid-template-columns: 280px 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; padding: 0 20px; }
     @media (max-width: 992px) { .layout-wrapper { grid-template-columns: 1fr; } }
@@ -29,7 +29,7 @@
     .sidebar a { display: flex; align-items: center; gap: 10px; padding: 10px 15px; border-radius: 12px; color: #555; text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.9rem; direction: ltr; text-align: left; }
     .sidebar a:hover, .sidebar a.active { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; }
 
-    .lesson-card { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #f7e05e; }
+    .lesson-card { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #f7e05e; transition: 0.3s; }
     .lesson-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid #f7e05e; cursor: pointer; }
     .lesson-number { background: #0a1f44; color: #f7e05e; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Cinzel', serif; font-size: 1.2rem; flex-shrink: 0; }
     .lesson-header h2 { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 1.4rem; margin: 0; flex-grow: 1; direction: ltr; text-align: left; }
@@ -53,12 +53,13 @@
     .grammar-box .example { background: #fff; border-radius: 10px; padding: 12px 18px; margin: 10px 0; font-family: 'Playfair Display', serif; color: #0a1f44; border-left: 3px solid #f7b731; direction: ltr; text-align: left; }
     .grammar-box .rule { color: #333; margin: 10px 0; line-height: 1.7; direction: ltr; text-align: left; }
 
-    .question-box { background: #fff; border-radius: 15px; padding: 20px; margin: 15px 0; border: 2px solid #e9ecef; }
+    .quiz-section { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-top: 5px solid #f7b731; }
+    .question-box { background: #f8f9fa; border-radius: 15px; padding: 20px; margin: 15px 0; border: 2px solid #e9ecef; }
     .question-box .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 12px; direction: ltr; text-align: left; }
     .question-box .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: ltr; }
-    .question-box .option { background: #f8f9fa; border-radius: 10px; padding: 10px 15px; cursor: pointer; transition: 0.3s; border: 2px solid transparent; direction: ltr; text-align: left; }
+    .question-box .option { background: #fff; border-radius: 10px; padding: 10px 15px; cursor: pointer; transition: 0.3s; border: 2px solid #e9ecef; direction: ltr; text-align: left; }
     .question-box .option:hover { background: #e9ecef; border-color: #f7b731; }
-    .question-box .option.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+    .question-box .option.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: bold; }
     .question-box .option.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
 
     .btn-lesson { background: #0a1f44; color: #f7e05e; padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; margin: 5px; }
@@ -78,11 +79,11 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="/index.html">
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <div class="ms-auto">
-        <a href="student-dashboard.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← لوحة الطالب</a>
+        <a href="/lessons.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← كل الوحدات</a>
       </div>
     </div>
   </nav>
@@ -98,13 +99,9 @@
     <aside class="sidebar">
       <h3>📚 محتويات الوحدة</h3>
       <ul>
-        <li><a href="#lesson1" class="active"><i class="fas fa-book"></i> Lesson 1: The Warm Bread</a></li>
-        <li><a href="#lesson2"><i class="fas fa-tree"></i> Lesson 2: Planting Trees</a></li>
-        <li><a href="#lesson3"><i class="fas fa-hands-helping"></i> Lesson 3: Voluntary Work</a></li>
-        <li><a href="#lesson4"><i class="fas fa-fire-extinguisher"></i> Lesson 4: Serving Community</a></li>
-        <li><a href="#lesson5"><i class="fas fa-pen-fancy"></i> Lesson 5: Descriptive Essay</a></li>
-        <li><a href="#grammar"><i class="fas fa-language"></i> Grammar: Modal Verbs</a></li>
-        <li><a href="#practice"><i class="fas fa-tasks"></i> Practice</a></li>
+        <li><a href="#lesson1" class="active"><i class="fas fa-book"></i> Lesson 1: Reading</a></li>
+        <li><a href="#lesson2"><i class="fas fa-language"></i> Lesson 2: Grammar</a></li>
+        <li><a href="#quiz"><i class="fas fa-tasks"></i> Unit Quiz</a></li>
       </ul>
     </aside>
 
@@ -114,19 +111,16 @@
       <div class="lesson-card" id="lesson1">
         <div class="lesson-header" onclick="toggleLesson(this)">
           <div class="lesson-number">1</div>
-          <h2>The Warm Bread</h2>
+          <h2>The Power of Kindness</h2>
           <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
         <div class="lesson-body">
           <h3 class="section-title">📖 Reading</h3>
           <div class="reading-passage">
-            <p>It was a difficult week for Sama. Her grades were slipping, and she felt overwhelmed by all her schoolwork. On Thursday afternoon, she sat by her window, staring at the grey sky that seemed to mirror her mood. She hadn't spoken to many people lately and felt isolated from her friends.</p>
-            <p>Then, there was a knock at the door. It was Mrs. Aya, the friendly neighbor who lived upstairs. She held a small basket covered with a clean white cloth, still warm from the oven.</p>
-            <p>"I baked some fresh bread this morning," Mrs. Aya said warmly. "I thought you might like some."</p>
-            <p>The smell was irresistible, wrapping around Sama like a gentle hug. Sama smiled for the first time in days and invited her in for tea. They sat together, chatting about small things - school, plants, and Mrs. Aya's garden - while the soft sound of rain tapped on the window. Slowly, Sama felt her worries began to fade.</p>
-            <p>Before leaving, Mrs. Aya said, "Sometimes, the smallest kindness can make a big difference."</p>
-            <p>Sama kept thinking about those words. She decided to help her younger cousin with homework that evening. Seeing her cousin's face light up filled her with optimism.</p>
-            <p>She realized that kindness doesn't just make others feel better; it can change your own heart, too.</p>
+            <p>Kindness is a universal language that everyone understands. It is the act of showing compassion, empathy, and care towards others without expecting anything in return. A simple smile, a helping hand, or a listening ear can make a significant difference in someone's life.</p>
+            <p>In our modern world, where people are often busy with their own lives, kindness can sometimes be forgotten. However, small acts of kindness have a ripple effect. When you help someone, they are more likely to help someone else, creating a chain of positive actions that can transform communities.</p>
+            <p>Volunteering is a powerful way to practice kindness. Whether it's helping at a local charity, cleaning up a neighborhood, or tutoring younger students, volunteering allows us to contribute to society and build strong, caring communities. It also helps us develop emotional intelligence and self-awareness.</p>
+            <p>We must remember that kindness is a choice we make every day. By choosing to be kind, we not only improve the lives of others but also enrich our own lives with purpose and joy.</p>
           </div>
 
           <h3 class="section-title">💡 Vocabulary</h3>
@@ -135,12 +129,12 @@
               <tr><th>Word</th><th>Meaning</th></tr>
             </thead>
             <tbody>
-              <tr><td class="word">Overwhelmed</td><td class="meaning">غارق / مشغول جداً</td></tr>
-              <tr><td class="word">Isolated</td><td class="meaning">معزول</td></tr>
-              <tr><td class="word">Irresistible</td><td class="meaning">لا يقاوم</td></tr>
-              <tr><td class="word">Optimism</td><td class="meaning">تفاؤل</td></tr>
-              <tr><td class="word">Kindness</td><td class="meaning">لطف / عطف</td></tr>
-              <tr><td class="word">Fade</td><td class="meaning">يتلاشى</td></tr>
+              <tr><td class="word">Compassion</td><td class="meaning">تعاطف / رحمة</td></tr>
+              <tr><td class="word">Empathy</td><td class="meaning">تقدير مشاعر الآخرين</td></tr>
+              <tr><td class="word">Ripple effect</td><td class="meaning">تأثير متسلسل</td></tr>
+              <tr><td class="word">Volunteering</td><td class="meaning">التطوع</td></tr>
+              <tr><td class="word">Charity</td><td class="meaning">عمل خيري / جمعية خيرية</td></tr>
+              <tr><td class="word">Emotional intelligence</td><td class="meaning">الذكاء العاطفي</td></tr>
             </tbody>
           </table>
         </div>
@@ -150,208 +144,66 @@
       <div class="lesson-card" id="lesson2">
         <div class="lesson-header" onclick="toggleLesson(this)">
           <div class="lesson-number">2</div>
-          <h2>Planting Trees, Growing Myself</h2>
+          <h2>Grammar: Modal Verbs (Must & Have to)</h2>
           <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
         <div class="lesson-body collapsed">
-          <h3 class="section-title">📖 Reading</h3>
-          <div class="reading-passage">
-            <p>Ahmed joined a tree-planting project in his village. At first, he just wanted to help his community. But as days passed, he discovered that volunteering transformed him in ways he never expected.</p>
-            <p>The team worked hard, planting saplings along the roads and in the school yard. An old farmer told Ahmed, "A tree is like a friend. You take care of it, and it gives you shade and fresh air."</p>
-            <p>Ahmed felt his confidence grow with every tree he planted. He learned that volunteering helps the volunteer as much as it helps others.</p>
+          <h3 class="section-title">📚 Language in Context</h3>
+
+          <div class="grammar-box">
+            <h4>1. Must (يجب)</h4>
+            <p class="rule">بنستخدم <strong>Must</strong> عشان نعبر عن إلزام قوي أو ضرورة، وغالباً بيكون <strong>رأي شخصي</strong> أو إحساس داخلي بضرورة عمل الحاجة.</p>
+            <div class="example">We <strong>must</strong> help those in need. (It is our moral duty).</div>
+            <div class="example">You <strong>must</strong> wear a seatbelt. (It is the law).</div>
           </div>
 
-          <h3 class="section-title">💡 Vocabulary</h3>
-          <table class="vocab-table">
-            <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
-            <tbody>
-              <tr><td class="word">Volunteer</td><td class="meaning">متطوع</td></tr>
-              <tr><td class="word">Saplings</td><td class="meaning">شتلات</td></tr>
-              <tr><td class="word">Transformed</td><td class="meaning">تغيّر تماماً</td></tr>
-              <tr><td class="word">Confidence</td><td class="meaning">ثقة بالنفس</td></tr>
-              <tr><td class="word">Community</td><td class="meaning">مجتمع</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Lesson 3 -->
-      <div class="lesson-card" id="lesson3">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">3</div>
-          <h2>Voluntary Work</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-          <h3 class="section-title">🎧 Listening</h3>
-          <p style="direction: rtl; text-align: right; color: #555;">استمع للتسجيل الصوتي ثم أجب على الأسئلة.</p>
-          <h3 class="section-title">💡 Key Ideas</h3>
           <div class="grammar-box">
-            <h4>Why Voluntary Work Matters</h4>
-            <p class="rule">Voluntary work is valuable because it:</p>
-            <div class="example">Builds social connections</div>
-            <div class="example">Develops personal skills (empathy, teamwork)</div>
-            <div class="example">Creates a sense of purpose</div>
-            <div class="example">Helps communities grow stronger</div>
+            <h4>2. Have to (مضطر / لازم)</h4>
+            <p class="rule">بنستخدم <strong>Have to</strong> عشان نعبر عن إلزام بسبب <strong>ظروف خارجية</strong> أو قواعد مفروضة علينا من حد تاني (مش رأينا الشخصي).</p>
+            <div class="example">I <strong>have to</strong> finish my homework tonight. (Because the teacher said so).</div>
+            <div class="example">She <strong>has to</strong> wake up early for school. (Because school starts early).</div>
+          </div>
+
+          <div class="grammar-box">
+            <h4>3. النفي (Negative)</h4>
+            <p class="rule"><strong>Mustn't</strong> = ممنوع (إلزام بعدم العمل).</p>
+            <p class="rule"><strong>Don't have to</strong> = مش لازم (مفيش إلزام، ممكن تعمل وممكن لأ).</p>
+            <div class="example">You <strong>mustn't</strong> smoke here. (It's forbidden).</div>
+            <div class="example">You <strong>don't have to</strong> come if you are busy. (It's optional).</div>
           </div>
         </div>
       </div>
 
-      <!-- Lesson 4 -->
-      <div class="lesson-card" id="lesson4">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">4</div>
-          <h2>Serving the Community in Times of Danger</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+      <!-- Quiz -->
+      <div class="quiz-section" id="quiz">
+        <h3 class="section-title" style="border-bottom-color: #0a1f44;">📝 Unit Quiz (اختبر نفسك)</h3>
+        <p style="direction: rtl; text-align: right; color: #555; margin-bottom: 20px;">جاوب على الأسئلة دي عشان تتأكد إنك فهمت الدرس.</p>
+
+        <div class="question-box">
+          <div class="q-text">1. Showing ________ means understanding how someone else feels.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false)">a) charity</div>
+            <div class="option" onclick="checkAnswer(this, true)">b) empathy</div>
+            <div class="option" onclick="checkAnswer(this, false)">c) ripple effect</div>
+            <div class="option" onclick="checkAnswer(this, false)">d) volunteering</div>
+          </div>
         </div>
-        <div class="lesson-body collapsed">
-          <h3 class="section-title">📖 Reading</h3>
-          <div class="reading-passage">
-            <p>My name is Radwan, and I work as a firefighter in Alexandria. Many people think our job is just putting out fires, but it's much more than that. We rescue people from car accidents, help during floods, and sometimes save animals trapped in dangerous places.</p>
-            <p>The truth is, our work can be risky. I have entered burning buildings where smoke made it hard to see and breathe. I've stood on shaking ladders in the middle of the night, with the heat almost burning my skin. Sadly, I have also seen lives lost before we could reach them. These moments stay with me forever.</p>
-            <p>Yet, we do it because we believe in obligation - the duty to help each other, no matter the cost. In every emergency, we must act quickly, stay calm, and trust our training. We don't think about fear in those moments; we think about the people waiting for us.</p>
-            <p>I am proud to serve my community. I know that my work saves lives, and that is worth every risk. When you help others, you are not just doing a job - you are protecting hope itself.</p>
-          </div>
-          <h3 class="section-title">💡 Vocabulary</h3>
-          <table class="vocab-table">
-            <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
-            <tbody>
-              <tr><td class="word">Rescue</td><td class="meaning">ينقذ</td></tr>
-              <tr><td class="word">Risky</td><td class="meaning">خطير</td></tr>
-              <tr><td class="word">Obligation</td><td class="meaning">واجب / التزام</td></tr>
-              <tr><td class="word">Emergency</td><td class="meaning">حالة طارئة</td></tr>
-              <tr><td class="word">Trust</td><td class="meaning">يثق</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
 
-      <!-- Lesson 5 -->
-      <div class="lesson-card" id="lesson5">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">5</div>
-          <h2>Show, Don't Just Tell (Descriptive Essay)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-          <h3 class="section-title">✍️ Descriptive Essay Structure</h3>
-          <div class="grammar-box">
-            <h4>Introduction</h4>
-            <p class="rule">Introduce the person, place, or thing. Give a general idea of why it's important to you.</p>
-            <div class="example">"My grandpa's house is a place where time stands still."</div>
-          </div>
-          <div class="grammar-box">
-            <h4>Body Paragraphs</h4>
-            <p class="rule">Each paragraph focuses on a different sense or aspect (sight, hearing, smell, taste, touch).</p>
-            <div class="example">"The smell of freshly baked bread fills the kitchen every morning."</div>
-          </div>
-          <div class="grammar-box">
-            <h4>Conclusion</h4>
-            <p class="rule">Summarize the main ideas and share your overall feeling about the topic.</p>
-            <div class="example">"My grandpa's house will always be my favorite place on earth."</div>
-          </div>
-
-          <h3 class="section-title">✍️ Writing Task</h3>
-          <p style="direction: rtl; text-align: right; color: #555;">اكتب مقال وصفي من 120-150 كلمة عن "My Grandpa's House".</p>
-        </div>
-      </div>
-
-      <!-- Grammar -->
-      <div class="lesson-card" id="grammar">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">📚</div>
-          <h2>Grammar: Modal Verbs</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-
-          <div class="grammar-box">
-            <h4>Should / Shouldn't</h4>
-            <p class="rule">Use <strong>should/shouldn't</strong> for suggestions and advice.</p>
-            <div class="example">You should always take a shower every day in hot weather.</div>
-            <div class="example">You shouldn't take your umbrella today. It's not sunny.</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>Must / Mustn't</h4>
-            <p class="rule">Use <strong>must/mustn't</strong> for rules, laws, strong advice, and warm invitations.</p>
-            <div class="example">Drivers must follow traffic rules.</div>
-            <div class="example">Nouran mustn't waste her time. Exams are nearby!</div>
-            <div class="example">You must come and try mom's cake. It is great!</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>Have to</h4>
-            <p class="rule">Use <strong>have to</strong> when you mean you have no choice (external obligation).</p>
-            <div class="example">I have to renew my driving licence next month.</div>
-            <div class="example">We have to stay late at work. The manager ordered us.</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>Key Notes</h4>
-            <p class="rule">❌ <strong>must to</strong> (wrong)</p>
-            <p class="rule">✅ <strong>must</strong> + base verb (correct)</p>
-            <p class="rule">❌ <strong>should to call</strong> (wrong)</p>
-            <p class="rule">✅ <strong>should call</strong> (correct)</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Practice -->
-      <div class="lesson-card" id="practice">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">🎯</div>
-          <h2>Practice</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-          <div class="question-box">
-            <p class="q-text">1. You ___ wear a helmet when riding a motorbike. It's the law.</p>
-            <div class="options">
-              <div class="option" onclick="checkAnswer(this, false)">should</div>
-              <div class="option" onclick="checkAnswer(this, true)">must</div>
-              <div class="option" onclick="checkAnswer(this, false)">shouldn't</div>
-              <div class="option" onclick="checkAnswer(this, false)">mustn't</div>
-            </div>
-          </div>
-
-          <div class="question-box">
-            <p class="q-text">2. You ___ eat so much sugar. It's not healthy.</p>
-            <div class="options">
-              <div class="option" onclick="checkAnswer(this, false)">have to</div>
-              <div class="option" onclick="checkAnswer(this, false)">must</div>
-              <div class="option" onclick="checkAnswer(this, false)">should</div>
-              <div class="option" onclick="checkAnswer(this, true)">shouldn't</div>
-            </div>
-          </div>
-
-          <div class="question-box">
-            <p class="q-text">3. Drivers ___ use their phones while driving.</p>
-            <div class="options">
-              <div class="option" onclick="checkAnswer(this, true)">mustn't</div>
-              <div class="option" onclick="checkAnswer(this, false)">should</div>
-              <div class="option" onclick="checkAnswer(this, false)">have to</div>
-              <div class="option" onclick="checkAnswer(this, false)">must</div>
-            </div>
-          </div>
-
-          <div class="question-box">
-            <p class="q-text">4. You ___ take an umbrella. It's going to rain.</p>
-            <div class="options">
-              <div class="option" onclick="checkAnswer(this, true)">should</div>
-              <div class="option" onclick="checkAnswer(this, false)">mustn't</div>
-              <div class="option" onclick="checkAnswer(this, false)">has to</div>
-              <div class="option" onclick="checkAnswer(this, false)">shouldn't</div>
-            </div>
+        <div class="question-box">
+          <div class="q-text">2. I ________ wear a uniform at school. It's a school rule.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, true)">a) have to</div>
+            <div class="option" onclick="checkAnswer(this, false)">b) must</div>
+            <div class="option" onclick="checkAnswer(this, false)">c) don't have to</div>
+            <div class="option" onclick="checkAnswer(this, false)">d) mustn't</div>
           </div>
         </div>
       </div>
 
       <div class="nav-buttons">
-        <a href="sec1-unit1.html" class="btn-lesson">← الوحدة السابقة</a>
-        <a href="student-dashboard.html" class="btn-lesson gold">🏠 لوحة الطالب</a>
-        <a href="sec1-exam-unit2.html" class="btn-lesson">🚀 ابدأ الامتحان</a>
+        <a href="/lessons/sec1/unit1.html" class="btn-lesson">← الوحدة السابقة</a>
+        <a href="/lessons.html" class="btn-lesson gold">🏠 رجوع للدروس</a>
+        <a href="/lessons/sec1/unit3.html" class="btn-lesson">الوحدة التالية →</a>
       </div>
 
     </main>
@@ -365,22 +217,31 @@
       body.classList.toggle('collapsed');
       icon.style.transform = body.classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(180deg)';
     }
-    function checkAnswer(element, isCorrect) {
-      const options = element.parentElement.querySelectorAll('.option');
-      options.forEach(opt => { opt.style.pointerEvents = 'none'; opt.classList.remove('correct', 'wrong'); });
-      if (isCorrect) { element.classList.add('correct'); }
-      else {
-        element.classList.add('wrong');
-        options.forEach(opt => { if (opt.getAttribute('onclick')?.includes('true')) opt.classList.add('correct'); });
-      }
-    }
+
     document.querySelectorAll('.sidebar a').forEach(link => {
       link.addEventListener('click', function() {
         document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
         this.classList.add('active');
       });
     });
+
+    function checkAnswer(element, isCorrect) {
+      const parent = element.parentElement;
+      Array.from(parent.children).forEach(child => {
+        child.classList.remove('correct', 'wrong');
+      });
+
+      if (isCorrect) {
+        element.classList.add('correct');
+      } else {
+        element.classList.add('wrong');
+        Array.from(parent.children).forEach(child => {
+          if (child.getAttribute('onclick').includes('true')) {
+            child.classList.add('correct');
+          }
+        });
+      }
+    }
   </script>
-<script type="module" src="/assets/js/auth-guard.js"></script>
 </body>
 </html>

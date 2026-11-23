@@ -14,10 +14,10 @@
     .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
     .navbar-brand .brand-name span { color: #ffb347; }
 
-    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; }
+    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; text-align: center;}
     .hero-unit .unit-badge { display: inline-block; background: #f7e05e; color: #0a1f44; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; }
-    .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; margin-bottom: 10px; direction: ltr; text-align: center; }
-    .hero-unit .arabic-title { font-size: 1.2rem; color: #b0c4de; direction: rtl; text-align: center; }
+    .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; margin-bottom: 10px; direction: ltr; }
+    .hero-unit .arabic-title { font-size: 1.2rem; color: #b0c4de; }
 
     .layout-wrapper { display: grid; grid-template-columns: 280px 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; padding: 0 20px; }
     @media (max-width: 992px) { .layout-wrapper { grid-template-columns: 1fr; } }
@@ -29,7 +29,7 @@
     .sidebar a { display: flex; align-items: center; gap: 10px; padding: 10px 15px; border-radius: 12px; color: #555; text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.9rem; direction: ltr; text-align: left; }
     .sidebar a:hover, .sidebar a.active { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; }
 
-    .lesson-card { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #f7e05e; }
+    .lesson-card { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #f7e05e; transition: 0.3s; }
     .lesson-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid #f7e05e; cursor: pointer; }
     .lesson-number { background: #0a1f44; color: #f7e05e; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Cinzel', serif; font-size: 1.2rem; flex-shrink: 0; }
     .lesson-header h2 { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 1.4rem; margin: 0; flex-grow: 1; direction: ltr; text-align: left; }
@@ -53,12 +53,13 @@
     .grammar-box .example { background: #fff; border-radius: 10px; padding: 12px 18px; margin: 10px 0; font-family: 'Playfair Display', serif; color: #0a1f44; border-left: 3px solid #f7b731; direction: ltr; text-align: left; }
     .grammar-box .rule { color: #333; margin: 10px 0; line-height: 1.7; direction: ltr; text-align: left; }
 
-    .question-box { background: #fff; border-radius: 15px; padding: 20px; margin: 15px 0; border: 2px solid #e9ecef; }
+    .quiz-section { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-top: 5px solid #f7b731; }
+    .question-box { background: #f8f9fa; border-radius: 15px; padding: 20px; margin: 15px 0; border: 2px solid #e9ecef; }
     .question-box .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 12px; direction: ltr; text-align: left; }
     .question-box .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: ltr; }
-    .question-box .option { background: #f8f9fa; border-radius: 10px; padding: 10px 15px; cursor: pointer; transition: 0.3s; border: 2px solid transparent; direction: ltr; text-align: left; }
+    .question-box .option { background: #fff; border-radius: 10px; padding: 10px 15px; cursor: pointer; transition: 0.3s; border: 2px solid #e9ecef; direction: ltr; text-align: left; }
     .question-box .option:hover { background: #e9ecef; border-color: #f7b731; }
-    .question-box .option.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+    .question-box .option.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: bold; }
     .question-box .option.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
 
     .btn-lesson { background: #0a1f44; color: #f7e05e; padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; margin: 5px; }
@@ -78,11 +79,11 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="/index.html">
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <div class="ms-auto">
-        <a href="student-dashboard.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← لوحة الطالب</a>
+        <a href="/lessons.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← كل الوحدات</a>
       </div>
     </div>
   </nav>
@@ -98,13 +99,9 @@
     <aside class="sidebar">
       <h3>📚 محتويات الوحدة</h3>
       <ul>
-        <li><a href="#lesson1" class="active"><i class="fas fa-mask"></i> Lesson 1: When Appearances Lie</a></li>
-        <li><a href="#lesson2"><i class="fas fa-compass"></i> Lesson 2: Wise Choices</a></li>
-        <li><a href="#lesson3"><i class="fas fa-user-secret"></i> Lesson 3: Fake Appearance</a></li>
-        <li><a href="#lesson4"><i class="fas fa-newspaper"></i> Lesson 4: The Truth Trap</a></li>
-        <li><a href="#lesson5"><i class="fas fa-pen-fancy"></i> Lesson 5: Essay Development</a></li>
-        <li><a href="#grammar"><i class="fas fa-language"></i> Grammar: Conditionals</a></li>
-        <li><a href="#practice"><i class="fas fa-tasks"></i> Practice</a></li>
+        <li><a href="#lesson1" class="active"><i class="fas fa-book"></i> Lesson 1: Reading</a></li>
+        <li><a href="#lesson2"><i class="fas fa-language"></i> Lesson 2: Grammar</a></li>
+        <li><a href="#quiz"><i class="fas fa-tasks"></i> Unit Quiz</a></li>
       </ul>
     </aside>
 
@@ -114,32 +111,30 @@
       <div class="lesson-card" id="lesson1">
         <div class="lesson-header" onclick="toggleLesson(this)">
           <div class="lesson-number">1</div>
-          <h2>When Appearances Lie</h2>
+          <h2>Media Literacy & Fake News</h2>
           <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
         <div class="lesson-body">
           <h3 class="section-title">📖 Reading</h3>
           <div class="reading-passage">
-            <p>Trust is one of the most valuable things in our lives, yet it is not always easy to know whom we can rely on. While many people act with honesty and kindness, there are also those who hide their true intentions behind a friendly smile.</p>
-            <p>In life, not everyone we meet is truly honest. Some people put on a friendly face, but are in fact "wolves in sheep's clothing". They may deceive us to gain money, favors, or private information. This can happen anywhere — at school, in the workplace, or even among people we once considered close friends.</p>
-            <p>For example, someone might act supportively just to borrow money, with no intention of returning it. Another might spread false stories to damage someone's reputation. Such behavior can leave us feeling betrayed, embarrassed, and unsure whom we can trust.</p>
-            <p>This type of dishonesty is not limited to face-to-face interactions. In the digital world, fake platforms and social media scams copy these same tactics. They make grand promises — such as free prizes, dream jobs, or fast profits — only to exploit our personal data or disappear with our money. It is like being caught in a trap you did not realize was set.</p>
-            <p>Whether in daily life or online, there are warning signs:</p>
-            <p>• The person or platform applies pressure to make you act quickly.<br>
-            • The story changes when you ask for details.<br>
-            • The promises seem too good to be true.</p>
+            <p>In the digital age, information travels faster than ever before. While this has many benefits, it also comes with a significant challenge: the spread of fake news. Fake news refers to false or misleading information presented as real news. Its purpose is often to deceive people, damage reputations, or influence public opinion.</p>
+            <p>The danger of fake news lies in its ability to spread quickly through social media platforms. When people share a post without verifying it, they become part of the problem. To combat this, we must develop strong media literacy skills. Media literacy is the ability to access, analyze, evaluate, and create media. It helps us distinguish between credible sources and unreliable ones.</p>
+            <p>How can we protect ourselves? First, always check the source of the information. Second, read beyond the headline, as clickbait titles are often misleading. Third, cross-check the information with reputable news organizations. Finally, think critically before sharing anything online.</p>
+            <p>Integrity and honesty are essential values in our digital world. By being responsible digital citizens, we can protect ourselves and our communities from the harmful effects of deception.</p>
           </div>
 
           <h3 class="section-title">💡 Vocabulary</h3>
           <table class="vocab-table">
-            <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
+            <thead>
+              <tr><th>Word</th><th>Meaning</th></tr>
+            </thead>
             <tbody>
               <tr><td class="word">Deceive</td><td class="meaning">يخدع</td></tr>
-              <tr><td class="word">Betrayed</td><td class="meaning">مُخان</td></tr>
-              <tr><td class="word">Reputation</td><td class="meaning">سمعة</td></tr>
-              <tr><td class="word">Exploit</td><td class="meaning">يستغل</td></tr>
-              <tr><td class="word">Tactics</td><td class="meaning">أساليب / تكتيكات</td></tr>
-              <tr><td class="word">Wolves in sheep's clothing</td><td class="meaning">ذئاب في ثياب حملان</td></tr>
+              <tr><td class="word">Misleading</td><td class="meaning">مضلل</td></tr>
+              <tr><td class="word">Media literacy</td><td class="meaning">التنور الإعلامي / الوعي الإعلامي</td></tr>
+              <tr><td class="word">Credible</td><td class="meaning">موثوق / جدير بالثقة</td></tr>
+              <tr><td class="word">Clickbait</td><td class="meaning">عناوين جذابة (لجذب النقرات)</td></tr>
+              <tr><td class="word">Integrity</td><td class="meaning">نزاهة / استقامة</td></tr>
             </tbody>
           </table>
         </div>
@@ -149,211 +144,64 @@
       <div class="lesson-card" id="lesson2">
         <div class="lesson-header" onclick="toggleLesson(this)">
           <div class="lesson-number">2</div>
-          <h2>Wise Choices in a World Full of Traps</h2>
+          <h2>Grammar: Conditional Sentences</h2>
           <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
         <div class="lesson-body collapsed">
-          <h3 class="section-title">🎧 Listening</h3>
-          <p style="direction: rtl; text-align: right; color: #555;">استمع للمقابلة مع د. سارة ثم أجب على الأسئلة.</p>
+          <h3 class="section-title">📚 Language in Context</h3>
 
-          <h3 class="section-title">💡 Key Ideas</h3>
           <div class="grammar-box">
-            <h4>Dr. Sarah's Advice</h4>
-            <p class="rule">Before agreeing to something important:</p>
-            <div class="example">1. Notice your feelings (they are warning signs)</div>
-            <div class="example">2. Ask questions before saying yes</div>
-            <div class="example">3. Guard your time, energy, and trust</div>
+            <h4>1. Zero Conditional (الحالة الصفرية)</h4>
+            <p class="rule">بنستخدمها للحقائق العامة والثوابت العلمية. (If + Present Simple, Present Simple).</p>
+            <div class="example">If you <strong>heat</strong> ice, it <strong>melts</strong>.</div>
+          </div>
+
+          <div class="grammar-box">
+            <h4>2. First Conditional (الحالة الأولى)</h4>
+            <p class="rule">بنستخدمها لحدث محتمل حدوثه في المستقبل. (If + Present Simple, will + infinitive).</p>
+            <div class="example">If you <strong>share</strong> fake news, you <strong>will deceive</strong> people.</div>
+            <div class="example">If it <strong>rains</strong> tomorrow, we <strong>will stay</strong> at home.</div>
+          </div>
+
+          <div class="grammar-box">
+            <h4>3. Second Conditional (الحالة الثانية)</h4>
+            <p class="rule">بنستخدمها لحدث خيالي أو غير محتمل في الحاضر أو المستقبل. (If + Past Simple, would + infinitive).</p>
+            <div class="example">If I <strong>were</strong> you, I <strong>would check</strong> the source.</div>
+            <div class="example">If I <strong>had</strong> a million pounds, I <strong>would travel</strong> the world.</div>
           </div>
         </div>
       </div>
 
-      <!-- Lesson 3 -->
-      <div class="lesson-card" id="lesson3">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">3</div>
-          <h2>Fake Appearance</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-          <h3 class="section-title">🎧 Listening</h3>
-          <p style="direction: rtl; text-align: right; color: #555;">استمع للتسجيل عن المظهر الحقيقي والمزيف.</p>
+      <!-- Quiz -->
+      <div class="quiz-section" id="quiz">
+        <h3 class="section-title" style="border-bottom-color: #0a1f44;">📝 Unit Quiz (اختبر نفسك)</h3>
+        <p style="direction: rtl; text-align: right; color: #555; margin-bottom: 20px;">جاوب على الأسئلة دي عشان تتأكد إنك فهمت الدرس.</p>
 
-          <h3 class="section-title">💡 Key Ideas</h3>
-          <div class="grammar-box">
-            <h4>True vs. Fake Appearance</h4>
-            <p class="rule"><strong>True appearance:</strong> Comes from sincerity, kindness, and confidence.</p>
-            <p class="rule"><strong>Fake appearance:</strong> Based on luxury, perfection, and imitation.</p>
-            <div class="example">"Real smiles and acts of kindness create lasting impressions."</div>
+        <div class="question-box">
+          <div class="q-text">1. False or misleading information presented as real news is called ________.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false)">a) media literacy</div>
+            <div class="option" onclick="checkAnswer(this, true)">b) fake news</div>
+            <div class="option" onclick="checkAnswer(this, false)">c) credible source</div>
+            <div class="option" onclick="checkAnswer(this, false)">d) integrity</div>
           </div>
         </div>
-      </div>
 
-      <!-- Lesson 4 -->
-      <div class="lesson-card" id="lesson4">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">4</div>
-          <h2>The Truth Trap</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-          <h3 class="section-title">📖 Reading</h3>
-          <div class="reading-passage">
-            <p>In the past, wars were fought with soldiers, tanks, and planes. Today, a new kind of war is spreading across the world. It does not use bullets or bombs. Instead, it uses words — lies, half-truths, and rumors. Experts call this the "war of the new generation".</p>
-            <p>In this kind of war, the goal is not to destroy buildings, but to damage trust. Lies can be used to make people angry, afraid, or confused. A rumor can spread quickly through social media, making millions believe something that is not true. When people no longer know what to believe, it becomes easier to control them.</p>
-            <p>The victims of these "information attacks" can be individuals, companies, or even whole countries. A false story about a famous person can ruin their career. A rumor about a company can cause customers to stop buying its products.</p>
-            <p>One dangerous thing about this invisible weapon is how hard it is to fight back. Once a lie is shared online, it can travel faster than the truth. People may share it without checking if it is correct. Some do it because they are angry, others because they find it exciting.</p>
-            <p>Protecting ourselves from this new kind of war requires awareness. We must think before we believe or share a story. We should ask: "Where did this information come from? Is it supported by facts? Who might benefit from me believing this?" In the war of the new generation, the most powerful defense is a careful and questioning mind.</p>
-          </div>
-
-          <h3 class="section-title">💡 Vocabulary</h3>
-          <table class="vocab-table">
-            <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
-            <tbody>
-              <tr><td class="word">Rumor</td><td class="meaning">شائعة</td></tr>
-              <tr><td class="word">Misinformation</td><td class="meaning">معلومات مضللة</td></tr>
-              <tr><td class="word">Awareness</td><td class="meaning">وعي</td></tr>
-              <tr><td class="word">Damage trust</td><td class="meaning">يضر بالثقة</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Lesson 5 -->
-      <div class="lesson-card" id="lesson5">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">5</div>
-          <h2>Essay Writing Development Plan</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-          <h3 class="section-title">✍️ Essay Outline</h3>
-          <div class="grammar-box">
-            <h4>Introduction</h4>
-            <p class="rule"><strong>Hook:</strong> Start with a strong question.</p>
-            <div class="example">"Can a single sentence start a war?"</div>
-            <p class="rule"><strong>Thesis Statement:</strong> State your main argument clearly.</p>
-            <div class="example">"I believe words are more dangerous than weapons because they can destroy trust and ruin reputations."</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>Body Paragraph 1: Harm to Individuals</h4>
-            <div class="example">"Firstly, cruel words can ruin a person's life. Cyber bullying or a false rumor can destroy a person's career."</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>Body Paragraph 2: Harm to Society</h4>
-            <div class="example">"Furthermore, misinformation can harm entire communities or countries. Fake news can cause public panic."</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>Conclusion</h4>
-            <div class="example">"In conclusion, the ability of words to cause deep and lasting damage makes them a powerful threat."</div>
-            <div class="example">"Therefore, we must all learn to use our words responsibly."</div>
-          </div>
-
-          <h3 class="section-title">✍️ Writing Task</h3>
-          <p style="direction: rtl; text-align: right; color: #555;">اكتب مقال من 120-150 كلمة عن "Can words be more dangerous than weapons?"</p>
-        </div>
-      </div>
-
-      <!-- Grammar -->
-      <div class="lesson-card" id="grammar">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">📚</div>
-          <h2>Grammar: Conditionals</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-
-          <div class="grammar-box">
-            <h4>Zero Conditional</h4>
-            <p class="rule"><strong>Form:</strong> If + present simple, present simple</p>
-            <p class="rule"><strong>Use:</strong> General truths and scientific facts</p>
-            <div class="example">If you mix red and blue, you get purple.</div>
-            <div class="example">If water boils, it turns to steam.</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>First Conditional</h4>
-            <p class="rule"><strong>Form:</strong> If + present simple, will + inf</p>
-            <p class="rule"><strong>Use:</strong> Real future possibility</p>
-            <div class="example">If it rains tomorrow, we will stay at home.</div>
-            <div class="example">If I study hard, I will pass the test.</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>Second Conditional</h4>
-            <p class="rule"><strong>Form:</strong> If + past simple, would + inf</p>
-            <p class="rule"><strong>Use:</strong> Impossible dreams / imaginary situations</p>
-            <div class="example">If I had enough money, I would buy a new car.</div>
-            <div class="example">If I were a famous singer, I would help children in need.</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>Common Mistakes</h4>
-            <p class="rule">❌ If I had knew, I would come.</p>
-            <p class="rule">✅ If I knew, I would come.</p>
-            <p class="rule">❌ If you eat healthy, you would feel better.</p>
-            <p class="rule">✅ If you eat healthily, you will feel better.</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Practice -->
-      <div class="lesson-card" id="practice">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">🎯</div>
-          <h2>Practice</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-          <div class="question-box">
-            <p class="q-text">1. If you mix red and blue, you ___ purple.</p>
-            <div class="options">
-              <div class="option" onclick="checkAnswer(this, false)">gets</div>
-              <div class="option" onclick="checkAnswer(this, false)">would get</div>
-              <div class="option" onclick="checkAnswer(this, true)">get</div>
-              <div class="option" onclick="checkAnswer(this, false)">got</div>
-            </div>
-          </div>
-
-          <div class="question-box">
-            <p class="q-text">2. If it rains tomorrow, we ___ at home.</p>
-            <div class="options">
-              <div class="option" onclick="checkAnswer(this, false)">could stay</div>
-              <div class="option" onclick="checkAnswer(this, false)">stayed</div>
-              <div class="option" onclick="checkAnswer(this, true)">will stay</div>
-              <div class="option" onclick="checkAnswer(this, false)">would stay</div>
-            </div>
-          </div>
-
-          <div class="question-box">
-            <p class="q-text">3. If I had enough money, I ___ a new car.</p>
-            <div class="options">
-              <div class="option" onclick="checkAnswer(this, true)">would buy</div>
-              <div class="option" onclick="checkAnswer(this, false)">bought</div>
-              <div class="option" onclick="checkAnswer(this, false)">buy</div>
-              <div class="option" onclick="checkAnswer(this, false)">buys</div>
-            </div>
-          </div>
-
-          <div class="question-box">
-            <p class="q-text">4. If she ___ his phone number, she would call him.</p>
-            <div class="options">
-              <div class="option" onclick="checkAnswer(this, false)">knows</div>
-              <div class="option" onclick="checkAnswer(this, true)">knew</div>
-              <div class="option" onclick="checkAnswer(this, false)">know</div>
-              <div class="option" onclick="checkAnswer(this, false)">known</div>
-            </div>
+        <div class="question-box">
+          <div class="q-text">2. If you ________ the information, you will find out the truth.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false)">a) checked</div>
+            <div class="option" onclick="checkAnswer(this, true)">b) check</div>
+            <div class="option" onclick="checkAnswer(this, false)">c) will check</div>
+            <div class="option" onclick="checkAnswer(this, false)">d) checking</div>
           </div>
         </div>
       </div>
 
       <div class="nav-buttons">
-        <a href="sec1-unit2.html" class="btn-lesson">← الوحدة السابقة</a>
-        <a href="student-dashboard.html" class="btn-lesson gold">🏠 لوحة الطالب</a>
-        <a href="sec1-exam-unit3.html" class="btn-lesson">🚀 ابدأ الامتحان</a>
+        <a href="/lessons/sec1/unit2.html" class="btn-lesson">← الوحدة السابقة</a>
+        <a href="/lessons.html" class="btn-lesson gold">🏠 رجوع للدروس</a>
+        <a href="/lessons/sec1/review1.html" class="btn-lesson">المراجعة →</a>
       </div>
 
     </main>
@@ -367,22 +215,31 @@
       body.classList.toggle('collapsed');
       icon.style.transform = body.classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(180deg)';
     }
-    function checkAnswer(element, isCorrect) {
-      const options = element.parentElement.querySelectorAll('.option');
-      options.forEach(opt => { opt.style.pointerEvents = 'none'; opt.classList.remove('correct', 'wrong'); });
-      if (isCorrect) { element.classList.add('correct'); }
-      else {
-        element.classList.add('wrong');
-        options.forEach(opt => { if (opt.getAttribute('onclick')?.includes('true')) opt.classList.add('correct'); });
-      }
-    }
+
     document.querySelectorAll('.sidebar a').forEach(link => {
       link.addEventListener('click', function() {
         document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
         this.classList.add('active');
       });
     });
+
+    function checkAnswer(element, isCorrect) {
+      const parent = element.parentElement;
+      Array.from(parent.children).forEach(child => {
+        child.classList.remove('correct', 'wrong');
+      });
+
+      if (isCorrect) {
+        element.classList.add('correct');
+      } else {
+        element.classList.add('wrong');
+        Array.from(parent.children).forEach(child => {
+          if (child.getAttribute('onclick').includes('true')) {
+            child.classList.add('correct');
+          }
+        });
+      }
+    }
   </script>
-<script type="module" src="/assets/js/auth-guard.js"></script>
 </body>
 </html>
