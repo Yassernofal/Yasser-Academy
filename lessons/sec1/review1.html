@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Review 1: Units 1-3 – أولى ثانوي | أكاديمية مستر ياسر نوفل</title>
+  <title>Review 1: المراجعة الشاملة – أولى ثانوي | أكاديمية مستر ياسر نوفل</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
@@ -14,29 +14,24 @@
     .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
     .navbar-brand .brand-name span { color: #ffb347; }
 
-    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; text-align: center; }
-    .hero-unit .unit-badge { display: inline-block; background: #f7b731; color: #0a1f44; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; }
+    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; text-align: center;}
+    .hero-unit .unit-badge { display: inline-block; background: #f7e05e; color: #0a1f44; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; }
     .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; margin-bottom: 10px; direction: ltr; }
     .hero-unit .arabic-title { font-size: 1.2rem; color: #b0c4de; }
 
-    .review-container { max-width: 900px; margin: 0 auto; padding: 0 20px 50px; }
+    .layout-wrapper { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
-    .review-section { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-top: 5px solid #0a1f44; }
-    .review-section h2 { color: #0a1f44; font-weight: 800; margin-bottom: 25px; border-bottom: 2px solid #f7e05e; padding-bottom: 10px; direction: ltr; text-align: left; }
-
-    .question-box { background: #f8f9fa; border-radius: 15px; padding: 20px; margin: 15px 0; border: 2px solid #e9ecef; }
-    .question-box .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 12px; direction: ltr; text-align: left; font-size: 1.1rem; }
-    .question-box .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: ltr; }
-    .question-box .option { background: #fff; border-radius: 10px; padding: 10px 15px; cursor: pointer; transition: 0.3s; border: 2px solid #e9ecef; direction: ltr; text-align: left; }
+    .quiz-section { background: #fff; border-radius: 20px; padding: 40px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-top: 5px solid #f7b731; }
+    .question-box { background: #f8f9fa; border-radius: 15px; padding: 25px; margin: 20px 0; border: 2px solid #e9ecef; }
+    .question-box .q-text { font-weight: 700; color: #0a1f44; font-size: 1.1rem; margin-bottom: 15px; direction: ltr; text-align: left; }
+    .question-box .options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; direction: ltr; }
+    .question-box .option { background: #fff; border-radius: 10px; padding: 12px 18px; cursor: pointer; transition: 0.3s; border: 2px solid #e9ecef; direction: ltr; text-align: left; font-weight: 500; }
     .question-box .option:hover { background: #e9ecef; border-color: #f7b731; }
     .question-box .option.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: bold; }
     .question-box .option.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
 
-    .rewrite-box { background: #fff; border-radius: 15px; padding: 20px; margin: 15px 0; border-left: 4px solid #f7b731; box-shadow: 0 2px 10px rgba(0,0,0,0.05); direction: ltr; text-align: left; }
-    .rewrite-box .original { font-family: 'Playfair Display', serif; font-weight: bold; color: #333; margin-bottom: 10px; }
-    .rewrite-box .instruction { color: #d9534f; font-weight: bold; margin-bottom: 10px; }
-    .rewrite-box .answer { background: #eef2f5; padding: 10px; border-radius: 8px; color: #28a745; font-weight: bold; display: none; margin-top: 10px;}
-    .btn-show-answer { background: #0a1f44; color: #fff; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; }
+    .score-board { background: #0a1f44; color: #f7e05e; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 30px; display: none; }
+    .score-board h3 { margin: 0; font-weight: 800; font-size: 1.5rem; }
 
     .btn-lesson { background: #0a1f44; color: #f7e05e; padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; margin: 5px; }
     .btn-lesson:hover { background: #f7b731; color: #0a1f44; text-decoration: none; }
@@ -58,7 +53,7 @@
         <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
       </a>
       <div class="ms-auto">
-        <a href="/lessons.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← رجوع للدروس</a>
+        <a href="/lessons.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← كل الوحدات</a>
       </div>
     </div>
   </nav>
@@ -66,123 +61,191 @@
   <div class="hero-unit">
     <span class="unit-badge">REVIEW 1</span>
     <h1>Units 1 - 3 Review</h1>
-    <p class="arabic-title">مراجعة شاملة على الوحدات الأولى والثانية والثالثة</p>
+    <p class="arabic-title">المراجعة الشاملة على الوحدات 1-3</p>
   </div>
 
-  <div class="review-container">
+  <div class="layout-wrapper">
+    <main>
 
-    <!-- الجزء الأول: اختيار من متعدد (زي كتاب التقييمات) -->
-    <div class="review-section">
-      <h2>Part 1: Multiple Choice (Choose the correct answer)</h2>
-      
-      <div class="question-box">
-        <div class="q-text">1. While we ________ the museum, we saw a lot of ancient monuments.</div>
-        <div class="options">
-          <div class="option" onclick="checkAnswer(this, false)">a) visited</div>
-          <div class="option" onclick="checkAnswer(this, true)">b) were visiting</div>
-          <div class="option" onclick="checkAnswer(this, false)">c) visit</div>
-          <div class="option" onclick="checkAnswer(this, false)">d) have visited</div>
+      <!-- Score Board -->
+      <div class="score-board" id="scoreBoard">
+        <h3>نتيجتك: <span id="score">0</span> من <span id="total">0</span></h3>
+        <p class="mb-0 mt-2" style="color: #fff; font-size: 1rem;">عاش جداً! كمل كده عشان تضمن الدرجة النهائية في الامتحان. 💪</p>
+      </div>
+
+      <div class="quiz-section" id="quiz">
+        <h3 style="color: #0a1f44; font-weight: 800; margin-bottom: 20px;">📝 اختبر مستواك في الترم الأول</h3>
+        <p style="direction: rtl; text-align: right; color: #555; margin-bottom: 30px;">جاوب على الـ 10 أسئلة دول، وفي الآخر هتظهرلك نتيجتك. (الامتحان بيغطي القواعد والكلمات من الوحدات 1 لـ 3).</p>
+
+        <!-- Q1 -->
+        <div class="question-box">
+          <div class="q-text">1. The ancient Egyptians used hieroglyphs to ________ history.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false, 1)">a) destroy</div>
+            <div class="option" onclick="checkAnswer(this, true, 1)">b) record</div>
+            <div class="option" onclick="checkAnswer(this, false, 1)">c) forget</div>
+            <div class="option" onclick="checkAnswer(this, false, 1)">d) hide</div>
+          </div>
         </div>
-      </div>
 
-      <div class="question-box">
-        <div class="q-text">2. You ________ cheat in the exam. It is against the school rules.</div>
-        <div class="options">
-          <div class="option" onclick="checkAnswer(this, false)">a) don't have to</div>
-          <div class="option" onclick="checkAnswer(this, false)">b) have to</div>
-          <div class="option" onclick="checkAnswer(this, true)">c) mustn't</div>
-          <div class="option" onclick="checkAnswer(this, false)">d) must</div>
+        <!-- Q2 -->
+        <div class="question-box">
+          <div class="q-text">2. While I ________ home, I saw a shooting star.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false, 2)">a) walk</div>
+            <div class="option" onclick="checkAnswer(this, false, 2)">b) walked</div>
+            <div class="option" onclick="checkAnswer(this, true, 2)">c) was walking</div>
+            <div class="option" onclick="checkAnswer(this, false, 2)">d) were walking</div>
+          </div>
         </div>
-      </div>
 
-      <div class="question-box">
-        <div class="q-text">3. If I ________ you, I would check the news source before sharing it.</div>
-        <div class="options">
-          <div class="option" onclick="checkAnswer(this, false)">a) am</div>
-          <div class="option" onclick="checkAnswer(this, true)">b) were</div>
-          <div class="option" onclick="checkAnswer(this, false)">c) will be</div>
-          <div class="option" onclick="checkAnswer(this, false)">d) have been</div>
+        <!-- Q3 -->
+        <div class="question-box">
+          <div class="q-text">3. In some countries, you ________ wear a seatbelt in the car. It's the law.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false, 3)">a) must</div>
+            <div class="option" onclick="checkAnswer(this, true, 3)">b) have to</div>
+            <div class="option" onclick="checkAnswer(this, false, 3)">c) don't have to</div>
+            <div class="option" onclick="checkAnswer(this, false, 3)">d) mustn't</div>
+          </div>
         </div>
-      </div>
 
-      <div class="question-box">
-        <div class="q-text">4. The ancient Egyptians ________ great pyramids thousands of years ago.</div>
-        <div class="options">
-          <div class="option" onclick="checkAnswer(this, true)">a) built</div>
-          <div class="option" onclick="checkAnswer(this, false)">b) were building</div>
-          <div class="option" onclick="checkAnswer(this, false)">c) build</div>
-          <div class="option" onclick="checkAnswer(this, false)">d) have built</div>
+        <!-- Q4 -->
+        <div class="question-box">
+          <div class="q-text">4. You ________ tell anyone my secret. It's very important.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, true, 4)">a) mustn't</div>
+            <div class="option" onclick="checkAnswer(this, false, 4)">b) don't have to</div>
+            <div class="option" onclick="checkAnswer(this, false, 4)">c) have to</div>
+            <div class="option" onclick="checkAnswer(this, false, 4)">d) must</div>
+          </div>
         </div>
+
+        <!-- Q5 -->
+        <div class="question-box">
+          <div class="q-text">5. If you ________ the news, you will avoid spreading fake information.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, true, 5)">a) verify</div>
+            <div class="option" onclick="checkAnswer(this, false, 5)">b) verified</div>
+            <div class="option" onclick="checkAnswer(this, false, 5)">c) will verify</div>
+            <div class="option" onclick="checkAnswer(this, false, 5)">d) verifying</div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question-box">
+          <div class="q-text">6. Kindness is not a sign of weakness; it is a sign of ________ intelligence.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false, 6)">a) emotional</div>
+            <div class="option" onclick="checkAnswer(this, true, 6)">b) emotional (صح)</div>
+            <div class="option" onclick="checkAnswer(this, false, 6)">c) physical</div>
+            <div class="option" onclick="checkAnswer(this, false, 6)">d) artificial</div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question-box">
+          <div class="q-text">7. If I ________ you, I wouldn't trust that website.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false, 7)">a) am</div>
+            <div class="option" onclick="checkAnswer(this, false, 7)">b) was</div>
+            <div class="option" onclick="checkAnswer(this, true, 7)">c) were</div>
+            <div class="option" onclick="checkAnswer(this, false, 7)">d) be</div>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question-box">
+          <div class="q-text">8. Fake news can cause ________, damage reputations, and influence elections.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, true, 8)">a) panic</div>
+            <div class="option" onclick="checkAnswer(this, false, 8)">b) peace</div>
+            <div class="option" onclick="checkAnswer(this, false, 8)">c) harmony</div>
+            <div class="option" onclick="checkAnswer(this, false, 8)">d) success</div>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question-box">
+          <div class="q-text">9. ________ you help others, you feel better about yourself.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false, 9)">a) If</div>
+            <div class="option" onclick="checkAnswer(this, true, 9)">b) When (أو If)</div>
+            <div class="option" onclick="checkAnswer(this, false, 9)">c) Although</div>
+            <div class="option" onclick="checkAnswer(this, false, 9)">d) Because</div>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question-box">
+          <div class="q-text">10. He ________ TV when the phone rang.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false, 10)">a) watched</div>
+            <div class="option" onclick="checkAnswer(this, true, 10)">b) was watching</div>
+            <div class="option" onclick="checkAnswer(this, false, 10)">c) watches</div>
+            <div class="option" onclick="checkAnswer(this, false, 10)">d) is watching</div>
+          </div>
+        </div>
+
       </div>
-    </div>
 
-    <!-- الجزء الثاني: إعادة صياغة (زي كتاب التقييمات) -->
-    <div class="review-section">
-      <h2>Part 2: Rewrite the following sentences</h2>
-      
-      <div class="rewrite-box">
-        <div class="original">1. I was walking home. I saw a shooting star. (While)</div>
-        <div class="instruction">Rewrite using "While":</div>
-        <button class="btn-show-answer" onclick="showAnswer(this)">أظهر الإجابة</button>
-        <div class="answer">While I was walking home, I saw a shooting star.</div>
+      <div class="nav-buttons">
+        <a href="/lessons.html" class="btn-lesson gold">🏠 رجوع للدروس</a>
+        <a href="/lessons/sec1/unit1.html" class="btn-lesson">مراجعة الوحدة الأولى</a>
       </div>
 
-      <div class="rewrite-box">
-        <div class="original">2. It is necessary for students to respect their teachers. (must)</div>
-        <div class="instruction">Rewrite using "must":</div>
-        <button class="btn-show-answer" onclick="showAnswer(this)">أظهر الإجابة</button>
-        <div class="answer">Students must respect their teachers.</div>
-      </div>
-
-      <div class="rewrite-box">
-        <div class="original">3. You are not allowed to use your mobile phone during the lesson. (mustn't)</div>
-        <div class="instruction">Rewrite using "mustn't":</div>
-        <button class="btn-show-answer" onclick="showAnswer(this)">أظهر الإجابة</button>
-        <div class="answer">You mustn't use your mobile phone during the lesson.</div>
-      </div>
-    </div>
-
-    <div class="nav-buttons">
-      <a href="/lessons/sec1/unit3.html" class="btn-lesson">← الوحدة السابقة</a>
-      <a href="/lessons.html" class="btn-lesson gold">🏠 رجوع للدروس</a>
-    </div>
-
+    </main>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // دالة تصحيح أسئلة الاختيار من متعدد
-    function checkAnswer(element, isCorrect) {
+    let score = 0;
+    let answeredQuestions = new Set(); // عشان نمنع تكرار الإجابة على نفس السؤال
+    const totalQuestions = 10;
+
+    function checkAnswer(element, isCorrect, questionNumber) {
+      // لو الطالب جاوب على السؤال ده قبل كده، منعملش حاجة
+      if (answeredQuestions.has(questionNumber)) return;
+      
+      answeredQuestions.add(questionNumber);
       const parent = element.parentElement;
-      // مسح أي ألوان قديمة
+
+      // إزالة أي ألوان قديمة
       Array.from(parent.children).forEach(child => {
         child.classList.remove('correct', 'wrong');
       });
 
       if (isCorrect) {
         element.classList.add('correct');
+        score++;
       } else {
         element.classList.add('wrong');
-        // إظهار الإجابة الصحيحة
+        // نلون الإجابة الصح
         Array.from(parent.children).forEach(child => {
           if (child.getAttribute('onclick').includes('true')) {
             child.classList.add('correct');
           }
         });
       }
-    }
 
-    // دالة إظهار وإخفاء الإجابة في أسئلة إعادة الصياغة
-    function showAnswer(button) {
-      const answerDiv = button.nextElementSibling;
-      if (answerDiv.style.display === "none" || answerDiv.style.display === "") {
-        answerDiv.style.display = "block";
-        button.textContent = "إخفاء الإجابة";
-        button.style.background = "#dc3545";
-      } else {
-        answerDiv.style.display = "none";
-        button.textContent = "أظهر الإجابة";
-        button.style.background = "#0a1f44";
+      // تحديث النتيجة
+      document.getElementById('score').innerText = score;
+      document.getElementById('total').innerText = totalQuestions;
+      
+      // إظهار لوحة النتيجة لو خلص كل الأسئلة
+      if (answeredQuestions.size === totalQuestions) {
+        const scoreBoard = document.getElementById('scoreBoard');
+        scoreBoard.style.display = 'block';
+        scoreBoard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // لو الدرجة نهائية
+        if (score === totalQuestions) {
+          document.querySelector('#scoreBoard p').innerText = "أسطورة! إنت جاهز للامتحان 100%. 🏆";
+        } else if (score >= 7) {
+          document.querySelector('#scoreBoard p').innerText = "شغل عالي جداً! راجع الأخطاء وهتكون كامل. 🌟";
+        } else {
+          document.querySelector('#scoreBoard p').innerText = "محاولة كويسة، راجع الدروس تاني وجرب تاني. إحنا معاك! 💪";
+        }
       }
     }
   </script>
