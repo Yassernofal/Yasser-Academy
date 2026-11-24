@@ -9,6 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/theme.css">
   
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
+    }
+  }
+  </script>
+
   <style>
     body { background: #f0f4fa; padding-top: 78px; font-family: 'El Messiri', sans-serif; }
     .page-header { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: white; padding: 40px 20px; border-radius: 20px; text-align: center; margin-bottom: 30px; }
@@ -21,25 +31,22 @@
     .card-unit p { color: #666; margin-bottom: 15px; }
     .btn-start { background: #0a1f44; color: #f7e05e; padding: 8px 25px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; }
     .btn-start:hover { background: #f7b731; color: #0a1f44; }
-    /* ستايل الزرار المقفول */
-    .btn-locked { background: #dc3545; color: #fff; border: none; cursor: pointer; padding: 8px 25px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; }
-    .btn-locked:hover { background: #c82333; color: #fff; }
+    .btn-locked { background: #ccc; color: #666; cursor: not-allowed; }
   </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" style="background: rgba(10, 31, 68, 0.95);">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: #0a1f44;">
     <div class="container">
       <a class="navbar-brand text-warning fw-bold" href="/index.html">Mr. Yasser Nofal</a>
       <ul class="navbar-nav ms-auto flex-row gap-3">
         <li class="nav-item"><a class="nav-link text-white" href="/index.html">🏠 الرئيسية</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="/exams.html">📝 الامتحانات</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="/student-dashboard.html">👨‍🎓 لوحتي</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="/login.html">🔑 تسجيل الدخول</a></li>
       </ul>
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container mt-4">
     <div class="page-header">
       <h1>📚 الشرح والوحدات</h1>
       <p class="mb-0">اختر الصف الدراسي وابدأ رحلة التعلم</p>
@@ -47,30 +54,11 @@
 
     <div class="text-center mb-4">
       <a href="#prep1" class="filter-btn">أولى إعدادي</a>
-      <a href="#sec1" class="filter-btn">أولى ثانوي</a>
+      <a href="#sec1" class="filter-btn active">أولى ثانوي</a>
       <a href="#sec2" class="filter-btn">تانية ثانوي</a>
     </div>
 
-    <h3 id="prep1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى إعدادي (Prep 1)</h3>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card-unit">
-          <h5>Unit 1: Life in a Digital World</h5>
-          <p>الحياة في عالم رقمي - شرح كامل وقواعد ومفردات</p>
-          <a href="/lessons/prep1/unit1-digital-world.html" class="btn-start lesson-link">ابدأ الدرس</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card-unit">
-          <h5>Review 1: المراجعة الشاملة</h5>
-          <p>مراجعة على الوحدة الأولى</p>
-          <a href="/lessons/prep1/review-1-prep1.html" class="btn-start lesson-link">ابدأ المراجعة</a>
-        </div>
-      </div>
-    </div>
-
-    <hr class="my-5">
-
+    <!-- Sec 1 -->
     <h3 id="sec1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى ثانوي (Sec 1)</h3>
     <div class="row">
       <div class="col-md-6">
@@ -102,44 +90,66 @@
         </div>
       </div>
     </div>
-
-    <hr class="my-5">
-
-    <h3 id="sec2" class="mb-3 fw-bold" style="color: #0a1f44;">📖 تانية ثانوي (Sec 2)</h3>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card-unit">
-          <h5>Unit 1: Living Well in a Complex World</h5>
-          <p>العيش الجيد في عالم معقد</p>
-          <a href="/lessons/sec2/unit1-living-well.html" class="btn-start lesson-link">ابدأ الدرس</a>
-        </div>
-      </div>
-    </div>
-
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // بنشوف هل الطالب ده مسجل دخول ولا لأ
-      const studentName = localStorage.getItem('studentName'); 
-      // لو مفيش اسم طالب، يبقى هو مش مسجل دخول
-      const isLoggedIn = studentName !== null; 
+  <script type="module">
+    import { auth, database } from './firebase-config.js';
+    import { onAuthStateChanged } from "firebase/auth";
+    import { ref, get } from "firebase/database";
+
+    onAuthStateChanged(auth, async (user) => {
+      let isSubscribed = false;
+      let isAdmin = false;
+
+      if (user) {
+        try {
+          // بنجيب بيانات الطالب من Firebase
+          const userSnap = await get(ref(database, `students/${user.uid}`));
+          
+          if (userSnap.exists()) {
+            const userData = userSnap.val();
+            
+            // 1. لو المستخدم ده أدمن، نفتحله كل حاجة
+            if (userData.role === 'admin') {
+              isAdmin = true;
+              isSubscribed = true; 
+            } 
+            // 2. لو مش أدمن، نشوف هل هو مشترك ولا لأ
+            else {
+              isSubscribed = userData.isSubscribed === true || userData.subscriptionStatus === 'active';
+            }
+          }
+        } catch (error) {
+          console.error("مشكلة في جلب بيانات الطالب:", error);
+        }
+      }
+
+      // لو المستخدم مسجل دخول واسمه في الـ localstorage (زي ما عملنا في صفحة اللوجين)
+      const studentName = localStorage.getItem('studentName');
+      if (studentName && !user) {
+          // لو في اسم في المتصفح بس مش مسجل في Firebase (للتجربة)
+          isSubscribed = true;
+      }
 
       const lessonLinks = document.querySelectorAll('.lesson-link');
       
       lessonLinks.forEach(link => {
-        if (!isLoggedIn) {
-          // لو مش مسجل أو مش مشترك، نقفل الزرار ونخليه يوديه للاشتراك
+        if (!isSubscribed) {
           link.classList.remove('btn-start');
           link.classList.add('btn-locked');
-          link.textContent = '🔒 اشترك الآن';
+          link.textContent = '🔒 يحتاج اشتراك';
           
           link.addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = '/subscribe.html'; // تحويل الطالب لصفحة الاشتراك
+            alert('عذراً، هذا الدرس متاح للمشتركين فقط. يرجى الاشتراك أو تسجيل الدخول أولاً.');
+            // window.location.href = '/subscribe.html';
           });
+        } else if (isAdmin) {
+          // لو أدمن، نغير لون الزرار عشان يعرف إنه شايف كل حاجة
+          link.style.background = '#f7b731';
+          link.style.color = '#0a1f44';
         }
       });
     });
