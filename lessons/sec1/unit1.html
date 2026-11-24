@@ -53,7 +53,6 @@
     .grammar-box .example { background: #fff; border-radius: 10px; padding: 12px 18px; margin: 10px 0; font-family: 'Playfair Display', serif; color: #0a1f44; border-left: 3px solid #f7b731; direction: ltr; text-align: left; }
     .grammar-box .rule { color: #333; margin: 10px 0; line-height: 1.7; direction: ltr; text-align: left; }
 
-    /* ستايل الامتحان التفاعلي */
     .quiz-section { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-top: 5px solid #f7b731; }
     .question-box { background: #f8f9fa; border-radius: 15px; padding: 20px; margin: 15px 0; border: 2px solid #e9ecef; }
     .question-box .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 12px; direction: ltr; text-align: left; }
@@ -100,15 +99,16 @@
     <aside class="sidebar">
       <h3>📚 محتويات الوحدة</h3>
       <ul>
-        <li><a href="#lesson1" class="active"><i class="fas fa-book"></i> Lesson 1: Reading</a></li>
+        <li><a href="#lesson1" class="active"><i class="fas fa-book"></i> Lesson 1: Taking Pride</a></li>
         <li><a href="#lesson2"><i class="fas fa-language"></i> Lesson 2: Grammar</a></li>
+        <li><a href="#vocab-exercises"><i class="fas fa-spell-check"></i> Vocabulary Exercises</a></li>
         <li><a href="#quiz"><i class="fas fa-tasks"></i> Unit Quiz</a></li>
       </ul>
     </aside>
 
     <main>
 
-      <!-- Lesson 1: Reading & Vocabulary -->
+      <!-- Lesson 1: Reading -->
       <div class="lesson-card" id="lesson1">
         <div class="lesson-header" onclick="toggleLesson(this)">
           <div class="lesson-number">1</div>
@@ -120,22 +120,10 @@
           <div class="reading-passage">
             <p>Egypt is a land with a heart that has been beating for thousands of years. We are proud to call it our home. It is a place where the past and the present meet in harmony.</p>
             <p>Egypt has always played an important role in the world. Our ancestors built one of the greatest civilizations in history. They gave the world knowledge in writing, mathematics, and medicine. The hieroglyphs carved into temple walls were not just beautiful art; they were a way to record history. The Library of Alexandria once gathered knowledge from all over the world, making Egypt a center of learning.</p>
-            <p>Today, Egypt continues to grow. Our cities rise with modern buildings, while our historical monuments still stand with pride. From the Pyramids of Giza to the Grand Egyptian Museum, we continue to honor our history while shaping our future.</p>
+            <p>Egypt was also a crossroads for trade. Merchants traveled along the Nile and across the deserts, carrying goods such as gold, spices, papyrus, and grain. Our land was a bridge where people met and exchanged ideas, making Egypt a source of inspiration for many civilizations.</p>
+            <p>Today, Egypt continues to grow. Our cities rise with modern buildings, while our historical monuments still stand with pride. We are building new roads, bridges, and neighborhoods that show the world our determination to progress. From the Pyramids of Giza to the Grand Egyptian Museum, we continue to honor our history while shaping our future.</p>
+            <p>We take pride in our country, not only for its beauty, but also because we understand the sacrifices of our ancestors. We work hard to make it greater for generations to come. Every citizen has a role to play – protecting our heritage, contributing to our economy, and sharing our culture with the world.</p>
           </div>
-
-          <h3 class="section-title">💡 Vocabulary</h3>
-          <table class="vocab-table">
-            <thead>
-              <tr><th>Word</th><th>Meaning</th></tr>
-            </thead>
-            <tbody>
-              <tr><td class="word">Heritage</td><td class="meaning">تراث</td></tr>
-              <tr><td class="word">Civilization</td><td class="meaning">حضارة</td></tr>
-              <tr><td class="word">Hieroglyphs</td><td class="meaning">الهيروغليفية (لغة المصريين القدماء)</td></tr>
-              <tr><td class="word">Monuments</td><td class="meaning">آثار / معالم</td></tr>
-              <tr><td class="word">Ancestors</td><td class="meaning">أسلاف (الأجداد)</td></tr>
-            </tbody>
-          </table>
         </div>
       </div>
 
@@ -164,7 +152,7 @@
           </div>
 
           <div class="grammar-box">
-            <h4>3. Past Continuous + Past Simple (الربط بينهم)</h4>
+            <h4>3. Past Continuous + Past Simple</h4>
             <p class="rule">بنستخدم الماضي المستمر مع الماضي البسيط عشان نوضح إن حدث <strong>قصير</strong> حصل في نفس الوقت اللي كان فيه حدث <strong>طويل</strong> مستمر.</p>
             <div class="example">Mr. Ramy <strong>was calling</strong> his wife when he <strong>dropped</strong> his mobile.</div>
             <div class="example">While I <strong>was walking</strong> home, I <strong>saw</strong> a shooting star.</div>
@@ -172,23 +160,84 @@
         </div>
       </div>
 
-      <!-- Interactive Quiz -->
+      <!-- Lesson 3: Vocabulary Exercises (From Assessment Book) -->
+      <div class="lesson-card" id="vocab-exercises">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="lesson-number">3</div>
+          <h2>Vocabulary Exercises</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body collapsed">
+          <h3 class="section-title">💡 Complete the following sentences using the words in the box:</h3>
+          <p style="direction: rtl; text-align: right; color: #555; margin-bottom: 15px;">(independently – tolerance – carrying – renewable – impressive)</p>
+          
+          <div style="direction: ltr; text-align: left; font-size: 1.1rem; line-height: 2;">
+            <p>1. Solar and wind power are examples of <strong>renewable</strong> energy.</p>
+            <p>2. The manager is responsible for <strong>carrying</strong> out new policies.</p>
+            <p>3. Our teacher encouraged <strong>tolerance</strong> during debates.</p>
+            <p>4. The speech was so <strong>impressive</strong> that everyone clapped.</p>
+            <p>5. Students should try to work <strong>independently</strong> on some tasks.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Quiz (From Assessment Book - Reading) -->
       <div class="quiz-section" id="quiz">
         <h3 class="section-title" style="border-bottom-color: #0a1f44;">📝 Unit Quiz (اختبر نفسك)</h3>
-        <p style="direction: rtl; text-align: right; color: #555; margin-bottom: 20px;">جاوب على الأسئلة دي عشان تتأكد إنك فهمت الدرس.</p>
+        <p style="direction: rtl; text-align: right; color: #555; margin-bottom: 20px;">جاوب على الأسئلة دي عشان تتأكد إنك فهمت الدرس (أسئلة من كتاب التقييمات).</p>
 
         <div class="question-box">
-          <div class="q-text">1. The ancient Egyptians used hieroglyphs to ________ history.</div>
+          <div class="q-text">1. Marwa first felt ________ about speaking in front of strangers.</div>
           <div class="options">
-            <div class="option" onclick="checkAnswer(this, false)">a) destroy</div>
-            <div class="option" onclick="checkAnswer(this, true)">b) record</div>
-            <div class="option" onclick="checkAnswer(this, false)">c) forget</div>
-            <div class="option" onclick="checkAnswer(this, false)">d) hide</div>
+            <div class="option" onclick="checkAnswer(this, false)">a) excited</div>
+            <div class="option" onclick="checkAnswer(this, false)">b) confident</div>
+            <div class="option" onclick="checkAnswer(this, true)">c) anxious</div>
+            <div class="option" onclick="checkAnswer(this, false)">d) brave</div>
           </div>
         </div>
 
         <div class="question-box">
-          <div class="q-text">2. While I ________ home, I saw a shooting star.</div>
+          <div class="q-text">2. What did the teacher remind the students about hesitation?</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false)">a) It's a sign of weakness.</div>
+            <div class="option" onclick="checkAnswer(this, true)">b) It's normal.</div>
+            <div class="option" onclick="checkAnswer(this, false)">c) It's disrespectful.</div>
+            <div class="option" onclick="checkAnswer(this, false)">d) It's something to be avoided.</div>
+          </div>
+        </div>
+
+        <div class="question-box">
+          <div class="q-text">3. How did Marwa's confidence change after a few weeks?</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false)">a) It got lower.</div>
+            <div class="option" onclick="checkAnswer(this, false)">b) It decreased.</div>
+            <div class="option" onclick="checkAnswer(this, true)">c) It improved.</div>
+            <div class="option" onclick="checkAnswer(this, false)">d) The text doesn't say.</div>
+          </div>
+        </div>
+
+        <div class="question-box">
+          <div class="q-text">4. What motivated Marwa to join an English club at her university?</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false)">a) Her teacher's advice.</div>
+            <div class="option" onclick="checkAnswer(this, true)">b) The positive experience in her online course.</div>
+            <div class="option" onclick="checkAnswer(this, false)">c) Her classmates' request.</div>
+            <div class="option" onclick="checkAnswer(this, false)">d) Her desire to meet new people.</div>
+          </div>
+        </div>
+
+        <div class="question-box">
+          <div class="q-text">5. Marwa enjoyed listening to different ________ from her classmates.</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, false)">a) accents</div>
+            <div class="option" onclick="checkAnswer(this, false)">b) languages</div>
+            <div class="option" onclick="checkAnswer(this, true)">c) points of view</div>
+            <div class="option" onclick="checkAnswer(this, false)">d) stories</div>
+          </div>
+        </div>
+
+        <div class="question-box">
+          <div class="q-text">6. While I ________ home, I saw a shooting star.</div>
           <div class="options">
             <div class="option" onclick="checkAnswer(this, false)">a) walk</div>
             <div class="option" onclick="checkAnswer(this, false)">b) walked</div>
@@ -208,7 +257,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // كود فتح وقفل الدروس
     function toggleLesson(header) {
       const body = header.nextElementSibling;
       const icon = header.querySelector('.toggle-icon');
@@ -216,7 +264,6 @@
       icon.style.transform = body.classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(180deg)';
     }
 
-    // كود الـ Sidebar
     document.querySelectorAll('.sidebar a').forEach(link => {
       link.addEventListener('click', function() {
         document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
@@ -224,20 +271,16 @@
       });
     });
 
-    // كود تصحيح الامتحان التفاعلي
     function checkAnswer(element, isCorrect) {
-      // إزالة أي ألوان قديمة
       const parent = element.parentElement;
       Array.from(parent.children).forEach(child => {
         child.classList.remove('correct', 'wrong');
       });
 
-      // إضافة اللون الصح
       if (isCorrect) {
         element.classList.add('correct');
       } else {
         element.classList.add('wrong');
-        // نلون الإجابة الصح
         Array.from(parent.children).forEach(child => {
           if (child.getAttribute('onclick').includes('true')) {
             child.classList.add('correct');
