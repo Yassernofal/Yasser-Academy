@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>تسجيل الدخول – أكاديمية مستر ياسر نوفل</title>
   <meta name="description" content="سجل دخولك في أكاديمية مستر ياسر نوفل." />
-  <link rel="canonical" href="https://yasser-academy-amsz-five.vercel.app/login.html" />
+  <link rel="canonical" href="https://yasser-academy-final.vercel.app/login.html" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
   <script>
@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Firebase Import Map -->
   <script type="importmap">
   {
     "imports": {
@@ -143,7 +142,6 @@
 
     .alert { border-radius: 12px; }
 
-    /* قسم تأكيد الإيميل */
     .verify-section {
       background: #fff3cd;
       border: 2px solid #ffc107;
@@ -270,7 +268,6 @@
       
       <div id="loginStatus" class="mb-3"></div>
 
-      <!-- قسم تحذير تأكيد الإيميل -->
       <div id="verifySection" class="verify-section" style="display: none;">
         <div class="verify-icon">
           <i class="fas fa-envelope-open-text"></i>
@@ -383,10 +380,8 @@
     } from "firebase/auth";
     import { ref, get } from "firebase/database";
 
-    // متغير لتخزين إيميل المستخدم المعلق
     let pendingUserEmail = '';
 
-    // ===== توجيه المستخدم حسب دوره =====
     function redirectToDashboard(role) {
       switch (role) {
         case 'admin':
@@ -401,13 +396,15 @@
       }
     }
 
-    // ===== إذا كان المستخدم مسجلاً بالفعل، نوجهه =====
     onAuthStateChanged(auth, async (user) => {
       if (user && user.emailVerified) {
         try {
           const userSnap = await get(ref(database, `students/${user.uid}`));
           if (userSnap.exists()) {
             const role = userSnap.val().role || 'student';
+            // تحديث الحفظ في المتصفح لو لسه مسجل
+            localStorage.setItem('studentName', userSnap.val().name || 'طالب');
+            localStorage.setItem('studentRole', role);
             redirectToDashboard(role);
           }
         } catch (e) {
@@ -416,7 +413,6 @@
       }
     });
 
-    // ===== إظهار/إخفاء كلمة المرور =====
     document.getElementById('togglePasswordBtn').addEventListener('click', () => {
       const input = document.getElementById('loginPassword');
       const icon = document.getElementById('eyeIcon');
@@ -431,7 +427,6 @@
       }
     });
 
-    // ===== نسيان كلمة المرور =====
     document.getElementById('forgotPasswordLink').addEventListener('click', async (e) => {
       e.preventDefault();
       
@@ -457,7 +452,6 @@
       }
     });
 
-    // ===== معالجة تسجيل الدخول =====
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       
@@ -467,7 +461,6 @@
       const btn = document.getElementById('loginBtn');
       const verifySection = document.getElementById('verifySection');
 
-      // إخفاء تحذير التأكيد القديم
       verifySection.style.display = 'none';
 
       if (!email || !password) {
@@ -483,9 +476,7 @@
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // ===== التحقق من تأكيد الإيميل =====
         if (!user.emailVerified) {
-          // إيميل مش متأكد
           await signOut(auth);
           
           pendingUserEmail = email;
@@ -496,14 +487,12 @@
           btn.disabled = false;
           btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> دخول';
           
-          // Scroll للتحذير
           verifySection.scrollIntoView({ behavior: 'smooth', block: 'center' });
           
           console.log('⚠️ الإيميل مش متأكد:', email);
           return;
         }
 
-        // ===== جلب دور المستخدم (من students) =====
         const userSnap = await get(ref(database, `students/${user.uid}`));
         
         if (!userSnap.exists()) {
@@ -516,7 +505,10 @@
         const userData = userSnap.val();
         const role = userData.role || 'student';
 
-        // ===== نجاح - توجيه =====
+        // ✅ السطرين دول هما اللي هنضيفهم عشان صفحة الدروس تشتغل
+        localStorage.setItem('studentName', userData.name || 'طالب');
+        localStorage.setItem('studentRole', role);
+
         status.innerHTML = `<div class="alert alert-success">✅ مرحباً ${userData.name || ''}! جاري التحويل...</div>`;
         console.log('✅ تسجيل دخول ناجح:', email, '-', role);
 
@@ -538,7 +530,6 @@
       }
     });
 
-    // ===== إعادة إرسال رابط التأكيد =====
     document.getElementById('resendBtn').addEventListener('click', async () => {
       const email = pendingUserEmail || document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value;
@@ -554,7 +545,6 @@
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
 
       try {
-        // تسجيل دخول مؤقت لإرسال الإيميل
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         await sendEmailVerification(userCredential.user);
         await signOut(auth);
@@ -563,7 +553,6 @@
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-paper-plane"></i> إعادة إرسال رابط التأكيد';
 
-        // عد تنازلي 60 ثانية
         let countdown = 60;
         const interval = setInterval(() => {
           countdown--;
