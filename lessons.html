@@ -7,24 +7,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/theme.css">
   
-  <script type="importmap">
-  {
-    "imports": {
-      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
-      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
-      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
-    }
-  }
-  </script>
-
   <style>
     body { background: #f0f4fa; padding-top: 78px; font-family: 'El Messiri', sans-serif; }
     .page-header { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: white; padding: 40px 20px; border-radius: 20px; text-align: center; margin-bottom: 30px; }
     .page-header h1 { font-weight: 800; margin: 0; }
-    .filter-btn { background: white; border: 2px solid #0a1f44; color: #0a1f44; padding: 8px 20px; border-radius: 50px; font-weight: 700; margin: 5px; transition: 0.3s; text-decoration: none; display: inline-block; }
-    .filter-btn:hover, .filter-btn.active { background: #0a1f44; color: #f7e05e; text-decoration: none; }
     .card-unit { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; border-right: 5px solid #f7e05e; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; }
     .card-unit:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
     .card-unit h5 { color: #0a1f44; font-weight: 800; }
@@ -32,6 +19,7 @@
     .btn-start { background: #0a1f44; color: #f7e05e; padding: 8px 25px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; }
     .btn-start:hover { background: #f7b731; color: #0a1f44; }
     .btn-locked { background: #ccc; color: #666; cursor: not-allowed; }
+    .btn-admin { background: #f7b731; color: #0a1f44; }
   </style>
 </head>
 <body>
@@ -52,13 +40,6 @@
       <p class="mb-0">اختر الصف الدراسي وابدأ رحلة التعلم</p>
     </div>
 
-    <div class="text-center mb-4">
-      <a href="#prep1" class="filter-btn">أولى إعدادي</a>
-      <a href="#sec1" class="filter-btn active">أولى ثانوي</a>
-      <a href="#sec2" class="filter-btn">تانية ثانوي</a>
-    </div>
-
-    <!-- Sec 1 -->
     <h3 id="sec1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى ثانوي (Sec 1)</h3>
     <div class="row">
       <div class="col-md-6">
@@ -92,65 +73,35 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <script type="module">
-    import { auth, database } from './firebase-config.js';
-    import { onAuthStateChanged } from "firebase/auth";
-    import { ref, get } from "firebase/database";
-
-    onAuthStateChanged(auth, async (user) => {
-      let isSubscribed = false;
-      let isAdmin = false;
-
-      if (user) {
-        try {
-          // بنجيب بيانات الطالب من Firebase
-          const userSnap = await get(ref(database, `students/${user.uid}`));
-          
-          if (userSnap.exists()) {
-            const userData = userSnap.val();
-            
-            // 1. لو المستخدم ده أدمن، نفتحله كل حاجة
-            if (userData.role === 'admin') {
-              isAdmin = true;
-              isSubscribed = true; 
-            } 
-            // 2. لو مش أدمن، نشوف هل هو مشترك ولا لأ
-            else {
-              isSubscribed = userData.isSubscribed === true || userData.subscriptionStatus === 'active';
-            }
-          }
-        } catch (error) {
-          console.error("مشكلة في جلب بيانات الطالب:", error);
-        }
-      }
-
-      // لو المستخدم مسجل دخول واسمه في الـ localstorage (زي ما عملنا في صفحة اللوجين)
-      const studentName = localStorage.getItem('studentName');
-      if (studentName && !user) {
-          // لو في اسم في المتصفح بس مش مسجل في Firebase (للتجربة)
-          isSubscribed = true;
-      }
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // 1. بنشوف هل الطالب مسجل دخول أو ده إنت (الأدمن)
+      const userRole = localStorage.getItem('studentRole'); 
+      const studentName = localStorage.getItem('studentName'); 
+      
+      // 2. لو إنت المدير، أو مسجل دخول، بنفتح الدروس
+      let isAdmin = (userRole === 'admin');
+      let isLoggedIn = (studentName !== null);
 
       const lessonLinks = document.querySelectorAll('.lesson-link');
       
       lessonLinks.forEach(link => {
-        if (!isSubscribed) {
+        if (isAdmin) {
+          // لو إنت المدير، الزرار يبقى ذهبي وشغال
+          link.classList.add('btn-admin');
+        } else if (!isLoggedIn) {
+          // لو مش مسجل دخول خالص، نقفل الزرار
           link.classList.remove('btn-start');
           link.classList.add('btn-locked');
-          link.textContent = '🔒 يحتاج اشتراك';
+          link.textContent = '🔒 سجل دخول أولاً';
           
           link.addEventListener('click', function(e) {
             e.preventDefault();
-            alert('عذراً، هذا الدرس متاح للمشتركين فقط. يرجى الاشتراك أو تسجيل الدخول أولاً.');
-            // window.location.href = '/subscribe.html';
+            alert('عذراً، يجب تسجيل الدخول أولاً للوصول إلى الدروس.');
+            window.location.href = '/login.html';
           });
-        } else if (isAdmin) {
-          // لو أدمن، نغير لون الزرار عشان يعرف إنه شايف كل حاجة
-          link.style.background = '#f7b731';
-          link.style.color = '#0a1f44';
         }
+        // ملاحظة: لو مسجل دخول كطالب، الزرار هيفضل "ابدأ الدرس" (عشان التجربة)
       });
     });
   </script>
