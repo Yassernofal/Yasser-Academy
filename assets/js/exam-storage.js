@@ -30,13 +30,11 @@ export async function getExamQuestions(examId) {
       return [];
     }
 
-    // ✅ الحالة 1: امتحان عشوائي (نظام الوحدات الجديد)
     if (exam.isRandom) {
       console.log('🎲 امتحان عشوائي - جلب أسئلة من بنك الوحدة');
       return await getQuestionsFromBank(exam.grade, exam.unit);
     }
 
-    // ✅ الحالة 2: امتحان ثابت (نظام الأسئلة المحددة)
     if (exam.questions && Array.isArray(exam.questions) && exam.questions.length > 0) {
       console.log('📋 امتحان ثابت - جلب الأسئلة المحددة');
       const questions = [];
@@ -74,10 +72,7 @@ export async function getQuestionsFromBank(grade, unit) {
     snapshot.forEach(child => {
       const q = { id: child.key, ...child.val() };
       
-      // فلترة حسب الصف
       if (grade && q.grade !== grade) return;
-      
-      // فلترة حسب الوحدة (إلا لو شامل)
       if (unit && unit !== 'comprehensive' && q.unit !== unit) return;
       
       questions.push(q);
@@ -107,9 +102,7 @@ export async function getExamsByGrade(grade) {
       }
     });
     
-    return exams.sort((a, b) => 
-      new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
-    );
+    return exams.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
   } catch (error) {
     console.error('❌ خطأ في جلب الامتحانات:', error);
     return [];
@@ -129,25 +122,26 @@ export async function getAllExams() {
       exams.push({ id: child.key, ...child.val() });
     });
     
-    return exams.sort((a, b) => 
-      new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
-    );
+    return exams.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
   } catch (error) {
     console.error('❌ خطأ في جلب الامتحانات:', error);
     return [];
   }
 }
 
-// ===== حفظ نتيجة امتحان للطالب =====
+// ===== حفظ نتيجة امتحان للطالب (تم تعديلها لحل مشكلة الحفظ) =====
 export async function saveExamResult(studentUid, examId, result) {
   try {
+    // تنظيف البيانات من أي قيمة "undefined" عشان فايربيز ميرفضهاش
+    const cleanResult = JSON.parse(JSON.stringify(result));
+
     const resultRef = ref(database, `examResults/${studentUid}/${examId}`);
     await set(resultRef, {
-      ...result,
+      ...cleanResult,
       savedAt: new Date().toISOString()
     });
     
-    console.log('✅ تم حفظ النتيجة:', resultRef.toString());
+    console.log('✅ تم حفظ النتيجة بنجاح:', resultRef.toString());
     return true;
   } catch (error) {
     console.error('❌ خطأ في حفظ النتيجة:', error);
@@ -168,9 +162,7 @@ export async function getStudentResults(studentUid) {
       results.push({ examId: child.key, ...child.val() });
     });
     
-    return results.sort((a, b) => 
-      new Date(b.finishedAt || 0) - new Date(a.finishedAt || 0)
-    );
+    return results.sort((a, b) => new Date(b.finishedAt || 0) - new Date(a.finishedAt || 0));
   } catch (error) {
     console.error('❌ خطأ في جلب النتائج:', error);
     return [];
