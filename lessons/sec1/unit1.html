@@ -164,6 +164,9 @@
     import { ExamEngine } from '../../assets/js/exam-engine.js';
     import { getQuestionsFromBank, saveExamResult } from '../../assets/js/exam-storage.js';
     import { onAuthStateChanged } from "firebase/auth";
+    
+    // السطر ده هو اللي بيعمل الحماية (حارس البوابة)
+    import '../../assets/js/auth-guard.js';
 
     let examEngine = null;
     let currentUser = null;
@@ -290,24 +293,16 @@
         `;
       });
 
-      // ===== قسم الحفظ (تم إضافة رسائل التنبيه هنا) =====
       if (currentUser && examEngine) {
-        console.log("محاولة حفظ النتيجة للطالب:", currentUser.uid);
         try {
           const saved = await saveExamResult(currentUser.uid, 'unit1_sec1', {
             examTitle: 'Unit 1',
             ...result
           });
-          if (saved) {
-            console.log("✅ تم حفظ النتيجة بنجاح في فايربيز!");
-          } else {
-            console.log("❌ فشل حفظ النتيجة، راجع الصلاحيات!");
-          }
+          if (saved) console.log("✅ تم حفظ النتيجة بنجاح في فايربيز!");
         } catch (error) {
           console.error("❌ حدث خطأ أثناء الحفظ:", error);
         }
-      } else {
-        console.log("❌ لا يوجد مستخدم مسجل دخول، أو محرك الامتحان غير جاهز.");
       }
     }
   </script>
