@@ -32,12 +32,12 @@
         header {
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: var(--white);
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        /* تنسيق اللوجو */
+        /* تصميم اللوجو الجديد بالكامل (CSS) */
         .logo-container {
             display: inline-flex;
             flex-direction: column;
@@ -46,24 +46,36 @@
             margin-bottom: 20px;
         }
 
-        .logo-container img {
-            height: 130px; 
-            width: auto;
-            margin-bottom: 10px;
+        .logo-circle {
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 2px solid var(--gold);
-            background-color: var(--primary); /* خلفية احتياطية لو الصورة شفافة */
+            border: 3px solid var(--gold);
+            background: linear-gradient(135deg, #1a2a3a, #0f2027);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 0 20px rgba(212, 175, 55, 0.2);
+            margin-bottom: 15px;
         }
 
-        .logo-container h1 {
+        .logo-circle .y-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 60px;
+            font-weight: 700;
             color: var(--gold);
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(212, 175, 55, 0.4);
+        }
+
+        .logo-circle .sub-text {
             font-family: 'Cairo', sans-serif;
-            font-weight: 900;
-            font-size: 24px;
-            text-transform: uppercase;
-            margin: 0;
+            font-size: 10px;
+            color: var(--white);
             letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         header h2 {
@@ -201,9 +213,11 @@
 
     <header>
         <div class="logo-container">
-            <!-- استدعاء الصورة بالاسم -->
-            <img src="logo.jpg" alt="Yasser Academy Logo">
-            <h1>Yasser Academy</h1>
+            <div class="logo-circle">
+                <div class="y-letter">Y</div>
+                <div class="sub-text">English Teacher</div>
+            </div>
+            <h1 style="color: var(--gold); font-family: 'Cairo', sans-serif; font-size: 24px; letter-spacing: 2px; margin: 0;">YASSER NOFAL</h1>
         </div>
         <h2>Unit 1: Egypt's Heritage</h2>
     </header>
