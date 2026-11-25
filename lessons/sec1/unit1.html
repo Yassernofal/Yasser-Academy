@@ -20,11 +20,7 @@
             --wrong: #dc3545;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Poppins', 'Cairo', sans-serif;
@@ -41,21 +37,6 @@
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .logo-container {
@@ -65,8 +46,6 @@
             border-radius: 50px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
         }
 
         .logo-container h1 {
@@ -74,7 +53,6 @@
             font-family: 'Cairo', sans-serif;
             font-weight: 900;
             font-size: 28px;
-            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
@@ -83,18 +61,10 @@
             font-size: 36px;
             font-style: italic;
             color: var(--gold-light);
-            position: relative;
-            z-index: 1;
         }
 
-        /* Container */
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
 
-        /* Section Title */
         .section-header {
             display: flex;
             align-items: center;
@@ -110,12 +80,8 @@
             font-family: 'Cairo', sans-serif;
             font-size: 24px;
             font-weight: 700;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* Question Cards */
         .question-card {
             background: var(--white);
             border-radius: 15px;
@@ -123,12 +89,6 @@
             margin-bottom: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             border: 1px solid #eee;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .question-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .question-text {
@@ -136,16 +96,15 @@
             font-size: 18px;
             margin-bottom: 20px;
             color: var(--primary);
-            font-family: 'Poppins', sans-serif;
         }
 
         .question-text.ar {
             font-family: 'Cairo', sans-serif;
             direction: rtl;
             text-align: right;
+            font-size: 20px;
         }
 
-        /* Options */
         .options-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -166,36 +125,11 @@
             align-items: center;
         }
 
-        .option-btn span {
-            font-weight: 800;
-            margin-right: 12px;
-            color: var(--accent);
-        }
+        .option-btn span { font-weight: 800; margin-right: 12px; color: var(--accent); }
+        .option-btn:hover { background: #e2e8f0; border-color: var(--accent); }
+        .option-btn.correct { background: #d4edda; border-color: var(--correct); color: #155724; }
+        .option-btn.wrong { background: #f8d7da; border-color: var(--wrong); color: #721c24; }
 
-        .option-btn:hover {
-            background: #e2e8f0;
-            border-color: var(--accent);
-        }
-
-        .option-btn.selected {
-            background: #e3f2fd;
-            border-color: var(--accent);
-            font-weight: 700;
-        }
-
-        .option-btn.correct {
-            background: #d4edda;
-            border-color: var(--correct);
-            color: #155724;
-        }
-
-        .option-btn.wrong {
-            background: #f8d7da;
-            border-color: var(--wrong);
-            color: #721c24;
-        }
-
-        /* Word Box */
         .word-box {
             background: linear-gradient(135deg, var(--gold-light), #fff3cd);
             padding: 20px;
@@ -206,9 +140,7 @@
             color: #856404;
             margin-bottom: 25px;
             border: 2px dashed var(--gold);
-            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.2);
             font-family: 'Cairo', sans-serif;
-            letter-spacing: 1px;
         }
 
         .fill-in-blank {
@@ -219,14 +151,10 @@
             font-weight: 700;
             color: var(--accent);
             margin: 0 5px;
-            cursor: pointer;
-            position: relative;
             background: #f8f9fa;
             padding: 2px 10px;
-            border-radius: 5px 5px 0 0;
         }
 
-        /* Reading Passage */
         .reading-passage {
             background: #fff;
             padding: 30px;
@@ -239,47 +167,20 @@
             margin-bottom: 30px;
             border-left: 6px solid var(--gold);
         }
+        .reading-passage p { margin-bottom: 15px; text-indent: 30px; }
 
-        .reading-passage p {
-            margin-bottom: 15px;
-            text-indent: 30px;
-        }
-
-        /* Vocabulary Table */
         .vocab-table {
             width: 100%;
             border-collapse: collapse;
             background: var(--white);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             margin-bottom: 30px;
         }
+        .vocab-table th { background: var(--secondary); color: var(--white); padding: 15px; text-align: left; }
+        .vocab-table td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+        .vocab-table tr:nth-child(even) { background-color: #f8f9fa; }
 
-        .vocab-table th {
-            background: var(--secondary);
-            color: var(--white);
-            padding: 15px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 18px;
-            text-align: left;
-        }
-
-        .vocab-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-            font-size: 16px;
-        }
-
-        .vocab-table tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-
-        .vocab-table tr:hover {
-            background-color: #e3f2fd;
-        }
-
-        /* Grammar Box */
         .grammar-box {
             background: #e8f4fd;
             padding: 25px;
@@ -287,89 +188,28 @@
             margin-bottom: 30px;
             border-left: 6px solid #2196f3;
         }
+        .grammar-box h4 { color: #1565c0; margin-bottom: 15px; font-size: 20px; }
+        .grammar-box ul { list-style: none; padding-left: 0; }
+        .grammar-box li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        .grammar-box li::before { content: '✓'; position: absolute; left: 0; color: #2196f3; font-weight: bold; }
 
-        .grammar-box h4 {
-            color: #1565c0;
+        .rewrite-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
             margin-bottom: 15px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 20px;
+            border: 1px solid #ddd;
+        }
+        .rewrite-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .grammar-box ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .grammar-box li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .grammar-box li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #2196f3;
-            font-weight: bold;
-        }
-
-        /* Exam Section */
-        .exam-section {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            padding: 40px;
-            border-radius: 20px;
-            margin-top: 50px;
-            color: var(--white);
-        }
-
-        .exam-section .section-header {
-            background: rgba(255,255,255,0.1);
-            border-left-color: var(--gold);
-        }
-
-        .exam-section .question-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .exam-section .question-text {
-            color: var(--gold-light);
-        }
-
-        .exam-section .option-btn {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.2);
-            color: var(--white);
-        }
-
-        .exam-section .option-btn span {
-            color: var(--gold);
-        }
-
-        .exam-section .option-btn:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .exam-section .option-btn.correct {
-            background: var(--correct);
-            border-color: var(--correct);
-            color: var(--white);
-        }
-
-        .exam-section .option-btn.wrong {
-            background: var(--wrong);
-            border-color: var(--wrong);
-            color: var(--white);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header h2 { font-size: 26px; }
-            .logo-container h1 { font-size: 20px; }
-            .options-grid { grid-template-columns: 1fr; }
-            .section-header h3 { font-size: 18px; }
-        }
+        @media (max-width: 768px) { .options-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -383,10 +223,8 @@
 
     <div class="container">
 
-        <!-- 1. Important Vocabulary (From Assessment Book) -->
-        <div class="section-header">
-            <h3>1. Important Vocabulary (الكلمات المترجمة)</h3>
-        </div>
+        <!-- 1. Important Vocabulary -->
+        <div class="section-header"><h3>1. Important Vocabulary (الكلمات المترجمة)</h3></div>
         <table class="vocab-table">
             <tr><th>Word</th><th>Meaning</th><th>Word</th><th>Meaning</th></tr>
             <tr><td>Heritage</td><td>تراث</td><td>Civilization</td><td>حضارة</td></tr>
@@ -396,16 +234,13 @@
             <tr><td>Progress</td><td>تقدم</td><td>Determination</td><td>إصرار / عزم</td></tr>
             <tr><td>Inspiration</td><td>إلهام</td><td>Ancestors</td><td>أسلاف / أجداد</td></tr>
             <tr><td>Harmony</td><td>تناغم / وئام</td><td>Decoration</td><td>زخرفة / ديكور</td></tr>
-            <tr><td>Restoring</td><td>ترميم / إعادة</td><td>Preserves</td><td>يحافظ على</td></tr>
+            <tr><td>Restoring</td><td>ترميم</td><td>Preserves</td><td>يحافظ على</td></tr>
             <tr><td>Crossroads</td><td>مفترق طرق</td><td>Demonstrate</td><td>يوضح / يبرهن</td></tr>
             <tr><td>Greatness</td><td>عظمة</td><td>Inherit</td><td>يرث</td></tr>
         </table>
 
         <!-- 2. Synonyms & Antonyms -->
-        <div class="section-header">
-            <h3>2. Synonyms & Antonyms (مرادفات وأضداد)</h3>
-        </div>
-
+        <div class="section-header"><h3>2. Synonyms & Antonyms (مرادفات وأضداد)</h3></div>
         <div class="question-card" data-correct="b,c">
             <div class="question-text">1. The patient is still alive after the accident. The synonyms of the word "alive" are ......</div>
             <div class="options-grid">
@@ -416,7 +251,6 @@
                 <button class="option-btn" onclick="checkMultiple(this, 'e')"><span>e.</span> shallow</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="a,e">
             <div class="question-text">2. The country is divided, not united under one flag. The antonyms of "united" are ......</div>
             <div class="options-grid">
@@ -427,7 +261,6 @@
                 <button class="option-btn" onclick="checkMultiple(this, 'e')"><span>e.</span> separate</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="b,d">
             <div class="question-text">3. The pyramids in Egypt are very ancient monuments. The synonyms of "ancient" are ......</div>
             <div class="options-grid">
@@ -440,9 +273,7 @@
         </div>
 
         <!-- 3. Derivatives -->
-        <div class="section-header">
-            <h3>3. Derivatives (المشتقات)</h3>
-        </div>
+        <div class="section-header"><h3>3. Derivatives (المشتقات)</h3></div>
         <div class="question-card" data-correct="a">
             <div class="question-text">1. We should use ______ technology to increase its products.</div>
             <div class="options-grid">
@@ -454,29 +285,18 @@
         </div>
 
         <!-- 4. Prefixes & Suffixes -->
-        <div class="section-header">
-            <h3>4. Prefixes & Suffixes (السوابق واللواحق)</h3>
-        </div>
+        <div class="section-header"><h3>4. Prefixes & Suffixes (السوابق واللواحق)</h3></div>
         <div class="question-card">
             <div class="question-text">Find the mistake and correct it:</div>
-            <div class="question-text" style="margin-top: 15px; font-size: 16px; color: #555;">
-                1. Farmers <strong>rise</strong> sheep and cows to get meat and milk. <br>
-                <span style="color: var(--correct); font-weight: bold; font-size: 14px;">Correct: raise</span>
-            </div>
-            <div class="question-text" style="margin-top: 10px; font-size: 16px; color: #555;">
-                2. The sun <strong>raises</strong> in the east and sets in the west. <br>
-                <span style="color: var(--correct); font-weight: bold; font-size: 14px;">Correct: rises</span>
-            </div>
-            <div class="question-text" style="margin-top: 10px; font-size: 16px; color: #555;">
-                3. There are a lot of problems that have <strong>aroused</strong> recently. <br>
-                <span style="color: var(--correct); font-weight: bold; font-size: 14px;">Correct: arisen</span>
+            <div class="question-text" style="margin-top: 15px; font-size: 16px; color: #555; line-height: 2;">
+                1. Farmers <strong>rise</strong> sheep... <span style="color: var(--correct);">(Correct: raise)</span><br>
+                2. The sun <strong>raises</strong>... <span style="color: var(--correct);">(Correct: rises)</span><br>
+                3. Problems have <strong>aroused</strong>... <span style="color: var(--correct);">(Correct: arisen)</span>
             </div>
         </div>
 
-        <!-- 5. Idioms & Expressions -->
-        <div class="section-header">
-            <h3>5. Idioms & Expressions (المصطلحات)</h3>
-        </div>
+        <!-- 5. Idioms -->
+        <div class="section-header"><h3>5. Idioms & Expressions (المصطلحات)</h3></div>
         <div class="question-card" data-correct="b">
             <div class="question-text">1. He takes pride ______ getting the full mark.</div>
             <div class="options-grid">
@@ -486,37 +306,23 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> of</button>
             </div>
         </div>
-        <div class="question-card" data-correct="c">
-            <div class="question-text">2. We always remember the sacrifices of our ______ who built our great civilization.</div>
-            <div class="options-grid">
-                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> neighborhoods</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> merchants</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> ancestors</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> monuments</button>
-            </div>
-        </div>
 
         <!-- 6. Grammar -->
-        <div class="section-header">
-            <h3>6. Grammar (القواعد بالتفصيل)</h3>
-        </div>
-
+        <div class="section-header"><h3>6. Grammar (القواعد بالتفصيل)</h3></div>
         <div class="grammar-box">
             <h4>Past Simple & Past Continuous</h4>
             <ul>
-                <li><strong>Past Simple:</strong> Use for completed past actions (e.g., The Egyptians <em>taught</em> the world).</li>
-                <li><strong>Past Continuous:</strong> Use (was/were + v-ing) for an action in progress in the past (e.g., At 2 o'clock, Sama <em>was returning</em> home).</li>
-                <li><strong>While / As / Just as:</strong> Followed by Past Continuous (e.g., While Rodayna <em>was going</em> home, she met her friends).</li>
-                <li><strong>When:</strong> Followed by Past Simple (e.g., When Ahmed <em>arrived</em> home, mother was serving lunch).</li>
-                <li><strong>During:</strong> Followed by a noun (e.g., <em>During the match</em>, the player fell).</li>
-                <li><strong>Stative Verbs:</strong> Not used in continuous form (be, love, like, want, look = seem, have = possess).</li>
-                <li><strong>Exceptions:</strong> "While we were in the park, our children were playing around us." (Not: Were being...).</li>
+                <li><strong>Past Simple:</strong> Completed past actions (e.g., The Egyptians <em>taught</em>).</li>
+                <li><strong>Past Continuous:</strong> Action in progress (was/were + v-ing).</li>
+                <li><strong>While / As / Just as:</strong> Followed by Past Continuous.</li>
+                <li><strong>When:</strong> Followed by Past Simple.</li>
+                <li><strong>During:</strong> Followed by a noun.</li>
+                <li><strong>Stative Verbs:</strong> Not used in continuous (love, want, etc.).</li>
             </ul>
         </div>
-
-        <!-- Grammar Questions -->
+        
         <div class="question-card" data-correct="c">
-            <div class="question-text">1. In 2017, my parents ...... to Luxor.</div>
+            <div class="question-text">1. In 2017, my parents ______ to Luxor.</div>
             <div class="options-grid">
                 <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> are moving</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> will move</button>
@@ -524,9 +330,8 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> move</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="a">
-            <div class="question-text">2. The TV presenter ...... to her viewers in a very friendly way.</div>
+            <div class="question-text">2. The TV presenter ______ to her viewers in a very friendly way.</div>
             <div class="options-grid">
                 <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> talked</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> are talking</button>
@@ -534,7 +339,6 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> talking</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="b">
             <div class="question-text">3. Someone stole the mobile while I ______.</div>
             <div class="options-grid">
@@ -544,7 +348,6 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> was slept</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="d">
             <div class="question-text">4. It is time we ______ our lesson.</div>
             <div class="options-grid">
@@ -554,7 +357,6 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> studied</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="a">
             <div class="question-text">5. I'd rather you ______ now. I'm busy.</div>
             <div class="options-grid">
@@ -564,47 +366,48 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> doesn't come</button>
             </div>
         </div>
-
-        <!-- 7. Translation (Before Reading as requested) -->
-        <div class="section-header">
-            <h3>7. Translation (الترجمة)</h3>
-        </div>
-        
         <div class="question-card" data-correct="c">
-            <div class="question-text">1. الطموح وحده لا يكفي لذا يجب عليك بذل قصارى جهدك لتحقيق جميع أهدافك وطموحاتك في الحياة.</div>
+            <div class="question-text">6. We ______ into a new big flat two weeks ago.</div>
             <div class="options-grid">
-                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> Ambitious is not enough, so you must do your best...</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> was moving</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> was moved</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> moved</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> moving</button>
+            </div>
+        </div>
+
+        <!-- 7. Translation -->
+        <div class="section-header"><h3>7. Translation (الترجمة)</h3></div>
+        <div class="question-card" data-correct="c">
+            <div class="question-text ar">1. الطموح وحده لا يكفي لذا يجب عليك بذل قصارى جهدك لتحقيق جميع أهدافك وطموحاتك في الحياة.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> Ambitious is not enough...</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> Ambition is not enough, so you must make your best...</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> Ambition is not enough, so you must do your best to achieve all your goals and ambitions in life.</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> Ambition is not enough, so you must do your best to achieve all your goals and ambitions in live.</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> Ambition is not enough... in live.</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="b">
-            <div class="question-text">2. يجب تشجيع الأطفال والكبار على حد سواء لتجنب تناول الأطعمة السريعة لأنها ضارة بالصحة وتؤدى إلى السمنة.</div>
+            <div class="question-text ar">2. يجب تشجيع الأطفال والكبار على حد سواء لتجنب تناول الأطعمة السريعة لأنها ضارة بالصحة وتؤدى إلى السمنة.</div>
             <div class="options-grid">
-                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> ...because they are harmful to healthy and lead to obesity.</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> ...harmful to healthy...</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> ...because they are harmful to health and lead to obesity.</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> ...because they are useful to health and lead to obesity.</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> ...because they are harmful to health and lead to obelisk.</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> ...useful to health...</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> ...lead to obelisk.</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="d">
-            <div class="question-text">3. يجب علينا ترشيد الاستهلاك في المياه والكهرباء والطعام وذلك لمواجهة ارتفاع الأسعار.</div>
+            <div class="question-text ar">3. يجب علينا ترشيد الاستهلاك في المياه والكهرباء والطعام وذلك لمواجهة ارتفاع الأسعار.</div>
             <div class="options-grid">
                 <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> ...face the rise in prizes.</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> ...increase consumption in water, electricity and food...</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> ...reduce consumption in water, electricity and food...</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> ...increase consumption...</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> ...reduce consumption...</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> ...rationalize consumption... so as to face the rise in prices.</button>
             </div>
         </div>
 
         <!-- 8. Reading -->
-        <div class="section-header">
-            <h3>8. Reading (القراءة)</h3>
-        </div>
-
+        <div class="section-header"><h3>8. Reading (القراءة)</h3></div>
         <div class="reading-passage">
             <p>Egypt is a land with a heart that has been beating for thousands of years. We are proud to call it our home. It is a place where the past and the present meet in harmony.</p>
             <p>Egypt has always played an important role in the world. Our ancestors built one of the greatest civilizations in history. They gave the world knowledge in writing, mathematics, and medicine. The hieroglyphs carved into temple walls were not just beautiful art; they were a way to record history. The Library of Alexandria once gathered knowledge from all over the world, making Egypt a center of learning.</p>
@@ -613,114 +416,97 @@
             <p>We take pride in our country, not only for its beauty, but also because we understand the sacrifices of our ancestors. We work hard to make it greater for generations to come. Every citizen has a role to play – protecting our heritage, contributing to our economy, and sharing our culture with the world.</p>
         </div>
 
-        <!-- Reading Questions -->
         <div class="question-card" data-correct="b">
             <div class="question-text">1. In what ways did Ancient Egyptians contribute to world knowledge?</div>
             <div class="options-grid">
-                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> by building modern bridges and roads</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> by building modern bridges</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> by writing mathematics, art, and medicine</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> by trading oil with other countries</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> by inventing computers and mobile phones</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> by trading oil</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> by inventing computers</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="c">
             <div class="question-text">2. According to the passage, the hieroglyphs were a ______.</div>
             <div class="options-grid">
                 <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> type of trade product</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> form of beautiful decoration</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> form of decoration</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> a way to record history</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> type of building material</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> building material</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="a">
-            <div class="question-text">3. What specific action is mentioned that demonstrates Egypt's focus on modern development?</div>
+            <div class="question-text">3. What specific action demonstrates Egypt's focus on modern development?</div>
             <div class="options-grid">
                 <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> Building new roads, bridges, and neighborhoods</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> Protecting its heritage</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> Recording history with hieroglyphs</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> Recording history</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> Traveling along the Nile</button>
             </div>
         </div>
-
         <div class="question-card" data-correct="c">
             <div class="question-text">4. The main idea of this passage is to show ______.</div>
             <div class="options-grid">
-                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> How Egypt's ancient civilization was superior to all others</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> The challenges Egypt faces with modern development</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> How Egypt's ancient civilization was superior</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> The challenges Egypt faces</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> The proud link between Egypt's ancient past and its modern progress</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> The sacrifices made by ancient Egyptians</button>
             </div>
         </div>
 
-        <!-- 9. Writing -->
-        <div class="section-header">
-            <h3>9. Writing (الكتابة)</h3>
+        <!-- 9. Rewriting -->
+        <div class="section-header"><h3>9. Rewriting (إعادة الصياغة)</h3></div>
+        <div class="rewrite-box">
+            <div class="question-text">1. When I saw the snake, I shouted. (On) </div>
+            <input type="text" class="rewrite-input" placeholder="On seeing the snake, I shouted.">
         </div>
+        <div class="rewrite-box">
+            <div class="question-text">2. She sent me an e-mail two days ago. (I) </div>
+            <input type="text" class="rewrite-input" placeholder="I was sent an e-mail two days ago.">
+        </div>
+        <div class="rewrite-box">
+            <div class="question-text">3. What did you do yesterday? (all day) </div>
+            <input type="text" class="rewrite-input" placeholder="What were you doing all day yesterday?">
+        </div>
+        <div class="rewrite-box">
+            <div class="question-text">4. The farmers were watering the garden all day yesterday. (being) </div>
+            <input type="text" class="rewrite-input" placeholder="The garden was being watered all day yesterday.">
+        </div>
+        <div class="rewrite-box">
+            <div class="question-text">5. The phone rang while I was sleeping. (When) </div>
+            <input type="text" class="rewrite-input" placeholder="When the phone rang, I was sleeping.">
+        </div>
+
+        <!-- 10. Writing -->
+        <div class="section-header"><h3>10. Writing (الكتابة)</h3></div>
         <div class="question-card">
             <div class="question-text" style="color: var(--accent);">
                 <strong>Topic:</strong> A Strange Day in My Life<br><br>
-                <strong>Instructions:</strong> Write a short narrative paragraph of about (120 - 150) words using Past Simple and Past Continuous. Describe what happened, what you were doing, and how the day ended. Use time expressions like while, when, during, suddenly, etc.
+                <strong>Instructions:</strong> Write a short narrative paragraph of about (120 - 150) words using Past Simple and Past Continuous. Use time expressions like while, when, during, suddenly.
             </div>
-            <textarea style="width: 100%; height: 150px; padding: 15px; border-radius: 10px; border: 2px solid #ddd; font-family: 'Poppins', sans-serif; font-size: 16px; resize: vertical;" placeholder="Start writing your essay here..."></textarea>
+            <textarea style="width: 100%; height: 150px; padding: 15px; border-radius: 10px; border: 2px solid #ddd; font-family: 'Poppins', sans-serif; font-size: 16px;" placeholder="Start writing your essay here..."></textarea>
         </div>
 
-        <!-- 10. Comprehensive Exam -->
-        <div class="exam-section">
-            <div class="section-header">
-                <h3>10. Comprehensive Exam (امتحان شامل)</h3>
-            </div>
-
-            <div class="question-card" data-correct="b">
-                <div class="question-text">1. A park was built in the center of our ______.</div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> heritage</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> neighborhood</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> merchant</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> monument</button>
-                </div>
-            </div>
-
-            <div class="question-card" data-correct="d">
-                <div class="question-text">2. Every ______ leaves monuments that show its culture and power.</div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> bridge</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> citizen</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> crossroad</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> civilization</button>
-                </div>
-            </div>
-
-            <div class="question-card" data-correct="a">
-                <div class="question-text">3. The Aswan High Dam helps to control the Nile, but it also ______ many historical sites from floods.</div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> preserves</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> reserves</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> observes</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> deserves</button>
-                </div>
-            </div>
-
-            <div class="question-card" data-correct="c">
-                <div class="question-text">4. Ali always ______ to work when he was young.</div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> walks</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> is walking</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> walked</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> was walking</button>
-                </div>
-            </div>
-
-            <div class="question-card" data-correct="b">
-                <div class="question-text">5. The government protects every ______ from harm and danger.</div>
-                <div class="options-grid">
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> mistake</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> citizen</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> hieroglyphs</button>
-                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> flood</button>
-                </div>
-            </div>
+        <!-- 11. The Old Man and the Sea -->
+        <div class="section-header"><h3>11. The Old Man and the Sea (القصة)</h3></div>
+        <div class="question-card">
+            <div class="question-text">1. Hemingway used Santiago's eyes to show his inner spirit. Discuss giving your opinion.</div>
+            <div class="answer-box" style="padding:10px; background:#f0f0f0; border-radius:5px; margin-top:5px; font-size:14px;">Answer: His eyes were bright and full of life, showing that he was strong and hopeful inside.</div>
+        </div>
+        <div class="question-card">
+            <div class="question-text">2. In what ways does Santiago represent courage even before the big journey begins?</div>
+            <div class="answer-box" style="padding:10px; background:#f0f0f0; border-radius:5px; margin-top:5px; font-size:14px;">Answer: He keeps fishing every day without giving up, even when he catches nothing.</div>
+        </div>
+        <div class="question-card">
+            <div class="question-text">3. The villagers think that Santiago was unlucky. Do you think they were right? Why?</div>
+            <div class="answer-box" style="padding:10px; background:#f0f0f0; border-radius:5px; margin-top:5px; font-size:14px;">Answer: No, he was not unlucky. He was brave and worked hard. Real luck comes to those who don't give up.</div>
+        </div>
+        <div class="question-card">
+            <div class="question-text">4. The boys spent his evenings with Santiago. Comment giving your reasons.</div>
+            <div class="answer-box" style="padding:10px; background:#f0f0f0; border-radius:5px; margin-top:5px; font-size:14px;">Answer: He loved and respected the old man. He wanted to help and learn from him.</div>
+        </div>
+        <div class="question-card">
+            <div class="question-text">5. In what way does Santiago's hut reflect his personality?</div>
+            <div class="answer-box" style="padding:10px; background:#f0f0f0; border-radius:5px; margin-top:5px; font-size:14px;">Answer: It is simple and clean, just like him. He doesn't need much to be happy.</div>
         </div>
 
     </div>
@@ -729,13 +515,10 @@
         function checkAnswer(button) {
             const card = button.closest('.question-card');
             if (card.classList.contains('answered')) return;
-            
             const correct = card.getAttribute('data-correct');
             const selected = button.querySelector('span').innerText.replace('.', '').trim();
-            
             const allOptions = card.querySelectorAll('.option-btn');
             allOptions.forEach(opt => opt.style.pointerEvents = 'none');
-            
             if (selected === correct) {
                 button.classList.add('correct');
             } else {
@@ -752,15 +535,12 @@
         function checkMultiple(button, letter) {
             const card = button.closest('.question-card');
             if (card.classList.contains('answered')) return;
-            
             const correct = card.getAttribute('data-correct').split(',');
             button.classList.toggle('selected');
-            
             const selectedBtns = card.querySelectorAll('.option-btn.selected');
             if (selectedBtns.length === 2) {
                 card.classList.add('answered');
                 card.querySelectorAll('.option-btn').forEach(opt => opt.style.pointerEvents = 'none');
-                
                 let allCorrect = true;
                 selectedBtns.forEach(btn => {
                     const l = btn.querySelector('span').innerText.replace('.', '').trim();
@@ -771,7 +551,6 @@
                         btn.classList.add('correct');
                     }
                 });
-                
                 if (!allCorrect) {
                     card.querySelectorAll('.option-btn').forEach(btn => {
                         const l = btn.querySelector('span').innerText.replace('.', '').trim();
