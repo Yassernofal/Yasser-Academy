@@ -29,14 +29,12 @@
             line-height: 1.6;
         }
 
-        /* Header & Logo */
         header {
             background: linear-gradient(135deg, var(--primary), var(--accent));
             color: var(--white);
             padding: 30px 20px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            position: relative;
         }
 
         .logo-container {
@@ -143,18 +141,6 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        .fill-in-blank {
-            display: inline-block;
-            min-width: 140px;
-            border-bottom: 2px solid var(--accent);
-            text-align: center;
-            font-weight: 700;
-            color: var(--accent);
-            margin: 0 5px;
-            background: #f8f9fa;
-            padding: 2px 10px;
-        }
-
         .reading-passage {
             background: #fff;
             padding: 30px;
@@ -223,8 +209,8 @@
 
     <div class="container">
 
-        <!-- 1. Important Vocabulary -->
-        <div class="section-header"><h3>1. Important Vocabulary (الكلمات المترجمة)</h3></div>
+        <!-- 1. Vocabulary Table -->
+        <div class="section-header"><h3>1. Important Vocabulary</h3></div>
         <table class="vocab-table">
             <tr><th>Word</th><th>Meaning</th><th>Word</th><th>Meaning</th></tr>
             <tr><td>Heritage</td><td>تراث</td><td>Civilization</td><td>حضارة</td></tr>
@@ -235,12 +221,114 @@
             <tr><td>Inspiration</td><td>إلهام</td><td>Ancestors</td><td>أسلاف / أجداد</td></tr>
             <tr><td>Harmony</td><td>تناغم / وئام</td><td>Decoration</td><td>زخرفة / ديكور</td></tr>
             <tr><td>Restoring</td><td>ترميم</td><td>Preserves</td><td>يحافظ على</td></tr>
-            <tr><td>Crossroads</td><td>مفترق طرق</td><td>Demonstrate</td><td>يوضح / يبرهن</td></tr>
-            <tr><td>Greatness</td><td>عظمة</td><td>Inherit</td><td>يرث</td></tr>
         </table>
 
-        <!-- 2. Synonyms & Antonyms -->
-        <div class="section-header"><h3>2. Synonyms & Antonyms (مرادفات وأضداد)</h3></div>
+        <!-- 2. Vocabulary Exercises (From Week 1) -->
+        <div class="section-header"><h3>2. Vocabulary Exercises</h3></div>
+        
+        <div class="question-card" data-correct="c">
+            <div class="question-text">1. Ancient Egypt was famous for ______ along the Nile River.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> government</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> sacrifice</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> trade</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> writing</button>
+            </div>
+        </div>
+        
+        <div class="question-card" data-correct="b">
+            <div class="question-text">2. A park was built in the center of our ______.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> heritage</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> neighborhood</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> merchant</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> monument</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="d">
+            <div class="question-text">3. Tourists come from everywhere to see the ancient ______.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> neighborhood</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> flood</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> profession</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> monuments</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+            <div class="question-text">4. The ______ sold spices, gold, and silk from far lands.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> inspirations</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> monuments</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> merchants</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> trades</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="b">
+            <div class="question-text">5. We must protect our ______ for the next generations.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> spices</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> heritage</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> pollution</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> traffic</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="a">
+            <div class="question-text">6. Every ______ leaves monuments that show its culture and power.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> civilization</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> bridge</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> citizen</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> crossroad</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="d">
+            <div class="question-text">7. The two main streets meet at a busy ______ in town.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> identity</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> historian</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> wall</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> crossroads</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+            <div class="question-text">8. The Aswan High Dam helps to control the Nile, but it also ______ many historical sites from floods.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> reserves</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> observes</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> preserves</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> deserves</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="d">
+            <div class="question-text">9. The Great Pyramids are an amazing part of our historical ______ that we must protect.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> restoring</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> sacrifice</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> temple</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> heritage</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="b">
+            <div class="question-text">10. The government is working on ______ the old Islamic buildings in Cairo.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> destroying</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> restoring</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> polluting</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> exchanging</button>
+            </div>
+        </div>
+
+        <!-- 3. Synonyms & Antonyms (From Week 2) -->
+        <div class="section-header"><h3>3. Synonyms & Antonyms</h3></div>
+        
         <div class="question-card" data-correct="b,c">
             <div class="question-text">1. The patient is still alive after the accident. The synonyms of the word "alive" are ......</div>
             <div class="options-grid">
@@ -251,6 +339,7 @@
                 <button class="option-btn" onclick="checkMultiple(this, 'e')"><span>e.</span> shallow</button>
             </div>
         </div>
+
         <div class="question-card" data-correct="a,e">
             <div class="question-text">2. The country is divided, not united under one flag. The antonyms of "united" are ......</div>
             <div class="options-grid">
@@ -261,6 +350,7 @@
                 <button class="option-btn" onclick="checkMultiple(this, 'e')"><span>e.</span> separate</button>
             </div>
         </div>
+
         <div class="question-card" data-correct="b,d">
             <div class="question-text">3. The pyramids in Egypt are very ancient monuments. The synonyms of "ancient" are ......</div>
             <div class="options-grid">
@@ -272,8 +362,8 @@
             </div>
         </div>
 
-        <!-- 3. Derivatives -->
-        <div class="section-header"><h3>3. Derivatives (المشتقات)</h3></div>
+        <!-- 4. Derivatives & Prefixes (From Week 2) -->
+        <div class="section-header"><h3>4. Derivatives & Prefixes</h3></div>
         <div class="question-card" data-correct="a">
             <div class="question-text">1. We should use ______ technology to increase its products.</div>
             <div class="options-grid">
@@ -284,31 +374,24 @@
             </div>
         </div>
 
-        <!-- 4. Prefixes & Suffixes -->
-        <div class="section-header"><h3>4. Prefixes & Suffixes (السوابق واللواحق)</h3></div>
         <div class="question-card">
             <div class="question-text">Find the mistake and correct it:</div>
             <div class="question-text" style="margin-top: 15px; font-size: 16px; color: #555; line-height: 2;">
-                1. Farmers <strong>rise</strong> sheep... <span style="color: var(--correct);">(Correct: raise)</span><br>
-                2. The sun <strong>raises</strong>... <span style="color: var(--correct);">(Correct: rises)</span><br>
-                3. Problems have <strong>aroused</strong>... <span style="color: var(--correct);">(Correct: arisen)</span>
+                1. Farmers <strong>rise</strong> sheep and cows... <span style="color: var(--correct);">(Correct: raise)</span><br>
+                2. The sun <strong>raises</strong> in the east... <span style="color: var(--correct);">(Correct: rises)</span><br>
+                3. Problems have <strong>aroused</strong> recently... <span style="color: var(--correct);">(Correct: arisen)</span><br>
+                4. He takes pride <strong>at</strong> getting... <span style="color: var(--correct);">(Correct: in)</span><br>
+                5. They used to <strong>reading</strong>... <span style="color: var(--correct);">(Correct: read)</span><br>
+                6. Mohamed is used to <strong>come</strong> early... <span style="color: var(--correct);">(Correct: coming)</span><br>
+                7. Did they <strong>used</strong> to ride... <span style="color: var(--correct);">(Correct: use)</span><br>
+                8. We didn't <strong>used</strong> to eat... <span style="color: var(--correct);">(Correct: use)</span><br>
+                9. Did he use to <strong>playing</strong>... <span style="color: var(--correct);">(Correct: play)</span><br>
+                10. I <strong>use</strong> to fly... <span style="color: var(--correct);">(Correct: used)</span>
             </div>
         </div>
 
-        <!-- 5. Idioms -->
-        <div class="section-header"><h3>5. Idioms & Expressions (المصطلحات)</h3></div>
-        <div class="question-card" data-correct="b">
-            <div class="question-text">1. He takes pride ______ getting the full mark.</div>
-            <div class="options-grid">
-                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> at</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> in</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> on</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> of</button>
-            </div>
-        </div>
-
-        <!-- 6. Grammar -->
-        <div class="section-header"><h3>6. Grammar (القواعد بالتفصيل)</h3></div>
+        <!-- 5. Grammar -->
+        <div class="section-header"><h3>5. Grammar</h3></div>
         <div class="grammar-box">
             <h4>Past Simple & Past Continuous</h4>
             <ul>
@@ -320,7 +403,7 @@
                 <li><strong>Stative Verbs:</strong> Not used in continuous (love, want, etc.).</li>
             </ul>
         </div>
-        
+
         <div class="question-card" data-correct="c">
             <div class="question-text">1. In 2017, my parents ______ to Luxor.</div>
             <div class="options-grid">
@@ -330,6 +413,7 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> move</button>
             </div>
         </div>
+        
         <div class="question-card" data-correct="a">
             <div class="question-text">2. The TV presenter ______ to her viewers in a very friendly way.</div>
             <div class="options-grid">
@@ -339,6 +423,7 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> talking</button>
             </div>
         </div>
+
         <div class="question-card" data-correct="b">
             <div class="question-text">3. Someone stole the mobile while I ______.</div>
             <div class="options-grid">
@@ -348,6 +433,7 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> was slept</button>
             </div>
         </div>
+        
         <div class="question-card" data-correct="d">
             <div class="question-text">4. It is time we ______ our lesson.</div>
             <div class="options-grid">
@@ -357,6 +443,7 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> studied</button>
             </div>
         </div>
+
         <div class="question-card" data-correct="a">
             <div class="question-text">5. I'd rather you ______ now. I'm busy.</div>
             <div class="options-grid">
@@ -366,27 +453,20 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> doesn't come</button>
             </div>
         </div>
-        <div class="question-card" data-correct="c">
-            <div class="question-text">6. We ______ into a new big flat two weeks ago.</div>
-            <div class="options-grid">
-                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> was moving</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> was moved</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> moved</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> moving</button>
-            </div>
-        </div>
 
-        <!-- 7. Translation -->
-        <div class="section-header"><h3>7. Translation (الترجمة)</h3></div>
+        <!-- 6. Translation (From Week 1, 2, 4) -->
+        <div class="section-header"><h3>6. Translation</h3></div>
+        
         <div class="question-card" data-correct="c">
             <div class="question-text ar">1. الطموح وحده لا يكفي لذا يجب عليك بذل قصارى جهدك لتحقيق جميع أهدافك وطموحاتك في الحياة.</div>
             <div class="options-grid">
-                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> Ambitious is not enough...</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> Ambitious is not enough, so you must do your best...</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> Ambition is not enough, so you must make your best...</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> Ambition is not enough, so you must do your best to achieve all your goals and ambitions in life.</button>
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> Ambition is not enough... in live.</button>
             </div>
         </div>
+        
         <div class="question-card" data-correct="b">
             <div class="question-text ar">2. يجب تشجيع الأطفال والكبار على حد سواء لتجنب تناول الأطعمة السريعة لأنها ضارة بالصحة وتؤدى إلى السمنة.</div>
             <div class="options-grid">
@@ -396,6 +476,7 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> ...lead to obelisk.</button>
             </div>
         </div>
+
         <div class="question-card" data-correct="d">
             <div class="question-text ar">3. يجب علينا ترشيد الاستهلاك في المياه والكهرباء والطعام وذلك لمواجهة ارتفاع الأسعار.</div>
             <div class="options-grid">
@@ -406,8 +487,8 @@
             </div>
         </div>
 
-        <!-- 8. Reading -->
-        <div class="section-header"><h3>8. Reading (القراءة)</h3></div>
+        <!-- 7. Reading -->
+        <div class="section-header"><h3>7. Reading</h3></div>
         <div class="reading-passage">
             <p>Egypt is a land with a heart that has been beating for thousands of years. We are proud to call it our home. It is a place where the past and the present meet in harmony.</p>
             <p>Egypt has always played an important role in the world. Our ancestors built one of the greatest civilizations in history. They gave the world knowledge in writing, mathematics, and medicine. The hieroglyphs carved into temple walls were not just beautiful art; they were a way to record history. The Library of Alexandria once gathered knowledge from all over the world, making Egypt a center of learning.</p>
@@ -425,6 +506,7 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> by inventing computers</button>
             </div>
         </div>
+        
         <div class="question-card" data-correct="c">
             <div class="question-text">2. According to the passage, the hieroglyphs were a ______.</div>
             <div class="options-grid">
@@ -434,6 +516,7 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> building material</button>
             </div>
         </div>
+        
         <div class="question-card" data-correct="a">
             <div class="question-text">3. What specific action demonstrates Egypt's focus on modern development?</div>
             <div class="options-grid">
@@ -443,18 +526,10 @@
                 <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> Traveling along the Nile</button>
             </div>
         </div>
-        <div class="question-card" data-correct="c">
-            <div class="question-text">4. The main idea of this passage is to show ______.</div>
-            <div class="options-grid">
-                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> How Egypt's ancient civilization was superior</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> The challenges Egypt faces</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> The proud link between Egypt's ancient past and its modern progress</button>
-                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> The sacrifices made by ancient Egyptians</button>
-            </div>
-        </div>
 
-        <!-- 9. Rewriting -->
-        <div class="section-header"><h3>9. Rewriting (إعادة الصياغة)</h3></div>
+        <!-- 8. Rewriting -->
+        <div class="section-header"><h3>8. Rewriting</h3></div>
+        
         <div class="rewrite-box">
             <div class="question-text">1. When I saw the snake, I shouted. (On) </div>
             <input type="text" class="rewrite-input" placeholder="On seeing the snake, I shouted.">
@@ -476,8 +551,8 @@
             <input type="text" class="rewrite-input" placeholder="When the phone rang, I was sleeping.">
         </div>
 
-        <!-- 10. Writing -->
-        <div class="section-header"><h3>10. Writing (الكتابة)</h3></div>
+        <!-- 9. Writing -->
+        <div class="section-header"><h3>9. Writing</h3></div>
         <div class="question-card">
             <div class="question-text" style="color: var(--accent);">
                 <strong>Topic:</strong> A Strange Day in My Life<br><br>
@@ -486,8 +561,8 @@
             <textarea style="width: 100%; height: 150px; padding: 15px; border-radius: 10px; border: 2px solid #ddd; font-family: 'Poppins', sans-serif; font-size: 16px;" placeholder="Start writing your essay here..."></textarea>
         </div>
 
-        <!-- 11. The Old Man and the Sea -->
-        <div class="section-header"><h3>11. The Old Man and the Sea (القصة)</h3></div>
+        <!-- 10. The Old Man and the Sea -->
+        <div class="section-header"><h3>10. The Old Man and the Sea</h3></div>
         <div class="question-card">
             <div class="question-text">1. Hemingway used Santiago's eyes to show his inner spirit. Discuss giving your opinion.</div>
             <div class="answer-box" style="padding:10px; background:#f0f0f0; border-radius:5px; margin-top:5px; font-size:14px;">Answer: His eyes were bright and full of life, showing that he was strong and hopeful inside.</div>
