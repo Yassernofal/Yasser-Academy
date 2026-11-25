@@ -61,7 +61,6 @@
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="../../index.html">
-        <!-- اللوجو هنا: المسار بيطلع مرتين عشان يوصل لفولدر assets الرئيسي -->
         <img src="../../assets/images/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
         <span class="brand-name">Mr. Yasser Nofal</span>
       </a>
@@ -291,11 +290,24 @@
         `;
       });
 
+      // ===== قسم الحفظ (تم إضافة رسائل التنبيه هنا) =====
       if (currentUser && examEngine) {
-        await saveExamResult(currentUser.uid, 'unit1_sec1', {
-          examTitle: 'Unit 1',
-          ...result
-        });
+        console.log("محاولة حفظ النتيجة للطالب:", currentUser.uid);
+        try {
+          const saved = await saveExamResult(currentUser.uid, 'unit1_sec1', {
+            examTitle: 'Unit 1',
+            ...result
+          });
+          if (saved) {
+            console.log("✅ تم حفظ النتيجة بنجاح في فايربيز!");
+          } else {
+            console.log("❌ فشل حفظ النتيجة، راجع الصلاحيات!");
+          }
+        } catch (error) {
+          console.error("❌ حدث خطأ أثناء الحفظ:", error);
+        }
+      } else {
+        console.log("❌ لا يوجد مستخدم مسجل دخول، أو محرك الامتحان غير جاهز.");
       }
     }
   </script>
