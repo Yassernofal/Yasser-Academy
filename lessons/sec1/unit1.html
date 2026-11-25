@@ -1,748 +1,787 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unit 1: Egypt's Heritage | أكاديمية مستر ياسر نوفل</title>
-  
-  <!-- Bootstrap & FontAwesome -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  
-  <!-- تنويع الخطوط لجاذبية بصرية -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
-  
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Cairo', 'El Messiri', serif; background: #f4f7f6; padding-top: 80px; color: #333; }
-    
-    /* الناف بار واللوجو */
-    .navbar-custom { background: rgba(10, 31, 68, 0.98) !important; padding: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-    .navbar-brand { display: flex; align-items: center; gap: 10px; }
-    .navbar-brand img { height: 45px; border-radius: 50%; border: 2px solid #f7e05e; }
-    .navbar-brand .brand-text { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.3rem; color: #f7e05e; }
-    
-    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 50px 20px; border-radius: 0 0 30px 30px; margin-bottom: 30px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
-    .hero-unit .unit-badge { display: inline-block; background: #f7e05e; color: #0a1f44; padding: 5px 20px; border-radius: 20px; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; letter-spacing: 1px; }
-    .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.8rem; margin-bottom: 10px; direction: ltr; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-    .hero-unit .arabic-title { font-size: 1.3rem; color: #b0c4de; font-family: 'El Messiri', serif; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 - Egypt's Heritage | Yasser Academy</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
 
-    .layout-wrapper { display: grid; grid-template-columns: 280px 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; padding: 0 20px 50px; }
-    @media (max-width: 992px) { .layout-wrapper { grid-template-columns: 1fr; } }
+        :root {
+            --primary: #0f2027;
+            --secondary: #203a43;
+            --accent: #2c5364;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --bg: #f8f9fa;
+            --text: #333;
+            --white: #ffffff;
+            --correct: #28a745;
+            --wrong: #dc3545;
+        }
 
-    /* القائمة الجانبية */
-    .sidebar { position: sticky; top: 100px; height: fit-content; background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.05); border-top: 4px solid #f7b731; }
-    .sidebar h3 { color: #0a1f44; font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f0f0f0; font-family: 'El Messiri', serif; }
-    .sidebar ul { list-style: none; padding: 0; }
-    .sidebar li { margin-bottom: 8px; }
-    .sidebar a { display: flex; align-items: center; gap: 10px; padding: 12px 15px; border-radius: 12px; color: #555; text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.95rem; }
-    .sidebar a:hover, .sidebar a.active { background: #0a1f44; color: #f7e05e; transform: translateX(-5px); }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* الكروت (الأقسام) */
-    .lesson-card { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-right: 6px solid #0a1f44; transition: 0.3s; }
-    .lesson-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-    .lesson-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px dashed #e0e0e0; cursor: pointer; }
-    .section-number { background: #0a1f44; color: #f7e05e; width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Cinzel', serif; font-size: 1.3rem; flex-shrink: 0; transform: rotate(-5deg); }
-    .lesson-header h2 { font-family: 'El Messiri', serif; color: #0a1f44; font-size: 1.5rem; margin: 0; flex-grow: 1; font-weight: 800; }
-    .lesson-header .toggle-icon { color: #f7b731; font-size: 1.3rem; transition: 0.3s; }
-    .lesson-body.collapsed { display: none; }
+        body {
+            font-family: 'Poppins', 'Cairo', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-    /* العناوين الداخلية */
-    .section-title { color: #0a1f44; font-weight: 800; font-size: 1.3rem; margin: 25px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #f7e05e; font-family: 'Cairo', sans-serif; display: flex; align-items: center; gap: 10px; }
-    
-    /* النصوص والجداول */
-    .reading-passage { background: #fdfdfd; border-radius: 12px; padding: 25px; font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.9; color: #2c3e50; border: 1px solid #eaeaea; border-left: 5px solid #f7b731; direction: ltr; text-align: left; }
-    .reading-passage p { margin-bottom: 15px; }
+        /* Header & Logo */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--white);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
 
-    .vocab-table { width: 100%; border-collapse: collapse; margin-top: 15px; direction: ltr; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-    .vocab-table th { background: #0a1f44; color: #f7e05e; padding: 15px; text-align: left; font-family: 'Cinzel', serif; font-size: 1.1rem; }
-    .vocab-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; font-size: 1.05rem; }
-    .vocab-table tr:nth-child(even) { background: #f8f9fa; }
-    .vocab-table .word { font-weight: 800; color: #0a1f44; }
-    .vocab-table .meaning { color: #27ae60; direction: rtl; text-align: right; font-weight: 600; }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
 
-    .grammar-box { background: #fffdf5; border: 1px solid #f7e05e; border-radius: 12px; padding: 25px; margin: 20px 0; box-shadow: inset 0 0 10px rgba(247, 224, 94, 0.1); }
-    .grammar-box h4 { color: #0a1f44; font-weight: 800; margin-bottom: 15px; font-family: 'Cairo', sans-serif; font-size: 1.2rem; direction: ltr; text-align: left; }
-    .grammar-box .example { background: #fff; border-radius: 8px; padding: 12px 18px; margin: 10px 0; font-family: 'Playfair Display', serif; color: #0a1f44; border-left: 3px solid #f7b731; direction: ltr; text-align: left; box-shadow: 0 2px 5px rgba(0,0,0,0.02); font-size: 1.05rem; }
-    .grammar-box .rule { color: #444; margin: 10px 0; line-height: 1.8; font-family: 'Cairo', sans-serif; font-size: 1rem; }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-    /* التدريبات */
-    .exercise-box { background: #f8f9fa; border-radius: 12px; padding: 20px; margin: 15px 0; border: 1px solid #e0e0e0; }
-    .exercise-box .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 15px; direction: ltr; text-align: left; font-size: 1.1rem; font-family: 'Playfair Display', serif; }
-    .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: ltr; }
-    .option-btn { background: #fff; border: 2px solid #dcdcdc; border-radius: 8px; padding: 10px 15px; cursor: pointer; transition: 0.2s; text-align: left; font-family: 'Cairo', sans-serif; font-weight: 600; color: #333; }
-    .option-btn:hover { border-color: #f7b731; background: #fffbf0; }
-    .option-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; }
-    .option-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .logo-container {
+            display: inline-block;
+            background: linear-gradient(to right, var(--gold), #f7d774);
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
 
-    /* أزرار التنقل */
-    .btn-lesson { background: #0a1f44; color: #f7e05e; padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; margin: 5px; font-family: 'Cairo', sans-serif; }
-    .btn-lesson:hover { background: #f7b731; color: #0a1f44; box-shadow: 0 5px 15px rgba(247, 183, 49, 0.4); transform: translateY(-2px); }
-    .nav-buttons { display: flex; justify-content: space-between; margin-top: 40px; flex-wrap: wrap; gap: 15px; }
+        .logo-container h1 {
+            color: var(--primary);
+            font-family: 'Cairo', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-    @media (max-width: 768px) {
-      .hero-unit h1 { font-size: 2rem; }
-      .options-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+        header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-style: italic;
+            color: var(--gold-light);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Section Title */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin: 50px 0 30px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border-left: 6px solid var(--gold);
+        }
+
+        .section-header h3 {
+            color: var(--white);
+            font-family: 'Cairo', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Question Cards */
+        .question-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .question-text.ar {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Options */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: #f4f6f8;
+            border: 2px solid #e9ecef;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn span {
+            font-weight: 800;
+            margin-right: 12px;
+            color: var(--accent);
+        }
+
+        .option-btn:hover {
+            background: #e2e8f0;
+            border-color: var(--accent);
+        }
+
+        .option-btn.selected {
+            background: #e3f2fd;
+            border-color: var(--accent);
+            font-weight: 700;
+        }
+
+        .option-btn.correct {
+            background: #d4edda;
+            border-color: var(--correct);
+            color: #155724;
+        }
+
+        .option-btn.wrong {
+            background: #f8d7da;
+            border-color: var(--wrong);
+            color: #721c24;
+        }
+
+        /* Word Box */
+        .word-box {
+            background: linear-gradient(135deg, var(--gold-light), #fff3cd);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 20px;
+            color: #856404;
+            margin-bottom: 25px;
+            border: 2px dashed var(--gold);
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.2);
+            font-family: 'Cairo', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .fill-in-blank {
+            display: inline-block;
+            min-width: 140px;
+            border-bottom: 2px solid var(--accent);
+            text-align: center;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0 5px;
+            cursor: pointer;
+            position: relative;
+            background: #f8f9fa;
+            padding: 2px 10px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        /* Reading Passage */
+        .reading-passage {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            border-left: 6px solid var(--gold);
+        }
+
+        .reading-passage p {
+            margin-bottom: 15px;
+            text-indent: 30px;
+        }
+
+        /* Vocabulary Table */
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .vocab-table th {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 15px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .vocab-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+        }
+
+        .vocab-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .vocab-table tr:hover {
+            background-color: #e3f2fd;
+        }
+
+        /* Grammar Box */
+        .grammar-box {
+            background: #e8f4fd;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 6px solid #2196f3;
+        }
+
+        .grammar-box h4 {
+            color: #1565c0;
+            margin-bottom: 15px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 20px;
+        }
+
+        .grammar-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .grammar-box li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .grammar-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2196f3;
+            font-weight: bold;
+        }
+
+        /* Exam Section */
+        .exam-section {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            color: var(--white);
+        }
+
+        .exam-section .section-header {
+            background: rgba(255,255,255,0.1);
+            border-left-color: var(--gold);
+        }
+
+        .exam-section .question-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .exam-section .question-text {
+            color: var(--gold-light);
+        }
+
+        .exam-section .option-btn {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            color: var(--white);
+        }
+
+        .exam-section .option-btn span {
+            color: var(--gold);
+        }
+
+        .exam-section .option-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .exam-section .option-btn.correct {
+            background: var(--correct);
+            border-color: var(--correct);
+            color: var(--white);
+        }
+
+        .exam-section .option-btn.wrong {
+            background: var(--wrong);
+            border-color: var(--wrong);
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h2 { font-size: 26px; }
+            .logo-container h1 { font-size: 20px; }
+            .options-grid { grid-template-columns: 1fr; }
+            .section-header h3 { font-size: 18px; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <header>
+        <div class="logo-container">
+            <h1>Yasser Academy</h1>
+        </div>
+        <h2>Unit 1: Egypt's Heritage</h2>
+    </header>
+
     <div class="container">
-      <a class="navbar-brand" href="/index.html">
-        <img src="/assets/images/logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/45?text=Y'">
-        <span class="brand-text">Mr. Yasser Nofal</span>
-      </a>
-      <div class="ms-auto">
-        <a href="/lessons.html" class="btn btn-outline-warning btn-sm fw-bold px-3 rounded-pill">← العودة للوحدات</a>
-      </div>
-    </div>
-  </nav>
 
-  <div class="hero-unit">
-    <span class="unit-badge">UNIT 1</span>
-    <h1>Egypt's Heritage</h1>
-    <p class="arabic-title">تراث مصر - الشغل العالمي الشامل والمطابق لكتاب التقييمات</p>
-  </div>
-
-  <div class="layout-wrapper">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <h3><i class="fas fa-list-ul text-warning"></i> محتويات الوحدة</h3>
-      <ul>
-        <li><a href="#sec-vocab" class="active"><i class="fas fa-book-open"></i> 1. أهم الكلمات المترجمة</a></li>
-        <li><a href="#sec-vocab-ex"><i class="fas fa-spell-check"></i> 2. تدريبات الكلمات</a></li>
-        <li><a href="#sec-syn-ant"><i class="fas fa-exchange-alt"></i> 3. المرادفات والأضداد</a></li>
-        <li><a href="#sec-deriv"><i class="fas fa-seedling"></i> 4. المشتقات</a></li>
-        <li><a href="#sec-prefix"><i class="fas fa-puzzle-piece"></i> 5. السوابق واللواحق</a></li>
-        <li><a href="#sec-colloc"><i class="fas fa-link"></i> 6. المصطلحات</a></li>
-        <li><a href="#sec-grammar"><i class="fas fa-language"></i> 7. القواعد بالتفصيل</a></li>
-        <li><a href="#sec-trans"><i class="fas fa-globe"></i> 8. الترجمة</a></li>
-        <li><a href="#sec-reading"><i class="fas fa-paragraph"></i> 9. القراءة</a></li>
-        <li><a href="#sec-writing"><i class="fas fa-pen-fancy"></i> 10. الكتابة</a></li>
-        <li><a href="#sec-exam"><i class="fas fa-file-signature"></i> 11. امتحان شامل</a></li>
-      </ul>
-    </aside>
-
-    <main>
-      <!-- 1. أهم الكلمات المترجمة -->
-      <div class="lesson-card" id="sec-vocab">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">1</div>
-          <h2>أهم الكلمات المترجمة (Core Vocabulary)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <!-- 1. Important Vocabulary (From Assessment Book) -->
+        <div class="section-header">
+            <h3>1. Important Vocabulary (الكلمات المترجمة)</h3>
         </div>
-        <div class="lesson-body">
-          <p class="rule" style="direction: rtl; text-align: right; margin-bottom: 15px;">هذه هي الكلمات الأكثر تكراراً في كتاب التقييمات وامتحانات الوزارة للوحدة الأولى. احفظها جيداً.</p>
-          <table class="vocab-table">
-            <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
-            <tbody>
-              <tr><td class="word">Heritage</td><td class="meaning">تراث</td></tr>
-              <tr><td class="word">Civilization</td><td class="meaning">حضارة</td></tr>
-              <tr><td class="word">Ancestors</td><td class="meaning">أسلاف / أجداد</td></tr>
-              <tr><td class="word">Monuments</td><td class="meaning">آثار / معالم تاريخية</td></tr>
-              <tr><td class="word">Merchants</td><td class="meaning">تجار</td></tr>
-              <tr><td class="word">Crossroads</td><td class="meaning">ملتقى طرق</td></tr>
-              <tr><td class="word">Determination</td><td class="meaning">تصميم / إصرار</td></tr>
-              <tr><td class="word">Sacrifices</td><td class="meaning">تضحيات</td></tr>
-              <tr><td class="word">Prosperity</td><td class="meaning">ازدهار</td></tr>
-              <tr><td class="word">Identity</td><td class="meaning">هوية</td></tr>
-              <tr><td class="word">Preserve</td><td class="meaning">يحافظ على</td></tr>
-              <tr><td class="word">Restore</td><td class="meaning">يرمم / يستعيد</td></tr>
-              <tr><td class="word">Inherit</td><td class="meaning">يرث</td></tr>
-              <tr><td class="word">Inspiration</td><td class="meaning">إلهام</td></tr>
-              <tr><td class="word">Harmony</td><td class="meaning">انسجام / وئام</td></tr>
-              <tr><td class="word">Neighborhood</td><td class="meaning">حي / جيرة</td></tr>
-            </tbody>
-          </table>
+        <table class="vocab-table">
+            <tr><th>Word</th><th>Meaning</th><th>Word</th><th>Meaning</th></tr>
+            <tr><td>Heritage</td><td>تراث</td><td>Civilization</td><td>حضارة</td></tr>
+            <tr><td>Monuments</td><td>آثار / معالم</td><td>Merchants</td><td>تجار</td></tr>
+            <tr><td>Neighborhood</td><td>حي / جيرة</td><td>Identity</td><td>هوية</td></tr>
+            <tr><td>Sacrifice</td><td>تضحية</td><td>Pride</td><td>فخر / كبرياء</td></tr>
+            <tr><td>Progress</td><td>تقدم</td><td>Determination</td><td>إصرار / عزم</td></tr>
+            <tr><td>Inspiration</td><td>إلهام</td><td>Ancestors</td><td>أسلاف / أجداد</td></tr>
+            <tr><td>Harmony</td><td>تناغم / وئام</td><td>Decoration</td><td>زخرفة / ديكور</td></tr>
+            <tr><td>Restoring</td><td>ترميم / إعادة</td><td>Preserves</td><td>يحافظ على</td></tr>
+            <tr><td>Crossroads</td><td>مفترق طرق</td><td>Demonstrate</td><td>يوضح / يبرهن</td></tr>
+            <tr><td>Greatness</td><td>عظمة</td><td>Inherit</td><td>يرث</td></tr>
+        </table>
+
+        <!-- 2. Synonyms & Antonyms -->
+        <div class="section-header">
+            <h3>2. Synonyms & Antonyms (مرادفات وأضداد)</h3>
         </div>
-      </div>
 
-      <!-- 2. تدريبات الكلمات -->
-      <div class="lesson-card collapsed" id="sec-vocab-ex">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">2</div>
-          <h2>تدريبات الكلمات (Vocabulary Exercises)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <div class="question-card" data-correct="b,c">
+            <div class="question-text">1. The patient is still alive after the accident. The synonyms of the word "alive" are ......</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkMultiple(this, 'a')"><span>a.</span> dead</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'b')"><span>b.</span> breathing</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'c')"><span>c.</span> living</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'd')"><span>d.</span> lifeless</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'e')"><span>e.</span> shallow</button>
+            </div>
         </div>
-        <div class="lesson-body">
-          <p class="rule" style="direction: rtl; text-align: right; margin-bottom: 15px;">أسئلة اختيار من متعدد (مأخوذة حرفياً من Exercises 04 بكتاب التقييمات).</p>
-          
-          <div class="exercise-box">
-            <div class="q-text">1. Ancient Egypt was famous for ______ along the Nile River.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) government</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) sacrifice</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">c) trade</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) writing</div>
-            </div>
-          </div>
 
-          <div class="exercise-box">
-            <div class="q-text">2. A park was built in the center of our ______.</div>
+        <div class="question-card" data-correct="a,e">
+            <div class="question-text">2. The country is divided, not united under one flag. The antonyms of "united" are ......</div>
             <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) heritage</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) neighborhood</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) merchant</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) monument</div>
+                <button class="option-btn" onclick="checkMultiple(this, 'a')"><span>a.</span> divided</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'b')"><span>b.</span> old</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'c')"><span>c.</span> joined</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'd')"><span>d.</span> alive</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'e')"><span>e.</span> separate</button>
             </div>
-          </div>
-
-          <div class="exercise-box">
-            <div class="q-text">3. Tourists come from everywhere to see the ancient ______.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) neighborhood</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) flood</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) profession</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">d) monuments</div>
-            </div>
-          </div>
-
-          <div class="exercise-box">
-            <div class="q-text">4. The ______ sold spices, gold, and silk from far lands.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) inspirations</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) monuments</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">c) merchants</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) trades</div>
-            </div>
-          </div>
-
-          <div class="exercise-box">
-            <div class="q-text">5. We must protect our ______ for the next generations.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) spices</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) heritage</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) pollution</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) traffic</div>
-            </div>
-          </div>
-
-          <div class="exercise-box">
-            <div class="q-text">6. Every ______ leaves monuments that show its culture and power.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) civilization</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) bridge</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) citizen</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) crossroad</div>
-            </div>
-          </div>
-
-          <div class="exercise-box">
-            <div class="q-text">7. The two main streets meet at a busy ______ in town.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) identity</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) historian</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) wall</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">d) crossroads</div>
-            </div>
-          </div>
-
-          <div class="exercise-box">
-            <div class="q-text">8. The Aswan High Dam helps to control the Nile and ______ many historical sites from floods.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) reserves</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) observes</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">c) preserves</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) deserves</div>
-            </div>
-          </div>
-
-          <div class="exercise-box">
-            <div class="q-text">9. The Great Pyramids are an amazing part of our historical ______ that we must protect.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) restoring</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) sacrifice</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) temple</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">d) heritage</div>
-            </div>
-          </div>
-
-          <div class="exercise-box">
-            <div class="q-text">10. I hope I will ______ my grandmother's wealth after her death.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) give</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) inherit</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) destroy</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) live</div>
-            </div>
-          </div>
-
-          <div class="section-title"><i class="fas fa-tasks text-warning"></i> Complete the sentences (Group A)</div>
-          <!-- إضافة تدريبات إكمال الجمل من كتاب التقييمات -->
-          <div class="exercise-box">
-            <div class="q-text">11. Ancient Egypt is known as one of the greatest ______ in history. (monuments / heritage / knowledge / merchants / civilizations)</div>
-            <div class="options-grid" style="grid-template-columns: 1fr;">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) civilizations</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">12. The Library of Alexandria gathered ______ from all over the world.</div>
-            <div class="options-grid" style="grid-template-columns: 1fr;">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) knowledge</div>
-            </div>
-          </div>
-           <div class="exercise-box">
-            <div class="q-text">13. The ______ traveled across the Nile carrying goods such as gold and spices.</div>
-            <div class="options-grid" style="grid-template-columns: 1fr;">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) merchants</div>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <!-- 3. المرادفات والأضداد -->
-      <div class="lesson-card collapsed" id="sec-syn-ant">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">3</div>
-          <h2>المرادفات والأضداد (Synonyms & Antonyms)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <div class="question-card" data-correct="b,d">
+            <div class="question-text">3. The pyramids in Egypt are very ancient monuments. The synonyms of "ancient" are ......</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkMultiple(this, 'a')"><span>a.</span> trivial</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'b')"><span>b.</span> old</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'c')"><span>c.</span> modern</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'd')"><span>d.</span> antique</button>
+                <button class="option-btn" onclick="checkMultiple(this, 'e')"><span>e.</span> united</button>
+            </div>
         </div>
-        <div class="lesson-body">
-          <p class="rule" style="direction: rtl; text-align: right; margin-bottom: 15px;">أسئلة اختيار إجابتين صحيحتين من خمسة (مطابقة لطريقة الوزارة).</p>
-          <div class="exercise-box">
-            <div class="q-text">1. The patient is still alive after the accident. The synonyms of the word "alive" are ......</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) dead</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) breathing</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">c) living</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) lifeless</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">e) shallow</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">2. The country is divided, not united under one flag. The antonyms of "united" are ......</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) divided</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) old</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) joined</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) alive</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">e) separate</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">3. The pyramids in Egypt are very ancient monuments. The synonyms of "ancient" are ......</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) trivial</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) old</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) modern</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">d) antique</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">e) united</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- 4. المشتقات -->
-      <div class="lesson-card collapsed" id="sec-deriv">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">4</div>
-          <h2>المشتقات (Derivatives)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <!-- 3. Derivatives -->
+        <div class="section-header">
+            <h3>3. Derivatives (المشتقات)</h3>
         </div>
-        <div class="lesson-body">
-          <div class="grammar-box">
-            <h4>Derivatives</h4>
-            <p class="rule">هي كلمات تتغير حسب موقعها في الجملة (اسم، فعل، صفة، حال). <br>مثال: <b>Civilize</b> (فعل) -> <b>Civilization</b> (اسم) -> <b>Civilized</b> (صفة).</p>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">1. The ancient Egyptians were great ________. (civilize)</div>
+        <div class="question-card" data-correct="a">
+            <div class="question-text">1. We should use ______ technology to increase its products.</div>
             <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) civilization</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) civilians</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">c) civilizers (or civilized people)</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) civilly</div>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> advanced</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> advance</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> advancement</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> advancer</button>
             </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">2. We should use ________ technology to increase its products. (advance)</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) advance</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) advanced</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) advancement</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) advancing</div>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <!-- 5. السوابق واللواحق -->
-      <div class="lesson-card collapsed" id="sec-prefix">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">5</div>
-          <h2>السوابق واللواحق (Prefixes & Suffixes)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <!-- 4. Prefixes & Suffixes -->
+        <div class="section-header">
+            <h3>4. Prefixes & Suffixes (السوابق واللواحق)</h3>
         </div>
-        <div class="lesson-body">
-          <div class="grammar-box">
-            <h4>Prefixes & Suffixes</h4>
-            <p class="rule"><b>Prefixes (السوابق):</b> تأتي في بداية الكلمة وتغير معناها (مثل: un-, dis-, re-, pre-). <br>
-            <b>Suffixes (اللواحق):</b> تأتي في نهاية الكلمة وتحدد نوعها (مثل: -ment اسم، -ful صفة، -ly حال).</p>
-            <div class="example">Unforgettable = un (not) + forget + able (able to be).</div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">1. The prefix "un-" in "unforgettable" means:</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) again</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) not</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) before</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) too much</div>
+        <div class="question-card">
+            <div class="question-text">Find the mistake and correct it:</div>
+            <div class="question-text" style="margin-top: 15px; font-size: 16px; color: #555;">
+                1. Farmers <strong>rise</strong> sheep and cows to get meat and milk. <br>
+                <span style="color: var(--correct); font-weight: bold; font-size: 14px;">Correct: raise</span>
             </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">2. The word "restoration" contains the suffix "-tion" which makes it a:</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) Noun</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) Verb</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) Adjective</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) Adverb</div>
+            <div class="question-text" style="margin-top: 10px; font-size: 16px; color: #555;">
+                2. The sun <strong>raises</strong> in the east and sets in the west. <br>
+                <span style="color: var(--correct); font-weight: bold; font-size: 14px;">Correct: rises</span>
             </div>
-          </div>
+            <div class="question-text" style="margin-top: 10px; font-size: 16px; color: #555;">
+                3. There are a lot of problems that have <strong>aroused</strong> recently. <br>
+                <span style="color: var(--correct); font-weight: bold; font-size: 14px;">Correct: arisen</span>
+            </div>
         </div>
-      </div>
 
-      <!-- 6. المصطلحات -->
-      <div class="lesson-card collapsed" id="sec-colloc">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">6</div>
-          <h2>المصطلحات (Collocations)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <!-- 5. Idioms & Expressions -->
+        <div class="section-header">
+            <h3>5. Idioms & Expressions (المصطلحات)</h3>
         </div>
-        <div class="lesson-body">
-          <div class="grammar-box">
-            <h4>Collocations</h4>
-            <p class="rule">كلمات تأتي مع بعضها دائماً لتكوين معنى (مثل: take pride in, make sacrifices, preserve heritage).</p>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">1. We must ________ our heritage for future generations.</div>
+        <div class="question-card" data-correct="b">
+            <div class="question-text">1. He takes pride ______ getting the full mark.</div>
             <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) preserve</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) destroy</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) ignore</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) forget</div>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> at</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> in</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> on</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> of</button>
             </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">2. Citizens take ________ in their history and achievements.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) progress</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) pride</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) demonstrate</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) museum</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">3. Parents make many ________ to give their children better lives.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) civilizations</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) temples</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">c) sacrifices</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) papyrus</div>
-            </div>
-          </div>
         </div>
-      </div>
+        <div class="question-card" data-correct="c">
+            <div class="question-text">2. We always remember the sacrifices of our ______ who built our great civilization.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> neighborhoods</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> merchants</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> ancestors</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> monuments</button>
+            </div>
+        </div>
 
-      <!-- 7. القواعد بالتفصيل -->
-      <div class="lesson-card collapsed" id="sec-grammar">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">7</div>
-          <h2>القواعد بالتفصيل (Grammar)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <!-- 6. Grammar -->
+        <div class="section-header">
+            <h3>6. Grammar (القواعد بالتفصيل)</h3>
         </div>
-        <div class="lesson-body">
-          <div class="grammar-box">
-            <h4>Past Simple vs. Past Continuous (الماضي البسيط والماضي المستمر)</h4>
-            <p class="rule"><b>Past Simple:</b> حدث بدأ وانتهى في الماضي (كلمة دالة: yesterday, ago, last year).<br>
-            <b>Past Continuous:</b> حدث كان مستمراً في الماضي (كلمة دالة: while, when). <br>
-            <b>الحالات الشاذة:</b> إذا بدأت الجملة بـ <b>While</b> نستخدم Past Continuous في الجزء الأول، وإذا بدأت بـ <b>When</b> نستخدم Past Simple في الجزء الأول.</p>
-            <div class="example">While I <b>was walking</b> home, I <b>saw</b> a shooting star.</div>
-            <div class="example">My mother <b>prepared</b> a delicious meal yesterday.</div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">1. While I ________ home, I saw a shooting star.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) walk</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) walked</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">c) was walking</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) were walking</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">2. In 2017, my parents ______ to Luxor.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) are moving</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) will move</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) move</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">d) moved</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">3. My mother ______ a delicious meal yesterday.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) has prepared</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) prepared</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) prepares</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) will prepare</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">4. Ali always ______ to work when he was young.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) walked</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) walks</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) is walking</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) was walking</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- 8. الترجمة (قبل القراءة) -->
-      <div class="lesson-card collapsed" id="sec-trans">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">8</div>
-          <h2>الترجمة (Translation)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <div class="grammar-box">
+            <h4>Past Simple & Past Continuous</h4>
+            <ul>
+                <li><strong>Past Simple:</strong> Use for completed past actions (e.g., The Egyptians <em>taught</em> the world).</li>
+                <li><strong>Past Continuous:</strong> Use (was/were + v-ing) for an action in progress in the past (e.g., At 2 o'clock, Sama <em>was returning</em> home).</li>
+                <li><strong>While / As / Just as:</strong> Followed by Past Continuous (e.g., While Rodayna <em>was going</em> home, she met her friends).</li>
+                <li><strong>When:</strong> Followed by Past Simple (e.g., When Ahmed <em>arrived</em> home, mother was serving lunch).</li>
+                <li><strong>During:</strong> Followed by a noun (e.g., <em>During the match</em>, the player fell).</li>
+                <li><strong>Stative Verbs:</strong> Not used in continuous form (be, love, like, want, look = seem, have = possess).</li>
+                <li><strong>Exceptions:</strong> "While we were in the park, our children were playing around us." (Not: Were being...).</li>
+            </ul>
         </div>
-        <div class="lesson-body">
-          <div class="exercise-box">
-            <div class="q-text">1. طموحك لا يكفي، لذا يجب عليك بذل قصارى جهدك لتحقيق جميع أهدافك.</div>
-            <div class="options-grid" style="grid-template-columns: 1fr;">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) Ambitious is not enough, so you must do your best to achieve all your goals.</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) Ambition is not enough, so you must make your best to achieve all your goals.</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">c) Ambition is not enough, so you must do your best to achieve all your goals and ambitions in life.</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) Ambition is not enough, so you must do your best to achieve all your goals.</div>
+
+        <!-- Grammar Questions -->
+        <div class="question-card" data-correct="c">
+            <div class="question-text">1. In 2017, my parents ...... to Luxor.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> are moving</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> will move</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> moved</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> move</button>
             </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">2. يجب تشجيع الأطفال والكبار على حد سواء لتجنب تناول الأطعمة السريعة لأنها ضارة بالصحة.</div>
-            <div class="options-grid" style="grid-template-columns: 1fr;">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) Both children and adults should be encouraged to avoid eating fast foods because they are harmful to healthy and lead to obesity.</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) Both children and adults should be encouraged to avoid eating fast foods because they are harmful to health and lead to obesity.</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) Both children and adults should be encouraged to avoid eating fast foods because they are useful to health and lead to obesity.</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) Both children and adults should be encouraged to avoid eating fast foods because they are harmful to health.</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">3. يجب علينا ترشيد الاستهلاك في المياه والكهرباء والطعام لمواجهة ارتفاع الأسعار.</div>
-            <div class="options-grid" style="grid-template-columns: 1fr;">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) We must rationalize consumption in water, electricity and food so as to face the rise in prizes.</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) We must rationalize consumption in water, electricity and food so as to face the rise in prices.</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) We must increase consumption in water, electricity and food so as to face the rise in prices.</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) We must reduce consumption in water, electricity and food so as to face the rise in prices.</div>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <!-- 9. القراءة -->
-      <div class="lesson-card collapsed" id="sec-reading">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">9</div>
-          <h2>القراءة (Reading - The Old Man and the Sea)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <div class="question-card" data-correct="a">
+            <div class="question-text">2. The TV presenter ...... to her viewers in a very friendly way.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> talked</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> are talking</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> talk</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> talking</button>
+            </div>
         </div>
-        <div class="lesson-body">
-          <h3 class="section-title">Read and Answer:</h3>
-          <div class="reading-passage">
-            <p><b>Hemingway used Santiago's eyes to show his inner spirit. Discuss giving your opinion.</b></p>
-            <p>His eyes were bright and full of life, showing that he was strong and hopeful inside. In what ways does Santiago represent courage even before the big journey begins? He keeps fishing every day without giving up, even when he catches nothing.</p>
-          </div>
-          <div class="exercise-box mt-3">
-            <div class="q-text">1. The villagers think that Santiago was unlucky. Do you think they were right? Why?</div>
-            <div class="options-grid" style="grid-template-columns: 1fr;">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) No, he was not unlucky. He was brave and worked hard. Real luck comes to those who don't give up.</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) Yes, they were right because he didn't catch any fish for 84 days.</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) Yes, because the sea was against him.</div>
+
+        <div class="question-card" data-correct="b">
+            <div class="question-text">3. Someone stole the mobile while I ______.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> slept</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> was sleeping</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> sleeping</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> was slept</button>
             </div>
-          </div>
-          <div class="exercise-box mt-3">
-            <div class="q-text">2. In what way does Santiago's hut reflect his personality?</div>
-            <div class="options-grid" style="grid-template-columns: 1fr;">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) It is big and full of expensive things.</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) It is simple and clean, just like him. He doesn't need much to be happy.</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) It is dirty and messy because he is always at sea.</div>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <!-- 10. الكتابة -->
-      <div class="lesson-card collapsed" id="sec-writing">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">10</div>
-          <h2>الكتابة (Writing)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <div class="question-card" data-correct="d">
+            <div class="question-text">4. It is time we ______ our lesson.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> study</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> will study</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> studying</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> studied</button>
+            </div>
         </div>
-        <div class="lesson-body">
-          <div class="grammar-box">
-            <h4>Write an essay of about 150 words: A Strange Day in My Life</h4>
-            <p class="rule">استخدم <b>Past Simple</b> و <b>Past Continuous</b> في كتابة القصة. يجب أن تصف الأجواء، ماذا كنت تفعل، وماذا حدث فجأة.</p>
-            <div class="example">
-              <b>Example Starter:</b><br>
-              It was a cold winter morning. I was walking to school, listening to music, and thinking about my exams. The streets were empty. Suddenly, I saw a strange light in the sky. While I was looking at it, my phone rang...
+
+        <div class="question-card" data-correct="a">
+            <div class="question-text">5. I'd rather you ______ now. I'm busy.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> didn't come</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> coming</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> don't come</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> doesn't come</button>
             </div>
-          </div>
         </div>
-      </div>
 
-      <!-- 11. امتحان شامل -->
-      <div class="lesson-card collapsed" id="sec-exam">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="section-number">11</div>
-          <h2>امتحان شامل (Comprehensive Exam)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
+        <!-- 7. Translation (Before Reading as requested) -->
+        <div class="section-header">
+            <h3>7. Translation (الترجمة)</h3>
         </div>
-        <div class="lesson-body">
-          <p class="rule" style="direction: rtl; text-align: right; margin-bottom: 15px;">امتحان نهائي على الوحدة (10 أسئلة متنوعة) لجمع كل ما تعلمته.</p>
-          
-          <div class="exercise-box">
-            <div class="q-text">1. The ancient Egyptians used hieroglyphs to ________ history.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) record</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) destroy</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) forget</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) hide</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">2. Stories of success can ________ people to work harder and succeed.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) inherit</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) prevent</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) respect</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">d) inspire</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">3. The pyramids show the ________ of our ancient Egyptian civilization.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) trade</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) greatness</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) crossroads</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) neighborhood</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">4. The TV presenter ______ to her viewers in a very friendly way yesterday.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) are talking</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) talk</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">c) talked</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) talking</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">5. Choose the word that is similar in meaning to "Prosperity":</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) Poverty</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) Wealth</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) Failure</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) Sadness</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">6. Choose the word that is opposite in meaning to "Ancient":</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) Old</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) Modern</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) Antique</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) Historic</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">7. The government is working on ______ the old Islamic buildings in Cairo.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) destroying</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) restoring</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) polluting</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) exchanging</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">8. A strong sense of national ______ is important for a country to feel united.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) spices</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) hieroglyphs</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) difficulty</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">d) identity</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">9. Your cousin ______ at the community centre last summer.</div>
-            <div class="options-grid">
-              <div class="option-btn" onclick="checkAnswer(this, false)">a) is helping</div>
-              <div class="option-btn" onclick="checkAnswer(this, true)">b) helped</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) helps</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">d) help</div>
-            </div>
-          </div>
-          <div class="exercise-box">
-            <div class="q-text">10. Complete: We always remember the sacrifices of our ______ who built our great civilization. (ancestors / harmony / inspiration)</div>
-            <div class="options-grid" style="grid-template-columns: 1fr;">
-              <div class="option-btn" onclick="checkAnswer(this, true)">a) ancestors</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">b) harmony</div>
-              <div class="option-btn" onclick="checkAnswer(this, false)">c) inspiration</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- أزرار التنقل -->
-      <div class="nav-buttons">
-        <a href="/lessons.html" class="btn-lesson gold">🏠 رجوع للدروس</a>
-        <a href="/lessons/sec1/unit2.html" class="btn-lesson">الوحدة التالية →</a>
-      </div>
-
-    </main>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function toggleLesson(header) {
-      const body = header.nextElementSibling;
-      const icon = header.querySelector('.toggle-icon');
-      body.classList.toggle('collapsed');
-      icon.style.transform = body.classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(180deg)';
-    }
-
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        // Smooth scroll
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
         
-        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
+        <div class="question-card" data-correct="c">
+            <div class="question-text">1. الطموح وحده لا يكفي لذا يجب عليك بذل قصارى جهدك لتحقيق جميع أهدافك وطموحاتك في الحياة.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> Ambitious is not enough, so you must do your best...</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> Ambition is not enough, so you must make your best...</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> Ambition is not enough, so you must do your best to achieve all your goals and ambitions in life.</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> Ambition is not enough, so you must do your best to achieve all your goals and ambitions in live.</button>
+            </div>
+        </div>
 
-    // دالة تصحيح الإجابات الذكية
-    function checkAnswer(element, isCorrect) {
-      const parent = element.parentElement;
-      
-      // مسح الألوان القديمة
-      Array.from(parent.children).forEach(child => {
-        child.classList.remove('correct', 'wrong');
-      });
+        <div class="question-card" data-correct="b">
+            <div class="question-text">2. يجب تشجيع الأطفال والكبار على حد سواء لتجنب تناول الأطعمة السريعة لأنها ضارة بالصحة وتؤدى إلى السمنة.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> ...because they are harmful to healthy and lead to obesity.</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> ...because they are harmful to health and lead to obesity.</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> ...because they are useful to health and lead to obesity.</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> ...because they are harmful to health and lead to obelisk.</button>
+            </div>
+        </div>
 
-      if (isCorrect) {
-        element.classList.add('correct');
-      } else {
-        element.classList.add('wrong');
-        // إظهار الإجابة الصحيحة تلقائياً للطالب ليتعلم
-        Array.from(parent.children).forEach(child => {
-          if (child.getAttribute('onclick') && child.getAttribute('onclick').includes('true')) {
-            child.classList.add('correct');
-          }
-        });
-      }
-    }
-  </script>
+        <div class="question-card" data-correct="d">
+            <div class="question-text">3. يجب علينا ترشيد الاستهلاك في المياه والكهرباء والطعام وذلك لمواجهة ارتفاع الأسعار.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> ...face the rise in prizes.</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> ...increase consumption in water, electricity and food...</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> ...reduce consumption in water, electricity and food...</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> ...rationalize consumption... so as to face the rise in prices.</button>
+            </div>
+        </div>
+
+        <!-- 8. Reading -->
+        <div class="section-header">
+            <h3>8. Reading (القراءة)</h3>
+        </div>
+
+        <div class="reading-passage">
+            <p>Egypt is a land with a heart that has been beating for thousands of years. We are proud to call it our home. It is a place where the past and the present meet in harmony.</p>
+            <p>Egypt has always played an important role in the world. Our ancestors built one of the greatest civilizations in history. They gave the world knowledge in writing, mathematics, and medicine. The hieroglyphs carved into temple walls were not just beautiful art; they were a way to record history. The Library of Alexandria once gathered knowledge from all over the world, making Egypt a center of learning.</p>
+            <p>Egypt was also a crossroads for trade. Merchants traveled along the Nile and across the deserts, carrying goods such as gold, spices, papyrus, and grain. Our land was a bridge where people met and exchanged ideas, making Egypt a source of inspiration for many civilizations.</p>
+            <p>Today, Egypt continues to grow. Our cities rise with modern buildings, while our historical monuments still stand with pride. We are building new roads, bridges, and neighborhoods that show the world our determination to progress. From the Pyramids of Giza to the Grand Egyptian Museum, we continue to honor our history while shaping our future.</p>
+            <p>We take pride in our country, not only for its beauty, but also because we understand the sacrifices of our ancestors. We work hard to make it greater for generations to come. Every citizen has a role to play – protecting our heritage, contributing to our economy, and sharing our culture with the world.</p>
+        </div>
+
+        <!-- Reading Questions -->
+        <div class="question-card" data-correct="b">
+            <div class="question-text">1. In what ways did Ancient Egyptians contribute to world knowledge?</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> by building modern bridges and roads</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> by writing mathematics, art, and medicine</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> by trading oil with other countries</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> by inventing computers and mobile phones</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+            <div class="question-text">2. According to the passage, the hieroglyphs were a ______.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> type of trade product</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> form of beautiful decoration</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> a way to record history</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> type of building material</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="a">
+            <div class="question-text">3. What specific action is mentioned that demonstrates Egypt's focus on modern development?</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> Building new roads, bridges, and neighborhoods</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> Protecting its heritage</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> Recording history with hieroglyphs</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> Traveling along the Nile</button>
+            </div>
+        </div>
+
+        <div class="question-card" data-correct="c">
+            <div class="question-text">4. The main idea of this passage is to show ______.</div>
+            <div class="options-grid">
+                <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> How Egypt's ancient civilization was superior to all others</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> The challenges Egypt faces with modern development</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> The proud link between Egypt's ancient past and its modern progress</button>
+                <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> The sacrifices made by ancient Egyptians</button>
+            </div>
+        </div>
+
+        <!-- 9. Writing -->
+        <div class="section-header">
+            <h3>9. Writing (الكتابة)</h3>
+        </div>
+        <div class="question-card">
+            <div class="question-text" style="color: var(--accent);">
+                <strong>Topic:</strong> A Strange Day in My Life<br><br>
+                <strong>Instructions:</strong> Write a short narrative paragraph of about (120 - 150) words using Past Simple and Past Continuous. Describe what happened, what you were doing, and how the day ended. Use time expressions like while, when, during, suddenly, etc.
+            </div>
+            <textarea style="width: 100%; height: 150px; padding: 15px; border-radius: 10px; border: 2px solid #ddd; font-family: 'Poppins', sans-serif; font-size: 16px; resize: vertical;" placeholder="Start writing your essay here..."></textarea>
+        </div>
+
+        <!-- 10. Comprehensive Exam -->
+        <div class="exam-section">
+            <div class="section-header">
+                <h3>10. Comprehensive Exam (امتحان شامل)</h3>
+            </div>
+
+            <div class="question-card" data-correct="b">
+                <div class="question-text">1. A park was built in the center of our ______.</div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> heritage</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> neighborhood</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> merchant</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> monument</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-correct="d">
+                <div class="question-text">2. Every ______ leaves monuments that show its culture and power.</div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> bridge</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> citizen</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> crossroad</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> civilization</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-correct="a">
+                <div class="question-text">3. The Aswan High Dam helps to control the Nile, but it also ______ many historical sites from floods.</div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> preserves</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> reserves</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> observes</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> deserves</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-correct="c">
+                <div class="question-text">4. Ali always ______ to work when he was young.</div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> walks</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> is walking</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> walked</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> was walking</button>
+                </div>
+            </div>
+
+            <div class="question-card" data-correct="b">
+                <div class="question-text">5. The government protects every ______ from harm and danger.</div>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>a.</span> mistake</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>b.</span> citizen</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>c.</span> hieroglyphs</button>
+                    <button class="option-btn" onclick="checkAnswer(this)"><span>d.</span> flood</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function checkAnswer(button) {
+            const card = button.closest('.question-card');
+            if (card.classList.contains('answered')) return;
+            
+            const correct = card.getAttribute('data-correct');
+            const selected = button.querySelector('span').innerText.replace('.', '').trim();
+            
+            const allOptions = card.querySelectorAll('.option-btn');
+            allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            if (selected === correct) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('wrong');
+                allOptions.forEach(opt => {
+                    if (opt.querySelector('span').innerText.replace('.', '').trim() === correct) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            card.classList.add('answered');
+        }
+
+        function checkMultiple(button, letter) {
+            const card = button.closest('.question-card');
+            if (card.classList.contains('answered')) return;
+            
+            const correct = card.getAttribute('data-correct').split(',');
+            button.classList.toggle('selected');
+            
+            const selectedBtns = card.querySelectorAll('.option-btn.selected');
+            if (selectedBtns.length === 2) {
+                card.classList.add('answered');
+                card.querySelectorAll('.option-btn').forEach(opt => opt.style.pointerEvents = 'none');
+                
+                let allCorrect = true;
+                selectedBtns.forEach(btn => {
+                    const l = btn.querySelector('span').innerText.replace('.', '').trim();
+                    if (!correct.includes(l)) {
+                        btn.classList.add('wrong');
+                        allCorrect = false;
+                    } else {
+                        btn.classList.add('correct');
+                    }
+                });
+                
+                if (!allCorrect) {
+                    card.querySelectorAll('.option-btn').forEach(btn => {
+                        const l = btn.querySelector('span').innerText.replace('.', '').trim();
+                        if (correct.includes(l) && !btn.classList.contains('selected')) {
+                            btn.classList.add('correct');
+                        }
+                    });
+                }
+            }
+        }
+    </script>
 </body>
 </html>

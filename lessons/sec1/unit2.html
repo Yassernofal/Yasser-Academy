@@ -3,75 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unit 2: Hands Help, Hearts Care – أولى ثانوي | أكاديمية مستر ياسر نوفل</title>
+  <title>Unit 2: A Healthy Lifestyle | أكاديمية مستر ياسر نوفل</title>
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; }
-    .navbar-custom { background: rgba(10, 31, 68, 0.95) !important; padding: 14px 0; z-index: 1050; }
-    .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
-    .navbar-brand .brand-name span { color: #ffb347; }
+    body { font-family: 'Cairo', 'El Messiri', serif; background: #f4f7f6; padding-top: 80px; color: #333; }
+    
+    .navbar-custom { background: rgba(10, 31, 68, 0.98) !important; padding: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    .navbar-brand { display: flex; align-items: center; gap: 10px; }
+    .navbar-brand img { height: 45px; border-radius: 50%; border: 2px solid #f7e05e; }
+    .navbar-brand .brand-text { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.3rem; color: #f7e05e; }
+    
+    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 50px 20px; border-radius: 0 0 30px 30px; margin-bottom: 30px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1);}
+    .hero-unit .unit-badge { display: inline-block; background: #f7e05e; color: #0a1f44; padding: 5px 20px; border-radius: 20px; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; letter-spacing: 1px; }
+    .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.8rem; margin-bottom: 10px; direction: ltr; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero-unit .arabic-title { font-size: 1.3rem; color: #b0c4de; font-family: 'El Messiri', serif; }
 
-    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; text-align: center;}
-    .hero-unit .unit-badge { display: inline-block; background: #f7e05e; color: #0a1f44; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; }
-    .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; margin-bottom: 10px; direction: ltr; }
-    .hero-unit .arabic-title { font-size: 1.2rem; color: #b0c4de; }
-
-    .layout-wrapper { display: grid; grid-template-columns: 280px 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+    .layout-wrapper { display: grid; grid-template-columns: 280px 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; padding: 0 20px 50px; }
     @media (max-width: 992px) { .layout-wrapper { grid-template-columns: 1fr; } }
 
-    .sidebar { position: sticky; top: 100px; height: fit-content; background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
-    .sidebar h3 { color: #0a1f44; font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f7e05e; direction: rtl; text-align: right; }
+    .sidebar { position: sticky; top: 100px; height: fit-content; background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.05); border-top: 4px solid #f7b731; }
+    .sidebar h3 { color: #0a1f44; font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f0f0f0; font-family: 'El Messiri', serif; }
     .sidebar ul { list-style: none; padding: 0; }
     .sidebar li { margin-bottom: 8px; }
-    .sidebar a { display: flex; align-items: center; gap: 10px; padding: 10px 15px; border-radius: 12px; color: #555; text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.9rem; direction: ltr; text-align: left; }
-    .sidebar a:hover, .sidebar a.active { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; }
+    .sidebar a { display: flex; align-items: center; gap: 10px; padding: 12px 15px; border-radius: 12px; color: #555; text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.95rem; }
+    .sidebar a:hover, .sidebar a.active { background: #0a1f44; color: #f7e05e; transform: translateX(-5px); }
 
-    .lesson-card { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #f7e05e; transition: 0.3s; }
-    .lesson-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid #f7e05e; cursor: pointer; }
-    .lesson-number { background: #0a1f44; color: #f7e05e; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Cinzel', serif; font-size: 1.2rem; flex-shrink: 0; }
-    .lesson-header h2 { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 1.4rem; margin: 0; flex-grow: 1; direction: ltr; text-align: left; }
+    .lesson-card { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-right: 6px solid #0a1f44; transition: 0.3s; }
+    .lesson-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .lesson-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px dashed #e0e0e0; cursor: pointer; }
+    .section-number { background: #0a1f44; color: #f7e05e; width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Cinzel', serif; font-size: 1.3rem; flex-shrink: 0; transform: rotate(-5deg); }
+    .lesson-header h2 { font-family: 'El Messiri', serif; color: #0a1f44; font-size: 1.5rem; margin: 0; flex-grow: 1; font-weight: 800; }
     .lesson-header .toggle-icon { color: #f7b731; font-size: 1.3rem; transition: 0.3s; }
     .lesson-body.collapsed { display: none; }
 
-    .section-title { color: #0a1f44; font-weight: 800; font-size: 1.2rem; margin: 25px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #f7e05e; direction: ltr; text-align: left; }
-
-    .reading-passage { background: #f8f9fa; border-radius: 15px; padding: 25px; font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.8; color: #333; border-left: 4px solid #0a1f44; direction: ltr; text-align: left; }
+    .section-title { color: #0a1f44; font-weight: 800; font-size: 1.3rem; margin: 25px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #f7e05e; font-family: 'Cairo', sans-serif; display: flex; align-items: center; gap: 10px; }
+    
+    .reading-passage { background: #fdfdfd; border-radius: 12px; padding: 25px; font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.9; color: #2c3e50; border: 1px solid #eaeaea; border-left: 5px solid #f7b731; direction: ltr; text-align: left; }
     .reading-passage p { margin-bottom: 15px; }
 
-    .vocab-table { width: 100%; border-collapse: collapse; margin-top: 15px; direction: ltr; }
-    .vocab-table th { background: #0a1f44; color: #f7e05e; padding: 12px; text-align: left; font-family: 'Cinzel', serif; }
-    .vocab-table td { padding: 12px; border-bottom: 1px solid #e9ecef; }
+    .vocab-table { width: 100%; border-collapse: collapse; margin-top: 15px; direction: ltr; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    .vocab-table th { background: #0a1f44; color: #f7e05e; padding: 15px; text-align: left; font-family: 'Cinzel', serif; font-size: 1.1rem; }
+    .vocab-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; font-size: 1.05rem; }
     .vocab-table tr:nth-child(even) { background: #f8f9fa; }
-    .vocab-table .word { font-weight: 800; color: #0a1f44; direction: ltr; text-align: left; }
-    .vocab-table .meaning { color: #555; direction: rtl; text-align: right; }
+    .vocab-table .word { font-weight: 800; color: #0a1f44; }
+    .vocab-table .meaning { color: #27ae60; direction: rtl; text-align: right; font-weight: 600; }
 
-    .grammar-box { background: linear-gradient(135deg, #fef9e7, #fffbf0); border: 2px solid #f7e05e; border-radius: 15px; padding: 25px; margin: 20px 0; }
-    .grammar-box h4 { color: #0a1f44; font-weight: 800; margin-bottom: 15px; direction: ltr; text-align: left; }
-    .grammar-box .example { background: #fff; border-radius: 10px; padding: 12px 18px; margin: 10px 0; font-family: 'Playfair Display', serif; color: #0a1f44; border-left: 3px solid #f7b731; direction: ltr; text-align: left; }
-    .grammar-box .rule { color: #333; margin: 10px 0; line-height: 1.7; direction: ltr; text-align: left; }
+    .grammar-box { background: #fffdf5; border: 1px solid #f7e05e; border-radius: 12px; padding: 25px; margin: 20px 0; box-shadow: inset 0 0 10px rgba(247, 224, 94, 0.1); }
+    .grammar-box h4 { color: #0a1f44; font-weight: 800; margin-bottom: 15px; font-family: 'Cairo', sans-serif; font-size: 1.2rem; direction: ltr; text-align: left; }
+    .grammar-box .example { background: #fff; border-radius: 8px; padding: 12px 18px; margin: 10px 0; font-family: 'Playfair Display', serif; color: #0a1f44; border-left: 3px solid #f7b731; direction: ltr; text-align: left; box-shadow: 0 2px 5px rgba(0,0,0,0.02); font-size: 1.05rem; }
+    .grammar-box .rule { color: #444; margin: 10px 0; line-height: 1.8; font-family: 'Cairo', sans-serif; font-size: 1rem; }
 
-    .quiz-section { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-top: 5px solid #f7b731; }
-    .question-box { background: #f8f9fa; border-radius: 15px; padding: 20px; margin: 15px 0; border: 2px solid #e9ecef; }
-    .question-box .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 12px; direction: ltr; text-align: left; }
-    .question-box .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: ltr; }
-    .question-box .option { background: #fff; border-radius: 10px; padding: 10px 15px; cursor: pointer; transition: 0.3s; border: 2px solid #e9ecef; direction: ltr; text-align: left; }
-    .question-box .option:hover { background: #e9ecef; border-color: #f7b731; }
-    .question-box .option.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: bold; }
-    .question-box .option.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+    .exercise-box { background: #f8f9fa; border-radius: 12px; padding: 20px; margin: 15px 0; border: 1px solid #e0e0e0; }
+    .exercise-box .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 15px; direction: ltr; text-align: left; font-size: 1.1rem; font-family: 'Playfair Display', serif; }
+    .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: ltr; }
+    .option-btn { background: #fff; border: 2px solid #dcdcdc; border-radius: 8px; padding: 10px 15px; cursor: pointer; transition: 0.2s; text-align: left; font-family: 'Cairo', sans-serif; font-weight: 600; color: #333; }
+    .option-btn:hover { border-color: #f7b731; background: #fffbf0; }
+    .option-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+    .option-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
 
-    .btn-lesson { background: #0a1f44; color: #f7e05e; padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; margin: 5px; }
-    .btn-lesson:hover { background: #f7b731; color: #0a1f44; text-decoration: none; }
-    .btn-lesson.gold { background: #f7e05e; color: #0a1f44; }
-
+    .btn-lesson { background: #0a1f44; color: #f7e05e; padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; margin: 5px; font-family: 'Cairo', sans-serif; }
+    .btn-lesson:hover { background: #f7b731; color: #0a1f44; box-shadow: 0 5px 15px rgba(247, 183, 49, 0.4); transform: translateY(-2px); }
     .nav-buttons { display: flex; justify-content: space-between; margin-top: 40px; flex-wrap: wrap; gap: 15px; }
 
     @media (max-width: 768px) {
-      .hero-unit h1 { font-size: 1.8rem; }
-      .lesson-header h2 { font-size: 1.1rem; }
-      .question-box .options { grid-template-columns: 1fr; }
+      .hero-unit h1 { font-size: 2rem; }
+      .options-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -80,128 +81,626 @@
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/index.html">
-        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
+        <img src="/assets/images/logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/45?text=Y'">
+        <span class="brand-text">Mr. Yasser Nofal</span>
       </a>
       <div class="ms-auto">
-        <a href="/lessons.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← كل الوحدات</a>
+        <a href="/lessons.html" class="btn btn-outline-warning btn-sm fw-bold px-3 rounded-pill">← العودة للوحدات</a>
       </div>
     </div>
   </nav>
 
   <div class="hero-unit">
     <span class="unit-badge">UNIT 2</span>
-    <h1>Hands Help, Hearts Care</h1>
-    <p class="arabic-title">أيادٍ تساعد وقلوبٌ ترعى</p>
+    <h1>A Healthy Lifestyle</h1>
+    <p class="arabic-title">نمط حياة صحي - بناءً على تقييمات الوزارة</p>
   </div>
 
   <div class="layout-wrapper">
-
     <aside class="sidebar">
-      <h3>📚 محتويات الوحدة</h3>
+      <h3><i class="fas fa-list-ul text-warning"></i> محتويات الوحدة</h3>
       <ul>
-        <li><a href="#lesson1" class="active"><i class="fas fa-book"></i> Lesson 1: The Power of Kindness</a></li>
-        <li><a href="#lesson2"><i class="fas fa-language"></i> Lesson 2: Grammar</a></li>
-        <li><a href="#quiz"><i class="fas fa-tasks"></i> Unit Quiz</a></li>
+        <li><a href="#sec-vocab" class="active"><i class="fas fa-book-open"></i> 1. أهم الكلمات المترجمة</a></li>
+        <li><a href="#sec-vocab-ex"><i class="fas fa-spell-check"></i> 2. تدريبات الكلمات</a></li>
+        <li><a href="#sec-syn-ant"><i class="fas fa-exchange-alt"></i> 3. المرادفات والأضداد</a></li>
+        <li><a href="#sec-deriv"><i class="fas fa-seedling"></i> 4. المشتقات</a></li>
+        <li><a href="#sec-prefix"><i class="fas fa-puzzle-piece"></i> 5. السوابق واللواحق</a></li>
+        <li><a href="#sec-colloc"><i class="fas fa-link"></i> 6. المصطلحات</a></li>
+        <li><a href="#sec-grammar"><i class="fas fa-language"></i> 7. القواعد بالتفصيل</a></li>
+        <li><a href="#sec-trans"><i class="fas fa-globe"></i> 8. الترجمة</a></li>
+        <li><a href="#sec-reading"><i class="fas fa-paragraph"></i> 9. القراءة</a></li>
+        <li><a href="#sec-writing"><i class="fas fa-pen-fancy"></i> 10. الكتابة</a></li>
+        <li><a href="#sec-exam"><i class="fas fa-file-signature"></i> 11. امتحان شامل</a></li>
       </ul>
     </aside>
 
     <main>
-
-      <!-- Lesson 1: Reading & Vocabulary -->
-      <div class="lesson-card" id="lesson1">
+      <!-- 1. الكلمات -->
+      <div class="lesson-card" id="sec-vocab">
         <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">1</div>
-          <h2>The Power of Kindness</h2>
+          <div class="section-number">1</div>
+          <h2>أهم الكلمات المترجمة (Core Vocabulary)</h2>
           <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
         <div class="lesson-body">
-          <h3 class="section-title">📖 Reading</h3>
-          <div class="reading-passage">
-            <p>Kindness is a language that everyone understands, even without words. A simple smile, a helping hand, or a few encouraging words can change someone's entire day. In our fast-paced world, it is easy to forget the impact of small gestures of compassion.</p>
-            <p>When we help others, we do not just make them feel better; we also improve our own well-being. Scientific studies have shown that acts of kindness release chemicals in the brain that make us feel happy and reduce stress. This is why volunteers often say they get more than they give.</p>
-            <p>There are countless ways to show kindness. You can help an elderly neighbor carry their groceries, listen to a friend who is having a bad day, or simply share a meal with someone in need. Every act, no matter how small, creates a ripple effect of positivity that spreads through communities.</p>
-            <p>Schools and workplaces are perfect places to start. By creating a culture of empathy and support, we can build environments where everyone feels valued and respected. Remember, kindness is not a sign of weakness; it is a sign of strength and emotional intelligence.</p>
-          </div>
-
-          <h3 class="section-title">💡 Vocabulary</h3>
+          <p class="rule" style="direction: rtl; text-align: right; margin-bottom: 15px;">الكلمات الأكثر شيوعاً في الوحدة الثانية. ركز على كلمات الصحة والطعام.</p>
           <table class="vocab-table">
-            <thead>
-              <tr><th>Word</th><th>Meaning</th></tr>
-            </thead>
+            <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
             <tbody>
-              <tr><td class="word">Compassion</td><td class="meaning">تعاطف / رحمة</td></tr>
-              <tr><td class="word">Well-being</td><td class="meaning">رفاهية / صحة نفسية</td></tr>
-              <tr><td class="word">Ripple effect</td><td class="meaning">تأثير متسلسل / انتشار</td></tr>
-              <tr><td class="word">Empathy</td><td class="meaning">تفهم لمشاعر الآخرين</td></tr>
-              <tr><td class="word">Encouraging</td><td class="meaning">مشجع</td></tr>
-              <tr><td class="word">Gestures</td><td class="meaning">إيماءات / تصرفات</td></tr>
+              <tr><td class="word">Lifestyle</td><td class="meaning">نمط حياة</td></tr>
+              <tr><td class="word">Nutrition</td><td class="meaning">تغذية</td></tr>
+              <tr><td class="word">Diet</td><td class="meaning">نظام غذائي</td></tr>
+              <tr><td class="word">Obesity</td><td class="meaning">سمنة مفرطة</td></tr>
+              <tr><td class="word">Harmful</td><td class="meaning">ضار</td></tr>
+              <tr><td class="word">Beneficial</td><td class="meaning">مفيد</td></tr>
+              <tr><td class="word">Consumption</td><td class="meaning">استهلاك</td></tr>
+              <tr><td class="word">Ingredients</td><td class="meaning">مكونات</td></tr>
+              <tr><td class="word">Processed</td><td class="meaning">مُعالج (طعام)</td></tr>
+              <tr><td class="word">Essential</td><td class="meaning">أساسي / ضروري</td></tr>
+              <tr><td class="word">Moderation</td><td class="meaning">اعتدال</td></tr>
+              <tr><td class="word">Digestion</td><td class="meaning">هضم</td></tr>
+              <tr><td class="word">Stamina</td><td class="meaning">تحمل / قدرة على الجهد</td></tr>
+              <tr><td class="word">Routine</td><td class="meaning">روتين / عادة متكررة</td></tr>
+              <tr><td class="word">Addictive</td><td class="meaning">يسبب الإدمان</td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Lesson 2: Grammar -->
-      <div class="lesson-card" id="lesson2">
+      <!-- 2. تدريبات الكلمات -->
+      <div class="lesson-card collapsed" id="sec-vocab-ex">
         <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">2</div>
-          <h2>Grammar: Modal Verbs (Must - Have to)</h2>
+          <div class="section-number">2</div>
+          <h2>تدريبات الكلمات (Vocabulary Exercises)</h2>
           <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
-        <div class="lesson-body collapsed">
-          <h3 class="section-title">📚 Language in Context</h3>
-
-          <div class="grammar-box">
-            <h4>1. Must (يجب / لازم)</h4>
-            <p class="rule">بنستخدمها عشان نتكلم عن <strong>إلزام قوي</strong>، أو حاجة بنعملها لأننا شايفينها صح أو مهمة جداً (إلزام داخلي).</p>
-            <div class="example">I <strong>must</strong> study harder to pass the exam. (أنا مقتنع بكده)</div>
-            <div class="example">You <strong>must</strong> see a doctor; you look very sick. (نصيحة قوية)</div>
+        <div class="lesson-body">
+          <p class="rule" style="direction: rtl; text-align: right; margin-bottom: 15px;">اختار الإجابة الصحيحة (أسئلة نمط الوزارة).</p>
+          
+          <div class="exercise-box">
+            <div class="q-text">1. Eating too much fast food can lead to ________, which is a serious health problem.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) nutrition</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) obesity</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) digestion</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) stamina</div>
+            </div>
           </div>
 
-          <div class="grammar-box">
-            <h4>2. Have to / Has to (مضطر / لازم)</h4>
-            <p class="rule">بنستخدمها عشان نتكلم عن <strong>إلزام خارجي</strong>، يعني قوانين، أو قواعد، أو حد تاني طالب مننا نعمل حاجة.</p>
-            <div class="example">I <strong>have to</strong> wear a uniform at school. (قواعد المدرسة)</div>
-            <div class="example">She <strong>has to</strong> finish her homework before dinner. (أمر من الأهل)</div>
+          <div class="exercise-box">
+            <div class="q-text">2. Fresh vegetables and fruits are highly ________ for your health.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) harmful</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) addictive</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) processed</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">d) beneficial</div>
+            </div>
+          </div>
+
+          <div class="exercise-box">
+            <div class="q-text">3. You should read the list of ________ on the food packet before buying it.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) ingredients</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) lifestyles</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) routines</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) moderations</div>
+            </div>
+          </div>
+
+          <div class="exercise-box">
+            <div class="q-text">4. A balanced diet is ________ for maintaining good health.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) processed</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) harmful</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) essential</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) addictive</div>
+            </div>
+          </div>
+
+          <div class="exercise-box">
+            <div class="q-text">5. The doctor advised him to eat sweets in ________ to avoid gaining weight.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) obesity</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) consumption</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) moderation</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) nutrition</div>
+            </div>
+          </div>
+
+          <div class="exercise-box">
+            <div class="q-text">6. Video games can be ________ for some teenagers; they can't stop playing them.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) beneficial</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) addictive</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) essential</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) healthy</div>
+            </div>
           </div>
           
+          <div class="exercise-box">
+            <div class="q-text">7. To improve your ________, you should exercise regularly and get enough sleep.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) stamina</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) obesity</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) diet</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) ingredient</div>
+            </div>
+          </div>
+          
+          <div class="exercise-box">
+            <div class="q-text">8. A healthy ________ includes exercise, a good diet, and enough sleep.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) obesity</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) ingredient</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) harmful</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">d) lifestyle</div>
+            </div>
+          </div>
+
+          <div class="exercise-box">
+            <div class="q-text">9. Some food additives are ________ to our bodies and cause allergies.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) beneficial</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) essential</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) harmful</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) healthy</div>
+            </div>
+          </div>
+
+          <div class="exercise-box">
+            <div class="q-text">10. Good ________ helps your body absorb vitamins and minerals from food.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) obesity</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) digestion</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) stamina</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) consumption</div>
+            </div>
+          </div>
+
+          <div class="exercise-box">
+            <div class="q-text">11. We need to reduce the ________ of sugar in our daily meals.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) consumption</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) ingredient</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) lifestyle</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) routine</div>
+            </div>
+          </div>
+
+          <div class="exercise-box">
+            <div class="q-text">12. Changing your daily ________ can be difficult at first, but it is worth it.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) harmful</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) obesity</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) routine</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) beneficial</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3. المرادفات والأضداد -->
+      <div class="lesson-card collapsed" id="sec-syn-ant">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="section-number">3</div>
+          <h2>المرادفات والأضداد (Synonyms & Antonyms)</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body">
+          <p class="rule" style="direction: rtl; text-align: right; margin-bottom: 15px;">اختيار إجابتين صحيحتين من خمسة (نمط كتاب التقييمات).</p>
+          <div class="exercise-box">
+            <div class="q-text">1. Fast food is known to be harmful to health. The synonyms of "harmful" are ......</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) useful</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) dangerous</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) safe</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">d) damaging</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">e) healthy</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">2. He made a decision to change his unhealthy lifestyle. The antonyms of "unhealthy" are ......</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) fit</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) sick</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) ill</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">d) well</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">e) weak</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">3. It is essential to drink water regularly. The synonyms of "essential" are ......</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) optional</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) necessary</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) useless</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">d) vital</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">e) extra</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. المشتقات -->
+      <div class="lesson-card collapsed" id="sec-deriv">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="section-number">4</div>
+          <h2>المشتقات (Derivatives)</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body">
           <div class="grammar-box">
-            <h4>3. النفي (Mustn't vs Don't have to)</h4>
-            <p class="rule"><strong>Mustn't:</strong> معناها (ممنوع / ميجوز) - حاجة متعملهاش خالص.</p>
-            <div class="example">You <strong>mustn't</strong> smoke here. (ممنوع التدخين)</div>
-            <p class="rule" style="margin-top: 15px;"><strong>Don't have to:</strong> معناها (مش لازم / مش مضطر) - ممكن تعملها وممكن متعملهاش.</p>
-            <div class="example">You <strong>don't have to</strong> come early tomorrow. (مش لازم تيجي بدري)</div>
+            <h4>Derivatives Practice</h4>
+            <p class="rule">تذكر: الاسم غالباً ينتهي بـ (tion, ment, ity, ness) والصفة بـ (ful, less, ive, able) والحال بـ (ly).</p>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">1. Good ________ is very important for children to grow up healthy. (nutrition)</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) nutrition</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) nutritious</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) nutritionally</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) nutrient</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">2. You must eat ________ to stay healthy and fit. (regular)</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) regularity</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) regularize</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) regularly</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) regularness</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">3. Fast food has low ________ value. (nutrition)</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) nutrition</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) nutritional</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) nutritionally</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) nutrient</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">4. He is a very ________ person; he exercises every day. (energy)</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) energy</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) energetic</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) energetically</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) energize</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Interactive Quiz -->
-      <div class="quiz-section" id="quiz">
-        <h3 class="section-title" style="border-bottom-color: #0a1f44;">📝 Unit Quiz (اختبر نفسك)</h3>
-        <p style="direction: rtl; text-align: right; color: #555; margin-bottom: 20px;">جاوب على الأسئلة دي عشان تتأكد إنك فهمت الدرس.</p>
-
-        <div class="question-box">
-          <div class="q-text">1. In some countries, you ________ wear a seatbelt in the car. It's the law.</div>
-          <div class="options">
-            <div class="option" onclick="checkAnswer(this, false)">a) must</div>
-            <div class="option" onclick="checkAnswer(this, true)">b) have to</div>
-            <div class="option" onclick="checkAnswer(this, false)">c) don't have to</div>
-            <div class="option" onclick="checkAnswer(this, false)">d) mustn't</div>
-          </div>
+      <!-- 5. السوابق واللواحق -->
+      <div class="lesson-card collapsed" id="sec-prefix">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="section-number">5</div>
+          <h2>السوابق واللواحق (Prefixes & Suffixes)</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
         </div>
-
-        <div class="question-box">
-          <div class="q-text">2. You ________ tell anyone my secret. It's very important.</div>
-          <div class="options">
-            <div class="option" onclick="checkAnswer(this, true)">a) mustn't</div>
-            <div class="option" onclick="checkAnswer(this, false)">b) don't have to</div>
-            <div class="option" onclick="checkAnswer(this, false)">c) have to</div>
-            <div class="option" onclick="checkAnswer(this, false)">d) must</div>
+        <div class="lesson-body">
+          <div class="grammar-box">
+            <h4>Prefixes & Suffixes</h4>
+            <p class="rule">السوابق تغير المعنى (مثل: un- تعني ليس، re- تعني إعادة، pre- تعني قبل).</p>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">1. The prefix "un-" in "unhealthy" means:</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) very</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) again</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) not</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) before</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">2. The word "prevent" contains the prefix "pre-" which means:</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) before</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) after</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) not</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) again</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">3. The suffix "-less" in "careless" changes the word into:</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) A noun</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) An adjective</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) A verb</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) An adverb</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">4. The prefix "re-" in "rewrite" means:</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) not</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) again</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) before</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) after</div>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- 6. المصطلحات -->
+      <div class="lesson-card collapsed" id="sec-colloc">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="section-number">6</div>
+          <h2>المصطلحات (Collocations)</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body">
+          <div class="grammar-box">
+            <h4>Collocations</h4>
+            <p class="rule">كلمات تأتي مع بعضها: (balanced diet) نظام غذائي متوازن، (lose weight) يفقد الوزن، (make a decision) يتخذ قراراً.</p>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">1. If you want to lose ________, you must exercise and eat less sugar.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) stamina</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) weight</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) diet</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) food</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">2. Eating a ________ diet is the best way to stay healthy.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) balanced</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) processed</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) harmful</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) fast</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">3. You should ________ a decision to change your bad habits.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) do</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) make</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) take</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) give</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. القواعد -->
+      <div class="lesson-card collapsed" id="sec-grammar">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="section-number">7</div>
+          <h2>القواعد بالتفصيل (Grammar)</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body">
+          <div class="grammar-box">
+            <h4>Present Perfect vs. Past Simple (المضارع التام والماضي البسيط)</h4>
+            <p class="rule"><b>Present Perfect:</b> حدث بدأ في الماضي ومازال مستمراً أو نتيجته موجودة الآن (كلمات دالة: since, for, just, already, yet, ever).<br>
+            <b>Past Simple:</b> حدث بدأ وانتهى في الماضي (كلمات دالة: yesterday, ago, last year).<br>
+            <b>الحالات الشاذة:</b> كلمة <b>since</b> يأتي بعدها نقطة زمنية (since 2010)، وكلمة <b>for</b> يأتي بعدها فترة زمنية (for 5 years).</p>
+            <div class="example">I <b>have lived</b> in Cairo since 2015. (مازلت أعيش)</div>
+            <div class="example">I <b>visited</b> my uncle yesterday. (انتهت الزيارة)</div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">1. I ________ here since 2015, and I love this city.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) live</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) lived</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) have lived</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) am living</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">2. She ________ her homework two hours ago.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) has finished</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) have finished</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) finished</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) finishes</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">3. Have you ________ eaten sushi before?</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) never</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) ever</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) yet</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) since</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. الترجمة -->
+      <div class="lesson-card collapsed" id="sec-trans">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="section-number">8</div>
+          <h2>الترجمة (Translation)</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body">
+          <div class="exercise-box">
+            <div class="q-text">1. يجب علينا تجنب الأطعمة السريعة لأنها ضارة بالصحة وتؤدي إلى السمنة.</div>
+            <div class="options-grid" style="grid-template-columns: 1fr;">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) We must avoid fast foods because they are useful to health and lead to obesity.</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) We must avoid fast foods because they are harmful to health and lead to obesity.</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) We should eat fast foods because they are harmful to health.</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) We must avoid fast foods because they are harmful to healthy.</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">2. ممارسة الرياضة بانتظام تحسن من صحتك وتزيد من قدرتك على التحمل.</div>
+            <div class="options-grid" style="grid-template-columns: 1fr;">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) Regular exercise improves your health and increases your stamina.</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) Regular exercise improves your wealth and increases your stamina.</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) Sometimes exercise improves your health and decreases your stamina.</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) Regular exercise harms your health and increases your stamina.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. القراءة -->
+      <div class="lesson-card collapsed" id="sec-reading">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="section-number">9</div>
+          <h2>القراءة (Reading)</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body">
+          <h3 class="section-title">Read the text and answer:</h3>
+          <div class="reading-passage">
+            <p>A healthy lifestyle is not just about eating the right food; it is a combination of physical activity, a balanced diet, and good mental health. Many teenagers today prefer fast food because it is quick and delicious. However, fast food contains high levels of fat and sugar, which can lead to obesity and heart diseases. Experts advise us to eat more fruits and vegetables, drink plenty of water, and exercise for at least 30 minutes a day. Furthermore, getting enough sleep is essential for the body to recover and for the brain to function properly.</p>
+          </div>
+          <div class="exercise-box mt-3">
+            <div class="q-text">1. What is the main idea of the passage?</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) Fast food is delicious and quick.</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) The importance of a healthy lifestyle and its components.</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) How to sleep well at night.</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) The diseases caused by fast food only.</div>
+            </div>
+          </div>
+          <div class="exercise-box mt-3">
+            <div class="q-text">2. According to the text, why do teenagers prefer fast food?</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) Because it is healthy.</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) Because it is expensive.</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) Because it is quick and delicious.</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) Because it contains vegetables.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. الكتابة -->
+      <div class="lesson-card collapsed" id="sec-writing">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="section-number">10</div>
+          <h2>الكتابة (Writing)</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body">
+          <div class="grammar-box">
+            <h4>Write a paragraph of about 120 words about "How to live a healthy lifestyle".</h4>
+            <p class="rule">استخدم الكلمات: (diet, exercise, sleep, harmful, beneficial).</p>
+            <div class="example">
+              <b>Example Starter:</b><br>
+              Living a healthy lifestyle is essential for everyone. First, you should eat a balanced diet that contains fruits and vegetables. You must avoid fast food because it is harmful to your health. Second, you need to exercise regularly...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. امتحان شامل -->
+      <div class="lesson-card collapsed" id="sec-exam">
+        <div class="lesson-header" onclick="toggleLesson(this)">
+          <div class="section-number">11</div>
+          <h2>امتحان شامل (Comprehensive Exam)</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="lesson-body">
+          <p class="rule" style="direction: rtl; text-align: right; margin-bottom: 15px;">امتحان نهائي على الوحدة الثانية (10 أسئلة).</p>
+          
+          <div class="exercise-box">
+            <div class="q-text">1. The doctor advised him to ________ sugar to lose weight.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) increase</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) reduce</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) add</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) make</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">2. Eating fruits and vegetables is highly ________.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) addictive</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) harmful</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) beneficial</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) processed</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">3. I have ________ finished my project, so I can play now.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) yet</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) just</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) since</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) ago</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">4. They ________ to Alexandria last summer.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) have traveled</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) travel</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) are traveling</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">d) traveled</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">5. Choose the synonym of "essential":</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) optional</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) necessary</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) useless</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) extra</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">6. Choose the antonym of "harmful":</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) dangerous</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) damaging</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) beneficial</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) bad</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">7. You should eat in ________ to avoid health problems.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) moderation</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) excess</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) obesity</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) addiction</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">8. She has lived in London ________ 2010.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) for</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">b) since</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) ago</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) yet</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">9. Reading the ________ on the packet helps you know what you are eating.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, true)">a) ingredients</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) stamina</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">c) routines</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) lifestyles</div>
+            </div>
+          </div>
+          <div class="exercise-box">
+            <div class="q-text">10. Fast food is ________ and can lead to obesity.</div>
+            <div class="options-grid">
+              <div class="option-btn" onclick="checkAnswer(this, false)">a) beneficial</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">b) essential</div>
+              <div class="option-btn" onclick="checkAnswer(this, true)">c) harmful</div>
+              <div class="option-btn" onclick="checkAnswer(this, false)">d) healthy</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Navigation -->
       <div class="nav-buttons">
         <a href="/lessons/sec1/unit1.html" class="btn-lesson gold">← الوحدة السابقة</a>
+        <a href="/lessons.html" class="btn-lesson gold">🏠 رجوع للدروس</a>
         <a href="/lessons/sec1/unit3.html" class="btn-lesson">الوحدة التالية →</a>
       </div>
 
@@ -218,7 +717,11 @@
     }
 
     document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', function() {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        
         document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
         this.classList.add('active');
       });
@@ -235,7 +738,7 @@
       } else {
         element.classList.add('wrong');
         Array.from(parent.children).forEach(child => {
-          if (child.getAttribute('onclick').includes('true')) {
+          if (child.getAttribute('onclick') && child.getAttribute('onclick').includes('true')) {
             child.classList.add('correct');
           }
         });
