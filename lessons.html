@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet">
   
+  <!-- Firebase Compat -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
   <style>
     body { background: #f0f4fa; padding-top: 78px; font-family: 'El Messiri', sans-serif; }
     .page-header { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: white; padding: 40px 20px; border-radius: 20px; text-align: center; margin-bottom: 30px; }
@@ -20,16 +25,17 @@
     .btn-start:hover { background: #f7b731; color: #0a1f44; }
     .btn-locked { background: #ccc; color: #666; cursor: not-allowed; }
     .btn-admin { background: #f7b731; color: #0a1f44; }
+    .loading-text { text-align: center; font-size: 1.2rem; color: #0a1f44; font-weight: bold; }
   </style>
 </head>
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: #0a1f44;">
     <div class="container">
-      <a class="navbar-brand text-warning fw-bold" href="/index.html">Mr. Yasser Nofal</a>
+      <a class="navbar-brand text-warning fw-bold" href="index.html">Mr. Yasser Nofal</a>
       <ul class="navbar-nav ms-auto flex-row gap-3">
-        <li class="nav-item"><a class="nav-link text-white" href="/index.html">🏠 الرئيسية</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="/login.html">🔑 تسجيل الدخول</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="index.html">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="student-dashboard.html">👨‍🎓 لوحة الطالب</a></li>
       </ul>
     </div>
   </nav>
@@ -41,69 +47,102 @@
     </div>
 
     <h3 id="sec1" class="mb-3 fw-bold" style="color: #0a1f44;">📖 أولى ثانوي (Sec 1)</h3>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="card-unit">
-          <h5>Unit 1: Egypt's Heritage</h5>
-          <p>تراث مصر</p>
-          <a href="/lessons/sec1/unit1.html" class="btn-start lesson-link">ابدأ الدرس</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card-unit">
-          <h5>Unit 2: Hands Help, Hearts Care</h5>
-          <p>أيادٍ تساعد وقلوبٌ ترعى</p>
-          <a href="/lessons/sec1/unit2.html" class="btn-start lesson-link">ابدأ الدرس</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card-unit">
-          <h5>Unit 3: Truth vs. Lies</h5>
-          <p>الحقيقة ضد الكذب</p>
-          <a href="/lessons/sec1/unit3.html" class="btn-start lesson-link">ابدأ الدرس</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card-unit">
-          <h5>Review 1: المراجعة الشاملة</h5>
-          <p>مراجعة على الوحدات 1-3</p>
-          <a href="/lessons/sec1/review1.html" class="btn-start lesson-link">ابدأ المراجعة</a>
-        </div>
-      </div>
+    <div class="row" id="unitsContainer">
+      <div class="col-12 loading-text">جاري تحميل الوحدات...</div>
     </div>
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // 1. بنشوف هل الطالب مسجل دخول أو ده إنت (الأدمن)
-      const userRole = localStorage.getItem('studentRole'); 
-      const studentName = localStorage.getItem('studentName'); 
-      
-      // 2. لو إنت المدير، أو مسجل دخول، بنفتح الدروس
-      let isAdmin = (userRole === 'admin');
-      let isLoggedIn = (studentName !== null);
+    const firebaseConfig = {
+      apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
+      authDomain: "yasser-nofal-english-academy.firebaseapp.com",
+      databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
+      projectId: "yasser-nofal-english-academy",
+      storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
+      messagingSenderId: "654488740819",
+      appId: "1:654488740819:web:7a513cb6c2a74d98324526"
+    };
 
-      const lessonLinks = document.querySelectorAll('.lesson-link');
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+    const units = [
+      { title: "Unit 1: Egypt's Heritage", desc: "تراث مصر", link: "lessons/sec1/unit1.html" },
+      { title: "Unit 2: Hands Help, Hearts Care", desc: "أيادٍ تساعد وقلوبٌ ترعى", link: "lessons/sec1/unit2.html" },
+      { title: "Unit 3: Truth vs. Lies", desc: "الحقيقة ضد الكذب", link: "lessons/sec1/unit3.html" },
+      { title: "Review 1", desc: "مراجعة على الوحدات 1-3", link: "lessons/sec1/review1.html" }
+    ];
+
+    auth.onAuthStateChanged(user => {
+      const container = document.getElementById('unitsContainer');
       
-      lessonLinks.forEach(link => {
-        if (isAdmin) {
-          // لو إنت المدير، الزرار يبقى ذهبي وشغال
-          link.classList.add('btn-admin');
-        } else if (!isLoggedIn) {
-          // لو مش مسجل دخول خالص، نقفل الزرار
-          link.classList.remove('btn-start');
-          link.classList.add('btn-locked');
-          link.textContent = '🔒 سجل دخول أولاً';
+      if (!user) {
+        renderLockedUnits(container);
+        return;
+      }
+
+      db.ref('users/' + user.uid).once('value').then(snapshot => {
+        const userData = snapshot.val() || {};
+        const isAdmin = userData.role === 'admin';
+        const isSubscribed = userData.subscription === 'active';
+
+        container.innerHTML = '';
+        units.forEach(unit => {
+          const col = document.createElement('div');
+          col.className = 'col-md-6';
           
-          link.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('عذراً، يجب تسجيل الدخول أولاً للوصول إلى الدروس.');
-            window.location.href = '/login.html';
-          });
-        }
-        // ملاحظة: لو مسجل دخول كطالب، الزرار هيفضل "ابدأ الدرس" (عشان التجربة)
+          let btnClass = 'btn-start';
+          let btnText = 'ابدأ الدرس';
+          let onClick = `window.location.href='${unit.link}'`;
+
+          if (isAdmin) {
+            btnClass = 'btn-start btn-admin';
+            btnText = '⚙️ ابدأ الدرس (أدمن)';
+          } else if (!isSubscribed) {
+            btnClass = 'btn-locked';
+            btnText = '🔒 للمشتركين فقط';
+            onClick = `showSubscribeAlert()`;
+          }
+
+          col.innerHTML = `
+            <div class="card-unit">
+              <h5>${unit.title}</h5>
+              <p>${unit.desc}</p>
+              <a href="#" class="${btnClass}" onclick="${onClick}">${btnText}</a>
+            </div>
+          `;
+          container.appendChild(col);
+        });
+      }).catch(() => {
+        renderLockedUnits(container);
       });
     });
+
+    function renderLockedUnits(container) {
+      container.innerHTML = '';
+      units.forEach(unit => {
+        const col = document.createElement('div');
+        col.className = 'col-md-6';
+        col.innerHTML = `
+          <div class="card-unit">
+            <h5>${unit.title}</h5>
+            <p>${unit.desc}</p>
+            <a href="#" class="btn-locked" onclick="showLoginAlert()">🔒 سجل دخول أولاً</a>
+          </div>
+        `;
+        container.appendChild(col);
+      });
+    }
+
+    function showLoginAlert() {
+      alert('عذراً، يجب تسجيل الدخول أولاً للوصول إلى الدروس.');
+      window.location.href = 'login.html';
+    }
+
+    function showSubscribeAlert() {
+      alert('🔒 هذا المحتوى مخصص للمشتركين فقط. يرجى الاشتراك في المنصة.');
+    }
   </script>
 </body>
 </html>
