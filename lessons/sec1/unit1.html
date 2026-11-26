@@ -164,55 +164,92 @@
     import { ExamEngine } from '../../assets/js/exam-engine.js';
     import { getQuestionsFromBank, saveExamResult } from '../../assets/js/exam-storage.js';
     import { onAuthStateChanged } from "firebase/auth";
-    
-    // السطر ده هو اللي بيعمل الحماية (حارس البوابة)
-    import '../../assets/js/auth-guard.js';
+    import { ref, get } from "firebase/database";
 
     let examEngine = null;
     let currentUser = null;
 
+    // متابعة حالة تسجيل الدخول
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        currentUser = user;
-      }
+      currentUser = user;
     });
 
+    // دالة بدء الامتحان (مع فحص الاشتراك)
     window.startExam = async function() {
-      const btn = document.querySelector('.btn-start-exam');
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Questions...';
-      btn.disabled = true;
-
-      const questions = await getQuestionsFromBank('sec1', 'unit1');
-      
-      if (questions.length === 0) {
-        alert('No questions found. Please import the CSV file first.');
-        btn.innerHTML = '<i class="fas fa-play-circle"></i> Start Interactive Exam (Unit 1)';
-        btn.disabled = false;
+      // 1. فحص هل المستخدم مسجل دخول ولا لأ
+      if (!currentUser) {
+        alert('⚠️ يرجى تسجيل الدخول أولاً لتتمكن من أداء الامتحان.');
+        window.location.href = '../../login.html';
         return;
       }
 
-      const examConfig = {
-        title: 'Unit 1 Exam',
-        duration: 30,
-        questionCount: questions.length
-      };
+      const btn = document.querySelector('.btn-start-exam');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking Subscription...';
+      btn.disabled = true;
 
-      examEngine = new ExamEngine(examConfig, questions, {
-        shuffleQuestions: true,
-        shuffleOptions: true,
-        onTick: (time) => {
-          document.getElementById('examTimer').innerText = examEngine.formatTime(time);
-        },
-        onFinish: (result) => {
-          displayResults(result);
+      try {
+        // 2. فحص بيانات المستخدم في فايربيز
+        const userRef = ref(database, `users/${currentUser.uid}`);
+        const snapshot = await get(userRef);
+        
+        let isAllowed = false;
+        
+        if (snapshot.exists()) {
+          const userData = snapshot.val();
+          // السماح لو كان أدمن أو مشترك
+          if (userData.role === 'admin' || userData.subscription === 'active') {
+            isAllowed = true;
+          }
         }
-      });
 
-      document.getElementById('lessonContainer').style.display = 'none';
-      document.getElementById('examContainer').style.display = 'block';
+        if (!isAllowed) {
+          alert('🔒 هذا المحتوى مخصص للمشتركين فقط.\nيرجى الاشتراك في المنصة للوصول إلى الامتحانات.');
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          return;
+        }
 
-      examEngine.start();
-      renderQuestion();
+        // 3. السماح بالدخول وتحميل الأسئلة
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Questions...';
+        const questions = await getQuestionsFromBank('sec1', 'unit1');
+        
+        if (questions.length === 0) {
+          alert('No questions found. Please import the CSV file first.');
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          return;
+        }
+
+        const examConfig = {
+          title: 'Unit 1 Exam',
+          duration: 30,
+          questionCount: questions.length
+        };
+
+        examEngine = new ExamEngine(examConfig, questions, {
+          shuffleQuestions: true,
+          shuffleOptions: true,
+          onTick: (time) => {
+            document.getElementById('examTimer').innerText = examEngine.formatTime(time);
+          },
+          onFinish: (result) => {
+            displayResults(result);
+          }
+        });
+
+        document.getElementById('lessonContainer').style.display = 'none';
+        document.getElementById('examContainer').style.display = 'block';
+
+        examEngine.start();
+        renderQuestion();
+
+      } catch (error) {
+        console.error("Error checking subscription:", error);
+        alert('حدث خطأ أثناء الاتصال بالخادم. يرجى المحاولة مرة أخرى.');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
     };
 
     function renderQuestion() {
