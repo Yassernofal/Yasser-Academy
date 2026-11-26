@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unit 1 Comprehensive Exam | Mr. Yasser Nofal Academy</title>
+  <title>Unit 1: Egypt's Heritage | Mr. Yasser Nofal Academy</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -26,6 +26,8 @@
     body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-bottom: 50px; }
     .navbar-custom { background: rgba(10, 31, 68, 0.95) !important; backdrop-filter: blur(18px); padding: 14px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); }
     .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
+    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
+    .nav-link:hover { color: #f7e05e !important; }
     
     .unit-header { background: linear-gradient(135deg, #0a1f44, #1e3a8a); color: #fff; padding: 40px 30px; border-radius: 24px; margin-bottom: 30px; text-align: center; box-shadow: 0 10px 30px rgba(10, 31, 68, 0.3); }
     .unit-header h1 { color: #f7e05e; font-weight: 700; }
@@ -34,7 +36,13 @@
     .section-card h3 { color: #0a1f44; font-weight: 700; margin-bottom: 20px; border-bottom: 2px solid #f0f4fa; padding-bottom: 10px; }
     
     .reading-passage { background: #f8f9fa; border-left: 4px solid #f7b731; border-radius: 10px; padding: 20px; margin-bottom: 20px; font-size: 1.05rem; line-height: 1.8; color: #333; }
+    .grammar-box { background: #e3f2fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; color: #0a1f44; }
     
+    .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+    .vocab-item { background: #f8f9fa; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #e9ecef; }
+    .vocab-item strong { display: block; color: #1e3a8a; font-size: 1.1rem; margin-bottom: 5px; }
+    .vocab-item span { color: #666; font-size: 0.9rem; }
+
     .btn-start-exam { background: #f7b731; color: #0a1f44; font-weight: 700; font-size: 1.2rem; border-radius: 50px; padding: 15px 40px; transition: 0.3s; border: none; width: 100%; margin-top: 20px; }
     .btn-start-exam:hover { background: #f7e05e; transform: scale(1.02); }
 
@@ -72,18 +80,61 @@
 
   <div class="container mt-4" style="max-width: 900px;">
     
-    <!-- شاشة البداية -->
+    <!-- شاشة الشرح (تظهر أولاً) -->
     <div id="lessonContainer">
       <div class="unit-header">
-        <h1>Unit 1 Comprehensive Exam</h1>
-        <p class="mb-0">Egypt's Heritage - Full Mock Exam (Book & Assessments)</p>
+        <h1>Unit 1: Egypt's Heritage</h1>
+        <p class="mb-0">Taking Pride in Our Beloved Egypt</p>
       </div>
-      <div class="section-card text-center">
-        <p>هذا الامتحان شامل لجميع أجزاء الوحدة الأولى (قراءة، قواعد، كلمات، ترجمة، تصحيح خطأ، وrewrite) طبقاً لمواصفات الامتحان.</p>
-        <button class="btn-start-exam" onclick="startExam()">
-          <i class="fas fa-play-circle"></i> Start Exam
-        </button>
+
+      <div class="section-card">
+        <h3><i class="fas fa-book-open text-primary"></i> Reading</h3>
+        <div class="reading-passage">
+          Egypt is a land with a heart that has been beating for thousands of years. We are proud to call it our home. It is a place where the past and the present meet in harmony. Egypt has always played an important role in the world. Our ancestors built one of the greatest civilizations in history. They gave the world knowledge in writing, mathematics, and medicine. The hieroglyphs carved into temple walls were not just beautiful art; they were a way to record history. The Library of Alexandria once gathered knowledge from all over the world, making Egypt a center of learning. Egypt was also a crossroads for trade. Merchants traveled along the Nile and across the deserts, carrying goods such as gold, spices, papyrus, and grain. Our land was a bridge where people met and exchanged ideas, making Egypt a source of inspiration for many civilizations. Today, Egypt continues to grow. Our cities rise with modern buildings, while our historical monuments still stand with pride. We are building new roads, bridges, and neighborhoods that show the world our determination to progress. From the Pyramids of Giza to the Grand Egyptian Museum, we continue to honor our history while shaping our future. We take pride in our country, not only for its beauty, but also because we understand the sacrifices of our ancestors. We work hard to make it greater for generations to come. Every citizen has a role to play – protecting our heritage, contributing to our economy, and sharing our culture with the world.
+        </div>
       </div>
+
+      <div class="section-card">
+        <h3><i class="fas fa-language text-primary"></i> Vocabulary</h3>
+        <div class="vocab-grid">
+          <div class="vocab-item"><strong>Heritage</strong><span>تراث</span></div>
+          <div class="vocab-item"><strong>Civilization</strong><span>حضارة</span></div>
+          <div class="vocab-item"><strong>Monuments</strong><span>آثار / معالم</span></div>
+          <div class="vocab-item"><strong>Merchants</strong><span>تجار</span></div>
+          <div class="vocab-item"><strong>Crossroads</strong><span>ملتقى طرق</span></div>
+          <div class="vocab-item"><strong>Determination</strong><span>إصرار / عزيمة</span></div>
+          <div class="vocab-item"><strong>Sacrifices</strong><span>تضحيات</span></div>
+          <div class="vocab-item"><strong>Neighborhood</strong><span>حي سكني</span></div>
+          <div class="vocab-item"><strong>Identity</strong><span>هوية</span></div>
+          <div class="vocab-item"><strong>Pride</strong><span>فخر</span></div>
+          <div class="vocab-item"><strong>Preserves</strong><span>يحافظ على</span></div>
+          <div class="vocab-item"><strong>Restoring</strong><span>ترميم</span></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3><i class="fas fa-spell-check text-primary"></i> Grammar: Past Simple & Past Continuous</h3>
+        <div class="grammar-box">
+          <h5><strong>1. Past Simple</strong></h5>
+          <p>Use the past simple for completed past actions.<br>
+          <em>Example: The Egyptians <strong>taught</strong> the world what civilization was.</em></p>
+          
+          <h5><strong>2. Past Continuous</strong></h5>
+          <p>Use the past continuous (was/were + v-ing) to show that an action was in progress at a certain time in the past.<br>
+          <em>Example: At 2 o'clock, Sama <strong>was returning</strong> home.</em></p>
+          
+          <h5><strong>3. While, As, Just as, When and During</strong></h5>
+          <ul>
+            <li><strong>While / As / Just as:</strong> followed by Past Continuous. <em>(While I was going home, I met her.)</em></li>
+            <li><strong>When:</strong> followed by Past Simple. <em>(When I arrived, she was sleeping.)</em></li>
+            <li><strong>During:</strong> followed by a noun. <em>(During the match, he broke his leg.)</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <button class="btn-start-exam" onclick="startExam()">
+        <i class="fas fa-play-circle"></i> Start Comprehensive Exam (Unit 1)
+      </button>
     </div>
 
     <!-- شاشة الامتحان -->
@@ -296,7 +347,6 @@
       }
     }
 
-    // دالة تحميل PDF
     window.downloadPDF = function() {
       const element = document.getElementById('pdfContent');
       const opt = {
@@ -306,13 +356,9 @@
         html2canvas:  { scale: 2 },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
-      
-      // إخفاء الأزرار قبل التحميل
       const buttons = element.querySelector('.d-flex');
       buttons.style.display = 'none';
-      
       html2pdf().from(element).set(opt).save().then(() => {
-        // إظهار الأزرار تاني بعد التحميل
         buttons.style.display = 'flex';
       });
     };
