@@ -3,583 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تسجيل الدخول – أكاديمية مستر ياسر نوفل</title>
-  <meta name="description" content="سجل دخولك في أكاديمية مستر ياسر نوفل." />
-  <link rel="canonical" href="https://yasser-academy-final.vercel.app/login.html" />
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3R3KFEO8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-N3R3KFEO8');
-  </script>
-
+  <title>تسجيل الدخول - أكاديمية مستر ياسر نوفل</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet" />
 
-  <script type="importmap">
-  {
-    "imports": {
-      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
-      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
-      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
-    }
-  }
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-top: 78px; }
-    @media (max-width: 991.98px) { body { padding-top: 72px; } }
-
-    .navbar-custom {
-      background: rgba(10, 31, 68, 0.85) !important;
-      backdrop-filter: blur(18px);
-      padding: 14px 0;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.15);
-      z-index: 1050;
-    }
-    .navbar-brand { display: flex; align-items: center; gap: 10px; direction: ltr; }
-    .navbar-brand img { height: 40px; width: auto; }
-    .navbar-brand .brand-name {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: #f7e05e;
-      letter-spacing: 1px;
-    }
-    .navbar-brand .brand-name span { color: #ffb347; }
-    .nav-link { color: #e0e8f0 !important; font-weight: 500; transition: 0.3s; }
-    .nav-link:hover { color: #f7e05e !important; }
-    .nav-link.active { color: #f7e05e !important; }
-
-    .login-container {
-      max-width: 480px;
-      margin: 50px auto;
-      background: #fff;
-      border-radius: 28px;
-      padding: 40px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-    }
-    .login-container h2 {
-      color: #0a1f44;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .login-container p.subtitle {
-      color: #666;
-      margin-bottom: 30px;
-    }
-
-    .form-control {
-      border-radius: 12px;
-      padding: 12px 16px;
-      border: 2px solid #e0e0e0;
-      transition: 0.3s;
-    }
-    .form-control:focus {
-      border-color: #f7b731;
-      box-shadow: 0 0 0 0.2rem rgba(247, 183, 49, 0.15);
-    }
-
-    .password-wrapper {
-      position: relative;
-    }
-    .password-toggle {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #666;
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 5px;
-    }
-    .password-toggle:hover { color: #f7b731; }
-
-    .btn-login {
-      background: #0a1f44;
-      color: #f7e05e;
-      font-weight: 700;
-      border-radius: 50px;
-      padding: 14px;
-      width: 100%;
-      border: none;
-      transition: 0.3s;
-      font-size: 1.05rem;
-    }
-    .btn-login:hover:not(:disabled) {
-      background: #f7b731;
-      color: #0a1f44;
-      transform: scale(1.02);
-    }
-    .btn-login:disabled {
-      background: #ccc;
-      color: #666;
-      cursor: not-allowed;
-    }
-
-    .link-register {
-      color: #0a1f44;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.3s;
-    }
-    .link-register:hover { color: #f7b731; text-decoration: underline; }
-
-    .forgot-link {
-      color: #0a1f44;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    .forgot-link:hover { color: #f7b731; text-decoration: underline; }
-
-    .alert { border-radius: 12px; }
-
-    .verify-section {
-      background: #fff3cd;
-      border: 2px solid #ffc107;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 20px;
-      text-align: center;
-      animation: slideDown 0.3s ease-out;
-    }
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .verify-section .verify-icon {
-      font-size: 3rem;
-      color: #ffc107;
-      margin-bottom: 10px;
-    }
-    .verify-section h5 {
-      color: #856404;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .verify-section p {
-      color: #856404;
-      margin-bottom: 15px;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-    .btn-resend {
-      background: #ffc107;
-      color: #0a1f44;
-      font-weight: 700;
-      border-radius: 50px;
-      padding: 10px 25px;
-      border: none;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-    .btn-resend:hover:not(:disabled) {
-      background: #ffb300;
-      transform: scale(1.02);
-    }
-    .btn-resend:disabled {
-      background: #ccc;
-      color: #666;
-      cursor: not-allowed;
-    }
-
-    .extra-links {
-      background: #f8f9fa;
-      padding: 10px 0;
-      border-bottom: 1px solid #e9ecef;
-      text-align: center;
-    }
-    .extra-links a {
-      color: #0a1f44;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: 500;
-      transition: 0.3s;
-      font-size: 0.95rem;
-    }
-    .extra-links a:hover { color: #f7b731; text-decoration: underline; }
-
-    footer {
-      background: #0a1f44;
-      color: #b0c4de;
-      padding: 35px 0;
-      border-radius: 40px 40px 0 0;
-      margin-top: 50px;
-      text-align: center;
-    }
-    .social-icons a { color: #b0c4de; margin: 0 8px; font-size: 1.2rem; transition: 0.3s; }
-    .social-icons a:hover { color: #f7e05e; }
-    .footer-links { list-style: none; padding: 0; }
-    .footer-links li { margin: 5px 0; }
-    .footer-links a { color: #b0c4de; text-decoration: none; transition: 0.3s; }
-    .footer-links a:hover { color: #f7e05e; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px; }
-
-    @media (max-width: 768px) {
-      .extra-links a { display: inline-block; margin: 5px 8px; font-size: 0.85rem; }
-      .login-container { padding: 30px 20px; margin: 30px 15px; }
-    }
+    body { font-family: 'El Messiri', sans-serif; background: #f0f4fa; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+    .login-card { background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+    .login-card h2 { color: #0a1f44; font-weight: 800; text-align: center; margin-bottom: 30px; }
+    .btn-login { background: #0a1f44; color: #f7e05e; font-weight: 700; border-radius: 50px; padding: 12px; width: 100%; border: none; transition: 0.3s; }
+    .btn-login:hover { background: #1f4b8a; color: #fff; }
+    .form-control { border-radius: 10px; padding: 12px; }
   </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.png" alt="Logo" loading="lazy" />
-        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">🏠 الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link" href="levels.html">📚 المستويات</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html">📝 الحجز</a></li>
-          <li class="nav-item"><a class="nav-link" href="games.html">🎮 الألعاب</a></li>
-          <li class="nav-item"><a class="nav-link" href="register.html">📝 إنشاء حساب</a></li>
-          <li class="nav-item"><a class="nav-link active" href="login.html">🔑 تسجيل الدخول</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div class="login-card">
+    <h2><i class="fas fa-user-lock text-warning"></i> تسجيل الدخول</h2>
+    
+    <!-- رسالة الخطأ -->
+    <div id="errorMsg" class="alert alert-danger" style="display: none;"></div>
 
-  <div class="extra-links">
-    <div class="container">
-      <a href="about.html">🌟 من نحن</a>
-      <a href="privacy-policy.html">🔒 سياسة الخصوصية</a>
-      <a href="terms.html">📜 شروط الاستخدام</a>
+    <form id="loginForm">
+      <div class="mb-3">
+        <label class="form-label fw-bold">البريد الإلكتروني</label>
+        <input type="email" class="form-control" id="email" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-bold">كلمة المرور</label>
+        <input type="password" class="form-control" id="password" required />
+      </div>
+      <button type="submit" class="btn btn-login mt-3" id="submitBtn">
+        <i class="fas fa-sign-in-alt"></i> دخول
+      </button>
+    </form>
+    
+    <div class="text-center mt-3">
+      <a href="register.html" class="text-decoration-none">ليس لديك حساب؟ إنشاء حساب جديد</a>
     </div>
   </div>
 
-  <section class="container">
-    <div class="login-container">
-      <h2 class="text-center"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</h2>
-      <p class="subtitle text-center">أدخل بياناتك للوصول إلى حسابك</p>
-      
-      <div id="loginStatus" class="mb-3"></div>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAFuAjSYHumAxJ_98AbYxFI8N9dSd27xL8",
+      authDomain: "yasser-nofal-english-academy.firebaseapp.com",
+      databaseURL: "https://yasser-nofal-english-academy-default-rtdb.firebaseio.com",
+      projectId: "yasser-nofal-english-academy",
+      storageBucket: "yasser-nofal-english-academy.firebasestorage.app",
+      messagingSenderId: "654488740819",
+      appId: "1:654488740819:web:7a513cb6c2a74d98324526"
+    };
 
-      <div id="verifySection" class="verify-section" style="display: none;">
-        <div class="verify-icon">
-          <i class="fas fa-envelope-open-text"></i>
-        </div>
-        <h5>⚠️ تأكيد الإيميل مطلوب</h5>
-        <p>
-          إيميلك مش متأكد بعد. افتح إيميلك واضغط على رابط التأكيد.
-          <br>
-          <strong id="verifyEmailDisplay"></strong>
-        </p>
-        <button type="button" class="btn-resend" id="resendBtn">
-          <i class="fas fa-paper-plane"></i> إعادة إرسال رابط التأكيد
-        </button>
-      </div>
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
 
-      <form id="loginForm">
-        <div class="mb-3">
-          <label class="form-label fw-bold">البريد الإلكتروني</label>
-          <input 
-            type="email" 
-            class="form-control" 
-            id="loginEmail" 
-            required 
-            placeholder="example@email.com" 
-            autocomplete="email" 
-          />
-        </div>
-        
-        <div class="mb-3">
-          <label class="form-label fw-bold">كلمة المرور</label>
-          <div class="password-wrapper">
-            <input 
-              type="password" 
-              class="form-control" 
-              id="loginPassword" 
-              required 
-              placeholder="••••••••" 
-              autocomplete="current-password" 
-            />
-            <button type="button" class="password-toggle" id="togglePasswordBtn" title="إظهار كلمة المرور">
-              <i class="fas fa-eye" id="eyeIcon"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="text-end mb-3">
-          <a href="#" class="forgot-link" id="forgotPasswordLink">
-            نسيت كلمة المرور؟
-          </a>
-        </div>
-
-        <button type="submit" class="btn-login" id="loginBtn">
-          <i class="fas fa-sign-in-alt"></i> دخول
-        </button>
-
-        <p class="text-center mt-4 mb-0">
-          ليس لديك حساب؟ <a href="register.html" class="link-register">إنشاء حساب جديد</a>
-        </p>
-      </form>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-md-4">
-          <h5>أكاديمية مستر ياسر نوفل</h5>
-          <p>تعلم الإنجليزية من الصفر حتى الاحتراف.</p>
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <h5>روابط سريعة</h5>
-          <ul class="footer-links">
-            <li><a href="levels.html">المستويات</a></li>
-            <li><a href="booking.html">الحجز</a></li>
-            <li><a href="about.html">من نحن</a></li>
-            <li><a href="privacy-policy.html">سياسة الخصوصية</a></li>
-            <li><a href="terms.html">الشروط والأحكام</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h5>اتصل بنا</h5>
-          <p><i class="fas fa-phone"></i> 01203145717</p>
-          <p><i class="fas fa-envelope"></i> info@yassernofalacademy.com</p>
-          <p><i class="fab fa-whatsapp"></i> 01001297414</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 أكاديمية مستر ياسر نوفل – جميع الحقوق محفوظة</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script type="module">
-    import { auth, database } from './firebase-config.js';
-    import { 
-      signInWithEmailAndPassword, 
-      onAuthStateChanged, 
-      sendPasswordResetEmail,
-      sendEmailVerification,
-      signOut
-    } from "firebase/auth";
-    import { ref, get } from "firebase/database";
-
-    let pendingUserEmail = '';
-
-    function redirectToDashboard(role) {
-      switch (role) {
-        case 'admin':
-          window.location.href = 'admin-dashboard.html';
-          break;
-        case 'parent':
-          window.location.href = 'parent-dashboard.html';
-          break;
-        case 'student':
-        default:
-          window.location.href = 'student-dashboard.html';
-      }
-    }
-
-    onAuthStateChanged(auth, async (user) => {
-      if (user && user.emailVerified) {
-        try {
-          const userSnap = await get(ref(database, `students/${user.uid}`));
-          if (userSnap.exists()) {
-            const role = userSnap.val().role || 'student';
-            // تحديث الحفظ في المتصفح لو لسه مسجل
-            localStorage.setItem('studentName', userSnap.val().name || 'طالب');
-            localStorage.setItem('studentRole', role);
-            redirectToDashboard(role);
-          }
-        } catch (e) {
-          console.error('خطأ:', e);
-        }
-      }
-    });
-
-    document.getElementById('togglePasswordBtn').addEventListener('click', () => {
-      const input = document.getElementById('loginPassword');
-      const icon = document.getElementById('eyeIcon');
-      if (input.type === 'password') {
-        input.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-      } else {
-        input.type = 'password';
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
-      }
-    });
-
-    document.getElementById('forgotPasswordLink').addEventListener('click', async (e) => {
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const email = document.getElementById('loginEmail').value.trim();
-      const status = document.getElementById('loginStatus');
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('submitBtn');
+      const errorMsg = document.getElementById('errorMsg');
 
-      if (!email) {
-        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء إدخال بريدك الإلكتروني أولاً</div>';
-        document.getElementById('loginEmail').focus();
-        return;
-      }
-
-      try {
-        await sendPasswordResetEmail(auth, email);
-        status.innerHTML = '<div class="alert alert-success">✅ تم إرسال رابط استعادة كلمة المرور إلى بريدك</div>';
-      } catch (error) {
-        let msg = '❌ فشل الإرسال. ';
-        if (error.code === 'auth/user-not-found') msg = '❌ لا يوجد حساب بهذا الإيميل.';
-        else if (error.code === 'auth/invalid-email') msg = '❌ صيغة الإيميل غير صحيحة.';
-        else msg += error.message;
-        
-        status.innerHTML = `<div class="alert alert-danger">${msg}</div>`;
-      }
-    });
-
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const email = document.getElementById('loginEmail').value.trim();
-      const password = document.getElementById('loginPassword').value;
-      const status = document.getElementById('loginStatus');
-      const btn = document.getElementById('loginBtn');
-      const verifySection = document.getElementById('verifySection');
-
-      verifySection.style.display = 'none';
-
-      if (!email || !password) {
-        status.innerHTML = '<div class="alert alert-warning">⚠️ الرجاء ملء جميع الحقول</div>';
-        return;
-      }
-
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحقق...';
       btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...';
-      status.innerHTML = '';
+      errorMsg.style.display = 'none';
 
-      try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-
-        if (!user.emailVerified) {
-          await signOut(auth);
+      // 1. تسجيل الدخول عبر Firebase Auth
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
           
-          pendingUserEmail = email;
-          document.getElementById('verifyEmailDisplay').textContent = email;
-          verifySection.style.display = 'block';
-          
-          status.innerHTML = '';
-          btn.disabled = false;
+          // 2. بعد الدخول، نتحقق من نوع الحساب في الداتابيز
+          return db.ref('users/' + user.uid).once('value').then(snapshot => {
+            if (snapshot.exists()) {
+              const role = snapshot.val().role;
+              if (role === 'admin') {
+                window.location.href = 'admin-dashboard.html';
+              } else {
+                window.location.href = 'student-dashboard.html';
+              }
+            } else {
+              // لو مفيش في users، ندور في students
+              return db.ref('students/' + user.uid).once('value').then(studentSnap => {
+                if (studentSnap.exists()) {
+                  window.location.href = 'student-dashboard.html';
+                } else {
+                  // لو مفيش في أي مكان، نعتبره طالب ونوديه لوحة الطالب
+                  window.location.href = 'student-dashboard.html';
+                }
+              });
+            }
+          });
+        })
+        .catch((error) => {
+          // لو حصل خطأ في الإيميل أو الباسورد
           btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> دخول';
-          
-          verifySection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          
-          console.log('⚠️ الإيميل مش متأكد:', email);
-          return;
-        }
-
-        const userSnap = await get(ref(database, `students/${user.uid}`));
-        
-        if (!userSnap.exists()) {
-          status.innerHTML = '<div class="alert alert-danger">❌ لا توجد بيانات لهذا الحساب. تواصل مع الدعم.</div>';
           btn.disabled = false;
-          btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> دخول';
-          return;
-        }
-
-        const userData = userSnap.val();
-        const role = userData.role || 'student';
-
-        // ✅ السطرين دول هما اللي هنضيفهم عشان صفحة الدروس تشتغل
-        localStorage.setItem('studentName', userData.name || 'طالب');
-        localStorage.setItem('studentRole', role);
-
-        status.innerHTML = `<div class="alert alert-success">✅ مرحباً ${userData.name || ''}! جاري التحويل...</div>`;
-        console.log('✅ تسجيل دخول ناجح:', email, '-', role);
-
-        setTimeout(() => {
-          redirectToDashboard(role);
-        }, 800);
-
-      } catch (error) {
-        let message = '❌ فشل تسجيل الدخول. ';
-        if (error.code === 'auth/user-not-found') message = '❌ البريد الإلكتروني غير مسجل.';
-        else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') message = '❌ كلمة المرور غير صحيحة.';
-        else if (error.code === 'auth/invalid-email') message = '❌ صيغة البريد الإلكتروني غير صحيحة.';
-        else if (error.code === 'auth/too-many-requests') message = '❌ تم تجاوز عدد المحاولات. جرب لاحقاً.';
-        else message += error.message;
-        
-        status.innerHTML = `<div class="alert alert-danger">${message}</div>`;
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> دخول';
-      }
-    });
-
-    document.getElementById('resendBtn').addEventListener('click', async () => {
-      const email = pendingUserEmail || document.getElementById('loginEmail').value.trim();
-      const password = document.getElementById('loginPassword').value;
-      const btn = document.getElementById('resendBtn');
-      const status = document.getElementById('loginStatus');
-
-      if (!email || !password) {
-        status.innerHTML = '<div class="alert alert-warning">⚠️ لازم تدخل الإيميل وكلمة المرور الأول</div>';
-        return;
-      }
-
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
-
-      try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        await sendEmailVerification(userCredential.user);
-        await signOut(auth);
-
-        status.innerHTML = '<div class="alert alert-success">✅ تم إرسال رابط التأكيد! افتح إيميلك.</div>';
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-paper-plane"></i> إعادة إرسال رابط التأكيد';
-
-        let countdown = 60;
-        const interval = setInterval(() => {
-          countdown--;
-          btn.innerHTML = `<i class="fas fa-clock"></i> إعادة الإرسال (${countdown})`;
-          if (countdown <= 0) {
-            clearInterval(interval);
-            btn.innerHTML = '<i class="fas fa-paper-plane"></i> إعادة إرسال رابط التأكيد';
-            btn.disabled = false;
+          
+          errorMsg.style.display = 'block';
+          if (error.code === 'auth/wrong-password') {
+            errorMsg.innerText = '❌ كلمة المرور غير صحيحة.';
+          } else if (error.code === 'auth/user-not-found') {
+            errorMsg.innerText = '❌ لا يوجد حساب بهذا البريد الإلكتروني.';
+          } else if (error.code === 'auth/invalid-email') {
+            errorMsg.innerText = '❌ البريد الإلكتروني غير صالح.';
+          } else {
+            errorMsg.innerText = '❌ خطأ: ' + error.message;
           }
-        }, 1000);
-        btn.disabled = true;
-
-      } catch (error) {
-        console.error('❌ خطأ:', error);
-        let msg = '❌ فشل الإرسال. ';
-        if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') msg = '❌ كلمة المرور غير صحيحة.';
-        else if (error.code === 'auth/too-many-requests') msg = '❌ محاولات كثيرة. حاول لاحقاً.';
-        else msg += error.message;
-
-        status.innerHTML = `<div class="alert alert-danger">${msg}</div>`;
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-paper-plane"></i> إعادة إرسال رابط التأكيد';
-      }
+        });
     });
-
-    console.log('✅ Login page loaded with email verification');
   </script>
-
 </body>
 </html>
