@@ -123,34 +123,43 @@
 
       const btn = document.querySelector('.btn-start-exam');
       const originalText = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking Subscription...';
       btn.disabled = true;
 
       try {
-        // التحقق من الصلاحيات
-        const snapshot = await get(ref(database, `users/${currentUser.uid}`));
         let isAllowed = false;
-        
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          if (data.role === 'admin' || data.subscription === 'active') {
-            isAllowed = true;
+
+        // 1. التحقق من حساب الأدمن (users)
+        const adminSnap = await get(ref(database, `users/${currentUser.uid}`));
+        if (adminSnap.exists() && adminSnap.val().role === 'admin') {
+          isAllowed = true;
+        }
+
+        // 2. لو مش أدمن، نشوف هل هو طالب مشترك (students)
+        if (!isAllowed) {
+          const studentSnap = await get(ref(database, `students/${currentUser.uid}`));
+          if (studentSnap.exists()) {
+            const data = studentSnap.val();
+            if (data.subscription === 'active' || data.role === 'admin') {
+              isAllowed = true;
+            }
           }
         }
 
+        // لو مفيش صلاحية
         if (!isAllowed) {
-          alert('🔒 هذا المحتوى مخصص للمشتركين فقط.');
+          alert('🔒 هذا المحتوى مخصص للمشتركين فقط.\nيرجى الاشتراك في المنصة للوصول إلى الامتحانات.');
           btn.innerHTML = originalText;
           btn.disabled = false;
           return;
         }
 
-        // جلب الأسئلة
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        // جلب الأسئلة لو مسموح
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Questions...';
         const questions = await getQuestionsFromBank('sec1', 'unit2');
         
         if (questions.length === 0) {
-          alert('لم يتم العثور على أسئلة الوحدة الثانية. تأكد من استيرادها في بنك الأسئلة.');
+          alert('No questions found. Please import the CSV file first.');
           btn.innerHTML = originalText;
           btn.disabled = false;
           return;
