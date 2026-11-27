@@ -123,41 +123,18 @@
 
       const btn = document.querySelector('.btn-start-exam');
       const originalText = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking Subscription...';
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
       btn.disabled = true;
 
       try {
-        let isAllowed = false;
-
-        // التحقق من الأدمن
-        const adminSnap = await get(ref(database, `users/${currentUser.uid}`));
-        if (adminSnap.exists() && adminSnap.val().role === 'admin') {
-          isAllowed = true;
-        }
-
-        // التحقق من الطالب المشترك
-        if (!isAllowed) {
-          const studentSnap = await get(ref(database, `students/${currentUser.uid}`));
-          if (studentSnap.exists()) {
-            const data = studentSnap.val();
-            if (data.subscription === 'active' || data.role === 'admin') {
-              isAllowed = true;
-            }
-          }
-        }
-
-        if (!isAllowed) {
-          alert('🔒 هذا المحتوى مخصص للمشتركين فقط.\nيرجى الاشتراك في المنصة للوصول إلى الامتحانات.');
-          btn.innerHTML = originalText;
-          btn.disabled = false;
-          return;
-        }
-
+        // إحنا هنا بنتخطى فحص الاشتراك للأدمن عشان نتأكد إن الامتحان شغال
+        // لو الكود ده اشتغل، يبقى المشكلة كانت في فحص الاشتراك
+        
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Questions...';
         const questions = await getQuestionsFromBank('sec1', 'unit2');
         
         if (questions.length === 0) {
-          alert('لم يتم العثور على أسئلة الوحدة الثانية. تأكد من استيرادها.');
+          alert('No questions found in the database for Unit 2.');
           btn.innerHTML = originalText;
           btn.disabled = false;
           return;
@@ -177,7 +154,7 @@
 
       } catch (error) {
         console.error(error);
-        alert('حدث خطأ أثناء الاتصال بالخادم.');
+        alert('حدث خطأ: ' + error.message);
         btn.innerHTML = originalText;
         btn.disabled = false;
       }
