@@ -7,8 +7,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&family=Lateef:wght@400;700&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <script type="importmap">
@@ -22,113 +21,49 @@
   </script>
 
   <style>
-    body { font-family: 'El Messiri', 'Lateef', serif; background: #f0f4fa; padding-bottom: 50px; }
-    .navbar-custom { background: rgba(10, 31, 68, 0.95) !important; backdrop-filter: blur(18px); padding: 14px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.15); }
-    .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
-    .nav-link { color: #e0e8f0 !important; font-weight: 500; }
-    .nav-link:hover { color: #f7e05e !important; }
-    
-    .unit-header { background: linear-gradient(135deg, #0a1f44, #1e3a8a); color: #fff; padding: 40px 30px; border-radius: 24px; margin-bottom: 30px; text-align: center; box-shadow: 0 10px 30px rgba(10, 31, 68, 0.3); }
+    body { font-family: 'El Messiri', sans-serif; background: #f0f4fa; padding-bottom: 50px; }
+    .navbar-custom { background: #0a1f44; padding: 14px 0; }
+    .unit-header { background: linear-gradient(135deg, #0a1f44, #1e3a8a); color: #fff; padding: 40px 30px; border-radius: 24px; margin-bottom: 30px; text-align: center; }
     .unit-header h1 { color: #f7e05e; font-weight: 700; }
-    
     .section-card { background: #fff; border-radius: 18px; padding: 30px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border-left: 5px solid #1e3a8a; }
-    .section-card h3 { color: #0a1f44; font-weight: 700; margin-bottom: 20px; border-bottom: 2px solid #f0f4fa; padding-bottom: 10px; }
-    
-    .reading-passage { background: #f8f9fa; border-left: 4px solid #f7b731; border-radius: 10px; padding: 20px; margin-bottom: 20px; font-size: 1.05rem; line-height: 1.8; color: #333; }
-    .grammar-box { background: #e3f2fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; color: #0a1f44; }
-    
-    .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-    .vocab-item { background: #f8f9fa; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #e9ecef; }
-    .vocab-item strong { display: block; color: #1e3a8a; font-size: 1.1rem; margin-bottom: 5px; }
-    .vocab-item span { color: #666; font-size: 0.9rem; }
-
-    .btn-start-exam { background: #f7b731; color: #0a1f44; font-weight: 700; font-size: 1.2rem; border-radius: 50px; padding: 15px 40px; transition: 0.3s; border: none; width: 100%; margin-top: 20px; }
-    .btn-start-exam:hover { background: #f7e05e; transform: scale(1.02); }
-
-    #examContainer { display: none; }
+    .reading-passage { background: #f8f9fa; border-left: 4px solid #f7b731; border-radius: 10px; padding: 20px; line-height: 1.8; }
+    .btn-start-exam { background: #f7b731; color: #0a1f44; font-weight: 700; font-size: 1.2rem; border-radius: 50px; padding: 15px 40px; border: none; width: 100%; }
     .q-card { background: #fff; border-radius: 18px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
-    .q-text { font-size: 1.2rem; font-weight: 700; color: #0a1f44; margin-bottom: 20px; }
-    .option-btn { display: block; width: 100%; text-align: left; padding: 15px 20px; margin-bottom: 10px; border: 2px solid #e9ecef; border-radius: 12px; background: #fff; font-size: 1.05rem; cursor: pointer; transition: 0.2s; }
-    .option-btn:hover { border-color: #1e3a8a; background: #f0f4fa; }
+    .option-btn { display: block; width: 100%; text-align: left; padding: 15px 20px; margin-bottom: 10px; border: 2px solid #e9ecef; border-radius: 12px; background: #fff; cursor: pointer; }
     .option-btn.selected { border-color: #1e3a8a; background: #e3f2fd; font-weight: 700; }
-    .option-btn.correct { border-color: #28a745; background: #e8f5e9; color: #155724; font-weight: 700; }
-    .option-btn.wrong { border-color: #dc3545; background: #f8d7da; color: #721c24; }
-    
-    .timer-badge { background: #dc3545; color: #fff; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 1.2rem; }
-    .logo-img { height: 45px; margin-right: 15px; border-radius: 50%; border: 2px solid #f7e05e; object-fit: cover; }
-    .form-control-custom { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #e9ecef; font-size: 1.05rem; }
   </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+  <nav class="navbar navbar-dark navbar-custom">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="../../index.html">
-        <img src="../../assets/images/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
-        <span class="brand-name">Mr. Yasser Nofal</span>
-      </a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../../lessons.html">Lessons</a></li>
-          <li class="nav-item"><a class="nav-link" href="../../student-dashboard.html">Dashboard</a></li>
-        </ul>
+      <a class="navbar-brand text-warning fw-bold" href="../../index.html">Mr. Yasser Nofal</a>
+      <div class="ms-auto">
+        <a class="nav-link text-white d-inline" href="../../lessons.html">Lessons</a>
       </div>
     </div>
   </nav>
 
   <div class="container mt-4" style="max-width: 900px;">
     
-    <!-- Lesson Content -->
+    <!-- الشرح -->
     <div id="lessonContainer">
       <div class="unit-header">
         <h1>Unit 2: Hands Help, Hearts Care</h1>
-        <p class="mb-0">The Warm Bread & Serving the Community</p>
       </div>
 
       <div class="section-card">
-        <h3><i class="fas fa-book-open text-primary"></i> Reading</h3>
+        <h3><i class="fas fa-book-open text-primary"></i> Reading: The Warm Bread</h3>
         <div class="reading-passage">
-          <strong>The Warm Bread</strong><br>
           It was a difficult week for Sama. Her grades were slipping, and she felt overwhelmed by all her schoolwork. On Thursday afternoon, she sat by her window, staring at the grey sky that seemed to mirror her mood. She hadn't spoken to many people lately and felt isolated from her friends. Then, there was a knock at the door. It was Mrs. Aya, the friendly neighbor who lived upstairs. She held a small basket covered with a clean white cloth, still warm from the oven. "I baked some fresh bread this morning," Mrs. Aya said warmly. "I thought you might like some." The smell was irresistible, wrapping around Sama like a gentle hug. Sama smiled for the first time in days and invited her in for tea. They sat together, chatting about small things—school, plants, and Mrs. Aya's garden, while the soft sound of rain tapped on the window. Slowly, Sama felt her worries begin to fade. Before leaving, Mrs. Aya said, "Sometimes, the smallest kindness can make a big difference." Sama kept thinking about those words. She decided to help her younger cousin with homework that evening. Seeing her cousin's face light up filled her with optimism. She realized that kindness doesn't just make others feel better; it can change your own heart, too.
         </div>
       </div>
 
       <div class="section-card">
-        <h3><i class="fas fa-language text-primary"></i> Vocabulary</h3>
-        <div class="vocab-grid">
-          <div class="vocab-item"><strong>Isolated</strong><span>معزول / منفصل</span></div>
-          <div class="vocab-item"><strong>Overwhelmed</strong><span>غارق / مشغول جداً</span></div>
-          <div class="vocab-item"><strong>Irresistible</strong><span>لا يقاوم</span></div>
-          <div class="vocab-item"><strong>Fade</strong><span>يتلاشى / يخف</span></div>
-          <div class="vocab-item"><strong>Optimism</strong><span>تفاؤل</span></div>
-          <div class="vocab-item"><strong>Volunteer</strong><span>متطوع</span></div>
-          <div class="vocab-item"><strong>Saplings</strong><span>شتلات</span></div>
-          <div class="vocab-item"><strong>Community</strong><span>مجتمع</span></div>
-          <div class="vocab-item"><strong>Obligation</strong><span>التزام / واجب</span></div>
-          <div class="vocab-item"><strong>Emergency</strong><span>حالة طارئة</span></div>
-          <div class="vocab-item"><strong>Trust</strong><span>ثقة</span></div>
-          <div class="vocab-item"><strong>Protect</strong><span>يحمي</span></div>
-        </div>
-      </div>
-
-      <div class="section-card">
         <h3><i class="fas fa-spell-check text-primary"></i> Grammar: Modal Verbs</h3>
-        <div class="grammar-box">
-          <h5><strong>1. Should / Shouldn't</strong></h5>
-          <p>Use for suggestions and advice.<br>
-          <em>Example: You <strong>should</strong> always take a shower. / You <strong>shouldn't</strong> take your umbrella today.</em></p>
-          
-          <h5><strong>2. Must / Mustn't</strong></h5>
-          <p><strong>Must</strong> for rules, laws, strong advice, and warm invitations.<br>
-          <strong>Mustn't</strong> to express prohibition.<br>
-          <em>Example: Drivers <strong>must</strong> follow traffic rules. / You <strong>mustn't</strong> smoke in a public place.</em></p>
-          
-          <h5><strong>3. Have to / Don't have to</strong></h5>
-          <p><strong>Have to</strong> when you mean no choice.<br>
-          <strong>Don't have to</strong> when it's not necessary.<br>
-          <em>Example: I <strong>have to</strong> renew my driving licence next month.</em></p>
-        </div>
+        <p><strong>Should / Shouldn't:</strong> For advice. (You should take a shower.)</p>
+        <p><strong>Must / Mustn't:</strong> For rules and prohibition. (You mustn't smoke here.)</p>
+        <p><strong>Have to:</strong> For no choice. (I have to renew my licence.)</p>
       </div>
 
       <button class="btn-start-exam" onclick="startExam()">
@@ -136,38 +71,33 @@
       </button>
     </div>
 
-    <!-- Exam UI -->
-    <div id="examContainer">
-      <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- الامتحان -->
+    <div id="examContainer" style="display: none;">
+      <div class="d-flex justify-content-between mb-4">
         <h2 style="color: #0a1f44; font-weight: 700;">Unit 2 Exam</h2>
-        <div class="timer-badge" id="examTimer">60:00</div>
+        <div class="badge bg-danger fs-5 p-2" id="examTimer">60:00</div>
       </div>
-      
       <div id="examQuestionsWrapper"></div>
-
       <div class="d-flex gap-2 mt-4">
-        <button class="btn btn-secondary w-50" onclick="prevQuestion()" id="prevBtn" style="border-radius: 50px;">Previous</button>
-        <button class="btn btn-primary w-50" onclick="nextQuestion()" id="nextBtn" style="border-radius: 50px;">Next</button>
+        <button class="btn btn-secondary w-50" onclick="prevQuestion()" id="prevBtn">Previous</button>
+        <button class="btn btn-primary w-50" onclick="nextQuestion()" id="nextBtn">Next</button>
       </div>
-      <button class="btn btn-success w-100 mt-3" onclick="finishExam()" id="finishBtn" style="border-radius: 50px; display: none;">Finish & Submit Exam</button>
+      <button class="btn btn-success w-100 mt-3" onclick="finishExam()" id="finishBtn" style="display: none;">Finish & Submit Exam</button>
     </div>
 
-    <!-- Results -->
+    <!-- النتيجة -->
     <div id="resultsContainer" style="display: none;">
       <div class="section-card text-center" id="pdfContent">
         <h2 style="color: #0a1f44; font-weight: 700;">Final Result</h2>
         <div style="font-size: 4rem; color: #28a745; font-weight: 700;" id="scoreDisplay">0%</div>
         <p style="font-size: 1.2rem;" id="gradeDisplay">Evaluating...</p>
-        
         <div class="d-flex justify-content-center gap-2 mt-3">
-          <button class="btn btn-primary" onclick="location.reload()" style="border-radius: 50px; padding: 10px 30px;">Retake Exam</button>
-          <button class="btn btn-danger" onclick="downloadPDF()" style="border-radius: 50px; padding: 10px 30px;"><i class="fas fa-file-pdf"></i> Download PDF</button>
+          <button class="btn btn-primary" onclick="location.reload()">Retake</button>
+          <button class="btn btn-danger" onclick="downloadPDF()"><i class="fas fa-file-pdf"></i> PDF</button>
         </div>
-        
         <div id="answersReview" class="text-start mt-4"></div>
       </div>
     </div>
-
   </div>
 
   <script type="module">
@@ -186,60 +116,50 @@
 
     window.startExam = async function() {
       if (!currentUser) {
-        alert('⚠️ يرجى تسجيل الدخول أولاً لتتمكن من أداء الامتحان.');
+        alert('⚠️ يرجى تسجيل الدخول أولاً.');
         window.location.href = '../../login.html';
         return;
       }
 
       const btn = document.querySelector('.btn-start-exam');
       const originalText = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking Subscription...';
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
       btn.disabled = true;
 
       try {
-        const userRef = ref(database, `users/${currentUser.uid}`);
-        const snapshot = await get(userRef);
+        // التحقق من الصلاحيات
+        const snapshot = await get(ref(database, `users/${currentUser.uid}`));
         let isAllowed = false;
         
         if (snapshot.exists()) {
-          const userData = snapshot.val();
-          if (userData.role === 'admin' || userData.subscription === 'active') {
+          const data = snapshot.val();
+          if (data.role === 'admin' || data.subscription === 'active') {
             isAllowed = true;
           }
         }
 
         if (!isAllowed) {
-          alert('🔒 هذا المحتوى مخصص للمشتركين فقط.\nيرجى الاشتراك في المنصة للوصول إلى الامتحانات.');
+          alert('🔒 هذا المحتوى مخصص للمشتركين فقط.');
           btn.innerHTML = originalText;
           btn.disabled = false;
           return;
         }
 
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading Questions...';
+        // جلب الأسئلة
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
         const questions = await getQuestionsFromBank('sec1', 'unit2');
         
         if (questions.length === 0) {
-          alert('No questions found. Please import the CSV file first.');
+          alert('لم يتم العثور على أسئلة الوحدة الثانية. تأكد من استيرادها في بنك الأسئلة.');
           btn.innerHTML = originalText;
           btn.disabled = false;
           return;
         }
 
-        const examConfig = {
-          title: 'Unit 2 Comprehensive Exam',
-          duration: 60,
-          questionCount: questions.length
-        };
-
-        examEngine = new ExamEngine(examConfig, questions, {
-          shuffleQuestions: true,
-          shuffleOptions: true,
-          onTick: (time) => {
-            document.getElementById('examTimer').innerText = examEngine.formatTime(time);
-          },
-          onFinish: (result) => {
-            displayResults(result);
-          }
+        examEngine = new ExamEngine({ title: 'Unit 2', duration: 60, questionCount: questions.length }, questions, {
+          shuffleQuestions: true, shuffleOptions: true,
+          onTick: (time) => { document.getElementById('examTimer').innerText = examEngine.formatTime(time); },
+          onFinish: (result) => { displayResults(result); }
         });
 
         document.getElementById('lessonContainer').style.display = 'none';
@@ -249,8 +169,8 @@
         renderQuestion();
 
       } catch (error) {
-        console.error("Error:", error);
-        alert('حدث خطأ. يرجى المحاولة مرة أخرى.');
+        console.error(error);
+        alert('حدث خطأ أثناء الاتصال بالخادم.');
         btn.innerHTML = originalText;
         btn.disabled = false;
       }
@@ -267,12 +187,12 @@
           const isSelected = examEngine.answers[q.id] === i;
           optionsHtml += `<button class="option-btn ${isSelected ? 'selected' : ''}" onclick="selectAnswer('${q.id}', ${i}, this)">${opt}</button>`;
         });
-      } else if (q.type === 'fill_blank' || q.type === 'rewrite' || q.type === 'translation') {
+      } else {
         const val = examEngine.answers[q.id] || '';
-        optionsHtml = `<input type="text" class="form-control-custom" value="${val}" oninput="examEngine.answer('${q.id}', this.value)" placeholder="Type your answer here...">`;
+        optionsHtml = `<input type="text" class="form-control" value="${val}" oninput="examEngine.answer('${q.id}', this.value)">`;
       }
 
-      const passageHtml = q.passage ? `<div class="reading-passage" style="font-size: 0.95rem; margin-bottom: 15px;">${q.passage}</div>` : '';
+      const passageHtml = q.passage ? `<div class="reading-passage mb-3">${q.passage}</div>` : '';
 
       wrapper.innerHTML = `
         <div class="q-card">
@@ -281,8 +201,8 @@
             <span class="badge bg-info text-dark">${q.topic || 'General'}</span>
           </div>
           ${passageHtml}
-          <div class="q-text">${q.text}</div>
-          <div class="options-wrapper">${optionsHtml}</div>
+          <div class="fw-bold mb-3 fs-5">${q.text}</div>
+          <div>${optionsHtml}</div>
         </div>
       `;
 
@@ -291,75 +211,49 @@
       document.getElementById('finishBtn').style.display = (idx === examEngine.questions.length - 1) ? 'block' : 'none';
     }
 
-    window.selectAnswer = function(questionId, optionIndex, btnEl) {
-      examEngine.answer(questionId, optionIndex);
-      const parent = btnEl.parentElement;
-      parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-      btnEl.classList.add('selected');
+    window.selectAnswer = (qId, optIdx, btn) => {
+      examEngine.answer(qId, optIdx);
+      btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
     };
 
-    window.prevQuestion = function() {
-      if (examEngine.prev()) renderQuestion();
-    };
-    window.nextQuestion = function() {
-      if (examEngine.next()) renderQuestion();
-    };
-
-    window.finishExam = function() {
-      if (confirm('Are you sure you want to finish and submit the exam?')) {
-        examEngine.finish('manual');
-      }
-    };
+    window.prevQuestion = () => { if (examEngine.prev()) renderQuestion(); };
+    window.nextQuestion = () => { if (examEngine.next()) renderQuestion(); };
+    window.finishExam = () => { if (confirm('تأكيد إنهاء وتسليم الامتحان؟')) examEngine.finish('manual'); };
 
     async function displayResults(result) {
       document.getElementById('examContainer').style.display = 'none';
-      const resContainer = document.getElementById('resultsContainer');
-      resContainer.style.display = 'block';
-
+      document.getElementById('resultsContainer').style.display = 'block';
       document.getElementById('scoreDisplay').innerText = result.percentage + '%';
-      document.getElementById('gradeDisplay').innerText = `Grade: ${result.grade} (${result.correct} correct out of ${result.total})`;
+      document.getElementById('gradeDisplay').innerText = `Grade: ${result.grade} (${result.correct} / ${result.total})`;
 
       const reviewDiv = document.getElementById('answersReview');
       reviewDiv.innerHTML = '<h4 class="mb-3 text-center">Answers Review</h4>';
       
       result.details.forEach((d, i) => {
-        const statusIcon = d.isCorrect ? '<i class="fas fa-check-circle text-success"></i>' : '<i class="fas fa-times-circle text-danger"></i>';
+        const icon = d.isCorrect ? '<i class="fas fa-check-circle text-success"></i>' : '<i class="fas fa-times-circle text-danger"></i>';
         reviewDiv.innerHTML += `
-          <div class="section-card" style="border-left-color: ${d.isCorrect ? '#28a745' : '#dc3545'};">
-            <p class="fw-bold mb-2">${statusIcon} Question ${i+1}: ${d.questionText}</p>
+          <div class="card p-3 mb-2 border-${d.isCorrect ? 'success' : 'danger'}">
+            <p class="fw-bold mb-1">${icon} Q${i+1}: ${d.questionText}</p>
             <p class="mb-1 text-success" style="font-size: 0.9rem;">Your Answer: ${d.studentAnswer !== undefined ? d.studentAnswer : 'Not Answered'}</p>
             ${!d.isCorrect ? `<p class="mb-1 text-danger" style="font-size: 0.9rem;">Correct Answer: ${d.correctAnswer}</p>` : ''}
-            ${d.explanation ? `<p class="mb-0 text-muted mt-2" style="font-size: 0.85rem; background: #f8f9fa; padding: 10px; border-radius: 8px;"><strong>Explanation:</strong> ${d.explanation}</p>` : ''}
           </div>
         `;
       });
 
       if (currentUser && examEngine) {
         try {
-          await saveExamResult(currentUser.uid, 'unit2_sec1', {
-            examTitle: 'Unit 2 Comprehensive Exam',
-            ...result
-          });
-        } catch (error) {
-          console.error("Save error:", error);
-        }
+          await saveExamResult(currentUser.uid, 'unit2_sec1', { examTitle: 'Unit 2', ...result });
+        } catch (error) { console.error("Save error:", error); }
       }
     }
 
     window.downloadPDF = function() {
       const element = document.getElementById('pdfContent');
-      const opt = {
-        margin:       10,
-        filename:     'Unit2_Exam_Result.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
-      const buttons = element.querySelector('.d-flex');
-      buttons.style.display = 'none';
-      html2pdf().from(element).set(opt).save().then(() => {
-        buttons.style.display = 'flex';
-      });
+      const opt = { margin: 10, filename: 'Unit2_Result.pdf', html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
+      const btns = element.querySelector('.d-flex');
+      btns.style.display = 'none';
+      html2pdf().from(element).set(opt).save().then(() => { btns.style.display = 'flex'; });
     };
   </script>
 </body>
