@@ -1,245 +1,175 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unit 3: Truth vs. Lies – أولى ثانوي | أكاديمية مستر ياسر نوفل</title>
+  <title>Unit 3: Truth vs. Lies | Mr. Yasser Nofal Academy</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=El+Messiri:wght@500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'El Messiri', serif; background: #f0f4fa; padding-top: 78px; }
-    .navbar-custom { background: rgba(10, 31, 68, 0.95) !important; padding: 14px 0; z-index: 1050; }
-    .navbar-brand .brand-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.4rem; color: #f7e05e; }
-    .navbar-brand .brand-name span { color: #ffb347; }
-
-    .hero-unit { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #fff; padding: 60px 20px; border-radius: 0 0 40px 40px; margin-bottom: 40px; text-align: center;}
-    .hero-unit .unit-badge { display: inline-block; background: #f7e05e; color: #0a1f44; padding: 6px 18px; border-radius: 20px; font-weight: 800; font-family: 'Cinzel', serif; margin-bottom: 15px; }
-    .hero-unit h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; margin-bottom: 10px; direction: ltr; }
-    .hero-unit .arabic-title { font-size: 1.2rem; color: #b0c4de; }
-
-    .layout-wrapper { display: grid; grid-template-columns: 280px 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; padding: 0 20px; }
-    @media (max-width: 992px) { .layout-wrapper { grid-template-columns: 1fr; } }
-
-    .sidebar { position: sticky; top: 100px; height: fit-content; background: #fff; border-radius: 20px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
-    .sidebar h3 { color: #0a1f44; font-weight: 800; font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f7e05e; direction: rtl; text-align: right; }
-    .sidebar ul { list-style: none; padding: 0; }
-    .sidebar li { margin-bottom: 8px; }
-    .sidebar a { display: flex; align-items: center; gap: 10px; padding: 10px 15px; border-radius: 12px; color: #555; text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.9rem; direction: ltr; text-align: left; }
-    .sidebar a:hover, .sidebar a.active { background: linear-gradient(135deg, #0a1f44, #1a3a6e); color: #f7e05e; }
-
-    .lesson-card { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-right: 5px solid #f7e05e; transition: 0.3s; }
-    .lesson-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid #f7e05e; cursor: pointer; }
-    .lesson-number { background: #0a1f44; color: #f7e05e; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'Cinzel', serif; font-size: 1.2rem; flex-shrink: 0; }
-    .lesson-header h2 { font-family: 'Playfair Display', serif; color: #0a1f44; font-size: 1.4rem; margin: 0; flex-grow: 1; direction: ltr; text-align: left; }
-    .lesson-header .toggle-icon { color: #f7b731; font-size: 1.3rem; transition: 0.3s; }
-    .lesson-body.collapsed { display: none; }
-
-    .section-title { color: #0a1f44; font-weight: 800; font-size: 1.2rem; margin: 25px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #f7e05e; direction: ltr; text-align: left; }
-
-    .reading-passage { background: #f8f9fa; border-radius: 15px; padding: 25px; font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.8; color: #333; border-left: 4px solid #0a1f44; direction: ltr; text-align: left; }
-    .reading-passage p { margin-bottom: 15px; }
-
-    .vocab-table { width: 100%; border-collapse: collapse; margin-top: 15px; direction: ltr; }
-    .vocab-table th { background: #0a1f44; color: #f7e05e; padding: 12px; text-align: left; font-family: 'Cinzel', serif; }
-    .vocab-table td { padding: 12px; border-bottom: 1px solid #e9ecef; }
-    .vocab-table tr:nth-child(even) { background: #f8f9fa; }
-    .vocab-table .word { font-weight: 800; color: #0a1f44; direction: ltr; text-align: left; }
-    .vocab-table .meaning { color: #555; direction: rtl; text-align: right; }
-
-    .grammar-box { background: linear-gradient(135deg, #fef9e7, #fffbf0); border: 2px solid #f7e05e; border-radius: 15px; padding: 25px; margin: 20px 0; }
-    .grammar-box h4 { color: #0a1f44; font-weight: 800; margin-bottom: 15px; direction: ltr; text-align: left; }
-    .grammar-box .example { background: #fff; border-radius: 10px; padding: 12px 18px; margin: 10px 0; font-family: 'Playfair Display', serif; color: #0a1f44; border-left: 3px solid #f7b731; direction: ltr; text-align: left; }
-    .grammar-box .rule { color: #333; margin: 10px 0; line-height: 1.7; direction: ltr; text-align: left; }
-
-    .quiz-section { background: #fff; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); border-top: 5px solid #f7b731; }
-    .question-box { background: #f8f9fa; border-radius: 15px; padding: 20px; margin: 15px 0; border: 2px solid #e9ecef; }
-    .question-box .q-text { font-weight: 700; color: #0a1f44; margin-bottom: 12px; direction: ltr; text-align: left; }
-    .question-box .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: ltr; }
-    .question-box .option { background: #fff; border-radius: 10px; padding: 10px 15px; cursor: pointer; transition: 0.3s; border: 2px solid #e9ecef; direction: ltr; text-align: left; }
-    .question-box .option:hover { background: #e9ecef; border-color: #f7b731; }
-    .question-box .option.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: bold; }
-    .question-box .option.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
-
-    .btn-lesson { background: #0a1f44; color: #f7e05e; padding: 12px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; margin: 5px; }
-    .btn-lesson:hover { background: #f7b731; color: #0a1f44; text-decoration: none; }
-    .btn-lesson.gold { background: #f7e05e; color: #0a1f44; }
-
-    .nav-buttons { display: flex; justify-content: space-between; margin-top: 40px; flex-wrap: wrap; gap: 15px; }
-
-    @media (max-width: 768px) {
-      .hero-unit h1 { font-size: 1.8rem; }
-      .lesson-header h2 { font-size: 1.1rem; }
-      .question-box .options { grid-template-columns: 1fr; }
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+      "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"
     }
+  }
+  </script>
+  <style>
+    body { font-family: 'El Messiri', sans-serif; background: #f0f4fa; padding-bottom: 50px; }
+    .navbar-custom { background: #0a1f44; padding: 14px 0; }
+    .unit-header { background: linear-gradient(135deg, #0a1f44, #1e3a8a); color: #fff; padding: 40px 30px; border-radius: 24px; margin-bottom: 30px; text-align: center; }
+    .unit-header h1 { color: #f7e05e; font-weight: 700; }
+    .section-card { background: #fff; border-radius: 18px; padding: 30px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border-left: 5px solid #1e3a8a; }
+    .reading-passage { background: #f8f9fa; border-left: 4px solid #f7b731; border-radius: 10px; padding: 20px; line-height: 1.8; }
+    .btn-start-exam { background: #f7b731; color: #0a1f44; font-weight: 700; font-size: 1.2rem; border-radius: 50px; padding: 15px 40px; border: none; width: 100%; }
+    .q-card { background: #fff; border-radius: 18px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    .option-btn { display: block; width: 100%; text-align: left; padding: 15px 20px; margin-bottom: 10px; border: 2px solid #e9ecef; border-radius: 12px; background: #fff; cursor: pointer; }
+    .option-btn.selected { border-color: #1e3a8a; background: #e3f2fd; font-weight: 700; }
   </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+  <nav class="navbar navbar-dark navbar-custom">
     <div class="container">
-      <a class="navbar-brand" href="/index.html">
-        <span class="brand-name">Mr. <span>Yasser</span> Nofal</span>
-      </a>
+      <a class="navbar-brand text-warning fw-bold" href="../../index.html">Mr. Yasser Nofal</a>
       <div class="ms-auto">
-        <a href="/lessons.html" style="color:#f7e05e; text-decoration:none; font-weight:600;">← كل الوحدات</a>
+        <a class="nav-link text-white d-inline" href="../../lessons.html">Lessons</a>
       </div>
     </div>
   </nav>
 
-  <div class="hero-unit">
-    <span class="unit-badge">UNIT 3</span>
-    <h1>Truth vs. Lies</h1>
-    <p class="arabic-title">الحقيقة ضد الكذب</p>
+  <div class="container mt-4" style="max-width: 900px;">
+    
+    <div id="lessonContainer">
+      <div class="unit-header">
+        <h1>Unit 3: Truth vs. Lies</h1>
+      </div>
+
+      <div class="section-card">
+        <h3><i class="fas fa-book-open text-primary"></i> Reading: The Truth Trap</h3>
+        <div class="reading-passage">
+          In the past, wars were fought with soldiers, tanks, and planes. Today, a new kind of war is spreading across the world. It does not use bullets or bombs. Instead, it uses words — lies, half-truths, and rumors. Experts call this the "war of the new generation." In this kind of war, the goal is not to destroy buildings, but to damage trust. Lies can be used to make people angry, afraid, or confused. A rumor can spread quickly through social media, making millions believe something that is not true. When people no longer know what to believe, it becomes easier to control them. The victims of these "information attacks" can be individuals, companies, or even whole countries. A false story about a famous person can ruin their career. A rumor about a company can cause customers to stop buying its products. One dangerous thing about this invisible weapon is how hard it is to fight back. Once a lie is shared online, it can travel faster than the truth. People may share it without checking if it is correct. Some do it because they are angry, others because they find it exciting. Protecting ourselves from this new kind of war requires awareness. We must think before we believe or share a story. We should ask: "Where did this information come from? Is it supported by facts? Who might benefit from me believing this?" In the war of the new generation, the most powerful defense is a careful and questioning mind.
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h3><i class="fas fa-spell-check text-primary"></i> Grammar: Conditionals</h3>
+        <p><strong>Zero Conditional:</strong> If + present simple, present simple. (If you mix red and blue, you get purple.)</p>
+        <p><strong>First Conditional:</strong> If + present simple, will + inf. (If it rains tomorrow, we will stay at home.)</p>
+        <p><strong>Second Conditional:</strong> If + past simple, would + inf. (If I had enough money, I would buy a new car.)</p>
+      </div>
+
+      <button class="btn-start-exam" onclick="startExam()">
+        <i class="fas fa-play-circle"></i> Start Comprehensive Exam (Unit 3)
+      </button>
+    </div>
+
+    <div id="examContainer" style="display: none;">
+      <div class="d-flex justify-content-between mb-4">
+        <h2 style="color: #0a1f44; font-weight: 700;">Unit 3 Exam</h2>
+        <div class="badge bg-danger fs-5 p-2" id="examTimer">60:00</div>
+      </div>
+      <div id="examQuestionsWrapper"></div>
+      <div class="d-flex gap-2 mt-4">
+        <button class="btn btn-secondary w-50" onclick="prevQuestion()" id="prevBtn">Previous</button>
+        <button class="btn btn-primary w-50" onclick="nextQuestion()" id="nextBtn">Next</button>
+      </div>
+      <button class="btn btn-success w-100 mt-3" onclick="finishExam()" id="finishBtn" style="display: none;">Finish & Submit Exam</button>
+    </div>
+
+    <div id="resultsContainer" style="display: none;">
+      <div class="section-card text-center" id="pdfContent">
+        <h2 style="color: #0a1f44; font-weight: 700;">Final Result</h2>
+        <div style="font-size: 4rem; color: #28a745; font-weight: 700;" id="scoreDisplay">0%</div>
+        <p style="font-size: 1.2rem;" id="gradeDisplay">Evaluating...</p>
+        <div class="d-flex justify-content-center gap-2 mt-3">
+          <button class="btn btn-primary" onclick="location.reload()">Retake</button>
+          <button class="btn btn-danger" onclick="downloadPDF()"><i class="fas fa-file-pdf"></i> PDF</button>
+        </div>
+        <div id="answersReview" class="text-start mt-4"></div>
+      </div>
+    </div>
   </div>
 
-  <div class="layout-wrapper">
+  <script type="module">
+    import { auth, database } from '../../firebase-config.js';
+    import { ExamEngine } from '../../assets/js/exam-engine.js';
+    import { getQuestionsFromBank, saveExamResult } from '../../assets/js/exam-storage.js';
+    import { onAuthStateChanged } from "firebase/auth";
+    import { ref, get } from "firebase/database";
 
-    <aside class="sidebar">
-      <h3>📚 محتويات الوحدة</h3>
-      <ul>
-        <li><a href="#lesson1" class="active"><i class="fas fa-book"></i> Lesson 1: The Truth About Fake News</a></li>
-        <li><a href="#lesson2"><i class="fas fa-language"></i> Lesson 2: Grammar</a></li>
-        <li><a href="#quiz"><i class="fas fa-tasks"></i> Unit Quiz</a></li>
-      </ul>
-    </aside>
+    let examEngine = null;
+    let currentUser = null;
 
-    <main>
+    onAuthStateChanged(auth, (user) => { currentUser = user; });
 
-      <!-- Lesson 1: Reading & Vocabulary -->
-      <div class="lesson-card" id="lesson1">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">1</div>
-          <h2>The Truth About Fake News</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body">
-          <h3 class="section-title">📖 Reading</h3>
-          <div class="reading-passage">
-            <p>In today's digital age, information travels faster than ever before. While this has many benefits, it also comes with a serious challenge: the spread of fake news. Fake news refers to false information that is presented as real, often created to mislead people, influence opinions, or make money.</p>
-            <p>Social media platforms have made it incredibly easy for fake news to spread. A single post can reach millions of people in a matter of hours. Unfortunately, many people share these posts without verifying the facts, which allows misinformation to spread like wildfire.</p>
-            <p>The consequences of fake news can be devastating. It can cause panic, damage reputations, and even influence election results. It is a threat to democracy and social stability because it creates confusion and divides communities.</p>
-            <p>So, how can we protect ourselves? First, we must be critical thinkers. We should always check the source of the information. Is it a trusted news organization, or a random website? Second, we should read beyond the headline. Often, headlines are designed to grab attention and can be misleading. Finally, if a story seems too shocking to be true, it probably isn't. We should use fact-checking websites to verify the claims before hitting the share button.</p>
-          </div>
+    window.startExam = async function() {
+      if (!currentUser) { alert('⚠️ يرجى تسجيل الدخول أولاً.'); window.location.href = '../../login.html'; return; }
+      const btn = document.querySelector('.btn-start-exam'); const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...'; btn.disabled = true;
 
-          <h3 class="section-title">💡 Vocabulary</h3>
-          <table class="vocab-table">
-            <thead>
-              <tr><th>Word</th><th>Meaning</th></tr>
-            </thead>
-            <tbody>
-              <tr><td class="word">Misinformation</td><td class="meaning">معلومات مغلوطة (غير مقصودة)</td></tr>
-              <tr><td class="word">Disinformation</td><td class="meaning">تضليل (معلومات كاذبة مقصودة)</td></tr>
-              <tr><td class="word">Verify</td><td class="meaning">يتحقق من صحة شيء</td></tr>
-              <tr><td class="word">Devastating</td><td class="meaning">مدمر / كارثي</td></tr>
-              <tr><td class="word">Reputation</td><td class="meaning">سمعة</td></tr>
-              <tr><td class="word">Critical thinker</td><td class="meaning">مفكر ناقد</td></tr>
-              <tr><td class="word">Fact-checking</td><td class="meaning">التحقق من الحقائق</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      try {
+        let isAllowed = false;
+        const adminSnap = await get(ref(database, `users/${currentUser.uid}`));
+        if (adminSnap.exists() && adminSnap.val().role === 'admin') { isAllowed = true; }
+        if (!isAllowed) {
+          const studentSnap = await get(ref(database, `students/${currentUser.uid}`));
+          if (studentSnap.exists()) { const data = studentSnap.val(); if (data.subscription === 'active' || data.role === 'admin') { isAllowed = true; } }
+        }
+        if (!isAllowed) { alert('🔒 للمشتركين فقط.'); btn.innerHTML = originalText; btn.disabled = false; return; }
 
-      <!-- Lesson 2: Grammar -->
-      <div class="lesson-card" id="lesson2">
-        <div class="lesson-header" onclick="toggleLesson(this)">
-          <div class="lesson-number">2</div>
-          <h2>Grammar: Conditional Sentences (If-Clauses)</h2>
-          <i class="fas fa-chevron-down toggle-icon"></i>
-        </div>
-        <div class="lesson-body collapsed">
-          <h3 class="section-title">📚 Language in Context</h3>
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        const questions = await getQuestionsFromBank('sec1', 'unit3');
+        if (questions.length === 0) { alert('لا توجد أسئلة. تأكد من استيرادها.'); btn.innerHTML = originalText; btn.disabled = false; return; }
 
-          <div class="grammar-box">
-            <h4>1. Zero Conditional (حقائق)</h4>
-            <p class="rule">بنستخدمها عشان نتكلم عن <strong>حقائق علمية</strong> أو حاجات بتحدث دايماً. (If + Present Simple, Present Simple)</p>
-            <div class="example">If you <strong>heat</strong> water to 100°C, it <strong>boils</strong>.</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>2. First Conditional (احتمال حقيقي في المستقبل)</h4>
-            <p class="rule">بنستخدمها لو في <strong>احتمال حقيقي</strong> إن الشرط يتحقق في المستقبل. (If + Present Simple, will + infinitive)</p>
-            <div class="example">If you <strong>don't verify</strong> the news, you <strong>will believe</strong> lies.</div>
-            <div class="example">If I <strong>study</strong> hard, I <strong>will pass</strong> the exam.</div>
-          </div>
-
-          <div class="grammar-box">
-            <h4>3. Second Conditional (حلم أو خيال في الحاضر)</h4>
-            <p class="rule">بنستخدمها عشان نتكلم عن <strong>موقف غير حقيقي أو خيالي</strong> في الحاضر أو المستقبل. (If + Past Simple, would + infinitive)</p>
-            <div class="example">If I <strong>had</strong> a million dollars, I <strong>would</strong> travel the world. (بس أنا معنديش)</div>
-            <div class="example">If I <strong>were</strong> you, I <strong>wouldn't share</strong> that post.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive Quiz -->
-      <div class="quiz-section" id="quiz">
-        <h3 class="section-title" style="border-bottom-color: #0a1f44;">📝 Unit Quiz (اختبر نفسك)</h3>
-        <p style="direction: rtl; text-align: right; color: #555; margin-bottom: 20px;">جاوب على الأسئلة دي عشان تتأكد إنك فهمت الدرس.</p>
-
-        <div class="question-box">
-          <div class="q-text">1. If you ________ the news, you will avoid spreading fake information.</div>
-          <div class="options">
-            <div class="option" onclick="checkAnswer(this, true)">a) verify</div>
-            <div class="option" onclick="checkAnswer(this, false)">b) verified</div>
-            <div class="option" onclick="checkAnswer(this, false)">c) will verify</div>
-            <div class="option" onclick="checkAnswer(this, false)">d) verifying</div>
-          </div>
-        </div>
-
-        <div class="question-box">
-          <div class="q-text">2. If I ________ you, I wouldn't trust that website.</div>
-          <div class="options">
-            <div class="option" onclick="checkAnswer(this, false)">a) am</div>
-            <div class="option" onclick="checkAnswer(this, false)">b) was</div>
-            <div class="option" onclick="checkAnswer(this, true)">c) were</div>
-            <div class="option" onclick="checkAnswer(this, false)">d) be</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="nav-buttons">
-        <a href="/lessons/sec1/unit2.html" class="btn-lesson gold">← الوحدة السابقة</a>
-        <a href="/lessons/sec1/review1.html" class="btn-lesson">المراجعة الشاملة →</a>
-      </div>
-
-    </main>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function toggleLesson(header) {
-      const body = header.nextElementSibling;
-      const icon = header.querySelector('.toggle-icon');
-      body.classList.toggle('collapsed');
-      icon.style.transform = body.classList.contains('collapsed') ? 'rotate(0deg)' : 'rotate(180deg)';
-    }
-
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', function() {
-        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    function checkAnswer(element, isCorrect) {
-      const parent = element.parentElement;
-      Array.from(parent.children).forEach(child => {
-        child.classList.remove('correct', 'wrong');
-      });
-
-      if (isCorrect) {
-        element.classList.add('correct');
-      } else {
-        element.classList.add('wrong');
-        Array.from(parent.children).forEach(child => {
-          if (child.getAttribute('onclick').includes('true')) {
-            child.classList.add('correct');
-          }
+        examEngine = new ExamEngine({ title: 'Unit 3', duration: 60, questionCount: questions.length }, questions, {
+          shuffleQuestions: true, shuffleOptions: true,
+          onTick: (time) => { document.getElementById('examTimer').innerText = examEngine.formatTime(time); },
+          onFinish: (result) => { displayResults(result); }
         });
-      }
+
+        document.getElementById('lessonContainer').style.display = 'none'; document.getElementById('examContainer').style.display = 'block';
+        examEngine.start(); renderQuestion();
+      } catch (error) { console.error(error); alert('حدث خطأ.'); btn.innerHTML = originalText; btn.disabled = false; }
+    };
+
+    function renderQuestion() {
+      const q = examEngine.getCurrentQuestion(); const idx = examEngine.currentIndex;
+      const wrapper = document.getElementById('examQuestionsWrapper');
+      let optionsHtml = '';
+      if (q.type === 'mcq' || q.type === 'true_false') {
+        q.options.forEach((opt, i) => { const isSelected = examEngine.answers[q.id] === i; optionsHtml += `<button class="option-btn ${isSelected ? 'selected' : ''}" onclick="selectAnswer('${q.id}', ${i}, this)">${opt}</button>`; });
+      } else { const val = examEngine.answers[q.id] || ''; optionsHtml = `<input type="text" class="form-control" value="${val}" oninput="examEngine.answer('${q.id}', this.value)">`; }
+      const passageHtml = q.passage ? `<div class="reading-passage mb-3">${q.passage}</div>` : '';
+      wrapper.innerHTML = `<div class="q-card"><div class="d-flex justify-content-between mb-2"><span class="badge bg-secondary">Question ${idx + 1} of ${examEngine.questions.length}</span><span class="badge bg-info text-dark">${q.topic || 'General'}</span></div>${passageHtml}<div class="fw-bold mb-3 fs-5">${q.text}</div><div>${optionsHtml}</div></div>`;
+      document.getElementById('prevBtn').disabled = idx === 0;
+      document.getElementById('nextBtn').style.display = (idx === examEngine.questions.length - 1) ? 'none' : 'block';
+      document.getElementById('finishBtn').style.display = (idx === examEngine.questions.length - 1) ? 'block' : 'none';
     }
+
+    window.selectAnswer = (qId, optIdx, btn) => { examEngine.answer(qId, optIdx); btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); };
+    window.prevQuestion = () => { if (examEngine.prev()) renderQuestion(); };
+    window.nextQuestion = () => { if (examEngine.next()) renderQuestion(); };
+    window.finishExam = () => { if (confirm('تأكيد إنهاء وتسليم الامتحان؟')) examEngine.finish('manual'); };
+
+    async function displayResults(result) {
+      document.getElementById('examContainer').style.display = 'none'; document.getElementById('resultsContainer').style.display = 'block';
+      document.getElementById('scoreDisplay').innerText = result.percentage + '%'; document.getElementById('gradeDisplay').innerText = `Grade: ${result.grade} (${result.correct} / ${result.total})`;
+      const reviewDiv = document.getElementById('answersReview'); reviewDiv.innerHTML = '<h4 class="mb-3 text-center">Answers Review</h4>';
+      result.details.forEach((d, i) => {
+        const icon = d.isCorrect ? '<i class="fas fa-check-circle text-success"></i>' : '<i class="fas fa-times-circle text-danger"></i>';
+        reviewDiv.innerHTML += `<div class="card p-3 mb-2 border-${d.isCorrect ? 'success' : 'danger'}"><p class="fw-bold mb-1">${icon} Q${i+1}: ${d.questionText}</p><p class="mb-1 text-success" style="font-size: 0.9rem;">Your Answer: ${d.studentAnswer !== undefined ? d.studentAnswer : 'Not Answered'}</p>${!d.isCorrect ? `<p class="mb-1 text-danger" style="font-size: 0.9rem;">Correct Answer: ${d.correctAnswer}</p>` : ''}</div>`;
+      });
+      if (currentUser && examEngine) { try { await saveExamResult(currentUser.uid, 'unit3_sec1', { examTitle: 'Unit 3', ...result }); } catch (error) { console.error("Save error:", error); } }
+    }
+
+    window.downloadPDF = function() {
+      const element = document.getElementById('pdfContent'); const opt = { margin: 10, filename: 'Unit3_Result.pdf', html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
+      const btns = element.querySelector('.d-flex'); btns.style.display = 'none'; html2pdf().from(element).set(opt).save().then(() => { btns.style.display = 'flex'; });
+    };
   </script>
 </body>
 </html>
