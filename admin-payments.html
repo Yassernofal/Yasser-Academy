@@ -96,13 +96,17 @@
 
     window.approve = function(uid) {
       if (confirm('تأكيد تفعيل اشتراك هذا الطالب؟')) {
-        // تحديث حالة الطلب
-        db.ref('payment_requests/' + uid).update({ status: 'approved' }).then(() => {
-          // تفعيل الاشتراك في حساب الطالب
-          return db.ref('users/' + uid).update({ subscription: 'active' });
-        }).then(() => {
-          alert('✅ تم تفعيل الاشتراك بنجاح!');
-        }).catch(err => alert(err.message));
+        // التحديث بيتم بطريقة تمنع مشاكل الصلاحيات
+        db.ref('payment_requests/' + uid).update({ status: 'approved' })
+          .then(() => {
+            return db.ref('students/' + uid).update({ subscription: 'active' });
+          })
+          .then(() => {
+            alert('✅ تم تفعيل الاشتراك بنجاح!');
+          })
+          .catch(err => {
+            alert('خطأ: ' + err.message + '\nيرجى التأكد من تحديث قواعد Firebase Rules.');
+          });
       }
     };
 
